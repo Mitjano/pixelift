@@ -6,16 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "worker": "tsx worker.ts",
+    "worker:prod": "node worker.js"
   },
-  "keywords": ["ai", "image upscaler", "pixelift", "real-esrgan", "gfpgan"],
+  "keywords": [
+    "ai",
+    "image upscaler",
+    "pixelift",
+    "real-esrgan",
+    "gfpgan"
+  ],
   "author": "Pixelift",
   "license": "ISC",
   "description": "AI-powered image upscaling with Real-ESRGAN and GFPGAN",
   "dependencies": {
     "@auth/firebase-adapter": "^2.11.1",
     "axios": "^1.13.2",
+    "bullmq": "^5.63.2",
     "firebase": "^12.6.0",
+    "ioredis": "^5.8.2",
+    "nanoid": "^5.1.6",
     "next": "^16.0.3",
     "next-auth": "^5.0.0-beta.30",
     "react": "^19.2.0",
@@ -26,14 +37,17 @@
     "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "@types/ioredis": "^4.28.10",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.22",
+    "dotenv": "^17.2.3",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.3",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.18",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }

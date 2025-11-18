@@ -72,6 +72,12 @@ export default function Header() {
                     Dashboard
                   </Link>
                   <Link
+                    href="/dashboard/api"
+                    className="block px-4 py-2 hover:bg-gray-700 transition"
+                  >
+                    API Keys
+                  </Link>
+                  <Link
                     href="/dashboard/settings"
                     className="block px-4 py-2 hover:bg-gray-700 transition"
                   >
