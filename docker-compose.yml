@@ -36,15 +36,15 @@ services:
     depends_on:
       - redis
 
-  # Background worker
-  worker:
-    build: .
-    command: node worker.js
-    environment:
-      - REDIS_URL=redis://redis:6379
-      - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
-    depends_on:
-      - redis
+  # Background worker (disabled for now - worker.js not built in standalone mode)
+  # worker:
+  #   build: .
+  #   command: node worker.js
+  #   environment:
+  #     - REDIS_URL=redis://redis:6379
+  #     - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
+  #   depends_on:
+  #     - redis
 
 volumes:
   redis_data:
