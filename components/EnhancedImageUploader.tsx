@@ -799,7 +799,7 @@ export default function EnhancedImageUploader() {
                     Original Image
                   </h3>
                   <img
-                    src={previewUrl}
+                    src={previewUrl || undefined}
                     alt="Original"
                     className="w-full rounded-lg border border-gray-600"
                   />
