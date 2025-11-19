@@ -24,13 +24,13 @@ export const authOptions = {
     error: "/auth/error",
   },
   callbacks: {
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       if (session.user) {
         session.user.id = token.sub!;
       }
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       if (user) {
         token.sub = user.id;
       }
