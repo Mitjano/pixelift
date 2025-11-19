@@ -3,7 +3,13 @@ FROM node:20-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
+# Install sharp dependencies for Alpine Linux
+RUN apk add --no-cache \
+    libc6-compat \
+    vips-dev \
+    build-base \
+    python3 \
+    pkgconfig
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
@@ -21,6 +27,9 @@ RUN npm run build
 # Production image
 FROM base AS runner
 WORKDIR /app
+
+# Install runtime dependencies for sharp
+RUN apk add --no-cache vips-dev
 
 ENV NODE_ENV=production
 
