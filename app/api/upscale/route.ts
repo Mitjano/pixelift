@@ -81,9 +81,20 @@ export async function POST(request: NextRequest) {
     }
 
     console.log("Processing complete!");
+    console.log("Replicate raw output:", JSON.stringify(output));
 
-    // Output is typically a URL to the processed image
-    const resultUrl = Array.isArray(output) ? output[0] : output;
+    // Handle different Replicate response formats
+    let resultUrl: string;
+    if (Array.isArray(output)) {
+      resultUrl = output[0];
+    } else if (typeof output === 'string') {
+      resultUrl = output;
+    } else if (output && typeof output === 'object') {
+      // Replicate might return an object with url property
+      resultUrl = (output as any).url || (output as any).output || String(output);
+    } else {
+      resultUrl = String(output);
+    }
 
     const responseData = {
       success: true,
