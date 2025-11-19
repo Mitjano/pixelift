@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";
+// import { auth } from "@/lib/auth";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, getDocs, query, where, Timestamp, doc, updateDoc } from "firebase/firestore";
 import { generateApiKey } from "@/lib/generateApiKey";
