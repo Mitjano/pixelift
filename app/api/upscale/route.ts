@@ -85,12 +85,16 @@ export async function POST(request: NextRequest) {
     // Output is typically a URL to the processed image
     const resultUrl = Array.isArray(output) ? output[0] : output;
 
-    return NextResponse.json({
+    const responseData = {
       success: true,
       imageUrl: resultUrl,
       scale: scale,
       enhanceFace: enhanceFace,
-    });
+    };
+
+    console.log("Upscale API returning:", JSON.stringify(responseData));
+
+    return NextResponse.json(responseData);
 
   } catch (error: any) {
     console.error("Error processing image:", error);

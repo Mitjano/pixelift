@@ -77,12 +77,16 @@ export async function POST(request: NextRequest) {
 
     const resultUrl = Array.isArray(output) ? output[0] : output;
 
-    return NextResponse.json({
+    const responseData = {
       success: true,
       previewUrl: resultUrl,
       scale: scale,
       message: "This is a 200x200px preview. Full image processing will use 1 credit.",
-    });
+    };
+
+    console.log("Preview API returning:", JSON.stringify(responseData));
+
+    return NextResponse.json(responseData);
 
   } catch (error: any) {
     console.error("Error generating preview:", error);
