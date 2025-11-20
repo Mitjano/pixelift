@@ -5,9 +5,7 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const image = formData.get("image") as File;
     const scale = parseInt(formData.get("scale") as string) || 2;
-    const enhanceFace = formData.get("enhanceFace") === "true";
-    const denoise = formData.get("denoise") === "true";
-    const removeArtifacts = formData.get("removeArtifacts") === "true";
+    const qualityBoost = formData.get("qualityBoost") === "true";
 
     if (!image) {
       return NextResponse.json(
@@ -34,14 +32,14 @@ export async function POST(request: NextRequest) {
     const mimeType = image.type;
     const dataUrl = `data:${mimeType};base64,${base64}`;
 
-    console.log(`Generating FREE preview: Scale ${scale}x, Enhance Face: ${enhanceFace}`);
+    console.log(`Generating FREE preview: Scale ${scale}x, Quality Boost: ${qualityBoost}`);
 
     // Use Replicate HTTP API directly
-    const version = enhanceFace
-      ? "9283608cc6b7be6b65a8e44983db012355fde4132009bf99d976b2f0896856a3" // GFPGAN
-      : "f121d640bd286e1fdc67f9799164c1d5be36ff74576ee11c803ae5b665dd46aa"; // Real-ESRGAN
+    const version = qualityBoost
+      ? "9283608cc6b7be6b65a8e44983db012355fde4132009bf99d976b2f0896856a3" // GFPGAN (Premium)
+      : "f121d640bd286e1fdc67f9799164c1d5be36ff74576ee11c803ae5b665dd46aa"; // Real-ESRGAN (Standard)
 
-    const input = enhanceFace
+    const input = qualityBoost
       ? {
           img: dataUrl,
           scale: scale,

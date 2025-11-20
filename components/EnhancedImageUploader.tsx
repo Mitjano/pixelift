@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
-import { AI_PRESETS, AIPreset } from "@/lib/aiPresets";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle } from "react-icons/fa";
 
@@ -32,18 +31,10 @@ export default function EnhancedImageUploader() {
   const [processingBatch, setProcessingBatch] = useState(false);
   const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0 });
 
-  // Preview system
-  const [freePreviewUrl, setFreePreviewUrl] = useState<string | null>(null);
-  const [generatingPreview, setGeneratingPreview] = useState(false);
+  // Simplified settings - like Upscale.media
   const [scale, setScale] = useState(2);
-  const [enhanceFace, setEnhanceFace] = useState(true);
-  const [selectedPreset, setSelectedPreset] = useState<string>("portrait");
+  const [qualityBoost, setQualityBoost] = useState(false); // Simple ON/OFF toggle
   const [imageInfo, setImageInfo] = useState<{width: number, height: number, size: number} | null>(null);
-
-  // New enhancement options
-  const [denoise, setDenoise] = useState(false);
-  const [removeArtifacts, setRemoveArtifacts] = useState(false);
-  const [colorCorrection, setColorCorrection] = useState(false);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -165,75 +156,7 @@ export default function EnhancedImageUploader() {
     setBatchImages(newBatchImages);
   };
 
-  const applyPreset = (preset: AIPreset) => {
-    setSelectedPreset(preset.id);
-    setScale(preset.scale);
-    setEnhanceFace(preset.enhanceFace);
-    // Apply new enhancement options from preset
-    setDenoise(preset.denoise || false);
-    setRemoveArtifacts(preset.removeArtifacts || false);
-    setColorCorrection(preset.colorCorrection || false);
-    // Clear preview when settings change
-    setFreePreviewUrl(null);
-    // Nie zamykamy presetów - pozostają widoczne
-  };
 
-  // Generate FREE 200x200px preview
-  const handleFreePreview = async () => {
-    if (!selectedFile) return;
-
-    setGeneratingPreview(true);
-    setFreePreviewUrl(null);
-
-    try {
-      const formData = new FormData();
-      formData.append("image", selectedFile);
-      formData.append("scale", scale.toString());
-      formData.append("enhanceFace", enhanceFace.toString());
-      formData.append("denoise", denoise.toString());
-      formData.append("removeArtifacts", removeArtifacts.toString());
-
-      const response = await fetch("/api/preview", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.details || "Failed to generate preview");
-      }
-
-      const data = await response.json();
-      console.log("Preview API response:", data);
-
-      if (data.success && data.previewUrl) {
-        setFreePreviewUrl(data.previewUrl);
-
-        // Log usage to Firebase (preview is free, doesn't cost credits)
-        if (session?.user?.email) {
-          fetch("/api/user/log-usage", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              userId: session.user.email,
-              type: "preview",
-              scale,
-              enhanceFace,
-              imageUrl: data.previewUrl,
-            }),
-          }).catch((err) => console.error("Failed to log preview usage:", err));
-        }
-      } else {
-        throw new Error("No preview URL in response");
-      }
-
-    } catch (error: any) {
-      console.error("Preview error:", error);
-      alert(`Failed to generate preview: ${error.message}`);
-    } finally {
-      setGeneratingPreview(false);
-    }
-  };
 
   const handleProcess = async () => {
     if (!selectedFile) return;
@@ -246,12 +169,9 @@ export default function EnhancedImageUploader() {
       const formData = new FormData();
       formData.append("image", selectedFile);
       formData.append("scale", scale.toString());
-      formData.append("enhanceFace", enhanceFace.toString());
-      formData.append("denoise", denoise.toString());
-      formData.append("removeArtifacts", removeArtifacts.toString());
-      formData.append("colorCorrection", colorCorrection.toString());
+      formData.append("qualityBoost", qualityBoost.toString());
 
-      setProgress(enhanceFace ? "Enhancing with GFPGAN AI..." : "Upscaling with Real-ESRGAN AI...");
+      setProgress(qualityBoost ? "Enhancing with Premium AI..." : "Upscaling with Standard AI...");
 
       const response = await fetch("/api/upscale", {
         method: "POST",
@@ -279,7 +199,7 @@ export default function EnhancedImageUploader() {
               userId: session.user.email,
               type: "full",
               scale,
-              enhanceFace,
+              enhanceFace: qualityBoost,
               imageUrl: data.imageUrl,
             }),
           }).catch((err) => console.error("Failed to log usage:", err));
@@ -336,10 +256,7 @@ export default function EnhancedImageUploader() {
         const formData = new FormData();
         formData.append("image", item.file);
         formData.append("scale", scale.toString());
-        formData.append("enhanceFace", enhanceFace.toString());
-        formData.append("denoise", denoise.toString());
-        formData.append("removeArtifacts", removeArtifacts.toString());
-        formData.append("colorCorrection", colorCorrection.toString());
+        formData.append("qualityBoost", qualityBoost.toString());
 
         const response = await fetch("/api/upscale", {
           method: "POST",
@@ -529,31 +446,6 @@ export default function EnhancedImageUploader() {
             </button>
           </div>
 
-          {/* AI Presets - Always Visible */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-            <h3 className="text-xl font-bold mb-4">Choose AI Preset for All Images</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {AI_PRESETS.filter(p => p.id !== "custom").map((preset) => (
-                <button
-                  key={preset.id}
-                  onClick={() => applyPreset(preset)}
-                  className={`text-center p-4 rounded-lg border-2 transition hover:scale-105 ${
-                    selectedPreset === preset.id
-                      ? "border-green-500 bg-green-500/20 shadow-lg shadow-green-500/20"
-                      : "border-gray-600 hover:border-gray-500 hover:bg-gray-700/50"
-                  }`}
-                  disabled={processingBatch}
-                >
-                  <div className="text-4xl mb-2">{preset.icon}</div>
-                  <div className="font-semibold text-sm mb-1">{preset.name}</div>
-                  <div className="text-xs text-gray-400 mb-2 line-clamp-2">{preset.description}</div>
-                  <div className={`text-xs font-medium ${selectedPreset === preset.id ? "text-green-400" : "text-gray-500"}`}>
-                    {preset.scale}x • {preset.enhanceFace ? "Face" : "Standard"}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Batch Progress */}
           {processingBatch && (
@@ -637,111 +529,51 @@ export default function EnhancedImageUploader() {
             </div>
           </div>
 
-          {/* Settings */}
+          {/* Simple Settings - Like Upscale.media */}
           <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
             <h3 className="text-lg font-semibold mb-4">Batch Settings</h3>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2">Upscale Level</label>
+                <label className="block text-sm font-medium mb-2">Powiększone do</label>
                 <select
-                  className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3"
+                  className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-base font-medium"
                   value={scale}
-                  onChange={(e) => {
-                    setScale(parseInt(e.target.value));
-                    setSelectedPreset("custom");
-                  }}
+                  onChange={(e) => setScale(parseInt(e.target.value))}
                   disabled={processingBatch}
                 >
-                  <option value={1}>1x (Quality Only)</option>
-                  <option value={2}>2x (Standard)</option>
-                  <option value={4}>4x (High Quality)</option>
-                  <option value={8}>8x (Maximum)</option>
+                  <option value={1}>1x</option>
+                  <option value={2}>2x</option>
+                  <option value={4}>4x</option>
+                  <option value={8}>8x</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Face Enhancement</label>
-                <button
-                  className={`w-full py-3 rounded-lg font-medium transition ${
-                    enhanceFace
-                      ? "bg-green-500 text-white"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
-                  onClick={() => {
-                    setEnhanceFace(!enhanceFace);
-                    setSelectedPreset("custom");
-                  }}
-                  disabled={processingBatch}
-                >
-                  {enhanceFace ? "Enabled" : "Disabled"}
-                </button>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Active Preset</label>
-                <div className="bg-gray-900 border border-gray-700 rounded-lg px-4 py-3">
-                  <span className="flex items-center gap-2">
-                    {AI_PRESETS.find(p => p.id === selectedPreset)?.icon}
-                    {AI_PRESETS.find(p => p.id === selectedPreset)?.name}
-                  </span>
+                <label className="block text-sm font-medium mb-2">Popraw jakość</label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setQualityBoost(false)}
+                    disabled={processingBatch}
+                    className={`flex-1 py-3 rounded-lg font-medium transition ${
+                      !qualityBoost
+                        ? "bg-gray-700 text-white border-2 border-gray-600"
+                        : "bg-gray-800 text-gray-400 border border-gray-700"
+                    }`}
+                  >
+                    Off
+                  </button>
+                  <button
+                    onClick={() => setQualityBoost(true)}
+                    disabled={processingBatch}
+                    className={`flex-1 py-3 rounded-lg font-medium transition ${
+                      qualityBoost
+                        ? "bg-green-500 text-white border-2 border-green-400"
+                        : "bg-gray-800 text-gray-400 border border-gray-700"
+                    }`}
+                  >
+                    On
+                  </button>
                 </div>
-              </div>
-            </div>
-
-            {/* Enhancement Options */}
-            <div className="border-t border-gray-700 pt-4 mt-4">
-              <h4 className="text-sm font-medium mb-3 text-gray-300">Enhancement Options</h4>
-              <div className="grid md:grid-cols-3 gap-4">
-                <label className="flex items-center justify-between p-3 rounded-lg border border-gray-700 hover:border-gray-600 cursor-pointer transition">
-                  <div>
-                    <div className="font-medium text-sm">Denoise</div>
-                    <div className="text-xs text-gray-400">Remove grain & noise</div>
-                  </div>
-                  <input
-                    type="checkbox"
-                    checked={denoise}
-                    onChange={(e) => {
-                      setDenoise(e.target.checked);
-                      setSelectedPreset("custom");
-                    }}
-                    disabled={processingBatch}
-                    className="w-5 h-5 text-green-500 rounded"
-                  />
-                </label>
-
-                <label className="flex items-center justify-between p-3 rounded-lg border border-gray-700 hover:border-gray-600 cursor-pointer transition">
-                  <div>
-                    <div className="font-medium text-sm">Remove Artifacts</div>
-                    <div className="text-xs text-gray-400">Fix JPEG compression</div>
-                  </div>
-                  <input
-                    type="checkbox"
-                    checked={removeArtifacts}
-                    onChange={(e) => {
-                      setRemoveArtifacts(e.target.checked);
-                      setSelectedPreset("custom");
-                    }}
-                    disabled={processingBatch}
-                    className="w-5 h-5 text-green-500 rounded"
-                  />
-                </label>
-
-                <label className="flex items-center justify-between p-3 rounded-lg border border-gray-700 hover:border-gray-600 cursor-pointer transition">
-                  <div>
-                    <div className="font-medium text-sm">Color Correction</div>
-                    <div className="text-xs text-gray-400">Auto-enhance colors</div>
-                  </div>
-                  <input
-                    type="checkbox"
-                    checked={colorCorrection}
-                    onChange={(e) => {
-                      setColorCorrection(e.target.checked);
-                      setSelectedPreset("custom");
-                    }}
-                    disabled={processingBatch}
-                    className="w-5 h-5 text-green-500 rounded"
-                  />
-                </label>
               </div>
             </div>
           </div>
@@ -787,31 +619,6 @@ export default function EnhancedImageUploader() {
             </button>
           </div>
 
-          {/* AI Presets - Always Visible */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-            <h3 className="text-xl font-bold mb-4">Choose AI Preset</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {AI_PRESETS.filter(p => p.id !== "custom").map((preset) => (
-                <button
-                  key={preset.id}
-                  onClick={() => applyPreset(preset)}
-                  className={`text-center p-4 rounded-lg border-2 transition hover:scale-105 ${
-                    selectedPreset === preset.id
-                      ? "border-green-500 bg-green-500/20 shadow-lg shadow-green-500/20"
-                      : "border-gray-600 hover:border-gray-500 hover:bg-gray-700/50"
-                  }`}
-                  disabled={processing}
-                >
-                  <div className="text-4xl mb-2">{preset.icon}</div>
-                  <div className="font-semibold text-sm mb-1">{preset.name}</div>
-                  <div className="text-xs text-gray-400 mb-2 line-clamp-2">{preset.description}</div>
-                  <div className={`text-xs font-medium ${selectedPreset === preset.id ? "text-green-400" : "text-gray-500"}`}>
-                    {preset.scale}x • {preset.enhanceFace ? "Face" : "Standard"}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Image Info */}
           {imageInfo && (
@@ -867,175 +674,66 @@ export default function EnhancedImageUploader() {
             )}
           </div>
 
-          {/* Advanced Controls */}
+          {/* Simple Settings - Like Upscale.media */}
           <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
             <h3 className="text-lg font-semibold mb-4">Settings</h3>
-
-            {/* Primary Settings Row */}
-            <div className="grid md:grid-cols-3 gap-4 mb-4">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2">Upscale Level</label>
+                <label className="block text-sm font-medium mb-2">Powiększone do</label>
                 <select
-                  className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3"
+                  className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-base font-medium"
                   value={scale}
-                  onChange={(e) => {
-                    setScale(parseInt(e.target.value));
-                    setSelectedPreset("custom");
-                    setFreePreviewUrl(null); // Clear preview on settings change
-                  }}
-                  disabled={processing || generatingPreview}
+                  onChange={(e) => setScale(parseInt(e.target.value))}
+                  disabled={processing}
                 >
-                  <option value={1}>1x (Quality Only)</option>
-                  <option value={2}>2x (Standard)</option>
-                  <option value={4}>4x (High Quality)</option>
-                  <option value={8}>8x (Maximum)</option>
+                  <option value={1}>1x</option>
+                  <option value={2}>2x</option>
+                  <option value={4}>4x</option>
+                  <option value={8}>8x</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Face Enhancement</label>
-                <button
-                  className={`w-full py-3 rounded-lg font-medium transition ${
-                    enhanceFace
-                      ? "bg-green-500 text-white"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
-                  onClick={() => {
-                    setEnhanceFace(!enhanceFace);
-                    setSelectedPreset("custom");
-                    setFreePreviewUrl(null); // Clear preview on settings change
-                  }}
-                  disabled={processing || generatingPreview}
-                >
-                  {enhanceFace ? "Enabled" : "Disabled"}
-                </button>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Active Preset</label>
-                <div className="bg-gray-900 border border-gray-700 rounded-lg px-4 py-3">
-                  <span className="flex items-center gap-2">
-                    {AI_PRESETS.find(p => p.id === selectedPreset)?.icon}
-                    {AI_PRESETS.find(p => p.id === selectedPreset)?.name}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Enhancement Options Row */}
-            <div className="border-t border-gray-700 pt-4 mt-4">
-              <h4 className="text-sm font-medium mb-3 text-gray-300">🎨 Enhancement Options</h4>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div>
-                  <label className="flex items-center justify-between p-3 rounded-lg border border-gray-700 hover:border-gray-600 cursor-pointer transition">
-                    <div>
-                      <div className="font-medium text-sm">🧹 Denoise</div>
-                      <div className="text-xs text-gray-400">Remove grain & noise</div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={denoise}
-                      onChange={(e) => {
-                        setDenoise(e.target.checked);
-                        setSelectedPreset("custom");
-                        setFreePreviewUrl(null);
-                      }}
-                      disabled={processing || generatingPreview}
-                      className="w-5 h-5 text-green-500 rounded"
-                    />
-                  </label>
-                </div>
-
-                <div>
-                  <label className="flex items-center justify-between p-3 rounded-lg border border-gray-700 hover:border-gray-600 cursor-pointer transition">
-                    <div>
-                      <div className="font-medium text-sm">🔧 Remove Artifacts</div>
-                      <div className="text-xs text-gray-400">Fix JPEG compression</div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={removeArtifacts}
-                      onChange={(e) => {
-                        setRemoveArtifacts(e.target.checked);
-                        setSelectedPreset("custom");
-                        setFreePreviewUrl(null);
-                      }}
-                      disabled={processing || generatingPreview}
-                      className="w-5 h-5 text-green-500 rounded"
-                    />
-                  </label>
-                </div>
-
-                <div>
-                  <label className="flex items-center justify-between p-3 rounded-lg border border-gray-700 hover:border-gray-600 cursor-pointer transition">
-                    <div>
-                      <div className="font-medium text-sm">🌈 Color Correction</div>
-                      <div className="text-xs text-gray-400">Auto-enhance colors</div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={colorCorrection}
-                      onChange={(e) => {
-                        setColorCorrection(e.target.checked);
-                        setSelectedPreset("custom");
-                        setFreePreviewUrl(null);
-                      }}
-                      disabled={processing || generatingPreview}
-                      className="w-5 h-5 text-green-500 rounded"
-                    />
-                  </label>
+                <label className="block text-sm font-medium mb-2">Popraw jakość</label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setQualityBoost(false)}
+                    disabled={processing}
+                    className={`flex-1 py-3 rounded-lg font-medium transition ${
+                      !qualityBoost
+                        ? "bg-gray-700 text-white border-2 border-gray-600"
+                        : "bg-gray-800 text-gray-400 border border-gray-700"
+                    }`}
+                  >
+                    Off
+                  </button>
+                  <button
+                    onClick={() => setQualityBoost(true)}
+                    disabled={processing}
+                    className={`flex-1 py-3 rounded-lg font-medium transition ${
+                      qualityBoost
+                        ? "bg-green-500 text-white border-2 border-green-400"
+                        : "bg-gray-800 text-gray-400 border border-gray-700"
+                    }`}
+                  >
+                    On
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* FREE Preview Section */}
-          {freePreviewUrl && (
-            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border-2 border-blue-500/50 p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex-1">
-                  <h4 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                    👁️ FREE Preview (200x200px)
-                  </h4>
-                  <p className="text-sm text-gray-400 mb-4">
-                    This is a small sample. Full image processing will use 1 credit.
-                  </p>
-                  <img
-                    src={freePreviewUrl}
-                    alt="Preview"
-                    className="rounded-lg border-2 border-blue-500/30 max-w-xs"
-                  />
-                </div>
-                <div className="text-sm text-gray-400">
-                  <p className="mb-2">✅ Quality looks good?</p>
-                  <p>Click "Process Full Image" below to upscale the entire image!</p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Action Buttons */}
           <div className="flex items-center justify-center gap-4 flex-wrap">
             {!upscaledUrl ? (
-              <>
-                {/* FREE Preview Button */}
-                <button
-                  onClick={handleFreePreview}
-                  disabled={generatingPreview || processing}
-                  className="px-8 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition shadow-lg shadow-blue-500/20"
-                >
-                  {generatingPreview ? "Generating Preview..." : "👁️ Free Preview"}
-                </button>
-
-                {/* Process Full Image Button */}
-                <button
-                  onClick={handleProcess}
-                  disabled={processing || generatingPreview}
-                  className="px-8 py-4 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition shadow-lg shadow-green-500/20"
-                >
-                  {processing ? "Processing..." : "🚀 Process Full Image"}
-                </button>
-              </>
+              <button
+                onClick={handleProcess}
+                disabled={processing}
+                className="px-12 py-5 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-xl font-bold text-xl transition shadow-xl shadow-green-500/30"
+              >
+                {processing ? "Processing..." : "Process Image"}
+              </button>
             ) : (
               <>
                 <button
