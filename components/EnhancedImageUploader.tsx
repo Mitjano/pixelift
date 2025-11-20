@@ -446,6 +446,43 @@ export default function EnhancedImageUploader() {
             </button>
           </div>
 
+          {/* Add Images Button */}
+          {batchImages.length === 0 && (
+            <div className="border-2 border-dashed border-gray-600 rounded-xl p-12 text-center">
+              <input
+                type="file"
+                id="batch-file-upload"
+                className="hidden"
+                accept="image/png,image/jpeg,image/jpg,image/webp,image/heic,image/bmp"
+                multiple
+                onChange={handleChange}
+              />
+              <div className="mb-4">
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400"
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 48 48"
+                >
+                  <path
+                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <label
+                htmlFor="batch-file-upload"
+                className="cursor-pointer inline-block px-8 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition mb-4"
+              >
+                Upload Multiple Images
+              </label>
+              <p className="text-gray-400 mt-4">or drop up to 50 images anywhere</p>
+              <p className="text-sm text-gray-500 mt-4">Process up to 50 images at once with the same settings</p>
+            </div>
+          )}
+
 
           {/* Batch Progress */}
           {processingBatch && (
@@ -530,53 +567,55 @@ export default function EnhancedImageUploader() {
           </div>
 
           {/* Simple Settings - Like Upscale.media */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-            <h3 className="text-lg font-semibold mb-4">Batch Settings</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Powiększone do</label>
-                <select
-                  className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-base font-medium"
-                  value={scale}
-                  onChange={(e) => setScale(parseInt(e.target.value))}
-                  disabled={processingBatch}
-                >
-                  <option value={1}>1x</option>
-                  <option value={2}>2x</option>
-                  <option value={4}>4x</option>
-                  <option value={8}>8x</option>
-                </select>
-              </div>
+          {batchImages.length > 0 && (
+            <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
+              <h3 className="text-lg font-semibold mb-4">Batch Settings</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Upscale to</label>
+                  <select
+                    className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-base font-medium"
+                    value={scale}
+                    onChange={(e) => setScale(parseInt(e.target.value))}
+                    disabled={processingBatch}
+                  >
+                    <option value={1}>1x</option>
+                    <option value={2}>2x</option>
+                    <option value={4}>4x</option>
+                    <option value={8}>8x</option>
+                  </select>
+                </div>
 
-              <div>
-                <label className="block text-sm font-medium mb-2">Popraw jakość</label>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setQualityBoost(false)}
-                    disabled={processingBatch}
-                    className={`flex-1 py-3 rounded-lg font-medium transition ${
-                      !qualityBoost
-                        ? "bg-gray-700 text-white border-2 border-gray-600"
-                        : "bg-gray-800 text-gray-400 border border-gray-700"
-                    }`}
-                  >
-                    Off
-                  </button>
-                  <button
-                    onClick={() => setQualityBoost(true)}
-                    disabled={processingBatch}
-                    className={`flex-1 py-3 rounded-lg font-medium transition ${
-                      qualityBoost
-                        ? "bg-green-500 text-white border-2 border-green-400"
-                        : "bg-gray-800 text-gray-400 border border-gray-700"
-                    }`}
-                  >
-                    On
-                  </button>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Quality Boost</label>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setQualityBoost(false)}
+                      disabled={processingBatch}
+                      className={`flex-1 py-3 rounded-lg font-medium transition ${
+                        !qualityBoost
+                          ? "bg-gray-700 text-white border-2 border-gray-600"
+                          : "bg-gray-800 text-gray-400 border border-gray-700"
+                      }`}
+                    >
+                      Off
+                    </button>
+                    <button
+                      onClick={() => setQualityBoost(true)}
+                      disabled={processingBatch}
+                      className={`flex-1 py-3 rounded-lg font-medium transition ${
+                        qualityBoost
+                          ? "bg-green-500 text-white border-2 border-green-400"
+                          : "bg-gray-800 text-gray-400 border border-gray-700"
+                      }`}
+                    >
+                      On
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -679,7 +718,7 @@ export default function EnhancedImageUploader() {
             <h3 className="text-lg font-semibold mb-4">Settings</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2">Powiększone do</label>
+                <label className="block text-sm font-medium mb-2">Upscale to</label>
                 <select
                   className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-base font-medium"
                   value={scale}
@@ -694,7 +733,7 @@ export default function EnhancedImageUploader() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Popraw jakość</label>
+                <label className="block text-sm font-medium mb-2">Quality Boost</label>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setQualityBoost(false)}
