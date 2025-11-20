@@ -27,13 +27,18 @@ export async function POST(request: NextRequest) {
 
     console.log('Processing background removal with BRIA RMBG 2.0...');
 
+    // Convert file to base64 data URI
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const base64Image = buffer.toString('base64');
+    const dataUri = `data:${file.type};base64,${base64Image}`;
+
     // Run BRIA Remove Background Model
-    // Send file directly, not as base64 data URI
     const output = await replicate.run(
-      "bria/remove-background:e62372ec9304f309dc216065f5c6823d477d16c1cd0f34609137d8eae79b5fd1",
+      "briaai/RMBG-2.0:95fcc2a26d3899cd6c2691c900465aaeff466285a65fe84e11edb4782bd71c7",
       {
         input: {
-          image: file
+          image: dataUri
         }
       }
     ) as any;
