@@ -27,26 +27,58 @@ export async function POST(request: NextRequest) {
 
     console.log('Processing background removal with BRIA RMBG 2.0...');
 
-    // Convert file to Buffer (Replicate Node.js client supports Buffer directly)
+    // Convert file to data URI (most reliable method per Replicate docs)
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
+    const base64 = buffer.toString('base64');
 
-    // Run BRIA Remove Background Model
-    const output = await replicate.run(
-      "bria/remove-background",
-      {
-        input: {
-          image: buffer
-        }
+    // Determine MIME type
+    let mimeType = 'image/jpeg';
+    if (file.type === 'image/png') {
+      mimeType = 'image/png';
+    } else if (file.type === 'image/webp') {
+      mimeType = 'image/webp';
+    }
+
+    const dataURI = `data:${mimeType};base64,${base64}`;
+
+    console.log('Image size:', buffer.length, 'bytes');
+    console.log('MIME type:', mimeType);
+    console.log('Data URI length:', dataURI.length);
+
+    // Run BRIA Remove Background Model using predictions.create for better control
+    console.log('Creating prediction...');
+    const prediction = await replicate.predictions.create({
+      version: "e62372ec9304f309dc216065f5c6823d477d16c1cd0f34609137d8eae79b5fd1",
+      input: {
+        image: dataURI
       }
-    ) as any;
+    });
 
-    console.log('Background removal completed');
-    console.log('Output type:', typeof output);
-    console.log('Output:', JSON.stringify(output, null, 2));
+    console.log('Prediction created:', prediction.id);
+    console.log('Prediction status:', prediction.status);
+    console.log('Prediction:', JSON.stringify(prediction, null, 2));
+
+    // Wait for prediction to complete
+    let completedPrediction = prediction;
+    while (completedPrediction.status !== 'succeeded' && completedPrediction.status !== 'failed') {
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+      completedPrediction = await replicate.predictions.get(prediction.id);
+      console.log('Prediction status:', completedPrediction.status);
+    }
+
+    if (completedPrediction.status === 'failed') {
+      console.error('Prediction failed:', completedPrediction.error);
+      throw new Error(`Background removal failed: ${completedPrediction.error}`);
+    }
+
+    console.log('Prediction completed successfully');
+    console.log('Output type:', typeof completedPrediction.output);
+    console.log('Output:', JSON.stringify(completedPrediction.output, null, 2));
 
     // Handle output
     let imageUrl: string;
+    const output = completedPrediction.output;
 
     if (typeof output === 'string') {
       imageUrl = output;
