@@ -202,6 +202,13 @@ export default function TermsOfService() {
 
           <section>
             <h2 className="text-2xl font-semibold text-white mb-4">15. Contact Information</h2>
+            <p className="mb-4">Service operated by:</p>
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 mb-6">
+              <p className="font-semibold text-white mb-2">JuveStore.pl Michał Chmielarz</p>
+              <p>ul. Dworcowa 67 D/4</p>
+              <p>62-040 Puszczykowo</p>
+              <p className="mt-2">NIP: 7773012345</p>
+            </div>
             <p className="mb-4">For questions about these Terms, contact us:</p>
             <ul className="space-y-2">
               <li><strong>Email:</strong> <a href="mailto:legal@pixelift.pl" className="text-green-500 hover:underline">legal@pixelift.pl</a></li>
