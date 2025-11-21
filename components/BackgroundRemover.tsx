@@ -10,14 +10,19 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 interface ProcessedImage {
   id: string;
   originalFilename: string;
-  originalUrl: string;
-  processedUrl: string;
+  originalPath: string;
+  processedPath: string;
   fileSize: number;
   width: number;
   height: number;
   createdAt: Timestamp;
   userId?: string;
 }
+
+// Helper function to convert storage path to proxy URL
+const getProxyUrl = (path: string) => {
+  return `/api/image?path=${encodeURIComponent(path)}`;
+};
 
 type Resolution = 'low' | 'medium' | 'high' | 'original';
 type Format = 'png' | 'jpg';
@@ -157,23 +162,21 @@ export default function BackgroundRemover() {
       console.log('Uploading original to Storage:', originalFileName);
       const originalRef = ref(storage, originalFileName);
       await uploadBytes(originalRef, originalFile);
-      const originalUrl = await getDownloadURL(originalRef);
-      console.log('Original uploaded successfully:', originalUrl);
+      console.log('Original uploaded successfully:', originalFileName);
 
       // Upload processed to Storage
       const processedFileName = `processed/${session.user.email}/${Date.now()}_processed.png`;
       console.log('Uploading processed image to Storage:', processedFileName);
       const processedRef = ref(storage, processedFileName);
       await uploadBytes(processedRef, processedBlob);
-      const processedUrl = await getDownloadURL(processedRef);
-      console.log('Processed image uploaded successfully:', processedUrl);
+      console.log('Processed image uploaded successfully:', processedFileName);
 
-      // Save metadata to Firestore
+      // Save metadata to Firestore with storage paths (not URLs)
       console.log('Saving metadata to Firestore...');
       const docRef = await addDoc(collection(db, 'processedImages'), {
         originalFilename: originalFile.name,
-        originalUrl,
-        processedUrl,
+        originalPath: originalFileName,
+        processedPath: processedFileName,
         fileSize: originalFile.size,
         width,
         height,
@@ -201,14 +204,14 @@ export default function BackgroundRemover() {
 
       // Delete from Storage
       try {
-        const originalRef = ref(storage, image.originalUrl);
+        const originalRef = ref(storage, image.originalPath);
         await deleteObject(originalRef);
       } catch (err) {
         console.error('Error deleting original from storage:', err);
       }
 
       try {
-        const processedRef = ref(storage, image.processedUrl);
+        const processedRef = ref(storage, image.processedPath);
         await deleteObject(processedRef);
       } catch (err) {
         console.error('Error deleting processed from storage:', err);
@@ -232,8 +235,9 @@ export default function BackgroundRemover() {
 
     setIsDownloading(true);
     try {
-      // Fetch the processed image
-      const response = await fetch(selectedImageForDownload.processedUrl);
+      // Fetch the processed image through proxy
+      const proxyUrl = getProxyUrl(selectedImageForDownload.processedPath);
+      const response = await fetch(proxyUrl);
       const blob = await response.blob();
 
       // Process image with selected resolution and format
@@ -455,7 +459,7 @@ export default function BackgroundRemover() {
                 <div key={image.id} className="bg-gray-800/50 rounded-lg overflow-hidden border border-gray-700 hover:border-purple-500 transition-all">
                   <div className="aspect-square relative bg-[linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937),linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937)] bg-[length:20px_20px] bg-[position:0_0,10px_10px]">
                     <Image
-                      src={image.processedUrl}
+                      src={getProxyUrl(image.processedPath)}
                       alt={image.originalFilename}
                       fill
                       className="object-contain"
