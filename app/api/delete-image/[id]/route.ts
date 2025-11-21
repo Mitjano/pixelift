@@ -4,7 +4,7 @@ import { adminDb, adminStorage } from '@/lib/firebase-admin';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
@@ -12,7 +12,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const imageId = params.id;
+    const { id: imageId } = await params;
     const userEmail = session.user.email;
 
     // Fetch image metadata from Firestore
