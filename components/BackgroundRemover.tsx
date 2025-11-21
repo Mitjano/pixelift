@@ -3,9 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
-import { db, storage } from '@/lib/firebase';
-import { collection, query, where, orderBy, getDocs, deleteDoc, doc, Timestamp } from 'firebase/firestore';
-import { ref, deleteObject } from 'firebase/storage';
+import { Timestamp } from 'firebase/firestore';
 
 interface ProcessedImage {
   id: string;
@@ -44,38 +42,29 @@ export default function BackgroundRemover() {
   const [downloadFormat, setDownloadFormat] = useState<Format>('png');
   const [isDownloading, setIsDownloading] = useState(false);
 
-  // Load user's processed images from Firestore
+  // Load user's processed images from API
   useEffect(() => {
     loadProcessedImages();
   }, [session]);
 
   const loadProcessedImages = async () => {
+    if (!session?.user?.email) {
+      setIsLoadingImages(false);
+      return;
+    }
+
     setIsLoadingImages(true);
     try {
-      const imagesRef = collection(db, 'processedImages');
-      let q;
-
-      if (session?.user?.email) {
-        q = query(
-          imagesRef,
-          where('userId', '==', session.user.email),
-          orderBy('createdAt', 'desc')
-        );
-      } else {
-        // For non-logged users, we could use localStorage ID or skip
-        setIsLoadingImages(false);
-        return;
+      const response = await fetch('/api/get-images');
+      if (!response.ok) {
+        throw new Error('Failed to fetch images');
       }
 
-      const querySnapshot = await getDocs(q);
-      const images: ProcessedImage[] = [];
-
-      querySnapshot.forEach((doc) => {
-        images.push({
-          id: doc.id,
-          ...doc.data()
-        } as ProcessedImage);
-      });
+      const data = await response.json();
+      const images: ProcessedImage[] = data.images.map((img: any) => ({
+        ...img,
+        createdAt: new Date(img.createdAt) as any,
+      }));
 
       setProcessedImages(images);
     } catch (err) {
@@ -186,22 +175,12 @@ export default function BackgroundRemover() {
     if (!confirm(`Are you sure you want to delete ${image.originalFilename}?`)) return;
 
     try {
-      // Delete from Firestore
-      await deleteDoc(doc(db, 'processedImages', image.id));
+      const response = await fetch(`/api/delete-image/${image.id}`, {
+        method: 'DELETE',
+      });
 
-      // Delete from Storage
-      try {
-        const originalRef = ref(storage, image.originalPath);
-        await deleteObject(originalRef);
-      } catch (err) {
-        console.error('Error deleting original from storage:', err);
-      }
-
-      try {
-        const processedRef = ref(storage, image.processedPath);
-        await deleteObject(processedRef);
-      } catch (err) {
-        console.error('Error deleting processed from storage:', err);
+      if (!response.ok) {
+        throw new Error('Failed to delete image');
       }
 
       // Reload images
@@ -222,28 +201,26 @@ export default function BackgroundRemover() {
 
     setIsDownloading(true);
     try {
-      // Fetch the processed image through proxy
-      const proxyUrl = getProxyUrl(selectedImageForDownload.processedPath);
-      const response = await fetch(proxyUrl);
+      // Use the new download API with resolution and format options
+      const url = `/api/download-image/${selectedImageForDownload.id}?resolution=${downloadResolution}&format=${downloadFormat}`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error('Failed to download image');
+      }
+
       const blob = await response.blob();
 
-      // Process image with selected resolution and format
-      const processedBlob = await processImageWithOptions(
-        blob,
-        downloadResolution,
-        downloadFormat
-      );
-
       // Create download link
-      const url = URL.createObjectURL(processedBlob);
+      const downloadUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
+      a.href = downloadUrl;
       const extension = downloadFormat === 'jpg' ? 'jpg' : 'png';
       a.download = `${selectedImageForDownload.originalFilename.split('.')[0]}_processed.${extension}`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(downloadUrl);
 
       setShowDownloadModal(false);
       setSelectedImageForDownload(null);
@@ -253,60 +230,6 @@ export default function BackgroundRemover() {
     } finally {
       setIsDownloading(false);
     }
-  };
-
-  const processImageWithOptions = async (
-    blob: Blob,
-    resolution: Resolution,
-    format: Format
-  ): Promise<Blob> => {
-    return new Promise((resolve, reject) => {
-      const img = new window.Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        if (!ctx) {
-          reject(new Error('Failed to get canvas context'));
-          return;
-        }
-
-        // Calculate target dimensions based on resolution
-        let targetWidth = img.width;
-        let targetHeight = img.height;
-
-        if (resolution !== 'original') {
-          const maxSize = resolution === 'low' ? 512 : resolution === 'medium' ? 1024 : 2048;
-          const scale = Math.min(maxSize / img.width, maxSize / img.height, 1);
-          targetWidth = Math.round(img.width * scale);
-          targetHeight = Math.round(img.height * scale);
-        }
-
-        canvas.width = targetWidth;
-        canvas.height = targetHeight;
-
-        // For JPG, fill with white background
-        if (format === 'jpg') {
-          ctx.fillStyle = '#FFFFFF';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-
-        canvas.toBlob(
-          (processedBlob) => {
-            if (processedBlob) {
-              resolve(processedBlob);
-            } else {
-              reject(new Error('Failed to process image'));
-            }
-          },
-          format === 'jpg' ? 'image/jpeg' : 'image/png',
-          0.95
-        );
-      };
-      img.onerror = () => reject(new Error('Failed to load image'));
-      img.src = URL.createObjectURL(blob);
-    });
   };
 
   const onDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
