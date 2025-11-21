@@ -4,8 +4,8 @@ import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { db, storage } from '@/lib/firebase';
-import { collection, addDoc, query, where, orderBy, getDocs, deleteDoc, doc, Timestamp } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { collection, query, where, orderBy, getDocs, deleteDoc, doc, Timestamp } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
 
 interface ProcessedImage {
   id: string;
@@ -157,40 +157,27 @@ export default function BackgroundRemover() {
       const { width, height } = img;
       console.log(`Image dimensions: ${width}x${height}`);
 
-      // Upload original to Storage
-      const originalFileName = `originals/${session.user.email}/${Date.now()}_${originalFile.name}`;
-      console.log('Uploading original to Storage:', originalFileName);
-      const originalRef = ref(storage, originalFileName);
-      await uploadBytes(originalRef, originalFile);
-      console.log('Original uploaded successfully:', originalFileName);
+      // Save via backend API to avoid CORS issues
+      const formData = new FormData();
+      formData.append('originalFile', originalFile);
+      formData.append('processedFile', new File([processedBlob], 'processed.png', { type: 'image/png' }));
+      formData.append('width', width.toString());
+      formData.append('height', height.toString());
 
-      // Upload processed to Storage
-      const processedFileName = `processed/${session.user.email}/${Date.now()}_processed.png`;
-      console.log('Uploading processed image to Storage:', processedFileName);
-      const processedRef = ref(storage, processedFileName);
-      await uploadBytes(processedRef, processedBlob);
-      console.log('Processed image uploaded successfully:', processedFileName);
-
-      // Save metadata to Firestore with storage paths (not URLs)
-      console.log('Saving metadata to Firestore...');
-      const docRef = await addDoc(collection(db, 'processedImages'), {
-        originalFilename: originalFile.name,
-        originalPath: originalFileName,
-        processedPath: processedFileName,
-        fileSize: originalFile.size,
-        width,
-        height,
-        createdAt: Timestamp.now(),
-        userId: session.user.email,
+      const response = await fetch('/api/save-image', {
+        method: 'POST',
+        body: formData,
       });
-      console.log('Metadata saved successfully with ID:', docRef.id);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save image');
+      }
+
+      const result = await response.json();
+      console.log('Image saved successfully:', result);
     } catch (err: any) {
       console.error('Error saving to Firebase:', err);
-      console.error('Error details:', {
-        message: err.message,
-        code: err.code,
-        stack: err.stack,
-      });
       throw new Error(`Failed to save image: ${err.message || 'Unknown error'}`);
     }
   };
