@@ -8,7 +8,7 @@ export function getRedisClient(): Redis {
     const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
 
     redis = new Redis(redisUrl, {
-      maxRetriesPerRequest: 3,
+      maxRetriesPerRequest: null,
       retryStrategy: (times) => {
         const delay = Math.min(times * 50, 2000);
         return delay;
