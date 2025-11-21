@@ -2,7 +2,10 @@
   "firestore": {
     "rules": "firestore.rules"
   },
-  "storage": {
-    "rules": "storage.rules"
-  }
+  "storage": [
+    {
+      "bucket": "pixelift-ed3df-storage",
+      "rules": "storage.rules"
+    }
+  ]
 }
