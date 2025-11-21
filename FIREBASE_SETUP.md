@@ -107,54 +107,89 @@ openssl rand -base64 32
 
 Wklej wynik do `.env.local` jako `NEXTAUTH_SECRET`
 
-## Krok 9: Zaktualizuj Firestore Security Rules
+## Krok 9: Deploy Firestore Security Rules
 
-W Firebase Console → Firestore → Rules, ustaw:
+### Metoda 1: Automatyczne deployment (ZALECANE)
+
+1. Zainstaluj Firebase CLI:
+```bash
+npm install -g firebase-tools
+```
+
+2. Zaloguj się do Firebase:
+```bash
+firebase login
+```
+
+3. Zainicjalizuj Firebase w projekcie (tylko pierwszy raz):
+```bash
+firebase init
+```
+- Wybierz: Firestore, Storage
+- Projekt: pixelift-ed3df
+- Użyj istniejących plików: `firestore.rules` i `storage.rules`
+
+4. Deploy reguł:
+```bash
+firebase deploy --only firestore:rules,storage:rules
+```
+
+### Metoda 2: Ręczne kopiowanie przez konsole
+
+W Firebase Console → Firestore → Rules, skopiuj zawartość z pliku `firestore.rules`:
 
 ```javascript
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Users collection
+    // Allow authenticated users to read and write their own processed images
+    match /processedImages/{imageId} {
+      allow read: if request.auth != null &&
+                     (resource.data.userId == request.auth.token.email ||
+                      !('userId' in resource.data));
+
+      allow create: if request.auth != null &&
+                       request.resource.data.userId == request.auth.token.email;
+
+      allow update, delete: if request.auth != null &&
+                               resource.data.userId == request.auth.token.email;
+    }
+
+    // Allow authenticated users to read and write their own user data
     match /users/{userId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth.uid == userId;
-    }
-
-    // Blog posts (public read, admin write)
-    match /posts/{postId} {
-      allow read: if true;
-      allow write: if request.auth != null &&
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
-    }
-
-    // Image history
-    match /images/{imageId} {
-      allow read, write: if request.auth.uid == resource.data.userId;
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
   }
 }
 ```
 
-## Krok 10: Zaktualizuj Storage Security Rules
+## Krok 10: Deploy Storage Security Rules
 
-W Firebase Console → Storage → Rules:
+W Firebase Console → Storage → Rules, skopiuj zawartość z pliku `storage.rules`:
 
 ```javascript
 rules_version = '2';
+
 service firebase.storage {
   match /b/{bucket}/o {
-    match /images/{userId}/{allPaths=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    // Allow authenticated users to upload and access their own files
+    match /originals/{userEmail}/{allPaths=**} {
+      allow read: if request.auth != null && request.auth.token.email == userEmail;
+      allow write: if request.auth != null && request.auth.token.email == userEmail;
+      allow delete: if request.auth != null && request.auth.token.email == userEmail;
     }
 
-    match /blog/{allPaths=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
+    match /processed/{userEmail}/{allPaths=**} {
+      allow read: if request.auth != null && request.auth.token.email == userEmail;
+      allow write: if request.auth != null && request.auth.token.email == userEmail;
+      allow delete: if request.auth != null && request.auth.token.email == userEmail;
     }
   }
 }
 ```
+
+⚠️ **WAŻNE**: Musisz wdrożyć te reguły, aby funkcja Background Remover działała poprawnie!
 
 ## Finalna weryfikacja .env.local
 

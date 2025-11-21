@@ -140,28 +140,37 @@ export default function BackgroundRemover() {
   const saveProcessedImage = async (originalFile: File, processedBlob: Blob) => {
     if (!session?.user?.email) {
       console.log('User not logged in, skipping save');
-      return;
+      throw new Error('You must be logged in to save images');
     }
+
+    console.log('Starting save to Firebase for user:', session.user.email);
 
     try {
       // Get image dimensions
+      console.log('Creating image bitmap to get dimensions...');
       const img = await createImageBitmap(processedBlob);
       const { width, height } = img;
+      console.log(`Image dimensions: ${width}x${height}`);
 
       // Upload original to Storage
       const originalFileName = `originals/${session.user.email}/${Date.now()}_${originalFile.name}`;
+      console.log('Uploading original to Storage:', originalFileName);
       const originalRef = ref(storage, originalFileName);
       await uploadBytes(originalRef, originalFile);
       const originalUrl = await getDownloadURL(originalRef);
+      console.log('Original uploaded successfully:', originalUrl);
 
       // Upload processed to Storage
       const processedFileName = `processed/${session.user.email}/${Date.now()}_processed.png`;
+      console.log('Uploading processed image to Storage:', processedFileName);
       const processedRef = ref(storage, processedFileName);
       await uploadBytes(processedRef, processedBlob);
       const processedUrl = await getDownloadURL(processedRef);
+      console.log('Processed image uploaded successfully:', processedUrl);
 
       // Save metadata to Firestore
-      await addDoc(collection(db, 'processedImages'), {
+      console.log('Saving metadata to Firestore...');
+      const docRef = await addDoc(collection(db, 'processedImages'), {
         originalFilename: originalFile.name,
         originalUrl,
         processedUrl,
@@ -171,8 +180,15 @@ export default function BackgroundRemover() {
         createdAt: Timestamp.now(),
         userId: session.user.email,
       });
-    } catch (err) {
+      console.log('Metadata saved successfully with ID:', docRef.id);
+    } catch (err: any) {
       console.error('Error saving to Firebase:', err);
+      console.error('Error details:', {
+        message: err.message,
+        code: err.code,
+        stack: err.stack,
+      });
+      throw new Error(`Failed to save image: ${err.message || 'Unknown error'}`);
     }
   };
 
