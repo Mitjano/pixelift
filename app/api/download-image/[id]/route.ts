@@ -95,7 +95,7 @@ export async function GET(
     const baseFilename = originalFilename.split('.')[0];
     const downloadFilename = `${baseFilename}_processed.${extension}`;
 
-    return new NextResponse(outputBuffer, {
+    return new Response(outputBuffer, {
       status: 200,
       headers: {
         'Content-Type': contentType,
