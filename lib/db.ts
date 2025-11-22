@@ -967,3 +967,192 @@ export function generateReportData(type: Report['type'], dateRange: Report['date
       return { summary: {}, data: [] };
   }
 }
+
+// ===================
+// Webhooks
+// ===================
+
+export interface Webhook {
+  id: string;
+  name: string;
+  url: string;
+  events: string[]; // e.g., ['user.created', 'transaction.completed', 'usage.recorded']
+  enabled: boolean;
+  secret?: string;
+  headers?: Record<string, string>;
+  retryAttempts: number;
+  lastTriggered?: string;
+  successCount: number;
+  failureCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface WebhookLog {
+  id: string;
+  webhookId: string;
+  event: string;
+  payload: any;
+  response?: any;
+  status: 'success' | 'failed' | 'pending';
+  statusCode?: number;
+  error?: string;
+  attemptNumber: number;
+  triggeredAt: string;
+}
+
+const WEBHOOKS_FILE = path.join(DATA_DIR, 'webhooks.json');
+const WEBHOOK_LOGS_FILE = path.join(DATA_DIR, 'webhook-logs.json');
+
+export function getAllWebhooks(): Webhook[] {
+  return readJSON(WEBHOOKS_FILE, []);
+}
+
+export function getWebhookById(id: string): Webhook | null {
+  const webhooks = getAllWebhooks();
+  return webhooks.find(w => w.id === id) || null;
+}
+
+export function createWebhook(data: Omit<Webhook, 'id' | 'createdAt' | 'updatedAt' | 'successCount' | 'failureCount'>): Webhook {
+  const webhooks = getAllWebhooks();
+
+  const webhook: Webhook = {
+    id: nanoid(),
+    ...data,
+    successCount: 0,
+    failureCount: 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  webhooks.push(webhook);
+  writeJSON(WEBHOOKS_FILE, webhooks);
+
+  return webhook;
+}
+
+export function updateWebhook(id: string, updates: Partial<Webhook>): Webhook | null {
+  const webhooks = getAllWebhooks();
+  const index = webhooks.findIndex(w => w.id === id);
+
+  if (index === -1) return null;
+
+  webhooks[index] = {
+    ...webhooks[index],
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+  writeJSON(WEBHOOKS_FILE, webhooks);
+
+  return webhooks[index];
+}
+
+export function deleteWebhook(id: string): boolean {
+  const webhooks = getAllWebhooks();
+  const filtered = webhooks.filter(w => w.id !== id);
+
+  if (filtered.length === webhooks.length) return false;
+
+  writeJSON(WEBHOOKS_FILE, filtered);
+  return true;
+}
+
+export function getAllWebhookLogs(webhookId?: string, limit: number = 100): WebhookLog[] {
+  let logs = readJSON<WebhookLog[]>(WEBHOOK_LOGS_FILE, []);
+
+  if (webhookId) {
+    logs = logs.filter(l => l.webhookId === webhookId);
+  }
+
+  // Sort by triggered time (newest first)
+  logs.sort((a, b) => new Date(b.triggeredAt).getTime() - new Date(a.triggeredAt).getTime());
+
+  return logs.slice(0, limit);
+}
+
+export function createWebhookLog(data: Omit<WebhookLog, 'id'>): WebhookLog {
+  const logs = readJSON<WebhookLog[]>(WEBHOOK_LOGS_FILE, []);
+
+  const log: WebhookLog = {
+    id: nanoid(),
+    ...data,
+  };
+
+  logs.push(log);
+
+  // Keep only last 1000 logs
+  if (logs.length > 1000) {
+    logs.splice(0, logs.length - 1000);
+  }
+
+  writeJSON(WEBHOOK_LOGS_FILE, logs);
+
+  // Update webhook stats
+  const webhooks = getAllWebhooks();
+  const webhookIndex = webhooks.findIndex(w => w.id === data.webhookId);
+
+  if (webhookIndex !== -1) {
+    webhooks[webhookIndex].lastTriggered = data.triggeredAt;
+
+    if (data.status === 'success') {
+      webhooks[webhookIndex].successCount++;
+    } else if (data.status === 'failed') {
+      webhooks[webhookIndex].failureCount++;
+    }
+
+    writeJSON(WEBHOOKS_FILE, webhooks);
+  }
+
+  return log;
+}
+
+// Trigger a webhook (async)
+export async function triggerWebhook(webhookId: string, event: string, payload: any): Promise<void> {
+  const webhook = getWebhookById(webhookId);
+
+  if (!webhook || !webhook.enabled) return;
+  if (!webhook.events.includes(event)) return;
+
+  const log: Omit<WebhookLog, 'id'> = {
+    webhookId,
+    event,
+    payload,
+    status: 'pending',
+    attemptNumber: 1,
+    triggeredAt: new Date().toISOString(),
+  };
+
+  try {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      ...(webhook.headers || {}),
+    };
+
+    if (webhook.secret) {
+      headers['X-Webhook-Secret'] = webhook.secret;
+    }
+
+    const response = await fetch(webhook.url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        event,
+        data: payload,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    log.status = response.ok ? 'success' : 'failed';
+    log.statusCode = response.status;
+    log.response = await response.text();
+
+    if (!response.ok) {
+      log.error = `HTTP ${response.status}: ${response.statusText}`;
+    }
+  } catch (error: any) {
+    log.status = 'failed';
+    log.error = error.message;
+  }
+
+  createWebhookLog(log);
+}

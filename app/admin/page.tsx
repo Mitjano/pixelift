@@ -237,6 +237,15 @@ export default async function AdminDashboard() {
             <h3 className="text-lg font-bold mb-1">Reports</h3>
             <p className="text-gray-400 text-sm">Generate data reports</p>
           </Link>
+
+          <Link
+            href="/admin/webhooks"
+            className="bg-gradient-to-br from-lime-500/20 to-lime-600/10 border border-lime-500/40 hover:border-lime-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">🔗</div>
+            <h3 className="text-lg font-bold mb-1">Webhooks</h3>
+            <p className="text-gray-400 text-sm">External integrations</p>
+          </Link>
         </div>
       </div>
 
