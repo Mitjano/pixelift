@@ -681,3 +681,94 @@ export function downloadBackup(id: string): Buffer | null {
     return null;
   }
 }
+
+// Email Templates
+export interface EmailTemplate {
+  id: string;
+  name: string;
+  slug: string;
+  subject: string;
+  htmlContent: string;
+  textContent: string;
+  variables: string[]; // e.g., ['{{name}}', '{{email}}', '{{link}}']
+  category: 'transactional' | 'marketing' | 'system';
+  status: 'active' | 'draft';
+  createdAt: string;
+  updatedAt: string;
+  lastUsedAt?: string;
+  usageCount: number;
+}
+
+const EMAIL_TEMPLATES_FILE = path.join(DATA_DIR, 'email_templates.json');
+
+export function getAllEmailTemplates(): EmailTemplate[] {
+  return readJSON<EmailTemplate[]>(EMAIL_TEMPLATES_FILE, []);
+}
+
+export function getEmailTemplateById(id: string): EmailTemplate | null {
+  const templates = getAllEmailTemplates();
+  return templates.find(t => t.id === id) || null;
+}
+
+export function getEmailTemplateBySlug(slug: string): EmailTemplate | null {
+  const templates = getAllEmailTemplates();
+  return templates.find(t => t.slug === slug) || null;
+}
+
+export function createEmailTemplate(data: Omit<EmailTemplate, 'id' | 'createdAt' | 'updatedAt' | 'usageCount'>): EmailTemplate {
+  const templates = getAllEmailTemplates();
+
+  // Check if slug already exists
+  if (templates.some(t => t.slug === data.slug)) {
+    throw new Error('Template with this slug already exists');
+  }
+
+  const template: EmailTemplate = {
+    ...data,
+    id: nanoid(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    usageCount: 0,
+  };
+
+  templates.push(template);
+  writeJSON(EMAIL_TEMPLATES_FILE, templates);
+  return template;
+}
+
+export function updateEmailTemplate(id: string, updates: Partial<EmailTemplate>): EmailTemplate | null {
+  const templates = getAllEmailTemplates();
+  const index = templates.findIndex(t => t.id === id);
+
+  if (index === -1) return null;
+
+  templates[index] = {
+    ...templates[index],
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  writeJSON(EMAIL_TEMPLATES_FILE, templates);
+  return templates[index];
+}
+
+export function deleteEmailTemplate(id: string): boolean {
+  const templates = getAllEmailTemplates();
+  const filtered = templates.filter(t => t.id !== id);
+
+  if (filtered.length === templates.length) return false;
+
+  writeJSON(EMAIL_TEMPLATES_FILE, filtered);
+  return true;
+}
+
+export function trackEmailTemplateUsage(id: string): void {
+  const templates = getAllEmailTemplates();
+  const index = templates.findIndex(t => t.id === id);
+
+  if (index !== -1) {
+    templates[index].usageCount++;
+    templates[index].lastUsedAt = new Date().toISOString();
+    writeJSON(EMAIL_TEMPLATES_FILE, templates);
+  }
+}
