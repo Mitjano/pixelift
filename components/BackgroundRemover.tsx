@@ -22,9 +22,6 @@ const getProxyUrl = (path: string) => {
   return `/api/image?path=${encodeURIComponent(path)}`;
 };
 
-type Resolution = 'low' | 'medium' | 'high' | 'original';
-type Format = 'png' | 'jpg';
-
 export default function BackgroundRemover() {
   const { data: session } = useSession();
   const [originalImage, setOriginalImage] = useState<string | null>(null);
@@ -34,13 +31,6 @@ export default function BackgroundRemover() {
   const [isDragActive, setIsDragActive] = useState(false);
   const [processedImages, setProcessedImages] = useState<ProcessedImage[]>([]);
   const [isLoadingImages, setIsLoadingImages] = useState(true);
-
-  // Download modal state
-  const [showDownloadModal, setShowDownloadModal] = useState(false);
-  const [selectedImageForDownload, setSelectedImageForDownload] = useState<ProcessedImage | null>(null);
-  const [downloadResolution, setDownloadResolution] = useState<Resolution>('medium');
-  const [downloadFormat, setDownloadFormat] = useState<Format>('png');
-  const [isDownloading, setIsDownloading] = useState(false);
 
   // Load user's processed images from API
   useEffect(() => {
@@ -183,18 +173,10 @@ export default function BackgroundRemover() {
     }
   };
 
-  const handleDownloadClick = (image: ProcessedImage) => {
-    setSelectedImageForDownload(image);
-    setShowDownloadModal(true);
-  };
-
-  const handleDownload = async () => {
-    if (!selectedImageForDownload) return;
-
-    setIsDownloading(true);
+  const handleDownloadClick = async (image: ProcessedImage) => {
     try {
-      // Use the new download API with resolution and format options
-      const url = `/api/download-image/${selectedImageForDownload.id}?resolution=${downloadResolution}&format=${downloadFormat}`;
+      // Direct download without modal
+      const url = `/api/download-image/${image.id}`;
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -207,20 +189,14 @@ export default function BackgroundRemover() {
       const downloadUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = downloadUrl;
-      const extension = downloadFormat === 'jpg' ? 'jpg' : 'png';
-      a.download = `${selectedImageForDownload.originalFilename.split('.')[0]}_processed.${extension}`;
+      a.download = `${image.originalFilename.split('.')[0]}_processed.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(downloadUrl);
-
-      setShowDownloadModal(false);
-      setSelectedImageForDownload(null);
     } catch (err) {
       console.error('Download error:', err);
       setError('Failed to download image');
-    } finally {
-      setIsDownloading(false);
     }
   };
 
@@ -404,126 +380,6 @@ export default function BackgroundRemover() {
         </div>
       )}
 
-      {/* Download Modal */}
-      {showDownloadModal && selectedImageForDownload && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-2xl shadow-2xl max-w-lg w-full border border-gray-700">
-            <div className="p-6 border-b border-gray-700">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                  Download Options
-                </h3>
-                <button
-                  onClick={() => {
-                    setShowDownloadModal(false);
-                    setSelectedImageForDownload(null);
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <div className="p-6 space-y-6">
-              <div>
-                <p className="text-gray-300 mb-2">
-                  Choose your preferred resolution and format for{' '}
-                  <span className="font-semibold text-white">{selectedImageForDownload.originalFilename}</span>
-                </p>
-              </div>
-
-              {/* Resolution Selection */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-300 mb-3">
-                  Resolution
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { value: 'low' as Resolution, label: 'Low (512px)', desc: 'Fast & Small' },
-                    { value: 'medium' as Resolution, label: 'Medium (1024px)', desc: 'Balanced' },
-                    { value: 'high' as Resolution, label: 'High (2048px)', desc: 'High Quality' },
-                    { value: 'original' as Resolution, label: 'Original', desc: 'Best Quality' },
-                  ].map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => setDownloadResolution(option.value)}
-                      className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
-                        downloadResolution === option.value
-                          ? 'border-purple-500 bg-purple-500/20'
-                          : 'border-gray-700 hover:border-gray-600 bg-gray-800/50'
-                      }`}
-                    >
-                      <div className="font-semibold text-white mb-1">{option.label}</div>
-                      <div className="text-xs text-gray-400">{option.desc}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Format Selection */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-300 mb-3">
-                  Format
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { value: 'png' as Format, label: 'PNG', desc: 'Transparent background' },
-                    { value: 'jpg' as Format, label: 'JPG', desc: 'Smaller file size' },
-                  ].map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => setDownloadFormat(option.value)}
-                      className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
-                        downloadFormat === option.value
-                          ? 'border-purple-500 bg-purple-500/20'
-                          : 'border-gray-700 hover:border-gray-600 bg-gray-800/50'
-                      }`}
-                    >
-                      <div className="font-semibold text-white mb-1">{option.label}</div>
-                      <div className="text-xs text-gray-400">{option.desc}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="p-6 border-t border-gray-700 flex gap-3">
-              <button
-                onClick={() => {
-                  setShowDownloadModal(false);
-                  setSelectedImageForDownload(null);
-                }}
-                className="flex-1 bg-gray-800 text-gray-300 py-3 px-6 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-200"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleDownload}
-                disabled={isDownloading}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-xl font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isDownloading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    Processing...
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                    Download
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

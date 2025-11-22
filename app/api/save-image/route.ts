@@ -21,30 +21,38 @@ export async function POST(request: NextRequest) {
     const userEmail = session.user.email;
     const timestamp = Date.now();
 
-    // Convert files to buffers
-    const processedBuffer = Buffer.from(await processedFile.arrayBuffer());
-
-    // Upload original to Storage
-    const originalFileName = `originals/${userEmail}/${timestamp}_${originalFile.name}`;
+    // Upload original file directly (no conversion needed)
     const originalBuffer = Buffer.from(await originalFile.arrayBuffer());
+    const originalFileName = `originals/${userEmail}/${timestamp}_${originalFile.name}`;
     const originalFileRef = adminStorage.bucket().file(originalFileName);
+
+    // Disable automatic metadata extraction by setting metadata manually
     await originalFileRef.save(originalBuffer, {
       metadata: {
         contentType: originalFile.type,
+        metadata: {
+          // Firebase will skip WEBP decoder if we explicitly set metadata
+          firebaseStorageDownloadTokens: `${timestamp}`,
+        }
       },
+      validation: false, // Skip content validation
     });
-    await originalFileRef.makePublic();
     console.log('Original uploaded:', originalFileName);
 
-    // Upload processed to Storage
+    // Upload processed file (already PNG from Replicate/client)
+    const processedBuffer = Buffer.from(await processedFile.arrayBuffer());
     const processedFileName = `processed/${userEmail}/${timestamp}_processed.png`;
     const processedFileRef = adminStorage.bucket().file(processedFileName);
+
     await processedFileRef.save(processedBuffer, {
       metadata: {
         contentType: 'image/png',
+        metadata: {
+          firebaseStorageDownloadTokens: `${timestamp}`,
+        }
       },
+      validation: false,
     });
-    await processedFileRef.makePublic();
     console.log('Processed uploaded:', processedFileName);
 
     // Save metadata to Firestore
