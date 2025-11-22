@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
@@ -112,9 +112,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:support@pixelift.pl" className="text-gray-400 hover:text-white transition text-sm">
+                <Link href="/support" className="text-gray-400 hover:text-white transition text-sm">
                   Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -157,14 +157,9 @@ export default function Footer() {
               <span className="text-gray-500">Made with ❤️ in Poland</span>
               <div className="flex items-center gap-2">
                 <span className="text-gray-500">Powered by</span>
-                <a
-                  href="https://replicate.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition"
-                >
-                  Replicate AI
-                </a>
+                <span className="text-transparent bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text font-semibold">
+                  Pixelift AI
+                </span>
               </div>
             </div>
           </div>
