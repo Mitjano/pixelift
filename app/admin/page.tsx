@@ -264,6 +264,24 @@ export default async function AdminDashboard() {
             <h3 className="text-lg font-bold mb-1">Content Moderation</h3>
             <p className="text-gray-400 text-sm">AI-powered filtering</p>
           </Link>
+
+          <Link
+            href="/admin/tickets"
+            className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/40 hover:border-cyan-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">🎫</div>
+            <h3 className="text-lg font-bold mb-1">Support Tickets</h3>
+            <p className="text-gray-400 text-sm">Customer support</p>
+          </Link>
+
+          <Link
+            href="/admin/referrals"
+            className="bg-gradient-to-br from-pink-500/20 to-pink-600/10 border border-pink-500/40 hover:border-pink-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">💸</div>
+            <h3 className="text-lg font-bold mb-1">Referral Program</h3>
+            <p className="text-gray-400 text-sm">Track referrals</p>
+          </Link>
         </div>
       </div>
 

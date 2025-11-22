@@ -1528,3 +1528,237 @@ export function moderateContent(
     flags,
   });
 }
+
+// ===================
+// Support Tickets
+// ===================
+
+export interface Ticket {
+  id: string;
+  subject: string;
+  description: string;
+  status: 'open' | 'in_progress' | 'resolved' | 'closed';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  category: 'technical' | 'billing' | 'feature_request' | 'bug' | 'other';
+  userId: string;
+  userName: string;
+  userEmail: string;
+  assignedTo?: string;
+  messages: {
+    id: string;
+    author: string;
+    isStaff: boolean;
+    message: string;
+    createdAt: string;
+  }[];
+  createdAt: string;
+  updatedAt: string;
+  resolvedAt?: string;
+}
+
+const TICKETS_FILE = path.join(DATA_DIR, 'tickets.json');
+
+export function getAllTickets(): Ticket[] {
+  return readJSON(TICKETS_FILE, []);
+}
+
+export function getTicketById(id: string): Ticket | null {
+  const tickets = getAllTickets();
+  return tickets.find(t => t.id === id) || null;
+}
+
+export function createTicket(data: Omit<Ticket, 'id' | 'createdAt' | 'updatedAt' | 'messages'>): Ticket {
+  const tickets = getAllTickets();
+
+  const ticket: Ticket = {
+    id: nanoid(),
+    ...data,
+    messages: [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  tickets.push(ticket);
+  writeJSON(TICKETS_FILE, tickets);
+
+  return ticket;
+}
+
+export function updateTicket(id: string, updates: Partial<Ticket>): Ticket | null {
+  const tickets = getAllTickets();
+  const index = tickets.findIndex(t => t.id === id);
+
+  if (index === -1) return null;
+
+  tickets[index] = {
+    ...tickets[index],
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  if (updates.status === 'resolved' && !tickets[index].resolvedAt) {
+    tickets[index].resolvedAt = new Date().toISOString();
+  }
+
+  writeJSON(TICKETS_FILE, tickets);
+
+  return tickets[index];
+}
+
+export function deleteTicket(id: string): boolean {
+  const tickets = getAllTickets();
+  const filtered = tickets.filter(t => t.id !== id);
+
+  if (filtered.length === tickets.length) return false;
+
+  writeJSON(TICKETS_FILE, filtered);
+  return true;
+}
+
+export function addTicketMessage(ticketId: string, author: string, message: string, isStaff: boolean): Ticket | null {
+  const tickets = getAllTickets();
+  const index = tickets.findIndex(t => t.id === ticketId);
+
+  if (index === -1) return null;
+
+  tickets[index].messages.push({
+    id: nanoid(),
+    author,
+    isStaff,
+    message,
+    createdAt: new Date().toISOString(),
+  });
+
+  tickets[index].updatedAt = new Date().toISOString();
+
+  writeJSON(TICKETS_FILE, tickets);
+
+  return tickets[index];
+}
+
+// ===================
+// Referral Program
+// ===================
+
+export interface Referral {
+  id: string;
+  referrerId: string;
+  referrerName: string;
+  referredUserId?: string;
+  referredUserName?: string;
+  referredEmail?: string;
+  code: string;
+  status: 'pending' | 'active' | 'converted' | 'expired';
+  clicks: number;
+  signups: number;
+  conversions: number;
+  revenue: number;
+  commission: number;
+  commissionPaid: boolean;
+  createdAt: string;
+  convertedAt?: string;
+  expiresAt?: string;
+}
+
+const REFERRALS_FILE = path.join(DATA_DIR, 'referrals.json');
+
+export function getAllReferrals(): Referral[] {
+  return readJSON(REFERRALS_FILE, []);
+}
+
+export function getReferralById(id: string): Referral | null {
+  const referrals = getAllReferrals();
+  return referrals.find(r => r.id === id) || null;
+}
+
+export function getReferralByCode(code: string): Referral | null {
+  const referrals = getAllReferrals();
+  return referrals.find(r => r.code === code) || null;
+}
+
+export function createReferral(data: Omit<Referral, 'id' | 'clicks' | 'signups' | 'conversions' | 'revenue' | 'commission' | 'commissionPaid' | 'createdAt'>): Referral {
+  const referrals = getAllReferrals();
+
+  const referral: Referral = {
+    id: nanoid(),
+    ...data,
+    clicks: 0,
+    signups: 0,
+    conversions: 0,
+    revenue: 0,
+    commission: 0,
+    commissionPaid: false,
+    createdAt: new Date().toISOString(),
+  };
+
+  referrals.push(referral);
+  writeJSON(REFERRALS_FILE, referrals);
+
+  return referral;
+}
+
+export function updateReferral(id: string, updates: Partial<Referral>): Referral | null {
+  const referrals = getAllReferrals();
+  const index = referrals.findIndex(r => r.id === id);
+
+  if (index === -1) return null;
+
+  referrals[index] = {
+    ...referrals[index],
+    ...updates,
+  };
+
+  if (updates.status === 'converted' && !referrals[index].convertedAt) {
+    referrals[index].convertedAt = new Date().toISOString();
+  }
+
+  writeJSON(REFERRALS_FILE, referrals);
+
+  return referrals[index];
+}
+
+export function deleteReferral(id: string): boolean {
+  const referrals = getAllReferrals();
+  const filtered = referrals.filter(r => r.id !== id);
+
+  if (filtered.length === referrals.length) return false;
+
+  writeJSON(REFERRALS_FILE, filtered);
+  return true;
+}
+
+export function trackReferralClick(code: string): void {
+  const referrals = getAllReferrals();
+  const index = referrals.findIndex(r => r.code === code);
+
+  if (index !== -1) {
+    referrals[index].clicks++;
+    writeJSON(REFERRALS_FILE, referrals);
+  }
+}
+
+export function trackReferralSignup(code: string, userId: string, userName: string): void {
+  const referrals = getAllReferrals();
+  const index = referrals.findIndex(r => r.code === code);
+
+  if (index !== -1) {
+    referrals[index].signups++;
+    referrals[index].status = 'active';
+    referrals[index].referredUserId = userId;
+    referrals[index].referredUserName = userName;
+    writeJSON(REFERRALS_FILE, referrals);
+  }
+}
+
+export function trackReferralConversion(code: string, amount: number, commissionRate: number = 0.2): void {
+  const referrals = getAllReferrals();
+  const index = referrals.findIndex(r => r.code === code);
+
+  if (index !== -1) {
+    referrals[index].conversions++;
+    referrals[index].revenue += amount;
+    referrals[index].commission += amount * commissionRate;
+    referrals[index].status = 'converted';
+    writeJSON(REFERRALS_FILE, referrals);
+  }
+}
