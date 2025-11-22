@@ -882,7 +882,8 @@ export function generateReportData(type: Report['type'], dateRange: Report['date
         summary: {
           total: users.length,
           active: users.filter(u => u.status === 'active').length,
-          inactive: users.filter(u => u.status === 'inactive').length,
+          banned: users.filter(u => u.status === 'banned').length,
+          suspended: users.filter(u => u.status === 'suspended').length,
         },
         data: users.map(u => ({
           id: u.id,
