@@ -94,6 +94,9 @@ export default function Header() {
             )}
           </div>
 
+          <Link href="/#use-cases" className="hover:text-green-400 transition">
+            Use Cases
+          </Link>
           <Link href="/pricing" className="hover:text-green-400 transition">
             Pricing
           </Link>
@@ -214,6 +217,13 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
+            </Link>
+            <Link
+              href="/#use-cases"
+              className="block py-2 hover:text-green-400 transition"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Use Cases
             </Link>
             <Link
               href="/pricing"

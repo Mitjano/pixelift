@@ -77,7 +77,7 @@ export default function UseCases() {
   const activeUseCase = useCases.find(uc => uc.id === activeTab) || useCases[0];
 
   return (
-    <section className="container mx-auto px-4 py-20">
+    <section id="use-cases" className="container mx-auto px-4 py-20">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold mb-4">
           Who Benefits from AI Upscaling?
