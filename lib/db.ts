@@ -550,3 +550,134 @@ export function getFinanceStats(days: number = 30) {
     transactions: recentTransactions,
   };
 }
+
+// Backup & Recovery
+export interface Backup {
+  id: string;
+  name: string;
+  description: string;
+  type: 'manual' | 'automatic';
+  size: number; // in bytes
+  createdAt: string;
+  createdBy: string;
+  data: {
+    users: User[];
+    usage: Usage[];
+    transactions: Transaction[];
+    campaigns: Campaign[];
+    notifications: Notification[];
+    apiKeys: ApiKey[];
+    featureFlags: FeatureFlag[];
+  };
+}
+
+const BACKUPS_DIR = path.join(DATA_DIR, 'backups');
+const BACKUPS_FILE = path.join(DATA_DIR, 'backups.json');
+
+// Ensure backups directory exists
+if (!fs.existsSync(BACKUPS_DIR)) {
+  fs.mkdirSync(BACKUPS_DIR, { recursive: true });
+}
+
+export function getAllBackups(): Omit<Backup, 'data'>[] {
+  const backups = readJSON<Backup[]>(BACKUPS_FILE, []);
+  // Return without data to reduce memory usage
+  return backups.map(({ data, ...backup }) => backup);
+}
+
+export function getBackupById(id: string): Backup | null {
+  const backupPath = path.join(BACKUPS_DIR, `${id}.json`);
+  if (!fs.existsSync(backupPath)) return null;
+
+  try {
+    const data = fs.readFileSync(backupPath, 'utf-8');
+    return JSON.parse(data) as Backup;
+  } catch {
+    return null;
+  }
+}
+
+export function createBackup(name: string, description: string, createdBy: string, type: 'manual' | 'automatic' = 'manual'): Backup {
+  const backupData = {
+    users: getAllUsers(),
+    usage: getAllUsage(),
+    transactions: getAllTransactions(),
+    campaigns: getAllCampaigns(),
+    notifications: getAllNotifications(),
+    apiKeys: getAllApiKeys(),
+    featureFlags: getAllFeatureFlags(),
+  };
+
+  const backup: Backup = {
+    id: nanoid(),
+    name,
+    description,
+    type,
+    size: JSON.stringify(backupData).length,
+    createdAt: new Date().toISOString(),
+    createdBy,
+    data: backupData,
+  };
+
+  // Save full backup to file
+  const backupPath = path.join(BACKUPS_DIR, `${backup.id}.json`);
+  fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2));
+
+  // Save metadata to backups list
+  const backups = readJSON<Omit<Backup, 'data'>[]>(BACKUPS_FILE, []);
+  const { data, ...metadata } = backup;
+  backups.push(metadata);
+  writeJSON(BACKUPS_FILE, backups);
+
+  return backup;
+}
+
+export function restoreFromBackup(backupId: string): boolean {
+  const backup = getBackupById(backupId);
+  if (!backup) return false;
+
+  try {
+    // Restore all data
+    writeJSON(USERS_FILE, backup.data.users);
+    writeJSON(USAGE_FILE, backup.data.usage);
+    writeJSON(TRANSACTIONS_FILE, backup.data.transactions);
+    writeJSON(CAMPAIGNS_FILE, backup.data.campaigns);
+    writeJSON(NOTIFICATIONS_FILE, backup.data.notifications);
+    writeJSON(API_KEYS_FILE, backup.data.apiKeys);
+    writeJSON(FEATURE_FLAGS_FILE, backup.data.featureFlags);
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function deleteBackup(id: string): boolean {
+  try {
+    // Delete backup file
+    const backupPath = path.join(BACKUPS_DIR, `${id}.json`);
+    if (fs.existsSync(backupPath)) {
+      fs.unlinkSync(backupPath);
+    }
+
+    // Remove from metadata
+    const backups = readJSON<Omit<Backup, 'data'>[]>(BACKUPS_FILE, []);
+    const filtered = backups.filter(b => b.id !== id);
+    writeJSON(BACKUPS_FILE, filtered);
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function downloadBackup(id: string): Buffer | null {
+  const backupPath = path.join(BACKUPS_DIR, `${id}.json`);
+  if (!fs.existsSync(backupPath)) return null;
+
+  try {
+    return fs.readFileSync(backupPath);
+  } catch {
+    return null;
+  }
+}

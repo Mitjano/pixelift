@@ -210,6 +210,15 @@ export default async function AdminDashboard() {
             <h3 className="text-lg font-bold mb-1">Feature Flags</h3>
             <p className="text-gray-400 text-sm">Control rollouts</p>
           </Link>
+
+          <Link
+            href="/admin/backups"
+            className="bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border border-emerald-500/40 hover:border-emerald-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">💾</div>
+            <h3 className="text-lg font-bold mb-1">Backups</h3>
+            <p className="text-gray-400 text-sm">Protect your data</p>
+          </Link>
         </div>
       </div>
 
