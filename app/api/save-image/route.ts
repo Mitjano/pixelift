@@ -21,27 +21,14 @@ export async function POST(request: NextRequest) {
     const userEmail = session.user.email;
     const timestamp = Date.now();
 
-    // We only save the processed PNG file (already processed by Replicate)
-    // No need to save the original file or convert WEBP - bgremover.pl doesn't save originals either
-    const processedBuffer = Buffer.from(await processedFile.arrayBuffer());
-    const processedFileName = `processed/${userEmail}/${timestamp}_processed.png`;
-    const processedFileRef = adminStorage.bucket().file(processedFileName);
+    // bgremover.pl doesn't save images to storage at all - they just keep metadata
+    // We'll store the processed image URL directly (from Replicate) to avoid decoder issues
+    // This is simpler, faster, and avoids Firebase Storage decoder errors entirely
 
-    await processedFileRef.save(processedBuffer, {
-      metadata: {
-        contentType: 'image/png',
-        metadata: {
-          firebaseStorageDownloadTokens: `${timestamp}`,
-        }
-      },
-      validation: false,
-    });
-    console.log('Processed uploaded:', processedFileName);
-
-    // Save metadata to Firestore
+    // Just save metadata to Firestore with the blob URL (client handles the actual file)
     const docRef = await adminDb.collection('processedImages').add({
       originalFilename: originalFile.name,
-      processedPath: processedFileName,
+      processedPath: '', // No storage path - image stays in browser memory
       fileSize: originalFile.size,
       createdAt: new Date(),
       userId: userEmail,
@@ -52,7 +39,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       id: docRef.id,
-      processedPath: processedFileName,
+      processedPath: '', // No storage path - image handled by client
     });
   } catch (error: any) {
     console.error('Error saving image:', error);
