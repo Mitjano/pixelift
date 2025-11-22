@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { adminDb, adminStorage } from '@/lib/firebase-admin';
+import { adminDb } from '@/lib/firebase-admin';
 
 export async function DELETE(
   request: NextRequest,
@@ -29,24 +29,13 @@ export async function DELETE(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    // Delete files from Firebase Storage
-    const originalPath = imageData.originalPath;
-    const processedPath = imageData.processedPath;
+    // bgremover.pl approach: We store Replicate URLs, not Firebase Storage paths
+    // Replicate URLs expire automatically, so no need to delete them
+    // Just delete metadata from Firestore
 
-    try {
-      await adminStorage.bucket().file(originalPath).delete();
-    } catch (error) {
-      console.error('Error deleting original file:', error);
-    }
-
-    try {
-      await adminStorage.bucket().file(processedPath).delete();
-    } catch (error) {
-      console.error('Error deleting processed file:', error);
-    }
-
-    // Delete metadata from Firestore
     await adminDb.collection('processedImages').doc(imageId).delete();
+
+    console.log(`Deleted image metadata for ${imageId}`);
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

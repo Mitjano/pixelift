@@ -1,10 +1,8 @@
 import { initializeApp, getApps, cert, App } from "firebase-admin/app";
 import { getFirestore, Firestore } from "firebase-admin/firestore";
-import { getStorage, Storage } from "firebase-admin/storage";
 
 let app: App;
 let adminDb: Firestore;
-let adminStorage: Storage;
 
 if (getApps().length === 0) {
   app = initializeApp({
@@ -13,15 +11,13 @@ if (getApps().length === 0) {
       clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, "\n"),
     }),
-    // Remove storageBucket to prevent Firestore from validating URLs as Storage paths
-    // We store Replicate URLs directly, not Firebase Storage paths
+    // No storageBucket - we store Replicate URLs directly in Firestore
+    // This prevents WEBP decoder errors from Firebase Storage
   });
   adminDb = getFirestore(app);
-  adminStorage = getStorage(app);
 } else {
   app = getApps()[0];
   adminDb = getFirestore(app);
-  adminStorage = getStorage(app);
 }
 
-export { app, adminDb, adminStorage };
+export { app, adminDb };
