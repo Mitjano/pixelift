@@ -428,6 +428,94 @@ export function incrementApiKeyUsage(key: string): void {
   }
 }
 
+// Feature Flags
+export interface FeatureFlag {
+  id: string;
+  name: string;
+  key: string;
+  description: string;
+  enabled: boolean;
+  rolloutPercentage: number; // 0-100
+  targetUsers?: string[]; // user IDs
+  createdAt: string;
+  updatedAt: string;
+}
+
+const FEATURE_FLAGS_FILE = path.join(DATA_DIR, 'feature_flags.json');
+
+export function getAllFeatureFlags(): FeatureFlag[] {
+  return readJSON<FeatureFlag[]>(FEATURE_FLAGS_FILE, []);
+}
+
+export function getFeatureFlagByKey(key: string): FeatureFlag | null {
+  return getAllFeatureFlags().find(f => f.key === key) || null;
+}
+
+export function isFeatureEnabled(key: string, userId?: string): boolean {
+  const flag = getFeatureFlagByKey(key);
+  if (!flag) return false;
+  if (!flag.enabled) return false;
+
+  // Check if user is specifically targeted
+  if (userId && flag.targetUsers && flag.targetUsers.includes(userId)) {
+    return true;
+  }
+
+  // Check rollout percentage
+  if (flag.rolloutPercentage === 100) return true;
+  if (flag.rolloutPercentage === 0) return false;
+
+  // Simple hash-based rollout
+  if (userId) {
+    const hash = userId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return (hash % 100) < flag.rolloutPercentage;
+  }
+
+  return false;
+}
+
+export function createFeatureFlag(data: Omit<FeatureFlag, 'id' | 'createdAt' | 'updatedAt'>): FeatureFlag {
+  const flags = getAllFeatureFlags();
+
+  const newFlag: FeatureFlag = {
+    ...data,
+    id: nanoid(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  flags.push(newFlag);
+  writeJSON(FEATURE_FLAGS_FILE, flags);
+  return newFlag;
+}
+
+export function updateFeatureFlag(id: string, updates: Partial<FeatureFlag>): FeatureFlag | null {
+  const flags = getAllFeatureFlags();
+  const index = flags.findIndex(f => f.id === id);
+
+  if (index === -1) return null;
+
+  flags[index] = {
+    ...flags[index],
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  writeJSON(FEATURE_FLAGS_FILE, flags);
+  return flags[index];
+}
+
+export function deleteFeatureFlag(id: string): boolean {
+  const flags = getAllFeatureFlags();
+  const index = flags.findIndex(f => f.id === id);
+
+  if (index === -1) return false;
+
+  flags.splice(index, 1);
+  writeJSON(FEATURE_FLAGS_FILE, flags);
+  return true;
+}
+
 // Stats helpers
 export function getUserStats() {
   const users = getAllUsers();

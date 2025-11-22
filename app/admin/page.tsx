@@ -199,6 +199,15 @@ export default async function AdminDashboard() {
             <h3 className="text-lg font-bold mb-1">API Keys</h3>
             <p className="text-gray-400 text-sm">Manage API access</p>
           </Link>
+
+          <Link
+            href="/admin/feature-flags"
+            className="bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-500/40 hover:border-violet-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">🚩</div>
+            <h3 className="text-lg font-bold mb-1">Feature Flags</h3>
+            <p className="text-gray-400 text-sm">Control rollouts</p>
+          </Link>
         </div>
       </div>
 
