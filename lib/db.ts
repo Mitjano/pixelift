@@ -340,6 +340,94 @@ export function deleteNotification(id: string): boolean {
   return true;
 }
 
+// API Keys
+export interface ApiKey {
+  id: string;
+  userId: string;
+  name: string;
+  key: string;
+  status: 'active' | 'revoked';
+  rateLimit: number; // requests per hour
+  usageCount: number;
+  lastUsedAt?: string;
+  createdAt: string;
+  expiresAt?: string;
+}
+
+const API_KEYS_FILE = path.join(DATA_DIR, 'api_keys.json');
+
+export function getAllApiKeys(): ApiKey[] {
+  return readJSON<ApiKey[]>(API_KEYS_FILE, []);
+}
+
+export function getApiKeysByUserId(userId: string): ApiKey[] {
+  return getAllApiKeys().filter(k => k.userId === userId);
+}
+
+export function getApiKeyByKey(key: string): ApiKey | null {
+  return getAllApiKeys().find(k => k.key === key) || null;
+}
+
+export function createApiKey(data: Omit<ApiKey, 'id' | 'key' | 'createdAt' | 'usageCount'>): ApiKey {
+  const apiKeys = getAllApiKeys();
+
+  // Generate secure API key
+  const key = `pk_${nanoid(32)}`;
+
+  const newApiKey: ApiKey = {
+    ...data,
+    id: nanoid(),
+    key,
+    usageCount: 0,
+    createdAt: new Date().toISOString(),
+  };
+
+  apiKeys.push(newApiKey);
+  writeJSON(API_KEYS_FILE, apiKeys);
+  return newApiKey;
+}
+
+export function updateApiKey(id: string, updates: Partial<ApiKey>): ApiKey | null {
+  const apiKeys = getAllApiKeys();
+  const index = apiKeys.findIndex(k => k.id === id);
+
+  if (index === -1) return null;
+
+  apiKeys[index] = {
+    ...apiKeys[index],
+    ...updates,
+  };
+
+  writeJSON(API_KEYS_FILE, apiKeys);
+  return apiKeys[index];
+}
+
+export function revokeApiKey(id: string): boolean {
+  return updateApiKey(id, { status: 'revoked' }) !== null;
+}
+
+export function deleteApiKey(id: string): boolean {
+  const apiKeys = getAllApiKeys();
+  const index = apiKeys.findIndex(k => k.id === id);
+
+  if (index === -1) return false;
+
+  apiKeys.splice(index, 1);
+  writeJSON(API_KEYS_FILE, apiKeys);
+  return true;
+}
+
+export function incrementApiKeyUsage(key: string): void {
+  const apiKeys = getAllApiKeys();
+  const index = apiKeys.findIndex(k => k.key === key);
+
+  if (index !== -1) {
+    apiKeys[index].usageCount++;
+    apiKeys[index].lastUsedAt = new Date().toISOString();
+    writeJSON(API_KEYS_FILE, apiKeys);
+  }
+}
+
 // Stats helpers
 export function getUserStats() {
   const users = getAllUsers();
