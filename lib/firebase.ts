@@ -1,6 +1,5 @@
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
-import { getStorage, FirebaseStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,16 +12,14 @@ const firebaseConfig = {
 
 let app: FirebaseApp;
 let db: Firestore;
-let storage: FirebaseStorage;
 
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
-  storage = getStorage(app);
 } else {
   app = getApps()[0];
   db = getFirestore(app);
-  storage = getStorage(app);
 }
 
-export { app, db, storage };
+// NO Firebase Storage - we use Replicate URLs directly
+export { app, db };
