@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata = {
@@ -10,7 +8,6 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <Header />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
@@ -261,7 +258,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

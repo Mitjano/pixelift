@@ -3,8 +3,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import EnhancedImageUploader from "@/components/EnhancedImageUploader";
 
 export default function DashboardPage() {
@@ -41,7 +39,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <Header />
 
       <div className="container mx-auto px-4 py-8">
         {/* Welcome Section */}
@@ -117,7 +114,6 @@ export default function DashboardPage() {
       </div>
 
       {/* Footer */}
-      <Footer />
     </div>
   );
 }

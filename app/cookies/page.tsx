@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata = {
@@ -10,7 +8,6 @@ export const metadata = {
 export default function CookiePolicyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <Header />
 
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
@@ -235,8 +232,6 @@ export default function CookiePolicyPage() {
           </section>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

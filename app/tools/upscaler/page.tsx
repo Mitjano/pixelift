@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import ToolsLayout from '@/components/ToolsLayout';
 import EnhancedImageUploader from '@/components/EnhancedImageUploader';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function UpscalerPage() {
   const { data: session, status } = useSession();
@@ -30,7 +28,6 @@ export default function UpscalerPage() {
 
   return (
     <>
-      <Header />
       <ToolsLayout>
         <div className="max-w-6xl mx-auto p-6">
           {/* Header */}
@@ -79,7 +76,6 @@ export default function UpscalerPage() {
           </div>
         </div>
       </ToolsLayout>
-      <Footer />
     </>
   );
 }

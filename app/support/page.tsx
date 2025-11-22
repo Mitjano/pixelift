@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function SupportPage() {
@@ -30,7 +28,6 @@ export default function SupportPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <Header />
 
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-5xl mx-auto">
@@ -273,7 +270,6 @@ export default function SupportPage() {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 }

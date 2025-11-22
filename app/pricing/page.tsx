@@ -1,7 +1,5 @@
 "use client";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { useState } from "react";
 import { FaCheck, FaDatabase, FaDownload, FaEnvelope, FaQuoteLeft, FaCog } from "react-icons/fa";
 
@@ -83,7 +81,6 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <Header />
 
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
@@ -433,7 +430,6 @@ export default function PricingPage() {
       </div>
 
       {/* Footer */}
-      <Footer />
     </div>
   );
 }
