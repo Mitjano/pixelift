@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { createUser, getUserByEmail, updateUserLogin } from '@/lib/db';
+import { createUser, getUserByEmail, updateUserLogin, createNotification } from '@/lib/db';
 
 // This route is called after successful Google OAuth login
 // to create/update user in database
@@ -29,6 +29,15 @@ export async function POST(request: NextRequest) {
         credits: 10,
         totalUsage: 0,
         lastLoginAt: new Date().toISOString(),
+      });
+
+      // Create notification for new user registration
+      createNotification({
+        type: 'success',
+        category: 'user',
+        title: 'New User Registration',
+        message: `${name || email} just registered for Pixelift`,
+        metadata: { userId: user.id, email, name },
       });
     } else {
       // Update last login

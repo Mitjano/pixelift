@@ -1,14 +1,33 @@
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
+import { getAllUsers, getAllUsage, getAllTransactions } from "@/lib/db";
 
 export default async function AdminDashboard() {
   const session = await auth();
   const allPosts = await getAllPosts();
+  const allUsers = getAllUsers();
+  const allUsage = getAllUsage();
+  const allTransactions = getAllTransactions();
 
   const publishedPosts = allPosts.filter((p) => p.status === "published");
   const draftPosts = allPosts.filter((p) => p.status === "draft");
   const recentPosts = allPosts.slice(0, 5);
+
+  // Calculate stats
+  const activeUsers = allUsers.filter(u => u.status === 'active').length;
+
+  // Images processed this month
+  const now = new Date();
+  const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const imagesThisMonth = allUsage.filter(u =>
+    new Date(u.createdAt) >= firstDayOfMonth
+  ).length;
+
+  // Total revenue from completed transactions
+  const totalRevenue = allTransactions
+    .filter(t => t.status === 'completed')
+    .reduce((sum, t) => sum + t.amount, 0);
 
   return (
     <div>
@@ -23,7 +42,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid md:grid-cols-4 gap-6 mb-8">
+      <div className="grid md:grid-cols-5 gap-6 mb-8">
         <div className="bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/30 rounded-xl p-6 hover:border-green-500/50 transition">
           <div className="flex items-center justify-between mb-4">
             <div className="text-4xl">📝</div>
@@ -49,9 +68,9 @@ export default async function AdminDashboard() {
             <div className="text-4xl">👥</div>
             <div className="px-2 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded">ACTIVE</div>
           </div>
-          <div className="text-4xl font-bold mb-1 text-white">-</div>
-          <div className="text-sm text-gray-400">Users</div>
-          <div className="text-xs text-gray-500 mt-2">Coming soon</div>
+          <div className="text-4xl font-bold mb-1 text-white">{activeUsers}</div>
+          <div className="text-sm text-gray-400">Active Users</div>
+          <div className="text-xs text-gray-500 mt-2">{allUsers.length} total users</div>
         </div>
 
         <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-xl p-6 hover:border-orange-500/50 transition">
@@ -59,9 +78,19 @@ export default async function AdminDashboard() {
             <div className="text-4xl">🖼️</div>
             <div className="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-semibold rounded">MONTH</div>
           </div>
-          <div className="text-4xl font-bold mb-1 text-white">-</div>
+          <div className="text-4xl font-bold mb-1 text-white">{imagesThisMonth}</div>
           <div className="text-sm text-gray-400">Images Processed</div>
-          <div className="text-xs text-gray-500 mt-2">Coming soon</div>
+          <div className="text-xs text-gray-500 mt-2">{allUsage.length} all time</div>
+        </div>
+
+        <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 border border-yellow-500/30 rounded-xl p-6 hover:border-yellow-500/50 transition">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-4xl">💰</div>
+            <div className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">TOTAL</div>
+          </div>
+          <div className="text-4xl font-bold mb-1 text-white">${totalRevenue.toLocaleString()}</div>
+          <div className="text-sm text-gray-400">Revenue</div>
+          <div className="text-xs text-gray-500 mt-2">{allTransactions.filter(t => t.status === 'completed').length} transactions</div>
         </div>
       </div>
 
@@ -142,6 +171,24 @@ export default async function AdminDashboard() {
             <div className="text-4xl mb-3 group-hover:scale-110 transition">⚙️</div>
             <h3 className="text-lg font-bold mb-1">Settings</h3>
             <p className="text-gray-400 text-sm">Configure your platform</p>
+          </Link>
+
+          <Link
+            href="/admin/usage"
+            className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/40 hover:border-cyan-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">📊</div>
+            <h3 className="text-lg font-bold mb-1">Usage Analytics</h3>
+            <p className="text-gray-400 text-sm">Track usage patterns</p>
+          </Link>
+
+          <Link
+            href="/admin/notifications"
+            className="bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/40 hover:border-amber-500 rounded-xl p-6 transition-all group hover:scale-105"
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition">🔔</div>
+            <h3 className="text-lg font-bold mb-1">Notifications</h3>
+            <p className="text-gray-400 text-sm">View alerts & updates</p>
           </Link>
         </div>
       </div>

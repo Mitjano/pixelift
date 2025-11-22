@@ -276,6 +276,70 @@ export function deleteCampaign(id: string): boolean {
   return true;
 }
 
+// Notifications
+export interface Notification {
+  id: string;
+  type: 'info' | 'warning' | 'error' | 'success';
+  category: 'user' | 'system' | 'api' | 'marketing' | 'finance';
+  title: string;
+  message: string;
+  read: boolean;
+  metadata?: any;
+  createdAt: string;
+}
+
+const NOTIFICATIONS_FILE = path.join(DATA_DIR, 'notifications.json');
+
+export function getAllNotifications(): Notification[] {
+  return readJSON<Notification[]>(NOTIFICATIONS_FILE, []);
+}
+
+export function getUnreadNotifications(): Notification[] {
+  return getAllNotifications().filter(n => !n.read);
+}
+
+export function createNotification(data: Omit<Notification, 'id' | 'createdAt' | 'read'>): Notification {
+  const notifications = getAllNotifications();
+  const newNotification: Notification = {
+    ...data,
+    id: nanoid(),
+    read: false,
+    createdAt: new Date().toISOString(),
+  };
+
+  notifications.unshift(newNotification); // Add to beginning
+  writeJSON(NOTIFICATIONS_FILE, notifications);
+  return newNotification;
+}
+
+export function markNotificationAsRead(id: string): Notification | null {
+  const notifications = getAllNotifications();
+  const index = notifications.findIndex(n => n.id === id);
+
+  if (index === -1) return null;
+
+  notifications[index].read = true;
+  writeJSON(NOTIFICATIONS_FILE, notifications);
+  return notifications[index];
+}
+
+export function markAllNotificationsAsRead(): void {
+  const notifications = getAllNotifications();
+  notifications.forEach(n => n.read = true);
+  writeJSON(NOTIFICATIONS_FILE, notifications);
+}
+
+export function deleteNotification(id: string): boolean {
+  const notifications = getAllNotifications();
+  const index = notifications.findIndex(n => n.id === id);
+
+  if (index === -1) return false;
+
+  notifications.splice(index, 1);
+  writeJSON(NOTIFICATIONS_FILE, notifications);
+  return true;
+}
+
 // Stats helpers
 export function getUserStats() {
   const users = getAllUsers();
