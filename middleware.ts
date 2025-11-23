@@ -6,13 +6,28 @@ export default auth((req) => {
 
   // Protect admin routes
   if (pathname.startsWith("/admin")) {
-    const isAdmin = req.auth?.user?.isAdmin === true;
-
-    if (!isAdmin) {
-      // Redirect to sign in if not authenticated, or to home if not admin
+    // Check if user is authenticated
+    if (!req.auth?.user) {
+      // Not logged in - redirect to signin
       const signInUrl = new URL("/auth/signin", req.url);
       signInUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(signInUrl);
+    }
+
+    // Check if user is admin (from JWT token)
+    const isAdmin = req.auth?.user?.isAdmin === true;
+
+    // Debug logging
+    console.log('[middleware] Admin check:', {
+      email: req.auth?.user?.email,
+      isAdmin,
+      hasUser: !!req.auth?.user,
+      pathname
+    });
+
+    if (!isAdmin) {
+      // Logged in but not admin - redirect to home
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
