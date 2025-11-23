@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { createReferral, updateReferral, deleteReferral, trackReferralClick } from '@/lib/db';
+import { apiLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+import { createReferralSchema, trackReferralSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -12,23 +21,42 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { action, code } = body;
 
-    if (action === 'track_click' && code) {
+    if (action === 'track_click') {
+      const trackValidation = validateRequest(trackReferralSchema, { code, action: 'click' });
+      if (!trackValidation.success) {
+        return NextResponse.json(
+          {
+            error: 'Validation failed',
+            details: formatZodErrors(trackValidation.errors)
+          },
+          { status: 400 }
+        );
+      }
       trackReferralClick(code);
       return NextResponse.json({ success: true });
     }
 
-    const { referrerId, referrerName, referralCode, status, expiresAt } = body;
+    // Validate referral creation
+    const validation = validateRequest(createReferralSchema, {
+      referrerId: body.referrerId,
+      referrerName: body.referrerName,
+      code: body.referralCode,
+      status: body.status || 'pending'
+    });
 
-    if (!referrerId || !referrerName || !referralCode) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: formatZodErrors(validation.errors)
+        },
+        { status: 400 }
+      );
     }
 
     const referral = createReferral({
-      referrerId,
-      referrerName,
-      code: referralCode,
-      status: status || 'pending',
-      expiresAt,
+      ...validation.data,
+      expiresAt: body.expiresAt,
     });
 
     return NextResponse.json({ success: true, referral });
@@ -40,6 +68,13 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -67,6 +102,13 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

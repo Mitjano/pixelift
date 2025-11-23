@@ -8,9 +8,18 @@ import {
   deleteModerationQueueItem,
   moderateContent,
 } from '@/lib/db';
+import { apiLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+import { createModerationRuleSchema, reviewModerationQueueSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -49,20 +58,30 @@ export async function POST(request: NextRequest) {
     // Handle rule creation
     const { name, ruleType, target, severity, actionType, keywords, pattern, enabled } = body;
 
-    if (!name || !ruleType || !target || !severity || !actionType) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
-
-    const rule = createModerationRule({
+    // Validate request
+    const ruleData = {
       name,
       type: ruleType,
       target,
       severity,
       action: actionType,
-      keywords: keywords ? keywords.split(',').map((k: string) => k.trim()).filter((k: string) => k) : [],
-      pattern: pattern || undefined,
+      keywords: keywords ? (typeof keywords === 'string' ? keywords.split(',').map((k: string) => k.trim()).filter((k: string) => k) : keywords) : undefined,
+      pattern,
       enabled: enabled ?? true,
-    });
+    };
+
+    const validation = validateRequest(createModerationRuleSchema, ruleData);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: formatZodErrors(validation.errors)
+        },
+        { status: 400 }
+      );
+    }
+
+    const rule = createModerationRule(validation.data);
 
     return NextResponse.json({ success: true, rule });
   } catch (error) {
@@ -73,6 +92,13 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -105,6 +131,13 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

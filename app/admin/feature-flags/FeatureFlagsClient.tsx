@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FeatureFlag } from '@/lib/db';
+import toast from 'react-hot-toast';
 
 interface FeatureFlagsClientProps {
   flags: FeatureFlag[];
@@ -33,25 +34,32 @@ export default function FeatureFlagsClient({ flags, stats }: FeatureFlagsClientP
 
   const handleCreate = async () => {
     if (!name || !key) {
-      alert('Please fill in all required fields');
+      toast.error('Please fill in all required fields');
       return;
     }
 
-    await fetch('/api/admin/feature-flags', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        key,
-        description,
-        enabled,
-        rolloutPercentage,
-      }),
-    });
+    try {
+      const res = await fetch('/api/admin/feature-flags', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          key,
+          description,
+          enabled,
+          rolloutPercentage,
+        }),
+      });
 
-    resetForm();
-    setShowCreateModal(false);
-    window.location.reload();
+      if (!res.ok) throw new Error('Failed to create feature flag');
+
+      toast.success('Feature flag created successfully');
+      resetForm();
+      setShowCreateModal(false);
+      window.location.reload();
+    } catch (error) {
+      toast.error('Failed to create feature flag');
+    }
   };
 
   const handleEdit = (flag: FeatureFlag) => {
@@ -67,44 +75,67 @@ export default function FeatureFlagsClient({ flags, stats }: FeatureFlagsClientP
   const handleUpdate = async () => {
     if (!editingFlag) return;
 
-    await fetch('/api/admin/feature-flags', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: editingFlag.id,
-        updates: {
-          name,
-          description,
-          enabled,
-          rolloutPercentage,
-        },
-      }),
-    });
+    try {
+      const res = await fetch('/api/admin/feature-flags', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: editingFlag.id,
+          updates: {
+            name,
+            description,
+            enabled,
+            rolloutPercentage,
+          },
+        }),
+      });
 
-    resetForm();
-    setShowCreateModal(false);
-    window.location.reload();
+      if (!res.ok) throw new Error('Failed to update feature flag');
+
+      toast.success('Feature flag updated successfully');
+      resetForm();
+      setShowCreateModal(false);
+      window.location.reload();
+    } catch (error) {
+      toast.error('Failed to update feature flag');
+    }
   };
 
   const handleToggle = async (id: string, currentEnabled: boolean) => {
-    await fetch('/api/admin/feature-flags', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id,
-        updates: { enabled: !currentEnabled },
-      }),
-    });
-    window.location.reload();
+    try {
+      const res = await fetch('/api/admin/feature-flags', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id,
+          updates: { enabled: !currentEnabled },
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to toggle feature flag');
+
+      toast.success(`Feature flag ${!currentEnabled ? 'enabled' : 'disabled'}`);
+      window.location.reload();
+    } catch (error) {
+      toast.error('Failed to toggle feature flag');
+    }
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this feature flag?')) return;
 
-    await fetch(`/api/admin/feature-flags?id=${id}`, {
-      method: 'DELETE',
-    });
-    window.location.reload();
+    try {
+      const res = await fetch(`/api/admin/feature-flags?id=${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) throw new Error('Failed to delete feature flag');
+
+      toast.success('Feature flag deleted successfully');
+      window.location.reload();
+    } catch (error) {
+      toast.error('Failed to delete feature flag');
+    }
   };
 
   return (

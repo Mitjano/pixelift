@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { createTicket, updateTicket, deleteTicket, addTicketMessage } from '@/lib/db';
+import { apiLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+import { createTicketSchema, addTicketMessageSchema, updateTicketSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -12,27 +21,38 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { action, ticketId, message } = body;
 
-    if (action === 'add_message' && ticketId && message) {
+    if (action === 'add_message') {
+      const messageValidation = validateRequest(addTicketMessageSchema, { ticketId, message });
+      if (!messageValidation.success) {
+        return NextResponse.json(
+          {
+            error: 'Validation failed',
+            details: formatZodErrors(messageValidation.errors)
+          },
+          { status: 400 }
+        );
+      }
+
       const ticket = addTicketMessage(ticketId, session.user.email || 'Staff', message, true);
       return NextResponse.json({ success: true, ticket });
     }
 
-    const { subject, description, status, priority, category, userId, userName, userEmail, assignedTo } = body;
-
-    if (!subject || !description) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    // Validate ticket creation
+    const validation = validateRequest(createTicketSchema, body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: formatZodErrors(validation.errors)
+        },
+        { status: 400 }
+      );
     }
 
     const ticket = createTicket({
-      subject,
-      description,
-      status: status || 'open',
-      priority: priority || 'medium',
-      category: category || 'other',
-      userId: userId || 'anonymous',
-      userName: userName || 'Anonymous',
-      userEmail: userEmail || '',
-      assignedTo,
+      ...validation.data,
+      userId: validation.data.userId || 'anonymous',
+      status: 'open' as any,
     });
 
     return NextResponse.json({ success: true, ticket });
@@ -44,19 +64,34 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const body = await request.json();
-    const { id, updates } = body;
 
-    if (!id || !updates) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    // Validate request
+    const validation = validateRequest(updateTicketSchema, { ticketId: body.id, updates: body.updates });
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: formatZodErrors(validation.errors)
+        },
+        { status: 400 }
+      );
     }
 
-    const ticket = updateTicket(id, updates);
+    const { ticketId, updates } = validation.data;
+    const ticket = updateTicket(ticketId, updates);
 
     if (!ticket) {
       return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
@@ -71,6 +106,13 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
