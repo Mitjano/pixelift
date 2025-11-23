@@ -12,20 +12,10 @@ export default function DashboardPage() {
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/auth/signin");
-    } else if (status === "authenticated" && session?.user) {
-      // Register/update user in database
-      fetch('/api/auth/register-user', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      }).catch(err => console.error('User registration failed:', err));
-
-      // Check if this is first login - send welcome email
-      fetch('/api/user/welcome', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      }).catch(err => console.error('Welcome email check failed:', err));
     }
-  }, [status, session, router]);
+    // NOTE: User registration now happens automatically in NextAuth signIn callback
+    // No need to manually call /api/auth/register-user here
+  }, [status, router]);
 
   if (status === "loading") {
     return (

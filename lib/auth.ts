@@ -23,6 +23,37 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: "/auth/error",
   },
   callbacks: {
+    async signIn({ user, account, profile }) {
+      // This callback runs AFTER Google OAuth but BEFORE creating session
+      // We register/update user in database here
+      if (user.email) {
+        try {
+          // Call internal registration endpoint
+          const baseUrl = process.env.AUTH_URL || process.env.NEXTAUTH_URL || 'http://localhost:3000';
+          const response = await fetch(`${baseUrl}/api/auth/register-user-internal`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: user.email,
+              name: user.name,
+              image: user.image,
+            }),
+          });
+
+          if (!response.ok) {
+            console.error('[auth] Failed to register user:', await response.text());
+            // Don't block login if registration fails
+          } else {
+            const data = await response.json();
+            console.log(`[auth] User registration successful: ${user.email}, isNewUser: ${data.isNewUser}`);
+          }
+        } catch (error) {
+          console.error('[auth] Error during user registration:', error);
+          // Don't block login if registration fails
+        }
+      }
+      return true; // Allow sign in
+    },
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub;
