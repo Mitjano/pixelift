@@ -1,7 +1,6 @@
-"use client";
-
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { handleGoogleSignIn } from "./actions";
 
 export default function SignInPage() {
   return (
@@ -20,14 +19,16 @@ export default function SignInPage() {
             Sign in to access your dashboard
           </p>
 
-          {/* Google Sign In - Direct Link Approach */}
-          <a
-            href="/api/auth/signin/google?callbackUrl=/dashboard"
-            className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-100 py-3 px-6 rounded-lg font-medium transition"
-          >
-            <FcGoogle className="text-2xl" />
-            Continue with Google
-          </a>
+          {/* Google Sign In Form - Server Action */}
+          <form action={handleGoogleSignIn}>
+            <button
+              type="submit"
+              className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-100 py-3 px-6 rounded-lg font-medium transition"
+            >
+              <FcGoogle className="text-2xl" />
+              Continue with Google
+            </button>
+          </form>
 
           {/* Info */}
           <p className="text-center text-sm text-gray-400 mt-6">

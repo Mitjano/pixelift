@@ -8,15 +8,6 @@ const ADMIN_EMAILS = [
   // Add more admin emails as needed
 ];
 
-// Debug logging for environment variables
-console.log('[auth] Environment check:');
-console.log('[auth] GOOGLE_CLIENT_ID exists:', !!process.env.GOOGLE_CLIENT_ID);
-console.log('[auth] GOOGLE_CLIENT_ID length:', process.env.GOOGLE_CLIENT_ID?.length || 0);
-console.log('[auth] GOOGLE_CLIENT_SECRET exists:', !!process.env.GOOGLE_CLIENT_SECRET);
-console.log('[auth] GOOGLE_CLIENT_SECRET length:', process.env.GOOGLE_CLIENT_SECRET?.length || 0);
-console.log('[auth] AUTH_URL:', process.env.AUTH_URL);
-console.log('[auth] AUTH_SECRET exists:', !!process.env.AUTH_SECRET);
-
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     GoogleProvider({
