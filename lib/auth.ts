@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { getUserByEmail } from "./db";
+import { sendWelcomeEmail } from "./email";
 
 // Admin emails - add your admin emails here
 const ADMIN_EMAILS = [
@@ -23,6 +25,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: "/auth/error",
   },
   callbacks: {
+    async signIn({ user, account, profile }) {
+      // Check if this is a new user (first time sign in)
+      if (user.email && user.name) {
+        const existingUser = getUserByEmail(user.email);
+
+        if (!existingUser) {
+          // This is a new user - send welcome email (non-blocking)
+          sendWelcomeEmail({
+            userName: user.name,
+            userEmail: user.email,
+            freeCredits: 3, // Default free credits for new users
+          }).catch(err => console.error('Welcome email failed:', err));
+        }
+      }
+
+      return true;
+    },
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub;

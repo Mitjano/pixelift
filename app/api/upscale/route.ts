@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getUserByEmail, updateUser, createUsage } from "@/lib/db";
+import { sendCreditsLowEmail, sendCreditsDepletedEmail, sendFirstUploadEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
@@ -41,6 +42,15 @@ export async function POST(request: NextRequest) {
 
     // Check if user has enough credits
     if (user.credits < creditsNeeded) {
+      // Send credits depleted email when user tries to process with 0 credits
+      if (user.credits === 0) {
+        sendCreditsDepletedEmail({
+          userName: user.name || 'User',
+          userEmail: user.email,
+          totalImagesProcessed: user.totalUsage || 0,
+        }).catch(err => console.error('Credits depleted email failed:', err));
+      }
+
       return NextResponse.json(
         {
           error: "Insufficient credits",
@@ -140,6 +150,10 @@ export async function POST(request: NextRequest) {
       throw new Error("Replicate processing timed out or returned no output");
     }
 
+    // Track if this is first upload before deducting credits
+    const isFirstUpload = !user.firstUploadAt;
+    const oldCredits = user.credits;
+
     // Track usage and deduct credits
     createUsage({
       userId: user.id,
@@ -152,6 +166,30 @@ export async function POST(request: NextRequest) {
     // Credits are already deducted by createUsage function
     // Get updated user data
     const updatedUser = getUserByEmail(user.email);
+
+    // Send first upload email if this is the first time
+    if (isFirstUpload && updatedUser) {
+      // Update user with firstUploadAt timestamp
+      updateUser(user.id, {
+        firstUploadAt: new Date().toISOString(),
+      });
+
+      sendFirstUploadEmail({
+        userName: user.name || 'User',
+        userEmail: user.email,
+        creditsRemaining: updatedUser.credits,
+      }).catch(err => console.error('First upload email failed:', err));
+    }
+
+    // Check if credits are running low (only send once when crossing threshold)
+    if (updatedUser && oldCredits >= 3 && updatedUser.credits < 3 && updatedUser.credits > 0) {
+      sendCreditsLowEmail({
+        userName: user.name || 'User',
+        userEmail: user.email,
+        creditsRemaining: updatedUser.credits,
+        totalUsed: updatedUser.totalUsage || creditsNeeded,
+      }).catch(err => console.error('Credits low email failed:', err));
+    }
 
     const responseData = {
       success: true,

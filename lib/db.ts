@@ -41,6 +41,7 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   lastLoginAt?: string;
+  firstUploadAt?: string; // Track first image upload for email automation
 }
 
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
