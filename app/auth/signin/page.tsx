@@ -32,15 +32,7 @@ export default function SignInPage() {
 
           {/* Info */}
           <p className="text-center text-sm text-gray-400 mt-6">
-            Sign in with your Google account to get started
-          </p>
-
-          {/* Sign Up Link */}
-          <p className="text-center text-sm text-gray-400 mt-6">
-            Don't have an account?{" "}
-            <Link href="/auth/signup" className="text-green-400 hover:underline">
-              Sign up
-            </Link>
+            Sign in with your Google account to get started. Your account will be created automatically on first sign-in.
           </p>
         </div>
 
