@@ -102,11 +102,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:contact@pixelift.pl" className="text-gray-400 hover:text-white transition text-sm">
-                  Contact
-                </a>
-              </li>
-              <li>
                 <a href="/blog" className="text-gray-400 hover:text-white transition text-sm">
                   Blog
                 </a>

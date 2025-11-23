@@ -58,17 +58,23 @@ export default function SupportPage() {
           </div>
 
           {/* Quick Help Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-4 gap-6 mb-16">
+            <Link href="/support/tickets" className="bg-gradient-to-br from-green-500/20 to-blue-500/10 border-2 border-green-500/40 hover:border-green-500 rounded-xl p-6 transition group">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition">🎫</div>
+              <h3 className="text-xl font-bold mb-2">My Tickets</h3>
+              <p className="text-gray-400 text-sm">View your support tickets</p>
+            </Link>
+
             <Link href="#faq" className="bg-gray-800/50 border border-gray-700 hover:border-green-500 rounded-xl p-6 transition group">
               <div className="text-4xl mb-4 group-hover:scale-110 transition">📚</div>
               <h3 className="text-xl font-bold mb-2">FAQ</h3>
-              <p className="text-gray-400 text-sm">Find quick answers to common questions</p>
+              <p className="text-gray-400 text-sm">Quick answers to questions</p>
             </Link>
 
             <Link href="/dashboard/api" className="bg-gray-800/50 border border-gray-700 hover:border-blue-500 rounded-xl p-6 transition group">
               <div className="text-4xl mb-4 group-hover:scale-110 transition">📖</div>
               <h3 className="text-xl font-bold mb-2">API Docs</h3>
-              <p className="text-gray-400 text-sm">Integration guides and references</p>
+              <p className="text-gray-400 text-sm">Integration guides</p>
             </Link>
 
             <a href="mailto:support@pixelift.pl" className="bg-gray-800/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 transition group">
