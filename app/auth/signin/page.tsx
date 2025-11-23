@@ -2,12 +2,14 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { signIn } from "@/lib/auth";
 
-async function handleGoogleSignIn() {
+async function handleGoogleSignIn(formData: FormData) {
   "use server";
-  await signIn("google", { redirectTo: "/dashboard" });
+  const callbackUrl = formData.get("callbackUrl") as string || "/dashboard";
+  await signIn("google", { redirectTo: callbackUrl });
 }
 
-export default function SignInPage() {
+export default function SignInPage({ searchParams }: { searchParams: { callbackUrl?: string } }) {
+  const callbackUrl = searchParams.callbackUrl || "/dashboard";
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       <div className="container mx-auto px-4 py-8">
@@ -98,6 +100,7 @@ export default function SignInPage() {
 
                 {/* Google Sign In Button */}
                 <form action={handleGoogleSignIn} className="space-y-4">
+                  <input type="hidden" name="callbackUrl" value={callbackUrl} />
                   <button
                     type="submit"
                     className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-50 py-4 px-6 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
