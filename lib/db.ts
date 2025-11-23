@@ -638,7 +638,7 @@ if (!fs.existsSync(BACKUPS_DIR)) {
 }
 
 export function getAllBackups(): Omit<Backup, 'data'>[] {
-  const backups = readJSON<Backup[]>(BACKUPS_FILE, []);
+  const backups = readJSONWithCache<Backup[]>(BACKUPS_FILE, CacheKeys.BACKUPS, []);
   // Return without data to reduce memory usage
   return backups.map(({ data, ...backup }) => backup);
 }
@@ -862,8 +862,7 @@ function ensureReportsFile() {
 
 export function getAllReports(): Report[] {
   ensureReportsFile();
-  const data = fs.readFileSync(REPORTS_FILE, 'utf-8');
-  return JSON.parse(data);
+  return readJSONWithCache<Report[]>(REPORTS_FILE, CacheKeys.REPORTS, []);
 }
 
 export function getReportById(id: string): Report | null {
@@ -1063,7 +1062,7 @@ const WEBHOOKS_FILE = path.join(DATA_DIR, 'webhooks.json');
 const WEBHOOK_LOGS_FILE = path.join(DATA_DIR, 'webhook-logs.json');
 
 export function getAllWebhooks(): Webhook[] {
-  return readJSON(WEBHOOKS_FILE, []);
+  return readJSONWithCache<Webhook[]>(WEBHOOKS_FILE, CacheKeys.WEBHOOKS, []);
 }
 
 export function getWebhookById(id: string): Webhook | null {
@@ -1247,7 +1246,7 @@ export interface ABTest {
 const ABTESTS_FILE = path.join(DATA_DIR, 'abtests.json');
 
 export function getAllABTests(): ABTest[] {
-  return readJSON(ABTESTS_FILE, []);
+  return readJSONWithCache<ABTest[]>(ABTESTS_FILE, CacheKeys.ABTESTS, []);
 }
 
 export function getABTestById(id: string): ABTest | null {
@@ -1401,7 +1400,7 @@ const MODERATION_RULES_FILE = path.join(DATA_DIR, 'moderation-rules.json');
 const MODERATION_QUEUE_FILE = path.join(DATA_DIR, 'moderation-queue.json');
 
 export function getAllModerationRules(): ModerationRule[] {
-  return readJSON(MODERATION_RULES_FILE, []);
+  return readJSONWithCache<ModerationRule[]>(MODERATION_RULES_FILE, CacheKeys.MODERATION_RULES, []);
 }
 
 export function getModerationRuleById(id: string): ModerationRule | null {
@@ -1617,7 +1616,7 @@ export interface Ticket {
 const TICKETS_FILE = path.join(DATA_DIR, 'tickets.json');
 
 export function getAllTickets(): Ticket[] {
-  return readJSON(TICKETS_FILE, []);
+  return readJSONWithCache<Ticket[]>(TICKETS_FILE, CacheKeys.TICKETS, []);
 }
 
 export function getTicketById(id: string): Ticket | null {
@@ -1721,7 +1720,7 @@ export interface Referral {
 const REFERRALS_FILE = path.join(DATA_DIR, 'referrals.json');
 
 export function getAllReferrals(): Referral[] {
-  return readJSON(REFERRALS_FILE, []);
+  return readJSONWithCache<Referral[]>(REFERRALS_FILE, CacheKeys.REFERRALS, []);
 }
 
 export function getReferralById(id: string): Referral | null {
