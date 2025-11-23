@@ -12,20 +12,10 @@ export default function DashboardPage() {
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/auth/signin");
-    } else if (status === "authenticated" && session?.user) {
-      // Sync user data to Firebase
-      fetch("/api/user/sync", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: session.user.email, // Using email as userId
-          email: session.user.email,
-          displayName: session.user.name,
-          photoURL: session.user.image,
-        }),
-      }).catch((err) => console.error("Failed to sync user:", err));
     }
-  }, [status, session, router]);
+    // User data is already available in session from NextAuth
+    // No additional sync needed - session contains email, name, and image
+  }, [status, router]);
 
   if (status === "loading") {
     return (

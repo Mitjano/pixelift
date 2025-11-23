@@ -30,54 +30,10 @@ export default function SignInPage() {
             Continue with Google
           </button>
 
-          {/* Divider */}
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-700"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-800/50 text-gray-400">
-                or continue with email
-              </span>
-            </div>
-          </div>
-
-          {/* Email Form */}
-          <form className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Email</label>
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500 transition"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Password</label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500 transition"
-              />
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
-                <span>Remember me</span>
-              </label>
-              <Link href="/auth/reset" className="text-green-400 hover:underline">
-                Forgot password?
-              </Link>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-green-500 hover:bg-green-600 py-3 rounded-lg font-medium transition"
-            >
-              Sign In
-            </button>
-          </form>
+          {/* Info */}
+          <p className="text-center text-sm text-gray-400 mt-6">
+            Sign in with your Google account to get started
+          </p>
 
           {/* Sign Up Link */}
           <p className="text-center text-sm text-gray-400 mt-6">
