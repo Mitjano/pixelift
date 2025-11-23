@@ -2,13 +2,8 @@
 
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 
 export default function SignInPage() {
-  const handleGoogleSignIn = () => {
-    signIn("google", { callbackUrl: "/dashboard" });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex items-center justify-center px-4">
       <div className="max-w-md w-full">
@@ -25,14 +20,14 @@ export default function SignInPage() {
             Sign in to access your dashboard
           </p>
 
-          {/* Google Sign In Button */}
-          <button
-            onClick={handleGoogleSignIn}
+          {/* Google Sign In - Direct Link Approach */}
+          <a
+            href="/api/auth/signin/google?callbackUrl=/dashboard"
             className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-100 py-3 px-6 rounded-lg font-medium transition"
           >
             <FcGoogle className="text-2xl" />
             Continue with Google
-          </button>
+          </a>
 
           {/* Info */}
           <p className="text-center text-sm text-gray-400 mt-6">
