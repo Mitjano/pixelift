@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function SupportPage() {
   const [formData, setFormData] = useState({
@@ -17,13 +18,28 @@ export default function SupportPage() {
     e.preventDefault();
     setStatus("sending");
 
-    // TODO: Implement actual email sending (e.g., using SendGrid, Resend, or AWS SES)
-    // For now, simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/support', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
       setStatus("success");
+      toast.success(`Support ticket created! Ticket ID: ${data.ticketId}`);
       setFormData({ name: "", email: "", category: "general", subject: "", message: "" });
       setTimeout(() => setStatus("idle"), 5000);
-    }, 1500);
+    } catch (error) {
+      setStatus("error");
+      toast.error(error instanceof Error ? error.message : 'Failed to send message');
+      setTimeout(() => setStatus("idle"), 3000);
+    }
   };
 
   return (
@@ -76,6 +92,17 @@ export default function SupportPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-green-400 font-semibold">Message sent successfully! We'll be in touch soon.</span>
+                </div>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span className="text-red-400 font-semibold">Failed to send message. Please try again.</span>
                 </div>
               </div>
             )}
