@@ -12,10 +12,14 @@ export default function DashboardPage() {
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/auth/signin");
+    } else if (status === "authenticated" && session?.user) {
+      // Check if this is first login - send welcome email
+      fetch('/api/user/welcome', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      }).catch(err => console.error('Welcome email check failed:', err));
     }
-    // User data is already available in session from NextAuth
-    // No additional sync needed - session contains email, name, and image
-  }, [status, router]);
+  }, [status, session, router]);
 
   if (status === "loading") {
     return (
