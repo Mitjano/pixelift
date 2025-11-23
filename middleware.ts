@@ -17,14 +17,6 @@ export default auth((req) => {
     // Check if user is admin (from JWT token)
     const isAdmin = req.auth?.user?.isAdmin === true;
 
-    // Debug logging
-    console.log('[middleware] Admin check:', {
-      email: req.auth?.user?.email,
-      isAdmin,
-      hasUser: !!req.auth?.user,
-      pathname
-    });
-
     if (!isAdmin) {
       // Logged in but not admin - redirect to home
       return NextResponse.redirect(new URL("/", req.url));
