@@ -132,9 +132,10 @@ export async function GET(
           .toBuffer()
       }
 
-      // Generate filename
-      const originalName = path.basename(image.originalFilename, path.extname(image.originalFilename))
-      const filename = `${originalName}_${resolution}_bg-removed.${format}`
+      // Generate filename - remove extension properly
+      const ext = path.extname(image.originalFilename)
+      const nameWithoutExt = image.originalFilename.slice(0, -ext.length)
+      const filename = `${nameWithoutExt}_${resolution}_bg-removed.${format}`
 
       // Determine content type
       const contentType = format === 'png' ? 'image/png' : 'image/jpeg'
