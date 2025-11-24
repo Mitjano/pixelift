@@ -53,7 +53,7 @@ export default async function RemoveBackgroundPage() {
 
           {/* Upload Section */}
           <div className="mb-16">
-            <BackgroundRemover />
+            <BackgroundRemover userRole={user?.role} />
           </div>
 
           {/* Gallery Section */}
@@ -66,7 +66,7 @@ export default async function RemoveBackgroundPage() {
                 Recent images with removed backgrounds
               </span>
             </div>
-            <ProcessedImagesGallery />
+            <ProcessedImagesGallery userRole={user?.role} />
           </div>
 
           {/* Features Info */}

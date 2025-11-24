@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
+import { DownloadOptionsModal } from './DownloadOptionsModal'
 
 interface ProcessingResult {
   id: string
@@ -13,10 +14,15 @@ interface ProcessingResult {
   creditsRemaining: number
 }
 
-export function BackgroundRemover() {
+interface BackgroundRemoverProps {
+  userRole?: 'user' | 'premium' | 'admin'
+}
+
+export function BackgroundRemover({ userRole = 'user' }: BackgroundRemoverProps) {
   const [processing, setProcessing] = useState(false)
   const [result, setResult] = useState<ProcessingResult | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showDownloadModal, setShowDownloadModal] = useState(false)
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     if (acceptedFiles.length === 0) return
@@ -185,16 +191,15 @@ export function BackgroundRemover() {
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`/api/processed-images/${result.id}/download`}
-              download
+            <button
+              onClick={() => setShowDownloadModal(true)}
               className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               Download Image
-            </a>
+            </button>
             <button
               onClick={() => setResult(null)}
               className="inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors"
@@ -206,6 +211,16 @@ export function BackgroundRemover() {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Download Modal */}
+      {result && showDownloadModal && (
+        <DownloadOptionsModal
+          imageId={result.id}
+          originalFilename={result.filename}
+          userRole={userRole}
+          onClose={() => setShowDownloadModal(false)}
+        />
       )}
     </div>
   )
