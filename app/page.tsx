@@ -5,6 +5,9 @@ import EnterpriseSolutions from "@/components/EnterpriseSolutions";
 import SEOContent from "@/components/SEOContent";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
