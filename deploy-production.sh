@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Production Deployment Script for Pixelift
+# This script ensures CSS and static files are properly deployed
+
+set -e  # Exit on error
+
+echo "🚀 Starting Pixelift Production Deployment..."
+
+# Colors for output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Configuration
+REMOTE_USER="root"
+REMOTE_HOST="138.68.79.23"
+REMOTE_PATH="/root/upsizer"
+REMOTE_PASSWORD="0PRIngless"
+
+echo -e "${BLUE}📥 Step 1: Pulling latest code from GitHub...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "cd $REMOTE_PATH && git pull origin master"
+
+echo -e "${BLUE}📦 Step 2: Installing dependencies...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "cd $REMOTE_PATH && npm install"
+
+echo -e "${BLUE}🔨 Step 3: Building production bundle...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "cd $REMOTE_PATH && npm run build"
+
+echo -e "${BLUE}📂 Step 4: Syncing static files (CRITICAL FOR CSS)...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << 'ENDSSH'
+cd /root/upsizer
+
+# Copy static files to standalone folder
+echo "  → Copying .next/static to standalone..."
+cp -r .next/static .next/standalone/.next/ 2>/dev/null || true
+
+# Copy public folder to standalone
+echo "  → Copying public folder to standalone..."
+cp -r public .next/standalone/ 2>/dev/null || true
+
+# Verify the files exist
+if [ -d ".next/standalone/.next/static" ]; then
+    echo "  ✓ Static files copied successfully"
+    ls -la .next/standalone/.next/static | head -5
+else
+    echo "  ✗ WARNING: Static files not found!"
+fi
+ENDSSH
+
+echo -e "${BLUE}🔄 Step 5: Restarting PM2 process...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "pm2 restart pixelift-web"
+
+echo -e "${BLUE}⏳ Step 6: Waiting for app to start...${NC}"
+sleep 3
+
+echo -e "${BLUE}📊 Step 7: Checking status...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "pm2 status pixelift-web"
+
+echo -e "${BLUE}📋 Step 8: Checking recent logs...${NC}"
+sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "pm2 logs pixelift-web --lines 10 --nostream"
+
+echo ""
+echo -e "${GREEN}✅ Deployment Complete!${NC}"
+echo ""
+echo "🌐 Production URL: https://pixelift.pl"
+echo "📊 Monitor logs: ssh root@138.68.79.23 'pm2 logs pixelift-web'"
+echo ""
+echo -e "${GREEN}🎉 CSS and static files should now be working!${NC}"
