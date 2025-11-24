@@ -27,16 +27,16 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg"></div>
-          <span className="text-xl font-bold">Pixelift</span>
+          <span className="text-xl font-bold text-white">Pixelift</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 text-gray-300">
+        <div className="hidden md:flex items-center gap-6 text-white">
           {/* Tools Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowToolsDropdown(!showToolsDropdown)}
-              className="flex items-center gap-1 text-gray-300 hover:text-green-400 transition font-medium"
+              className="flex items-center gap-1 text-white hover:text-green-400 transition font-medium"
             >
               Tools
               <svg
@@ -94,16 +94,16 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/#use-cases" className="text-gray-300 hover:text-green-400 transition">
+          <Link href="/#use-cases" className="text-white hover:text-green-400 transition">
             Use Cases
           </Link>
-          <Link href="/pricing" className="text-gray-300 hover:text-green-400 transition">
+          <Link href="/pricing" className="text-white hover:text-green-400 transition">
             Pricing
           </Link>
-          <Link href="/blog" className="text-gray-300 hover:text-green-400 transition">
+          <Link href="/blog" className="text-white hover:text-green-400 transition">
             Blog
           </Link>
-          <Link href="/#faq" className="text-gray-300 hover:text-green-400 transition">
+          <Link href="/#faq" className="text-white hover:text-green-400 transition">
             FAQ
           </Link>
         </div>
@@ -116,7 +116,7 @@ export default function Header() {
             <>
               <Link
                 href="/dashboard"
-                className="hidden md:block px-4 py-2 text-gray-300 hover:text-green-400 transition"
+                className="hidden md:block px-4 py-2 text-white hover:text-green-400 transition"
               >
                 Dashboard
               </Link>
@@ -172,7 +172,7 @@ export default function Header() {
             <>
               <Link
                 href="/auth/signin"
-                className="px-4 py-2 text-gray-300 hover:text-green-400 transition"
+                className="px-4 py-2 text-white hover:text-green-400 transition"
               >
                 Login
               </Link>
@@ -213,35 +213,35 @@ export default function Header() {
           <div className="container mx-auto px-4 py-4 space-y-3">
             <Link
               href="/#features"
-              className="block py-2 text-gray-300 hover:text-green-400 transition"
+              className="block py-2 text-white hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
             </Link>
             <Link
               href="/#use-cases"
-              className="block py-2 text-gray-300 hover:text-green-400 transition"
+              className="block py-2 text-white hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Use Cases
             </Link>
             <Link
               href="/pricing"
-              className="block py-2 text-gray-300 hover:text-green-400 transition"
+              className="block py-2 text-white hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Pricing
             </Link>
             <Link
               href="/blog"
-              className="block py-2 text-gray-300 hover:text-green-400 transition"
+              className="block py-2 text-white hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Blog
             </Link>
             <Link
               href="/#faq"
-              className="block py-2 text-gray-300 hover:text-green-400 transition"
+              className="block py-2 text-white hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               FAQ
@@ -251,7 +251,7 @@ export default function Header() {
                 <hr className="border-gray-800" />
                 <Link
                   href="/dashboard"
-                  className="block py-2 text-gray-300 hover:text-green-400 transition"
+                  className="block py-2 text-white hover:text-green-400 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Dashboard
