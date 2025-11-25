@@ -46,7 +46,7 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
 
   // Step 1: Remove background using state-of-the-art Bria RMBG 2.0
   const output = (await replicate.run(
-    'bria/background-removal',
+    'bria/remove-background',
     {
       input: {
         image: dataUrl,
