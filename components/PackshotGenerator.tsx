@@ -31,32 +31,32 @@ interface Preset {
 
 const PRESETS: Preset[] = [
   {
-    id: 'amazon',
-    name: 'Amazon Ready',
-    description: 'White 2000x2000px + Auto AI Upscale',
-    icon: '🎯',
+    id: 'white',
+    name: 'White Background',
+    description: '2000x2000px • Perfect for Amazon & e-commerce',
+    icon: '⚪',
     credits: 1,
   },
   {
-    id: 'allegro',
-    name: 'Allegro',
-    description: 'Light gray 1600x1200px + Auto AI Upscale',
-    icon: '🛒',
+    id: 'gray',
+    name: 'Light Gray',
+    description: '2000x2000px • Elegant & professional',
+    icon: '🔘',
     credits: 1,
   },
   {
-    id: 'instagram',
-    name: 'Instagram',
-    description: 'Square 1080x1080px + Auto AI Upscale',
-    icon: '📱',
+    id: 'beige',
+    name: 'Beige',
+    description: '2000x2000px • Warm & natural look',
+    icon: '🟤',
     credits: 1,
   },
   {
-    id: 'premium',
-    name: 'Premium',
-    description: 'Light gray 2048x2048px + Premium AI Upscale',
-    icon: '💎',
-    credits: 2,
+    id: 'blue',
+    name: 'Light Blue',
+    description: '2000x2000px • Fresh & modern',
+    icon: '🔵',
+    credits: 1,
   },
 ]
 
@@ -65,7 +65,7 @@ export function PackshotGenerator({ userRole = 'user' }: PackshotGeneratorProps)
   const [processing, setProcessing] = useState(false)
   const [result, setResult] = useState<PackshotResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [selectedPreset, setSelectedPreset] = useState<string>('amazon')
+  const [selectedPreset, setSelectedPreset] = useState<string>('white')
   const [originalImage, setOriginalImage] = useState<string | null>(null)
 
   const onDrop = useCallback(

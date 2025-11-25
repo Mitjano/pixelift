@@ -33,8 +33,8 @@ export default function PackshotGeneratorPage() {
             </span>
           </h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Transform any product photo into a professional packshot with AI. Perfect for Amazon, Allegro, Instagram,
-            and e-commerce listings. <strong className="text-green-400">Automatic AI upscaling</strong> for premium quality. Remove backgrounds, add shadows, and resize automatically.
+            Transform any product photo into a professional 2000x2000px packshot with AI. Perfect for Amazon, e-commerce,
+            and marketplace listings. <strong className="text-green-400">One-click solution</strong> powered by Bria AI - remove backgrounds, center products, and optimize automatically.
           </p>
 
           {/* Credits Info */}
@@ -117,24 +117,21 @@ export default function PackshotGeneratorPage() {
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <div className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 rounded-xl border border-green-700/50 p-6">
             <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <span>🎯</span> Presets Available
+              <span>🎯</span> Background Options
             </h3>
             <div className="space-y-3 text-gray-300">
               <div>
-                <strong className="text-white">Amazon Ready:</strong> White background, 2000x2000px, perfect for
+                <strong className="text-white">White Background:</strong> Classic white 2000x2000px, perfect for
                 Amazon listings and product catalogs
               </div>
               <div>
-                <strong className="text-white">Allegro:</strong> Light gray background, 1600x1200px, optimized for
-                Polish marketplace
+                <strong className="text-white">Light Gray:</strong> Professional gray background, elegant and clean
               </div>
               <div>
-                <strong className="text-white">Instagram:</strong> Square 1080x1080px, minimal shadow, perfect for
-                social media
+                <strong className="text-white">Beige:</strong> Warm, natural beige tone for organic products
               </div>
               <div>
-                <strong className="text-white">Premium:</strong> Gradient background, 2048x2048px, reflection shadow
-                for luxury feel (2 credits)
+                <strong className="text-white">Light Blue:</strong> Fresh, modern blue background for tech products
               </div>
             </div>
           </div>
@@ -145,19 +142,16 @@ export default function PackshotGeneratorPage() {
             </h3>
             <div className="space-y-3 text-gray-300">
               <div>
-                <strong className="text-white">Background Removal:</strong> Advanced AI removes any background with
-                perfect edge detection
+                <strong className="text-white">Professional AI:</strong> Powered by Bria AI, trained on commercial-safe data
               </div>
               <div>
-                <strong className="text-white">Smart Shadows:</strong> Automatic drop or reflection shadows for
-                professional depth
+                <strong className="text-white">Smart Positioning:</strong> Products automatically centered with optimal padding
               </div>
               <div>
-                <strong className="text-white">Auto Centering:</strong> Product perfectly centered with optimal
-                padding
+                <strong className="text-white">Perfect Sizing:</strong> Standard 2000x2000px output for all marketplaces
               </div>
               <div>
-                <strong className="text-white">Instant Processing:</strong> Results in 10-20 seconds, no waiting
+                <strong className="text-white">Fast Processing:</strong> Results in just 5-10 seconds
               </div>
             </div>
           </div>
@@ -213,11 +207,11 @@ export default function PackshotGeneratorPage() {
             <div>
               <h4 className="font-semibold text-white mb-2">⚡ Pro Tips:</h4>
               <ul className="space-y-2 text-sm">
-                <li>• Amazon preset for marketplace compliance</li>
-                <li>• Premium preset for luxury/high-end products</li>
-                <li>• Instagram preset for social media marketing</li>
-                <li>• Use different presets for different platforms</li>
-                <li>• Credits: 1 for standard, 2 for premium</li>
+                <li>• White background for Amazon marketplace compliance</li>
+                <li>• Gray background for elegant, professional look</li>
+                <li>• Beige for warm, natural product presentation</li>
+                <li>• Blue for fresh, modern tech products</li>
+                <li>• All packshots: 1 credit, 2000x2000px output</li>
               </ul>
             </div>
           </div>
