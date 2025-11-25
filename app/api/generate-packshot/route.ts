@@ -19,22 +19,22 @@ const PRESETS: Record<string, PackshotPreset> = {
   white: {
     name: 'White Background',
     backgroundColor: '#FFFFFF',
-    credits: 3,
+    credits: 2,
   },
   gray: {
     name: 'Light Gray',
     backgroundColor: '#F5F5F5',
-    credits: 3,
+    credits: 2,
   },
   beige: {
     name: 'Beige',
     backgroundColor: '#F5E6D3',
-    credits: 3,
+    credits: 2,
   },
   blue: {
     name: 'Light Blue',
     backgroundColor: '#E3F2FD',
-    credits: 3,
+    credits: 2,
   },
 }
 
@@ -42,42 +42,30 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
   const base64Image = imageBuffer.toString('base64')
   const dataUrl = `data:image/png;base64,${base64Image}`
 
-  console.log('[Packshot] Generating professional packshot with FLUX Canny Pro...')
+  console.log('[Packshot] Generating professional packshot with Bria Product Packshot...')
   console.log('[Packshot] Background color:', backgroundColor)
 
-  // Map background color hex to descriptive prompt
-  const backgroundDescriptions: Record<string, string> = {
-    '#FFFFFF': 'pure white background, clean and minimalist',
-    '#F5F5F5': 'light gray background, soft and elegant',
-    '#F5E6D3': 'warm beige background, natural and organic',
-    '#E3F2FD': 'light blue background, fresh and modern',
-  }
-
-  const bgDescription = backgroundDescriptions[backgroundColor] || 'white background'
-
-  // Generate professional packshot using FLUX Canny Pro with edge-guided control
+  // Generate professional packshot using Bria Product Packshot
+  // This model PRESERVES the original product while changing background
   const output = (await replicate.run(
-    'black-forest-labs/flux-canny-pro',
+    'bria/product-packshot',
     {
       input: {
-        control_image: dataUrl,
-        prompt: `Professional product packshot photography, studio lighting, commercial quality, ${bgDescription}, centered composition, clean product presentation, realistic shadows, high-end e-commerce style, product photography, Amazon listing quality`,
-        guidance: 30, // High guidance = strict adherence to product edges
-        num_inference_steps: 50,
-        output_format: 'png',
-        output_quality: 100,
-        aspect_ratio: '1:1',
+        image: dataUrl,
+        background_color: backgroundColor,
+        force_rmbg: false,
+        content_moderation: false,
       },
     }
   )) as unknown as string
 
-  console.log('[Packshot] FLUX Canny Pro generation complete, downloading image...')
+  console.log('[Packshot] Bria Product Packshot generation complete, downloading image...')
 
   // Download the generated packshot
   const response = await fetch(output)
   const packshotBuffer = Buffer.from(await response.arrayBuffer())
 
-  // Get dimensions and optionally resize to 2000x2000 if needed
+  // Get dimensions - Bria outputs 2000x2000px by default
   const packshotImage = sharp(packshotBuffer)
   const metadata = await packshotImage.metadata()
 
@@ -100,7 +88,7 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
     finalImage = packshotBuffer
   }
 
-  console.log('[Packshot] Professional packshot created with FLUX Canny Pro')
+  console.log('[Packshot] Professional packshot created with Bria Product Packshot')
   console.log(`[Packshot] Final dimensions: ${TARGET_SIZE}x${TARGET_SIZE}px`)
 
   return finalImage
@@ -210,7 +198,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'flux-canny-pro',
+      model: 'bria-product-packshot',
     })
 
     const newCredits = user.credits - creditsNeeded

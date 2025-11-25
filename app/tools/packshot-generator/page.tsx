@@ -34,7 +34,7 @@ export default function PackshotGeneratorPage() {
           </h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Transform any product photo into a studio-quality professional packshot with AI. Perfect for Amazon, e-commerce,
-            and marketplace listings. <strong className="text-green-400">Edge-Guided AI</strong> powered by FLUX Canny Pro - preserves product structure while generating professional lighting and composition.
+            and marketplace listings. <strong className="text-green-400">Powered by Bria AI</strong> - preserves your exact product while generating professional backgrounds, lighting, and composition.
           </p>
 
           {/* Credits Info */}
@@ -72,16 +72,16 @@ export default function PackshotGeneratorPage() {
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
             <div className="text-3xl mb-3">⚡</div>
-            <h3 className="text-lg font-semibold mb-2">Edge-Guided AI</h3>
+            <h3 className="text-lg font-semibold mb-2">Product Preservation AI</h3>
             <p className="text-sm text-gray-400">
-              FLUX Canny Pro preserves exact product structure using edge detection while generating professional studio lighting and backgrounds
+              Bria Product Packshot preserves your exact product - same design, same labels, same details - while generating professional backgrounds and studio lighting
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
             <div className="text-3xl mb-3">💎</div>
             <h3 className="text-lg font-semibold mb-2">Professional Quality</h3>
             <p className="text-sm text-gray-400">
-              Studio-quality results without expensive equipment or photographers. Ready in 10-20 seconds
+              Studio-quality results without expensive equipment or photographers. Ready in 8-15 seconds
             </p>
           </div>
         </div>
@@ -142,16 +142,16 @@ export default function PackshotGeneratorPage() {
             </h3>
             <div className="space-y-3 text-gray-300">
               <div>
-                <strong className="text-white">Edge-Guided Technology:</strong> FLUX Canny Pro - Black Forest Labs' professional model, uses edge detection to preserve exact product structure
+                <strong className="text-white">Product Preservation:</strong> Bria Product Packshot - maintains your EXACT product (same design, labels, colors) while transforming the background
               </div>
               <div>
-                <strong className="text-white">Product Preservation:</strong> Maintains original product shape and details while generating professional studio lighting, shadows, and composition
+                <strong className="text-white">AI Background Generation:</strong> Professional backgrounds (white, gray, beige, blue) with natural shadows and studio-quality lighting
               </div>
               <div>
-                <strong className="text-white">High-Quality Output:</strong> 2000x2000px resolution, marketplace-ready packshots with clean backgrounds and realistic lighting
+                <strong className="text-white">High-Quality Output:</strong> 2000x2000px resolution, marketplace-ready packshots perfect for Amazon, eBay, and e-commerce catalogs
               </div>
               <div>
-                <strong className="text-white">Commercial License Safe:</strong> Professional-grade results in 15-25 seconds, 3 credits per packshot
+                <strong className="text-white">Fast & Affordable:</strong> Professional-grade results in 8-15 seconds, only 2 credits per packshot
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function PackshotGeneratorPage() {
                 <li>• Gray background for elegant, professional look</li>
                 <li>• Beige for warm, natural product presentation</li>
                 <li>• Blue for fresh, modern tech products</li>
-                <li>• All packshots: 3 credits, 2000x2000px output</li>
+                <li>• All packshots: 2 credits, 2000x2000px output</li>
               </ul>
             </div>
           </div>
