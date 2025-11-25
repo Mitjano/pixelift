@@ -50,9 +50,9 @@ export default function ImageCompressor() {
       return;
     }
 
-    if (file.size > 15 * 1024 * 1024) {
+    if (file.size > 20 * 1024 * 1024) {
       console.log('[ImageCompressor] File too large:', file.size);
-      setError('File size must be less than 15MB');
+      setError('File size must be less than 20MB');
       return;
     }
 
@@ -209,7 +209,7 @@ export default function ImageCompressor() {
             </svg>
           </div>
           <p className="text-lg font-medium mb-2">Click or drag image to compress</p>
-          <p className="text-sm text-gray-400">JPG, PNG, WebP up to 15MB</p>
+          <p className="text-sm text-gray-400">JPG, PNG, WebP up to 20MB</p>
         </div>
       ) : (
         <div>
