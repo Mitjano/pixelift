@@ -50,8 +50,15 @@ export default function ImageCompressor() {
     // Show original image
     const reader = new FileReader();
     reader.onload = (e) => {
-      setOriginalImage(e.target?.result as string);
+      const result = e.target?.result as string;
+      console.log('[ImageCompressor] Image loaded, length:', result?.length);
+      setOriginalImage(result);
     };
+    reader.onerror = (error) => {
+      console.error('[ImageCompressor] FileReader error:', error);
+      setError('Failed to read image file');
+    };
+    console.log('[ImageCompressor] Starting to read file:', file.name, file.type, file.size);
     reader.readAsDataURL(file);
   };
 

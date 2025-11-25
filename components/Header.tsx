@@ -2,13 +2,17 @@
 
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
   const { data: session, status } = useSession();
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isToolsPage = pathname?.startsWith('/tools/');
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -36,7 +40,9 @@ export default function Header() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowToolsDropdown(!showToolsDropdown)}
-              className="flex items-center gap-1 text-white hover:text-green-400 transition font-medium"
+              className={`flex items-center gap-1 transition font-medium ${
+                isToolsPage ? 'text-green-400' : 'text-white hover:text-green-400'
+              }`}
             >
               Tools
               <svg
@@ -59,7 +65,9 @@ export default function Header() {
                   <Link
                     href="/tools/upscaler"
                     onClick={() => setShowToolsDropdown(false)}
-                    className="flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors"
+                    className={`flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors ${
+                      pathname === '/tools/upscaler' ? 'bg-gray-700/50' : ''
+                    }`}
                   >
                     <div className="mt-1 text-purple-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +84,9 @@ export default function Header() {
                   <Link
                     href="/tools/remove-background"
                     onClick={() => setShowToolsDropdown(false)}
-                    className="flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors"
+                    className={`flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors ${
+                      pathname === '/tools/remove-background' ? 'bg-gray-700/50' : ''
+                    }`}
                   >
                     <div className="mt-1 text-blue-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +103,9 @@ export default function Header() {
                   <Link
                     href="/tools/image-compressor"
                     onClick={() => setShowToolsDropdown(false)}
-                    className="flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors"
+                    className={`flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors ${
+                      pathname === '/tools/image-compressor' ? 'bg-gray-700/50' : ''
+                    }`}
                   >
                     <div className="mt-1 text-cyan-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
