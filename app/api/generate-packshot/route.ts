@@ -301,7 +301,12 @@ export async function POST(request: NextRequest) {
     const padding = Math.round(preset.width * 0.1) // 10% padding
     const maxWidth = preset.width - 2 * padding
     const maxHeight = preset.height - 2 * padding
-    const scale = Math.min(maxWidth / imageWidth, maxHeight / imageHeight, 1)
+
+    // Calculate scale - never upscale (max 1.0), only downscale if needed
+    let scale = 1
+    if (imageWidth > maxWidth || imageHeight > maxHeight) {
+      scale = Math.min(maxWidth / imageWidth, maxHeight / imageHeight)
+    }
 
     const scaledWidth = Math.round(imageWidth * scale)
     const scaledHeight = Math.round(imageHeight * scale)
@@ -310,13 +315,22 @@ export async function POST(request: NextRequest) {
     const left = Math.round((preset.width - scaledWidth) / 2)
     const top = Math.round((preset.height - scaledHeight) / 2)
 
-    // Resize image
-    const resizedImage = await sharp(withShadowBuffer)
-      .resize(scaledWidth, scaledHeight, {
-        fit: 'contain',
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
-      })
-      .toBuffer()
+    console.log('[Packshot] Scaling:', scale, 'Final size:', scaledWidth, 'x', scaledHeight)
+
+    // Resize image only if needed, using high-quality interpolation
+    let resizedImage: Buffer
+    if (scale < 1) {
+      resizedImage = await sharp(withShadowBuffer)
+        .resize(scaledWidth, scaledHeight, {
+          fit: 'contain',
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+          kernel: 'lanczos3', // High-quality downscaling
+        })
+        .toBuffer()
+    } else {
+      // No resize needed, use original
+      resizedImage = withShadowBuffer
+    }
 
     // Step 5: Composite everything
     console.log('[Packshot] Compositing final image...')
