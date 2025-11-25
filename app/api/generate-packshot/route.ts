@@ -128,6 +128,7 @@ async function addShadow(
         { input: shadow, top: shadowOffset, left: 0 },
         { input: imageBuffer, top: 0, left: 0 },
       ])
+      .png()
       .toBuffer()
   } else if (shadowType === 'reflection') {
     // Reflection shadow (mirrored and faded)
@@ -155,6 +156,7 @@ async function addShadow(
           left: 0,
         },
       ])
+      .png()
       .toBuffer()
   }
 
@@ -257,8 +259,9 @@ export async function POST(request: NextRequest) {
       .toBuffer()
 
     // Step 2: Add shadow
-    console.log('[Packshot] Adding shadow...')
+    console.log('[Packshot] Adding shadow...', preset.shadowType)
     const withShadowBuffer = await addShadow(normalizedBuffer, preset.shadowType, preset.shadowIntensity)
+    console.log('[Packshot] Shadow added, buffer size:', withShadowBuffer.length)
 
     // Step 3: Create background
     console.log('[Packshot] Creating background...', preset.backgroundColor)
@@ -288,7 +291,9 @@ export async function POST(request: NextRequest) {
     console.log('[Packshot] Background created successfully')
 
     // Step 4: Get image dimensions for smart positioning
+    console.log('[Packshot] Getting image metadata...')
     const imageMetadata = await sharp(withShadowBuffer).metadata()
+    console.log('[Packshot] Image metadata:', imageMetadata.width, 'x', imageMetadata.height)
     const imageWidth = imageMetadata.width || preset.width
     const imageHeight = imageMetadata.height || preset.height
 
