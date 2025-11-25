@@ -42,28 +42,87 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
   const base64Image = imageBuffer.toString('base64')
   const dataUrl = `data:image/png;base64,${base64Image}`
 
-  console.log('[Packshot] Generating packshot with Bria AI, background:', backgroundColor)
+  console.log('[Packshot] Step 1: Removing background with Bria RMBG 2.0...')
 
+  // Step 1: Remove background using state-of-the-art Bria RMBG 2.0
   const output = (await replicate.run(
-    'bria/product-packshot',
+    'bria/background-removal',
     {
       input: {
         image: dataUrl,
-        background_color: backgroundColor,
-        force_rmbg: false,
-        content_moderation: false,
       },
     }
   )) as unknown as string
 
-  console.log('[Packshot] Bria AI response:', output)
+  console.log('[Packshot] Step 2: Downloading transparent image...')
 
-  // Download the result
+  // Download the transparent PNG
   const response = await fetch(output)
-  const resultBuffer = Buffer.from(await response.arrayBuffer())
+  const transparentBuffer = Buffer.from(await response.arrayBuffer())
 
-  console.log('[Packshot] Packshot generated successfully')
-  return resultBuffer
+  console.log('[Packshot] Step 3: Composing professional packshot...')
+
+  // Step 2: Compose professional packshot with custom background
+  const TARGET_SIZE = 2000
+  const PADDING_PERCENT = 0.1 // 10% padding on each side
+
+  // Load the transparent image
+  const transparentImage = sharp(transparentBuffer)
+  const metadata = await transparentImage.metadata()
+
+  if (!metadata.width || !metadata.height) {
+    throw new Error('Failed to get image dimensions')
+  }
+
+  // Calculate scaling to fit within padded area
+  const maxProductSize = TARGET_SIZE * (1 - 2 * PADDING_PERCENT)
+  const scale = Math.min(
+    maxProductSize / metadata.width,
+    maxProductSize / metadata.height
+  )
+
+  const scaledWidth = Math.round(metadata.width * scale)
+  const scaledHeight = Math.round(metadata.height * scale)
+
+  // Resize the product
+  const resizedProduct = await transparentImage
+    .resize(scaledWidth, scaledHeight, {
+      fit: 'inside',
+      withoutEnlargement: false,
+    })
+    .toBuffer()
+
+  // Create background canvas
+  const canvas = sharp({
+    create: {
+      width: TARGET_SIZE,
+      height: TARGET_SIZE,
+      channels: 4,
+      background: backgroundColor,
+    },
+  })
+
+  // Calculate centering offset
+  const offsetX = Math.round((TARGET_SIZE - scaledWidth) / 2)
+  const offsetY = Math.round((TARGET_SIZE - scaledHeight) / 2)
+
+  // Composite product onto background
+  const finalImage = await canvas
+    .composite([
+      {
+        input: resizedProduct,
+        top: offsetY,
+        left: offsetX,
+      },
+    ])
+    .png({ quality: 100 })
+    .toBuffer()
+
+  console.log('[Packshot] Professional packshot created successfully')
+  console.log(`[Packshot] Final dimensions: ${TARGET_SIZE}x${TARGET_SIZE}px`)
+  console.log(`[Packshot] Product scaled to: ${scaledWidth}x${scaledHeight}px`)
+
+  return finalImage
 }
 
 export async function POST(request: NextRequest) {
@@ -170,7 +229,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'bria-product-packshot-v1',
+      model: 'bria-rmbg-2.0',
     })
 
     const newCredits = user.credits - creditsNeeded

@@ -34,7 +34,7 @@ export default function PackshotGeneratorPage() {
           </h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Transform any product photo into a professional 2000x2000px packshot with AI. Perfect for Amazon, e-commerce,
-            and marketplace listings. <strong className="text-green-400">One-click solution</strong> powered by Bria AI - remove backgrounds, center products, and optimize automatically.
+            and marketplace listings. <strong className="text-green-400">Premium quality</strong> powered by Bria RMBG 2.0 - state-of-the-art background removal with 90% accuracy and 256-level transparency.
           </p>
 
           {/* Credits Info */}
@@ -74,7 +74,7 @@ export default function PackshotGeneratorPage() {
             <div className="text-3xl mb-3">⚡</div>
             <h3 className="text-lg font-semibold mb-2">AI-Powered</h3>
             <p className="text-sm text-gray-400">
-              Automatic background removal, smart cropping, professional shadows, and perfect centering
+              Bria RMBG 2.0 with 90% accuracy, 256-level transparency masks, professional centering, and perfect scaling
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
@@ -142,16 +142,16 @@ export default function PackshotGeneratorPage() {
             </h3>
             <div className="space-y-3 text-gray-300">
               <div>
-                <strong className="text-white">Professional AI:</strong> Powered by Bria AI, trained on commercial-safe data
+                <strong className="text-white">State-of-the-Art AI:</strong> Bria RMBG 2.0 - industry-leading 90% accuracy, outperforms all competitors in benchmarks
               </div>
               <div>
-                <strong className="text-white">Smart Positioning:</strong> Products automatically centered with optimal padding
+                <strong className="text-white">Premium Edge Detection:</strong> 256 levels of alpha transparency for pixel-perfect cutouts and natural edges
               </div>
               <div>
-                <strong className="text-white">Perfect Sizing:</strong> Standard 2000x2000px output for all marketplaces
+                <strong className="text-white">Professional Composition:</strong> Smart centering with 10% padding, perfect 2000x2000px marketplace-ready output
               </div>
               <div>
-                <strong className="text-white">Fast Processing:</strong> Results in just 5-10 seconds
+                <strong className="text-white">Commercial-Safe:</strong> Trained on 15,000+ licensed images, fast processing in 5-10 seconds
               </div>
             </div>
           </div>
