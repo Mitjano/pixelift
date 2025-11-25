@@ -45,7 +45,7 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
   console.log('[Packshot] Generating packshot with Bria AI, background:', backgroundColor)
 
   const output = (await replicate.run(
-    'bria/product-packshot:a0d278994675bd8ecd90ac15722552db0b49997351d9fc1ce255d81e7c6038f0',
+    'bria/product-packshot',
     {
       input: {
         image: dataUrl,
