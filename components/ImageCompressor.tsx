@@ -14,6 +14,7 @@ interface CompressionStats {
 }
 
 export default function ImageCompressor() {
+  console.log('[ImageCompressor] Component mounted/rendered');
   const { data: session } = useSession();
   const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [compressedImage, setCompressedImage] = useState<string | null>(null);
@@ -175,6 +176,8 @@ export default function ImageCompressor() {
     );
   }
 
+  console.log('[ImageCompressor] Rendering, originalImage:', originalImage ? 'HAS IMAGE' : 'NO IMAGE', 'session:', session ? 'LOGGED IN' : 'NOT LOGGED IN');
+
   return (
     <div className="max-w-6xl mx-auto">
       {!originalImage ? (
@@ -182,7 +185,10 @@ export default function ImageCompressor() {
           <input
             type="file"
             accept="image/jpeg,image/jpg,image/png,image/webp"
-            onChange={handleFileSelect}
+            onChange={(e) => {
+              console.log('[ImageCompressor] Input onChange triggered!', e.target.files);
+              handleFileSelect(e);
+            }}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           />
           <div className="mb-4">
