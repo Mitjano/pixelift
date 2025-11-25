@@ -40,12 +40,22 @@ cp -r .next/static .next/standalone/.next/ 2>/dev/null || true
 echo "  → Copying public folder to standalone..."
 cp -r public .next/standalone/ 2>/dev/null || true
 
+# Copy data folder to standalone (CRITICAL for JSON database)
+echo "  → Copying data folder to standalone..."
+cp -r data .next/standalone/ 2>/dev/null || true
+
 # Verify the files exist
 if [ -d ".next/standalone/.next/static" ]; then
     echo "  ✓ Static files copied successfully"
     ls -la .next/standalone/.next/static | head -5
 else
     echo "  ✗ WARNING: Static files not found!"
+fi
+
+if [ -d ".next/standalone/data" ]; then
+    echo "  ✓ Data folder copied successfully"
+else
+    echo "  ✗ WARNING: Data folder not found!"
 fi
 ENDSSH
 
