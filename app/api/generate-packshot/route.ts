@@ -74,20 +74,16 @@ async function removeBackground(imageBuffer: Buffer): Promise<Buffer> {
 }
 
 async function createGradientBackground(width: number, height: number): Promise<Buffer> {
-  // Create a gradient from light gray to white
-  const svgGradient = `
-    <svg width="${width}" height="${height}">
-      <defs>
-        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
-        </linearGradient>
-      </defs>
-      <rect width="${width}" height="${height}" fill="url(#grad)" />
-    </svg>
-  `
-  // Convert SVG to PNG buffer using Sharp
-  return await sharp(Buffer.from(svgGradient))
+  // Create a simple light gray background instead of gradient
+  // (Sharp has issues with SVG gradients, so using solid color)
+  return await sharp({
+    create: {
+      width: width,
+      height: height,
+      channels: 3,
+      background: { r: 245, g: 245, b: 245 }, // Light gray #F5F5F5
+    },
+  })
     .png()
     .toBuffer()
 }
@@ -265,23 +261,31 @@ export async function POST(request: NextRequest) {
     const withShadowBuffer = await addShadow(normalizedBuffer, preset.shadowType, preset.shadowIntensity)
 
     // Step 3: Create background
-    console.log('[Packshot] Creating background...')
+    console.log('[Packshot] Creating background...', preset.backgroundColor)
     let backgroundBuffer: Buffer
     if (preset.backgroundColor === 'gradient') {
+      console.log('[Packshot] Creating gradient background')
       backgroundBuffer = await createGradientBackground(preset.width, preset.height)
     } else {
-      // Solid color background
+      // Solid color background - convert hex to RGB
+      console.log('[Packshot] Creating solid color background:', preset.backgroundColor)
+      const hex = preset.backgroundColor.replace('#', '')
+      const r = parseInt(hex.substring(0, 2), 16)
+      const g = parseInt(hex.substring(2, 4), 16)
+      const b = parseInt(hex.substring(4, 6), 16)
+
       backgroundBuffer = await sharp({
         create: {
           width: preset.width,
           height: preset.height,
           channels: 3,
-          background: preset.backgroundColor,
+          background: { r, g, b },
         },
       })
         .png()
         .toBuffer()
     }
+    console.log('[Packshot] Background created successfully')
 
     // Step 4: Get image dimensions for smart positioning
     const imageMetadata = await sharp(withShadowBuffer).metadata()
