@@ -33,8 +33,8 @@ export default function PackshotGeneratorPage() {
             </span>
           </h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Transform any product photo into a professional 2000x2000px packshot with AI. Perfect for Amazon, e-commerce,
-            and marketplace listings. <strong className="text-green-400">Premium quality</strong> powered by Bria RMBG 2.0 - state-of-the-art background removal with 90% accuracy and 256-level transparency.
+            Transform any product photo into a studio-quality professional packshot with AI. Perfect for Amazon, e-commerce,
+            and marketplace listings. <strong className="text-green-400">Generative AI</strong> powered by FLUX 1.1 Pro - creates photorealistic product imagery with perfect lighting and composition.
           </p>
 
           {/* Credits Info */}
@@ -72,9 +72,9 @@ export default function PackshotGeneratorPage() {
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
             <div className="text-3xl mb-3">⚡</div>
-            <h3 className="text-lg font-semibold mb-2">AI-Powered</h3>
+            <h3 className="text-lg font-semibold mb-2">Generative AI</h3>
             <p className="text-sm text-gray-400">
-              Bria RMBG 2.0 with 90% accuracy, 256-level transparency masks, professional centering, and perfect scaling
+              FLUX 1.1 Pro generates photorealistic packshots with studio lighting, perfect composition, and professional quality
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
@@ -142,16 +142,16 @@ export default function PackshotGeneratorPage() {
             </h3>
             <div className="space-y-3 text-gray-300">
               <div>
-                <strong className="text-white">State-of-the-Art AI:</strong> Bria RMBG 2.0 - industry-leading 90% accuracy, outperforms all competitors in benchmarks
+                <strong className="text-white">Generative AI Technology:</strong> FLUX 1.1 Pro - Black Forest Labs' cutting-edge model, reinterprets products with studio-quality results
               </div>
               <div>
-                <strong className="text-white">Premium Edge Detection:</strong> 256 levels of alpha transparency for pixel-perfect cutouts and natural edges
+                <strong className="text-white">Photorealistic Rendering:</strong> Creates professional packshots with perfect lighting, shadows, and composition from any product photo
               </div>
               <div>
-                <strong className="text-white">Professional Composition:</strong> Smart centering with minimal padding, maximum product visibility, perfect 2000x2000px marketplace-ready output
+                <strong className="text-white">Maximum Product Visibility:</strong> Product fills frame optimally, up to 1440px resolution, marketplace-ready output
               </div>
               <div>
-                <strong className="text-white">Commercial-Safe:</strong> Trained on 15,000+ licensed images, fast processing in 5-10 seconds
+                <strong className="text-white">Commercial License Safe:</strong> 6× faster than competitors, fast processing in 8-12 seconds
               </div>
             </div>
           </div>

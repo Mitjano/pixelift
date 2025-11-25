@@ -42,87 +42,49 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
   const base64Image = imageBuffer.toString('base64')
   const dataUrl = `data:image/png;base64,${base64Image}`
 
-  console.log('[Packshot] Step 1: Removing background with Bria RMBG 2.0...')
+  console.log('[Packshot] Generating professional packshot with FLUX 1.1 Pro...')
 
-  // Step 1: Remove background using state-of-the-art Bria RMBG 2.0
+  // Map background colors to descriptive terms for better AI understanding
+  const backgroundDescriptions: Record<string, string> = {
+    '#FFFFFF': 'pure white',
+    '#F5F5F5': 'light gray',
+    '#F5E6D3': 'warm beige',
+    '#E3F2FD': 'light blue',
+  }
+
+  const bgDescription = backgroundDescriptions[backgroundColor] || 'white'
+
+  // Generate professional packshot using FLUX 1.1 Pro
+  const prompt = `Professional product packshot photography, studio lighting, ${bgDescription} background, centered composition, commercial photography, high resolution, sharp focus, professional e-commerce photo, clean and minimal, product fills frame, 8K quality`
+
+  console.log('[Packshot] Prompt:', prompt)
+
   const output = (await replicate.run(
-    'bria/remove-background',
+    'black-forest-labs/flux-1.1-pro',
     {
       input: {
-        image: dataUrl,
+        prompt,
+        image_prompt: dataUrl,
+        aspect_ratio: '1:1',
+        output_format: 'png',
+        prompt_upsampling: true,
       },
     }
   )) as unknown as string
 
-  console.log('[Packshot] Step 2: Downloading transparent image...')
+  console.log('[Packshot] Downloading generated packshot...')
 
-  // Download the transparent PNG
+  // Download the generated packshot
   const response = await fetch(output)
-  const transparentBuffer = Buffer.from(await response.arrayBuffer())
+  const packshotBuffer = Buffer.from(await response.arrayBuffer())
 
-  console.log('[Packshot] Step 3: Composing professional packshot...')
+  console.log('[Packshot] Professional packshot generated successfully')
 
-  // Step 2: Compose professional packshot with custom background
-  const TARGET_SIZE = 2000
-  const PADDING_PERCENT = 0.025 // 2.5% padding (50px) for maximum product visibility
+  // Get final image dimensions
+  const metadata = await sharp(packshotBuffer).metadata()
+  console.log(`[Packshot] Final dimensions: ${metadata.width}x${metadata.height}px`)
 
-  // Load the transparent image
-  const transparentImage = sharp(transparentBuffer)
-  const metadata = await transparentImage.metadata()
-
-  if (!metadata.width || !metadata.height) {
-    throw new Error('Failed to get image dimensions')
-  }
-
-  // Calculate scaling to fit within padded area - maximize product size
-  const maxProductSize = TARGET_SIZE * (1 - 2 * PADDING_PERCENT)
-  const scale = Math.min(
-    maxProductSize / metadata.width,
-    maxProductSize / metadata.height
-  )
-
-  const scaledWidth = Math.round(metadata.width * scale)
-  const scaledHeight = Math.round(metadata.height * scale)
-
-  // Resize the product
-  const resizedProduct = await transparentImage
-    .resize(scaledWidth, scaledHeight, {
-      fit: 'inside',
-      withoutEnlargement: false,
-    })
-    .toBuffer()
-
-  // Create background canvas
-  const canvas = sharp({
-    create: {
-      width: TARGET_SIZE,
-      height: TARGET_SIZE,
-      channels: 4,
-      background: backgroundColor,
-    },
-  })
-
-  // Calculate centering offset
-  const offsetX = Math.round((TARGET_SIZE - scaledWidth) / 2)
-  const offsetY = Math.round((TARGET_SIZE - scaledHeight) / 2)
-
-  // Composite product onto background
-  const finalImage = await canvas
-    .composite([
-      {
-        input: resizedProduct,
-        top: offsetY,
-        left: offsetX,
-      },
-    ])
-    .png({ quality: 100 })
-    .toBuffer()
-
-  console.log('[Packshot] Professional packshot created successfully')
-  console.log(`[Packshot] Final dimensions: ${TARGET_SIZE}x${TARGET_SIZE}px`)
-  console.log(`[Packshot] Product scaled to: ${scaledWidth}x${scaledHeight}px`)
-
-  return finalImage
+  return packshotBuffer
 }
 
 export async function POST(request: NextRequest) {
@@ -220,8 +182,8 @@ export async function POST(request: NextRequest) {
 
     // 7. GET IMAGE DIMENSIONS
     const metadata = await sharp(finalImage).metadata()
-    const width = metadata.width || 2000
-    const height = metadata.height || 2000
+    const width = metadata.width || 1440
+    const height = metadata.height || 1440
 
     // 8. DEDUCT CREDITS & LOG USAGE
     createUsage({
@@ -229,7 +191,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'bria-rmbg-2.0',
+      model: 'flux-1.1-pro',
     })
 
     const newCredits = user.credits - creditsNeeded
