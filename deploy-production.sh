@@ -44,6 +44,10 @@ cp -r public .next/standalone/ 2>/dev/null || true
 echo "  → Copying data folder to standalone..."
 cp -r data .next/standalone/ 2>/dev/null || true
 
+# Copy .env.local to standalone (CRITICAL for OpenAI API key and other env vars)
+echo "  → Copying .env.local to standalone..."
+cp .env.local .next/standalone/ 2>/dev/null || true
+
 # Verify the files exist
 if [ -d ".next/standalone/.next/static" ]; then
     echo "  ✓ Static files copied successfully"
@@ -56,6 +60,12 @@ if [ -d ".next/standalone/data" ]; then
     echo "  ✓ Data folder copied successfully"
 else
     echo "  ✗ WARNING: Data folder not found!"
+fi
+
+if [ -f ".next/standalone/.env.local" ]; then
+    echo "  ✓ .env.local copied successfully"
+else
+    echo "  ✗ WARNING: .env.local not found!"
 fi
 ENDSSH
 
