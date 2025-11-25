@@ -34,7 +34,7 @@ export default function PackshotGeneratorPage() {
           </h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Transform any product photo into a studio-quality professional packshot with AI. Perfect for Amazon, e-commerce,
-            and marketplace listings. <strong className="text-green-400">Generative AI</strong> powered by FLUX 1.1 Pro - creates photorealistic product imagery with perfect lighting and composition.
+            and marketplace listings. <strong className="text-green-400">Edge-Guided AI</strong> powered by FLUX Canny Pro - preserves product structure while generating professional lighting and composition.
           </p>
 
           {/* Credits Info */}
@@ -72,9 +72,9 @@ export default function PackshotGeneratorPage() {
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
             <div className="text-3xl mb-3">⚡</div>
-            <h3 className="text-lg font-semibold mb-2">Generative AI</h3>
+            <h3 className="text-lg font-semibold mb-2">Edge-Guided AI</h3>
             <p className="text-sm text-gray-400">
-              FLUX 1.1 Pro generates photorealistic packshots with studio lighting, perfect composition, and professional quality
+              FLUX Canny Pro preserves exact product structure using edge detection while generating professional studio lighting and backgrounds
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700">
@@ -142,16 +142,16 @@ export default function PackshotGeneratorPage() {
             </h3>
             <div className="space-y-3 text-gray-300">
               <div>
-                <strong className="text-white">Generative AI Technology:</strong> FLUX 1.1 Pro - Black Forest Labs' cutting-edge model, reinterprets products with studio-quality results
+                <strong className="text-white">Edge-Guided Technology:</strong> FLUX Canny Pro - Black Forest Labs' professional model, uses edge detection to preserve exact product structure
               </div>
               <div>
-                <strong className="text-white">Photorealistic Rendering:</strong> Creates professional packshots with perfect lighting, shadows, and composition from any product photo
+                <strong className="text-white">Product Preservation:</strong> Maintains original product shape and details while generating professional studio lighting, shadows, and composition
               </div>
               <div>
-                <strong className="text-white">Maximum Product Visibility:</strong> Product fills frame optimally, up to 1440px resolution, marketplace-ready output
+                <strong className="text-white">High-Quality Output:</strong> 2000x2000px resolution, marketplace-ready packshots with clean backgrounds and realistic lighting
               </div>
               <div>
-                <strong className="text-white">Commercial License Safe:</strong> 6× faster than competitors, fast processing in 8-12 seconds
+                <strong className="text-white">Commercial License Safe:</strong> Professional-grade results in 15-25 seconds, 3 credits per packshot
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function PackshotGeneratorPage() {
                 <li>• Gray background for elegant, professional look</li>
                 <li>• Beige for warm, natural product presentation</li>
                 <li>• Blue for fresh, modern tech products</li>
-                <li>• All packshots: 1 credit, 2000x2000px output</li>
+                <li>• All packshots: 3 credits, 2000x2000px output</li>
               </ul>
             </div>
           </div>

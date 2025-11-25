@@ -19,22 +19,22 @@ const PRESETS: Record<string, PackshotPreset> = {
   white: {
     name: 'White Background',
     backgroundColor: '#FFFFFF',
-    credits: 1,
+    credits: 3,
   },
   gray: {
     name: 'Light Gray',
     backgroundColor: '#F5F5F5',
-    credits: 1,
+    credits: 3,
   },
   beige: {
     name: 'Beige',
     backgroundColor: '#F5E6D3',
-    credits: 1,
+    credits: 3,
   },
   blue: {
     name: 'Light Blue',
     backgroundColor: '#E3F2FD',
-    credits: 1,
+    credits: 3,
   },
 }
 
@@ -42,87 +42,65 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
   const base64Image = imageBuffer.toString('base64')
   const dataUrl = `data:image/png;base64,${base64Image}`
 
-  console.log('[Packshot] Step 1: Removing background with Bria RMBG 2.0...')
+  console.log('[Packshot] Generating professional packshot with FLUX Canny Pro...')
+  console.log('[Packshot] Background color:', backgroundColor)
 
-  // Step 1: Remove background using Bria RMBG 2.0
+  // Map background color hex to descriptive prompt
+  const backgroundDescriptions: Record<string, string> = {
+    '#FFFFFF': 'pure white background, clean and minimalist',
+    '#F5F5F5': 'light gray background, soft and elegant',
+    '#F5E6D3': 'warm beige background, natural and organic',
+    '#E3F2FD': 'light blue background, fresh and modern',
+  }
+
+  const bgDescription = backgroundDescriptions[backgroundColor] || 'white background'
+
+  // Generate professional packshot using FLUX Canny Pro with edge-guided control
   const output = (await replicate.run(
-    'bria/remove-background',
+    'black-forest-labs/flux-canny-pro',
     {
       input: {
-        image: dataUrl,
+        control_image: dataUrl,
+        prompt: `Professional product packshot photography, studio lighting, commercial quality, ${bgDescription}, centered composition, clean product presentation, realistic shadows, high-end e-commerce style, product photography, Amazon listing quality`,
+        guidance: 30, // High guidance = strict adherence to product edges
+        num_inference_steps: 50,
+        output_format: 'png',
+        output_quality: 100,
+        aspect_ratio: '1:1',
       },
     }
   )) as unknown as string
 
-  console.log('[Packshot] Step 2: Downloading transparent image...')
+  console.log('[Packshot] FLUX Canny Pro generation complete, downloading image...')
 
-  // Download the transparent PNG
+  // Download the generated packshot
   const response = await fetch(output)
-  const transparentBuffer = Buffer.from(await response.arrayBuffer())
+  const packshotBuffer = Buffer.from(await response.arrayBuffer())
 
-  console.log('[Packshot] Step 3: Creating professional packshot with maximum product size...')
+  // Get dimensions and optionally resize to 2000x2000 if needed
+  const packshotImage = sharp(packshotBuffer)
+  const metadata = await packshotImage.metadata()
 
-  // Step 2: Compose packshot - MAXIMIZE product size (no padding)
+  console.log(`[Packshot] Generated dimensions: ${metadata.width}x${metadata.height}px`)
+
+  // If image is not 2000x2000, resize it
   const TARGET_SIZE = 2000
+  let finalImage: Buffer
 
-  // Load transparent image
-  const transparentImage = sharp(transparentBuffer)
-  const metadata = await transparentImage.metadata()
-
-  if (!metadata.width || !metadata.height) {
-    throw new Error('Failed to get image dimensions')
+  if (metadata.width !== TARGET_SIZE || metadata.height !== TARGET_SIZE) {
+    console.log(`[Packshot] Resizing to ${TARGET_SIZE}x${TARGET_SIZE}px...`)
+    finalImage = await packshotImage
+      .resize(TARGET_SIZE, TARGET_SIZE, {
+        fit: 'contain',
+        background: backgroundColor,
+      })
+      .png({ quality: 100 })
+      .toBuffer()
+  } else {
+    finalImage = packshotBuffer
   }
 
-  // Scale to fill entire canvas - product at maximum size
-  const scale = Math.max(
-    TARGET_SIZE / metadata.width,
-    TARGET_SIZE / metadata.height
-  )
-
-  const scaledWidth = Math.round(metadata.width * scale)
-  const scaledHeight = Math.round(metadata.height * scale)
-
-  // Resize product to maximum size
-  const resizedProduct = await transparentImage
-    .resize(scaledWidth, scaledHeight, {
-      fit: 'outside',
-      withoutEnlargement: false,
-    })
-    .toBuffer()
-
-  // Create background canvas
-  const canvas = sharp({
-    create: {
-      width: TARGET_SIZE,
-      height: TARGET_SIZE,
-      channels: 4,
-      background: backgroundColor,
-    },
-  })
-
-  // Center the oversized product (it will be cropped to fit)
-  const offsetX = Math.round((TARGET_SIZE - scaledWidth) / 2)
-  const offsetY = Math.round((TARGET_SIZE - scaledHeight) / 2)
-
-  // Composite and extract center
-  const finalImage = await canvas
-    .composite([
-      {
-        input: resizedProduct,
-        top: offsetY,
-        left: offsetX,
-      },
-    ])
-    .extract({
-      left: 0,
-      top: 0,
-      width: TARGET_SIZE,
-      height: TARGET_SIZE,
-    })
-    .png({ quality: 100 })
-    .toBuffer()
-
-  console.log('[Packshot] Professional packshot created - product fills frame')
+  console.log('[Packshot] Professional packshot created with FLUX Canny Pro')
   console.log(`[Packshot] Final dimensions: ${TARGET_SIZE}x${TARGET_SIZE}px`)
 
   return finalImage
@@ -232,7 +210,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'bria-rmbg-2.0',
+      model: 'flux-canny-pro',
     })
 
     const newCredits = user.credits - creditsNeeded
