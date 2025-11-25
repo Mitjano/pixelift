@@ -64,7 +64,7 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
 
   // Step 2: Compose professional packshot with custom background
   const TARGET_SIZE = 2000
-  const PADDING_PERCENT = 0.1 // 10% padding on each side
+  const PADDING_PERCENT = 0.05 // 5% padding on each side for maximum product visibility
 
   // Load the transparent image
   const transparentImage = sharp(transparentBuffer)
