@@ -27,9 +27,15 @@ export default function ImageCompressor() {
   const [quality, setQuality] = useState(80);
   const [format, setFormat] = useState('auto'); // 'auto', 'jpg', 'png', 'webp'
 
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('[ImageCompressor] handleFileSelect called');
     const file = e.target.files?.[0];
-    if (!file) return;
+    console.log('[ImageCompressor] File from input:', file);
+
+    if (!file) {
+      console.log('[ImageCompressor] No file selected');
+      return;
+    }
 
     // Reset state
     setError(null);
@@ -39,28 +45,34 @@ export default function ImageCompressor() {
     // Validate file
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
+      console.log('[ImageCompressor] Invalid file type:', file.type);
       setError('Please upload a JPG, PNG, or WebP image');
       return;
     }
 
     if (file.size > 15 * 1024 * 1024) {
+      console.log('[ImageCompressor] File too large:', file.size);
       setError('File size must be less than 15MB');
       return;
     }
 
+    console.log('[ImageCompressor] File validated, starting to read:', file.name, file.type, file.size);
+
     // Show original image
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
+    reader.onload = (event) => {
+      console.log('[ImageCompressor] FileReader onload triggered');
+      const result = event.target?.result as string;
       console.log('[ImageCompressor] Image loaded, length:', result?.length);
       setOriginalImage(result);
+      console.log('[ImageCompressor] setOriginalImage called with data');
     };
     reader.onerror = (error) => {
       console.error('[ImageCompressor] FileReader error:', error);
       setError('Failed to read image file');
     };
-    console.log('[ImageCompressor] Starting to read file:', file.name, file.type, file.size);
     reader.readAsDataURL(file);
+    console.log('[ImageCompressor] FileReader.readAsDataURL called');
   };
 
   const handleCompress = async () => {
