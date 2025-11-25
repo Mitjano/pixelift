@@ -82,7 +82,9 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
   console.log('[Packshot] Step 4: Preparing images for DALL-E 2 Edit...')
 
   // Resize original image to 1024x1024 (DALL-E 2 requirement)
+  // DALL-E 2 Edit requires RGBA format
   const resizedOriginal = await sharp(imageBuffer)
+    .ensureAlpha() // Ensure alpha channel exists
     .resize(1024, 1024, {
       fit: 'contain',
       background: { r: 255, g: 255, b: 255, alpha: 0 },
