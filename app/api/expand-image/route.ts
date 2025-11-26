@@ -57,8 +57,9 @@ async function expandImage(
   const mimeType = metadata.format === 'png' ? 'image/png' : 'image/jpeg'
   const dataUrl = `data:${mimeType};base64,${base64Image}`
 
-  // Default prompt if not provided
-  const expandPrompt = prompt || 'Continue the image naturally, maintaining consistent style, lighting, and content'
+  // Default prompt - describe what to generate in the expanded area
+  // Higher guidance = more faithful to original image context
+  const expandPrompt = prompt || 'Seamlessly extend the scene, matching the existing background, lighting, colors and style exactly'
 
   // Get the outpaint mode string
   const outpaintMode = EXPAND_MODE_MAP[expandMode]
@@ -67,8 +68,10 @@ async function expandImage(
   }
 
   console.log('[Expand] Calling FLUX.1 Fill [pro] with outpaint:', outpaintMode)
+  console.log('[Expand] Prompt:', expandPrompt)
 
-  // Call Replicate API - cast output to string (URL) like packshot does
+  // Call Replicate API
+  // guidance: 60 (default) ensures consistency with original image
   const output = (await replicate.run(
     'black-forest-labs/flux-fill-pro',
     {
@@ -77,7 +80,7 @@ async function expandImage(
         prompt: expandPrompt,
         outpaint: outpaintMode,
         steps: 50,
-        guidance: 30,
+        guidance: 60,
         output_format: 'png',
         safety_tolerance: 2,
       },
