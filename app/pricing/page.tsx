@@ -9,30 +9,31 @@ export default function PricingPage() {
   const [selectedOneTime, setSelectedOneTime] = useState(2); // Index 2 = 500 credits
 
   // Subscription Plans - ceny są PER MONTH (miesięczne rozliczenie)
-  // Yearly daje 30% zniżki
+  // Yearly daje 70% zniżki
+  // Konkurencja (Deep-Image.ai): $0.04-0.09/credit subskrypcja
   const subscriptionPlans = [
     {
       id: "plan-100",
       credits: 100,
-      priceMonthly: 25.47, // Cena za miesiąc przy monthly billing
+      priceMonthly: 7.99, // $0.08/credit monthly, $0.024/credit yearly
       selected: false
     },
     {
       id: "plan-200",
       credits: 200,
-      priceMonthly: 36.40, // Cena za miesiąc przy monthly billing
-      selected: true // Default selected like in screenshot
+      priceMonthly: 13.99, // $0.07/credit monthly, $0.021/credit yearly
+      selected: true // Default selected
     },
     {
       id: "plan-500",
       credits: 500,
-      priceMonthly: 54.62,
+      priceMonthly: 29.99, // $0.06/credit monthly, $0.018/credit yearly
       selected: false
     },
     {
       id: "plan-1000",
       credits: 1000,
-      priceMonthly: 72.84,
+      priceMonthly: 49.99, // $0.05/credit monthly, $0.015/credit yearly
       selected: false
     }
   ];
@@ -55,27 +56,28 @@ export default function PricingPage() {
     : undefined;
 
   // One-time payment plans
+  // Konkurencja (Deep-Image.ai): $0.17-0.53/credit pay-as-you-go
   const oneTimePlans = [
     {
       credits: 50,
-      price: 14.50,
-      pricePerCredit: 0.29
+      price: 7.99,
+      pricePerCredit: 0.16
     },
     {
       credits: 200,
-      price: 46.00,
-      pricePerCredit: 0.23
+      price: 29.99,
+      pricePerCredit: 0.15
     },
     {
       credits: 500,
-      price: 100.00,
-      pricePerCredit: 0.20,
+      price: 69.99,
+      pricePerCredit: 0.14,
       selected: true // Most popular
     },
     {
       credits: 1000,
-      price: 155.00,
-      pricePerCredit: 0.16
+      price: 119.99,
+      pricePerCredit: 0.12
     }
   ];
 
