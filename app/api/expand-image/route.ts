@@ -84,49 +84,42 @@ async function expandImage(
     }
   )) as unknown
 
-  // Handle output - the API returns a FileOutput object with url() method or a string
+  // Handle output - Replicate SDK returns a FileOutput object with toString() that returns URL
+  // FileOutput extends ReadableStream and has url() and toString() methods
   let resultUrl: string
 
   console.log('[Expand] Raw output type:', typeof output)
-  console.log('[Expand] Raw output:', JSON.stringify(output, null, 2))
 
   if (typeof output === 'string') {
     resultUrl = output
   } else if (output && typeof output === 'object') {
-    // FileOutput object - try to get URL
-    const outputObj = output as Record<string, unknown>
-    if (typeof outputObj.url === 'function') {
-      // It's a FileOutput with url() method
-      resultUrl = (outputObj as { url: () => { href: string } }).url().href
-    } else if (typeof outputObj.url === 'string') {
-      resultUrl = outputObj.url
-    } else if (typeof outputObj.href === 'string') {
-      resultUrl = outputObj.href
-    } else if (Array.isArray(output) && output.length > 0) {
-      const first = output[0]
-      if (typeof first === 'string') {
-        resultUrl = first
-      } else if (first && typeof first === 'object') {
-        const firstObj = first as Record<string, unknown>
-        if (typeof firstObj.url === 'function') {
-          resultUrl = (firstObj as { url: () => { href: string } }).url().href
-        } else if (typeof firstObj.url === 'string') {
-          resultUrl = firstObj.url
-        } else if (typeof firstObj.href === 'string') {
-          resultUrl = firstObj.href
+    // FileOutput object - use toString() to get the URL string
+    // The toString() method returns the URL as a string
+    const stringified = String(output)
+    if (stringified.startsWith('http')) {
+      resultUrl = stringified
+    } else {
+      // Try other methods
+      const outputObj = output as Record<string, unknown>
+      if (typeof outputObj.toString === 'function') {
+        const toStringResult = outputObj.toString()
+        if (typeof toStringResult === 'string' && toStringResult.startsWith('http')) {
+          resultUrl = toStringResult
         } else {
-          throw new Error(`Cannot extract URL from array element: ${JSON.stringify(first)}`)
+          throw new Error(`toString() did not return a URL: ${toStringResult}`)
+        }
+      } else if (Array.isArray(output) && output.length > 0) {
+        const first = output[0]
+        if (typeof first === 'string') {
+          resultUrl = first
+        } else {
+          resultUrl = String(first)
+          if (!resultUrl.startsWith('http')) {
+            throw new Error(`Cannot extract URL from array element: ${resultUrl}`)
+          }
         }
       } else {
-        throw new Error(`Unexpected array element type: ${typeof first}`)
-      }
-    } else {
-      // Try to stringify and check if it looks like a URL
-      const stringified = String(output)
-      if (stringified.startsWith('http')) {
-        resultUrl = stringified
-      } else {
-        throw new Error(`Cannot extract URL from output: ${JSON.stringify(output)}`)
+        throw new Error(`Cannot extract URL from output. toString() returned: ${stringified}`)
       }
     }
   } else {
