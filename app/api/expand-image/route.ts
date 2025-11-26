@@ -108,8 +108,8 @@ async function expandHorizontal(
     create: {
       width: newWidth,
       height: origHeight,
-      channels: 1,
-      background: { r: 255 }, // Start all white
+      channels: 3,
+      background: { r: 255, g: 255, b: 255 }, // Start all white
     },
   })
     .composite([
@@ -119,8 +119,8 @@ async function expandHorizontal(
           create: {
             width: origWidth,
             height: origHeight,
-            channels: 1,
-            background: { r: 0 },
+            channels: 3,
+            background: { r: 0, g: 0, b: 0 },
           },
         })
           .png()
