@@ -44,89 +44,92 @@ const PRESETS: Record<string, PackshotPreset> = {
 }
 
 async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): Promise<Buffer> {
-  console.log('[Packshot] Generating professional packshot with OpenAI DALL-E 3...')
+  console.log('[Packshot] Generating professional packshot...')
   console.log('[Packshot] Background color:', backgroundColor)
 
-  // Map background color to description
-  const backgroundDescriptions: Record<string, string> = {
-    '#FFFFFF': 'pure white',
-    '#F5F5F5': 'light gray',
-    '#F5E6D3': 'warm beige',
-    '#E3F2FD': 'light blue',
-  }
-
-  const bgDescription = backgroundDescriptions[backgroundColor] || 'white'
-
-  console.log('[Packshot] Step 1: Converting image to base64...')
   const base64Image = imageBuffer.toString('base64')
-  const mimeType = 'image/png'
-  const dataUrl = `data:${mimeType};base64,${base64Image}`
+  const dataUrl = `data:image/png;base64,${base64Image}`
 
-  console.log('[Packshot] Step 2: Analyzing product with GPT-4 Vision...')
+  console.log('[Packshot] Step 1: Removing background with Replicate...')
 
-  // Use GPT-4 Vision to analyze the product
-  const visionResponse = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [
-      {
-        role: 'user',
-        content: [
-          {
-            type: 'text',
-            text: 'Describe this product in detail for creating a professional packshot. Focus on the product type, key features, and important details that should be preserved. Be concise but specific.',
-          },
-          {
-            type: 'image_url',
-            image_url: {
-              url: dataUrl,
-            },
-          },
-        ],
-      },
-    ],
-    max_tokens: 300,
-  })
+  // Use background removal model
+  const rmbgOutput = (await replicate.run('lucataco/remove-bg:95fcc2a26d3899cd6c2691c900465aaeff466285a65c14638cc5f36f34befaf1', {
+    input: {
+      image: dataUrl,
+    },
+  })) as unknown as string
 
-  const productDescription = visionResponse.choices[0]?.message?.content || 'product'
-  console.log('[Packshot] Product identified:', productDescription)
+  console.log('[Packshot] Step 2: Downloading removed background image...')
 
-  console.log('[Packshot] Step 3: Generating professional packshot with DALL-E 3...')
+  const nobgResponse = await fetch(rmbgOutput)
+  const nobgBuffer = Buffer.from(await nobgResponse.arrayBuffer())
 
-  // Generate packshot with DALL-E 3
-  const prompt = `Professional product photography of ${productDescription} on a clean ${bgDescription} background. Studio lighting with soft shadows, centered composition, high-end e-commerce style, sharp focus, commercial quality, perfect for Amazon or online marketplace listing. The product should be the main focus with clean, minimal background.`
+  console.log('[Packshot] Step 3: Creating professional packshot composition...')
 
-  const dalleResponse = await openai.images.generate({
-    model: 'dall-e-3',
-    prompt: prompt,
-    n: 1,
-    size: '1024x1024',
-    quality: 'hd',
-  })
+  // Get dimensions of the product
+  const productMeta = await sharp(nobgBuffer).metadata()
+  const productWidth = productMeta.width || 1024
+  const productHeight = productMeta.height || 1024
 
-  const generatedImageUrl = dalleResponse.data?.[0]?.url
-  if (!generatedImageUrl) {
-    throw new Error('Failed to generate packshot with OpenAI DALL-E 3')
+  // Calculate canvas size (add padding)
+  const TARGET_SIZE = 2000
+  const padding = 200
+  const maxProductSize = TARGET_SIZE - (padding * 2)
+
+  // Calculate scaling to fit product in canvas with padding
+  const scale = Math.min(maxProductSize / productWidth, maxProductSize / productHeight)
+  const scaledWidth = Math.round(productWidth * scale)
+  const scaledHeight = Math.round(productHeight * scale)
+
+  // Center the product
+  const left = Math.round((TARGET_SIZE - scaledWidth) / 2)
+  const top = Math.round((TARGET_SIZE - scaledHeight) / 2)
+
+  // Resize product
+  const resizedProduct = await sharp(nobgBuffer)
+    .resize(scaledWidth, scaledHeight, {
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
+    .toBuffer()
+
+  // Parse background color
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16),
+    } : { r: 255, g: 255, b: 255 }
   }
 
-  console.log('[Packshot] Step 4: Downloading generated packshot...')
+  const bgColor = hexToRgb(backgroundColor)
 
-  // Download generated image
-  const generatedResponse = await fetch(generatedImageUrl)
-  const generatedBuffer = Buffer.from(await generatedResponse.arrayBuffer())
+  // Create canvas with background color
+  const canvas = await sharp({
+    create: {
+      width: TARGET_SIZE,
+      height: TARGET_SIZE,
+      channels: 4,
+      background: bgColor,
+    }
+  })
+    .png()
+    .toBuffer()
 
-  // Upscale to 2000x2000
-  const TARGET_SIZE = 2000
-  console.log(`[Packshot] Step 5: Upscaling to ${TARGET_SIZE}x${TARGET_SIZE}px...`)
-
-  const finalImage = await sharp(generatedBuffer)
-    .resize(TARGET_SIZE, TARGET_SIZE, {
-      fit: 'contain',
-      background: backgroundColor,
-    })
+  // Composite product on canvas
+  const finalImage = await sharp(canvas)
+    .composite([
+      {
+        input: resizedProduct,
+        top: top,
+        left: left,
+      }
+    ])
     .png({ quality: 100 })
     .toBuffer()
 
-  console.log('[Packshot] Professional packshot created successfully with OpenAI DALL-E 3')
+  console.log('[Packshot] Professional packshot created successfully')
   console.log(`[Packshot] Final dimensions: ${TARGET_SIZE}x${TARGET_SIZE}px`)
 
   return finalImage
@@ -236,7 +239,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'openai-dalle-3-hd',
+      model: 'lucataco-remove-bg-sharp',
     })
 
     const newCredits = user.credits - creditsNeeded
