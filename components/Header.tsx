@@ -132,13 +132,32 @@ export default function Header() {
                       </svg>
                     </div>
                     <div>
+                      <div className="font-semibold text-white">Packshot Generator</div>
+                      <div className="text-sm text-gray-400">Generate professional product packshots</div>
+                    </div>
+                  </Link>
+
+                  {/* Image Expand (Uncrop) */}
+                  <Link
+                    href="/tools/image-expand"
+                    onClick={() => setShowToolsDropdown(false)}
+                    className={`flex items-start gap-3 px-4 py-3 hover:bg-gray-700 transition-colors ${
+                      pathname === '/tools/image-expand' ? 'bg-gray-700/50' : ''
+                    }`}
+                  >
+                    <div className="mt-1 text-indigo-400">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                      </svg>
+                    </div>
+                    <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-white">Packshot Generator</span>
-                        <span className="px-2 py-0.5 text-xs bg-pink-500 text-white rounded-full">
+                        <span className="font-semibold text-white">Image Expand</span>
+                        <span className="px-2 py-0.5 text-xs bg-indigo-500 text-white rounded-full">
                           NEW
                         </span>
                       </div>
-                      <div className="text-sm text-gray-400">Generate professional product packshots</div>
+                      <div className="text-sm text-gray-400">Extend images beyond their borders with AI</div>
                     </div>
                   </Link>
 
@@ -313,7 +332,14 @@ export default function Header() {
                 className="block py-2 text-white hover:text-green-400 transition"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Packshot Generator <span className="text-xs bg-pink-500 px-2 py-0.5 rounded-full ml-2">NEW</span>
+                Packshot Generator
+              </Link>
+              <Link
+                href="/tools/image-expand"
+                className="block py-2 text-white hover:text-green-400 transition"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Image Expand <span className="text-xs bg-indigo-500 px-2 py-0.5 rounded-full ml-2">NEW</span>
               </Link>
             </div>
 
