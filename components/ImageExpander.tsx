@@ -52,6 +52,13 @@ const EXPAND_PRESETS: ExpandPreset[] = [
     credits: 2,
   },
   {
+    id: 'expand_horizontal',
+    name: 'Expand Left & Right',
+    description: 'Extend both sides at once',
+    icon: '↔️',
+    credits: 2,
+  },
+  {
     id: 'expand_left',
     name: 'Expand Left',
     description: 'Extend image to the left',

@@ -18,6 +18,7 @@ type ExpandMode =
   | 'expand_right'
   | 'expand_up'
   | 'expand_down'
+  | 'expand_horizontal' // Custom: Left + Right with mask
 
 // Single direction modes map directly to FLUX API outpaint values
 const EXPAND_MODE_MAP: Record<string, string> = {
@@ -32,13 +33,144 @@ const EXPAND_MODE_MAP: Record<string, string> = {
 
 const CREDITS_PER_EXPAND = 2
 
-async function expandImage(
+// Helper to extract URL from Replicate output
+function extractResultUrl(output: unknown): string {
+  if (typeof output === 'string') {
+    return output
+  } else if (output && typeof output === 'object') {
+    const stringified = String(output)
+    if (stringified.startsWith('http')) {
+      return stringified
+    }
+    const outputObj = output as Record<string, unknown>
+    if (typeof outputObj.toString === 'function') {
+      const toStringResult = outputObj.toString()
+      if (typeof toStringResult === 'string' && toStringResult.startsWith('http')) {
+        return toStringResult
+      }
+    }
+    if (Array.isArray(output) && output.length > 0) {
+      const first = output[0]
+      if (typeof first === 'string') {
+        return first
+      }
+      const firstStr = String(first)
+      if (firstStr.startsWith('http')) {
+        return firstStr
+      }
+    }
+    throw new Error(`Cannot extract URL from output: ${stringified}`)
+  }
+  throw new Error(`Unexpected output type: ${typeof output}`)
+}
+
+// Expand horizontally using custom mask (left + right at once)
+async function expandHorizontal(
   imageBuffer: Buffer,
-  expandMode: ExpandMode,
-  prompt?: string
+  prompt: string
 ): Promise<Buffer> {
-  console.log('[Expand] Starting image expansion with FLUX.1 Fill [pro]...')
-  console.log('[Expand] Mode:', expandMode)
+  console.log('[Expand] Starting horizontal expansion with custom mask...')
+
+  const metadata = await sharp(imageBuffer).metadata()
+  const origWidth = metadata.width || 0
+  const origHeight = metadata.height || 0
+
+  // Calculate new dimensions - add 50% on each side (total 2x width)
+  const expandAmount = Math.round(origWidth * 0.5)
+  const newWidth = origWidth + expandAmount * 2
+
+  console.log('[Expand] Original:', origWidth, 'x', origHeight)
+  console.log('[Expand] New width:', newWidth, '(+', expandAmount, 'each side)')
+
+  // Create expanded canvas with original image centered
+  // Use a neutral color that won't influence the generation
+  const expandedImage = await sharp({
+    create: {
+      width: newWidth,
+      height: origHeight,
+      channels: 3,
+      background: { r: 128, g: 128, b: 128 },
+    },
+  })
+    .composite([
+      {
+        input: imageBuffer,
+        left: expandAmount,
+        top: 0,
+      },
+    ])
+    .jpeg()
+    .toBuffer()
+
+  // Create mask: white (255) = inpaint, black (0) = preserve
+  // White on sides, black in center where original image is
+  const maskBuffer = await sharp({
+    create: {
+      width: newWidth,
+      height: origHeight,
+      channels: 1,
+      background: { r: 255 }, // Start all white
+    },
+  })
+    .composite([
+      {
+        // Black rectangle where original image is (preserve)
+        input: await sharp({
+          create: {
+            width: origWidth,
+            height: origHeight,
+            channels: 1,
+            background: { r: 0 },
+          },
+        })
+          .png()
+          .toBuffer(),
+        left: expandAmount,
+        top: 0,
+      },
+    ])
+    .png()
+    .toBuffer()
+
+  // Convert to data URLs
+  const imageDataUrl = `data:image/jpeg;base64,${expandedImage.toString('base64')}`
+  const maskDataUrl = `data:image/png;base64,${maskBuffer.toString('base64')}`
+
+  console.log('[Expand] Calling FLUX.1 Fill [pro] with custom mask...')
+  console.log('[Expand] Prompt:', prompt)
+
+  const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
+    input: {
+      image: imageDataUrl,
+      mask: maskDataUrl,
+      prompt: prompt,
+      steps: 50,
+      guidance: 3,
+      output_format: 'png',
+      safety_tolerance: 2,
+    },
+  })) as unknown
+
+  const resultUrl = extractResultUrl(output)
+  console.log('[Expand] Downloading result from:', resultUrl)
+
+  const response = await fetch(resultUrl)
+  if (!response.ok) {
+    throw new Error(`Failed to download expanded image: ${response.status}`)
+  }
+
+  const resultBuffer = Buffer.from(await response.arrayBuffer())
+  console.log('[Expand] Horizontal expansion completed successfully')
+  return resultBuffer
+}
+
+// Standard expansion using outpaint preset
+async function expandWithPreset(
+  imageBuffer: Buffer,
+  expandMode: string,
+  prompt: string
+): Promise<Buffer> {
+  console.log('[Expand] Starting expansion with preset:', expandMode)
 
   // Resize image if too large (max 2048px on longest side for API efficiency)
   const metadata = await sharp(imageBuffer).metadata()
@@ -57,79 +189,24 @@ async function expandImage(
   const mimeType = metadata.format === 'png' ? 'image/png' : 'image/jpeg'
   const dataUrl = `data:${mimeType};base64,${base64Image}`
 
-  // Default prompt - simple description works best for outpainting
-  // The model uses this to understand what to generate in expanded areas
-  const expandPrompt = prompt || 'natural continuation of the scene'
-
-  // Get the outpaint mode string
   const outpaintMode = EXPAND_MODE_MAP[expandMode]
-  if (!outpaintMode) {
-    throw new Error(`Invalid expand mode: ${expandMode}`)
-  }
 
   console.log('[Expand] Calling FLUX.1 Fill [pro] with outpaint:', outpaintMode)
-  console.log('[Expand] Prompt:', expandPrompt)
+  console.log('[Expand] Prompt:', prompt)
 
-  // Call Replicate API
-  // guidance: 3 (LOW) - allows creative freedom for natural expansion
-  // Higher guidance makes the model too rigid and causes artifacts
-  const output = (await replicate.run(
-    'black-forest-labs/flux-fill-pro',
-    {
-      input: {
-        image: dataUrl,
-        prompt: expandPrompt,
-        outpaint: outpaintMode,
-        steps: 50,
-        guidance: 3,
-        output_format: 'png',
-        safety_tolerance: 2,
-      },
-    }
-  )) as unknown
+  const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
+    input: {
+      image: dataUrl,
+      prompt: prompt,
+      outpaint: outpaintMode,
+      steps: 50,
+      guidance: 3,
+      output_format: 'png',
+      safety_tolerance: 2,
+    },
+  })) as unknown
 
-  // Handle output - Replicate SDK returns a FileOutput object with toString() that returns URL
-  // FileOutput extends ReadableStream and has url() and toString() methods
-  let resultUrl: string
-
-  console.log('[Expand] Raw output type:', typeof output)
-
-  if (typeof output === 'string') {
-    resultUrl = output
-  } else if (output && typeof output === 'object') {
-    // FileOutput object - use toString() to get the URL string
-    // The toString() method returns the URL as a string
-    const stringified = String(output)
-    if (stringified.startsWith('http')) {
-      resultUrl = stringified
-    } else {
-      // Try other methods
-      const outputObj = output as Record<string, unknown>
-      if (typeof outputObj.toString === 'function') {
-        const toStringResult = outputObj.toString()
-        if (typeof toStringResult === 'string' && toStringResult.startsWith('http')) {
-          resultUrl = toStringResult
-        } else {
-          throw new Error(`toString() did not return a URL: ${toStringResult}`)
-        }
-      } else if (Array.isArray(output) && output.length > 0) {
-        const first = output[0]
-        if (typeof first === 'string') {
-          resultUrl = first
-        } else {
-          resultUrl = String(first)
-          if (!resultUrl.startsWith('http')) {
-            throw new Error(`Cannot extract URL from array element: ${resultUrl}`)
-          }
-        }
-      } else {
-        throw new Error(`Cannot extract URL from output. toString() returned: ${stringified}`)
-      }
-    }
-  } else {
-    throw new Error(`Unexpected output type: ${typeof output}`)
-  }
-
+  const resultUrl = extractResultUrl(output)
   console.log('[Expand] Downloading result from:', resultUrl)
 
   const response = await fetch(resultUrl)
@@ -138,7 +215,7 @@ async function expandImage(
   }
 
   const resultBuffer = Buffer.from(await response.arrayBuffer())
-  console.log('[Expand] Image expansion completed successfully')
+  console.log('[Expand] Expansion completed successfully')
   return resultBuffer
 }
 
@@ -193,7 +270,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate expand mode
-    const validModes = Object.keys(EXPAND_MODE_MAP)
+    const validModes = [...Object.keys(EXPAND_MODE_MAP), 'expand_horizontal']
     if (!validModes.includes(expandMode)) {
       return NextResponse.json(
         { error: 'Invalid expand mode' },
@@ -208,7 +285,7 @@ export async function POST(request: NextRequest) {
           userEmail: user.email,
           userName: user.name || 'User',
           totalImagesProcessed: user.totalUsage || 0,
-        }).catch(err => console.error('Failed to send credits depleted email:', err))
+        }).catch((err) => console.error('Failed to send credits depleted email:', err))
       }
       return NextResponse.json(
         {
@@ -225,7 +302,15 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const expandedImage = await expandImage(buffer, expandMode, prompt || undefined)
+    // Default prompt
+    const expandPrompt = prompt || 'natural continuation of the scene'
+
+    let expandedImage: Buffer
+    if (expandMode === 'expand_horizontal') {
+      expandedImage = await expandHorizontal(buffer, expandPrompt)
+    } else {
+      expandedImage = await expandWithPreset(buffer, expandMode, expandPrompt)
+    }
 
     // Convert to data URL for response
     const base64 = expandedImage.toString('base64')
@@ -239,7 +324,7 @@ export async function POST(request: NextRequest) {
     // 8. DEDUCT CREDITS & LOG USAGE
     createUsage({
       userId: user.id,
-      type: 'image_expand',
+      type: expandMode === 'expand_horizontal' ? 'image_expand_horizontal' : 'image_expand',
       creditsUsed: CREDITS_PER_EXPAND,
       imageSize: `${file.size} bytes`,
       model: 'flux-fill-pro',
@@ -254,7 +339,7 @@ export async function POST(request: NextRequest) {
         userName: user.name || 'User',
         creditsRemaining: newCredits,
         totalUsed: user.totalUsage || 0,
-      }).catch(err => console.error('Failed to send low credits email:', err))
+      }).catch((err) => console.error('Failed to send low credits email:', err))
     }
 
     // 10. RETURN SUCCESS
