@@ -2,6 +2,7 @@ import { getPostBySlug } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import BlogViewTracker from "@/components/BlogViewTracker";
 
 export const dynamic = 'force-dynamic';
 
@@ -35,6 +36,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+      <BlogViewTracker slug={post.slug} />
       {/* Hero Section */}
       <div className="border-b border-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

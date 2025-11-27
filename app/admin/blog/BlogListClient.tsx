@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/blog";
 
@@ -9,12 +9,24 @@ interface BlogListClientProps {
 }
 
 type FilterStatus = "all" | "published" | "draft";
-type SortBy = "newest" | "oldest" | "title";
+type SortBy = "newest" | "oldest" | "title" | "views";
+
+interface BlogViews {
+  [slug: string]: number;
+}
 
 export default function BlogListClient({ posts }: BlogListClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<FilterStatus>("all");
   const [sortBy, setSortBy] = useState<SortBy>("newest");
+  const [views, setViews] = useState<BlogViews>({});
+
+  useEffect(() => {
+    fetch("/api/blog/views")
+      .then((res) => res.json())
+      .then(setViews)
+      .catch(console.error);
+  }, []);
 
   const filteredAndSortedPosts = useMemo(() => {
     let filtered = posts;
@@ -42,13 +54,17 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       } else if (sortBy === "oldest") {
         return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      } else if (sortBy === "views") {
+        return (views[b.slug] || 0) - (views[a.slug] || 0);
       } else {
         return a.title.localeCompare(b.title);
       }
     });
 
     return filtered;
-  }, [posts, searchQuery, filterStatus, sortBy]);
+  }, [posts, searchQuery, filterStatus, sortBy, views]);
+
+  const totalViews = Object.values(views).reduce((sum, v) => sum + v, 0);
 
   const stats = {
     total: posts.length,
@@ -59,7 +75,7 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-4 gap-4">
         <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/30 rounded-xl p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-400">Total Posts</span>
@@ -82,6 +98,14 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
             <span className="text-2xl">📝</span>
           </div>
           <div className="text-3xl font-bold text-white">{stats.draft}</div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/30 rounded-xl p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-400">Total Views</span>
+            <span className="text-2xl">👁️</span>
+          </div>
+          <div className="text-3xl font-bold text-white">{totalViews.toLocaleString()}</div>
         </div>
       </div>
 
@@ -153,6 +177,16 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
             >
               Title A-Z
             </button>
+            <button
+              onClick={() => setSortBy("views")}
+              className={`px-3 py-1 rounded-lg text-sm font-medium transition ${
+                sortBy === "views"
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
+            >
+              Most Views
+            </button>
           </div>
         </div>
 
@@ -178,8 +212,8 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
                   <th className="text-left p-4 text-gray-300 font-semibold">Title</th>
                   <th className="text-left p-4 text-gray-300 font-semibold">Status</th>
                   <th className="text-left p-4 text-gray-300 font-semibold">Categories</th>
+                  <th className="text-center p-4 text-gray-300 font-semibold">Views</th>
                   <th className="text-left p-4 text-gray-300 font-semibold">Author</th>
-                  <th className="text-left p-4 text-gray-300 font-semibold">Created</th>
                   <th className="text-right p-4 text-gray-300 font-semibold">Actions</th>
                 </tr>
               </thead>
@@ -236,10 +270,12 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
                         <span className="text-gray-500 text-sm">-</span>
                       )}
                     </td>
-                    <td className="p-4 text-gray-300 text-sm">{post.author.name}</td>
-                    <td className="p-4 text-gray-400 text-sm">
-                      {new Date(post.createdAt).toLocaleDateString()}
+                    <td className="p-4 text-center">
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-sm font-medium">
+                        👁️ {(views[post.slug] || 0).toLocaleString()}
+                      </span>
                     </td>
+                    <td className="p-4 text-gray-300 text-sm">{post.author.name}</td>
                     <td className="p-4 text-right">
                       <div className="flex gap-2 justify-end">
                         <Link
