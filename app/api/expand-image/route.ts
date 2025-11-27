@@ -121,8 +121,9 @@ function extractResultUrl(output: unknown): string {
 // Expand horizontally using custom mask (left + right at once)
 async function expandHorizontal(
   imageBuffer: Buffer,
-  prompt: string
-): Promise<Buffer> {
+  prompt: string,
+  seed: number
+): Promise<{ buffer: Buffer; seed: number }> {
   console.log('[Expand] Starting horizontal expansion with custom mask...')
 
   // First, ensure image is in a format we can work with
@@ -198,6 +199,7 @@ async function expandHorizontal(
 
   console.log('[Expand] Calling FLUX.1 Fill [pro] with custom mask...')
   console.log('[Expand] Prompt:', prompt)
+  console.log('[Expand] Seed:', seed)
 
   // Use higher guidance for better prompt following
   const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
@@ -209,6 +211,8 @@ async function expandHorizontal(
       guidance: 30, // Higher guidance for better prompt adherence
       output_format: 'png',
       safety_tolerance: 2,
+      seed: seed,
+      prompt_upsampling: true, // Let FLUX enhance the prompt further
     },
   })) as unknown
 
@@ -222,15 +226,16 @@ async function expandHorizontal(
 
   const resultBuffer = Buffer.from(await response.arrayBuffer())
   console.log('[Expand] Horizontal expansion completed successfully')
-  return resultBuffer
+  return { buffer: resultBuffer, seed }
 }
 
 // Standard expansion using outpaint preset
 async function expandWithPreset(
   imageBuffer: Buffer,
   expandMode: string,
-  prompt: string
-): Promise<Buffer> {
+  prompt: string,
+  seed: number
+): Promise<{ buffer: Buffer; seed: number }> {
   console.log('[Expand] Starting expansion with preset:', expandMode)
 
   // Resize image if too large (max 2048px on longest side for API efficiency)
@@ -254,6 +259,7 @@ async function expandWithPreset(
 
   console.log('[Expand] Calling FLUX.1 Fill [pro] with outpaint:', outpaintMode)
   console.log('[Expand] Prompt:', prompt)
+  console.log('[Expand] Seed:', seed)
 
   const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
     input: {
@@ -261,9 +267,11 @@ async function expandWithPreset(
       prompt: prompt,
       outpaint: outpaintMode,
       steps: 50,
-      guidance: 3,
+      guidance: 30, // Higher guidance for better prompt adherence
       output_format: 'png',
       safety_tolerance: 2,
+      seed: seed,
+      prompt_upsampling: true, // Let FLUX enhance the prompt further
     },
   })) as unknown
 
@@ -277,7 +285,7 @@ async function expandWithPreset(
 
   const resultBuffer = Buffer.from(await response.arrayBuffer())
   console.log('[Expand] Expansion completed successfully')
-  return resultBuffer
+  return { buffer: resultBuffer, seed }
 }
 
 export async function POST(request: NextRequest) {
@@ -305,6 +313,8 @@ export async function POST(request: NextRequest) {
     const file = formData.get('file') as File
     const expandMode = (formData.get('expandMode') as ExpandMode) || 'zoom_1.5x'
     const prompt = formData.get('prompt') as string | null
+    const seedParam = formData.get('seed') as string | null
+    const seed = seedParam ? parseInt(seedParam, 10) : Math.floor(Math.random() * 2147483647)
 
     if (!file) {
       return NextResponse.json(
@@ -373,19 +383,19 @@ export async function POST(request: NextRequest) {
       expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail'
     }
 
-    let expandedImage: Buffer
+    let expandResult: { buffer: Buffer; seed: number }
     if (expandMode === 'expand_horizontal') {
-      expandedImage = await expandHorizontal(buffer, expandPrompt)
+      expandResult = await expandHorizontal(buffer, expandPrompt, seed)
     } else {
-      expandedImage = await expandWithPreset(buffer, expandMode, expandPrompt)
+      expandResult = await expandWithPreset(buffer, expandMode, expandPrompt, seed)
     }
 
     // Convert to data URL for response
-    const base64 = expandedImage.toString('base64')
+    const base64 = expandResult.buffer.toString('base64')
     const dataUrl = `data:image/png;base64,${base64}`
 
     // 7. GET IMAGE DIMENSIONS
-    const metadata = await sharp(expandedImage).metadata()
+    const metadata = await sharp(expandResult.buffer).metadata()
     const width = metadata.width || 0
     const height = metadata.height || 0
 
@@ -420,6 +430,7 @@ export async function POST(request: NextRequest) {
         width,
         height,
       },
+      seed: expandResult.seed,
       creditsUsed: CREDITS_PER_EXPAND,
       creditsRemaining: newCredits,
     })

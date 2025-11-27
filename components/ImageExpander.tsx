@@ -13,6 +13,7 @@ interface ExpandResult {
     width: number
     height: number
   }
+  seed: number
   creditsUsed: number
   creditsRemaining: number
 }
@@ -97,6 +98,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
   const [originalImage, setOriginalImage] = useState<string | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [prompt, setPrompt] = useState<string>('')
+  const [lastSeed, setLastSeed] = useState<number | null>(null)
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -117,7 +119,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
     []
   )
 
-  const handleExpand = async () => {
+  const handleExpand = async (useSeed?: number) => {
     if (!selectedFile) return
 
     setProcessing(true)
@@ -129,6 +131,9 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
       formData.append('expandMode', selectedPreset)
       if (prompt.trim()) {
         formData.append('prompt', prompt.trim())
+      }
+      if (useSeed !== undefined) {
+        formData.append('seed', useSeed.toString())
       }
 
       toast.loading('Expanding image...', { id: 'expand' })
@@ -145,6 +150,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
 
       const data = await response.json()
       setResult(data)
+      setLastSeed(data.seed)
       toast.success('Image expanded successfully!', { id: 'expand' })
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred'
@@ -350,7 +356,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
           {/* Expand Button */}
           <div className="flex justify-center">
             <button
-              onClick={handleExpand}
+              onClick={() => handleExpand()}
               disabled={processing}
               className={`
                 inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-lg transition-all
@@ -425,10 +431,15 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
               ✨ Image expanded successfully! {result.dimensions.width}x{result.dimensions.height}px • You have{' '}
               <strong>{result.creditsRemaining} credits</strong> remaining.
             </p>
+            {result.seed && (
+              <p className="text-purple-600 dark:text-purple-400 text-xs mt-1">
+                Seed: {result.seed}
+              </p>
+            )}
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center flex-wrap">
             <button
               onClick={handleDownload}
               className="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl"
@@ -441,7 +452,45 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 />
               </svg>
-              Download Expanded Image
+              Download
+            </button>
+            {/* Regenerate with same seed */}
+            <button
+              onClick={() => {
+                setResult(null)
+                handleExpand(lastSeed || undefined)
+              }}
+              disabled={processing}
+              className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              Same Result (2 cr)
+            </button>
+            {/* Try different variation */}
+            <button
+              onClick={() => {
+                setResult(null)
+                handleExpand()
+              }}
+              disabled={processing}
+              className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              Try Different (2 cr)
             </button>
             <button
               onClick={() => {
@@ -449,6 +498,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
                 setOriginalImage(null)
                 setSelectedFile(null)
                 setPrompt('')
+                setLastSeed(null)
               }}
               className="inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
@@ -460,7 +510,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
                 />
               </svg>
-              Expand Another Image
+              New Image
             </button>
           </div>
         </div>
