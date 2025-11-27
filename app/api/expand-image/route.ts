@@ -71,7 +71,13 @@ async function expandHorizontal(
 ): Promise<Buffer> {
   console.log('[Expand] Starting horizontal expansion with custom mask...')
 
-  const metadata = await sharp(imageBuffer).metadata()
+  // First, ensure image is in a format we can work with
+  const processedImage = await sharp(imageBuffer)
+    .flatten({ background: { r: 255, g: 255, b: 255 } }) // Flatten alpha to white
+    .jpeg({ quality: 95 })
+    .toBuffer()
+
+  const metadata = await sharp(processedImage).metadata()
   const origWidth = metadata.width || 0
   const origHeight = metadata.height || 0
 
@@ -83,23 +89,23 @@ async function expandHorizontal(
   console.log('[Expand] New width:', newWidth, '(+', expandAmount, 'each side)')
 
   // Create expanded canvas with original image centered
-  // Use a neutral color that won't influence the generation
+  // Use white background to match typical image backgrounds
   const expandedImage = await sharp({
     create: {
       width: newWidth,
       height: origHeight,
       channels: 3,
-      background: { r: 128, g: 128, b: 128 },
+      background: { r: 255, g: 255, b: 255 },
     },
   })
     .composite([
       {
-        input: imageBuffer,
+        input: processedImage,
         left: expandAmount,
         top: 0,
       },
     ])
-    .jpeg()
+    .jpeg({ quality: 95 })
     .toBuffer()
 
   // Create mask: white (255) = inpaint, black (0) = preserve
@@ -139,13 +145,14 @@ async function expandHorizontal(
   console.log('[Expand] Calling FLUX.1 Fill [pro] with custom mask...')
   console.log('[Expand] Prompt:', prompt)
 
+  // Use higher guidance for better prompt following
   const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
     input: {
       image: imageDataUrl,
       mask: maskDataUrl,
       prompt: prompt,
       steps: 50,
-      guidance: 3,
+      guidance: 30, // Higher guidance for better prompt adherence
       output_format: 'png',
       safety_tolerance: 2,
     },
