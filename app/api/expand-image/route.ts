@@ -380,8 +380,8 @@ export async function POST(request: NextRequest) {
       // User provided a prompt - enhance it with GPT
       expandPrompt = await enhancePrompt(prompt.trim())
     } else {
-      // No prompt - use a good default
-      expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail'
+      // No prompt - use a good default that explicitly prevents text generation
+      expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail, no text, no watermarks, no logos, no letters, no writing, no words'
     }
 
     let expandResult: { buffer: Buffer; seed: number }
