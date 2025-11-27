@@ -33,13 +33,14 @@ CRITICAL RULES:
 - Keep it concise (1-2 sentences max)
 - Write in English even if input is in another language
 - Focus on what should appear in the EXPANDED areas
+- ALWAYS end with: ", no text, no watermarks, no logos, no letters"
 
 Example:
 Input: "cat and dog sitting on carpet"
-Output: "A fluffy cat and a golden retriever dog sitting together on the carpet, cozy home interior, soft natural lighting, photorealistic, high detail"
+Output: "A fluffy cat and a golden retriever dog sitting together on the carpet, cozy home interior, soft natural lighting, photorealistic, high detail, no text, no watermarks, no logos, no letters"
 
 Input: "forest background"
-Output: "Dense green forest with tall trees, dappled sunlight, misty atmosphere, photorealistic"`
+Output: "Dense green forest with tall trees, dappled sunlight, misty atmosphere, photorealistic, no text, no watermarks, no logos, no letters"`
         },
         {
           role: 'user',
@@ -64,7 +65,7 @@ Output: "Dense green forest with tall trees, dappled sunlight, misty atmosphere,
   }
 }
 
-// Expand mode types
+// Expand mode presets matching FLUX.1 Fill [pro] outpaint parameter
 type ExpandMode =
   | 'zoom_1.5x'
   | 'zoom_2x'
@@ -74,6 +75,17 @@ type ExpandMode =
   | 'expand_up'
   | 'expand_down'
   | 'expand_horizontal'
+
+// Single direction modes map directly to FLUX API outpaint values
+const EXPAND_MODE_MAP: Record<string, string> = {
+  'zoom_1.5x': 'Zoom out 1.5x',
+  'zoom_2x': 'Zoom out 2x',
+  'make_square': 'Make square',
+  'expand_left': 'Left outpaint',
+  'expand_right': 'Right outpaint',
+  'expand_up': 'Top outpaint',
+  'expand_down': 'Bottom outpaint',
+}
 
 const CREDITS_PER_EXPAND = 2
 
@@ -108,178 +120,96 @@ function extractResultUrl(output: unknown): string {
   throw new Error(`Unexpected output type: ${typeof output}`)
 }
 
-// Calculate canvas parameters for Bria Expand based on expand mode
-function calculateBriaParams(
-  origWidth: number,
-  origHeight: number,
-  expandMode: ExpandMode
-): {
-  canvasSize: [number, number]
-  originalImageSize: [number, number]
-  originalImageLocation: [number, number]
-} {
-  switch (expandMode) {
-    case 'zoom_1.5x': {
-      // Expand all sides by 25% each (1.5x total)
-      const newWidth = Math.round(origWidth * 1.5)
-      const newHeight = Math.round(origHeight * 1.5)
-      const offsetX = Math.round((newWidth - origWidth) / 2)
-      const offsetY = Math.round((newHeight - origHeight) / 2)
-      return {
-        canvasSize: [newWidth, newHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [offsetX, offsetY],
-      }
-    }
-
-    case 'zoom_2x': {
-      // Expand all sides by 50% each (2x total)
-      const newWidth = Math.round(origWidth * 2)
-      const newHeight = Math.round(origHeight * 2)
-      const offsetX = Math.round((newWidth - origWidth) / 2)
-      const offsetY = Math.round((newHeight - origHeight) / 2)
-      return {
-        canvasSize: [newWidth, newHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [offsetX, offsetY],
-      }
-    }
-
-    case 'make_square': {
-      // Make the image square by expanding shorter side
-      const maxSide = Math.max(origWidth, origHeight)
-      const offsetX = Math.round((maxSide - origWidth) / 2)
-      const offsetY = Math.round((maxSide - origHeight) / 2)
-      return {
-        canvasSize: [maxSide, maxSide],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [offsetX, offsetY],
-      }
-    }
-
-    case 'expand_left': {
-      // Add 50% to the left side
-      const expandAmount = Math.round(origWidth * 0.5)
-      const newWidth = origWidth + expandAmount
-      return {
-        canvasSize: [newWidth, origHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [expandAmount, 0], // Image on right
-      }
-    }
-
-    case 'expand_right': {
-      // Add 50% to the right side
-      const expandAmount = Math.round(origWidth * 0.5)
-      const newWidth = origWidth + expandAmount
-      return {
-        canvasSize: [newWidth, origHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [0, 0], // Image on left
-      }
-    }
-
-    case 'expand_up': {
-      // Add 50% to the top
-      const expandAmount = Math.round(origHeight * 0.5)
-      const newHeight = origHeight + expandAmount
-      return {
-        canvasSize: [origWidth, newHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [0, expandAmount], // Image at bottom
-      }
-    }
-
-    case 'expand_down': {
-      // Add 50% to the bottom
-      const expandAmount = Math.round(origHeight * 0.5)
-      const newHeight = origHeight + expandAmount
-      return {
-        canvasSize: [origWidth, newHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [0, 0], // Image at top
-      }
-    }
-
-    case 'expand_horizontal': {
-      // Add 50% to both left and right (2x width total)
-      const expandAmount = Math.round(origWidth * 0.5)
-      const newWidth = origWidth + expandAmount * 2
-      return {
-        canvasSize: [newWidth, origHeight],
-        originalImageSize: [origWidth, origHeight],
-        originalImageLocation: [expandAmount, 0], // Image centered
-      }
-    }
-
-    default:
-      throw new Error(`Unknown expand mode: ${expandMode}`)
-  }
-}
-
-// Expand image using Bria Expand model
-async function expandWithBria(
+// Expand horizontally using custom mask (left + right at once)
+async function expandHorizontal(
   imageBuffer: Buffer,
-  expandMode: ExpandMode,
   prompt: string,
   seed: number
 ): Promise<{ buffer: Buffer; seed: number }> {
-  console.log('[Expand] Starting Bria expansion with mode:', expandMode)
+  console.log('[Expand] Starting horizontal expansion with custom mask...')
 
-  // Get original image dimensions
-  const metadata = await sharp(imageBuffer).metadata()
+  // First, ensure image is in a format we can work with
+  const processedImage = await sharp(imageBuffer)
+    .flatten({ background: { r: 255, g: 255, b: 255 } })
+    .jpeg({ quality: 95 })
+    .toBuffer()
+
+  const metadata = await sharp(processedImage).metadata()
   const origWidth = metadata.width || 0
   const origHeight = metadata.height || 0
 
-  console.log('[Expand] Original dimensions:', origWidth, 'x', origHeight)
+  // Calculate new dimensions - add 50% on each side (total 2x width)
+  const expandAmount = Math.round(origWidth * 0.5)
+  const newWidth = origWidth + expandAmount * 2
 
-  // Resize if too large (Bria works best with reasonable sizes)
-  let processedBuffer = imageBuffer
-  const maxDimension = Math.max(origWidth, origHeight)
-  let scaleFactor = 1
+  console.log('[Expand] Original:', origWidth, 'x', origHeight)
+  console.log('[Expand] New width:', newWidth, '(+', expandAmount, 'each side)')
 
-  if (maxDimension > 1536) {
-    scaleFactor = 1536 / maxDimension
-    const newW = Math.round(origWidth * scaleFactor)
-    const newH = Math.round(origHeight * scaleFactor)
-    console.log('[Expand] Resizing from', origWidth, 'x', origHeight, 'to', newW, 'x', newH)
-    processedBuffer = await sharp(imageBuffer)
-      .resize(newW, newH, { fit: 'inside', withoutEnlargement: true })
-      .toBuffer()
-  }
-
-  // Get processed dimensions
-  const processedMeta = await sharp(processedBuffer).metadata()
-  const procWidth = processedMeta.width || 0
-  const procHeight = processedMeta.height || 0
-
-  // Calculate canvas parameters for Bria
-  const briaParams = calculateBriaParams(procWidth, procHeight, expandMode)
-
-  console.log('[Expand] Bria params:', {
-    canvasSize: briaParams.canvasSize,
-    originalImageSize: briaParams.originalImageSize,
-    originalImageLocation: briaParams.originalImageLocation,
+  // Create expanded canvas with original image centered
+  const expandedImage = await sharp({
+    create: {
+      width: newWidth,
+      height: origHeight,
+      channels: 3,
+      background: { r: 255, g: 255, b: 255 },
+    },
   })
+    .composite([
+      {
+        input: processedImage,
+        left: expandAmount,
+        top: 0,
+      },
+    ])
+    .jpeg({ quality: 95 })
+    .toBuffer()
 
-  // Convert image to base64 data URL
-  const base64Image = processedBuffer.toString('base64')
-  const mimeType = metadata.format === 'png' ? 'image/png' : 'image/jpeg'
-  const dataUrl = `data:${mimeType};base64,${base64Image}`
+  // Create mask: white (255) = inpaint, black (0) = preserve
+  const maskBuffer = await sharp({
+    create: {
+      width: newWidth,
+      height: origHeight,
+      channels: 3,
+      background: { r: 255, g: 255, b: 255 },
+    },
+  })
+    .composite([
+      {
+        input: await sharp({
+          create: {
+            width: origWidth,
+            height: origHeight,
+            channels: 3,
+            background: { r: 0, g: 0, b: 0 },
+          },
+        })
+          .png()
+          .toBuffer(),
+        left: expandAmount,
+        top: 0,
+      },
+    ])
+    .png()
+    .toBuffer()
 
-  console.log('[Expand] Calling Bria Expand...')
+  const imageDataUrl = `data:image/jpeg;base64,${expandedImage.toString('base64')}`
+  const maskDataUrl = `data:image/png;base64,${maskBuffer.toString('base64')}`
+
+  console.log('[Expand] Calling FLUX.1 Fill [pro] with custom mask...')
   console.log('[Expand] Prompt:', prompt)
   console.log('[Expand] Seed:', seed)
 
-  const output = (await replicate.run('bria/expand-image', {
+  const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
     input: {
-      image: dataUrl,
+      image: imageDataUrl,
+      mask: maskDataUrl,
       prompt: prompt,
-      negative_prompt: 'blurry, low quality, distorted, deformed, text, watermark, logo, letters, writing',
-      canvas_size: briaParams.canvasSize,
-      original_image_size: briaParams.originalImageSize,
-      original_image_location: briaParams.originalImageLocation,
+      steps: 50,
+      guidance: 12,
+      output_format: 'png',
+      safety_tolerance: 2,
       seed: seed,
+      prompt_upsampling: false,
     },
   })) as unknown
 
@@ -292,7 +222,64 @@ async function expandWithBria(
   }
 
   const resultBuffer = Buffer.from(await response.arrayBuffer())
-  console.log('[Expand] Bria expansion completed successfully')
+  console.log('[Expand] Horizontal expansion completed successfully')
+  return { buffer: resultBuffer, seed }
+}
+
+// Standard expansion using outpaint preset
+async function expandWithPreset(
+  imageBuffer: Buffer,
+  expandMode: string,
+  prompt: string,
+  seed: number
+): Promise<{ buffer: Buffer; seed: number }> {
+  console.log('[Expand] Starting expansion with preset:', expandMode)
+
+  const metadata = await sharp(imageBuffer).metadata()
+  const maxDimension = Math.max(metadata.width || 0, metadata.height || 0)
+
+  let processedBuffer = imageBuffer
+  if (maxDimension > 2048) {
+    console.log('[Expand] Resizing large image from', maxDimension, 'to 2048px')
+    processedBuffer = await sharp(imageBuffer)
+      .resize(2048, 2048, { fit: 'inside', withoutEnlargement: true })
+      .toBuffer()
+  }
+
+  const base64Image = processedBuffer.toString('base64')
+  const mimeType = metadata.format === 'png' ? 'image/png' : 'image/jpeg'
+  const dataUrl = `data:${mimeType};base64,${base64Image}`
+
+  const outpaintMode = EXPAND_MODE_MAP[expandMode]
+
+  console.log('[Expand] Calling FLUX.1 Fill [pro] with outpaint:', outpaintMode)
+  console.log('[Expand] Prompt:', prompt)
+  console.log('[Expand] Seed:', seed)
+
+  const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
+    input: {
+      image: dataUrl,
+      prompt: prompt,
+      outpaint: outpaintMode,
+      steps: 50,
+      guidance: 12,
+      output_format: 'png',
+      safety_tolerance: 2,
+      seed: seed,
+      prompt_upsampling: false,
+    },
+  })) as unknown
+
+  const resultUrl = extractResultUrl(output)
+  console.log('[Expand] Downloading result from:', resultUrl)
+
+  const response = await fetch(resultUrl)
+  if (!response.ok) {
+    throw new Error(`Failed to download expanded image: ${response.status}`)
+  }
+
+  const resultBuffer = Buffer.from(await response.arrayBuffer())
+  console.log('[Expand] Expansion completed successfully')
   return { buffer: resultBuffer, seed }
 }
 
@@ -340,7 +327,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const MAX_SIZE = 30 * 1024 * 1024 // 30MB
+    const MAX_SIZE = 30 * 1024 * 1024
     if (file.size > MAX_SIZE) {
       return NextResponse.json(
         { error: 'File too large. Maximum size: 30MB' },
@@ -349,16 +336,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate expand mode
-    const validModes: ExpandMode[] = [
-      'zoom_1.5x',
-      'zoom_2x',
-      'make_square',
-      'expand_left',
-      'expand_right',
-      'expand_up',
-      'expand_down',
-      'expand_horizontal',
-    ]
+    const validModes = [...Object.keys(EXPAND_MODE_MAP), 'expand_horizontal']
     if (!validModes.includes(expandMode)) {
       return NextResponse.json(
         { error: 'Invalid expand mode' },
@@ -393,32 +371,35 @@ export async function POST(request: NextRequest) {
     // Enhance user prompt with AI (or use default)
     let expandPrompt: string
     if (prompt && prompt.trim()) {
-      // User provided a prompt - enhance it with GPT
       expandPrompt = await enhancePrompt(prompt.trim())
     } else {
-      // No prompt - use a good default that explicitly prevents text generation
-      expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail'
+      // Default prompt with anti-text clause
+      expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail, no text, no watermarks, no logos, no letters, no writing, no words'
     }
 
-    // Use Bria Expand for all modes
-    const expandResult = await expandWithBria(buffer, expandMode, expandPrompt, seed)
+    let expandResult: { buffer: Buffer; seed: number }
+    if (expandMode === 'expand_horizontal') {
+      expandResult = await expandHorizontal(buffer, expandPrompt, seed)
+    } else {
+      expandResult = await expandWithPreset(buffer, expandMode, expandPrompt, seed)
+    }
 
     // Convert to data URL for response
     const base64 = expandResult.buffer.toString('base64')
     const dataUrl = `data:image/png;base64,${base64}`
 
     // 7. GET IMAGE DIMENSIONS
-    const metadata = await sharp(expandResult.buffer).metadata()
-    const width = metadata.width || 0
-    const height = metadata.height || 0
+    const resultMetadata = await sharp(expandResult.buffer).metadata()
+    const width = resultMetadata.width || 0
+    const height = resultMetadata.height || 0
 
     // 8. DEDUCT CREDITS & LOG USAGE
     createUsage({
       userId: user.id,
-      type: `image_expand_${expandMode}`,
+      type: expandMode === 'expand_horizontal' ? 'image_expand_horizontal' : 'image_expand',
       creditsUsed: CREDITS_PER_EXPAND,
       imageSize: `${file.size} bytes`,
-      model: 'bria-expand',
+      model: 'flux-fill-pro',
     })
 
     const newCredits = user.credits - CREDITS_PER_EXPAND
