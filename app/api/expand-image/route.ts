@@ -201,18 +201,18 @@ async function expandHorizontal(
   console.log('[Expand] Prompt:', prompt)
   console.log('[Expand] Seed:', seed)
 
-  // Use higher guidance for better prompt following
+  // Use moderate guidance - too high causes artifacts
   const output = (await replicate.run('black-forest-labs/flux-fill-pro', {
     input: {
       image: imageDataUrl,
       mask: maskDataUrl,
       prompt: prompt,
       steps: 50,
-      guidance: 30, // Higher guidance for better prompt adherence
+      guidance: 10, // Moderate guidance for outpainting (3-10 range works best)
       output_format: 'png',
       safety_tolerance: 2,
       seed: seed,
-      prompt_upsampling: true, // Let FLUX enhance the prompt further
+      prompt_upsampling: true,
     },
   })) as unknown
 
@@ -267,11 +267,11 @@ async function expandWithPreset(
       prompt: prompt,
       outpaint: outpaintMode,
       steps: 50,
-      guidance: 30, // Higher guidance for better prompt adherence
+      guidance: 10, // Moderate guidance for outpainting (3-10 range works best)
       output_format: 'png',
       safety_tolerance: 2,
       seed: seed,
-      prompt_upsampling: true, // Let FLUX enhance the prompt further
+      prompt_upsampling: true,
     },
   })) as unknown
 
