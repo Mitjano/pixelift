@@ -69,16 +69,6 @@ export default async function BlogPostPage({ params }: PageProps) {
               <span className="text-green-400">👤</span>
               <span>{post.author.name}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">📅</span>
-              <time dateTime={post.publishedAt || post.createdAt}>
-                {new Date(post.publishedAt || post.createdAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-            </div>
           </div>
         </div>
       </div>

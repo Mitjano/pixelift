@@ -78,9 +78,8 @@ export default async function BlogPage() {
                   <p className="text-gray-400 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
 
                   {/* Meta */}
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center text-sm text-gray-500">
                     <span>{post.author.name}</span>
-                    <span>{new Date(post.publishedAt || post.createdAt).toLocaleDateString()}</span>
                   </div>
 
                   {/* Tags */}

@@ -73,15 +73,8 @@ export default async function CategoryPage({ params }: PageProps) {
                 </Link>
                 <p className="text-gray-400 mb-4">{post.excerpt}</p>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center text-sm text-gray-500">
                     <span>{post.author.name}</span>
-                    <span>
-                      {new Date(post.publishedAt || post.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
                   </div>
                   <Link
                     href={`/blog/${post.slug}`}
