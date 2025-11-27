@@ -33,14 +33,12 @@ CRITICAL RULES:
 - Keep it concise (1-2 sentences max)
 - Write in English even if input is in another language
 - Focus on what should appear in the EXPANDED areas
-- ALWAYS end with: ", no text, no watermarks, no logos, no letters"
-
 Example:
 Input: "cat and dog sitting on carpet"
-Output: "A fluffy cat and a golden retriever dog sitting together on the carpet, cozy home interior, soft natural lighting, photorealistic, high detail, no text, no watermarks, no logos, no letters"
+Output: "A fluffy cat and a golden retriever dog sitting together on the carpet, cozy home interior, soft natural lighting, photorealistic, high detail"
 
 Input: "forest background"
-Output: "Dense green forest with tall trees, dappled sunlight, misty atmosphere, photorealistic, no text, no watermarks, no logos, no letters"`
+Output: "Dense green forest with tall trees, dappled sunlight, misty atmosphere, photorealistic"`
         },
         {
           role: 'user',
@@ -205,7 +203,7 @@ async function expandHorizontal(
       mask: maskDataUrl,
       prompt: prompt,
       steps: 50,
-      guidance: 12,
+      guidance: 15,
       output_format: 'png',
       safety_tolerance: 2,
       seed: seed,
@@ -262,7 +260,7 @@ async function expandWithPreset(
       prompt: prompt,
       outpaint: outpaintMode,
       steps: 50,
-      guidance: 12,
+      guidance: 15,
       output_format: 'png',
       safety_tolerance: 2,
       seed: seed,
@@ -373,8 +371,8 @@ export async function POST(request: NextRequest) {
     if (prompt && prompt.trim()) {
       expandPrompt = await enhancePrompt(prompt.trim())
     } else {
-      // Default prompt with anti-text clause
-      expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail, no text, no watermarks, no logos, no letters, no writing, no words'
+      // Default prompt - simple and focused on continuation
+      expandPrompt = 'natural seamless continuation of the scene, matching style and lighting, photorealistic, high detail'
     }
 
     let expandResult: { buffer: Buffer; seed: number }
