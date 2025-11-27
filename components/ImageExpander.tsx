@@ -97,7 +97,6 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
   const [selectedPreset, setSelectedPreset] = useState<string>('expand_horizontal')
   const [originalImage, setOriginalImage] = useState<string | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [prompt, setPrompt] = useState<string>('')
   const [lastSeed, setLastSeed] = useState<number | null>(null)
 
   const onDrop = useCallback(
@@ -129,9 +128,6 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
       const formData = new FormData()
       formData.append('file', selectedFile)
       formData.append('expandMode', selectedPreset)
-      if (prompt.trim()) {
-        formData.append('prompt', prompt.trim())
-      }
       if (useSeed !== undefined) {
         formData.append('seed', useSeed.toString())
       }
@@ -266,26 +262,6 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
               </button>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* Optional Prompt - show when no result yet */}
-      {!result && !processing && (
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Custom Prompt (optional)
-          </label>
-          <input
-            type="text"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g., Continue with blue sky and green grass..."
-            disabled={processing}
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition disabled:opacity-50"
-          />
-          <p className="text-xs text-gray-500 mt-1">
-            Describe what should be generated in the expanded areas
-          </p>
         </div>
       )}
 
@@ -497,7 +473,6 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
                 setResult(null)
                 setOriginalImage(null)
                 setSelectedFile(null)
-                setPrompt('')
                 setLastSeed(null)
               }}
               className="inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors"
