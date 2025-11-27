@@ -3,6 +3,8 @@ import CategoryExamples from "@/components/CategoryExamples";
 import UseCases from "@/components/UseCases";
 import EnterpriseSolutions from "@/components/EnterpriseSolutions";
 import SEOContent from "@/components/SEOContent";
+import Testimonials from "@/components/Testimonials";
+import TrustBadges from "@/components/TrustBadges";
 import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
@@ -79,6 +81,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* Trust Badges Section */}
+      <TrustBadges />
 
       {/* Category Examples Section */}
       <CategoryExamples />
@@ -207,6 +212,9 @@ export default function Home() {
 
       {/* Use Cases Section */}
       <UseCases />
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* Enterprise Solutions Section */}
       <EnterpriseSolutions />
