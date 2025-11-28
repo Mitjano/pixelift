@@ -10,6 +10,7 @@ interface Tool {
   icon: React.ReactNode;
   color: string;
   bgColor: string;
+  iconColor: string;
   credits: string;
 }
 
@@ -19,12 +20,13 @@ const tools: Tool[] = [
     href: '/tools/upscaler',
     description: 'Enlarge images up to 8x with AI enhancement',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
       </svg>
     ),
     color: 'from-green-500 to-emerald-600',
-    bgColor: 'bg-green-500/10',
+    bgColor: 'bg-gradient-to-br from-green-500/20 to-emerald-600/20',
+    iconColor: 'text-green-400',
     credits: '1-3 credits',
   },
   {
@@ -32,12 +34,13 @@ const tools: Tool[] = [
     href: '/tools/remove-background',
     description: 'Remove backgrounds instantly with AI precision',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
     ),
     color: 'from-blue-500 to-blue-600',
-    bgColor: 'bg-blue-500/10',
+    bgColor: 'bg-gradient-to-br from-blue-500/20 to-blue-600/20',
+    iconColor: 'text-blue-400',
     credits: '1 credit',
   },
   {
@@ -46,12 +49,13 @@ const tools: Tool[] = [
     description: 'Bring black & white photos to life with AI color',
     badge: 'NEW',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
       </svg>
     ),
     color: 'from-violet-500 to-purple-600',
-    bgColor: 'bg-violet-500/10',
+    bgColor: 'bg-gradient-to-br from-violet-500/20 to-purple-600/20',
+    iconColor: 'text-violet-400',
     credits: '1 credit',
   },
   {
@@ -60,12 +64,13 @@ const tools: Tool[] = [
     description: 'Remove noise, artifacts & JPEG compression',
     badge: 'NEW',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
       </svg>
     ),
     color: 'from-cyan-500 to-blue-600',
-    bgColor: 'bg-cyan-500/10',
+    bgColor: 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20',
+    iconColor: 'text-cyan-400',
     credits: '1 credit',
   },
   {
@@ -74,12 +79,13 @@ const tools: Tool[] = [
     description: 'Erase unwanted objects, people & distractions',
     badge: 'NEW',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
       </svg>
     ),
     color: 'from-orange-500 to-red-600',
-    bgColor: 'bg-orange-500/10',
+    bgColor: 'bg-gradient-to-br from-orange-500/20 to-red-600/20',
+    iconColor: 'text-orange-400',
     credits: '2 credits',
   },
   {
@@ -88,12 +94,13 @@ const tools: Tool[] = [
     description: 'Generate stunning AI backgrounds from prompts',
     badge: 'NEW',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
       </svg>
     ),
     color: 'from-pink-500 to-rose-600',
-    bgColor: 'bg-pink-500/10',
+    bgColor: 'bg-gradient-to-br from-pink-500/20 to-rose-600/20',
+    iconColor: 'text-pink-400',
     credits: '3 credits',
   },
   {
@@ -101,12 +108,13 @@ const tools: Tool[] = [
     href: '/tools/image-compressor',
     description: 'Reduce file size while keeping quality',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
       </svg>
     ),
     color: 'from-teal-500 to-cyan-600',
-    bgColor: 'bg-teal-500/10',
+    bgColor: 'bg-gradient-to-br from-teal-500/20 to-cyan-600/20',
+    iconColor: 'text-teal-400',
     credits: 'Free',
   },
   {
@@ -114,12 +122,13 @@ const tools: Tool[] = [
     href: '/tools/packshot-generator',
     description: 'Create professional product photos instantly',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
     color: 'from-amber-500 to-orange-600',
-    bgColor: 'bg-amber-500/10',
+    bgColor: 'bg-gradient-to-br from-amber-500/20 to-orange-600/20',
+    iconColor: 'text-amber-400',
     credits: '2 credits',
   },
   {
@@ -127,12 +136,13 @@ const tools: Tool[] = [
     href: '/tools/image-expand',
     description: 'Extend image borders with AI outpainting',
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
       </svg>
     ),
     color: 'from-indigo-500 to-indigo-600',
-    bgColor: 'bg-indigo-500/10',
+    bgColor: 'bg-gradient-to-br from-indigo-500/20 to-indigo-600/20',
+    iconColor: 'text-indigo-400',
     credits: '2 credits',
   },
 ];
@@ -177,8 +187,8 @@ export default function ToolsShowcase() {
 
             <div className="relative">
               {/* Icon */}
-              <div className={`w-14 h-14 ${tool.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <div className={`bg-gradient-to-br ${tool.color} bg-clip-text text-transparent`}>
+              <div className={`w-14 h-14 ${tool.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/5`}>
+                <div className={tool.iconColor}>
                   {tool.icon}
                 </div>
               </div>
