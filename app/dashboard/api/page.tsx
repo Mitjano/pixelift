@@ -255,16 +255,10 @@ export default function ApiDashboard() {
                       </div>
 
                       <div className="flex items-center gap-2 mb-2">
-                        <code className="bg-gray-900 px-3 py-1 rounded font-mono text-sm">
+                        <code className="bg-gray-900 px-3 py-1 rounded font-mono text-sm text-gray-400">
                           {key.key}
                         </code>
-                        <button
-                          onClick={() => copyToClipboard(key.key)}
-                          className="p-2 hover:bg-gray-700 rounded transition"
-                          title="Copy to clipboard"
-                        >
-                          <FaCopy className="text-gray-400" />
-                        </button>
+                        <span className="text-xs text-gray-500">(hidden for security)</span>
                       </div>
 
                       <div className="text-sm text-gray-400 flex gap-4">
