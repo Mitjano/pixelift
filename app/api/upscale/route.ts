@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { getUserByEmail, updateUser, createUsage } from "@/lib/db";
 import { sendCreditsLowEmail, sendCreditsDepletedEmail, sendFirstUploadEmail } from "@/lib/email";
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from "@/lib/rate-limit";
 import { validateFileSize, validateFileType, MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES } from "@/lib/validation";
+import { authenticateRequest } from "@/lib/api-auth";
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,18 +14,18 @@ export async function POST(request: NextRequest) {
       return rateLimitResponse(resetAt);
     }
 
-    // Get authenticated user
-    const session = await auth();
+    // Authenticate via session or API key
+    const authResult = await authenticateRequest(request);
 
-    if (!session?.user?.email) {
+    if (!authResult.success) {
       return NextResponse.json(
-        { error: "Authentication required" },
-        { status: 401 }
+        { error: authResult.error },
+        { status: authResult.statusCode || 401 }
       );
     }
 
-    // Get user from database
-    const user = getUserByEmail(session.user.email);
+    // Get full user from database (authResult.user has limited info)
+    const user = getUserByEmail(authResult.user!.email);
 
     if (!user) {
       return NextResponse.json(

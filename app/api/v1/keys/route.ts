@@ -12,23 +12,8 @@ import {
   createApiKey,
 } from '@/lib/database';
 
-// Rate limit based on user's credits
-function getRateLimitForUser(credits: number): number {
-  if (credits >= 30000) return 1000; // Enterprise
-  if (credits >= 2000) return 500;   // Business
-  if (credits >= 500) return 300;    // Pro
-  if (credits >= 100) return 60;     // Starter
-  return 10; // Free
-}
-
-// Plan name based on user's credits
-function getPlanNameForCredits(credits: number): string {
-  if (credits >= 30000) return 'Enterprise';
-  if (credits >= 2000) return 'Business';
-  if (credits >= 500) return 'Pro';
-  if (credits >= 100) return 'Starter';
-  return 'Free';
-}
+// Fixed rate limit for all users (100 requests per minute)
+const API_RATE_LIMIT = 100;
 
 /**
  * GET /api/v1/keys
@@ -68,9 +53,6 @@ export async function GET() {
         return bTime - aTime;
       })[0];
 
-    const planName = getPlanNameForCredits(user.credits || 0);
-    const rateLimit = getRateLimitForUser(user.credits || 0);
-
     return NextResponse.json({
       success: true,
       data: {
@@ -80,7 +62,7 @@ export async function GET() {
           key: (k as any).keyPrefix || ((k as any).key?.substring(0, 12) + '...') || 'pk_****',
           environment: (k as any).environment || 'live',
           is_active: (k as any).isActive ?? (k as any).status === 'active',
-          rate_limit: k.rateLimit || rateLimit,
+          rate_limit: API_RATE_LIMIT,
           usage_count: k.usageCount || 0,
           created_at: k.createdAt,
           last_used_at: k.lastUsedAt || null,
@@ -92,10 +74,9 @@ export async function GET() {
           total_requests: totalRequests,
           last_used: lastUsedKey?.lastUsedAt || null,
         },
-        plan: {
-          name: planName,
+        account: {
           credits: user.credits || 0,
-          rate_limit: rateLimit,
+          rate_limit: API_RATE_LIMIT,
         },
       },
     });
@@ -159,13 +140,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const rateLimit = getRateLimitForUser(user.credits || 0);
-
     const apiKey = await createApiKey({
       userId: user.id,
       name: name.trim(),
       environment,
-      rateLimit,
+      rateLimit: API_RATE_LIMIT,
     });
 
     return NextResponse.json({
@@ -176,7 +155,7 @@ export async function POST(request: NextRequest) {
         key: (apiKey as any).key, // Full key - only shown once!
         key_prefix: (apiKey as any).keyPrefix || (apiKey as any).key?.substring(0, 12) + '...',
         environment: (apiKey as any).environment || 'live',
-        rate_limit: apiKey.rateLimit || rateLimit,
+        rate_limit: API_RATE_LIMIT,
         created_at: apiKey.createdAt,
       },
       message: 'API key created successfully. Save this key securely - it will only be shown once!',

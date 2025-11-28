@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/lib/auth'
 import { getUserByEmail, createUsage } from '@/lib/db'
 import sharp from 'sharp'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
+import { authenticateRequest } from '@/lib/api-auth'
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,18 +13,18 @@ export async function POST(request: NextRequest) {
       return rateLimitResponse(resetAt)
     }
 
-    // 1. Check authentication
-    const session = await auth()
+    // 1. Authenticate via session or API key
+    const authResult = await authenticateRequest(request)
 
-    if (!session?.user?.email) {
+    if (!authResult.success) {
       return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
+        { error: authResult.error },
+        { status: authResult.statusCode || 401 }
       )
     }
 
     // 2. Get user from database
-    const user = getUserByEmail(session.user.email)
+    const user = getUserByEmail(authResult.user!.email)
 
     if (!user) {
       return NextResponse.json(

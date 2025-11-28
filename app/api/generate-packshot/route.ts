@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import Replicate from 'replicate'
 import OpenAI from 'openai'
 import sharp from 'sharp'
-import { auth } from '@/lib/auth'
 import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
+import { authenticateRequest } from '@/lib/api-auth'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -211,17 +211,17 @@ export async function POST(request: NextRequest) {
       return rateLimitResponse(resetAt)
     }
 
-    // 1. AUTHENTICATION
-    const session = await auth()
-    if (!session?.user?.email) {
+    // 1. AUTHENTICATION - via session or API key
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
       return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
+        { error: authResult.error },
+        { status: authResult.statusCode || 401 }
       )
     }
 
     // 2. GET USER
-    const user = getUserByEmail(session.user.email)
+    const user = getUserByEmail(authResult.user!.email)
     if (!user) {
       return NextResponse.json(
         { error: 'User not found' },

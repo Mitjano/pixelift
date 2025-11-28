@@ -16,8 +16,7 @@ interface ApiKey {
   last_used_at: string | null;
 }
 
-interface PlanInfo {
-  name: string;
+interface AccountInfo {
   credits: number;
   rate_limit: number;
 }
@@ -35,7 +34,7 @@ export default function ApiDashboard() {
   const [loading, setLoading] = useState(true);
   const [showNewKeyModal, setShowNewKeyModal] = useState(false);
   const [newKey, setNewKey] = useState<string | null>(null);
-  const [plan, setPlan] = useState<PlanInfo | null>(null);
+  const [account, setAccount] = useState<AccountInfo | null>(null);
   const [stats, setStats] = useState<Stats | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -56,7 +55,7 @@ export default function ApiDashboard() {
 
       if (data.success) {
         setApiKeys(data.data.keys);
-        setPlan(data.data.plan);
+        setAccount(data.data.account);
         setStats(data.data.stats);
       }
     } catch (error) {
@@ -187,11 +186,11 @@ export default function ApiDashboard() {
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="text-2xl">💎</div>
-              <h3 className="text-lg font-semibold">Current Plan</h3>
+              <h3 className="text-lg font-semibold">Credits Available</h3>
             </div>
-            <p className="text-3xl font-bold">{plan?.name || "Free"}</p>
+            <p className="text-3xl font-bold">{account?.credits || 0}</p>
             <p className="text-sm text-gray-400 mt-1">
-              {plan?.credits || 0} credits • {plan?.rate_limit || 10} req/min
+              Rate limit: {account?.rate_limit || 100} req/min
             </p>
           </div>
         </div>
@@ -201,12 +200,12 @@ export default function ApiDashboard() {
           <div className="flex items-start gap-3">
             <FaExclamationTriangle className="text-blue-400 mt-1" />
             <div>
-              <p className="text-blue-300 font-medium">Rate Limit based on your plan</p>
+              <p className="text-blue-300 font-medium">All plans include API access</p>
               <p className="text-sm text-gray-400 mt-1">
-                Your API rate limit ({plan?.rate_limit || 10} requests/minute) is automatically determined by your credit balance.
+                Your API usage is deducted from your credit balance. Rate limit: {account?.rate_limit || 100} requests/minute.
                 <a href="/pricing" className="text-blue-400 hover:underline ml-1">
-                  Upgrade your plan
-                </a> to increase limits.
+                  Buy more credits
+                </a> to continue using the API.
               </p>
             </div>
           </div>
@@ -389,10 +388,10 @@ export default function ApiDashboard() {
 
                   <div className="bg-gray-800/50 rounded-lg p-4">
                     <p className="text-sm text-gray-400">
-                      <strong className="text-white">Rate Limit:</strong> {plan?.rate_limit || 10} requests/minute
+                      <strong className="text-white">Rate Limit:</strong> {account?.rate_limit || 100} requests/minute
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Based on your {plan?.name || "Free"} plan ({plan?.credits || 0} credits)
+                      Credits available: {account?.credits || 0}
                     </p>
                   </div>
                 </div>
