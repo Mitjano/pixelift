@@ -2,11 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { createUser, getUserByEmail, updateUserLogin, createNotification } from '@/lib/db';
 import { sendWelcomeEmail } from '@/lib/email';
+import { authLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 // This route is called after successful Google OAuth login
 // to create/update user in database
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting to prevent abuse
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = authLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

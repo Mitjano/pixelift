@@ -70,7 +70,60 @@ export const ApiErrors = {
         headers: { 'Retry-After': retryAfter.toString() }
       }
     ),
+  payloadTooLarge: (maxSize: number) =>
+    apiError(`Request body too large. Maximum size is ${Math.round(maxSize / 1024 / 1024)}MB`, 413),
 };
+
+/**
+ * Request body size limits
+ */
+export const RequestLimits = {
+  JSON: 1 * 1024 * 1024,      // 1MB for JSON
+  FORM: 10 * 1024 * 1024,     // 10MB for form data
+  IMAGE: 20 * 1024 * 1024,    // 20MB for images
+} as const;
+
+/**
+ * Validate request body size
+ */
+export function validateRequestSize(
+  request: Request,
+  maxSize: number = RequestLimits.JSON
+): { valid: true } | { valid: false; response: NextResponse } {
+  const contentLength = parseInt(request.headers.get('content-length') || '0');
+
+  if (contentLength > maxSize) {
+    return {
+      valid: false,
+      response: ApiErrors.payloadTooLarge(maxSize),
+    };
+  }
+
+  return { valid: true };
+}
+
+/**
+ * Parse JSON body with size validation
+ */
+export async function parseJSONBody<T>(
+  request: Request,
+  maxSize: number = RequestLimits.JSON
+): Promise<{ success: true; data: T } | { success: false; response: NextResponse }> {
+  const sizeCheck = validateRequestSize(request, maxSize);
+  if (!sizeCheck.valid) {
+    return { success: false, response: sizeCheck.response };
+  }
+
+  try {
+    const data = await request.json() as T;
+    return { success: true, data };
+  } catch {
+    return {
+      success: false,
+      response: ApiErrors.badRequest('Invalid JSON body'),
+    };
+  }
+}
 
 /**
  * Success response helper

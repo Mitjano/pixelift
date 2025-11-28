@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createUser, getUserByEmail, updateUserLogin, createNotification } from '@/lib/db';
 import { sendWelcomeEmail } from '@/lib/email';
+import { authLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 // Internal endpoint for user registration during OAuth callback
 // Does NOT require authentication (called by NextAuth signIn callback)
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting to prevent abuse
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = authLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const body = await request.json();
     const { email, name, image } = body;
 
