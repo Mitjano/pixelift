@@ -1,12 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-// Admin emails - add your admin emails here
-const ADMIN_EMAILS = [
-  "admin@pixelift.pl",
-  "michalchmielarz00@gmail.com",
-  // Add more admin emails as needed
-];
+// Admin emails from environment variable (comma-separated)
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim()).filter(Boolean);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [

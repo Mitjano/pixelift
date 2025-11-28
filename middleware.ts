@@ -35,6 +35,16 @@ export default auth((req) => {
     }
   }
 
+  // HTTPS enforcement in production
+  if (
+    process.env.NODE_ENV === "production" &&
+    req.headers.get("x-forwarded-proto") === "http"
+  ) {
+    const httpsUrl = new URL(req.url);
+    httpsUrl.protocol = "https:";
+    return NextResponse.redirect(httpsUrl, 301);
+  }
+
   // Protect admin routes
   if (pathname.startsWith("/admin")) {
     // Check if user is authenticated
@@ -58,6 +68,9 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/:path*"],
+  matcher: [
+    // Match all routes except static files for HTTPS enforcement
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
   runtime: "nodejs",
 };

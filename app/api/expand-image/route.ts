@@ -6,6 +6,7 @@ import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { fetchWithTimeout } from '@/lib/fetch-with-timeout'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -213,7 +214,7 @@ async function expandHorizontal(
 
   const resultUrl = extractResultUrl(output)
 
-  const response = await fetch(resultUrl)
+  const response = await fetchWithTimeout(resultUrl, { timeout: 60000 })
   if (!response.ok) {
     throw new Error(`Failed to download expanded image: ${response.status}`)
   }
@@ -262,7 +263,7 @@ async function expandWithPreset(
 
   const resultUrl = extractResultUrl(output)
 
-  const response = await fetch(resultUrl)
+  const response = await fetchWithTimeout(resultUrl, { timeout: 60000 })
   if (!response.ok) {
     throw new Error(`Failed to download expanded image: ${response.status}`)
   }

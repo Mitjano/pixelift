@@ -4,6 +4,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail, sendFirstUploadEmail } f
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from "@/lib/rate-limit";
 import { validateFileSize, validateFileType, MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES } from "@/lib/validation";
 import { authenticateRequest } from "@/lib/api-auth";
+import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
 
 export async function POST(request: NextRequest) {
   try {
@@ -120,7 +121,7 @@ export async function POST(request: NextRequest) {
         };
 
     // Create prediction
-    const createResponse = await fetch("https://api.replicate.com/v1/predictions", {
+    const createResponse = await fetchWithTimeout("https://api.replicate.com/v1/predictions", {
       method: "POST",
       headers: {
         "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`,
@@ -130,6 +131,7 @@ export async function POST(request: NextRequest) {
         version: version,
         input: input,
       }),
+      timeout: 30000, // 30 seconds
     });
 
     if (!createResponse.ok) {
@@ -146,10 +148,11 @@ export async function POST(request: NextRequest) {
     const maxPolls = 120; // 2 minutes max for full image
 
     while (pollCount < maxPolls) {
-      const pollResponse = await fetch(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
+      const pollResponse = await fetchWithTimeout(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
         headers: {
           "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`,
         },
+        timeout: 10000, // 10 seconds for polling
       });
 
       const status = await pollResponse.json();
