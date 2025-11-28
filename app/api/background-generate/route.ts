@@ -124,7 +124,6 @@ export async function POST(request: NextRequest) {
       creditsUsed: CREDITS_PER_GENERATION,
       imageSize: `${file.size} bytes`,
       model: 'bria-background-generation',
-      metadata: { prompt, negativePrompt }
     })
 
     const newCredits = user.credits - CREDITS_PER_GENERATION

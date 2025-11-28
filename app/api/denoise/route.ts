@@ -128,8 +128,7 @@ export async function POST(request: NextRequest) {
       type: 'denoise',
       creditsUsed: CREDITS_PER_DENOISE,
       imageSize: `${file.size} bytes`,
-      model: 'swinir',
-      metadata: { task }
+      model: `swinir-${task}`,
     })
 
     const newCredits = user.credits - CREDITS_PER_DENOISE
