@@ -1,7 +1,24 @@
-# Docker Compose for local development with Redis
+# Docker Compose for production with PostgreSQL and Redis
 version: '3.8'
 
 services:
+  # PostgreSQL database
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pixelift
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pixelift_password}
+      POSTGRES_DB: pixelift
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pixelift -d pixelift"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   # Redis for queue and rate limiting
   redis:
     image: redis:7-alpine
@@ -10,6 +27,11 @@ services:
     volumes:
       - redis_data:/data
     command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # Next.js web app
   web:
@@ -17,6 +39,7 @@ services:
     ports:
       - "3000:3000"
     environment:
+      - DATABASE_URL=postgresql://pixelift:${POSTGRES_PASSWORD:-pixelift_password}@postgres:5432/pixelift?schema=public
       - REDIS_URL=redis://redis:6379
       - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
@@ -36,17 +59,11 @@ services:
     volumes:
       - ./data:/app/data
     depends_on:
-      - redis
-
-  # Background worker (disabled for now - worker.js not built in standalone mode)
-  # worker:
-  #   build: .
-  #   command: node worker.js
-  #   environment:
-  #     - REDIS_URL=redis://redis:6379
-  #     - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
-  #   depends_on:
-  #     - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
 volumes:
+  postgres_data:
   redis_data:

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
@@ -13,7 +13,13 @@
     "test:ui": "vitest --ui",
     "analyze": "ANALYZE=true next build",
     "worker": "tsx worker.ts",
-    "worker:prod": "node worker.js"
+    "worker:prod": "node worker.js",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio"
   },
   "keywords": [
     "ai",
@@ -26,6 +32,7 @@
   "license": "ISC",
   "description": "AI-powered image upscaling with Real-ESRGAN and GFPGAN",
   "dependencies": {
+    "@prisma/client": "^7.0.1",
     "@sentry/nextjs": "^10.27.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tiptap/extension-image": "^3.11.0",
@@ -44,6 +51,7 @@
     "next": "15.1.6",
     "next-auth": "^5.0.0-beta.30",
     "openai": "^6.9.1",
+    "prisma": "^7.0.1",
     "react": "^18.3.1",
     "react-compare-image": "^3.5.12",
     "react-dom": "^18.3.1",

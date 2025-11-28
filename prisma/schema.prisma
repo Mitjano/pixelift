@@ -1,0 +1,627 @@
+// Pixelift PostgreSQL Schema
+// Generated from lib/db.ts entities
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ===================
+// User Management
+// ===================
+
+enum UserRole {
+  user
+  premium
+  admin
+}
+
+enum UserStatus {
+  active
+  banned
+  suspended
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  role          UserRole  @default(user)
+  status        UserStatus @default(active)
+  credits       Int       @default(0)
+  totalUsage    Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+  firstUploadAt DateTime?
+
+  // Relations
+  transactions  Transaction[]
+  usages        Usage[]
+  apiKeys       ApiKey[]
+  tickets       Ticket[]
+  referralsGiven Referral[] @relation("ReferrerRelation")
+  referralsReceived Referral[] @relation("ReferredRelation")
+
+  @@index([email])
+  @@index([role])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ===================
+// Transactions
+// ===================
+
+enum TransactionType {
+  purchase
+  refund
+  subscription
+}
+
+enum TransactionStatus {
+  pending
+  completed
+  failed
+  refunded
+}
+
+model Transaction {
+  id          String            @id @default(cuid())
+  userId      String
+  type        TransactionType
+  plan        String?
+  amount      Float
+  currency    String            @default("PLN")
+  status      TransactionStatus @default(pending)
+  stripeId    String?
+  metadata    String?
+  createdAt   DateTime          @default(now())
+  completedAt DateTime?
+
+  // Relations
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([stripeId])
+}
+
+// ===================
+// Usage Tracking
+// ===================
+
+model Usage {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String
+  creditsUsed Int
+  imageSize   String?
+  model       String?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ===================
+// Campaigns
+// ===================
+
+enum CampaignType {
+  google_ads
+  facebook_ads
+  email
+}
+
+enum CampaignStatus {
+  active
+  paused
+  completed
+}
+
+model Campaign {
+  id          String         @id @default(cuid())
+  name        String
+  type        CampaignType
+  status      CampaignStatus @default(active)
+  budget      Float          @default(0)
+  spent       Float          @default(0)
+  impressions Int            @default(0)
+  clicks      Int            @default(0)
+  conversions Int            @default(0)
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ===================
+// Notifications
+// ===================
+
+enum NotificationType {
+  info
+  warning
+  error
+  success
+}
+
+enum NotificationCategory {
+  user
+  system
+  api
+  marketing
+  finance
+}
+
+model Notification {
+  id        String               @id @default(cuid())
+  type      NotificationType
+  category  NotificationCategory
+  title     String
+  message   String
+  read      Boolean              @default(false)
+  metadata  Json?
+  createdAt DateTime             @default(now())
+
+  @@index([read])
+  @@index([category])
+  @@index([createdAt])
+}
+
+// ===================
+// API Keys
+// ===================
+
+enum ApiKeyStatus {
+  active
+  revoked
+}
+
+model ApiKey {
+  id         String       @id @default(cuid())
+  userId     String
+  name       String
+  key        String       @unique
+  status     ApiKeyStatus @default(active)
+  rateLimit  Int          @default(100)
+  usageCount Int          @default(0)
+  lastUsedAt DateTime?
+  createdAt  DateTime     @default(now())
+  expiresAt  DateTime?
+
+  // Relations
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([key])
+  @@index([status])
+}
+
+// ===================
+// Feature Flags
+// ===================
+
+model FeatureFlag {
+  id                String   @id @default(cuid())
+  name              String
+  key               String   @unique
+  description       String
+  enabled           Boolean  @default(false)
+  rolloutPercentage Int      @default(0)
+  targetUsers       String[] @default([])
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([key])
+  @@index([enabled])
+}
+
+// ===================
+// Backups
+// ===================
+
+enum BackupType {
+  manual
+  automatic
+}
+
+model Backup {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  type        BackupType
+  size        Int
+  createdAt   DateTime   @default(now())
+  createdBy   String
+  data        Json
+
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ===================
+// Email Templates
+// ===================
+
+enum EmailTemplateCategory {
+  transactional
+  marketing
+  system
+}
+
+enum EmailTemplateStatus {
+  active
+  draft
+}
+
+model EmailTemplate {
+  id          String                @id @default(cuid())
+  name        String
+  slug        String                @unique
+  subject     String
+  htmlContent String
+  textContent String
+  variables   String[]              @default([])
+  category    EmailTemplateCategory
+  status      EmailTemplateStatus   @default(draft)
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  lastUsedAt  DateTime?
+  usageCount  Int                   @default(0)
+
+  @@index([slug])
+  @@index([category])
+  @@index([status])
+}
+
+// ===================
+// Reports
+// ===================
+
+enum ReportType {
+  users
+  usage
+  revenue
+  campaigns
+  custom
+}
+
+enum ReportFormat {
+  pdf
+  csv
+  json
+}
+
+model Report {
+  id               String       @id @default(cuid())
+  name             String
+  type             ReportType
+  format           ReportFormat
+  dateRangeStart   DateTime
+  dateRangeEnd     DateTime
+  filters          Json?
+  createdAt        DateTime     @default(now())
+  createdBy        String
+  fileSize         Int?
+  downloadCount    Int          @default(0)
+  lastDownloadedAt DateTime?
+
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ===================
+// Webhooks
+// ===================
+
+model Webhook {
+  id            String       @id @default(cuid())
+  name          String
+  url           String
+  events        String[]
+  enabled       Boolean      @default(true)
+  secret        String?
+  headers       Json?
+  retryAttempts Int          @default(3)
+  lastTriggered DateTime?
+  successCount  Int          @default(0)
+  failureCount  Int          @default(0)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  // Relations
+  logs          WebhookLog[]
+
+  @@index([enabled])
+  @@index([createdAt])
+}
+
+enum WebhookLogStatus {
+  success
+  failed
+  pending
+}
+
+model WebhookLog {
+  id            String           @id @default(cuid())
+  webhookId     String
+  event         String
+  payload       Json
+  response      Json?
+  status        WebhookLogStatus @default(pending)
+  statusCode    Int?
+  error         String?
+  attemptNumber Int              @default(1)
+  triggeredAt   DateTime         @default(now())
+
+  // Relations
+  webhook       Webhook          @relation(fields: [webhookId], references: [id], onDelete: Cascade)
+
+  @@index([webhookId])
+  @@index([status])
+  @@index([triggeredAt])
+}
+
+// ===================
+// A/B Tests
+// ===================
+
+enum ABTestType {
+  page
+  feature
+  email
+  cta
+  custom
+}
+
+enum ABTestStatus {
+  draft
+  running
+  paused
+  completed
+}
+
+model ABTest {
+  id           String       @id @default(cuid())
+  name         String
+  description  String
+  type         ABTestType
+  status       ABTestStatus @default(draft)
+  targetMetric String
+  targetUrl    String?
+  startDate    DateTime?
+  endDate      DateTime?
+  winner       String?
+  confidence   Float?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  createdBy    String
+
+  // Relations
+  variants     ABTestVariant[]
+
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model ABTestVariant {
+  id          String  @id @default(cuid())
+  testId      String
+  name        String
+  description String?
+  traffic     Int     @default(50)
+  conversions Int     @default(0)
+  visitors    Int     @default(0)
+
+  // Relations
+  test        ABTest  @relation(fields: [testId], references: [id], onDelete: Cascade)
+
+  @@index([testId])
+}
+
+// ===================
+// Content Moderation
+// ===================
+
+enum ModerationRuleType {
+  keyword
+  pattern
+  ai
+  custom
+}
+
+enum ModerationTarget {
+  post
+  comment
+  user_profile
+  all
+}
+
+enum ModerationSeverity {
+  low
+  medium
+  high
+  critical
+}
+
+enum ModerationAction {
+  flag
+  auto_approve
+  auto_reject
+  quarantine
+}
+
+model ModerationRule {
+  id        String             @id @default(cuid())
+  name      String
+  type      ModerationRuleType
+  target    ModerationTarget
+  severity  ModerationSeverity
+  action    ModerationAction
+  keywords  String[]           @default([])
+  pattern   String?
+  aiPrompt  String?
+  enabled   Boolean            @default(true)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@index([enabled])
+  @@index([type])
+  @@index([target])
+}
+
+enum ModerationQueueStatus {
+  pending
+  approved
+  rejected
+  flagged
+}
+
+enum ModerationContentType {
+  post
+  comment
+  user_profile
+  other
+}
+
+model ModerationQueue {
+  id          String                 @id @default(cuid())
+  contentType ModerationContentType
+  contentId   String
+  content     String
+  author      String
+  status      ModerationQueueStatus  @default(pending)
+  flags       Json                   @default("[]")
+  reviewedBy  String?
+  reviewedAt  DateTime?
+  notes       String?
+  createdAt   DateTime               @default(now())
+
+  @@index([status])
+  @@index([contentType])
+  @@index([createdAt])
+}
+
+// ===================
+// Support Tickets
+// ===================
+
+enum TicketStatus {
+  open
+  in_progress
+  resolved
+  closed
+}
+
+enum TicketPriority {
+  low
+  medium
+  high
+  urgent
+}
+
+enum TicketCategory {
+  technical
+  billing
+  feature_request
+  bug
+  other
+}
+
+model Ticket {
+  id          String         @id @default(cuid())
+  subject     String
+  description String
+  status      TicketStatus   @default(open)
+  priority    TicketPriority @default(medium)
+  category    TicketCategory
+  userId      String
+  userName    String
+  userEmail   String
+  assignedTo  String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  resolvedAt  DateTime?
+
+  // Relations
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages    TicketMessage[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([priority])
+  @@index([category])
+  @@index([createdAt])
+}
+
+model TicketMessage {
+  id        String   @id @default(cuid())
+  ticketId  String
+  author    String
+  isStaff   Boolean  @default(false)
+  message   String
+  createdAt DateTime @default(now())
+
+  // Relations
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@index([ticketId])
+  @@index([createdAt])
+}
+
+// ===================
+// Referral Program
+// ===================
+
+enum ReferralStatus {
+  pending
+  active
+  converted
+  expired
+}
+
+model Referral {
+  id               String         @id @default(cuid())
+  referrerId       String
+  referrerName     String
+  referredUserId   String?
+  referredUserName String?
+  referredEmail    String?
+  code             String         @unique
+  status           ReferralStatus @default(pending)
+  clicks           Int            @default(0)
+  signups          Int            @default(0)
+  conversions      Int            @default(0)
+  revenue          Float          @default(0)
+  commission       Float          @default(0)
+  commissionPaid   Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+  convertedAt      DateTime?
+  expiresAt        DateTime?
+
+  // Relations
+  referrer         User           @relation("ReferrerRelation", fields: [referrerId], references: [id], onDelete: Cascade)
+  referredUser     User?          @relation("ReferredRelation", fields: [referredUserId], references: [id], onDelete: SetNull)
+
+  @@index([referrerId])
+  @@index([referredUserId])
+  @@index([code])
+  @@index([status])
+}
