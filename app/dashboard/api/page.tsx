@@ -2,17 +2,31 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaKey, FaCopy, FaPlus, FaEye, FaEyeSlash, FaTrash, FaChartLine } from "react-icons/fa";
+import { FaKey, FaCopy, FaPlus, FaTrash, FaChartLine, FaCheck, FaExclamationTriangle } from "react-icons/fa";
 
 interface ApiKey {
   id: string;
   name: string;
   key: string;
-  plan: string;
   environment: string;
   is_active: boolean;
+  rate_limit: number;
+  usage_count: number;
   created_at: string;
   last_used_at: string | null;
+}
+
+interface PlanInfo {
+  name: string;
+  credits: number;
+  rate_limit: number;
+}
+
+interface Stats {
+  total_keys: number;
+  active_keys: number;
+  total_requests: number;
+  last_used: string | null;
 }
 
 export default function ApiDashboard() {
@@ -21,17 +35,17 @@ export default function ApiDashboard() {
   const [loading, setLoading] = useState(true);
   const [showNewKeyModal, setShowNewKeyModal] = useState(false);
   const [newKey, setNewKey] = useState<string | null>(null);
-  const [revealedKeys, setRevealedKeys] = useState<Set<string>>(new Set());
+  const [plan, setPlan] = useState<PlanInfo | null>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [copied, setCopied] = useState(false);
 
   // Form state
   const [keyName, setKeyName] = useState("");
   const [keyEnvironment, setKeyEnvironment] = useState<"live" | "test">("live");
-  const [keyPlan, setKeyPlan] = useState<"free" | "starter" | "professional" | "enterprise">("free");
   const [creating, setCreating] = useState(false);
+  const [deleting, setDeleting] = useState<string | null>(null);
 
   useEffect(() => {
-    // Temporarily skip authentication check for testing
-    // In production, uncomment the authentication check below
     fetchApiKeys();
   }, []);
 
@@ -42,6 +56,8 @@ export default function ApiDashboard() {
 
       if (data.success) {
         setApiKeys(data.data.keys);
+        setPlan(data.data.plan);
+        setStats(data.data.stats);
       }
     } catch (error) {
       console.error("Failed to fetch API keys:", error);
@@ -51,6 +67,11 @@ export default function ApiDashboard() {
   };
 
   const createApiKey = async () => {
+    if (!keyName.trim()) {
+      alert("Please enter a key name");
+      return;
+    }
+
     setCreating(true);
 
     try {
@@ -60,9 +81,8 @@ export default function ApiDashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: keyName || "Unnamed Key",
+          name: keyName,
           environment: keyEnvironment,
-          plan: keyPlan,
         }),
       });
 
@@ -72,7 +92,7 @@ export default function ApiDashboard() {
         setNewKey(data.data.key);
         fetchApiKeys();
       } else {
-        alert(data.error.message);
+        alert(data.error?.message || "Failed to create API key");
       }
     } catch (error) {
       console.error("Failed to create API key:", error);
@@ -82,19 +102,37 @@ export default function ApiDashboard() {
     }
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
+  const deleteApiKey = async (keyId: string) => {
+    if (!confirm("Are you sure you want to delete this API key? This action cannot be undone.")) {
+      return;
+    }
+
+    setDeleting(keyId);
+
+    try {
+      const response = await fetch(`/api/v1/keys/${keyId}`, {
+        method: "DELETE",
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        fetchApiKeys();
+      } else {
+        alert(data.error?.message || "Failed to delete API key");
+      }
+    } catch (error) {
+      console.error("Failed to delete API key:", error);
+      alert("Failed to delete API key");
+    } finally {
+      setDeleting(null);
+    }
   };
 
-  const toggleRevealKey = (keyId: string) => {
-    const newSet = new Set(revealedKeys);
-    if (newSet.has(keyId)) {
-      newSet.delete(keyId);
-    } else {
-      newSet.add(keyId);
-    }
-    setRevealedKeys(newSet);
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const closeNewKeyModal = () => {
@@ -102,7 +140,6 @@ export default function ApiDashboard() {
     setNewKey(null);
     setKeyName("");
     setKeyEnvironment("live");
-    setKeyPlan("free");
   };
 
   if (loading) {
@@ -129,8 +166,8 @@ export default function ApiDashboard() {
               <FaKey className="text-green-500 text-2xl" />
               <h3 className="text-lg font-semibold">Active Keys</h3>
             </div>
-            <p className="text-3xl font-bold">{apiKeys.filter(k => k.is_active).length}</p>
-            <p className="text-sm text-gray-400 mt-1">Total: {apiKeys.length}</p>
+            <p className="text-3xl font-bold">{stats?.active_keys || 0}</p>
+            <p className="text-sm text-gray-400 mt-1">Total: {stats?.total_keys || 0}</p>
           </div>
 
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
@@ -138,17 +175,40 @@ export default function ApiDashboard() {
               <FaChartLine className="text-blue-500 text-2xl" />
               <h3 className="text-lg font-semibold">API Requests</h3>
             </div>
-            <p className="text-3xl font-bold">0</p>
-            <p className="text-sm text-gray-400 mt-1">This month</p>
+            <p className="text-3xl font-bold">{stats?.total_requests || 0}</p>
+            <p className="text-sm text-gray-400 mt-1">
+              {stats?.last_used
+                ? `Last: ${new Date(stats.last_used).toLocaleDateString()}`
+                : "No requests yet"
+              }
+            </p>
           </div>
 
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
             <div className="flex items-center gap-3 mb-2">
-              <div className="text-2xl">💰</div>
+              <div className="text-2xl">💎</div>
               <h3 className="text-lg font-semibold">Current Plan</h3>
             </div>
-            <p className="text-3xl font-bold capitalize">{keyPlan}</p>
-            <p className="text-sm text-gray-400 mt-1">Upgrade anytime</p>
+            <p className="text-3xl font-bold">{plan?.name || "Free"}</p>
+            <p className="text-sm text-gray-400 mt-1">
+              {plan?.credits || 0} credits • {plan?.rate_limit || 10} req/min
+            </p>
+          </div>
+        </div>
+
+        {/* Rate Limit Info */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 mb-8">
+          <div className="flex items-start gap-3">
+            <FaExclamationTriangle className="text-blue-400 mt-1" />
+            <div>
+              <p className="text-blue-300 font-medium">Rate Limit based on your plan</p>
+              <p className="text-sm text-gray-400 mt-1">
+                Your API rate limit ({plan?.rate_limit || 10} requests/minute) is automatically determined by your credit balance.
+                <a href="/pricing" className="text-blue-400 hover:underline ml-1">
+                  Upgrade your plan
+                </a> to increase limits.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -188,14 +248,16 @@ export default function ApiDashboard() {
                         }`}>
                           {key.environment}
                         </span>
-                        <span className="px-2 py-1 rounded text-xs font-medium bg-blue-500/20 text-blue-400 capitalize">
-                          {key.plan}
-                        </span>
+                        {!key.is_active && (
+                          <span className="px-2 py-1 rounded text-xs font-medium bg-red-500/20 text-red-400">
+                            Inactive
+                          </span>
+                        )}
                       </div>
 
                       <div className="flex items-center gap-2 mb-2">
                         <code className="bg-gray-900 px-3 py-1 rounded font-mono text-sm">
-                          {revealedKeys.has(key.id) ? key.key : key.key}
+                          {key.key}
                         </code>
                         <button
                           onClick={() => copyToClipboard(key.key)}
@@ -206,20 +268,27 @@ export default function ApiDashboard() {
                         </button>
                       </div>
 
-                      <div className="text-sm text-gray-400">
-                        <p>Created: {new Date(key.created_at).toLocaleDateString()}</p>
+                      <div className="text-sm text-gray-400 flex gap-4">
+                        <span>Created: {new Date(key.created_at).toLocaleDateString()}</span>
+                        <span>Requests: {key.usage_count}</span>
                         {key.last_used_at && (
-                          <p>Last used: {new Date(key.last_used_at).toLocaleDateString()}</p>
+                          <span>Last used: {new Date(key.last_used_at).toLocaleDateString()}</span>
                         )}
                       </div>
                     </div>
 
                     <div className="flex gap-2">
                       <button
-                        className="p-2 hover:bg-gray-700 rounded transition text-red-400"
-                        title="Revoke key"
+                        onClick={() => deleteApiKey(key.id)}
+                        disabled={deleting === key.id}
+                        className="p-2 hover:bg-gray-700 rounded transition text-red-400 disabled:opacity-50"
+                        title="Delete key"
                       >
-                        <FaTrash />
+                        {deleting === key.id ? (
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-400"></div>
+                        ) : (
+                          <FaTrash />
+                        )}
                       </button>
                     </div>
                   </div>
@@ -237,20 +306,18 @@ export default function ApiDashboard() {
           </p>
           <div className="flex gap-3">
             <a
-              href="/api/v1/docs"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/api-docs"
               className="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium transition"
             >
               View API Docs
             </a>
             <a
-              href="/API_README.md"
+              href="/api/openapi"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition"
             >
-              Setup Guide
+              OpenAPI Spec
             </a>
           </div>
         </div>
@@ -271,16 +338,16 @@ export default function ApiDashboard() {
                 </div>
 
                 <div className="bg-gray-800 p-4 rounded-lg mb-4">
-                  <code className="break-all text-sm">{newKey}</code>
+                  <code className="break-all text-sm text-green-400">{newKey}</code>
                 </div>
 
                 <div className="flex gap-3">
                   <button
                     onClick={() => copyToClipboard(newKey)}
-                    className="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition"
+                    className="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition flex items-center justify-center gap-2"
                   >
-                    <FaCopy className="inline mr-2" />
-                    Copy Key
+                    {copied ? <FaCheck /> : <FaCopy />}
+                    {copied ? "Copied!" : "Copy Key"}
                   </button>
                   <button
                     onClick={closeNewKeyModal}
@@ -296,14 +363,15 @@ export default function ApiDashboard() {
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Key Name</label>
+                    <label className="block text-sm font-medium mb-2">Key Name *</label>
                     <input
                       type="text"
                       value={keyName}
                       onChange={(e) => setKeyName(e.target.value)}
-                      placeholder="e.g., Production Key"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2"
+                      placeholder="e.g., Production API, My App"
+                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:border-green-500 focus:outline-none"
                     />
+                    <p className="text-xs text-gray-500 mt-1">A friendly name to identify this key</p>
                   </div>
 
                   <div>
@@ -313,31 +381,27 @@ export default function ApiDashboard() {
                       onChange={(e) => setKeyEnvironment(e.target.value as "live" | "test")}
                       className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2"
                     >
-                      <option value="live">Live</option>
-                      <option value="test">Test</option>
+                      <option value="live">Live (Production)</option>
+                      <option value="test">Test (Development)</option>
                     </select>
+                    <p className="text-xs text-gray-500 mt-1">Test keys are for development only</p>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Plan</label>
-                    <select
-                      value={keyPlan}
-                      onChange={(e) => setKeyPlan(e.target.value as any)}
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2"
-                    >
-                      <option value="free">Free (10 req/hour)</option>
-                      <option value="starter">Starter (100 req/hour)</option>
-                      <option value="professional">Professional (500 req/hour)</option>
-                      <option value="enterprise">Enterprise (2000 req/hour)</option>
-                    </select>
+                  <div className="bg-gray-800/50 rounded-lg p-4">
+                    <p className="text-sm text-gray-400">
+                      <strong className="text-white">Rate Limit:</strong> {plan?.rate_limit || 10} requests/minute
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Based on your {plan?.name || "Free"} plan ({plan?.credits || 0} credits)
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex gap-3 mt-6">
                   <button
                     onClick={createApiKey}
-                    disabled={creating}
-                    className="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 rounded-lg font-medium transition"
+                    disabled={creating || !keyName.trim()}
+                    className="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-medium transition"
                   >
                     {creating ? "Creating..." : "Create Key"}
                   </button>

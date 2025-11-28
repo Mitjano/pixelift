@@ -46,7 +46,6 @@ export {
   CampaignStatus,
   NotificationType,
   NotificationCategory,
-  ApiKeyStatus,
   BackupType,
   EmailTemplateCategory,
   EmailTemplateStatus,
@@ -478,8 +477,11 @@ export async function getApiKeysByUserId(userId: string) {
 
 export async function getApiKeyByKey(key: string) {
   if (USE_POSTGRES) {
+    // Hash the key to find it in database
+    const crypto = await import('crypto');
+    const keyHash = crypto.createHash('sha256').update(key).digest('hex');
     return prisma.apiKey.findUnique({
-      where: { key },
+      where: { keyHash },
     });
   }
   return jsonDb.getApiKeyByKey(key);
@@ -488,29 +490,40 @@ export async function getApiKeyByKey(key: string) {
 export async function createApiKey(data: {
   userId: string;
   name: string;
-  status?: 'active' | 'revoked';
+  environment?: 'live' | 'test';
   rateLimit?: number;
   expiresAt?: Date | string;
 }) {
+  const crypto = await import('crypto');
   const { nanoid } = await import('nanoid');
-  const key = `pk_${nanoid(32)}`;
+
+  // Generate key with prefix based on environment
+  const prefix = data.environment === 'test' ? 'pk_test_' : 'pk_live_';
+  const randomPart = crypto.randomBytes(24).toString('base64url');
+  const key = `${prefix}${randomPart}`;
+  const keyHash = crypto.createHash('sha256').update(key).digest('hex');
+  const keyPrefix = `${key.substring(0, 12)}...${key.substring(key.length - 4)}`;
 
   if (USE_POSTGRES) {
-    return prisma.apiKey.create({
+    const created = await prisma.apiKey.create({
       data: {
         userId: data.userId,
         name: data.name,
-        key,
-        status: data.status || 'active',
+        keyHash,
+        keyPrefix,
+        environment: data.environment || 'live',
+        isActive: true,
         rateLimit: data.rateLimit || 100,
         expiresAt: data.expiresAt ? new Date(data.expiresAt) : undefined,
       },
     });
+    // Return with the full key (only shown once!)
+    return { ...created, key };
   }
   return jsonDb.createApiKey({
     userId: data.userId,
     name: data.name,
-    status: data.status || 'active',
+    status: 'active',
     rateLimit: data.rateLimit || 100,
     expiresAt: data.expiresAt ? (typeof data.expiresAt === 'string' ? data.expiresAt : data.expiresAt.toISOString()) : undefined,
   });
@@ -534,7 +547,7 @@ export async function revokeApiKey(id: string) {
   if (USE_POSTGRES) {
     await prisma.apiKey.update({
       where: { id },
-      data: { status: 'revoked' },
+      data: { isActive: false },
     });
     return true;
   }
@@ -551,8 +564,11 @@ export async function deleteApiKey(id: string) {
 
 export async function incrementApiKeyUsage(key: string) {
   if (USE_POSTGRES) {
+    // Hash the key to find it
+    const crypto = await import('crypto');
+    const keyHash = crypto.createHash('sha256').update(key).digest('hex');
     await prisma.apiKey.update({
-      where: { key },
+      where: { keyHash },
       data: {
         usageCount: { increment: 1 },
         lastUsedAt: new Date(),

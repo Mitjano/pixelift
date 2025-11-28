@@ -12,11 +12,19 @@ import { PrismaClient } from './generated/prisma';
 // Create a global variable to store the Prisma client in development
 declare global {
   // eslint-disable-next-line no-var
-  var prisma: PrismaClient | undefined;
+  var __prisma: PrismaClient | undefined;
 }
 
-// Create the Prisma client with logging configuration
-const prismaClientSingleton = () => {
+// Only create Prisma client when USE_POSTGRES is enabled
+const USE_POSTGRES = process.env.USE_POSTGRES === 'true';
+
+// Create the Prisma client with logging configuration (lazy)
+const prismaClientSingleton = (): PrismaClient | null => {
+  // Skip Prisma client creation when not using PostgreSQL
+  if (!USE_POSTGRES) {
+    return null;
+  }
+
   return new PrismaClient({
     log: process.env.NODE_ENV === 'development'
       ? ['query', 'error', 'warn']
@@ -25,13 +33,15 @@ const prismaClientSingleton = () => {
 };
 
 // Use the global instance in development to prevent too many connections
-const prisma = globalThis.prisma ?? prismaClientSingleton();
+// Returns null if USE_POSTGRES is not enabled
+const prismaInstance = globalThis.__prisma ?? prismaClientSingleton();
 
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.prisma = prisma;
+if (process.env.NODE_ENV !== 'production' && prismaInstance) {
+  globalThis.__prisma = prismaInstance;
 }
 
-export { prisma };
+// Export prisma (may be null if USE_POSTGRES is false)
+export const prisma = prismaInstance as PrismaClient;
 
 // Export types for convenience
 export * from './generated/prisma';
