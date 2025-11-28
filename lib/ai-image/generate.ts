@@ -238,7 +238,6 @@ async function generateWithNanoBananaPro(
   try {
     const input: Record<string, unknown> = {
       prompt,
-      aspect_ratio: aspectRatio.ratio,
       resolution: '2K',
       output_format: 'png',
       safety_filter_level: 'block_medium_and_above',
@@ -246,7 +245,13 @@ async function generateWithNanoBananaPro(
 
     // Add source image for image-to-image mode
     if (sourceImage) {
-      input.image_1 = sourceImage;
+      // Use image_input array for source images (correct API parameter)
+      input.image_input = [sourceImage];
+      // Match input image aspect ratio for image-to-image
+      input.aspect_ratio = 'match_input_image';
+    } else {
+      // Only set aspect ratio for text-to-image
+      input.aspect_ratio = aspectRatio.ratio;
     }
 
     const output = await replicate.run('google/nano-banana-pro', {
