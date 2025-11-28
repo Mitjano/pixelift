@@ -47,6 +47,7 @@ model User {
   tickets       Ticket[]
   referralsGiven Referral[] @relation("ReferrerRelation")
   referralsReceived Referral[] @relation("ReferredRelation")
+  imageHistory  ImageHistory[]
 
   @@index([email])
   @@index([role])
@@ -110,6 +111,69 @@ model Usage {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ===================
+// Image Processing History
+// ===================
+
+enum ImageProcessingStatus {
+  pending
+  processing
+  completed
+  failed
+}
+
+enum ImageProcessingType {
+  upscale
+  enhance
+  restore
+  background_remove
+  compress
+  packshot
+}
+
+model ImageHistory {
+  id              String                 @id @default(cuid())
+  userId          String
+  type            ImageProcessingType
+  status          ImageProcessingStatus  @default(pending)
+  preset          String?
+  scale           Int?
+
+  // Original image info
+  originalUrl     String
+  originalWidth   Int?
+  originalHeight  Int?
+  originalSize    Int?
+  originalFormat  String?
+
+  // Processed image info
+  processedUrl    String?
+  processedWidth  Int?
+  processedHeight Int?
+  processedSize   Int?
+  processedFormat String?
+
+  // Processing details
+  creditsUsed     Int                    @default(0)
+  processingTime  Int?                   // in milliseconds
+  model           String?                // AI model used
+  settings        Json?                  // Additional settings
+  error           String?
+
+  // Timestamps
+  createdAt       DateTime               @default(now())
+  completedAt     DateTime?
+  expiresAt       DateTime?              // When the image URLs expire
+
+  // Relations
+  user            User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
   @@index([type])
   @@index([createdAt])
 }
