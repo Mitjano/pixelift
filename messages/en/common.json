@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Pixelift - AI Image Tools | Upscaler & Background Remover",
+    "description": "Professional AI-powered image tools. Upscale images up to 8x with Real-ESRGAN and remove backgrounds instantly with BRIA RMBG 2.0. Free, fast, and secure."
+  },
+  "nav": {
+    "tools": "Tools",
+    "aiImage": "AI Image",
+    "useCases": "Use Cases",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "dashboard": "Dashboard",
+    "apiKeys": "API Keys",
+    "settings": "Settings",
+    "signOut": "Sign Out",
+    "login": "Login",
+    "signUp": "Sign Up"
+  },
+  "tools": {
+    "upscaler": {
+      "name": "Image Upscaler",
+      "description": "Enhance images up to 8x resolution"
+    },
+    "removeBackground": {
+      "name": "Background Remover",
+      "description": "Remove backgrounds with AI"
+    },
+    "colorize": {
+      "name": "Photo Colorizer",
+      "description": "Colorize B&W photos",
+      "badge": "NEW"
+    },
+    "restore": {
+      "name": "Image Restore",
+      "description": "Denoise & artifact removal",
+      "badge": "NEW"
+    },
+    "objectRemoval": {
+      "name": "Object Removal",
+      "description": "Remove unwanted objects",
+      "badge": "NEW"
+    },
+    "backgroundGenerator": {
+      "name": "Background Generator",
+      "description": "Generate AI backgrounds",
+      "badge": "NEW"
+    },
+    "compressor": {
+      "name": "Image Compressor",
+      "description": "Reduce file size smartly"
+    },
+    "packshot": {
+      "name": "Packshot Generator",
+      "description": "Professional product photos"
+    },
+    "expand": {
+      "name": "Image Expand",
+      "description": "Extend images with AI"
+    }
+  },
+  "home": {
+    "badge": "9 AI-Powered Tools - 4 New Tools Just Launched!",
+    "headline": {
+      "line1": "Your Complete",
+      "line2": "AI Image Studio"
+    },
+    "subheadline": "Upscale, enhance, colorize, restore, remove backgrounds, and more. Professional image editing powered by cutting-edge AI - no skills required.",
+    "features": {
+      "proTools": "9 Pro Tools",
+      "instantResults": "Instant Results",
+      "private": "100% Private",
+      "noWatermarks": "No Watermarks"
+    },
+    "cta": {
+      "aiUpscaler": "AI Upscaler",
+      "removeBg": "Remove BG",
+      "colorize": "Colorize",
+      "objectRemoval": "Object Removal",
+      "seeAllTools": "See all 9 AI tools"
+    },
+    "socialProof": {
+      "happyUsers": "happy users",
+      "rating": "4.9/5 rating"
+    },
+    "whyChoose": {
+      "title": "Why Choose",
+      "subtitle": "Professional-grade AI technology meets simplicity",
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Process images in seconds with our optimized AI pipeline."
+      },
+      "private": {
+        "title": "100% Private",
+        "description": "Your images are encrypted and auto-deleted after processing."
+      },
+      "tools": {
+        "title": "9 Pro Tools",
+        "description": "Complete suite for all your image editing needs."
+      },
+      "payPerUse": {
+        "title": "Pay Per Use",
+        "description": "No subscriptions. Buy credits and use them anytime."
+      }
+    },
+    "ctaSection": {
+      "title": "Ready to Transform Your Images?",
+      "description": "Start with 3 free credits. No credit card required. Experience the power of AI-enhanced editing.",
+      "button": "Get Started Free",
+      "features": {
+        "freeCredits": "3 Free Credits",
+        "noCard": "No Credit Card",
+        "allTools": "All 9 Tools Included"
+      }
+    }
+  },
+  "footer": {
+    "description": "AI-powered image upscaling and enhancement. Transform your images with cutting-edge technology.",
+    "product": {
+      "title": "Product",
+      "dashboard": "Dashboard",
+      "pricing": "Pricing",
+      "apiDocs": "API Documentation",
+      "useCases": "Use Cases",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "blog": "Blog",
+      "knowledge": "Knowledge Base",
+      "support": "Support"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "gdpr": "GDPR Compliance"
+    },
+    "copyright": "© {year} Pixelift. All rights reserved.",
+    "madeWith": "Made with ❤️ in Poland",
+    "poweredBy": "Powered by"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "download": "Download",
+    "upload": "Upload",
+    "processing": "Processing...",
+    "success": "Success!",
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "search": "Search",
+    "noResults": "No results found",
+    "credits": "credits",
+    "credit": "credit"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "orContinueWith": "Or continue with",
+    "google": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "upload": {
+    "dragDrop": "Drag and drop your image here",
+    "or": "or",
+    "browse": "Browse files",
+    "supportedFormats": "Supported formats: JPG, PNG, WebP",
+    "maxSize": "Max file size: 10MB",
+    "terms": "By uploading a file you agree to our Terms of Use and Privacy Policy."
+  },
+  "cookies": {
+    "title": "We use cookies",
+    "description": "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "learnMore": "Learn more"
+  }
+}

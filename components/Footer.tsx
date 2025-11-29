@@ -1,9 +1,13 @@
-import Link from "next/link";
+"use client";
+
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const t = useTranslations('footer');
 
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
@@ -17,7 +21,7 @@ export default function Footer() {
               </h3>
             </Link>
             <p className="text-gray-400 text-sm mb-4">
-              AI-powered image upscaling and enhancement. Transform your images with cutting-edge technology.
+              {t('description')}
             </p>
             {/* Social Media Links */}
             <div className="flex gap-3">
@@ -62,31 +66,31 @@ export default function Footer() {
 
           {/* Product Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Product</h4>
+            <h4 className="font-semibold text-white mb-4">{t('product.title')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/dashboard" className="text-gray-400 hover:text-white transition text-sm">
-                  Dashboard
+                  {t('product.dashboard')}
                 </Link>
               </li>
               <li>
                 <Link href="/pricing" className="text-gray-400 hover:text-white transition text-sm">
-                  Pricing
+                  {t('product.pricing')}
                 </Link>
               </li>
               <li>
                 <Link href="/dashboard/api" className="text-gray-400 hover:text-white transition text-sm">
-                  API Documentation
+                  {t('product.apiDocs')}
                 </Link>
               </li>
               <li>
                 <a href="#use-cases" className="text-gray-400 hover:text-white transition text-sm">
-                  Use Cases
+                  {t('product.useCases')}
                 </a>
               </li>
               <li>
                 <a href="#faq" className="text-gray-400 hover:text-white transition text-sm">
-                  FAQ
+                  {t('product.faq')}
                 </a>
               </li>
             </ul>
@@ -94,21 +98,26 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
+            <h4 className="font-semibold text-white mb-4">{t('company.title')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-gray-400 hover:text-white transition text-sm">
-                  About Us
+                  {t('company.about')}
                 </Link>
               </li>
               <li>
-                <a href="/blog" className="text-gray-400 hover:text-white transition text-sm">
-                  Blog
-                </a>
+                <Link href="/blog" className="text-gray-400 hover:text-white transition text-sm">
+                  {t('company.blog')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/knowledge" className="text-gray-400 hover:text-white transition text-sm">
+                  {t('company.knowledge')}
+                </Link>
               </li>
               <li>
                 <Link href="/support" className="text-gray-400 hover:text-white transition text-sm">
-                  Support
+                  {t('company.support')}
                 </Link>
               </li>
             </ul>
@@ -116,27 +125,27 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Legal</h4>
+            <h4 className="font-semibold text-white mb-4">{t('legal.title')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/terms" className="text-gray-400 hover:text-white transition text-sm">
-                  Terms of Service
+                  {t('legal.terms')}
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition text-sm">
-                  Privacy Policy
+                  {t('legal.privacy')}
                 </Link>
               </li>
               <li>
-                <a href="/cookies" className="text-gray-400 hover:text-white transition text-sm">
-                  Cookie Policy
-                </a>
+                <Link href="/cookies" className="text-gray-400 hover:text-white transition text-sm">
+                  {t('legal.cookies')}
+                </Link>
               </li>
               <li>
-                <a href="/gdpr" className="text-gray-400 hover:text-white transition text-sm">
-                  GDPR Compliance
-                </a>
+                <Link href="/gdpr" className="text-gray-400 hover:text-white transition text-sm">
+                  {t('legal.gdpr')}
+                </Link>
               </li>
             </ul>
           </div>
@@ -146,12 +155,12 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Pixelift. All rights reserved.
+              {t('copyright', { year: currentYear })}
             </p>
             <div className="flex items-center gap-6 text-sm">
-              <span className="text-gray-500">Made with ❤️ in Poland</span>
+              <span className="text-gray-500">{t('madeWith')}</span>
               <div className="flex items-center gap-2">
-                <span className="text-gray-500">Powered by</span>
+                <span className="text-gray-500">{t('poweredBy')}</span>
                 <span className="text-transparent bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text font-semibold">
                   Pixelift AI
                 </span>

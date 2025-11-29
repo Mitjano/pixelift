@@ -1,5 +1,7 @@
 import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
+import createIntlMiddleware from 'next-intl/middleware';
+import { locales, defaultLocale } from '@/i18n/config';
 
 // Allowed origins for CSRF protection
 const ALLOWED_ORIGINS = [
@@ -9,30 +11,48 @@ const ALLOWED_ORIGINS = [
   'http://127.0.0.1:3000',
 ];
 
+// Create the intl middleware
+const intlMiddleware = createIntlMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'as-needed' // EN without prefix, others with prefix
+});
+
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-  const response = NextResponse.next();
 
-  // CSRF protection for API routes (POST, PUT, PATCH, DELETE)
-  if (pathname.startsWith("/api/") && ["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
-    const origin = req.headers.get("origin");
-    const referer = req.headers.get("referer");
+  // Skip locale handling for API routes and static files
+  if (
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/favicon.ico') ||
+    pathname.match(/\.(svg|png|jpg|jpeg|gif|webp|ico|css|js)$/)
+  ) {
+    const response = NextResponse.next();
 
-    // Skip CSRF check for internal NextAuth routes
-    if (!pathname.startsWith("/api/auth/")) {
-      const isAllowedOrigin = origin
-        ? ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed))
-        : referer
-          ? ALLOWED_ORIGINS.some(allowed => referer.startsWith(allowed))
-          : true; // Allow requests without origin (same-origin, non-browser)
+    // CSRF protection for API routes (POST, PUT, PATCH, DELETE)
+    if (pathname.startsWith("/api/") && ["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
+      const origin = req.headers.get("origin");
+      const referer = req.headers.get("referer");
 
-      if (!isAllowedOrigin) {
-        return NextResponse.json(
-          { error: "CSRF validation failed" },
-          { status: 403 }
-        );
+      // Skip CSRF check for internal NextAuth routes
+      if (!pathname.startsWith("/api/auth/")) {
+        const isAllowedOrigin = origin
+          ? ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed))
+          : referer
+            ? ALLOWED_ORIGINS.some(allowed => referer.startsWith(allowed))
+            : true; // Allow requests without origin (same-origin, non-browser)
+
+        if (!isAllowedOrigin) {
+          return NextResponse.json(
+            { error: "CSRF validation failed" },
+            { status: 403 }
+          );
+        }
       }
     }
+
+    return response;
   }
 
   // HTTPS enforcement in production
@@ -45,8 +65,9 @@ export default auth((req) => {
     return NextResponse.redirect(httpsUrl, 301);
   }
 
-  // Protect admin routes
-  if (pathname.startsWith("/admin")) {
+  // Protect admin routes (including localized versions)
+  const adminPattern = /^(\/(pl|es|fr))?\/admin/;
+  if (adminPattern.test(pathname)) {
     // Check if user is authenticated
     if (!req.auth?.user) {
       // Not logged in - redirect to signin
@@ -64,13 +85,13 @@ export default auth((req) => {
     }
   }
 
-  return response;
+  // Apply intl middleware for locale handling
+  return intlMiddleware(req);
 });
 
 export const config = {
   matcher: [
-    // Match all routes except static files for HTTPS enforcement
+    // Match all routes except static files
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
-  runtime: "nodejs",
 };

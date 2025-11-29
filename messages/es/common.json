@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Pixelift - Herramientas AI para Imágenes | Escalador y Eliminador de Fondo",
+    "description": "Herramientas profesionales de IA para imágenes. Escala imágenes hasta 8x con Real-ESRGAN y elimina fondos al instante con BRIA RMBG 2.0. Gratis, rápido y seguro."
+  },
+  "nav": {
+    "tools": "Herramientas",
+    "aiImage": "Imagen AI",
+    "useCases": "Casos de Uso",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "dashboard": "Panel",
+    "apiKeys": "Claves API",
+    "settings": "Configuración",
+    "signOut": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "signUp": "Registrarse"
+  },
+  "tools": {
+    "upscaler": {
+      "name": "Escalador de Imágenes",
+      "description": "Mejora imágenes hasta 8x resolución"
+    },
+    "removeBackground": {
+      "name": "Eliminador de Fondo",
+      "description": "Elimina fondos con IA"
+    },
+    "colorize": {
+      "name": "Colorizador de Fotos",
+      "description": "Colorea fotos en B/N",
+      "badge": "NUEVO"
+    },
+    "restore": {
+      "name": "Restaurador de Imágenes",
+      "description": "Reducción de ruido y artefactos",
+      "badge": "NUEVO"
+    },
+    "objectRemoval": {
+      "name": "Eliminación de Objetos",
+      "description": "Elimina objetos no deseados",
+      "badge": "NUEVO"
+    },
+    "backgroundGenerator": {
+      "name": "Generador de Fondos",
+      "description": "Genera fondos con IA",
+      "badge": "NUEVO"
+    },
+    "compressor": {
+      "name": "Compresor de Imágenes",
+      "description": "Reduce el tamaño inteligentemente"
+    },
+    "packshot": {
+      "name": "Generador de Packshot",
+      "description": "Fotos profesionales de productos"
+    },
+    "expand": {
+      "name": "Expansión de Imagen",
+      "description": "Extiende imágenes con IA"
+    }
+  },
+  "home": {
+    "badge": "9 Herramientas AI - ¡4 Nuevas Herramientas Recién Lanzadas!",
+    "headline": {
+      "line1": "Tu Completo",
+      "line2": "Estudio de Imágenes AI"
+    },
+    "subheadline": "Escala, mejora, colorea, restaura, elimina fondos y más. Edición profesional de imágenes impulsada por IA de vanguardia - sin habilidades requeridas.",
+    "features": {
+      "proTools": "9 Herramientas Pro",
+      "instantResults": "Resultados Instantáneos",
+      "private": "100% Privado",
+      "noWatermarks": "Sin Marcas de Agua"
+    },
+    "cta": {
+      "aiUpscaler": "Escalador AI",
+      "removeBg": "Eliminar Fondo",
+      "colorize": "Colorear",
+      "objectRemoval": "Eliminar Objeto",
+      "seeAllTools": "Ver las 9 herramientas AI"
+    },
+    "socialProof": {
+      "happyUsers": "usuarios satisfechos",
+      "rating": "4.9/5 puntuación"
+    },
+    "whyChoose": {
+      "title": "¿Por Qué Elegir",
+      "subtitle": "Tecnología AI profesional con simplicidad",
+      "fast": {
+        "title": "Súper Rápido",
+        "description": "Procesa imágenes en segundos con nuestro pipeline AI optimizado."
+      },
+      "private": {
+        "title": "100% Privado",
+        "description": "Tus imágenes están encriptadas y se eliminan automáticamente después del procesamiento."
+      },
+      "tools": {
+        "title": "9 Herramientas Pro",
+        "description": "Suite completa para todas tus necesidades de edición de imágenes."
+      },
+      "payPerUse": {
+        "title": "Paga por Uso",
+        "description": "Sin suscripciones. Compra créditos y úsalos cuando quieras."
+      }
+    },
+    "ctaSection": {
+      "title": "¿Listo para Transformar Tus Imágenes?",
+      "description": "Comienza con 3 créditos gratis. Sin tarjeta de crédito. Experimenta el poder de la edición mejorada con IA.",
+      "button": "Comenzar Gratis",
+      "features": {
+        "freeCredits": "3 Créditos Gratis",
+        "noCard": "Sin Tarjeta de Crédito",
+        "allTools": "Las 9 Herramientas Incluidas"
+      }
+    }
+  },
+  "footer": {
+    "description": "Escalado y mejora de imágenes impulsado por IA. Transforma tus imágenes con tecnología de vanguardia.",
+    "product": {
+      "title": "Producto",
+      "dashboard": "Panel",
+      "pricing": "Precios",
+      "apiDocs": "Documentación API",
+      "useCases": "Casos de Uso",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Empresa",
+      "about": "Sobre Nosotros",
+      "blog": "Blog",
+      "knowledge": "Base de Conocimiento",
+      "support": "Soporte"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Términos de Servicio",
+      "privacy": "Política de Privacidad",
+      "cookies": "Política de Cookies",
+      "gdpr": "Cumplimiento RGPD"
+    },
+    "copyright": "© {year} Pixelift. Todos los derechos reservados.",
+    "madeWith": "Hecho con ❤️ en Polonia",
+    "poweredBy": "Impulsado por"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "retry": "Intentar de nuevo",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "download": "Descargar",
+    "upload": "Subir",
+    "processing": "Procesando...",
+    "success": "¡Éxito!",
+    "learnMore": "Saber más",
+    "viewAll": "Ver todo",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "noResults": "Sin resultados",
+    "credits": "créditos",
+    "credit": "crédito"
+  },
+  "auth": {
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar Sesión",
+    "email": "Email",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "orContinueWith": "O continúa con",
+    "google": "Continuar con Google",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?"
+  },
+  "upload": {
+    "dragDrop": "Arrastra y suelta tu imagen aquí",
+    "or": "o",
+    "browse": "Explorar archivos",
+    "supportedFormats": "Formatos soportados: JPG, PNG, WebP",
+    "maxSize": "Tamaño máximo: 10MB",
+    "terms": "Al subir un archivo aceptas nuestros Términos de Uso y Política de Privacidad."
+  },
+  "cookies": {
+    "title": "Usamos cookies",
+    "description": "Usamos cookies para mejorar tu experiencia. Al continuar visitando este sitio aceptas nuestro uso de cookies.",
+    "accept": "Aceptar",
+    "decline": "Rechazar",
+    "learnMore": "Saber más"
+  }
+}

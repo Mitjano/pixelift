@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Pixelift - Narzędzia AI do Obrazów | Upscaler i Usuwanie Tła",
+    "description": "Profesjonalne narzędzia AI do obrazów. Powiększaj obrazy do 8x z Real-ESRGAN i usuwaj tła natychmiast z BRIA RMBG 2.0. Bezpłatnie, szybko i bezpiecznie."
+  },
+  "nav": {
+    "tools": "Narzędzia",
+    "aiImage": "Obraz AI",
+    "useCases": "Zastosowania",
+    "pricing": "Cennik",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "dashboard": "Panel",
+    "apiKeys": "Klucze API",
+    "settings": "Ustawienia",
+    "signOut": "Wyloguj się",
+    "login": "Zaloguj się",
+    "signUp": "Zarejestruj się"
+  },
+  "tools": {
+    "upscaler": {
+      "name": "Upscaler Obrazów",
+      "description": "Powiększ obrazy do 8x rozdzielczości"
+    },
+    "removeBackground": {
+      "name": "Usuwanie Tła",
+      "description": "Usuń tło za pomocą AI"
+    },
+    "colorize": {
+      "name": "Kolorowanie Zdjęć",
+      "description": "Pokoloruj czarno-białe zdjęcia",
+      "badge": "NOWE"
+    },
+    "restore": {
+      "name": "Restauracja Obrazów",
+      "description": "Odszumianie i usuwanie artefaktów",
+      "badge": "NOWE"
+    },
+    "objectRemoval": {
+      "name": "Usuwanie Obiektów",
+      "description": "Usuń niechciane obiekty",
+      "badge": "NOWE"
+    },
+    "backgroundGenerator": {
+      "name": "Generator Tła",
+      "description": "Generuj tła AI",
+      "badge": "NOWE"
+    },
+    "compressor": {
+      "name": "Kompresor Obrazów",
+      "description": "Zmniejsz rozmiar pliku inteligentnie"
+    },
+    "packshot": {
+      "name": "Generator Packshot",
+      "description": "Profesjonalne zdjęcia produktów"
+    },
+    "expand": {
+      "name": "Rozszerzanie Obrazu",
+      "description": "Rozszerz obrazy za pomocą AI"
+    }
+  },
+  "home": {
+    "badge": "9 Narzędzi AI - 4 Nowe Narzędzia Właśnie Uruchomione!",
+    "headline": {
+      "line1": "Twoje Kompletne",
+      "line2": "Studio Obrazów AI"
+    },
+    "subheadline": "Powiększaj, ulepszaj, koloruj, restauruj, usuwaj tła i więcej. Profesjonalna edycja obrazów napędzana najnowocześniejszą AI - bez wymaganych umiejętności.",
+    "features": {
+      "proTools": "9 Pro Narzędzi",
+      "instantResults": "Natychmiastowe Wyniki",
+      "private": "100% Prywatne",
+      "noWatermarks": "Bez Znaków Wodnych"
+    },
+    "cta": {
+      "aiUpscaler": "AI Upscaler",
+      "removeBg": "Usuń Tło",
+      "colorize": "Koloruj",
+      "objectRemoval": "Usuń Obiekt",
+      "seeAllTools": "Zobacz wszystkie 9 narzędzi AI"
+    },
+    "socialProof": {
+      "happyUsers": "zadowolonych użytkowników",
+      "rating": "4.9/5 ocena"
+    },
+    "whyChoose": {
+      "title": "Dlaczego Wybrać",
+      "subtitle": "Profesjonalna technologia AI spotyka prostotę",
+      "fast": {
+        "title": "Błyskawicznie Szybko",
+        "description": "Przetwarzaj obrazy w sekundy dzięki zoptymalizowanemu pipeline AI."
+      },
+      "private": {
+        "title": "100% Prywatne",
+        "description": "Twoje obrazy są szyfrowane i automatycznie usuwane po przetworzeniu."
+      },
+      "tools": {
+        "title": "9 Pro Narzędzi",
+        "description": "Kompletny zestaw do wszystkich potrzeb edycji obrazów."
+      },
+      "payPerUse": {
+        "title": "Płać za Użycie",
+        "description": "Bez subskrypcji. Kup kredyty i używaj ich kiedy chcesz."
+      }
+    },
+    "ctaSection": {
+      "title": "Gotowy do Transformacji Swoich Obrazów?",
+      "description": "Zacznij z 3 darmowymi kredytami. Bez karty kredytowej. Doświadcz mocy edycji wspomaganej AI.",
+      "button": "Zacznij Za Darmo",
+      "features": {
+        "freeCredits": "3 Darmowe Kredyty",
+        "noCard": "Bez Karty Kredytowej",
+        "allTools": "Wszystkie 9 Narzędzi"
+      }
+    }
+  },
+  "footer": {
+    "description": "Powiększanie i ulepszanie obrazów napędzane AI. Przekształć swoje obrazy najnowocześniejszą technologią.",
+    "product": {
+      "title": "Produkt",
+      "dashboard": "Panel",
+      "pricing": "Cennik",
+      "apiDocs": "Dokumentacja API",
+      "useCases": "Zastosowania",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Firma",
+      "about": "O Nas",
+      "blog": "Blog",
+      "knowledge": "Baza Wiedzy",
+      "support": "Wsparcie"
+    },
+    "legal": {
+      "title": "Prawne",
+      "terms": "Regulamin",
+      "privacy": "Polityka Prywatności",
+      "cookies": "Polityka Cookies",
+      "gdpr": "Zgodność RODO"
+    },
+    "copyright": "© {year} Pixelift. Wszelkie prawa zastrzeżone.",
+    "madeWith": "Zrobione z ❤️ w Polsce",
+    "poweredBy": "Napędzane przez"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Coś poszło nie tak",
+    "retry": "Spróbuj ponownie",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "download": "Pobierz",
+    "upload": "Prześlij",
+    "processing": "Przetwarzanie...",
+    "success": "Sukces!",
+    "learnMore": "Dowiedz się więcej",
+    "viewAll": "Zobacz wszystkie",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "previous": "Poprzedni",
+    "close": "Zamknij",
+    "search": "Szukaj",
+    "noResults": "Brak wyników",
+    "credits": "kredytów",
+    "credit": "kredyt"
+  },
+  "auth": {
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się",
+    "signOut": "Wyloguj się",
+    "email": "Email",
+    "password": "Hasło",
+    "forgotPassword": "Zapomniałeś hasła?",
+    "orContinueWith": "Lub kontynuuj przez",
+    "google": "Kontynuuj przez Google",
+    "noAccount": "Nie masz konta?",
+    "hasAccount": "Masz już konto?"
+  },
+  "upload": {
+    "dragDrop": "Przeciągnij i upuść swój obraz tutaj",
+    "or": "lub",
+    "browse": "Przeglądaj pliki",
+    "supportedFormats": "Obsługiwane formaty: JPG, PNG, WebP",
+    "maxSize": "Maksymalny rozmiar: 10MB",
+    "terms": "Przesyłając plik, zgadzasz się z naszym Regulaminem i Polityką Prywatności."
+  },
+  "cookies": {
+    "title": "Używamy cookies",
+    "description": "Używamy cookies, aby poprawić Twoje doświadczenie. Kontynuując odwiedziny na tej stronie, zgadzasz się na ich użycie.",
+    "accept": "Akceptuj",
+    "decline": "Odrzuć",
+    "learnMore": "Dowiedz się więcej"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Pixelift - Outils IA pour Images | Agrandisseur et Suppresseur de Fond",
+    "description": "Outils professionnels IA pour les images. Agrandissez les images jusqu'à 8x avec Real-ESRGAN et supprimez les arrière-plans instantanément avec BRIA RMBG 2.0. Gratuit, rapide et sécurisé."
+  },
+  "nav": {
+    "tools": "Outils",
+    "aiImage": "Image IA",
+    "useCases": "Cas d'Usage",
+    "pricing": "Tarifs",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "dashboard": "Tableau de Bord",
+    "apiKeys": "Clés API",
+    "settings": "Paramètres",
+    "signOut": "Se Déconnecter",
+    "login": "Se Connecter",
+    "signUp": "S'inscrire"
+  },
+  "tools": {
+    "upscaler": {
+      "name": "Agrandisseur d'Images",
+      "description": "Améliorez les images jusqu'à 8x résolution"
+    },
+    "removeBackground": {
+      "name": "Suppresseur de Fond",
+      "description": "Supprimez les fonds avec l'IA"
+    },
+    "colorize": {
+      "name": "Colorisateur de Photos",
+      "description": "Colorisez les photos N&B",
+      "badge": "NOUVEAU"
+    },
+    "restore": {
+      "name": "Restauration d'Images",
+      "description": "Débruitage et suppression d'artefacts",
+      "badge": "NOUVEAU"
+    },
+    "objectRemoval": {
+      "name": "Suppression d'Objets",
+      "description": "Supprimez les objets indésirables",
+      "badge": "NOUVEAU"
+    },
+    "backgroundGenerator": {
+      "name": "Générateur de Fond",
+      "description": "Générez des fonds avec l'IA",
+      "badge": "NOUVEAU"
+    },
+    "compressor": {
+      "name": "Compresseur d'Images",
+      "description": "Réduisez la taille intelligemment"
+    },
+    "packshot": {
+      "name": "Générateur de Packshot",
+      "description": "Photos professionnelles de produits"
+    },
+    "expand": {
+      "name": "Extension d'Image",
+      "description": "Étendez les images avec l'IA"
+    }
+  },
+  "home": {
+    "badge": "9 Outils IA - 4 Nouveaux Outils Tout Juste Lancés!",
+    "headline": {
+      "line1": "Votre Studio",
+      "line2": "d'Images IA Complet"
+    },
+    "subheadline": "Agrandissez, améliorez, colorisez, restaurez, supprimez les fonds et plus encore. Édition d'images professionnelle propulsée par l'IA de pointe - aucune compétence requise.",
+    "features": {
+      "proTools": "9 Outils Pro",
+      "instantResults": "Résultats Instantanés",
+      "private": "100% Privé",
+      "noWatermarks": "Sans Filigranes"
+    },
+    "cta": {
+      "aiUpscaler": "Agrandisseur IA",
+      "removeBg": "Supprimer Fond",
+      "colorize": "Coloriser",
+      "objectRemoval": "Supprimer Objet",
+      "seeAllTools": "Voir les 9 outils IA"
+    },
+    "socialProof": {
+      "happyUsers": "utilisateurs satisfaits",
+      "rating": "4.9/5 note"
+    },
+    "whyChoose": {
+      "title": "Pourquoi Choisir",
+      "subtitle": "Technologie IA professionnelle rencontre la simplicité",
+      "fast": {
+        "title": "Ultra Rapide",
+        "description": "Traitez les images en secondes avec notre pipeline IA optimisé."
+      },
+      "private": {
+        "title": "100% Privé",
+        "description": "Vos images sont cryptées et automatiquement supprimées après traitement."
+      },
+      "tools": {
+        "title": "9 Outils Pro",
+        "description": "Suite complète pour tous vos besoins d'édition d'images."
+      },
+      "payPerUse": {
+        "title": "Paiement à l'Usage",
+        "description": "Sans abonnement. Achetez des crédits et utilisez-les quand vous voulez."
+      }
+    },
+    "ctaSection": {
+      "title": "Prêt à Transformer Vos Images?",
+      "description": "Commencez avec 3 crédits gratuits. Sans carte de crédit. Découvrez la puissance de l'édition améliorée par l'IA.",
+      "button": "Commencer Gratuitement",
+      "features": {
+        "freeCredits": "3 Crédits Gratuits",
+        "noCard": "Sans Carte de Crédit",
+        "allTools": "Les 9 Outils Inclus"
+      }
+    }
+  },
+  "footer": {
+    "description": "Agrandissement et amélioration d'images propulsés par l'IA. Transformez vos images avec une technologie de pointe.",
+    "product": {
+      "title": "Produit",
+      "dashboard": "Tableau de Bord",
+      "pricing": "Tarifs",
+      "apiDocs": "Documentation API",
+      "useCases": "Cas d'Usage",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Entreprise",
+      "about": "À Propos",
+      "blog": "Blog",
+      "knowledge": "Base de Connaissances",
+      "support": "Support"
+    },
+    "legal": {
+      "title": "Juridique",
+      "terms": "Conditions d'Utilisation",
+      "privacy": "Politique de Confidentialité",
+      "cookies": "Politique de Cookies",
+      "gdpr": "Conformité RGPD"
+    },
+    "copyright": "© {year} Pixelift. Tous droits réservés.",
+    "madeWith": "Fait avec ❤️ en Pologne",
+    "poweredBy": "Propulsé par"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "download": "Télécharger",
+    "upload": "Téléverser",
+    "processing": "Traitement...",
+    "success": "Succès!",
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "search": "Rechercher",
+    "noResults": "Aucun résultat",
+    "credits": "crédits",
+    "credit": "crédit"
+  },
+  "auth": {
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se Déconnecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié?",
+    "orContinueWith": "Ou continuez avec",
+    "google": "Continuer avec Google",
+    "noAccount": "Pas de compte?",
+    "hasAccount": "Déjà un compte?"
+  },
+  "upload": {
+    "dragDrop": "Glissez et déposez votre image ici",
+    "or": "ou",
+    "browse": "Parcourir les fichiers",
+    "supportedFormats": "Formats supportés: JPG, PNG, WebP",
+    "maxSize": "Taille max: 10MB",
+    "terms": "En téléversant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité."
+  },
+  "cookies": {
+    "title": "Nous utilisons des cookies",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience. En continuant à visiter ce site, vous acceptez notre utilisation des cookies.",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "learnMore": "En savoir plus"
+  }
+}

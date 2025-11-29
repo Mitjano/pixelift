@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 // Bundle analyzer for performance optimization
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+
+// next-intl plugin
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
   output: 'standalone',
@@ -85,7 +89,10 @@ const nextConfig: NextConfig = {
 // Apply bundle analyzer wrapper
 const configWithAnalyzer = withBundleAnalyzer(nextConfig);
 
-export default withSentryConfig(configWithAnalyzer, {
+// Apply next-intl wrapper
+const configWithIntl = withNextIntl(configWithAnalyzer);
+
+export default withSentryConfig(configWithIntl, {
   // Sentry organization and project slugs
   org: "juvestorepl-micha-chmielarz",
   project: "pixelift",
