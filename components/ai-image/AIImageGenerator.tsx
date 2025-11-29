@@ -197,7 +197,7 @@ export default function AIImageGenerator() {
   };
 
   return (
-    <div className="bg-gray-800/50 rounded-xl border border-gray-700 overflow-hidden">
+    <div className="bg-gray-800/50 rounded-xl border border-gray-700">
       {/* Mode Toggle */}
       <div className="flex border-b border-gray-700">
         <button
