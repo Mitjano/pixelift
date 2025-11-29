@@ -7,6 +7,7 @@ import Link from 'next/link';
 import ModelSelector from './ModelSelector';
 import AspectRatioSelector from './AspectRatioSelector';
 import ImageCountSelector from './ImageCountSelector';
+import StyleSelector from './StyleSelector';
 import {
   AI_MODELS,
   ASPECT_RATIOS,
@@ -18,6 +19,7 @@ import {
   type AIImageMode,
   type ImageCount,
 } from '@/lib/ai-image/models';
+import { DEFAULT_STYLE, getStyleById } from '@/lib/ai-image/styles';
 
 interface GeneratedImage {
   id: string;
@@ -32,12 +34,17 @@ export default function AIImageGenerator() {
   const [model, setModel] = useState(DEFAULT_MODEL);
   const [aspectRatio, setAspectRatio] = useState(DEFAULT_ASPECT_RATIO);
   const [imageCount, setImageCount] = useState<ImageCount>(DEFAULT_IMAGE_COUNT);
+  const [style, setStyle] = useState(DEFAULT_STYLE);
   const [sourceImage, setSourceImage] = useState<string | null>(null);
   const [sourceImagePreview, setSourceImagePreview] = useState<string | null>(null);
   const [isPublic, setIsPublic] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Enhance prompt state
+  const [enhancing, setEnhancing] = useState(false);
+  const [enhancedPrompt, setEnhancedPrompt] = useState<string | null>(null);
 
   const selectedModel = getModelById(model);
   const creditsRequired = calculateCredits(model, imageCount);
@@ -84,6 +91,55 @@ export default function AIImageGenerator() {
     }
   };
 
+  const handleEnhancePrompt = async () => {
+    if (!session) {
+      toast.error('Please sign in to enhance prompts');
+      return;
+    }
+
+    if (!prompt.trim() || prompt.trim().length < 3) {
+      toast.error('Enter at least 3 characters to enhance');
+      return;
+    }
+
+    setEnhancing(true);
+    setEnhancedPrompt(null);
+
+    try {
+      const response = await fetch('/api/ai-image/enhance-prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: prompt.trim(), mode }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.error || 'Failed to enhance prompt');
+        return;
+      }
+
+      setEnhancedPrompt(data.enhanced);
+    } catch (error) {
+      console.error('Enhance error:', error);
+      toast.error('Failed to enhance prompt');
+    } finally {
+      setEnhancing(false);
+    }
+  };
+
+  const applyEnhancedPrompt = () => {
+    if (enhancedPrompt) {
+      setPrompt(enhancedPrompt);
+      setEnhancedPrompt(null);
+      toast.success('Enhanced prompt applied!');
+    }
+  };
+
+  const dismissEnhancedPrompt = () => {
+    setEnhancedPrompt(null);
+  };
+
   const handleGenerate = async () => {
     if (!session) {
       toast.error('Please sign in to generate images');
@@ -112,6 +168,7 @@ export default function AIImageGenerator() {
           mode,
           model,
           aspectRatio,
+          style,
           numImages: imageCount,
           sourceImage: mode === 'image-to-image' ? sourceImage : undefined,
           isPublic,
@@ -175,7 +232,10 @@ export default function AIImageGenerator() {
           </label>
           <textarea
             value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
+            onChange={(e) => {
+              setPrompt(e.target.value);
+              if (enhancedPrompt) setEnhancedPrompt(null);
+            }}
             placeholder={
               mode === 'text-to-image'
                 ? 'A serene mountain landscape at sunset with golden light reflecting on a crystal-clear lake...'
@@ -184,11 +244,52 @@ export default function AIImageGenerator() {
             className="w-full h-32 px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none text-white placeholder-gray-500"
             maxLength={2000}
           />
-          <div className="flex justify-between mt-1">
+          <div className="flex justify-between items-center mt-2">
             <span className="text-xs text-gray-500">
               {prompt.length}/2000 characters
             </span>
+            <button
+              onClick={handleEnhancePrompt}
+              disabled={enhancing || !prompt.trim() || prompt.trim().length < 3}
+              className="px-3 py-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed rounded-lg font-medium transition flex items-center gap-1.5"
+            >
+              {enhancing ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Enhancing...
+                </>
+              ) : (
+                <>✨ Enhance</>
+              )}
+            </button>
           </div>
+
+          {/* Enhanced Prompt Preview */}
+          {enhancedPrompt && (
+            <div className="mt-3 p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-amber-400 font-medium text-sm">✨ Enhanced prompt:</span>
+              </div>
+              <p className="text-gray-300 text-sm mb-3 leading-relaxed">{enhancedPrompt}</p>
+              <div className="flex gap-2">
+                <button
+                  onClick={applyEnhancedPrompt}
+                  className="px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-black font-medium text-sm rounded-lg transition"
+                >
+                  Use This
+                </button>
+                <button
+                  onClick={dismissEnhancedPrompt}
+                  className="px-4 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 text-sm rounded-lg transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Source Image Upload (for image-to-image) */}
@@ -231,13 +332,21 @@ export default function AIImageGenerator() {
           </div>
         )}
 
-        {/* Options Row */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        {/* Options Row 1: Model & Style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <ModelSelector
             mode={mode}
             value={model}
             onChange={setModel}
           />
+          <StyleSelector
+            value={style}
+            onChange={setStyle}
+          />
+        </div>
+
+        {/* Options Row 2: Aspect Ratio, Count, Visibility */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <AspectRatioSelector
             value={aspectRatio}
             onChange={setAspectRatio}
@@ -296,6 +405,7 @@ export default function AIImageGenerator() {
           )}
           <p className="text-sm text-gray-500">
             {selectedModel?.name} • {ASPECT_RATIOS.find(ar => ar.id === aspectRatio)?.name}
+            {style !== 'none' && ` • ${getStyleById(style)?.name}`}
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getPublicGalleryImages } from '@/lib/ai-image/db';
+import { getPublicGalleryImages, TimeFilter, SortBy } from '@/lib/ai-image/db';
 
 export async function GET(request: NextRequest) {
   try {
@@ -7,6 +7,8 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const limit = parseInt(searchParams.get('limit') || '20', 10);
     const model = searchParams.get('model') || undefined;
+    const timeFilter = (searchParams.get('timeFilter') || 'all') as TimeFilter;
+    const sortBy = (searchParams.get('sortBy') || 'newest') as SortBy;
 
     // Validate pagination params
     if (page < 1 || limit < 1 || limit > 100) {
@@ -16,10 +18,30 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Validate time filter
+    const validTimeFilters: TimeFilter[] = ['today', '7days', '30days', 'all'];
+    if (!validTimeFilters.includes(timeFilter)) {
+      return NextResponse.json(
+        { error: 'Invalid time filter' },
+        { status: 400 }
+      );
+    }
+
+    // Validate sort by
+    const validSortBy: SortBy[] = ['newest', 'best'];
+    if (!validSortBy.includes(sortBy)) {
+      return NextResponse.json(
+        { error: 'Invalid sort option' },
+        { status: 400 }
+      );
+    }
+
     const { images, total, hasMore } = getPublicGalleryImages({
       page,
       limit,
       model,
+      timeFilter,
+      sortBy,
     });
 
     return NextResponse.json({

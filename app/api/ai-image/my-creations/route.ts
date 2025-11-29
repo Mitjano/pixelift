@@ -61,6 +61,10 @@ export async function GET(request: NextRequest) {
         likes: img.likes,
         views: img.views,
         createdAt: img.createdAt,
+        user: {
+          name: img.userName || session.user.name || 'You',
+          image: img.userImage || session.user.image,
+        },
       })),
       hasMore,
       total,

@@ -92,9 +92,12 @@ export default function ImageModal({
       const data = await response.json();
 
       if (response.ok) {
+        // Update parent gallery
         onLikeUpdate(image.id, data.likes);
-        setDetails(prev => prev ? { ...prev, hasLiked: data.liked } : null);
-        toast.success(data.liked ? 'Liked!' : 'Unliked');
+        // Update local state - ensure boolean value
+        const isLiked = data.liked === true;
+        setDetails(prev => prev ? { ...prev, hasLiked: isLiked } : { hasLiked: isLiked, views: 0, isOwner: false });
+        toast.success(isLiked ? 'Liked!' : 'Unliked');
       } else {
         toast.error(data.error || 'Failed to like');
       }
@@ -282,12 +285,12 @@ export default function ImageModal({
                   onClick={handleLike}
                   disabled={liking}
                   className={`flex-1 py-2 rounded-lg font-medium transition flex items-center justify-center gap-2 ${
-                    details?.hasLiked
+                    details?.hasLiked === true
                       ? 'bg-pink-600 text-white'
                       : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                   }`}
                 >
-                  {liking ? '...' : details?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                  {liking ? '...' : details?.hasLiked === true ? '❤️ Liked' : '🤍 Like'}
                 </button>
               )}
               <button

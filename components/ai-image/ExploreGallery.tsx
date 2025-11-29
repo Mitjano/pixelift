@@ -5,6 +5,9 @@ import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import ImageModal from './ImageModal';
 
+type TimeFilter = 'today' | '7days' | '30days' | 'all';
+type SortBy = 'newest' | 'best';
+
 interface GalleryImage {
   id: string;
   thumbnailUrl: string;
@@ -28,6 +31,18 @@ interface ExploreGalleryProps {
   showMyCreations?: boolean;
 }
 
+const TIME_FILTERS: { id: TimeFilter; label: string }[] = [
+  { id: 'today', label: 'Today' },
+  { id: '7days', label: '7 Days' },
+  { id: '30days', label: '30 Days' },
+  { id: 'all', label: 'All Time' },
+];
+
+const SORT_OPTIONS: { id: SortBy; label: string; icon: string }[] = [
+  { id: 'newest', label: 'Newest', icon: '🕐' },
+  { id: 'best', label: 'Best', icon: '🔥' },
+];
+
 export default function ExploreGallery({ showMyCreations = false }: ExploreGalleryProps) {
   const { data: session } = useSession();
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -36,6 +51,8 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
+  const [sortBy, setSortBy] = useState<SortBy>('newest');
 
   const fetchImages = useCallback(async (pageNum: number, append: boolean = false) => {
     try {
@@ -45,9 +62,12 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
         setLoadingMore(true);
       }
 
-      const endpoint = showMyCreations
-        ? `/api/ai-image/my-creations?page=${pageNum}&limit=20`
-        : `/api/ai-image/gallery?page=${pageNum}&limit=20`;
+      let endpoint: string;
+      if (showMyCreations) {
+        endpoint = `/api/ai-image/my-creations?page=${pageNum}&limit=20`;
+      } else {
+        endpoint = `/api/ai-image/gallery?page=${pageNum}&limit=20&timeFilter=${timeFilter}&sortBy=${sortBy}`;
+      }
 
       const response = await fetch(endpoint);
       const data = await response.json();
@@ -69,13 +89,13 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
       setLoading(false);
       setLoadingMore(false);
     }
-  }, [showMyCreations]);
+  }, [showMyCreations, timeFilter, sortBy]);
 
   useEffect(() => {
     setPage(1);
     setImages([]);
     fetchImages(1, false);
-  }, [showMyCreations, fetchImages]);
+  }, [showMyCreations, timeFilter, sortBy, fetchImages]);
 
   const loadMore = () => {
     if (!loadingMore && hasMore) {
@@ -120,25 +140,79 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
     );
   }
 
+  // Filters UI component (only for Explore, not My Creations)
+  const FiltersUI = () => !showMyCreations ? (
+    <div className="flex flex-wrap items-center gap-4 mb-6">
+      {/* Sort By */}
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-gray-400">Sort:</span>
+        <div className="flex bg-gray-700/50 rounded-lg p-1">
+          {SORT_OPTIONS.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => setSortBy(option.id)}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition flex items-center gap-1.5 ${
+                sortBy === option.id
+                  ? 'bg-purple-600 text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <span>{option.icon}</span>
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Time Filter */}
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-gray-400">Time:</span>
+        <div className="flex bg-gray-700/50 rounded-lg p-1">
+          {TIME_FILTERS.map((filter) => (
+            <button
+              key={filter.id}
+              onClick={() => setTimeFilter(filter.id)}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition ${
+                timeFilter === filter.id
+                  ? 'bg-purple-600 text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  ) : null;
+
   if (images.length === 0) {
     return (
-      <div className="text-center py-12">
-        <div className="text-5xl mb-4">{showMyCreations ? '🎨' : '🔍'}</div>
-        <h3 className="text-xl font-semibold mb-2">
-          {showMyCreations ? 'No creations yet' : 'No images to explore'}
-        </h3>
-        <p className="text-gray-400">
-          {showMyCreations
-            ? 'Start generating images to see them here!'
-            : 'Be the first to share your AI creations with the community'
-          }
-        </p>
-      </div>
+      <>
+        <FiltersUI />
+        <div className="text-center py-12">
+          <div className="text-5xl mb-4">{showMyCreations ? '🎨' : '🔍'}</div>
+          <h3 className="text-xl font-semibold mb-2">
+            {showMyCreations ? 'No creations yet' : 'No images found'}
+          </h3>
+          <p className="text-gray-400">
+            {showMyCreations
+              ? 'Start generating images to see them here!'
+              : timeFilter !== 'all'
+                ? 'Try changing the time filter to see more images'
+                : 'Be the first to share your AI creations with the community'
+            }
+          </p>
+        </div>
+      </>
     );
   }
 
   return (
     <>
+      {/* Filters */}
+      <FiltersUI />
+
       {/* Image Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((image) => (

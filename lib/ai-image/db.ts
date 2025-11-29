@@ -24,6 +24,8 @@ export interface GeneratedImage {
 
   // Generation parameters
   prompt: string;
+  styledPrompt?: string; // Prompt with style applied
+  style?: string; // Style ID used
   negativePrompt?: string;
   model: string;
   mode: 'text-to-image' | 'image-to-image';
@@ -59,6 +61,8 @@ export interface CreateGeneratedImageInput {
   userName?: string;
   userImage?: string;
   prompt: string;
+  styledPrompt?: string;
+  style?: string;
   negativePrompt?: string;
   model: string;
   mode: 'text-to-image' | 'image-to-image';
@@ -113,12 +117,17 @@ export function getGeneratedImagesByUserId(userId: string): GeneratedImage[] {
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 }
 
+export type TimeFilter = 'today' | '7days' | '30days' | 'all';
+export type SortBy = 'newest' | 'best';
+
 export function getPublicGalleryImages(options: {
   page?: number;
   limit?: number;
   model?: string;
+  timeFilter?: TimeFilter;
+  sortBy?: SortBy;
 }): { images: GeneratedImage[]; total: number; hasMore: boolean } {
-  const { page = 1, limit = 20, model } = options;
+  const { page = 1, limit = 20, model, timeFilter = 'all', sortBy = 'newest' } = options;
 
   let images = getAllGeneratedImages()
     .filter(img => img.isPublic);
@@ -127,8 +136,41 @@ export function getPublicGalleryImages(options: {
     images = images.filter(img => img.model === model);
   }
 
-  // Sort by createdAt descending (newest first)
-  images.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  // Apply time filter
+  if (timeFilter !== 'all') {
+    const now = new Date();
+    let cutoffDate: Date;
+
+    switch (timeFilter) {
+      case 'today':
+        cutoffDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        break;
+      case '7days':
+        cutoffDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        break;
+      case '30days':
+        cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+        break;
+      default:
+        cutoffDate = new Date(0);
+    }
+
+    images = images.filter(img => new Date(img.createdAt) >= cutoffDate);
+  }
+
+  // Sort by selected criteria
+  if (sortBy === 'best') {
+    // Sort by likes descending, then by createdAt descending as tiebreaker
+    images.sort((a, b) => {
+      if (b.likes !== a.likes) {
+        return b.likes - a.likes;
+      }
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+  } else {
+    // Sort by createdAt descending (newest first)
+    images.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
 
   const total = images.length;
   const startIndex = (page - 1) * limit;

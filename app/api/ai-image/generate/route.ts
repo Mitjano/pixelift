@@ -10,6 +10,7 @@ import {
   IMAGE_COUNT_OPTIONS,
   type ImageCount,
 } from '@/lib/ai-image/models';
+import { applyStyleToPrompt, getStyleById, getStyleNegativePrompt } from '@/lib/ai-image/styles';
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,6 +44,7 @@ export async function POST(request: NextRequest) {
       mode = 'text-to-image',
       model: modelId = 'flux-1.1-pro',
       aspectRatio: aspectRatioId = '1:1',
+      style: styleId = 'none',
       numImages = 1,
       sourceImage,
       seed,
@@ -128,14 +130,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Apply style to prompt
+    const styledPrompt = applyStyleToPrompt(prompt.trim(), styleId);
+    const negativePrompt = getStyleNegativePrompt(styleId);
+
     // Generate images
     const generateInput = {
-      prompt: prompt.trim(),
+      prompt: styledPrompt,
       model: modelId,
       aspectRatio: aspectRatioId,
       mode: mode as 'text-to-image' | 'image-to-image',
       sourceImage,
       seed,
+      negativePrompt,
     };
 
     let results;
@@ -184,6 +191,8 @@ export async function POST(request: NextRequest) {
           userName: session.user.name || undefined,
           userImage: session.user.image || undefined,
           prompt: prompt.trim(),
+          styledPrompt: styledPrompt !== prompt.trim() ? styledPrompt : undefined,
+          style: styleId !== 'none' ? styleId : undefined,
           model: modelId,
           mode: mode as 'text-to-image' | 'image-to-image',
           aspectRatio: aspectRatioId,
