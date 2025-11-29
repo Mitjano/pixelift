@@ -90,8 +90,8 @@ export default function ModelSelector({ mode, value, onChange }: ModelSelectorPr
 
       {/* Dropdown - All models in a simple list */}
       {isOpen && (
-        <div className="absolute z-50 w-full mt-2 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-visible">
-          <div className="max-h-[60vh] overflow-y-auto p-2">
+        <div className="absolute z-50 w-full mt-2 bg-gray-800 rounded-xl shadow-2xl border border-gray-700">
+          <div className="p-2">
             {availableModels.map((model) => (
               <button
                 key={model.id}
