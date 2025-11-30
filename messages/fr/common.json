@@ -584,6 +584,70 @@
         "startUpscaling": "Commencer l'Agrandissement"
       }
     },
+    "uploader": {
+      "modeToggle": {
+        "singleImage": "Image Unique",
+        "batchProcessing": "Traitement par Lots"
+      },
+      "dropZone": {
+        "uploadImage": "Téléverser une Image",
+        "uploadMultiple": "Téléverser Plusieurs Images",
+        "dropSingle": "ou déposez une image n'importe où",
+        "dropBatch": "ou déposez jusqu'à 50 images n'importe où",
+        "batchInfo": "Traitez jusqu'à 50 images à la fois",
+        "batchSettings": "Toutes les images utiliseront les mêmes paramètres",
+        "paste": "Collez une image ou URL • Ctrl + V",
+        "formats": "Formats supportés : png | jpeg | jpg | webp | heic",
+        "maxFiles": "Maximum {max} images autorisées à la fois",
+        "invalidType": "{name} : Type de fichier invalide. Supportés : PNG, JPG, WEBP, HEIC, BMP",
+        "fileTooLarge": "{name} : La taille du fichier doit être inférieure à 10Mo"
+      },
+      "settings": {
+        "title": "Paramètres",
+        "batchTitle": "Paramètres du Lot",
+        "upscaleTo": "Agrandir à",
+        "qualityBoost": "Boost de Qualité",
+        "off": "Désactivé",
+        "on": "Activé"
+      },
+      "actions": {
+        "processing": "Traitement...",
+        "processImage": "Traiter l'Image",
+        "downloadEnhanced": "Télécharger l'Image Améliorée",
+        "processAgain": "Traiter à Nouveau",
+        "uploadNew": "Téléverser une Nouvelle Image",
+        "downloadAll": "Tout Télécharger",
+        "processAll": "Traiter les {count} Images",
+        "processingProgress": "Traitement {current}/{total}...",
+        "startNewBatch": "Démarrer un Nouveau Lot"
+      },
+      "loginPrompt": {
+        "title": "Connectez-vous pour Téléverser des Images",
+        "description": "Créez un compte gratuit pour commencer à agrandir vos images avec l'IA. Obtenez 3 crédits gratuits pour essayer !",
+        "signIn": "Se Connecter",
+        "signUp": "S'inscrire Gratuitement",
+        "freeCredits": "3 Crédits Gratuits",
+        "noCard": "Sans Carte de Crédit",
+        "cancelAnytime": "Annulez à Tout Moment"
+      },
+      "preview": {
+        "output": "Résultat",
+        "original": "Image Originale",
+        "enhanced": "Aperçu Amélioré par IA",
+        "clickProcess": "Cliquez sur \"Traiter l'Image\" pour agrandir"
+      },
+      "batch": {
+        "title": "Traitement par Lots",
+        "imagesCount": "{count} images • Mêmes paramètres pour toutes",
+        "queue": "File d'Attente des Images",
+        "processingBatch": "Traitement du Lot...",
+        "imageOf": "Image {current} sur {total}",
+        "pending": "En attente",
+        "processingItem": "Traitement...",
+        "download": "Télécharger",
+        "enhanced": "Améliorée"
+      }
+    },
     "common": {
       "credit": "crédit",
       "credits": "crédits",

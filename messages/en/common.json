@@ -506,6 +506,70 @@
       },
       "howItWorks": { "title": "How AI", "titleHighlight": "Upscaling Works" },
       "cta": { "title": "Ready to Upscale?", "getStarted": "Get Started Free", "startUpscaling": "Start Upscaling" }
+    },
+    "uploader": {
+      "modeToggle": {
+        "singleImage": "Single Image",
+        "batchProcessing": "Batch Processing"
+      },
+      "dropZone": {
+        "uploadImage": "Upload Image",
+        "uploadMultiple": "Upload Multiple Images",
+        "dropSingle": "or drop image anywhere",
+        "dropBatch": "or drop up to 50 images anywhere",
+        "batchInfo": "Process up to 50 images at once",
+        "batchSettings": "All images will use the same settings",
+        "paste": "Paste image or URL • Ctrl + V",
+        "formats": "Supported formats: png | jpeg | jpg | webp | heic",
+        "maxFiles": "Maximum {max} images allowed at once",
+        "invalidType": "{name}: Invalid file type. Supported: PNG, JPG, WEBP, HEIC, BMP",
+        "fileTooLarge": "{name}: File size must be less than 10MB"
+      },
+      "settings": {
+        "title": "Settings",
+        "batchTitle": "Batch Settings",
+        "upscaleTo": "Upscale to",
+        "qualityBoost": "Quality Boost",
+        "off": "Off",
+        "on": "On"
+      },
+      "actions": {
+        "processing": "Processing...",
+        "processImage": "Process Image",
+        "downloadEnhanced": "Download Enhanced Image",
+        "processAgain": "Process Again",
+        "uploadNew": "Upload New Image",
+        "downloadAll": "Download All",
+        "processAll": "Process All {count} Images",
+        "processingProgress": "Processing {current}/{total}...",
+        "startNewBatch": "Start New Batch"
+      },
+      "loginPrompt": {
+        "title": "Sign in to Upload Images",
+        "description": "Create a free account to start upscaling your images with AI. Get 3 free credits to try it out!",
+        "signIn": "Sign In",
+        "signUp": "Sign Up Free",
+        "freeCredits": "3 Free Credits",
+        "noCard": "No Credit Card",
+        "cancelAnytime": "Cancel Anytime"
+      },
+      "preview": {
+        "output": "Output",
+        "original": "Original Image",
+        "enhanced": "AI Enhanced Preview",
+        "clickProcess": "Click \"Process Image\" to upscale"
+      },
+      "batch": {
+        "title": "Batch Processing",
+        "imagesCount": "{count} images • Same settings applied to all",
+        "queue": "Images Queue",
+        "processingBatch": "Processing Batch...",
+        "imageOf": "Image {current} of {total}",
+        "pending": "Pending",
+        "processingItem": "Processing...",
+        "download": "Download",
+        "enhanced": "Enhanced"
+      }
     }
   },
   "dashboard": {

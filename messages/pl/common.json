@@ -506,6 +506,70 @@
       },
       "howItWorks": { "title": "Jak Działa", "titleHighlight": "Powiększanie AI" },
       "cta": { "title": "Gotowy na Powiększenie?", "getStarted": "Zacznij Za Darmo", "startUpscaling": "Zacznij Powiększanie" }
+    },
+    "uploader": {
+      "modeToggle": {
+        "singleImage": "Pojedynczy Obraz",
+        "batchProcessing": "Przetwarzanie Wsadowe"
+      },
+      "dropZone": {
+        "uploadImage": "Prześlij Obraz",
+        "uploadMultiple": "Prześlij Wiele Obrazów",
+        "dropSingle": "lub upuść obraz w dowolnym miejscu",
+        "dropBatch": "lub upuść do 50 obrazów w dowolnym miejscu",
+        "batchInfo": "Przetwarzaj do 50 obrazów na raz",
+        "batchSettings": "Wszystkie obrazy będą używać tych samych ustawień",
+        "paste": "Wklej obraz lub URL • Ctrl + V",
+        "formats": "Obsługiwane formaty: png | jpeg | jpg | webp | heic",
+        "maxFiles": "Maksymalnie {max} obrazów dozwolonych na raz",
+        "invalidType": "{name}: Nieprawidłowy typ pliku. Obsługiwane: PNG, JPG, WEBP, HEIC, BMP",
+        "fileTooLarge": "{name}: Rozmiar pliku musi być mniejszy niż 10MB"
+      },
+      "settings": {
+        "title": "Ustawienia",
+        "batchTitle": "Ustawienia Wsadowe",
+        "upscaleTo": "Powiększ do",
+        "qualityBoost": "Boost Jakości",
+        "off": "Wył",
+        "on": "Wł"
+      },
+      "actions": {
+        "processing": "Przetwarzanie...",
+        "processImage": "Przetwórz Obraz",
+        "downloadEnhanced": "Pobierz Ulepszony Obraz",
+        "processAgain": "Przetwórz Ponownie",
+        "uploadNew": "Prześlij Nowy Obraz",
+        "downloadAll": "Pobierz Wszystkie",
+        "processAll": "Przetwórz Wszystkie {count} Obrazów",
+        "processingProgress": "Przetwarzanie {current}/{total}...",
+        "startNewBatch": "Rozpocznij Nową Partię"
+      },
+      "loginPrompt": {
+        "title": "Zaloguj się, aby Przesłać Obrazy",
+        "description": "Utwórz darmowe konto, aby zacząć powiększać obrazy z AI. Otrzymaj 3 darmowe kredyty na start!",
+        "signIn": "Zaloguj się",
+        "signUp": "Zarejestruj się Za Darmo",
+        "freeCredits": "3 Darmowe Kredyty",
+        "noCard": "Bez Karty Kredytowej",
+        "cancelAnytime": "Anuluj w Dowolnym Momencie"
+      },
+      "preview": {
+        "output": "Wynik",
+        "original": "Oryginalny Obraz",
+        "enhanced": "Podgląd Ulepszony AI",
+        "clickProcess": "Kliknij \"Przetwórz Obraz\", aby powiększyć"
+      },
+      "batch": {
+        "title": "Przetwarzanie Wsadowe",
+        "imagesCount": "{count} obrazów • Te same ustawienia dla wszystkich",
+        "queue": "Kolejka Obrazów",
+        "processingBatch": "Przetwarzanie Partii...",
+        "imageOf": "Obraz {current} z {total}",
+        "pending": "Oczekujący",
+        "processingItem": "Przetwarzanie...",
+        "download": "Pobierz",
+        "enhanced": "Ulepszony"
+      }
     }
   },
   "dashboard": {

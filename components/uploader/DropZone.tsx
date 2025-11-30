@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { useTranslations } from 'next-intl';
 
 interface DropZoneProps {
   onFilesSelected: (files: File[]) => void;
@@ -21,6 +22,7 @@ export default function DropZone({
   dragActive,
   setDragActive
 }: DropZoneProps) {
+  const t = useTranslations('toolPages.uploader.dropZone');
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -61,17 +63,17 @@ export default function DropZone({
     const maxFiles = 50;
 
     if (files.length > maxFiles) {
-      alert(`Maximum ${maxFiles} images allowed at once`);
+      alert(t('maxFiles', { max: maxFiles }));
       return [];
     }
 
     return files.filter(file => {
       if (!VALID_TYPES.includes(file.type)) {
-        alert(`${file.name}: Invalid file type. Supported: PNG, JPG, WEBP, HEIC, BMP`);
+        alert(t('invalidType', { name: file.name }));
         return false;
       }
       if (file.size > MAX_FILE_SIZE) {
-        alert(`${file.name}: File size must be less than 10MB`);
+        alert(t('fileTooLarge', { name: file.name }));
         return false;
       }
       return true;
@@ -108,23 +110,23 @@ export default function DropZone({
           htmlFor="file-upload"
           className="cursor-pointer inline-block px-8 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition mb-4"
         >
-          {batchMode ? "Upload Multiple Images" : "Upload Image"}
+          {batchMode ? t('uploadMultiple') : t('uploadImage')}
         </label>
 
         <p className="text-gray-400 mt-4">
-          {batchMode ? "or drop up to 50 images anywhere" : "or drop image anywhere"}
+          {batchMode ? t('dropBatch') : t('dropSingle')}
         </p>
 
         <div className="mt-6 text-sm text-gray-500">
           {batchMode ? (
             <>
-              <p className="mb-2">Process up to 50 images at once</p>
-              <p>All images will use the same settings</p>
+              <p className="mb-2">{t('batchInfo')}</p>
+              <p>{t('batchSettings')}</p>
             </>
           ) : (
             <>
-              <p className="mb-2">Paste image or URL • Ctrl + V</p>
-              <p>Supported formats: png | jpeg | jpg | webp | heic</p>
+              <p className="mb-2">{t('paste')}</p>
+              <p>{t('formats')}</p>
             </>
           )}
         </div>

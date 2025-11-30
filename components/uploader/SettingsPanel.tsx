@@ -1,12 +1,14 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 interface SettingsPanelProps {
   scale: number;
   setScale: (scale: number) => void;
   qualityBoost: boolean;
   setQualityBoost: (value: boolean) => void;
   disabled?: boolean;
-  title?: string;
+  isBatchMode?: boolean;
 }
 
 /**
@@ -18,14 +20,18 @@ export default function SettingsPanel({
   qualityBoost,
   setQualityBoost,
   disabled = false,
-  title = "Settings"
+  isBatchMode = false
 }: SettingsPanelProps) {
+  const t = useTranslations('toolPages.uploader.settings');
+
   return (
     <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-      <h3 className="text-lg font-semibold mb-4">{title}</h3>
+      <h3 className="text-lg font-semibold mb-4">
+        {isBatchMode ? t('batchTitle') : t('title')}
+      </h3>
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Upscale to</label>
+          <label className="block text-sm font-medium mb-2">{t('upscaleTo')}</label>
           <select
             className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-base font-medium"
             value={scale}
@@ -40,7 +46,7 @@ export default function SettingsPanel({
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Quality Boost</label>
+          <label className="block text-sm font-medium mb-2">{t('qualityBoost')}</label>
           <div className="flex gap-2">
             <button
               onClick={() => setQualityBoost(false)}
@@ -51,7 +57,7 @@ export default function SettingsPanel({
                   : "bg-gray-800 text-gray-400 border border-gray-700"
               }`}
             >
-              Off
+              {t('off')}
             </button>
             <button
               onClick={() => setQualityBoost(true)}
@@ -62,7 +68,7 @@ export default function SettingsPanel({
                   : "bg-gray-800 text-gray-400 border border-gray-700"
               }`}
             >
-              On
+              {t('on')}
             </button>
           </div>
         </div>

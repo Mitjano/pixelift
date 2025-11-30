@@ -1,6 +1,7 @@
 "use client";
 
 import { FaInfoCircle } from "react-icons/fa";
+import { useTranslations } from 'next-intl';
 import ImageComparison from "../ImageComparison";
 import { ImageInfo } from "./types";
 
@@ -24,6 +25,8 @@ export default function ImagePreview({
   processing,
   progress
 }: ImagePreviewProps) {
+  const t = useTranslations('toolPages.uploader.preview');
+
   return (
     <>
       {/* Image Info */}
@@ -36,7 +39,7 @@ export default function ImagePreview({
           <span>•</span>
           <span>{(imageInfo.size / 1024 / 1024).toFixed(2)} MB</span>
           <span>•</span>
-          <span>Output: {imageInfo.width * scale} × {imageInfo.height * scale} px</span>
+          <span>{t('output')}: {imageInfo.width * scale} × {imageInfo.height * scale} px</span>
         </div>
       )}
 
@@ -53,7 +56,7 @@ export default function ImagePreview({
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-sm font-medium text-gray-400 mb-3">
-                Original Image
+                {t('original')}
               </h3>
               <img
                 src={previewUrl || undefined}
@@ -63,7 +66,7 @@ export default function ImagePreview({
             </div>
             <div>
               <h3 className="text-sm font-medium text-gray-400 mb-3">
-                AI Enhanced Preview
+                {t('enhanced')}
               </h3>
               <div className="w-full aspect-square bg-gray-700 rounded-lg border border-gray-600 flex items-center justify-center">
                 {processing ? (
@@ -72,7 +75,7 @@ export default function ImagePreview({
                     <p className="text-gray-400">{progress}</p>
                   </div>
                 ) : (
-                  <p className="text-gray-500">Click &quot;Process Image&quot; to upscale</p>
+                  <p className="text-gray-500">{t('clickProcess')}</p>
                 )}
               </div>
             </div>

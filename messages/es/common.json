@@ -506,6 +506,70 @@
       },
       "howItWorks": { "title": "Cómo Funciona", "titleHighlight": "el Escalado AI" },
       "cta": { "title": "¿Listo para Escalar?", "getStarted": "Empieza Gratis", "startUpscaling": "Comenzar Escalado" }
+    },
+    "uploader": {
+      "modeToggle": {
+        "singleImage": "Imagen Individual",
+        "batchProcessing": "Procesamiento por Lotes"
+      },
+      "dropZone": {
+        "uploadImage": "Subir Imagen",
+        "uploadMultiple": "Subir Múltiples Imágenes",
+        "dropSingle": "o suelta la imagen en cualquier lugar",
+        "dropBatch": "o suelta hasta 50 imágenes en cualquier lugar",
+        "batchInfo": "Procesa hasta 50 imágenes a la vez",
+        "batchSettings": "Todas las imágenes usarán la misma configuración",
+        "paste": "Pegar imagen o URL • Ctrl + V",
+        "formats": "Formatos soportados: png | jpeg | jpg | webp | heic",
+        "maxFiles": "Máximo {max} imágenes permitidas a la vez",
+        "invalidType": "{name}: Tipo de archivo inválido. Soportados: PNG, JPG, WEBP, HEIC, BMP",
+        "fileTooLarge": "{name}: El tamaño del archivo debe ser menor a 10MB"
+      },
+      "settings": {
+        "title": "Configuración",
+        "batchTitle": "Configuración por Lotes",
+        "upscaleTo": "Escalar a",
+        "qualityBoost": "Mejora de Calidad",
+        "off": "Desactivado",
+        "on": "Activado"
+      },
+      "actions": {
+        "processing": "Procesando...",
+        "processImage": "Procesar Imagen",
+        "downloadEnhanced": "Descargar Imagen Mejorada",
+        "processAgain": "Procesar de Nuevo",
+        "uploadNew": "Subir Nueva Imagen",
+        "downloadAll": "Descargar Todo",
+        "processAll": "Procesar las {count} Imágenes",
+        "processingProgress": "Procesando {current}/{total}...",
+        "startNewBatch": "Iniciar Nuevo Lote"
+      },
+      "loginPrompt": {
+        "title": "Inicia Sesión para Subir Imágenes",
+        "description": "Crea una cuenta gratuita para empezar a escalar tus imágenes con IA. ¡Obtén 3 créditos gratis para probarlo!",
+        "signIn": "Iniciar Sesión",
+        "signUp": "Registrarse Gratis",
+        "freeCredits": "3 Créditos Gratis",
+        "noCard": "Sin Tarjeta de Crédito",
+        "cancelAnytime": "Cancela en Cualquier Momento"
+      },
+      "preview": {
+        "output": "Resultado",
+        "original": "Imagen Original",
+        "enhanced": "Vista Previa Mejorada con IA",
+        "clickProcess": "Haz clic en \"Procesar Imagen\" para escalar"
+      },
+      "batch": {
+        "title": "Procesamiento por Lotes",
+        "imagesCount": "{count} imágenes • Misma configuración para todas",
+        "queue": "Cola de Imágenes",
+        "processingBatch": "Procesando Lote...",
+        "imageOf": "Imagen {current} de {total}",
+        "pending": "Pendiente",
+        "processingItem": "Procesando...",
+        "download": "Descargar",
+        "enhanced": "Mejorada"
+      }
     }
   },
   "dashboard": {

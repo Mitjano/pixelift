@@ -1,6 +1,7 @@
 "use client";
 
 import { FaTimes } from "react-icons/fa";
+import { useTranslations } from 'next-intl';
 import { BatchImageItem } from "./types";
 
 interface BatchImageGridProps {
@@ -19,9 +20,11 @@ export default function BatchImageGrid({
   processing,
   onRemove
 }: BatchImageGridProps) {
+  const t = useTranslations('toolPages.uploader.batch');
+
   return (
     <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-      <h3 className="text-lg font-semibold mb-4">Images Queue</h3>
+      <h3 className="text-lg font-semibold mb-4">{t('queue')}</h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[600px] overflow-y-auto">
         {images.map((item) => (
           <BatchImageCard
@@ -92,11 +95,13 @@ function BatchImageCard({ item, scale, processing, onRemove }: BatchImageCardPro
 }
 
 function StatusBadge({ item, scale }: { item: BatchImageItem; scale: number }) {
+  const t = useTranslations('toolPages.uploader.batch');
+
   switch (item.status) {
     case 'pending':
-      return <span className="text-xs text-gray-400">⏳ Pending</span>;
+      return <span className="text-xs text-gray-400">⏳ {t('pending')}</span>;
     case 'processing':
-      return <span className="text-xs text-blue-400">⚙️ Processing...</span>;
+      return <span className="text-xs text-blue-400">⚙️ {t('processingItem')}</span>;
     case 'completed':
       return item.upscaledUrl ? (
         <a
@@ -104,7 +109,7 @@ function StatusBadge({ item, scale }: { item: BatchImageItem; scale: number }) {
           download={`pixelift_${scale}x_${item.file.name}`}
           className="text-xs text-green-400 hover:underline flex items-center gap-1"
         >
-          ✅ Download
+          ✅ {t('download')}
         </a>
       ) : null;
     case 'error':

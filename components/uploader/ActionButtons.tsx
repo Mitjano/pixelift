@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 interface SingleModeButtonsProps {
   mode: 'single';
   processing: boolean;
@@ -40,6 +42,8 @@ function SingleButtons({
   onDownload,
   onReset
 }: SingleModeButtonsProps) {
+  const t = useTranslations('toolPages.uploader.actions');
+
   return (
     <div className="flex items-center justify-center gap-4 flex-wrap">
       {!hasResult ? (
@@ -48,7 +52,7 @@ function SingleButtons({
           disabled={processing}
           className="px-12 py-5 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-xl font-bold text-xl transition shadow-xl shadow-green-500/30"
         >
-          {processing ? "Processing..." : "Process Image"}
+          {processing ? t('processing') : t('processImage')}
         </button>
       ) : (
         <>
@@ -57,14 +61,14 @@ function SingleButtons({
             className="px-8 py-4 bg-green-500 hover:bg-green-600 rounded-lg font-semibold text-lg transition flex items-center gap-2 shadow-lg shadow-green-500/20"
           >
             <DownloadIcon />
-            Download Enhanced Image
+            {t('downloadEnhanced')}
           </button>
           <button
             onClick={onProcess}
             disabled={processing}
             className="px-6 py-4 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition"
           >
-            🔄 Process Again
+            🔄 {t('processAgain')}
           </button>
         </>
       )}
@@ -73,7 +77,7 @@ function SingleButtons({
         disabled={processing}
         className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
       >
-        Upload New Image
+        {t('uploadNew')}
       </button>
     </div>
   );
@@ -89,6 +93,8 @@ function BatchButtons({
   onDownloadAll,
   onReset
 }: BatchModeButtonsProps) {
+  const t = useTranslations('toolPages.uploader.actions');
+
   return (
     <div className="flex items-center justify-center gap-4 flex-wrap">
       {completedCount > 0 && (
@@ -97,7 +103,7 @@ function BatchButtons({
           disabled={processing}
           className="px-8 py-4 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition shadow-lg shadow-green-500/20"
         >
-          Download All ({completedCount})
+          {t('downloadAll')} ({completedCount})
         </button>
       )}
 
@@ -107,8 +113,8 @@ function BatchButtons({
         className="px-8 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition shadow-lg shadow-blue-500/20"
       >
         {processing
-          ? `Processing ${currentProgress}/${totalProgress}...`
-          : `Process All ${totalImages} Images`}
+          ? t('processingProgress', { current: currentProgress, total: totalProgress })
+          : t('processAll', { count: totalImages })}
       </button>
 
       <button
@@ -116,7 +122,7 @@ function BatchButtons({
         disabled={processing}
         className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
       >
-        Start New Batch
+        {t('startNewBatch')}
       </button>
     </div>
   );

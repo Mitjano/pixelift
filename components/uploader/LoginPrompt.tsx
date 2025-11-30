@@ -1,9 +1,13 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 /**
  * Login prompt shown to unauthenticated users
  */
 export default function LoginPrompt() {
+  const t = useTranslations('toolPages.uploader.loginPrompt');
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 bg-gray-800/30">
@@ -23,28 +27,28 @@ export default function LoginPrompt() {
               />
             </svg>
           </div>
-          <h3 className="text-2xl font-bold mb-3">Sign in to Upload Images</h3>
+          <h3 className="text-2xl font-bold mb-3">{t('title')}</h3>
           <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Create a free account to start upscaling your images with AI. Get 3 free credits to try it out!
+            {t('description')}
           </p>
           <div className="flex gap-4 justify-center">
             <a
               href="/auth/signin"
               className="inline-block px-8 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition"
             >
-              Sign In
+              {t('signIn')}
             </a>
             <a
               href="/auth/signup"
               className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition"
             >
-              Sign Up Free
+              {t('signUp')}
             </a>
           </div>
           <div className="mt-8 flex items-center justify-center gap-6 text-sm text-gray-500">
-            <FeatureBadge text="3 Free Credits" />
-            <FeatureBadge text="No Credit Card" />
-            <FeatureBadge text="Cancel Anytime" />
+            <FeatureBadge text={t('freeCredits')} />
+            <FeatureBadge text={t('noCard')} />
+            <FeatureBadge text={t('cancelAnytime')} />
           </div>
         </div>
       </div>

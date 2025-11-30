@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
+import { useTranslations } from 'next-intl';
 import { FaTimes } from "react-icons/fa";
 import {
   LoginPrompt,
@@ -16,6 +17,7 @@ import {
 } from "./uploader";
 
 export default function EnhancedImageUploader() {
+  const t = useTranslations('toolPages.uploader.batch');
   const { data: session } = useSession();
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -288,9 +290,9 @@ export default function EnhancedImageUploader() {
           {/* Batch Mode Header */}
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-2xl font-bold">Batch Processing</h2>
+              <h2 className="text-2xl font-bold">{t('title')}</h2>
               <p className="text-gray-400 text-sm mt-1">
-                {batchImages.length} images • Same settings applied to all
+                {t('imagesCount', { count: batchImages.length })}
               </p>
             </div>
             <button
@@ -317,9 +319,9 @@ export default function EnhancedImageUploader() {
               <div className="flex items-center gap-4">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
                 <div>
-                  <p className="font-semibold">Processing Batch...</p>
+                  <p className="font-semibold">{t('processingBatch')}</p>
                   <p className="text-sm text-gray-400">
-                    Image {batchProgress.current} of {batchProgress.total}
+                    {t('imageOf', { current: batchProgress.current, total: batchProgress.total })}
                   </p>
                 </div>
               </div>
@@ -344,7 +346,7 @@ export default function EnhancedImageUploader() {
               qualityBoost={qualityBoost}
               setQualityBoost={setQualityBoost}
               disabled={processingBatch}
-              title="Batch Settings"
+              isBatchMode={true}
             />
           )}
 

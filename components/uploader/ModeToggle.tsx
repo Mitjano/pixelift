@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 interface ModeToggleProps {
   batchMode: boolean;
   setBatchMode: (value: boolean) => void;
@@ -9,6 +11,8 @@ interface ModeToggleProps {
  * Toggle between single and batch processing modes
  */
 export default function ModeToggle({ batchMode, setBatchMode }: ModeToggleProps) {
+  const t = useTranslations('toolPages.uploader.modeToggle');
+
   return (
     <div className="flex justify-center mb-6">
       <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-1 flex gap-1">
@@ -20,7 +24,7 @@ export default function ModeToggle({ batchMode, setBatchMode }: ModeToggleProps)
               : "text-gray-400 hover:text-white"
           }`}
         >
-          Single Image
+          {t('singleImage')}
         </button>
         <button
           onClick={() => setBatchMode(true)}
@@ -30,7 +34,7 @@ export default function ModeToggle({ batchMode, setBatchMode }: ModeToggleProps)
               : "text-gray-400 hover:text-white"
           }`}
         >
-          Batch Processing
+          {t('batchProcessing')}
         </button>
       </div>
     </div>
