@@ -1270,5 +1270,93 @@
       "imagesEnhanced": "Images Améliorées",
       "userRating": "Note Utilisateurs"
     }
+  },
+  "backgroundGeneratorPage": {
+    "badge": "Propulsé par BRIA AI",
+    "title": "Générateur de Fonds IA",
+    "subtitle": "Générez des fonds IA époustouflants pour vos photos de produits et portraits. Décrivez le fond souhaité et laissez l'IA le créer autour de votre sujet.",
+    "stats": {
+      "custom": "Personnalisé",
+      "backgrounds": "Fonds",
+      "processing": "Traitement",
+      "credits": "3 Crédits",
+      "perGeneration": "Par Génération"
+    },
+    "creditsRemaining": "{count} crédits restants",
+    "termsNotice": "En téléchargeant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.",
+    "features": {
+      "describe": {
+        "title": "Décrivez N'importe Quel Fond",
+        "description": "Utilisez le langage naturel pour décrire le fond que vous imaginez - l'IA le réalise."
+      },
+      "integration": {
+        "title": "Intégration Parfaite",
+        "description": "L'IA fusionne naturellement votre sujet avec le fond généré de manière transparente."
+      },
+      "presets": {
+        "title": "Préréglages Rapides",
+        "description": "Choisissez parmi studio, nature, urbain et autres fonds prédéfinis pour des résultats instantanés."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne la Génération de Fonds",
+      "step1": {
+        "title": "Téléchargez l'Image",
+        "description": "Téléchargez une image avec fond transparent ou supprimé"
+      },
+      "step2": {
+        "title": "Décrivez le Fond",
+        "description": "Choisissez un préréglage ou décrivez le fond désiré en mots"
+      },
+      "step3": {
+        "title": "Téléchargez le Résultat",
+        "description": "L'IA génère le fond et l'intègre naturellement"
+      }
+    },
+    "proTip": {
+      "title": "Astuce Pro: Flux de Travail Complet",
+      "description": "Pour de meilleurs résultats, utilisez ce flux de travail:",
+      "step1": "1. Supprimer le Fond",
+      "step2": "2. Générer un Nouveau Fond",
+      "step3": "3. Agrandir le Résultat"
+    },
+    "useCases": {
+      "title": "Parfait Pour",
+      "ecommerce": {
+        "title": "Produits E-commerce",
+        "description": "Créez des fonds de studio professionnels pour les photos de produits sans séances photo coûteuses."
+      },
+      "portraits": {
+        "title": "Photographie de Portrait",
+        "description": "Transformez les portraits avec de beaux fonds de studio, nature ou urbains."
+      },
+      "social": {
+        "title": "Contenu Réseaux Sociaux",
+        "description": "Créez des publications accrocheuses avec des fonds uniques générés par l'IA."
+      }
+    },
+    "tips": {
+      "title": "Conseils pour de Meilleurs Résultats",
+      "imagePrep": {
+        "title": "Préparation de l'Image",
+        "tip1": "Utilisez un PNG transparent pour de meilleurs résultats",
+        "tip2": "Supprimez d'abord le fond avec notre outil",
+        "tip3": "Les images haute résolution produisent de meilleurs résultats",
+        "tip4": "Les découpes nettes avec des bords lisses fonctionnent mieux"
+      },
+      "prompts": {
+        "title": "Conseils pour les Prompts",
+        "tip1": "Soyez précis sur l'éclairage (doux, dramatique, naturel)",
+        "tip2": "Décrivez le style (professionnel, artistique, minimaliste)",
+        "tip3": "Incluez les préférences de couleur dans votre prompt",
+        "tip4": "Utilisez \"affiner le prompt\" pour des descriptions améliorées par l'IA"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Créer des Fonds Époustouflants?",
+      "subtitle": "Transformez vos images avec des fonds générés par l'IA qui correspondent parfaitement à votre vision.",
+      "getCredits": "Obtenir des Crédits",
+      "exploreTools": "Explorer Tous les Outils"
+    }
   }
 }

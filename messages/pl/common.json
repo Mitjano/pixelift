@@ -1187,5 +1187,93 @@
       "imagesEnhanced": "Ulepszonych Obrazów",
       "userRating": "Ocena Użytkowników"
     }
+  },
+  "backgroundGeneratorPage": {
+    "badge": "Napędzane przez BRIA AI",
+    "title": "Generator Tła AI",
+    "subtitle": "Generuj oszałamiające tła AI dla zdjęć produktów i portretów. Opisz tło, które chcesz, a AI stworzy je wokół Twojego obiektu.",
+    "stats": {
+      "custom": "Własne",
+      "backgrounds": "Tła",
+      "processing": "Przetwarzanie",
+      "credits": "3 Kredyty",
+      "perGeneration": "Za Generację"
+    },
+    "creditsRemaining": "Pozostało {count} kredytów",
+    "termsNotice": "Przesyłając plik, akceptujesz nasze Warunki Użytkowania i Politykę Prywatności.",
+    "features": {
+      "describe": {
+        "title": "Opisz Dowolne Tło",
+        "description": "Użyj naturalnego języka, aby opisać wymarzone tło - AI je urzeczywistni."
+      },
+      "integration": {
+        "title": "Idealna Integracja",
+        "description": "AI naturalnie łączy Twój obiekt z wygenerowanym tłem bezszwowo."
+      },
+      "presets": {
+        "title": "Szybkie Presety",
+        "description": "Wybierz spośród studia, natury, miejskich i innych presetów tła dla natychmiastowych rezultatów."
+      }
+    },
+    "howItWorks": {
+      "title": "Jak Działa Generowanie Tła",
+      "step1": {
+        "title": "Prześlij Obraz",
+        "description": "Prześlij obraz z przezroczystym lub usuniętym tłem"
+      },
+      "step2": {
+        "title": "Opisz Tło",
+        "description": "Wybierz preset lub opisz pożądane tło słowami"
+      },
+      "step3": {
+        "title": "Pobierz Wynik",
+        "description": "AI generuje tło i łączy je naturalnie"
+      }
+    },
+    "proTip": {
+      "title": "Porada Pro: Kompletny Przepływ Pracy",
+      "description": "Dla najlepszych rezultatów, użyj tego przepływu pracy:",
+      "step1": "1. Usuń Tło",
+      "step2": "2. Wygeneruj Nowe Tło",
+      "step3": "3. Powiększ Wynik"
+    },
+    "useCases": {
+      "title": "Idealne Dla",
+      "ecommerce": {
+        "title": "Produkty E-commerce",
+        "description": "Twórz profesjonalne studyjne tła dla zdjęć produktów bez kosztownych sesji zdjęciowych."
+      },
+      "portraits": {
+        "title": "Fotografia Portretowa",
+        "description": "Przekształcaj portrety z pięknymi studyjnymi, naturalnymi lub miejskimi tłami."
+      },
+      "social": {
+        "title": "Treści Social Media",
+        "description": "Twórz przyciągające uwagę posty z unikalnymi tłami generowanymi przez AI."
+      }
+    },
+    "tips": {
+      "title": "Wskazówki dla Najlepszych Rezultatów",
+      "imagePrep": {
+        "title": "Przygotowanie Obrazu",
+        "tip1": "Użyj przezroczystego PNG dla najlepszych rezultatów",
+        "tip2": "Najpierw usuń tło używając naszego narzędzia",
+        "tip3": "Obrazy o wyższej rozdzielczości dają lepsze rezultaty",
+        "tip4": "Czyste wycięcia z gładkimi krawędziami działają najlepiej"
+      },
+      "prompts": {
+        "title": "Wskazówki Dotyczące Promptów",
+        "tip1": "Bądź konkretny co do oświetlenia (miękkie, dramatyczne, naturalne)",
+        "tip2": "Opisz styl (profesjonalny, artystyczny, minimalistyczny)",
+        "tip3": "Uwzględnij preferencje kolorystyczne w promptcie",
+        "tip4": "Użyj \"dopracuj prompt\" dla opisów ulepszonych przez AI"
+      }
+    },
+    "cta": {
+      "title": "Gotowy Tworzyć Oszałamiające Tła?",
+      "subtitle": "Przekształcaj swoje obrazy z tłami generowanymi przez AI, które idealnie pasują do Twojej wizji.",
+      "getCredits": "Zdobądź Kredyty",
+      "exploreTools": "Odkryj Wszystkie Narzędzia"
+    }
   }
 }

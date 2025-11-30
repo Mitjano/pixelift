@@ -1187,5 +1187,93 @@
       "imagesEnhanced": "Images Enhanced",
       "userRating": "User Rating"
     }
+  },
+  "backgroundGeneratorPage": {
+    "badge": "Powered by BRIA AI",
+    "title": "AI Background Generator",
+    "subtitle": "Generate stunning AI backgrounds for your product photos and portraits. Describe the background you want and let AI create it around your subject.",
+    "stats": {
+      "custom": "Custom",
+      "backgrounds": "Backgrounds",
+      "processing": "Processing",
+      "credits": "3 Credits",
+      "perGeneration": "Per Generation"
+    },
+    "creditsRemaining": "{count} credits remaining",
+    "termsNotice": "By uploading a file you agree to our Terms of Use and Privacy Policy.",
+    "features": {
+      "describe": {
+        "title": "Describe Any Background",
+        "description": "Use natural language to describe the background you envision - AI makes it real."
+      },
+      "integration": {
+        "title": "Perfect Integration",
+        "description": "AI blends your subject naturally with the generated background seamlessly."
+      },
+      "presets": {
+        "title": "Quick Presets",
+        "description": "Choose from studio, nature, urban, and other preset backgrounds for instant results."
+      }
+    },
+    "howItWorks": {
+      "title": "How Background Generation Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Upload an image with transparent or removed background"
+      },
+      "step2": {
+        "title": "Describe Background",
+        "description": "Choose a preset or describe your desired background in words"
+      },
+      "step3": {
+        "title": "Download Result",
+        "description": "AI generates the background and blends it naturally"
+      }
+    },
+    "proTip": {
+      "title": "Pro Tip: Complete Workflow",
+      "description": "For best results, use this workflow:",
+      "step1": "1. Remove Background",
+      "step2": "2. Generate New Background",
+      "step3": "3. Upscale Result"
+    },
+    "useCases": {
+      "title": "Perfect For",
+      "ecommerce": {
+        "title": "E-commerce Products",
+        "description": "Create professional studio backgrounds for product photos without expensive photoshoots."
+      },
+      "portraits": {
+        "title": "Portrait Photography",
+        "description": "Transform portraits with beautiful studio, nature, or urban backgrounds."
+      },
+      "social": {
+        "title": "Social Media Content",
+        "description": "Create eye-catching posts with unique AI-generated backgrounds."
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "imagePrep": {
+        "title": "Image Preparation",
+        "tip1": "Use transparent PNG for best results",
+        "tip2": "Remove background first using our tool",
+        "tip3": "Higher resolution images produce better results",
+        "tip4": "Clean cutouts with smooth edges work best"
+      },
+      "prompts": {
+        "title": "Prompt Tips",
+        "tip1": "Be specific about lighting (soft, dramatic, natural)",
+        "tip2": "Describe the style (professional, artistic, minimal)",
+        "tip3": "Include color preferences in your prompt",
+        "tip4": "Use \"refine prompt\" for AI-enhanced descriptions"
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Stunning Backgrounds?",
+      "subtitle": "Transform your images with AI-generated backgrounds that perfectly match your vision.",
+      "getCredits": "Get Credits",
+      "exploreTools": "Explore All Tools"
+    }
   }
 }

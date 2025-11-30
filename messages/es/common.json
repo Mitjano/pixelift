@@ -1187,5 +1187,93 @@
       "imagesEnhanced": "Imágenes Mejoradas",
       "userRating": "Calificación de Usuarios"
     }
+  },
+  "backgroundGeneratorPage": {
+    "badge": "Impulsado por BRIA AI",
+    "title": "Generador de Fondos IA",
+    "subtitle": "Genera fondos IA impresionantes para tus fotos de productos y retratos. Describe el fondo que deseas y deja que la IA lo cree alrededor de tu sujeto.",
+    "stats": {
+      "custom": "Personalizado",
+      "backgrounds": "Fondos",
+      "processing": "Procesamiento",
+      "credits": "3 Créditos",
+      "perGeneration": "Por Generación"
+    },
+    "creditsRemaining": "{count} créditos restantes",
+    "termsNotice": "Al subir un archivo aceptas nuestros Términos de Uso y Política de Privacidad.",
+    "features": {
+      "describe": {
+        "title": "Describe Cualquier Fondo",
+        "description": "Usa lenguaje natural para describir el fondo que imaginas - la IA lo hace realidad."
+      },
+      "integration": {
+        "title": "Integración Perfecta",
+        "description": "La IA combina tu sujeto naturalmente con el fondo generado de forma impecable."
+      },
+      "presets": {
+        "title": "Presets Rápidos",
+        "description": "Elige entre estudio, naturaleza, urbano y otros fondos preestablecidos para resultados instantáneos."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona la Generación de Fondos",
+      "step1": {
+        "title": "Sube Imagen",
+        "description": "Sube una imagen con fondo transparente o eliminado"
+      },
+      "step2": {
+        "title": "Describe el Fondo",
+        "description": "Elige un preset o describe el fondo deseado con palabras"
+      },
+      "step3": {
+        "title": "Descarga Resultado",
+        "description": "La IA genera el fondo y lo combina naturalmente"
+      }
+    },
+    "proTip": {
+      "title": "Consejo Pro: Flujo de Trabajo Completo",
+      "description": "Para mejores resultados, usa este flujo de trabajo:",
+      "step1": "1. Eliminar Fondo",
+      "step2": "2. Generar Nuevo Fondo",
+      "step3": "3. Ampliar Resultado"
+    },
+    "useCases": {
+      "title": "Perfecto Para",
+      "ecommerce": {
+        "title": "Productos E-commerce",
+        "description": "Crea fondos de estudio profesionales para fotos de productos sin costosas sesiones fotográficas."
+      },
+      "portraits": {
+        "title": "Fotografía de Retratos",
+        "description": "Transforma retratos con hermosos fondos de estudio, naturaleza o urbanos."
+      },
+      "social": {
+        "title": "Contenido para Redes Sociales",
+        "description": "Crea publicaciones llamativas con fondos únicos generados por IA."
+      }
+    },
+    "tips": {
+      "title": "Consejos para Mejores Resultados",
+      "imagePrep": {
+        "title": "Preparación de Imagen",
+        "tip1": "Usa PNG transparente para mejores resultados",
+        "tip2": "Primero elimina el fondo usando nuestra herramienta",
+        "tip3": "Imágenes de mayor resolución producen mejores resultados",
+        "tip4": "Recortes limpios con bordes suaves funcionan mejor"
+      },
+      "prompts": {
+        "title": "Consejos de Prompts",
+        "tip1": "Sé específico sobre la iluminación (suave, dramática, natural)",
+        "tip2": "Describe el estilo (profesional, artístico, minimalista)",
+        "tip3": "Incluye preferencias de color en tu prompt",
+        "tip4": "Usa \"refinar prompt\" para descripciones mejoradas por IA"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Crear Fondos Impresionantes?",
+      "subtitle": "Transforma tus imágenes con fondos generados por IA que coinciden perfectamente con tu visión.",
+      "getCredits": "Obtener Créditos",
+      "exploreTools": "Explorar Todas las Herramientas"
+    }
   }
 }
