@@ -17,7 +17,7 @@ import {
 } from "./uploader";
 
 export default function EnhancedImageUploader() {
-  const t = useTranslations('toolPages.uploader.batch');
+  const t = useTranslations('toolsPage.uploader.batch');
   const { data: session } = useSession();
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);

@@ -42,7 +42,7 @@ function SingleButtons({
   onDownload,
   onReset
 }: SingleModeButtonsProps) {
-  const t = useTranslations('toolPages.uploader.actions');
+  const t = useTranslations('toolsPage.uploader.actions');
 
   return (
     <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -93,7 +93,7 @@ function BatchButtons({
   onDownloadAll,
   onReset
 }: BatchModeButtonsProps) {
-  const t = useTranslations('toolPages.uploader.actions');
+  const t = useTranslations('toolsPage.uploader.actions');
 
   return (
     <div className="flex items-center justify-center gap-4 flex-wrap">

@@ -22,7 +22,7 @@ export default function SettingsPanel({
   disabled = false,
   isBatchMode = false
 }: SettingsPanelProps) {
-  const t = useTranslations('toolPages.uploader.settings');
+  const t = useTranslations('toolsPage.uploader.settings');
 
   return (
     <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">

@@ -25,7 +25,7 @@ export default function ImagePreview({
   processing,
   progress
 }: ImagePreviewProps) {
-  const t = useTranslations('toolPages.uploader.preview');
+  const t = useTranslations('toolsPage.uploader.preview');
 
   return (
     <>

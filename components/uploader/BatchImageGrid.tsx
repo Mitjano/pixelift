@@ -20,7 +20,7 @@ export default function BatchImageGrid({
   processing,
   onRemove
 }: BatchImageGridProps) {
-  const t = useTranslations('toolPages.uploader.batch');
+  const t = useTranslations('toolsPage.uploader.batch');
 
   return (
     <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
@@ -95,7 +95,7 @@ function BatchImageCard({ item, scale, processing, onRemove }: BatchImageCardPro
 }
 
 function StatusBadge({ item, scale }: { item: BatchImageItem; scale: number }) {
-  const t = useTranslations('toolPages.uploader.batch');
+  const t = useTranslations('toolsPage.uploader.batch');
 
   switch (item.status) {
     case 'pending':

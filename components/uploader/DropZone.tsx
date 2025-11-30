@@ -22,7 +22,7 @@ export default function DropZone({
   dragActive,
   setDragActive
 }: DropZoneProps) {
-  const t = useTranslations('toolPages.uploader.dropZone');
+  const t = useTranslations('toolsPage.uploader.dropZone');
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();

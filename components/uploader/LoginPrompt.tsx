@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
  * Login prompt shown to unauthenticated users
  */
 export default function LoginPrompt() {
-  const t = useTranslations('toolPages.uploader.loginPrompt');
+  const t = useTranslations('toolsPage.uploader.loginPrompt');
 
   return (
     <div className="max-w-6xl mx-auto">

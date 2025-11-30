@@ -11,7 +11,7 @@ interface ModeToggleProps {
  * Toggle between single and batch processing modes
  */
 export default function ModeToggle({ batchMode, setBatchMode }: ModeToggleProps) {
-  const t = useTranslations('toolPages.uploader.modeToggle');
+  const t = useTranslations('toolsPage.uploader.modeToggle');
 
   return (
     <div className="flex justify-center mb-6">
