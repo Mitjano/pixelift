@@ -60,7 +60,7 @@ export default async function KnowledgePage({ params }: PageProps) {
             return (
               <Link
                 key={cat.id}
-                href={`/knowledge/category/${cat.id}`}
+                href={`/${locale}/knowledge/category/${cat.id}`}
                 className="group bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10"
               >
                 <div className="flex items-center gap-4 mb-3">
@@ -89,7 +89,7 @@ export default async function KnowledgePage({ params }: PageProps) {
                 return (
                   <Link
                     key={article.id}
-                    href={`/knowledge/${article.slug}`}
+                    href={`/${locale}/knowledge/${article.slug}`}
                     className="group bg-gray-800 border border-gray-700 rounded-xl overflow-hidden hover:border-purple-500 transition-all duration-300"
                   >
                     {article.featuredImage && (

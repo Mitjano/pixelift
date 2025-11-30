@@ -53,12 +53,12 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Breadcrumb */}
           <div className="mb-6 flex items-center gap-2 text-sm">
-            <Link href="/knowledge" className="text-purple-400 hover:text-purple-300">
+            <Link href={`/${locale}/knowledge`} className="text-purple-400 hover:text-purple-300">
               {t('breadcrumbKnowledge')}
             </Link>
             <span className="text-gray-600">/</span>
             <Link
-              href={`/knowledge/category/${article.category}`}
+              href={`/${locale}/knowledge/category/${article.category}`}
               className="text-purple-400 hover:text-purple-300"
             >
               {categoryName}
@@ -122,7 +122,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
             {article.tags.map((tag) => (
               <Link
                 key={tag}
-                href={`/knowledge/tag/${encodeURIComponent(tag)}`}
+                href={`/${locale}/knowledge/tag/${encodeURIComponent(tag)}`}
                 className="px-3 py-1 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg text-sm hover:bg-purple-600 hover:border-purple-600 hover:text-white transition-colors"
               >
                 #{tag}
@@ -143,7 +143,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
               return (
                 <Link
                   key={related.id}
-                  href={`/knowledge/${related.slug}`}
+                  href={`/${locale}/knowledge/${related.slug}`}
                   className="group bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-purple-500 transition"
                 >
                   <div className="flex items-center gap-2 mb-2">
@@ -163,7 +163,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
       {/* Back to Knowledge */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-16">
         <Link
-          href="/knowledge"
+          href={`/${locale}/knowledge`}
           className="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition"
         >
           ← {t('backToKnowledge')}

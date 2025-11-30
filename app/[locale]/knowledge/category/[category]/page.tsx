@@ -53,7 +53,7 @@ export default async function KnowledgeCategoryPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Breadcrumb */}
           <div className="mb-6">
-            <Link href="/knowledge" className="text-purple-400 hover:text-purple-300 text-sm">
+            <Link href={`/${locale}/knowledge`} className="text-purple-400 hover:text-purple-300 text-sm">
               ← {t('backToKnowledge')}
             </Link>
           </div>
@@ -77,7 +77,7 @@ export default async function KnowledgeCategoryPage({ params }: PageProps) {
               return (
                 <Link
                   key={c.id}
-                  href={`/knowledge/category/${c.id}`}
+                  href={`/${locale}/knowledge/category/${c.id}`}
                   className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition flex items-center gap-2 ${
                     c.id === category
                       ? 'bg-purple-600 text-white'
@@ -101,7 +101,7 @@ export default async function KnowledgeCategoryPage({ params }: PageProps) {
             <h2 className="text-2xl font-semibold text-white mb-2">{t('noArticlesYet')}</h2>
             <p className="text-gray-400 mb-6">{t('workingOnContent')}</p>
             <Link
-              href="/knowledge"
+              href={`/${locale}/knowledge`}
               className="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition"
             >
               {t('browseAllCategories')}
@@ -112,7 +112,7 @@ export default async function KnowledgeCategoryPage({ params }: PageProps) {
             {articles.map((article) => (
               <Link
                 key={article.id}
-                href={`/knowledge/${article.slug}`}
+                href={`/${locale}/knowledge/${article.slug}`}
                 className="group bg-gray-800 border border-gray-700 rounded-xl overflow-hidden hover:border-purple-500 transition-all duration-300"
               >
                 {article.featuredImage && (

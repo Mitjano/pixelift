@@ -6,6 +6,7 @@ import { getTranslations } from 'next-intl/server';
 export const dynamic = 'force-dynamic';
 
 interface SearchPageProps {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ q?: string }>;
 }
 
@@ -58,9 +59,10 @@ function searchArticles(articles: KnowledgeArticle[], query: string): KnowledgeA
     .map(item => item.article);
 }
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const params = await searchParams;
-  const query = params.q || "";
+export default async function SearchPage({ params, searchParams }: SearchPageProps) {
+  const { locale } = await params;
+  const searchParamsResolved = await searchParams;
+  const query = searchParamsResolved.q || "";
   const articles = await getPublishedArticles();
   const results = searchArticles(articles, query);
 
@@ -73,7 +75,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <div className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link
-            href="/knowledge"
+            href={`/${locale}/knowledge`}
             className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +95,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           )}
 
           {/* Search Form */}
-          <form action="/knowledge/search" method="GET" className="mt-6">
+          <form action={`/${locale}/knowledge/search`} method="GET" className="mt-6">
             <div className="relative max-w-2xl">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <svg
@@ -160,7 +162,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               return (
                 <Link
                   key={article.id}
-                  href={`/knowledge/${article.slug}`}
+                  href={`/${locale}/knowledge/${article.slug}`}
                   className="group bg-gray-800 border border-gray-700 rounded-xl overflow-hidden hover:border-purple-500 transition-all duration-300"
                 >
                   {article.featuredImage && (
@@ -211,7 +213,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 return (
                   <Link
                     key={cat.id}
-                    href={`/knowledge/category/${cat.id}`}
+                    href={`/${locale}/knowledge/category/${cat.id}`}
                     className="flex items-center gap-2 p-3 bg-gray-800/50 border border-gray-700 rounded-lg hover:border-purple-500 transition-colors"
                   >
                     <span>{cat.icon}</span>

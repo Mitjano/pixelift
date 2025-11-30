@@ -47,7 +47,7 @@ export default async function KnowledgeTagPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Breadcrumb */}
           <div className="mb-6">
-            <Link href="/knowledge" className="text-purple-400 hover:text-purple-300 text-sm">
+            <Link href={`/${locale}/knowledge`} className="text-purple-400 hover:text-purple-300 text-sm">
               ← {t('backToKnowledge')}
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default async function KnowledgeTagPage({ params }: PageProps) {
             {allTags.slice(0, 15).map((tagItem) => (
               <Link
                 key={tagItem}
-                href={`/knowledge/tag/${encodeURIComponent(tagItem)}`}
+                href={`/${locale}/knowledge/tag/${encodeURIComponent(tagItem)}`}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition ${
                   tagItem.toLowerCase() === decodedTag.toLowerCase()
                     ? 'bg-purple-600 text-white'
@@ -94,7 +94,7 @@ export default async function KnowledgeTagPage({ params }: PageProps) {
             return (
               <Link
                 key={article.id}
-                href={`/knowledge/${article.slug}`}
+                href={`/${locale}/knowledge/${article.slug}`}
                 className="group bg-gray-800 border border-gray-700 rounded-xl overflow-hidden hover:border-purple-500 transition-all duration-300"
               >
                 {article.featuredImage && (

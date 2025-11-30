@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 export default function KnowledgeSearch() {
   const [query, setQuery] = useState("");
   const router = useRouter();
+  const locale = useLocale();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/knowledge/search?q=${encodeURIComponent(query.trim())}`);
+      router.push(`/${locale}/knowledge/search?q=${encodeURIComponent(query.trim())}`);
     }
   };
 
