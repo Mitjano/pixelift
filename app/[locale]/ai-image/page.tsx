@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 import Link from 'next/link';
 import { AI_MODELS, MODEL_CATEGORIES, type ModelCategory } from '@/lib/ai-image/models';
@@ -67,6 +68,7 @@ function AnimatedStat({ value, label, suffix = '' }: { value: number; label: str
 }
 
 export default function AIImagePage() {
+  const t = useTranslations('aiImagePage');
   const { data: session } = useSession();
   const [activeTab, setActiveTab] = useState<'explore' | 'my-creations'>('explore');
   const [selectedCategory, setSelectedCategory] = useState<ModelCategory>('featured');
@@ -112,22 +114,21 @@ export default function AIImagePage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-purple-300">Powered by 14+ Premium AI Models</span>
+              <span className="text-purple-300">{t('badge')}</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">Create </span>
+              <span className="text-white">{t('hero.title1')}</span>
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-                Stunning Images
+                {t('hero.titleHighlight')}
               </span>
               <br />
-              <span className="text-white">with AI</span>
+              <span className="text-white">{t('hero.title2')}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Transform your imagination into reality. Professional-grade AI image generation
-              with the world&apos;s most advanced models.
+              {t('hero.subtitle')}
             </p>
 
             {/* CTA Buttons */}
@@ -136,7 +137,7 @@ export default function AIImagePage() {
                 onClick={scrollToGenerator}
                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-xl font-semibold text-lg transition shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2"
               >
-                <span>Start Creating</span>
+                <span>{t('hero.startCreating')}</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -145,16 +146,16 @@ export default function AIImagePage() {
                 href="#gallery"
                 className="w-full sm:w-auto px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-xl font-semibold text-lg transition flex items-center justify-center gap-2"
               >
-                <span>Explore Gallery</span>
+                <span>{t('hero.exploreGallery')}</span>
                 <span>→</span>
               </a>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
-              <AnimatedStat value={14} label="AI Models" suffix="+" />
-              <AnimatedStat value={20} label="Art Styles" suffix="+" />
-              <AnimatedStat value={5000} label="Images Created" suffix="+" />
+              <AnimatedStat value={14} label={t('stats.aiModels')} suffix="+" />
+              <AnimatedStat value={20} label={t('stats.artStyles')} suffix="+" />
+              <AnimatedStat value={5000} label={t('stats.imagesCreated')} suffix="+" />
             </div>
           </div>
         </div>
@@ -169,11 +170,11 @@ export default function AIImagePage() {
       <section id="gallery" className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-white">Community </span>
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Gallery</span>
+            <span className="text-white">{t('gallery.title1')}</span>
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">{t('gallery.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Discover amazing creations from our community. Get inspired and create your own masterpieces.
+            {t('gallery.subtitle')}
           </p>
         </div>
 
@@ -189,7 +190,7 @@ export default function AIImagePage() {
               }`}
             >
               <span>🌍</span>
-              Explore
+              {t('gallery.explore')}
             </button>
             <button
               onClick={() => setActiveTab('my-creations')}
@@ -200,7 +201,7 @@ export default function AIImagePage() {
               }`}
             >
               <span>🎨</span>
-              My Creations
+              {t('gallery.myCreations')}
             </button>
           </div>
 
@@ -215,15 +216,15 @@ export default function AIImagePage() {
                   <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-700/50 flex items-center justify-center">
                     <span className="text-4xl">🔒</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Sign in to see your creations</h3>
+                  <h3 className="text-xl font-semibold mb-2">{t('gallery.signInRequired')}</h3>
                   <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                    Create an account to save, manage, and share your AI-generated masterpieces
+                    {t('gallery.signInDescription')}
                   </p>
                   <Link
                     href="/auth/signin"
                     className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-lg font-medium transition"
                   >
-                    Sign In to Continue
+                    {t('gallery.signInButton')}
                   </Link>
                 </div>
               )
@@ -236,11 +237,11 @@ export default function AIImagePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-white">Premium </span>
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">AI Models</span>
+            <span className="text-white">{t('models.title1')}</span>
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">{t('models.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Access the world&apos;s most advanced image generation models. From ultra-fast to ultra-quality.
+            {t('models.subtitle')}
           </p>
         </div>
 
@@ -289,7 +290,7 @@ export default function AIImagePage() {
                 </div>
                 <div className="text-right">
                   <div className="text-purple-400 font-semibold">{model.credits}</div>
-                  <div className="text-xs text-gray-500">credits</div>
+                  <div className="text-xs text-gray-500">{t('models.credits')}</div>
                 </div>
               </div>
               <p className="text-sm text-gray-400 mb-3 line-clamp-2">{model.description}</p>
@@ -309,7 +310,7 @@ export default function AIImagePage() {
             onClick={scrollToGenerator}
             className="px-6 py-3 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/50 rounded-lg text-purple-400 hover:text-purple-300 font-medium transition flex items-center gap-2 mx-auto"
           >
-            Try all {AI_MODELS.length} models
+            {t('models.tryAllModels', { count: AI_MODELS.length })}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
@@ -322,11 +323,11 @@ export default function AIImagePage() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">20+ </span>
-              <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Art Styles</span>
+              <span className="text-white">{t('styles.title1')}</span>
+              <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">{t('styles.titleHighlight')}</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              From photorealistic to anime, cinematic to pixel art. One click to transform your vision.
+              {t('styles.subtitle')}
             </p>
           </div>
 
@@ -349,7 +350,7 @@ export default function AIImagePage() {
               onClick={scrollToGenerator}
               className="px-6 py-3 bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/50 rounded-lg text-orange-400 hover:text-orange-300 font-medium transition flex items-center gap-2 mx-auto"
             >
-              Explore all {IMAGE_STYLES.length - 1} styles
+              {t('styles.exploreAll', { count: IMAGE_STYLES.length - 1 })}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
@@ -362,10 +363,10 @@ export default function AIImagePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Why Choose Pixelift AI?
+            {t('features.title')}
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Professional tools, creative freedom, stunning results.
+            {t('features.subtitle')}
           </p>
         </div>
 
@@ -373,38 +374,38 @@ export default function AIImagePage() {
           {[
             {
               icon: '⚡',
-              title: 'Ultra-Fast Generation',
-              description: 'Get your images in seconds with our optimized infrastructure and fast models.',
+              titleKey: 'features.ultraFast.title',
+              descKey: 'features.ultraFast.description',
               gradient: 'from-yellow-500/20 to-orange-500/20',
             },
             {
               icon: '🎨',
-              title: 'Multiple AI Models',
-              description: 'Choose from 14+ premium models including FLUX, Ideogram, Recraft, and more.',
+              titleKey: 'features.multipleModels.title',
+              descKey: 'features.multipleModels.description',
               gradient: 'from-purple-500/20 to-pink-500/20',
             },
             {
               icon: '✨',
-              title: 'Smart Prompt Enhancement',
-              description: 'AI-powered prompt optimization to get the best results from any description.',
+              titleKey: 'features.smartPrompt.title',
+              descKey: 'features.smartPrompt.description',
               gradient: 'from-blue-500/20 to-cyan-500/20',
             },
             {
               icon: '🖼️',
-              title: 'Image-to-Image',
-              description: 'Transform existing images with AI. Edit, stylize, and reimagine any photo.',
+              titleKey: 'features.imageToImage.title',
+              descKey: 'features.imageToImage.description',
               gradient: 'from-green-500/20 to-emerald-500/20',
             },
             {
               icon: '📐',
-              title: 'Flexible Aspect Ratios',
-              description: 'Generate images in any format: square, portrait, landscape, and more.',
+              titleKey: 'features.aspectRatios.title',
+              descKey: 'features.aspectRatios.description',
               gradient: 'from-indigo-500/20 to-purple-500/20',
             },
             {
               icon: '🌐',
-              title: 'Community Gallery',
-              description: 'Share your creations and get inspired by the Pixelift community.',
+              titleKey: 'features.communityGallery.title',
+              descKey: 'features.communityGallery.description',
               gradient: 'from-pink-500/20 to-rose-500/20',
             },
           ].map((feature, idx) => (
@@ -413,8 +414,8 @@ export default function AIImagePage() {
               className={`bg-gradient-to-br ${feature.gradient} backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:border-gray-600 transition`}
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+              <h3 className="text-xl font-semibold text-white mb-2">{t(feature.titleKey)}</h3>
+              <p className="text-gray-400">{t(feature.descKey)}</p>
             </div>
           ))}
         </div>
@@ -424,10 +425,10 @@ export default function AIImagePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/30 rounded-2xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Start Creating Today
+            {t('pricing.title')}
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-            Get 3 free credits when you sign up. No credit card required.
+            {t('pricing.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -436,7 +437,7 @@ export default function AIImagePage() {
                 onClick={scrollToGenerator}
                 className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
               >
-                Start Generating
+                {t('pricing.startGenerating')}
               </button>
             ) : (
               <>
@@ -444,13 +445,13 @@ export default function AIImagePage() {
                   href="/auth/signin"
                   className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
                 >
-                  Get Started Free
+                  {t('pricing.getStartedFree')}
                 </Link>
                 <Link
                   href="/pricing"
                   className="px-8 py-4 bg-transparent border border-white/30 hover:bg-white/10 rounded-xl font-semibold text-lg transition"
                 >
-                  View Pricing
+                  {t('pricing.viewPricing')}
                 </Link>
               </>
             )}
@@ -474,10 +475,10 @@ export default function AIImagePage() {
                 }`}
               >
                 {pkg.popular && (
-                  <div className="text-xs text-white font-semibold mb-1">POPULAR</div>
+                  <div className="text-xs text-white font-semibold mb-1">{t('pricing.popular')}</div>
                 )}
                 <div className="text-2xl font-bold text-white">{pkg.credits}</div>
-                <div className="text-sm text-gray-300">credits</div>
+                <div className="text-sm text-gray-300">{t('pricing.credits')}</div>
                 <div className="text-lg font-semibold text-white mt-1">{pkg.price}</div>
               </Link>
             ))}
@@ -489,39 +490,18 @@ export default function AIImagePage() {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Frequently Asked Questions
+            {t('faq.title')}
           </h2>
         </div>
 
         <div className="space-y-4">
-          {[
-            {
-              q: 'What AI models are available?',
-              a: 'We offer 14+ premium models including FLUX Pro, Recraft V3, Ideogram V3, Stable Diffusion 3.5, HiDream, Seedream, and more. Each model has unique strengths for different use cases.',
-            },
-            {
-              q: 'How do credits work?',
-              a: 'Credits are used to generate images. Different models cost different amounts (1-4 credits per image). New users get 3 free credits to start. You can purchase more credits anytime.',
-            },
-            {
-              q: 'Can I use the images commercially?',
-              a: 'Yes! Images you generate are yours to use. Check specific model terms for any restrictions. Most models allow full commercial use.',
-            },
-            {
-              q: 'What is Image-to-Image mode?',
-              a: 'Upload an existing image and describe how you want to transform it. Great for style transfer, editing, and variations.',
-            },
-            {
-              q: 'How do styles work?',
-              a: 'Styles are pre-configured settings that modify your prompt to achieve specific looks (e.g., Anime, Photorealistic, Cinematic). Select a style before generating.',
-            },
-          ].map((faq, idx) => (
+          {[1, 2, 3, 4, 5].map((num) => (
             <details
-              key={idx}
+              key={num}
               className="bg-gray-800/50 border border-gray-700 rounded-xl group"
             >
               <summary className="flex items-center justify-between p-5 cursor-pointer text-white font-medium hover:text-purple-400 transition">
-                {faq.q}
+                {t(`faq.q${num}`)}
                 <svg
                   className="w-5 h-5 text-gray-400 group-open:rotate-180 transition"
                   fill="none"
@@ -531,7 +511,7 @@ export default function AIImagePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
-              <div className="px-5 pb-5 text-gray-400">{faq.a}</div>
+              <div className="px-5 pb-5 text-gray-400">{t(`faq.a${num}`)}</div>
             </details>
           ))}
         </div>
@@ -541,16 +521,16 @@ export default function AIImagePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Ready to Create?
+            {t('cta.title')}
           </h2>
           <p className="text-gray-400 text-lg mb-8">
-            Join thousands of creators using Pixelift AI
+            {t('cta.subtitle')}
           </p>
           <button
             onClick={scrollToGenerator}
             className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-xl font-semibold text-lg transition shadow-lg shadow-purple-500/25"
           >
-            Start Creating Now
+            {t('cta.button')}
           </button>
         </div>
       </section>

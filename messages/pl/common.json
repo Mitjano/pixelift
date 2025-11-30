@@ -572,6 +572,108 @@
       }
     }
   },
+  "aiImagePage": {
+    "badge": "Napędzane przez 14+ Modeli AI Premium",
+    "hero": {
+      "title1": "Twórz ",
+      "titleHighlight": "Oszałamiające Obrazy",
+      "title2": "z AI",
+      "subtitle": "Zamień wyobraźnię w rzeczywistość. Profesjonalne generowanie obrazów AI z najnowocześniejszymi modelami.",
+      "startCreating": "Zacznij Tworzyć",
+      "exploreGallery": "Przeglądaj Galerię"
+    },
+    "stats": {
+      "aiModels": "Modele AI",
+      "artStyles": "Style Artystyczne",
+      "imagesCreated": "Utworzone Obrazy"
+    },
+    "gallery": {
+      "title1": "Galeria ",
+      "titleHighlight": "Społeczności",
+      "subtitle": "Odkryj niesamowite dzieła naszej społeczności. Zainspiruj się i twórz własne arcydzieła.",
+      "explore": "Przeglądaj",
+      "myCreations": "Moje Dzieła",
+      "signInRequired": "Zaloguj się, aby zobaczyć swoje dzieła",
+      "signInDescription": "Załóż konto, aby zapisywać, zarządzać i udostępniać swoje obrazy wygenerowane przez AI",
+      "signInButton": "Zaloguj się, aby Kontynuować",
+      "sort": "Sortuj",
+      "newest": "Najnowsze",
+      "best": "Najlepsze",
+      "time": "Czas",
+      "today": "Dzisiaj",
+      "days7": "7 Dni",
+      "days30": "30 Dni",
+      "allTime": "Cały Czas"
+    },
+    "models": {
+      "title1": "Premium ",
+      "titleHighlight": "Modele AI",
+      "subtitle": "Dostęp do najnowocześniejszych modeli generowania obrazów. Od ultra-szybkich po ultra-jakościowe.",
+      "credits": "kredyty",
+      "tryAllModels": "Wypróbuj wszystkie {count} modeli"
+    },
+    "styles": {
+      "title1": "20+ ",
+      "titleHighlight": "Stylów Artystycznych",
+      "subtitle": "Od fotorealistycznych po anime, od filmowych po pixel art. Jedno kliknięcie, aby przekształcić swoją wizję.",
+      "exploreAll": "Przeglądaj wszystkie {count} stylów"
+    },
+    "features": {
+      "title": "Dlaczego Pixelift AI?",
+      "subtitle": "Profesjonalne narzędzia, twórcza wolność, oszałamiające rezultaty.",
+      "ultraFast": {
+        "title": "Ultra-Szybkie Generowanie",
+        "description": "Otrzymaj obrazy w sekundach dzięki zoptymalizowanej infrastrukturze i szybkim modelom."
+      },
+      "multipleModels": {
+        "title": "Wiele Modeli AI",
+        "description": "Wybieraj spośród 14+ modeli premium, w tym FLUX, Ideogram, Recraft i więcej."
+      },
+      "smartPrompt": {
+        "title": "Inteligentne Ulepszanie Promptów",
+        "description": "Optymalizacja promptów napędzana AI, aby uzyskać najlepsze rezultaty z każdego opisu."
+      },
+      "imageToImage": {
+        "title": "Obraz-do-Obrazu",
+        "description": "Przekształcaj istniejące obrazy z AI. Edytuj, stylizuj i wymyślaj na nowo każde zdjęcie."
+      },
+      "aspectRatios": {
+        "title": "Elastyczne Proporcje",
+        "description": "Generuj obrazy w dowolnym formacie: kwadrat, portret, krajobraz i więcej."
+      },
+      "communityGallery": {
+        "title": "Galeria Społeczności",
+        "description": "Dziel się swoimi dziełami i inspiruj się społecznością Pixelift."
+      }
+    },
+    "pricing": {
+      "title": "Zacznij Tworzyć Już Dziś",
+      "subtitle": "Otrzymaj 3 darmowe kredyty przy rejestracji. Bez karty kredytowej.",
+      "startGenerating": "Zacznij Generować",
+      "getStartedFree": "Zacznij Za Darmo",
+      "viewPricing": "Zobacz Cennik",
+      "credits": "kredyty",
+      "popular": "POPULARNE"
+    },
+    "faq": {
+      "title": "Często Zadawane Pytania",
+      "q1": "Jakie modele AI są dostępne?",
+      "a1": "Oferujemy 14+ modeli premium, w tym FLUX Pro, Recraft V3, Ideogram V3, Stable Diffusion 3.5, HiDream, Seedream i więcej. Każdy model ma unikalne mocne strony dla różnych zastosowań.",
+      "q2": "Jak działają kredyty?",
+      "a2": "Kredyty są używane do generowania obrazów. Różne modele kosztują różne ilości (1-4 kredyty za obraz). Nowi użytkownicy otrzymują 3 darmowe kredyty na start. Możesz kupić więcej kredytów w dowolnym momencie.",
+      "q3": "Czy mogę używać obrazów komercyjnie?",
+      "a3": "Tak! Obrazy, które generujesz, są Twoje do użytku. Sprawdź warunki konkretnego modelu pod kątem ewentualnych ograniczeń. Większość modeli pozwala na pełne użycie komercyjne.",
+      "q4": "Czym jest tryb Obraz-do-Obrazu?",
+      "a4": "Prześlij istniejący obraz i opisz, jak chcesz go przekształcić. Świetny do transferu stylu, edycji i wariantów.",
+      "q5": "Jak działają style?",
+      "a5": "Style to wstępnie skonfigurowane ustawienia, które modyfikują Twój prompt, aby uzyskać określony wygląd (np. Anime, Fotorealistyczny, Filmowy). Wybierz styl przed generowaniem."
+    },
+    "cta": {
+      "title": "Gotowy do Tworzenia?",
+      "subtitle": "Dołącz do tysięcy twórców korzystających z Pixelift AI",
+      "button": "Zacznij Tworzyć Teraz"
+    }
+  },
   "dashboard": {
     "welcomeBack": "Witaj ponownie",
     "manageAccount": "Zarządzaj kontem i przeglądaj historię przetwarzania obrazów",

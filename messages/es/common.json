@@ -572,6 +572,108 @@
       }
     }
   },
+  "aiImagePage": {
+    "badge": "Impulsado por 14+ Modelos IA Premium",
+    "hero": {
+      "title1": "Crea ",
+      "titleHighlight": "Imágenes Impresionantes",
+      "title2": "con IA",
+      "subtitle": "Transforma tu imaginación en realidad. Generación de imágenes IA de grado profesional con los modelos más avanzados del mundo.",
+      "startCreating": "Empezar a Crear",
+      "exploreGallery": "Explorar Galería"
+    },
+    "stats": {
+      "aiModels": "Modelos IA",
+      "artStyles": "Estilos Artísticos",
+      "imagesCreated": "Imágenes Creadas"
+    },
+    "gallery": {
+      "title1": "Galería de la ",
+      "titleHighlight": "Comunidad",
+      "subtitle": "Descubre creaciones increíbles de nuestra comunidad. Inspírate y crea tus propias obras maestras.",
+      "explore": "Explorar",
+      "myCreations": "Mis Creaciones",
+      "signInRequired": "Inicia sesión para ver tus creaciones",
+      "signInDescription": "Crea una cuenta para guardar, gestionar y compartir tus obras maestras generadas por IA",
+      "signInButton": "Iniciar Sesión para Continuar",
+      "sort": "Ordenar",
+      "newest": "Más Recientes",
+      "best": "Mejores",
+      "time": "Tiempo",
+      "today": "Hoy",
+      "days7": "7 Días",
+      "days30": "30 Días",
+      "allTime": "Todo el Tiempo"
+    },
+    "models": {
+      "title1": "Modelos IA ",
+      "titleHighlight": "Premium",
+      "subtitle": "Accede a los modelos de generación de imágenes más avanzados del mundo. Desde ultra-rápidos hasta ultra-calidad.",
+      "credits": "créditos",
+      "tryAllModels": "Prueba los {count} modelos"
+    },
+    "styles": {
+      "title1": "20+ ",
+      "titleHighlight": "Estilos Artísticos",
+      "subtitle": "Desde fotorrealista hasta anime, de cinematográfico a pixel art. Un clic para transformar tu visión.",
+      "exploreAll": "Explorar los {count} estilos"
+    },
+    "features": {
+      "title": "¿Por qué Pixelift AI?",
+      "subtitle": "Herramientas profesionales, libertad creativa, resultados impresionantes.",
+      "ultraFast": {
+        "title": "Generación Ultra-Rápida",
+        "description": "Obtén tus imágenes en segundos con nuestra infraestructura optimizada y modelos rápidos."
+      },
+      "multipleModels": {
+        "title": "Múltiples Modelos IA",
+        "description": "Elige entre 14+ modelos premium incluyendo FLUX, Ideogram, Recraft y más."
+      },
+      "smartPrompt": {
+        "title": "Mejora Inteligente de Prompts",
+        "description": "Optimización de prompts impulsada por IA para obtener los mejores resultados de cualquier descripción."
+      },
+      "imageToImage": {
+        "title": "Imagen a Imagen",
+        "description": "Transforma imágenes existentes con IA. Edita, estiliza y reimagina cualquier foto."
+      },
+      "aspectRatios": {
+        "title": "Proporciones Flexibles",
+        "description": "Genera imágenes en cualquier formato: cuadrado, retrato, paisaje y más."
+      },
+      "communityGallery": {
+        "title": "Galería Comunitaria",
+        "description": "Comparte tus creaciones e inspírate con la comunidad de Pixelift."
+      }
+    },
+    "pricing": {
+      "title": "Empieza a Crear Hoy",
+      "subtitle": "Obtén 3 créditos gratis al registrarte. Sin tarjeta de crédito.",
+      "startGenerating": "Empezar a Generar",
+      "getStartedFree": "Empezar Gratis",
+      "viewPricing": "Ver Precios",
+      "credits": "créditos",
+      "popular": "POPULAR"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "¿Qué modelos IA están disponibles?",
+      "a1": "Ofrecemos 14+ modelos premium incluyendo FLUX Pro, Recraft V3, Ideogram V3, Stable Diffusion 3.5, HiDream, Seedream y más. Cada modelo tiene fortalezas únicas para diferentes casos de uso.",
+      "q2": "¿Cómo funcionan los créditos?",
+      "a2": "Los créditos se usan para generar imágenes. Diferentes modelos cuestan diferentes cantidades (1-4 créditos por imagen). Los nuevos usuarios reciben 3 créditos gratis para empezar. Puedes comprar más créditos en cualquier momento.",
+      "q3": "¿Puedo usar las imágenes comercialmente?",
+      "a3": "¡Sí! Las imágenes que generas son tuyas para usar. Verifica los términos específicos del modelo por posibles restricciones. La mayoría de los modelos permiten uso comercial completo.",
+      "q4": "¿Qué es el modo Imagen a Imagen?",
+      "a4": "Sube una imagen existente y describe cómo quieres transformarla. Genial para transferencia de estilo, edición y variaciones.",
+      "q5": "¿Cómo funcionan los estilos?",
+      "a5": "Los estilos son configuraciones preestablecidas que modifican tu prompt para lograr looks específicos (ej. Anime, Fotorrealista, Cinematográfico). Selecciona un estilo antes de generar."
+    },
+    "cta": {
+      "title": "¿Listo para Crear?",
+      "subtitle": "Únete a miles de creadores usando Pixelift AI",
+      "button": "Empezar a Crear Ahora"
+    }
+  },
   "dashboard": {
     "welcomeBack": "Bienvenido de nuevo",
     "manageAccount": "Gestiona tu cuenta y consulta el historial de procesamiento de imágenes",

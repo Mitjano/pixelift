@@ -572,6 +572,108 @@
       }
     }
   },
+  "aiImagePage": {
+    "badge": "Powered by 14+ Premium AI Models",
+    "hero": {
+      "title1": "Create ",
+      "titleHighlight": "Stunning Images",
+      "title2": "with AI",
+      "subtitle": "Transform your imagination into reality. Professional-grade AI image generation with the world's most advanced models.",
+      "startCreating": "Start Creating",
+      "exploreGallery": "Explore Gallery"
+    },
+    "stats": {
+      "aiModels": "AI Models",
+      "artStyles": "Art Styles",
+      "imagesCreated": "Images Created"
+    },
+    "gallery": {
+      "title1": "Community ",
+      "titleHighlight": "Gallery",
+      "subtitle": "Discover amazing creations from our community. Get inspired and create your own masterpieces.",
+      "explore": "Explore",
+      "myCreations": "My Creations",
+      "signInRequired": "Sign in to see your creations",
+      "signInDescription": "Create an account to save, manage, and share your AI-generated masterpieces",
+      "signInButton": "Sign In to Continue",
+      "sort": "Sort",
+      "newest": "Newest",
+      "best": "Best",
+      "time": "Time",
+      "today": "Today",
+      "days7": "7 Days",
+      "days30": "30 Days",
+      "allTime": "All Time"
+    },
+    "models": {
+      "title1": "Premium ",
+      "titleHighlight": "AI Models",
+      "subtitle": "Access the world's most advanced image generation models. From ultra-fast to ultra-quality.",
+      "credits": "credits",
+      "tryAllModels": "Try all {count} models"
+    },
+    "styles": {
+      "title1": "20+ ",
+      "titleHighlight": "Art Styles",
+      "subtitle": "From photorealistic to anime, cinematic to pixel art. One click to transform your vision.",
+      "exploreAll": "Explore all {count} styles"
+    },
+    "features": {
+      "title": "Why Choose Pixelift AI?",
+      "subtitle": "Professional tools, creative freedom, stunning results.",
+      "ultraFast": {
+        "title": "Ultra-Fast Generation",
+        "description": "Get your images in seconds with our optimized infrastructure and fast models."
+      },
+      "multipleModels": {
+        "title": "Multiple AI Models",
+        "description": "Choose from 14+ premium models including FLUX, Ideogram, Recraft, and more."
+      },
+      "smartPrompt": {
+        "title": "Smart Prompt Enhancement",
+        "description": "AI-powered prompt optimization to get the best results from any description."
+      },
+      "imageToImage": {
+        "title": "Image-to-Image",
+        "description": "Transform existing images with AI. Edit, stylize, and reimagine any photo."
+      },
+      "aspectRatios": {
+        "title": "Flexible Aspect Ratios",
+        "description": "Generate images in any format: square, portrait, landscape, and more."
+      },
+      "communityGallery": {
+        "title": "Community Gallery",
+        "description": "Share your creations and get inspired by the Pixelift community."
+      }
+    },
+    "pricing": {
+      "title": "Start Creating Today",
+      "subtitle": "Get 3 free credits when you sign up. No credit card required.",
+      "startGenerating": "Start Generating",
+      "getStartedFree": "Get Started Free",
+      "viewPricing": "View Pricing",
+      "credits": "credits",
+      "popular": "POPULAR"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "What AI models are available?",
+      "a1": "We offer 14+ premium models including FLUX Pro, Recraft V3, Ideogram V3, Stable Diffusion 3.5, HiDream, Seedream, and more. Each model has unique strengths for different use cases.",
+      "q2": "How do credits work?",
+      "a2": "Credits are used to generate images. Different models cost different amounts (1-4 credits per image). New users get 3 free credits to start. You can purchase more credits anytime.",
+      "q3": "Can I use the images commercially?",
+      "a3": "Yes! Images you generate are yours to use. Check specific model terms for any restrictions. Most models allow full commercial use.",
+      "q4": "What is Image-to-Image mode?",
+      "a4": "Upload an existing image and describe how you want to transform it. Great for style transfer, editing, and variations.",
+      "q5": "How do styles work?",
+      "a5": "Styles are pre-configured settings that modify your prompt to achieve specific looks (e.g., Anime, Photorealistic, Cinematic). Select a style before generating."
+    },
+    "cta": {
+      "title": "Ready to Create?",
+      "subtitle": "Join thousands of creators using Pixelift AI",
+      "button": "Start Creating Now"
+    }
+  },
   "dashboard": {
     "welcomeBack": "Welcome back",
     "manageAccount": "Manage your account and view your image processing history",
