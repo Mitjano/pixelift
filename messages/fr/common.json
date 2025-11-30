@@ -1669,5 +1669,135 @@
       "getStarted": "Commencer Gratuitement",
       "startRestoring": "Commencer à Restaurer"
     }
+  },
+  "imageExpandPage": {
+    "badge": "Propulsé par FLUX.1 Fill [pro] AI",
+    "title": "Expansion d'Image (Uncrop)",
+    "titlePrefix": "AI ",
+    "subtitle": "Étendez vos images au-delà de leurs bordures originales avec l'IA. Parfait pour changer les proportions et créer des vues panoramiques.",
+    "stats": {
+      "maxZoom": "2x",
+      "maxZoomLabel": "Zoom Arrière Max",
+      "processing": "15s",
+      "processingLabel": "Traitement",
+      "creditCost": "2",
+      "creditCostLabel": "Crédits/Image"
+    },
+    "termsNotice": "En téléchargeant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.",
+    "features": {
+      "zoomOut": {
+        "title": "Zoom Arrière",
+        "description": "Élargissez votre toile de 1,5x ou 2x. L'IA génère une continuation naturelle de votre image."
+      },
+      "makeSquare": {
+        "title": "Rendre Carré",
+        "description": "Convertissez n'importe quel ratio en carré parfait. Idéal pour les publications Instagram."
+      },
+      "directional": {
+        "title": "Expansion Directionnelle",
+        "description": "Étendez votre image dans n'importe quelle direction - gauche, droite, haut ou bas."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne ",
+      "titleHighlight": "l'Expansion d'Image",
+      "step1": {
+        "title": "1. Télécharger",
+        "description": "Téléchargez votre image (JPG, PNG, WEBP)"
+      },
+      "step2": {
+        "title": "2. Choisir le Mode",
+        "description": "Sélectionnez zoom arrière, carré ou expansion directionnelle"
+      },
+      "step3": {
+        "title": "3. L'IA Génère",
+        "description": "FLUX.1 Fill [pro] crée une continuation naturelle"
+      },
+      "step4": {
+        "title": "4. Télécharger",
+        "description": "Obtenez votre image étendue en haute qualité"
+      }
+    },
+    "expandModes": {
+      "title": "Modes d'Expansion",
+      "zoom15": {
+        "title": "Zoom Arrière 1,5x:",
+        "description": "Élargissez la toile de 50%, révélant plus de la scène"
+      },
+      "zoom2": {
+        "title": "Zoom Arrière 2x:",
+        "description": "Doublez la taille de la toile pour des révélations dramatiques"
+      },
+      "makeSquare": {
+        "title": "Rendre Carré:",
+        "description": "Convertissez 16:9, 4:3 ou tout ratio en 1:1"
+      },
+      "directional": {
+        "title": "Directionnel:",
+        "description": "Étendez spécifiquement à gauche, droite, haut ou bas"
+      }
+    },
+    "featuresPanel": {
+      "title": "Fonctionnalités",
+      "fluxModel": {
+        "title": "FLUX.1 Fill [pro]:",
+        "description": "Modèle IA de pointe de Black Forest Labs"
+      },
+      "customPrompts": {
+        "title": "Prompts Personnalisés:",
+        "description": "Guidez l'IA sur ce qu'elle doit générer dans les zones étendues"
+      },
+      "highQuality": {
+        "title": "Haute Qualité:",
+        "description": "Maintient la qualité et le style original de l'image"
+      },
+      "fastProcessing": {
+        "title": "Traitement Rapide:",
+        "description": "Résultats en 10-20 secondes, seulement 2 crédits"
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour",
+      "socialMedia": {
+        "title": "Réseaux Sociaux",
+        "description": "Convertissez les photos paysage en carré pour Instagram, ou étendez les vidéos verticales pour YouTube.",
+        "detail": "Changez les proportions sans recadrer"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Ajoutez de l'espace autour des produits pour une meilleure composition. Créez de la place pour les superpositions de texte.",
+        "detail": "Présentations de produits professionnelles"
+      },
+      "contentCreators": {
+        "title": "Créateurs de Contenu",
+        "description": "Étendez les arrière-plans pour les miniatures vidéo, agrandissez les photos recadrées, créez des effets panoramiques.",
+        "detail": "Plus de possibilités créatives"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils pour de Meilleurs Résultats",
+      "bestPractices": {
+        "title": "✓ Meilleures Pratiques:",
+        "tip1": "Utilisez des images source de haute qualité pour une meilleure expansion",
+        "tip2": "Les arrière-plans simples (ciel, herbe, murs) s'étendent le mieux",
+        "tip3": "Ajoutez des prompts personnalisés pour du contenu spécifique dans les zones étendues",
+        "tip4": "Le zoom arrière 1,5x est le plus sûr pour la plupart des images",
+        "tip5": "Rendre Carré fonctionne très bien pour la conversion portrait/paysage"
+      },
+      "proTips": {
+        "title": "⚡ Astuces Pro:",
+        "tip1": "Utilisez l'expansion directionnelle pour repositionner les sujets",
+        "tip2": "Décrivez la scène dans votre prompt pour de meilleurs résultats",
+        "tip3": "Fonctionne mieux avec les photos, paysages et produits",
+        "tip4": "Les motifs complexes peuvent nécessiter plusieurs tentatives",
+        "tip5": "2 crédits par expansion, résultats en 10-20 secondes"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Étendre vos Images?",
+      "subtitle": "Commencez avec 3 crédits gratuits. Aucune carte de crédit requise.",
+      "getStarted": "Commencer Gratuitement",
+      "startExpanding": "Commencer à Étendre"
+    }
   }
 }

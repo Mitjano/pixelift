@@ -1586,5 +1586,135 @@
       "getStarted": "Comenzar Gratis",
       "startRestoring": "Empezar a Restaurar"
     }
+  },
+  "imageExpandPage": {
+    "badge": "Impulsado por FLUX.1 Fill [pro] AI",
+    "title": "Expansión de Imagen (Uncrop)",
+    "titlePrefix": "AI ",
+    "subtitle": "Extiende tus imágenes más allá de sus bordes originales con AI. Perfecto para cambiar proporciones y crear vistas panorámicas.",
+    "stats": {
+      "maxZoom": "2x",
+      "maxZoomLabel": "Máx. Alejamiento",
+      "processing": "15s",
+      "processingLabel": "Procesamiento",
+      "creditCost": "2",
+      "creditCostLabel": "Créditos/Imagen"
+    },
+    "termsNotice": "Al subir un archivo aceptas nuestros Términos de Uso y Política de Privacidad.",
+    "features": {
+      "zoomOut": {
+        "title": "Alejar",
+        "description": "Expande tu lienzo 1.5x o 2x. La AI genera continuación natural de tu imagen."
+      },
+      "makeSquare": {
+        "title": "Hacer Cuadrado",
+        "description": "Convierte cualquier proporción a cuadrado perfecto. Ideal para publicaciones de Instagram."
+      },
+      "directional": {
+        "title": "Expansión Direccional",
+        "description": "Extiende tu imagen en cualquier dirección - izquierda, derecha, arriba o abajo."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona la ",
+      "titleHighlight": "Expansión de Imagen",
+      "step1": {
+        "title": "1. Subir",
+        "description": "Sube tu imagen (JPG, PNG, WEBP)"
+      },
+      "step2": {
+        "title": "2. Elegir Modo",
+        "description": "Selecciona alejar, cuadrado o expansión direccional"
+      },
+      "step3": {
+        "title": "3. AI Genera",
+        "description": "FLUX.1 Fill [pro] crea continuación natural"
+      },
+      "step4": {
+        "title": "4. Descargar",
+        "description": "Obtén tu imagen expandida en alta calidad"
+      }
+    },
+    "expandModes": {
+      "title": "Modos de Expansión",
+      "zoom15": {
+        "title": "Alejar 1.5x:",
+        "description": "Expande el lienzo un 50%, revelando más de la escena"
+      },
+      "zoom2": {
+        "title": "Alejar 2x:",
+        "description": "Duplica el tamaño del lienzo para revelaciones dramáticas"
+      },
+      "makeSquare": {
+        "title": "Hacer Cuadrado:",
+        "description": "Convierte 16:9, 4:3 o cualquier proporción a 1:1"
+      },
+      "directional": {
+        "title": "Direccional:",
+        "description": "Extiende específicamente a izquierda, derecha, arriba o abajo"
+      }
+    },
+    "featuresPanel": {
+      "title": "Características",
+      "fluxModel": {
+        "title": "FLUX.1 Fill [pro]:",
+        "description": "Modelo AI de última generación de Black Forest Labs"
+      },
+      "customPrompts": {
+        "title": "Prompts Personalizados:",
+        "description": "Guía a la AI sobre qué generar en áreas expandidas"
+      },
+      "highQuality": {
+        "title": "Alta Calidad:",
+        "description": "Mantiene la calidad y estilo original de la imagen"
+      },
+      "fastProcessing": {
+        "title": "Procesamiento Rápido:",
+        "description": "Resultados en 10-20 segundos, solo 2 créditos"
+      }
+    },
+    "useCases": {
+      "title": "Perfecto Para",
+      "socialMedia": {
+        "title": "Redes Sociales",
+        "description": "Convierte fotos horizontales a cuadrado para Instagram, o expande videos verticales para YouTube.",
+        "detail": "Cambia proporciones sin recortar"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Añade espacio alrededor de productos para mejor composición. Crea espacio para superposiciones de texto.",
+        "detail": "Presentaciones profesionales de productos"
+      },
+      "contentCreators": {
+        "title": "Creadores de Contenido",
+        "description": "Extiende fondos para miniaturas de video, expande fotos recortadas, crea efectos panorámicos.",
+        "detail": "Más posibilidades creativas"
+      }
+    },
+    "tips": {
+      "title": "💡 Consejos para Mejores Resultados",
+      "bestPractices": {
+        "title": "✓ Mejores Prácticas:",
+        "tip1": "Usa imágenes fuente de alta calidad para mejor expansión",
+        "tip2": "Los fondos simples (cielo, césped, paredes) se expanden mejor",
+        "tip3": "Añade prompts personalizados para contenido específico en áreas expandidas",
+        "tip4": "Alejar 1.5x es más seguro para la mayoría de imágenes",
+        "tip5": "Hacer Cuadrado funciona genial para conversión retrato/paisaje"
+      },
+      "proTips": {
+        "title": "⚡ Consejos Pro:",
+        "tip1": "Usa expansión direccional para reposicionar sujetos",
+        "tip2": "Describe la escena en tu prompt para mejores resultados",
+        "tip3": "Funciona mejor con fotos, paisajes y productos",
+        "tip4": "Patrones complejos pueden requerir múltiples intentos",
+        "tip5": "2 créditos por expansión, resultados en 10-20 segundos"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Expandir tus Imágenes?",
+      "subtitle": "Comienza con 3 créditos gratis. Sin tarjeta de crédito requerida.",
+      "getStarted": "Comenzar Gratis",
+      "startExpanding": "Empezar a Expandir"
+    }
   }
 }

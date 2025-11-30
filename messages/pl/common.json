@@ -1586,5 +1586,135 @@
       "getStarted": "Zacznij Za Darmo",
       "startRestoring": "Zacznij Restaurować"
     }
+  },
+  "imageExpandPage": {
+    "badge": "Napędzane przez FLUX.1 Fill [pro] AI",
+    "title": "Rozszerzanie Obrazu (Uncrop)",
+    "titlePrefix": "AI ",
+    "subtitle": "Rozszerz swoje obrazy poza ich oryginalne granice dzięki AI. Idealne do zmiany proporcji i tworzenia widoków panoramicznych.",
+    "stats": {
+      "maxZoom": "2x",
+      "maxZoomLabel": "Maks. Oddalenie",
+      "processing": "15s",
+      "processingLabel": "Przetwarzanie",
+      "creditCost": "2",
+      "creditCostLabel": "Kredyty/Obraz"
+    },
+    "termsNotice": "Przesyłając plik, zgadzasz się na nasze Warunki Użytkowania i Politykę Prywatności.",
+    "features": {
+      "zoomOut": {
+        "title": "Oddalenie",
+        "description": "Rozszerz płótno 1,5x lub 2x. AI generuje naturalną kontynuację obrazu."
+      },
+      "makeSquare": {
+        "title": "Zrób Kwadrat",
+        "description": "Przekonwertuj dowolne proporcje na idealny kwadrat. Idealne na posty na Instagramie."
+      },
+      "directional": {
+        "title": "Rozszerzenie Kierunkowe",
+        "description": "Rozszerz obraz w dowolnym kierunku - lewo, prawo, góra lub dół."
+      }
+    },
+    "howItWorks": {
+      "title": "Jak Działa ",
+      "titleHighlight": "Rozszerzanie Obrazu",
+      "step1": {
+        "title": "1. Prześlij",
+        "description": "Prześlij swój obraz (JPG, PNG, WEBP)"
+      },
+      "step2": {
+        "title": "2. Wybierz Tryb",
+        "description": "Wybierz oddalenie, kwadrat lub rozszerzenie kierunkowe"
+      },
+      "step3": {
+        "title": "3. AI Generuje",
+        "description": "FLUX.1 Fill [pro] tworzy naturalną kontynuację"
+      },
+      "step4": {
+        "title": "4. Pobierz",
+        "description": "Pobierz rozszerzony obraz w wysokiej jakości"
+      }
+    },
+    "expandModes": {
+      "title": "Tryby Rozszerzania",
+      "zoom15": {
+        "title": "Oddalenie 1,5x:",
+        "description": "Rozszerz płótno o 50%, odsłaniając więcej sceny"
+      },
+      "zoom2": {
+        "title": "Oddalenie 2x:",
+        "description": "Podwój rozmiar płótna dla dramatycznych odkryć"
+      },
+      "makeSquare": {
+        "title": "Zrób Kwadrat:",
+        "description": "Przekonwertuj 16:9, 4:3 lub dowolną proporcję na 1:1"
+      },
+      "directional": {
+        "title": "Kierunkowe:",
+        "description": "Rozszerz konkretnie w lewo, prawo, górę lub dół"
+      }
+    },
+    "featuresPanel": {
+      "title": "Funkcje",
+      "fluxModel": {
+        "title": "FLUX.1 Fill [pro]:",
+        "description": "Najnowocześniejszy model AI od Black Forest Labs"
+      },
+      "customPrompts": {
+        "title": "Własne Prompty:",
+        "description": "Kieruj AI co generować w rozszerzonych obszarach"
+      },
+      "highQuality": {
+        "title": "Wysoka Jakość:",
+        "description": "Zachowuje oryginalną jakość i styl obrazu"
+      },
+      "fastProcessing": {
+        "title": "Szybkie Przetwarzanie:",
+        "description": "Wyniki w 10-20 sekund, tylko 2 kredyty"
+      }
+    },
+    "useCases": {
+      "title": "Idealne Do",
+      "socialMedia": {
+        "title": "Media Społecznościowe",
+        "description": "Przekonwertuj zdjęcia krajobrazowe na kwadrat dla Instagrama lub rozszerz pionowe filmy dla YouTube.",
+        "detail": "Zmień proporcje bez przycinania"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Dodaj przestrzeń wokół produktów dla lepszej kompozycji. Stwórz miejsce na nakładki tekstowe.",
+        "detail": "Profesjonalne prezentacje produktów"
+      },
+      "contentCreators": {
+        "title": "Twórcy Treści",
+        "description": "Rozszerz tła dla miniatur wideo, powiększ przycięte zdjęcia, stwórz efekty panoramiczne.",
+        "detail": "Więcej możliwości kreatywnych"
+      }
+    },
+    "tips": {
+      "title": "💡 Wskazówki dla Najlepszych Rezultatów",
+      "bestPractices": {
+        "title": "✓ Najlepsze Praktyki:",
+        "tip1": "Używaj wysokojakościowych obrazów źródłowych dla lepszego rozszerzania",
+        "tip2": "Proste tła (niebo, trawa, ściany) rozszerzają się najlepiej",
+        "tip3": "Dodaj własne prompty dla konkretnej zawartości w rozszerzonych obszarach",
+        "tip4": "Oddalenie 1,5x jest najbezpieczniejsze dla większości obrazów",
+        "tip5": "Zrób Kwadrat działa świetnie dla konwersji portret/krajobraz"
+      },
+      "proTips": {
+        "title": "⚡ Porady Pro:",
+        "tip1": "Użyj rozszerzenia kierunkowego do repozycjonowania obiektów",
+        "tip2": "Opisz scenę w prompcie dla lepszych rezultatów",
+        "tip3": "Działa najlepiej ze zdjęciami, krajobrazami i produktami",
+        "tip4": "Złożone wzory mogą wymagać wielu prób",
+        "tip5": "2 kredyty za rozszerzenie, wyniki w 10-20 sekund"
+      }
+    },
+    "cta": {
+      "title": "Gotowy Rozszerzać Swoje Obrazy?",
+      "subtitle": "Zacznij z 3 darmowymi kredytami. Bez karty kredytowej.",
+      "getStarted": "Zacznij Za Darmo",
+      "startExpanding": "Zacznij Rozszerzać"
+    }
   }
 }

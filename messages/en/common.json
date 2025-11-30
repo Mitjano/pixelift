@@ -1586,5 +1586,135 @@
       "getStarted": "Get Started Free",
       "startRestoring": "Start Restoring"
     }
+  },
+  "imageExpandPage": {
+    "badge": "Powered by FLUX.1 Fill [pro] AI",
+    "title": "Image Expand (Uncrop)",
+    "titlePrefix": "AI ",
+    "subtitle": "Extend your images beyond their original borders with AI. Perfect for changing aspect ratios and creating panoramic views.",
+    "stats": {
+      "maxZoom": "2x",
+      "maxZoomLabel": "Max Zoom Out",
+      "processing": "15s",
+      "processingLabel": "Processing",
+      "creditCost": "2",
+      "creditCostLabel": "Credits/Image"
+    },
+    "termsNotice": "By uploading a file you agree to our Terms of Use and Privacy Policy.",
+    "features": {
+      "zoomOut": {
+        "title": "Zoom Out",
+        "description": "Expand your canvas by 1.5x or 2x. AI generates natural continuation of your image."
+      },
+      "makeSquare": {
+        "title": "Make Square",
+        "description": "Convert any aspect ratio to perfect square. Ideal for Instagram posts."
+      },
+      "directional": {
+        "title": "Directional Expand",
+        "description": "Extend your image in any direction - left, right, up, or down."
+      }
+    },
+    "howItWorks": {
+      "title": "How Image ",
+      "titleHighlight": "Expansion Works",
+      "step1": {
+        "title": "1. Upload",
+        "description": "Upload your image (JPG, PNG, WEBP)"
+      },
+      "step2": {
+        "title": "2. Choose Mode",
+        "description": "Select zoom out, square, or directional expand"
+      },
+      "step3": {
+        "title": "3. AI Generates",
+        "description": "FLUX.1 Fill [pro] creates natural continuation"
+      },
+      "step4": {
+        "title": "4. Download",
+        "description": "Get your expanded image in high quality"
+      }
+    },
+    "expandModes": {
+      "title": "Expand Modes",
+      "zoom15": {
+        "title": "Zoom Out 1.5x:",
+        "description": "Expand canvas by 50%, revealing more of the scene"
+      },
+      "zoom2": {
+        "title": "Zoom Out 2x:",
+        "description": "Double the canvas size for dramatic reveals"
+      },
+      "makeSquare": {
+        "title": "Make Square:",
+        "description": "Convert 16:9, 4:3, or any ratio to 1:1"
+      },
+      "directional": {
+        "title": "Directional:",
+        "description": "Extend specifically left, right, up, or down"
+      }
+    },
+    "featuresPanel": {
+      "title": "Features",
+      "fluxModel": {
+        "title": "FLUX.1 Fill [pro]:",
+        "description": "State-of-the-art AI model from Black Forest Labs"
+      },
+      "customPrompts": {
+        "title": "Custom Prompts:",
+        "description": "Guide AI on what to generate in expanded areas"
+      },
+      "highQuality": {
+        "title": "High Quality:",
+        "description": "Maintains original image quality and style"
+      },
+      "fastProcessing": {
+        "title": "Fast Processing:",
+        "description": "Results in 10-20 seconds, only 2 credits"
+      }
+    },
+    "useCases": {
+      "title": "Perfect For",
+      "socialMedia": {
+        "title": "Social Media",
+        "description": "Convert landscape photos to square for Instagram, or expand vertical videos for YouTube.",
+        "detail": "Change aspect ratios without cropping"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Add space around products for better composition. Create room for text overlays.",
+        "detail": "Professional product presentations"
+      },
+      "contentCreators": {
+        "title": "Content Creators",
+        "description": "Extend backgrounds for video thumbnails, expand cropped photos, create panoramic effects.",
+        "detail": "More creative possibilities"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Best Results",
+      "bestPractices": {
+        "title": "✓ Best Practices:",
+        "tip1": "Use high-quality source images for better expansion",
+        "tip2": "Simple backgrounds (sky, grass, walls) expand best",
+        "tip3": "Add custom prompts for specific content in expanded areas",
+        "tip4": "Zoom Out 1.5x is safest for most images",
+        "tip5": "Make Square works great for portrait/landscape conversion"
+      },
+      "proTips": {
+        "title": "⚡ Pro Tips:",
+        "tip1": "Use directional expand to reposition subjects",
+        "tip2": "Describe the scene in your prompt for better results",
+        "tip3": "Works best with photos, landscapes, and products",
+        "tip4": "Complex patterns may require multiple attempts",
+        "tip5": "2 credits per expansion, results in 10-20 seconds"
+      }
+    },
+    "cta": {
+      "title": "Ready to Expand Your Images?",
+      "subtitle": "Start with 3 free credits. No credit card required.",
+      "getStarted": "Get Started Free",
+      "startExpanding": "Start Expanding"
+    }
   }
 }
