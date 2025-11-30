@@ -1,144 +1,211 @@
 import { MetadataRoute } from 'next';
+import { locales, defaultLocale } from '@/i18n/config';
+import { getPublishedPosts } from '@/lib/blog';
+import { getAllArticles } from '@/lib/knowledge';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://pixelift.pl';
+const baseUrl = 'https://pixelift.pl';
+
+// Helper to generate URL for a given locale
+// All locales have prefix since we use localePrefix: 'always'
+function getUrlForLocale(locale: string, path: string): string {
+  return `${baseUrl}/${locale}${path}`;
+}
+
+// Helper to generate URLs for all locales with alternates
+function generateLocaleUrls(
+  path: string,
+  options: {
+    lastModified?: Date;
+    changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+    priority?: number;
+  }
+): MetadataRoute.Sitemap {
+  return locales.map((locale) => ({
+    url: getUrlForLocale(locale, path),
+    lastModified: options.lastModified || new Date(),
+    changeFrequency: options.changeFrequency || 'weekly',
+    priority: options.priority || 0.5,
+    alternates: {
+      languages: Object.fromEntries(
+        locales.map((l) => [l, getUrlForLocale(l, path)])
+      ),
+    },
+  }));
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();
 
-  // Main pages
-  const mainPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
+  // Main pages - highest priority
+  const mainPages = generateLocaleUrls('', {
+    lastModified: currentDate,
+    changeFrequency: 'daily',
+    priority: 1,
+  });
+
+  const pricingPages = generateLocaleUrls('/pricing', {
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  });
+
+  // Tool pages - very high priority (main product)
+  const tools = [
+    'upscaler',
+    'remove-background',
+    'packshot-generator',
+    'image-expand',
+    'image-compressor',
+    'colorize',
+    'restore',
+    'object-removal',
+    'background-generator',
   ];
 
-  // Tool pages - highest priority
-  const toolPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/tools/upscaler`,
+  const toolPages = tools.flatMap((tool) =>
+    generateLocaleUrls(`/tools/${tool}`, {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/tools/remove-background`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/tools/packshot-generator`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/image-expand`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/image-compressor`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-  ];
+    })
+  );
+
+  const toolsIndexPages = generateLocaleUrls('/tools', {
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  });
+
+  // AI Image Generator
+  const aiImagePages = generateLocaleUrls('/ai-image', {
+    lastModified: currentDate,
+    changeFrequency: 'daily',
+    priority: 0.9,
+  });
+
+  // Blog pages
+  const blogIndexPages = generateLocaleUrls('/blog', {
+    lastModified: currentDate,
+    changeFrequency: 'daily',
+    priority: 0.8,
+  });
+
+  // Dynamic blog posts
+  let blogPostPages: MetadataRoute.Sitemap = [];
+  try {
+    const posts = await getPublishedPosts();
+    blogPostPages = posts.flatMap((post) =>
+      generateLocaleUrls(`/blog/${post.slug}`, {
+        lastModified: post.updatedAt ? new Date(post.updatedAt) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      })
+    );
+  } catch (error) {
+    // Blog posts loading failed - continue without them
+  }
+
+  // Knowledge base pages
+  const knowledgeIndexPages = generateLocaleUrls('/knowledge', {
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  });
+
+  // Dynamic knowledge articles
+  let knowledgeArticlePages: MetadataRoute.Sitemap = [];
+  try {
+    const articles = await getAllArticles();
+    knowledgeArticlePages = articles.flatMap((article) =>
+      generateLocaleUrls(`/knowledge/${article.slug}`, {
+        lastModified: new Date(article.updatedAt || article.createdAt),
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      })
+    );
+  } catch (error) {
+    // Knowledge articles loading failed - continue without them
+  }
 
   // Auth pages
-  const authPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/auth/signin`,
+  const authPages = [
+    ...generateLocaleUrls('/auth/signin', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/auth/signup`,
+    }),
+    ...generateLocaleUrls('/auth/signup', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
-    },
+    }),
   ];
 
-  // Dashboard pages (lower priority - requires auth)
-  const dashboardPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/dashboard`,
+  // Dashboard pages (lower priority - requires auth, but still indexable)
+  const dashboardPages = [
+    ...generateLocaleUrls('/dashboard', {
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/dashboard/api`,
+    }),
+    ...generateLocaleUrls('/dashboard/api', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.4,
-    },
-    {
-      url: `${baseUrl}/dashboard/settings`,
+    }),
+    ...generateLocaleUrls('/dashboard/settings', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.4,
-    },
+    }),
+    ...generateLocaleUrls('/dashboard/images', {
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.4,
+    }),
   ];
 
   // Legal pages
-  const legalPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/privacy`,
+  const legalPages = [
+    ...generateLocaleUrls('/privacy', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
+    }),
+    ...generateLocaleUrls('/terms', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/gdpr`,
+    }),
+    ...generateLocaleUrls('/gdpr', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/cookies`,
+    }),
+    ...generateLocaleUrls('/cookies', {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.3,
-    },
+    }),
   ];
 
   // Support pages
-  const supportPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/support`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-  ];
+  const supportPages = generateLocaleUrls('/support', {
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  });
 
   return [
     ...mainPages,
+    ...pricingPages,
     ...toolPages,
+    ...toolsIndexPages,
+    ...aiImagePages,
+    ...blogIndexPages,
+    ...blogPostPages,
+    ...knowledgeIndexPages,
+    ...knowledgeArticlePages,
     ...authPages,
     ...dashboardPages,
     ...legalPages,

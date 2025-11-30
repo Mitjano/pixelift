@@ -1,24 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 interface Tool {
-  name: string;
+  nameKey: string;
   href: string;
-  description: string;
+  descriptionKey: string;
   badge?: string;
   icon: React.ReactNode;
   color: string;
   bgColor: string;
   iconColor: string;
-  credits: string;
+  creditsKey: string;
 }
 
 const tools: Tool[] = [
   {
-    name: 'AI Upscaler',
+    nameKey: 'upscaler',
     href: '/tools/upscaler',
-    description: 'Enlarge images up to 8x with AI enhancement',
+    descriptionKey: 'upscaler',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
@@ -27,12 +28,12 @@ const tools: Tool[] = [
     color: 'from-green-500 to-emerald-600',
     bgColor: 'bg-gradient-to-br from-green-500/20 to-emerald-600/20',
     iconColor: 'text-green-400',
-    credits: '1-3 credits',
+    creditsKey: '13',
   },
   {
-    name: 'Background Remover',
+    nameKey: 'bgRemover',
     href: '/tools/remove-background',
-    description: 'Remove backgrounds instantly with AI precision',
+    descriptionKey: 'bgRemover',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -41,12 +42,12 @@ const tools: Tool[] = [
     color: 'from-blue-500 to-blue-600',
     bgColor: 'bg-gradient-to-br from-blue-500/20 to-blue-600/20',
     iconColor: 'text-blue-400',
-    credits: '1 credit',
+    creditsKey: '1',
   },
   {
-    name: 'Photo Colorizer',
+    nameKey: 'colorize',
     href: '/tools/colorize',
-    description: 'Bring black & white photos to life with AI color',
+    descriptionKey: 'colorize',
     badge: 'NEW',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#a78bfa" viewBox="0 0 24 24">
@@ -56,12 +57,12 @@ const tools: Tool[] = [
     color: 'from-violet-500 to-purple-600',
     bgColor: 'bg-gradient-to-br from-violet-500/20 to-purple-600/20',
     iconColor: 'text-violet-400',
-    credits: '1 credit',
+    creditsKey: '1',
   },
   {
-    name: 'Image Restore',
+    nameKey: 'restore',
     href: '/tools/restore',
-    description: 'Remove noise, artifacts & JPEG compression',
+    descriptionKey: 'restore',
     badge: 'NEW',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#22d3ee" viewBox="0 0 24 24">
@@ -71,12 +72,12 @@ const tools: Tool[] = [
     color: 'from-cyan-500 to-blue-600',
     bgColor: 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20',
     iconColor: 'text-cyan-400',
-    credits: '1 credit',
+    creditsKey: '1',
   },
   {
-    name: 'Object Removal',
+    nameKey: 'objectRemoval',
     href: '/tools/object-removal',
-    description: 'Erase unwanted objects, people & distractions',
+    descriptionKey: 'objectRemoval',
     badge: 'NEW',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#fb923c" viewBox="0 0 24 24">
@@ -86,12 +87,12 @@ const tools: Tool[] = [
     color: 'from-orange-500 to-red-600',
     bgColor: 'bg-gradient-to-br from-orange-500/20 to-red-600/20',
     iconColor: 'text-orange-400',
-    credits: '2 credits',
+    creditsKey: '2',
   },
   {
-    name: 'Background Generator',
+    nameKey: 'bgGenerator',
     href: '/tools/background-generator',
-    description: 'Generate stunning AI backgrounds from prompts',
+    descriptionKey: 'bgGenerator',
     badge: 'NEW',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#f472b6" viewBox="0 0 24 24">
@@ -101,12 +102,12 @@ const tools: Tool[] = [
     color: 'from-pink-500 to-rose-600',
     bgColor: 'bg-gradient-to-br from-pink-500/20 to-rose-600/20',
     iconColor: 'text-pink-400',
-    credits: '3 credits',
+    creditsKey: '3',
   },
   {
-    name: 'Image Compressor',
+    nameKey: 'compressor',
     href: '/tools/image-compressor',
-    description: 'Reduce file size while keeping quality',
+    descriptionKey: 'compressor',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#2dd4bf" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -115,12 +116,12 @@ const tools: Tool[] = [
     color: 'from-teal-500 to-cyan-600',
     bgColor: 'bg-gradient-to-br from-teal-500/20 to-cyan-600/20',
     iconColor: 'text-teal-400',
-    credits: 'Free',
+    creditsKey: 'free',
   },
   {
-    name: 'Packshot Generator',
+    nameKey: 'packshot',
     href: '/tools/packshot-generator',
-    description: 'Create professional product photos instantly',
+    descriptionKey: 'packshot',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#fbbf24" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -129,12 +130,12 @@ const tools: Tool[] = [
     color: 'from-amber-500 to-orange-600',
     bgColor: 'bg-gradient-to-br from-amber-500/20 to-orange-600/20',
     iconColor: 'text-amber-400',
-    credits: '2 credits',
+    creditsKey: '2',
   },
   {
-    name: 'Image Expand',
+    nameKey: 'expand',
     href: '/tools/image-expand',
-    description: 'Extend image borders with AI outpainting',
+    descriptionKey: 'expand',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="#818cf8" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
@@ -143,25 +144,25 @@ const tools: Tool[] = [
     color: 'from-indigo-500 to-indigo-600',
     bgColor: 'bg-gradient-to-br from-indigo-500/20 to-indigo-600/20',
     iconColor: 'text-indigo-400',
-    credits: '2 credits',
+    creditsKey: '2',
   },
 ];
 
 export default function ToolsShowcase() {
+  const t = useTranslations('toolsShowcase');
   return (
     <section id="tools" className="container mx-auto px-4 py-20">
       <div className="text-center mb-16">
         <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-full">
           <span className="text-sm font-semibold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-            9 Professional AI Tools
+            {t('badge')}
           </span>
         </div>
         <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-          All-in-One <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">AI Image Suite</span>
+          {t('title')} <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">{t('titleHighlight')}</span>
         </h2>
         <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          Everything you need to enhance, edit, and transform your images.
-          Professional results in seconds, no design skills required.
+          {t('subtitle')}
         </p>
       </div>
 
@@ -195,19 +196,19 @@ export default function ToolsShowcase() {
 
               {/* Content */}
               <h3 className="text-xl font-bold mb-2 group-hover:text-white transition-colors">
-                {tool.name}
+                {t(`tools.${tool.nameKey}.name`)}
               </h3>
               <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                {tool.description}
+                {t(`tools.${tool.descriptionKey}.description`)}
               </p>
 
               {/* Footer */}
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium text-gray-500 bg-gray-800 px-3 py-1 rounded-full">
-                  {tool.credits}
+                  {t(`credits.${tool.creditsKey}`)}
                 </span>
                 <div className="flex items-center gap-1 text-sm font-medium text-gray-400 group-hover:text-green-400 transition-colors">
-                  <span>Try now</span>
+                  <span>{t('tryNow')}</span>
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -221,13 +222,13 @@ export default function ToolsShowcase() {
       {/* Bottom CTA */}
       <div className="text-center mt-12">
         <p className="text-gray-500 mb-4">
-          Start with <span className="text-green-400 font-semibold">3 free credits</span> - no credit card required
+          {t('bottomCta.text')} <span className="text-green-400 font-semibold">{t('bottomCta.highlight')}</span> {t('bottomCta.suffix')}
         </p>
         <Link
           href="/tools/upscaler"
           className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-400 hover:to-blue-400 rounded-xl font-bold text-lg shadow-xl shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-300 hover:scale-105"
         >
-          <span>Get Started Free</span>
+          <span>{t('bottomCta.button')}</span>
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>

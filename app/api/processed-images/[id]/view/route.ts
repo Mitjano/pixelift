@@ -3,6 +3,7 @@ import { readFile } from 'fs/promises'
 import path from 'path'
 import { ProcessedImagesDB } from '@/lib/processed-images-db'
 import { auth } from '@/lib/auth'
+import { validateSafePath } from '@/lib/security'
 
 /**
  * View image (original or processed)
@@ -60,9 +61,17 @@ export async function GET(
       imagePath = image.processedPath
     }
 
+    // Validate path to prevent path traversal attacks
+    const pathValidation = validateSafePath(imagePath)
+    if (!pathValidation.valid) {
+      return NextResponse.json(
+        { error: 'Invalid file path' },
+        { status: 400 }
+      )
+    }
+
     // Read file from filesystem
-    const filePath = path.join(process.cwd(), 'public', imagePath)
-    const fileBuffer = await readFile(filePath)
+    const fileBuffer = await readFile(pathValidation.safePath)
 
     // Determine content type from extension
     const ext = path.extname(imagePath).toLowerCase()

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { validateExternalUrl } from '@/lib/security';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,9 +10,15 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Missing path parameter' }, { status: 400 });
     }
 
+    // Validate URL to prevent SSRF attacks
+    const urlValidation = validateExternalUrl(path);
+    if (!urlValidation.valid) {
+      return NextResponse.json({ error: urlValidation.error }, { status: 400 });
+    }
+
     // Path is now a full Replicate URL (no Firebase Storage lookup needed)
     // Just proxy it through our API to avoid CORS issues
-    const imageResponse = await fetch(path);
+    const imageResponse = await fetch(urlValidation.url.toString());
 
     if (!imageResponse.ok) {
       throw new Error('Failed to fetch image from Replicate');

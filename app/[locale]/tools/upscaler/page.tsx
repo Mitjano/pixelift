@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 
 // Lazy load heavy component
@@ -20,6 +21,8 @@ const EnhancedImageUploader = dynamic(
 
 export default function UpscalerPage() {
   const { data: session } = useSession();
+  const t = useTranslations('toolsPage.upscaler');
+  const tCommon = useTranslations('common');
 
   return (
     <ToolsLayout>
@@ -39,35 +42,34 @@ export default function UpscalerPage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-purple-300">Powered by Real-ESRGAN AI</span>
+              <span className="text-purple-300">{t('badge')}</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">AI </span>
+              <span className="text-white">{t('title')} </span>
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                Image Upscaler
+                {t('titleHighlight')}
               </span>
             </h1>
 
             <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Enhance and enlarge your images up to 8x using Real-ESRGAN AI technology.
-              Restore details, reduce noise, and create stunning high-resolution images.
+              {t('subtitle')}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-white">8x</div>
-                <div className="text-gray-400 text-sm mt-1">Max Scale</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.maxScale')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-white">10s</div>
-                <div className="text-gray-400 text-sm mt-1">Processing</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.processing')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-white">1</div>
-                <div className="text-gray-400 text-sm mt-1">Credit/Image</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.creditPerImage')}</div>
               </div>
             </div>
           </div>
@@ -79,7 +81,7 @@ export default function UpscalerPage() {
         <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
           <EnhancedImageUploader />
           <p className="text-sm text-gray-500 mt-4 text-center">
-            By uploading a file you agree to our Terms of Use and Privacy Policy.
+            {t('uploadTerms')}
           </p>
         </div>
       </section>
@@ -90,20 +92,20 @@ export default function UpscalerPage() {
           {[
             {
               icon: '⚡',
-              title: 'Lightning Fast',
-              description: 'Process images in 10-20 seconds with our optimized AI pipeline.',
+              title: t('features.fast.title'),
+              description: t('features.fast.description'),
               gradient: 'from-yellow-500/20 to-orange-500/20',
             },
             {
               icon: '🎨',
-              title: 'Up to 8x Scale',
-              description: 'Choose 2x, 4x, or 8x upscaling for maximum detail enhancement.',
+              title: t('features.scale.title'),
+              description: t('features.scale.description'),
               gradient: 'from-purple-500/20 to-pink-500/20',
             },
             {
               icon: '✨',
-              title: 'Face Enhancement',
-              description: 'Optional GFPGAN model for enhanced face restoration in portraits.',
+              title: t('features.face.title'),
+              description: t('features.face.description'),
               gradient: 'from-blue-500/20 to-cyan-500/20',
             },
           ].map((feature, idx) => (
@@ -124,8 +126,8 @@ export default function UpscalerPage() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">How AI </span>
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Upscaling Works</span>
+              <span className="text-white">{t('howItWorks.title')} </span>
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">{t('howItWorks.titleHighlight')}</span>
             </h2>
           </div>
 
@@ -259,7 +261,7 @@ export default function UpscalerPage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/30 rounded-2xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Ready to Upscale Your Images?
+            {t('cta.title')}
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
             Start with 3 free credits. No credit card required.
@@ -269,14 +271,14 @@ export default function UpscalerPage() {
               href="/auth/signin"
               className="inline-block px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
             >
-              Get Started Free
+              {t('cta.getStarted')}
             </Link>
           ) : (
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
             >
-              Start Upscaling
+              {t('cta.startUpscaling')}
             </button>
           )}
         </div>

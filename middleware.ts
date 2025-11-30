@@ -15,7 +15,7 @@ const ALLOWED_ORIGINS = [
 const intlMiddleware = createIntlMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'always' // All locales have prefix (/en, /pl, /es, /fr)
+  localePrefix: 'always'
 });
 
 export default auth((req) => {

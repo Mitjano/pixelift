@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createUser, getUserByEmail, updateUserLogin, createNotification } from '@/lib/db';
 import { sendWelcomeEmail } from '@/lib/email';
 import { authLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+import { isAdminEmail } from '@/lib/admin-config';
 
 // Internal endpoint for user registration during OAuth callback
 // Does NOT require authentication (called by NextAuth signIn callback)
@@ -26,14 +27,12 @@ export async function POST(request: NextRequest) {
     const isNewUser = !user;
 
     if (!user) {
-      // Create new user
-      const isAdmin = email === 'admin@pixelift.pl' || email === 'michalchmielarz00@gmail.com';
-
+      // Create new user - admin role determined by ADMIN_EMAILS env variable
       user = createUser({
         email,
         name: name || undefined,
         image: image || undefined,
-        role: isAdmin ? 'admin' : 'user',
+        role: isAdminEmail(email) ? 'admin' : 'user',
         status: 'active',
         credits: 3,
         totalUsage: 0,

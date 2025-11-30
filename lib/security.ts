@@ -204,3 +204,122 @@ export function hashForLogging(data: string): string {
   if (data.length <= 8) return '****';
   return data.substring(0, 4) + '****' + data.substring(data.length - 4);
 }
+
+/**
+ * Path Traversal Protection
+ * Validates that a file path stays within an allowed base directory
+ * Prevents attacks like ../../etc/passwd
+ */
+import path from 'path';
+
+export function validateSafePath(
+  relativePath: string,
+  allowedBaseDir: string = path.join(process.cwd(), 'public')
+): { valid: true; safePath: string } | { valid: false; error: string } {
+  if (!relativePath || typeof relativePath !== 'string') {
+    return { valid: false, error: 'Invalid path' };
+  }
+
+  // Normalize the path to resolve any .. or . segments
+  const normalizedRelative = path.normalize(relativePath);
+
+  // Check for path traversal attempts
+  if (normalizedRelative.includes('..') || normalizedRelative.startsWith('/')) {
+    return { valid: false, error: 'Path traversal detected' };
+  }
+
+  // Build the full path
+  const fullPath = path.join(allowedBaseDir, normalizedRelative);
+
+  // Verify the resolved path is still within the allowed directory
+  const resolvedPath = path.resolve(fullPath);
+  const resolvedBase = path.resolve(allowedBaseDir);
+
+  if (!resolvedPath.startsWith(resolvedBase + path.sep) && resolvedPath !== resolvedBase) {
+    return { valid: false, error: 'Path outside allowed directory' };
+  }
+
+  return { valid: true, safePath: resolvedPath };
+}
+
+/**
+ * Sanitize filename to prevent directory traversal and special characters
+ */
+export function sanitizeFilename(filename: string): string {
+  if (!filename || typeof filename !== 'string') return '';
+
+  // Remove path separators and null bytes
+  return filename
+    .replace(/[/\\]/g, '')
+    .replace(/\x00/g, '')
+    .replace(/\.\./g, '')
+    .trim();
+}
+
+/**
+ * SSRF Protection - Validate URLs for external requests
+ * Only allows fetching from trusted domains to prevent server-side request forgery
+ */
+const ALLOWED_IMAGE_DOMAINS = [
+  'replicate.delivery',
+  'replicate.com',
+  'pbxt.replicate.delivery',
+  'firebasestorage.googleapis.com',
+  'storage.googleapis.com',
+  'pixelift.pl',
+];
+
+// Private/internal IP ranges to block
+const PRIVATE_IP_PATTERNS = [
+  /^127\./,
+  /^10\./,
+  /^172\.(1[6-9]|2[0-9]|3[0-1])\./,
+  /^192\.168\./,
+  /^169\.254\./, // Link-local
+  /^0\./, // "This" network
+  /^localhost$/i,
+  /^::1$/, // IPv6 loopback
+  /^fc00:/i, // IPv6 private
+  /^fe80:/i, // IPv6 link-local
+];
+
+export function validateExternalUrl(
+  url: string,
+  options: { allowedDomains?: string[] } = {}
+): { valid: true; url: URL } | { valid: false; error: string } {
+  if (!url || typeof url !== 'string') {
+    return { valid: false, error: 'Invalid URL' };
+  }
+
+  let parsedUrl: URL;
+  try {
+    parsedUrl = new URL(url);
+  } catch {
+    return { valid: false, error: 'Malformed URL' };
+  }
+
+  // Only allow HTTPS
+  if (parsedUrl.protocol !== 'https:') {
+    return { valid: false, error: 'Only HTTPS URLs are allowed' };
+  }
+
+  // Check for private/internal IPs
+  const hostname = parsedUrl.hostname;
+  for (const pattern of PRIVATE_IP_PATTERNS) {
+    if (pattern.test(hostname)) {
+      return { valid: false, error: 'Private IP addresses are not allowed' };
+    }
+  }
+
+  // Check against allowed domains
+  const allowedDomains = options.allowedDomains || ALLOWED_IMAGE_DOMAINS;
+  const isAllowed = allowedDomains.some(domain =>
+    hostname === domain || hostname.endsWith('.' + domain)
+  );
+
+  if (!isAllowed) {
+    return { valid: false, error: `Domain not allowed: ${hostname}` };
+  }
+
+  return { valid: true, url: parsedUrl };
+}

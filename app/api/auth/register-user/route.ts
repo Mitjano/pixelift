@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth';
 import { createUser, getUserByEmail, updateUserLogin, createNotification } from '@/lib/db';
 import { sendWelcomeEmail } from '@/lib/email';
 import { authLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+import { isAdminEmail } from '@/lib/admin-config';
 
 // This route is called after successful Google OAuth login
 // to create/update user in database
@@ -29,13 +30,11 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       // Create new user
-      const isAdmin = email === 'admin@pixelift.pl' || email === 'michalchmielarz00@gmail.com';
-
       user = createUser({
         email,
         name: name || undefined,
         image: image || undefined,
-        role: isAdmin ? 'admin' : 'user',
+        role: isAdminEmail(email) ? 'admin' : 'user',
         status: 'active',
         credits: 3,
         totalUsage: 0,

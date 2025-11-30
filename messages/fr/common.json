@@ -1,7 +1,77 @@
 {
   "meta": {
     "title": "Pixelift - Outils IA pour Images | Agrandisseur et Suppresseur de Fond",
-    "description": "Outils professionnels IA pour les images. Agrandissez les images jusqu'à 8x avec Real-ESRGAN et supprimez les arrière-plans instantanément avec BRIA RMBG 2.0. Gratuit, rapide et sécurisé."
+    "description": "Outils professionnels IA pour les images. Agrandissez les images jusqu'à 8x avec Real-ESRGAN et supprimez les arrière-plans instantanément avec BRIA RMBG 2.0. Gratuit, rapide et sécurisé.",
+    "pages": {
+      "tools": {
+        "title": "Outils IA pour Images - 9 Outils Professionnels",
+        "description": "Suite complète d'outils IA pour images. Suppression de fond, agrandissement, colorisation, restauration et plus. Résultats professionnels en quelques secondes."
+      },
+      "upscaler": {
+        "title": "Agrandisseur d'Images IA - Améliorez Jusqu'à 8x",
+        "description": "Agrandissez et améliorez les images jusqu'à 8x avec Real-ESRGAN IA. Agrandissement de photos de qualité professionnelle sans perte de détails. Aperçu gratuit."
+      },
+      "removeBackground": {
+        "title": "Suppresseur de Fond IA - Instantané et Précis",
+        "description": "Supprimez les fonds des images instantanément avec BRIA RMBG 2.0 IA. Parfait pour les photos de produits, portraits et e-commerce. Essayez gratuitement."
+      },
+      "colorize": {
+        "title": "Colorisateur de Photos IA - Colorisez les Photos N&B",
+        "description": "Donnez vie aux photos en noir et blanc avec la colorisation IA. Parfait pour les images historiques et les vieilles photos de famille. Couleurs réalistes instantanément."
+      },
+      "restore": {
+        "title": "Restaurateur de Photos IA - Réparez les Photos Anciennes",
+        "description": "Restaurez les photos anciennes, endommagées ou bruitées avec l'IA. Supprimez les rayures, le bruit et les artefacts JPEG. Redonnez vie à vos souvenirs."
+      },
+      "objectRemoval": {
+        "title": "Suppresseur d'Objets IA - Effacez les Éléments Indésirables",
+        "description": "Supprimez les objets, personnes ou textes indésirables des photos. L'IA remplit le fond naturellement. Parfait pour des photos de produits propres."
+      },
+      "packshotGenerator": {
+        "title": "Générateur de Packshots IA - Photos de Produits Professionnelles",
+        "description": "Créez des packshots de produits professionnels avec l'IA. Fonds parfaits pour l'e-commerce et les marketplaces. Qualité studio."
+      },
+      "backgroundGenerator": {
+        "title": "Générateur de Fonds IA - Créez des Fonds Personnalisés",
+        "description": "Générez de superbes fonds IA pour vos photos. Décrivez le fond que vous voulez et l'IA le crée. Parfait pour les projets créatifs."
+      },
+      "imageCompressor": {
+        "title": "Compresseur d'Images - Réduisez la Taille Intelligemment",
+        "description": "Compressez les images en maintenant la qualité. Parfait pour l'optimisation web. Réduisez les tailles jusqu'à 90% sans perte visible."
+      },
+      "imageExpand": {
+        "title": "Expanseur d'Images IA - Étendez les Bordures",
+        "description": "Étendez les images au-delà de leurs bordures avec l'IA outpainting. Ajoutez plus de toile à n'importe quelle image. Parfait pour les réseaux sociaux."
+      },
+      "pricing": {
+        "title": "Tarifs - Plans Flexibles pour Chaque Besoin",
+        "description": "Choisissez le plan qui vous convient. Niveau gratuit avec 3 crédits, abonnements abordables ou paiement à l'usage. Pas de frais cachés."
+      },
+      "dashboard": {
+        "title": "Tableau de Bord - Gérez Votre Compte",
+        "description": "Consultez votre historique de traitement, gérez vos crédits et accédez à tous les outils IA depuis votre tableau de bord personnel."
+      },
+      "blog": {
+        "title": "Blog - Conseils, Tutoriels et Actualités",
+        "description": "Apprenez à tirer le meilleur parti des outils IA pour images. Conseils, tutoriels et les dernières nouvelles de Pixelift."
+      },
+      "faq": {
+        "title": "FAQ - Questions Fréquentes",
+        "description": "Trouvez des réponses aux questions courantes sur les outils IA Pixelift. Comment ça marche, tarifs, formats supportés et plus."
+      },
+      "about": {
+        "title": "À Propos de Pixelift - Notre Histoire et Mission",
+        "description": "Découvrez la mission de Pixelift de rendre l'édition d'images professionnelle accessible à tous avec des outils IA."
+      },
+      "privacy": {
+        "title": "Politique de Confidentialité",
+        "description": "Découvrez comment Pixelift protège vos données. Notre engagement envers la confidentialité, la sécurité et la conformité RGPD."
+      },
+      "terms": {
+        "title": "Conditions d'Utilisation",
+        "description": "Lisez les conditions d'utilisation de Pixelift. Règles d'usage, droits et responsabilités lors de l'utilisation de nos outils IA."
+      }
+    }
   },
   "nav": {
     "tools": "Outils",
@@ -98,6 +168,10 @@
         "title": "9 Outils Pro",
         "description": "Suite complète pour tous vos besoins d'édition d'images."
       },
+      "proTools": {
+        "title": "9 Outils Pro",
+        "description": "Suite complète pour tous vos besoins d'édition d'images."
+      },
       "payPerUse": {
         "title": "Paiement à l'Usage",
         "description": "Sans abonnement. Achetez des crédits et utilisez-les quand vous voulez."
@@ -107,6 +181,9 @@
       "title": "Prêt à Transformer Vos Images?",
       "description": "Commencez avec 3 crédits gratuits. Sans carte de crédit. Découvrez la puissance de l'édition améliorée par l'IA.",
       "button": "Commencer Gratuitement",
+      "freeCredits": "3 Crédits Gratuits",
+      "noCard": "Sans Carte de Crédit",
+      "allTools": "Les 9 Outils Inclus",
       "features": {
         "freeCredits": "3 Crédits Gratuits",
         "noCard": "Sans Carte de Crédit",
@@ -175,7 +252,74 @@
     "orContinueWith": "Ou continuez avec",
     "google": "Continuer avec Google",
     "noAccount": "Pas de compte?",
-    "hasAccount": "Déjà un compte?"
+    "hasAccount": "Déjà un compte?",
+    "signin": {
+      "welcomeBack": "Bienvenue à nouveau sur",
+      "continueEnhancing": "Continuez à améliorer vos images avec des outils IA professionnels",
+      "signInToAccount": "Connectez-vous à votre compte",
+      "welcomeBackDetails": "Bienvenue! Veuillez entrer vos informations",
+      "secureLogin": "Connexion sécurisée",
+      "signInInfo": "Connectez-vous avec votre compte Google pour accéder à votre tableau de bord et reprendre là où vous vous êtes arrêté",
+      "signUpFree": "Inscrivez-vous gratuitement",
+      "bySigningIn": "En vous connectant, vous acceptez nos",
+      "termsOfService": "Conditions d'Utilisation",
+      "and": "et",
+      "privacyPolicy": "Politique de Confidentialité",
+      "fastReliable": "Rapide et fiable",
+      "fastReliableDesc": "Traitez des centaines d'images avec une qualité constante",
+      "premiumQuality": "Qualité premium",
+      "premiumQualityDesc": "Agrandissement IA préservant chaque détail",
+      "securePrivate": "Sécurisé et privé",
+      "securePrivateDesc": "Vos images sont traitées en toute sécurité et supprimées après 24h",
+      "usersCount": "10 000+ utilisateurs",
+      "trustPixelift": "font confiance à Pixelift",
+      "testimonial": "Le meilleur agrandisseur d'images IA que j'ai jamais utilisé. Les résultats sont tout simplement incroyables!"
+    },
+    "signup": {
+      "transformImages": "Transformez vos images avec",
+      "aiPower": "la puissance IA",
+      "joinThousands": "Rejoignez des milliers d'utilisateurs qui améliorent leurs images avec une technologie IA de pointe",
+      "createAccount": "Créez votre compte",
+      "startEnhancing": "Commencez à améliorer vos images aujourd'hui",
+      "quickSecure": "Rapide et sécurisé",
+      "freeTier": "Plan gratuit avec 10 crédits par mois",
+      "noCardRequired": "Aucune carte de crédit requise",
+      "cancelAnytime": "Annulez à tout moment",
+      "signInLink": "Se connecter",
+      "bySigningUp": "En vous inscrivant, vous acceptez nos",
+      "lightningFast": "Traitement ultra-rapide",
+      "lightningFastDesc": "Agrandissez les images en 10-20 secondes avec notre pipeline IA optimisé",
+      "upTo8x": "Agrandissement jusqu'à 8x",
+      "upTo8xDesc": "Améliorez la qualité d'image avec des options 2x, 4x ou 8x",
+      "faceEnhancement": "Amélioration des visages",
+      "faceEnhancementDesc": "Modèles IA avancés pour une restauration professionnelle des visages",
+      "happyUsers": "Utilisateurs satisfaits",
+      "imagesEnhanced": "Images améliorées",
+      "userRating": "Note utilisateurs"
+    },
+    "error": {
+      "configuration": {
+        "title": "Erreur de configuration",
+        "description": "Il y a un problème avec la configuration du serveur. Veuillez contacter le support."
+      },
+      "accessDenied": {
+        "title": "Accès refusé",
+        "description": "Vous n'avez pas la permission de vous connecter."
+      },
+      "verification": {
+        "title": "Erreur de vérification",
+        "description": "Le lien de vérification est invalide ou a expiré."
+      },
+      "default": {
+        "title": "Erreur d'authentification",
+        "description": "Une erreur s'est produite lors de l'authentification. Veuillez réessayer."
+      },
+      "errorCode": "Code d'erreur",
+      "adminCheck": "Si vous êtes administrateur, veuillez vérifier:",
+      "tryAgain": "Réessayer",
+      "backToHome": "Retour à l'accueil",
+      "loading": "Chargement..."
+    }
   },
   "upload": {
     "dragDrop": "Glissez et déposez votre image ici",
@@ -191,5 +335,749 @@
     "accept": "Accepter",
     "decline": "Refuser",
     "learnMore": "En savoir plus"
+  },
+  "pricing": {
+    "title": "Choisissez le Plan Adapté",
+    "freePlan": {
+      "title": "Plan Gratuit",
+      "perCredit": "/crédit",
+      "button": "S'inscrire Gratuitement",
+      "freeCredits": "3 crédits gratuits",
+      "freeDownloads": "3 téléchargements gratuits",
+      "description": "Obtenez 3 crédits gratuits et 3 téléchargements gratuits chaque mois pour essayer la plateforme"
+    },
+    "subscription": {
+      "title": "Plan d'Abonnement",
+      "mostPopular": "Le Plus Populaire",
+      "perCredit": "/crédit",
+      "billed": "facturé",
+      "monthly": "mensuel",
+      "yearly": "annuel",
+      "billedYearly": "facturé annuellement",
+      "button": "S'abonner Maintenant",
+      "save70": "Économisez 70%",
+      "creditsPerMonth": "Crédits/mois",
+      "perMonth": "/mois",
+      "perYear": "/an",
+      "billedYearlyAuto": "Facturation annuelle (Renouvellement automatique)",
+      "save70Compared": "Économisez 70% par rapport à la facturation mensuelle",
+      "billedMonthlyAuto": "Facturation mensuelle (Renouvellement automatique)",
+      "cancelAnytime": "Annulez à tout moment",
+      "noRefunds": "En raison du coût élevé de l'IA, nous n'offrons pas de remboursements. Veuillez essayer le plan gratuit avant de mettre à niveau"
+    },
+    "oneTime": {
+      "title": "Paiement unique",
+      "perCredit": "/crédit",
+      "billedOnce": "paiement unique",
+      "button": "Acheter Maintenant",
+      "credits": "Crédits",
+      "validFor1Year": "Les crédits sont valables 1 an à partir de l'achat et ne sont pas remboursables"
+    },
+    "enterprise": {
+      "title": "Plan Entreprise",
+      "customSolutions": "Besoin de solutions personnalisées?",
+      "button": "Parler aux Ventes",
+      "scheduleDemo": "Planifiez une démo avec notre équipe",
+      "getQuote": "Obtenez un devis adapté à vos besoins",
+      "emailUs": "Écrivez-nous à",
+      "forQueries": "pour toute question",
+      "bookSession": "Réservez une session 1:1 avec nos experts pour voir comment Pixelift peut aider votre entreprise à transformer des images à grande échelle"
+    },
+    "features": {
+      "title": "Fonctionnalités Puissantes Incluses",
+      "preview": {
+        "title": "Aperçu GRATUIT",
+        "description": "Essayez avant d'acheter! Générez un aperçu GRATUIT de 200x200px avec tous vos paramètres avant d'utiliser des crédits. Parfait pour tester différents préréglages."
+      },
+      "batch": {
+        "title": "Traitement par Lots",
+        "description": "Téléchargez et traitez jusqu'à 50 images à la fois avec les mêmes paramètres. Parfait pour les photographes et créateurs de contenu travaillant avec plusieurs fichiers."
+      },
+      "presets": {
+        "title": "7 Préréglages IA",
+        "description": "Modes: Amélioration Qualité, Portrait, Paysage, Art, Restauration, Maximum et Personnalisé. Chacun optimisé pour des cas d'utilisation spécifiques."
+      },
+      "enhancements": {
+        "title": "Améliorations Avancées",
+        "description": "Réduction du bruit, suppression des artefacts JPEG, correction des couleurs et amélioration faciale. Ajustez chaque aspect du traitement d'image."
+      },
+      "scaling": {
+        "title": "Mise à l'Échelle Flexible",
+        "description": "Choisissez entre 1x (qualité uniquement), 2x, 4x ou 8x. Améliorez sans redimensionner ou agrandissez jusqu'à 8x la résolution originale."
+      },
+      "comparison": {
+        "title": "Comparaison Interactive",
+        "description": "Faites glisser pour comparer les images avant et après côte à côte. Voyez les améliorations de qualité en temps réel avec notre curseur interactif."
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer?",
+      "description": "Commencez avec notre plan gratuit ou choisissez une option payante pour plus de crédits",
+      "startTrial": "Démarrer l'Essai Gratuit",
+      "contactSales": "Contacter les Ventes"
+    }
+  },
+  "toolsPage": {
+    "badge": "9 Outils IA",
+    "title": "Outils d'Images",
+    "titleHighlight": "IA",
+    "subtitle": "Édition d'images professionnelle propulsée par l'IA de pointe. Supprimez les fonds, agrandissez, restaurez, colorisez et plus encore - tout en un seul endroit.",
+    "stats": {
+      "tools": "Outils IA",
+      "credits": "Crédits/Tâche",
+      "processing": "Traitement Moy."
+    },
+    "tryItNow": "Essayez maintenant",
+    "whyChoose": {
+      "title": "Pourquoi Choisir Nos Outils IA ?",
+      "subtitle": "Édition d'images de niveau professionnel propulsée par les derniers modèles d'IA.",
+      "fast": {
+        "title": "Ultra Rapide",
+        "description": "La plupart des tâches sont terminées en moins de 10 secondes avec notre pipeline IA optimisé."
+      },
+      "quality": {
+        "title": "Qualité Professionnelle",
+        "description": "Des modèles IA de niveau entreprise qui livrent des résultats égalant l'édition professionnelle."
+      },
+      "payAsYouGo": {
+        "title": "Paiement à l'Usage",
+        "description": "Payez seulement ce que vous utilisez. Sans abonnement, sans frais cachés."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Transformer Vos Images ?",
+      "subtitle": "Commencez avec 3 crédits gratuits. Sans carte de crédit.",
+      "getStarted": "Commencer Gratuitement",
+      "viewPricing": "Voir les Tarifs"
+    },
+    "tools": {
+      "removeBackground": {
+        "name": "Suppresseur de Fond",
+        "description": "Supprimez les fonds des images instantanément avec l'IA. Parfait pour les photos de produits et les portraits.",
+        "credits": "1 crédit"
+      },
+      "upscaler": {
+        "name": "Agrandisseur IA",
+        "description": "Améliorez et agrandissez les images jusqu'à 8x avec l'IA. Parfait pour agrandir les photos sans perte de qualité.",
+        "credits": "1 crédit"
+      },
+      "imageExpand": {
+        "name": "Extenseur d'Images",
+        "description": "Étendez les images au-delà de leurs bordures avec l'outpainting IA. Ajoutez plus de toile à n'importe quelle image.",
+        "credits": "2 crédits"
+      },
+      "colorize": {
+        "name": "Colorisateur de Photos",
+        "description": "Donnez vie aux photos noir et blanc avec la colorisation IA. Parfait pour les images historiques.",
+        "credits": "1 crédit"
+      },
+      "restore": {
+        "name": "Restaurateur de Photos",
+        "description": "Restaurez les vieilles photos endommagées ou bruitées avec l'IA. Supprimez les rayures, le bruit et les artefacts JPEG.",
+        "credits": "1 crédit"
+      },
+      "objectRemoval": {
+        "name": "Suppresseur d'Objets",
+        "description": "Supprimez les objets, personnes ou textes indésirables des photos. L'IA remplit le fond naturellement.",
+        "credits": "2 crédits"
+      },
+      "packshotGenerator": {
+        "name": "Générateur de Packshots",
+        "description": "Créez des packshots de produits professionnels avec l'IA. Parfait pour l'e-commerce et les marketplaces.",
+        "credits": "2 crédits"
+      },
+      "backgroundGenerator": {
+        "name": "Générateur de Fonds",
+        "description": "Générez de superbes fonds IA pour vos photos. Décrivez le fond que vous souhaitez.",
+        "credits": "3 crédits"
+      },
+      "imageCompressor": {
+        "name": "Compresseur d'Images",
+        "description": "Réduisez la taille des fichiers tout en maintenant la qualité. Parfait pour l'optimisation web.",
+        "credits": "1 crédit"
+      }
+    },
+    "upscaler": {
+      "badge": "Propulsé par Real-ESRGAN AI",
+      "title": "Agrandisseur",
+      "titleHighlight": "d'Images IA",
+      "subtitle": "Améliorez et agrandissez vos images jusqu'à 8x en utilisant la technologie Real-ESRGAN AI. Restaurez les détails, réduisez le bruit et créez de superbes images haute résolution.",
+      "stats": {
+        "maxScale": "Échelle Max",
+        "processing": "Traitement",
+        "creditPerImage": "Crédit/Image"
+      },
+      "uploadTerms": "En téléversant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.",
+      "features": {
+        "fast": {
+          "title": "Ultra Rapide",
+          "description": "Traitez les images en 10-20 secondes avec notre pipeline IA optimisé."
+        },
+        "scale": {
+          "title": "Jusqu'à 8x d'Échelle",
+          "description": "Choisissez un agrandissement 2x, 4x ou 8x pour une amélioration maximale des détails."
+        },
+        "face": {
+          "title": "Amélioration Faciale",
+          "description": "Modèle GFPGAN optionnel pour une restauration faciale améliorée dans les portraits."
+        }
+      },
+      "howItWorks": {
+        "title": "Comment Fonctionne",
+        "titleHighlight": "l'Agrandissement IA",
+        "technology": {
+          "title": "Technologie Real-ESRGAN",
+          "description": "Notre agrandisseur utilise Real-ESRGAN (Enhanced Super-Resolution Generative Adversarial Networks), un modèle IA de pointe entraîné sur des millions d'images. Contrairement à l'agrandissement traditionnel qui étire simplement les pixels, Real-ESRGAN reconstruit intelligemment les détails manquants.",
+          "features": [
+            "Restaure les détails fins et les textures perdues dans les images basse résolution",
+            "Réduit le bruit et les artefacts de compression",
+            "Affine les bords et améliore la clarté"
+          ]
+        },
+        "perfectFor": {
+          "title": "Parfait Pour",
+          "photography": "Photographie : Agrandissez les photos pour l'impression sans perte de qualité",
+          "gaming": "Gaming : Agrandissez les textures de jeux et les captures d'écran pour les écrans HD",
+          "design": "Design : Améliorez les logos, illustrations et œuvres d'art basse résolution",
+          "portraits": "Portraits : Restaurez les vieilles photos de famille avec l'amélioration faciale"
+        }
+      },
+      "options": {
+        "title": "Options d'Agrandissement",
+        "scale2x": "Agrandissement 2x : Idéal pour les améliorations rapides, parfait pour les graphiques web et les réseaux sociaux",
+        "scale4x": "Agrandissement 4x : Équilibre parfait entre qualité et temps de traitement, excellent pour la plupart des cas",
+        "scale8x": "Agrandissement 8x : Amélioration maximale pour l'impression grand format et les projets professionnels",
+        "faceEnhancement": "Amélioration Faciale : Traitement GFPGAN optionnel spécifiquement optimisé pour les portraits"
+      },
+      "formats": {
+        "title": "Formats Supportés",
+        "input": "Entrée : JPG, PNG, WebP - jusqu'à 10MB par image",
+        "output": "Sortie : Formats PNG ou JPG de haute qualité",
+        "resolution": "Résolution : Les utilisateurs gratuits obtiennent un aperçu basse résolution, les membres Premium débloquent les téléchargements en pleine résolution",
+        "processing": "Traitement : Chaque agrandissement coûte 1 crédit, traité en 10-20 secondes"
+      },
+      "tips": {
+        "title": "Conseils pour de Meilleurs Résultats",
+        "do": {
+          "title": "À faire :",
+          "items": [
+            "Utilisez l'image source de meilleure qualité disponible",
+            "Activez l'amélioration faciale pour les portraits et les selfies",
+            "Commencez par 2x ou 4x pour la plupart des images",
+            "Utilisez 8x pour les images destinées à l'impression grand format"
+          ]
+        },
+        "avoid": {
+          "title": "À éviter :",
+          "items": [
+            "Agrandir des images déjà très compressées ou pixelisées",
+            "Utiliser 8x sur des images qui n'ont pas besoin d'un agrandissement extrême",
+            "Appliquer l'amélioration faciale sur des images qui ne sont pas des portraits",
+            "S'attendre à des résultats parfaits à partir de sources de très basse qualité"
+          ]
+        }
+      },
+      "cta": {
+        "title": "Prêt à Agrandir Vos Images ?",
+        "subtitle": "Commencez avec 3 crédits gratuits. Sans carte de crédit.",
+        "getStarted": "Commencer Gratuitement",
+        "startUpscaling": "Commencer l'Agrandissement"
+      }
+    },
+    "common": {
+      "credit": "crédit",
+      "credits": "crédits",
+      "processing": "Traitement",
+      "uploadTerms": "En téléversant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité."
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Bon retour",
+    "manageAccount": "Gérez votre compte et consultez l'historique de traitement de vos images",
+    "stats": {
+      "imagesProcessed": "Images Traitées",
+      "creditsRemaining": "Crédits Restants",
+      "currentPlan": "Plan Actuel",
+      "toolsAvailable": "Outils Disponibles"
+    },
+    "tools": {
+      "title": "Outils IA",
+      "upscaler": {
+        "name": "Agrandisseur d'Images",
+        "description": "Améliorez et agrandissez les images jusqu'à 8x"
+      },
+      "bgRemover": {
+        "name": "Suppresseur de Fond",
+        "description": "Supprimez les fonds avec l'IA"
+      },
+      "faceRestore": {
+        "name": "Restauration Faciale",
+        "description": "Restaurez et améliorez les photos de visages"
+      },
+      "startUsing": "Commencer à utiliser",
+      "comingSoon": "BIENTÔT"
+    },
+    "activity": {
+      "title": "Activité Récente",
+      "noActivity": "Aucune activité",
+      "noActivityDesc": "Commencez à utiliser nos outils pour voir votre historique ici",
+      "tryUpscaler": "Essayer l'Agrandisseur",
+      "tryBgRemover": "Essayer le Suppresseur de Fond",
+      "credit": "crédit",
+      "credits": "crédits"
+    },
+    "usage": {
+      "title": "Aperçu de l'Utilisation",
+      "creditUsage": "Utilisation des Crédits",
+      "totalUsed": "Total Utilisé",
+      "mostUsedTool": "Outil le Plus Utilisé",
+      "noData": "Pas de données",
+      "startProcessing": "Commencez à traiter des images pour voir les statistiques",
+      "imagesProcessed": "images traitées",
+      "imageProcessed": "image traitée"
+    },
+    "quickActions": {
+      "title": "Actions Rapides",
+      "imageHistory": "Historique des Images",
+      "viewProcessed": "Voir les images traitées",
+      "billing": "Facturation",
+      "transactions": "Transactions et paiements",
+      "upgrade": "Améliorer",
+      "getMoreCredits": "Obtenir plus de crédits",
+      "apiKeys": "Clés API",
+      "forDevelopers": "Pour les développeurs",
+      "myTickets": "Mes Tickets",
+      "supportRequests": "Demandes de support",
+      "settings": "Paramètres",
+      "accountPreferences": "Préférences du compte"
+    },
+    "plans": {
+      "free": "Gratuit",
+      "premium": "Premium",
+      "pro": "Pro"
+    }
+  },
+  "toolsShowcase": {
+    "badge": "9 Outils IA Professionnels",
+    "title": "Tout-en-Un",
+    "titleHighlight": "Suite d'Images IA",
+    "subtitle": "Tout ce dont vous avez besoin pour améliorer, éditer et transformer vos images. Résultats professionnels en quelques secondes, sans compétences en design.",
+    "tools": {
+      "upscaler": { "name": "Agrandisseur IA", "description": "Agrandissez les images jusqu'à 8x avec l'amélioration IA" },
+      "bgRemover": { "name": "Suppression de Fond", "description": "Supprimez les arrière-plans instantanément avec précision IA" },
+      "colorize": { "name": "Colorisateur de Photos", "description": "Donnez vie aux photos noir et blanc avec la couleur IA" },
+      "restore": { "name": "Restauration d'Image", "description": "Supprimez le bruit, les artefacts et la compression JPEG" },
+      "objectRemoval": { "name": "Suppression d'Objets", "description": "Effacez les objets, personnes et distractions indésirables" },
+      "bgGenerator": { "name": "Générateur de Fond", "description": "Générez des arrière-plans IA époustouflants à partir de descriptions" },
+      "compressor": { "name": "Compresseur d'Images", "description": "Réduisez la taille du fichier en conservant la qualité" },
+      "packshot": { "name": "Générateur Packshot", "description": "Créez des photos de produits professionnelles instantanément" },
+      "expand": { "name": "Expansion d'Image", "description": "Étendez les bordures d'image avec l'outpainting IA" }
+    },
+    "credits": {
+      "1": "1 crédit",
+      "13": "1-3 crédits",
+      "2": "2 crédits",
+      "3": "3 crédits",
+      "free": "Gratuit"
+    },
+    "tryNow": "Essayer maintenant",
+    "bottomCta": {
+      "text": "Commencez avec",
+      "highlight": "3 crédits gratuits",
+      "suffix": "- sans carte bancaire",
+      "button": "Commencer Gratuitement"
+    }
+  },
+  "trustBadges": {
+    "title": "Fait Confiance par",
+    "titleHighlight": "des Professionnels du Monde Entier",
+    "badges": {
+      "ssl": { "title": "SSL Sécurisé", "description": "Cryptage 256 bits" },
+      "gdpr": { "title": "Conforme RGPD", "description": "Protection des données UE" },
+      "privacy": { "title": "Auto-Suppression", "description": "Fichiers supprimés après 1h" },
+      "uptime": { "title": "99.9% Disponible", "description": "Fiabilité entreprise" },
+      "support": { "title": "Support 24/7", "description": "Toujours là pour aider" },
+      "noWatermark": { "title": "Sans Filigrane", "description": "Export qualité complète" }
+    },
+    "trustedBy": "Fait confiance par les grandes marques",
+    "securityNote": "Vos images sont traitées de manière sécurisée et jamais partagées avec des tiers"
+  },
+  "faq": {
+    "title": "Questions",
+    "titleHighlight": "Fréquentes",
+    "subtitle": "Voici les questions les plus courantes de notre communauté.",
+    "items": {
+      "upscaleQuality": {
+        "question": "Peut-on agrandir une photo sans perdre en qualité?",
+        "answer": "Oui. L'agrandissement IA préserve la qualité en utilisant des algorithmes d'apprentissage profond qui reconstruisent les détails de votre image au lieu de simplement étirer les pixels. Nos modèles Real-ESRGAN et GFPGAN analysent votre image et ajoutent intelligemment des détails réalistes."
+      },
+      "bestFreeTool": {
+        "question": "Quel est le meilleur outil gratuit pour agrandir des images?",
+        "answer": "Pixelift est un outil en ligne gratuit de premier plan. Il offre une amélioration sans filigrane avec un agrandissement IA de 2x, 4x ou 8x. Nous offrons 3 crédits gratuits pour commencer, sans inscription requise."
+      },
+      "mobileSupport": {
+        "question": "Pixelift fonctionne-t-il sur mobile?",
+        "answer": "Oui, vous pouvez utiliser Pixelift dans votre navigateur mobile sans avoir besoin d'installer d'applications ou de logiciels. Notre interface est entièrement responsive et optimisée pour les appareils tactiles."
+      },
+      "aiVsManual": {
+        "question": "En quoi l'agrandissement IA est-il meilleur que le redimensionnement manuel?",
+        "answer": "Pixelift étant alimenté par l'IA, il ajoute des détails réalistes à vos images. Cela se fait à l'aide de réseaux neuronaux, ce qui garantit des images haute résolution par rapport au redimensionnement manuel, qui étire les pixels, causant du flou."
+      },
+      "artworkSupport": {
+        "question": "L'IA peut-elle améliorer les œuvres d'art, l'anime ou les illustrations?",
+        "answer": "Oui. Les outils d'amélioration d'images IA comme Pixelift fonctionnent exceptionnellement bien pour l'art numérique, l'anime et les croquis. Nous recommandons d'utiliser notre préréglage 'Art & Illustration', qui utilise un agrandissement 8x optimisé pour préserver la qualité des traits et des couleurs sans distorsion."
+      },
+      "formats": {
+        "question": "Quels formats d'image sont pris en charge?",
+        "answer": "Pixelift prend en charge les formats PNG, JPG, JPEG, WEBP, HEIC et BMP. La taille maximale des fichiers est de 10 Mo pour les utilisateurs gratuits, avec des limites plus élevées pour les abonnés premium."
+      },
+      "processingTime": {
+        "question": "Combien de temps dure le traitement?",
+        "answer": "La plupart des images sont traitées en 10-20 secondes, selon le niveau d'agrandissement sélectionné et si l'amélioration faciale est activée. L'agrandissement 2x est le plus rapide, tandis que le 8x avec amélioration faciale peut prendre jusqu'à 30 secondes."
+      },
+      "dataSafety": {
+        "question": "Mes données sont-elles en sécurité?",
+        "answer": "Oui. Toutes les images sont traitées de manière sécurisée avec un cryptage HTTPS et automatiquement supprimées de nos serveurs après 24 heures. Nous ne partageons jamais vos données avec des tiers et nous respectons les réglementations RGPD."
+      },
+      "aiPresets": {
+        "question": "Que sont les préréglages IA et lequel dois-je utiliser?",
+        "answer": "Les préréglages IA sont des paramètres préconfigurés optimisés pour différents types d'images. Utilisez 'Mode Portrait' pour les photos avec des visages, 'Mode Paysage' pour la nature/architecture, 'Art & Illustration' pour l'art numérique, 'Restauration Photo' pour les vieilles photos, ou 'Qualité Maximum' pour un usage professionnel."
+      },
+      "batchProcessing": {
+        "question": "Puis-je traiter plusieurs images à la fois?",
+        "answer": "Le traitement par lots est disponible pour les abonnés Pro et Entreprise. Les utilisateurs gratuits peuvent traiter une image à la fois, tandis que les utilisateurs premium peuvent télécharger et traiter jusqu'à 50 images simultanément avec notre fonctionnalité de transformation en masse."
+      },
+      "scalingDifference": {
+        "question": "Quelle est la différence entre l'agrandissement 2x, 4x et 8x?",
+        "answer": "Le nombre indique de combien nous augmentons la résolution. 2x double la largeur et la hauteur (4x pixels au total), 4x quadruple les dimensions (16x pixels au total), et 8x multiplie par huit (64x pixels au total). Un agrandissement plus élevé prend plus de temps mais produit des images plus grandes et plus détaillées."
+      },
+      "groupPhotos": {
+        "question": "L'amélioration faciale fonctionne-t-elle sur les photos de groupe?",
+        "answer": "Oui! Notre IA d'amélioration faciale GFPGAN peut détecter et améliorer plusieurs visages dans une seule image. Elle fonctionne très bien pour les photos de groupe, les photos de mariage et les portraits de famille. Activez 'Amélioration Faciale' ou utilisez le préréglage 'Mode Portrait' pour de meilleurs résultats."
+      },
+      "commercialUse": {
+        "question": "Puis-je utiliser les images agrandies commercialement?",
+        "answer": "Oui, vous conservez la pleine propriété de vos images. Les utilisateurs gratuits peuvent utiliser les images agrandies à n'importe quelle fin, y compris commerciale. Nous n'ajoutons pas de filigranes et ne revendiquons aucun droit sur votre contenu."
+      },
+      "aiModels": {
+        "question": "Quels modèles IA utilisez-vous?",
+        "answer": "Nous utilisons Real-ESRGAN pour l'agrandissement général d'images et GFPGAN pour l'amélioration faciale. Ce sont des modèles IA de pointe entraînés sur des millions d'images pour produire des résultats réalistes et de haute qualité."
+      },
+      "credits": {
+        "question": "Comment fonctionnent les crédits?",
+        "answer": "Chaque image traitée coûte 1 crédit. Les utilisateurs gratuits reçoivent 3 crédits pour commencer. Vous pouvez acheter plus de crédits via des packs uniques ou vous abonner à un plan mensuel pour des recharges automatiques. Les crédits n'expirent jamais."
+      }
+    }
+  },
+  "useCases": {
+    "title": "Qui Bénéficie de",
+    "titleHighlight": "l'Agrandissement IA?",
+    "subtitle": "Amélioration d'images puissante pour tous, des utilisateurs occasionnels aux entreprises",
+    "keyBenefits": "Avantages Clés:",
+    "perfectFor": "Parfait Pour:",
+    "cases": {
+      "individuals": {
+        "title": "Pour les Particuliers",
+        "description": "Parfait pour l'amélioration de photos personnelles et le contenu des réseaux sociaux",
+        "benefits": {
+          "b1": "Améliorez vos photos de profil",
+          "b2": "Restaurez de vieilles photos de famille",
+          "b3": "Améliorez les images pour les réseaux sociaux",
+          "b4": "Préparez des photos pour l'impression",
+          "b5": "Agrandissez les fonds d'écran et arrière-plans"
+        },
+        "examples": {
+          "e1": "Publications Réseaux Sociaux",
+          "e2": "Photos de Profil",
+          "e3": "Albums Photos de Famille",
+          "e4": "Fonds d'Écran Bureau"
+        }
+      },
+      "professionals": {
+        "title": "Pour les Professionnels",
+        "description": "Amélioration d'images de qualité professionnelle pour le travail créatif",
+        "benefits": {
+          "b1": "Restauration de photos clients",
+          "b2": "Amélioration de photos de produits",
+          "b3": "Optimisation d'images immobilières",
+          "b4": "Préparation de supports marketing",
+          "b5": "Amélioration de la qualité du portfolio"
+        },
+        "examples": {
+          "e1": "Studios Photo",
+          "e2": "Agents Immobiliers",
+          "e3": "Graphistes",
+          "e4": "Agences Marketing"
+        }
+      },
+      "ecommerce": {
+        "title": "Pour l'E-commerce",
+        "description": "Optimisez les images de produits pour une conversion maximale",
+        "benefits": {
+          "b1": "Améliorez la qualité des photos de produits",
+          "b2": "Traitez en lot les images de catalogue",
+          "b3": "Amélioration des détails pour le zoom",
+          "b4": "Qualité d'image cohérente",
+          "b5": "Chargement plus rapide avec meilleure qualité"
+        },
+        "examples": {
+          "e1": "Boutiques en Ligne",
+          "e2": "Marketplaces",
+          "e3": "Catalogues Produits",
+          "e4": "Entreprises Dropshipping"
+        }
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer?",
+      "subtitle": "Téléchargez votre première image et voyez la différence que l'IA peut faire",
+      "button": "Essayez Gratuitement"
+    },
+    "stats": {
+      "imagesEnhanced": "Images Améliorées",
+      "happyUsers": "Utilisateurs Satisfaits",
+      "averageRating": "Note Moyenne",
+      "maxUpscaling": "Agrandissement Max"
+    }
+  },
+  "testimonials": {
+    "badge": "Témoignages Clients",
+    "title": "Adoré par les",
+    "titleHighlight": "Créateurs",
+    "titleSuffix": "du Monde Entier",
+    "subtitle": "Rejoignez des milliers de professionnels qui font confiance à Pixelift pour leurs besoins d'amélioration d'images",
+    "stats": {
+      "imagesProcessed": "Images Traitées",
+      "happyUsers": "Utilisateurs Satisfaits",
+      "averageRating": "Note Moyenne"
+    },
+    "items": {
+      "user1": {
+        "quote": "Pixelift a complètement transformé mon flux de travail. Je peux maintenant agrandir les vieilles photos de clients à une résolution d'impression en quelques secondes. L'IA préserve des détails que je pensais perdus à jamais.",
+        "name": "Sophie Martin",
+        "role": "Photographe Professionnelle",
+        "company": "Studios Martin"
+      },
+      "user2": {
+        "quote": "Nous traitons des milliers d'images de produits chaque mois. Les capacités de traitement par lots de Pixelift et sa qualité constante ont réduit notre temps d'édition de 70%. Le générateur de packshot est révolutionnaire.",
+        "name": "Marc Dubois",
+        "role": "Responsable E-commerce",
+        "company": "TechStyle Co."
+      },
+      "user3": {
+        "quote": "En tant qu'illustratrice, j'ai besoin d'outils qui comprennent l'intention artistique. L'agrandissement IA de Pixelift maintient l'intégrité de mes œuvres tout en ajoutant des détails incroyables. Tout simplement incroyable!",
+        "name": "Emma Rodriguez",
+        "role": "Artiste Numérique",
+        "company": "Freelance"
+      },
+      "user4": {
+        "quote": "Notre agence est passée de logiciels de bureau coûteux à Pixelift. L'approche cloud permet à notre équipe de travailler de n'importe où, et les résultats sont constamment professionnels.",
+        "name": "David Petit",
+        "role": "Directeur Marketing",
+        "company": "Agence Brandify"
+      },
+      "user5": {
+        "quote": "J'utilise Pixelift quotidiennement pour mon contenu sur les réseaux sociaux. Le suppresseur de fond est si précis, et l'extenseur d'image m'aide à créer des ratios parfaits pour chaque plateforme.",
+        "name": "Lisa Bernard",
+        "role": "Créatrice de Contenu",
+        "company": "500K+ Abonnés"
+      },
+      "user6": {
+        "quote": "Les photos de propriétés font ou défont une annonce. Pixelift m'aide à améliorer les photos de smartphone à une qualité professionnelle. Mes annonces ressemblent maintenant à celles prises par un photographe pro.",
+        "name": "Jacques Leroy",
+        "role": "Agent Immobilier",
+        "company": "Propriétés Premium"
+      }
+    }
+  },
+  "enterprise": {
+    "title": "Solutions Entreprise",
+    "subtitle": "Des outils puissants pour les entreprises qui doivent traiter des milliers d'images",
+    "bulk": {
+      "title": "Transformation en Masse",
+      "description": "Traitez des centaines ou des milliers d'images simultanément avec notre système de traitement par lots",
+      "features": {
+        "f1": "Téléchargez plusieurs images à la fois",
+        "f2": "Système de gestion de file d'attente",
+        "f3": "Traitement parallèle pour plus de rapidité",
+        "f4": "Téléchargement en masse en archive ZIP",
+        "f5": "Tableau de bord de suivi de progression",
+        "f6": "Réessai automatique en cas d'échec"
+      },
+      "stats": {
+        "speed": "Vitesse Typique",
+        "perImage": "par image",
+        "maxBatch": "Taille Max du Lot",
+        "unlimited": "Illimité"
+      }
+    },
+    "api": {
+      "title": "Intégration API Fluide",
+      "description": "Intégrez notre agrandissement IA directement dans votre application ou flux de travail avec notre API RESTful",
+      "features": {
+        "f1": "Points de terminaison API RESTful simples",
+        "f2": "Documentation complète",
+        "f3": "Webhooks pour traitement asynchrone",
+        "f4": "SDKs pour les langages populaires",
+        "f5": "SLA de disponibilité 99.9%",
+        "f6": "Équipe de support dédiée"
+      }
+    },
+    "features": {
+      "secure": {
+        "title": "Sécurisé",
+        "description": "Conforme SOC 2 avec cryptage de bout en bout"
+      },
+      "fast": {
+        "title": "Rapide",
+        "description": "Traitement accéléré par GPU pour une vitesse maximale"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Statistiques d'utilisation détaillées et rapports"
+      },
+      "support": {
+        "title": "Support",
+        "description": "Support prioritaire 24/7 pour les clients entreprise"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Développer Votre Entreprise?",
+      "subtitle": "Rejoignez des centaines d'entreprises qui utilisent déjà nos solutions entreprise. Obtenez des tarifs personnalisés et un support dédié.",
+      "contactSales": "Contacter les Ventes",
+      "viewDocs": "Voir la Doc API",
+      "badges": {
+        "sla": "SLA personnalisé disponible",
+        "volume": "Remises volume",
+        "whiteLabel": "Options marque blanche"
+      }
+    }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "description": "Découvrez les derniers articles, tutoriels et conseils sur l'amélioration d'images par IA",
+    "noPostsYet": "Pas encore de publications",
+    "checkBackSoon": "Revenez bientôt pour du nouveau contenu !",
+    "readMore": "Lire la suite"
+  },
+  "knowledgePage": {
+    "title": "Base de Connaissances",
+    "description": "Votre guide complet sur la génération d'images par IA. Découvrez les modèles, techniques et terminologie.",
+    "recentArticles": "Articles Récents",
+    "beingBuilt": "La base de connaissances est en construction",
+    "checkBackSoonArticles": "Revenez bientôt pour des articles sur la génération d'images par IA !",
+    "aboutKnowledgeBase": "À Propos de Notre Base de Connaissances",
+    "aboutText1": "Bienvenue dans la base de connaissances complète de Pixelift - votre ressource pour comprendre la génération et l'amélioration d'images par IA. Que vous soyez débutant ou créateur expérimenté, nos guides vous aideront à tirer le meilleur parti des outils IA modernes.",
+    "aboutText2": "Découvrez les modèles de pointe comme Flux, SDXL, Recraft V3 et Ideogram. Explorez des techniques comme l'upscaling, l'inpainting, l'outpainting et le transfert de style. Notre glossaire explique les termes IA courants de manière simple.",
+    "articles": "articles",
+    "searchPlaceholder": "Rechercher dans la base de connaissances..."
+  },
+  "knowledgeCategories": {
+    "models": {
+      "name": "Modèles IA",
+      "description": "Découvrez les différents modèles IA de génération d'images"
+    },
+    "techniques": {
+      "name": "Techniques",
+      "description": "Techniques de traitement et d'amélioration d'images"
+    },
+    "glossary": {
+      "name": "Glossaire",
+      "description": "Terminologie IA et traitement d'images"
+    },
+    "tutorials": {
+      "name": "Tutoriels",
+      "description": "Guides étape par étape"
+    },
+    "news": {
+      "name": "Actualités",
+      "description": "Dernières nouvelles du monde de l'IA"
+    }
+  },
+  "knowledgeArticle": {
+    "breadcrumbKnowledge": "Connaissances",
+    "relatedArticles": "Articles Connexes",
+    "backToKnowledge": "Retour à la Base de Connaissances",
+    "tags": "TAGS"
+  },
+  "knowledgeCategoryPage": {
+    "backToKnowledge": "Retour à la Base de Connaissances",
+    "noArticlesYet": "Pas encore d'articles",
+    "workingOnContent": "Nous travaillons à l'ajout de contenu à cette catégorie.",
+    "browseAllCategories": "Parcourir Toutes les Catégories"
+  },
+  "knowledgeTagPage": {
+    "backToKnowledge": "Retour à la Base de Connaissances",
+    "articlesCount": "{count, plural, one {# article} other {# articles}} avec cette étiquette"
+  },
+  "knowledgeSearchPage": {
+    "backToKnowledge": "Retour à la Base de Connaissances",
+    "searchResults": "Résultats de Recherche",
+    "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour",
+    "enterSearchTerm": "Entrez un terme de recherche",
+    "useSearchBox": "Utilisez le champ de recherche ci-dessus pour trouver des articles",
+    "noResultsFound": "Aucun résultat trouvé",
+    "noArticlesMatch": "Aucun article ne correspond à votre recherche de",
+    "suggestions": "Suggestions:",
+    "tryDifferentKeywords": "Essayez des mots-clés différents",
+    "checkSpelling": "Vérifiez l'orthographe",
+    "useGeneralTerms": "Utilisez des termes plus généraux",
+    "searchPlaceholder": "Rechercher des articles, sujets, tags...",
+    "searchButton": "Rechercher",
+    "browseByCategory": "Parcourir par Catégorie"
+  },
+  "seoContent": {
+    "mainTitle": "Agrandissement d'Images IA Professionnel - Améliorez Vos Photos en Ligne",
+    "whatIs": {
+      "title": "Qu'est-ce que l'Agrandissement d'Images IA?",
+      "p1": "L'agrandissement d'images IA est une technologie avancée qui utilise l'intelligence artificielle et l'apprentissage automatique pour augmenter la résolution des images tout en préservant ou même en améliorant la qualité. Contrairement aux méthodes traditionnelles de redimensionnement qui étirent simplement les pixels, notre agrandisseur alimenté par l'IA analyse votre image et reconstruit intelligemment les détails, donnant des photos nettes et de haute qualité à des tailles plus grandes.",
+      "p2": "Pixelift exploite des modèles IA de pointe incluant Real-ESRGAN et GFPGAN pour fournir des résultats de qualité professionnelle. Que vous amélioriez des portraits, des paysages, des œuvres d'art ou des photographies anciennes, notre plateforme fournit les outils dont vous avez besoin pour obtenir des résultats époustouflants en quelques secondes."
+    },
+    "whyChoose": {
+      "title": "Pourquoi Choisir Pixelift?",
+      "features": {
+        "f1": { "title": "Préréglages IA Multiples:", "description": "Paramètres optimisés pour portraits, paysages, art et plus" },
+        "f2": { "title": "Agrandissement Jusqu'à 8x:", "description": "Augmentez la résolution jusqu'à 64x pixels au total" },
+        "f3": { "title": "Amélioration Faciale:", "description": "IA spécialisée pour améliorer les traits du visage" },
+        "f4": { "title": "Sans Filigrane:", "description": "Téléchargez les images améliorées sans aucune marque" },
+        "f5": { "title": "Traitement par Lots:", "description": "Capacités de transformation en masse de niveau entreprise" },
+        "f6": { "title": "Sécurisé & Privé:", "description": "Images supprimées après 24 heures, conforme RGPD" }
+      }
+    },
+    "useCases": {
+      "title": "Cas d'Utilisation Courants pour l'Amélioration d'Images IA",
+      "photography": {
+        "title": "Photographie",
+        "description": "Parfait pour les photographes cherchant à améliorer les photos clients, restaurer de vieilles photographies ou préparer des images pour l'impression grand format. Notre fonction d'amélioration faciale est idéale pour la photographie de portrait."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Optimisez les images de produits pour les boutiques en ligne, améliorez la fonctionnalité de zoom et assurez une qualité cohérente dans tout votre catalogue. Des images de meilleure qualité conduisent à de meilleurs taux de conversion."
+      },
+      "digitalArt": {
+        "title": "Art Numérique",
+        "description": "Agrandissez les œuvres d'art numériques, l'anime, les illustrations et les croquis sans perdre de détails. Notre préréglage Art & Illustration est spécifiquement optimisé pour préserver la qualité des traits."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne Notre Agrandisseur IA?",
+      "steps": {
+        "s1": { "title": "Téléchargez Votre Image:", "description": "Glissez-déposez ou sélectionnez un fichier image (PNG, JPG, WEBP, HEIC ou BMP)" },
+        "s2": { "title": "Choisissez un Préréglage IA:", "description": "Sélectionnez parmi Portrait, Paysage, Art & Illustration, Restauration Photo ou Qualité Maximum" },
+        "s3": { "title": "Traitement par l'IA:", "description": "Nos modèles Real-ESRGAN et GFPGAN analysent et améliorent votre image" },
+        "s4": { "title": "Téléchargez l'Image Améliorée:", "description": "Comparez avant/après avec notre curseur interactif, puis téléchargez en haute qualité" }
+      }
+    },
+    "cta": {
+      "title": "Prêt à Améliorer Vos Images?",
+      "subtitle": "Rejoignez plus de 500 000 utilisateurs qui font confiance à Pixelift pour l'agrandissement d'images IA professionnel. Commencez avec 3 crédits gratuits - sans inscription requise.",
+      "button": "Commencer l'Agrandissement"
+    },
+    "stats": {
+      "upscalingOptions": "Options d'Agrandissement",
+      "averageProcessing": "Traitement Moyen",
+      "imagesEnhanced": "Images Améliorées",
+      "userRating": "Note Utilisateurs"
+    }
   }
 }

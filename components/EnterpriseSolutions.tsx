@@ -1,16 +1,20 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 export default function EnterpriseSolutions() {
+  const t = useTranslations('enterprise');
+
   return (
     <section className="container mx-auto px-4 py-20 bg-gradient-to-b from-gray-900 to-black">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold mb-4">
           <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Enterprise Solutions
+            {t('title')}
           </span>
         </h2>
         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-          Powerful tools for businesses that need to process thousands of images
+          {t('subtitle')}
         </p>
       </div>
 
@@ -23,20 +27,13 @@ export default function EnterpriseSolutions() {
             </svg>
           </div>
 
-          <h3 className="text-2xl font-bold mb-4">Bulk Transformation</h3>
+          <h3 className="text-2xl font-bold mb-4">{t('bulk.title')}</h3>
           <p className="text-gray-400 mb-6">
-            Process hundreds or thousands of images simultaneously with our batch processing system
+            {t('bulk.description')}
           </p>
 
           <ul className="space-y-3 mb-6">
-            {[
-              "Upload multiple images at once",
-              "Queue management system",
-              "Parallel processing for speed",
-              "Bulk download as ZIP archive",
-              "Progress tracking dashboard",
-              "Automatic retry on failures"
-            ].map((feature, index) => (
+            {[1, 2, 3, 4, 5, 6].map((index) => (
               <li key={index} className="flex items-start gap-3">
                 <svg
                   className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5"
@@ -51,19 +48,19 @@ export default function EnterpriseSolutions() {
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-gray-300">{feature}</span>
+                <span className="text-gray-300">{t(`bulk.features.f${index}`)}</span>
               </li>
             ))}
           </ul>
 
           <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-400">Typical Speed</span>
-              <span className="text-sm font-semibold text-purple-400">~10s per image</span>
+              <span className="text-sm text-gray-400">{t('bulk.stats.speed')}</span>
+              <span className="text-sm font-semibold text-purple-400">~10s {t('bulk.stats.perImage')}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-400">Max Batch Size</span>
-              <span className="text-sm font-semibold text-purple-400">Unlimited</span>
+              <span className="text-sm text-gray-400">{t('bulk.stats.maxBatch')}</span>
+              <span className="text-sm font-semibold text-purple-400">{t('bulk.stats.unlimited')}</span>
             </div>
           </div>
         </div>
@@ -76,20 +73,13 @@ export default function EnterpriseSolutions() {
             </svg>
           </div>
 
-          <h3 className="text-2xl font-bold mb-4">Seamless API Integration</h3>
+          <h3 className="text-2xl font-bold mb-4">{t('api.title')}</h3>
           <p className="text-gray-400 mb-6">
-            Integrate our AI upscaling directly into your application or workflow with our RESTful API
+            {t('api.description')}
           </p>
 
           <ul className="space-y-3 mb-6">
-            {[
-              "Simple RESTful API endpoints",
-              "Comprehensive documentation",
-              "Webhooks for async processing",
-              "SDKs for popular languages",
-              "99.9% uptime SLA",
-              "Dedicated support team"
-            ].map((feature, index) => (
+            {[1, 2, 3, 4, 5, 6].map((index) => (
               <li key={index} className="flex items-start gap-3">
                 <svg
                   className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5"
@@ -104,7 +94,7 @@ export default function EnterpriseSolutions() {
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-gray-300">{feature}</span>
+                <span className="text-gray-300">{t(`api.features.f${index}`)}</span>
               </li>
             ))}
           </ul>
@@ -113,9 +103,9 @@ export default function EnterpriseSolutions() {
             <code className="text-xs text-green-400 block mb-2">POST /api/v1/upscale</code>
             <div className="text-xs text-gray-500">
               curl -X POST \<br />
-              &nbsp;&nbsp;-H "Authorization: Bearer YOUR_KEY" \<br />
-              &nbsp;&nbsp;-F "image=@photo.jpg" \<br />
-              &nbsp;&nbsp;-F "scale=4"
+              &nbsp;&nbsp;-H &quot;Authorization: Bearer YOUR_KEY&quot; \<br />
+              &nbsp;&nbsp;-F &quot;image=@photo.jpg&quot; \<br />
+              &nbsp;&nbsp;-F &quot;scale=4&quot;
             </div>
           </div>
         </div>
@@ -125,50 +115,50 @@ export default function EnterpriseSolutions() {
       <div className="grid md:grid-cols-4 gap-6 mt-12 max-w-6xl mx-auto">
         <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
           <div className="text-3xl mb-3">🔒</div>
-          <h4 className="font-semibold mb-2">Secure</h4>
-          <p className="text-sm text-gray-400">SOC 2 compliant with end-to-end encryption</p>
+          <h4 className="font-semibold mb-2">{t('features.secure.title')}</h4>
+          <p className="text-sm text-gray-400">{t('features.secure.description')}</p>
         </div>
 
         <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
           <div className="text-3xl mb-3">⚡</div>
-          <h4 className="font-semibold mb-2">Fast</h4>
-          <p className="text-sm text-gray-400">GPU-accelerated processing for maximum speed</p>
+          <h4 className="font-semibold mb-2">{t('features.fast.title')}</h4>
+          <p className="text-sm text-gray-400">{t('features.fast.description')}</p>
         </div>
 
         <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
           <div className="text-3xl mb-3">📊</div>
-          <h4 className="font-semibold mb-2">Analytics</h4>
-          <p className="text-sm text-gray-400">Detailed usage statistics and reporting</p>
+          <h4 className="font-semibold mb-2">{t('features.analytics.title')}</h4>
+          <p className="text-sm text-gray-400">{t('features.analytics.description')}</p>
         </div>
 
         <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
           <div className="text-3xl mb-3">💬</div>
-          <h4 className="font-semibold mb-2">Support</h4>
-          <p className="text-sm text-gray-400">24/7 priority support for enterprise clients</p>
+          <h4 className="font-semibold mb-2">{t('features.support.title')}</h4>
+          <p className="text-sm text-gray-400">{t('features.support.description')}</p>
         </div>
       </div>
 
       {/* CTA Section */}
       <div className="mt-16 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/50 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
         <h3 className="text-3xl font-bold mb-4">
-          Ready to Scale Your Business?
+          {t('cta.title')}
         </h3>
         <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-          Join hundreds of companies already using our enterprise solutions. Get custom pricing and dedicated support.
+          {t('cta.subtitle')}
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
           <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg font-semibold text-lg transition shadow-lg">
-            Contact Sales
+            {t('cta.contactSales')}
           </button>
           <button className="px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-lg font-semibold text-lg transition">
-            View API Docs
+            {t('cta.viewDocs')}
           </button>
         </div>
 
         <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-400">
-          <div>✓ Custom SLA available</div>
-          <div>✓ Volume discounts</div>
-          <div>✓ White-label options</div>
+          <div>✓ {t('cta.badges.sla')}</div>
+          <div>✓ {t('cta.badges.volume')}</div>
+          <div>✓ {t('cta.badges.whiteLabel')}</div>
         </div>
       </div>
     </section>

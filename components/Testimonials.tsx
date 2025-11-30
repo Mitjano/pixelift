@@ -1,74 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
-const testimonials = [
-  {
-    id: 1,
-    name: 'Sarah Mitchell',
-    role: 'Professional Photographer',
-    company: 'Mitchell Studios',
-    image: null,
-    initials: 'SM',
-    color: 'from-pink-500 to-rose-500',
-    rating: 5,
-    text: "Pixelift has completely transformed my workflow. I can now upscale old client photos to print-quality resolution in seconds. The AI preserves details I thought were lost forever.",
-  },
-  {
-    id: 2,
-    name: 'Marcus Chen',
-    role: 'E-commerce Manager',
-    company: 'TechStyle Co.',
-    image: null,
-    initials: 'MC',
-    color: 'from-blue-500 to-cyan-500',
-    rating: 5,
-    text: "We process thousands of product images monthly. Pixelift's batch capabilities and consistent quality have cut our editing time by 70%. The packshot generator is a game-changer.",
-  },
-  {
-    id: 3,
-    name: 'Emma Rodriguez',
-    role: 'Digital Artist',
-    company: 'Freelance',
-    image: null,
-    initials: 'ER',
-    color: 'from-purple-500 to-violet-500',
-    rating: 5,
-    text: "As an illustrator, I need tools that understand artistic intent. Pixelift's AI upscaling maintains the integrity of my artwork while adding incredible detail. Simply amazing!",
-  },
-  {
-    id: 4,
-    name: 'David Park',
-    role: 'Marketing Director',
-    company: 'Brandify Agency',
-    image: null,
-    initials: 'DP',
-    color: 'from-green-500 to-emerald-500',
-    rating: 5,
-    text: "Our agency switched from expensive desktop software to Pixelift. The cloud-based approach means our team can work from anywhere, and the results are consistently professional.",
-  },
-  {
-    id: 5,
-    name: 'Lisa Thompson',
-    role: 'Content Creator',
-    company: '500K+ Followers',
-    image: null,
-    initials: 'LT',
-    color: 'from-orange-500 to-amber-500',
-    rating: 5,
-    text: "I use Pixelift daily for my social media content. The background remover is so precise, and the image expander helps me create perfect aspect ratios for every platform.",
-  },
-  {
-    id: 6,
-    name: 'James Wilson',
-    role: 'Real Estate Agent',
-    company: 'Premier Properties',
-    image: null,
-    initials: 'JW',
-    color: 'from-teal-500 to-cyan-500',
-    rating: 5,
-    text: "Property photos make or break a listing. Pixelift helps me enhance smartphone photos to professional quality. My listings now look like they were shot by a pro photographer.",
-  },
+const testimonialKeys = ['user1', 'user2', 'user3', 'user4', 'user5', 'user6'];
+const testimonialMeta = [
+  { initials: 'SM', color: 'from-pink-500 to-rose-500' },
+  { initials: 'MC', color: 'from-blue-500 to-cyan-500' },
+  { initials: 'ER', color: 'from-purple-500 to-violet-500' },
+  { initials: 'DP', color: 'from-green-500 to-emerald-500' },
+  { initials: 'LT', color: 'from-orange-500 to-amber-500' },
+  { initials: 'JW', color: 'from-teal-500 to-cyan-500' },
 ];
 
 function StarRating({ rating }: { rating: number }) {
@@ -89,6 +31,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function Testimonials() {
+  const t = useTranslations('testimonials');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -97,7 +40,7 @@ export default function Testimonials() {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % testimonialKeys.length);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -111,13 +54,13 @@ export default function Testimonials() {
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % testimonialKeys.length);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + testimonialKeys.length) % testimonialKeys.length);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
@@ -132,13 +75,13 @@ export default function Testimonials() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-block mb-4 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full">
-            <span className="text-sm font-semibold text-green-400">Customer Stories</span>
+            <span className="text-sm font-semibold text-green-400">{t('badge')}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Loved by <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Creators</span> Worldwide
+            {t('title')} <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">{t('titleHighlight')}</span> {t('titleSuffix')}
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Join thousands of professionals who trust Pixelift for their image enhancement needs
+            {t('subtitle')}
           </p>
         </div>
 
@@ -148,19 +91,19 @@ export default function Testimonials() {
             <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
               50K+
             </div>
-            <div className="text-gray-400 mt-1">Images Processed</div>
+            <div className="text-gray-400 mt-1">{t('stats.imagesProcessed')}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               10K+
             </div>
-            <div className="text-gray-400 mt-1">Happy Users</div>
+            <div className="text-gray-400 mt-1">{t('stats.happyUsers')}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               4.9/5
             </div>
-            <div className="text-gray-400 mt-1">Average Rating</div>
+            <div className="text-gray-400 mt-1">{t('stats.averageRating')}</div>
           </div>
         </div>
 
@@ -199,23 +142,23 @@ export default function Testimonials() {
               <div className="relative">
                 {/* Rating */}
                 <div className="mb-6">
-                  <StarRating rating={testimonials[currentIndex].rating} />
+                  <StarRating rating={5} />
                 </div>
 
                 {/* Quote */}
                 <blockquote className="text-xl md:text-2xl text-gray-200 leading-relaxed mb-8 min-h-[120px]">
-                  "{testimonials[currentIndex].text}"
+                  &quot;{t(`items.${testimonialKeys[currentIndex]}.quote`)}&quot;
                 </blockquote>
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonials[currentIndex].color} flex items-center justify-center text-white font-bold text-lg`}>
-                    {testimonials[currentIndex].initials}
+                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonialMeta[currentIndex].color} flex items-center justify-center text-white font-bold text-lg`}>
+                    {testimonialMeta[currentIndex].initials}
                   </div>
                   <div>
-                    <div className="font-semibold text-white text-lg">{testimonials[currentIndex].name}</div>
-                    <div className="text-gray-400">{testimonials[currentIndex].role}</div>
-                    <div className="text-green-400 text-sm">{testimonials[currentIndex].company}</div>
+                    <div className="font-semibold text-white text-lg">{t(`items.${testimonialKeys[currentIndex]}.name`)}</div>
+                    <div className="text-gray-400">{t(`items.${testimonialKeys[currentIndex]}.role`)}</div>
+                    <div className="text-green-400 text-sm">{t(`items.${testimonialKeys[currentIndex]}.company`)}</div>
                   </div>
                 </div>
               </div>
@@ -224,7 +167,7 @@ export default function Testimonials() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center gap-2 mt-6">
-            {testimonials.map((_, index) => (
+            {testimonialKeys.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -241,22 +184,22 @@ export default function Testimonials() {
 
         {/* Grid of smaller testimonials */}
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
+          {testimonialKeys.slice(0, 3).map((key, index) => (
             <div
-              key={testimonial.id}
+              key={key}
               className={`group p-6 bg-gray-800/50 border border-gray-700 rounded-2xl hover:border-green-500/50 transition-all duration-300 ${
                 index === currentIndex ? 'ring-2 ring-green-500/30' : ''
               }`}
             >
-              <StarRating rating={testimonial.rating} />
-              <p className="text-gray-300 mt-4 mb-6 line-clamp-3">"{testimonial.text}"</p>
+              <StarRating rating={5} />
+              <p className="text-gray-300 mt-4 mb-6 line-clamp-3">&quot;{t(`items.${key}.quote`)}&quot;</p>
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-white font-bold text-sm`}>
-                  {testimonial.initials}
+                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonialMeta[index].color} flex items-center justify-center text-white font-bold text-sm`}>
+                  {testimonialMeta[index].initials}
                 </div>
                 <div>
-                  <div className="font-medium text-white text-sm">{testimonial.name}</div>
-                  <div className="text-gray-500 text-xs">{testimonial.role}</div>
+                  <div className="font-medium text-white text-sm">{t(`items.${key}.name`)}</div>
+                  <div className="text-gray-500 text-xs">{t(`items.${key}.role`)}</div>
                 </div>
               </div>
             </div>

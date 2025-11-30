@@ -1,7 +1,77 @@
 {
   "meta": {
     "title": "Pixelift - AI Image Tools | Upscaler & Background Remover",
-    "description": "Professional AI-powered image tools. Upscale images up to 8x with Real-ESRGAN and remove backgrounds instantly with BRIA RMBG 2.0. Free, fast, and secure."
+    "description": "Professional AI-powered image tools. Upscale images up to 8x with Real-ESRGAN and remove backgrounds instantly with BRIA RMBG 2.0. Free, fast, and secure.",
+    "pages": {
+      "tools": {
+        "title": "AI Image Tools - 9 Professional Editing Tools",
+        "description": "Complete suite of AI-powered image tools. Background removal, upscaling, colorization, restoration, and more. Professional results in seconds."
+      },
+      "upscaler": {
+        "title": "AI Image Upscaler - Enhance Photos Up to 8x",
+        "description": "Upscale and enhance images up to 8x with Real-ESRGAN AI. Professional quality photo enlargement without losing details. Fast, free preview."
+      },
+      "removeBackground": {
+        "title": "AI Background Remover - Instant & Precise",
+        "description": "Remove backgrounds from images instantly with BRIA RMBG 2.0 AI. Perfect for product photos, portraits, and e-commerce. Free to try."
+      },
+      "colorize": {
+        "title": "AI Photo Colorizer - Colorize B&W Photos",
+        "description": "Bring black and white photos to life with AI colorization. Perfect for historical images and old family photos. Realistic colors instantly."
+      },
+      "restore": {
+        "title": "AI Photo Restorer - Fix Old & Damaged Photos",
+        "description": "Restore old, damaged, or noisy photos with AI. Remove scratches, noise, and JPEG artifacts. Bring your memories back to life."
+      },
+      "objectRemoval": {
+        "title": "AI Object Remover - Erase Unwanted Elements",
+        "description": "Remove unwanted objects, people, or text from photos. AI fills in the background naturally. Perfect for clean product shots."
+      },
+      "packshotGenerator": {
+        "title": "AI Packshot Generator - Professional Product Photos",
+        "description": "Create professional product packshots with AI. Perfect backgrounds for e-commerce and marketplaces. Studio-quality results."
+      },
+      "backgroundGenerator": {
+        "title": "AI Background Generator - Create Custom Backgrounds",
+        "description": "Generate stunning AI backgrounds for your photos. Describe the background you want and AI creates it. Perfect for creative projects."
+      },
+      "imageCompressor": {
+        "title": "Image Compressor - Reduce File Size Smartly",
+        "description": "Compress images while maintaining quality. Perfect for web optimization. Reduce file sizes up to 90% without visible quality loss."
+      },
+      "imageExpand": {
+        "title": "AI Image Expander - Extend Image Borders",
+        "description": "Expand images beyond their borders with AI outpainting. Add more canvas to any image. Perfect for social media and printing."
+      },
+      "pricing": {
+        "title": "Pricing - Flexible Plans for Every Need",
+        "description": "Choose the right plan for you. Free tier with 3 credits, affordable subscriptions, or pay-as-you-go. No hidden fees."
+      },
+      "dashboard": {
+        "title": "Dashboard - Manage Your Account",
+        "description": "View your processing history, manage credits, and access all AI tools from your personal dashboard."
+      },
+      "blog": {
+        "title": "Blog - Tips, Tutorials & News",
+        "description": "Learn how to get the most out of AI image tools. Tips, tutorials, and the latest news from Pixelift."
+      },
+      "faq": {
+        "title": "FAQ - Frequently Asked Questions",
+        "description": "Find answers to common questions about Pixelift AI image tools. How it works, pricing, supported formats, and more."
+      },
+      "about": {
+        "title": "About Pixelift - Our Story & Mission",
+        "description": "Learn about Pixelift's mission to make professional image editing accessible to everyone with AI-powered tools."
+      },
+      "privacy": {
+        "title": "Privacy Policy",
+        "description": "Learn how Pixelift protects your data. Our commitment to privacy, security, and GDPR compliance."
+      },
+      "terms": {
+        "title": "Terms of Service",
+        "description": "Read Pixelift's terms of service. Usage rules, rights, and responsibilities when using our AI image tools."
+      }
+    }
   },
   "nav": {
     "tools": "Tools",
@@ -98,6 +168,10 @@
         "title": "9 Pro Tools",
         "description": "Complete suite for all your image editing needs."
       },
+      "proTools": {
+        "title": "9 Pro Tools",
+        "description": "Complete suite for all your image editing needs."
+      },
       "payPerUse": {
         "title": "Pay Per Use",
         "description": "No subscriptions. Buy credits and use them anytime."
@@ -107,6 +181,9 @@
       "title": "Ready to Transform Your Images?",
       "description": "Start with 3 free credits. No credit card required. Experience the power of AI-enhanced editing.",
       "button": "Get Started Free",
+      "freeCredits": "3 Free Credits",
+      "noCard": "No Credit Card",
+      "allTools": "All 9 Tools Included",
       "features": {
         "freeCredits": "3 Free Credits",
         "noCard": "No Credit Card",
@@ -175,7 +252,74 @@
     "orContinueWith": "Or continue with",
     "google": "Continue with Google",
     "noAccount": "Don't have an account?",
-    "hasAccount": "Already have an account?"
+    "hasAccount": "Already have an account?",
+    "signin": {
+      "welcomeBack": "Welcome back to",
+      "continueEnhancing": "Continue enhancing your images with professional AI tools",
+      "signInToAccount": "Sign in to your account",
+      "welcomeBackDetails": "Welcome back! Please enter your details",
+      "secureLogin": "Secure Login",
+      "signInInfo": "Sign in with your Google account to access your dashboard and continue where you left off",
+      "signUpFree": "Sign up for free",
+      "bySigningIn": "By signing in, you agree to our",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy",
+      "fastReliable": "Fast & Reliable",
+      "fastReliableDesc": "Process hundreds of images with consistent quality",
+      "premiumQuality": "Premium Quality",
+      "premiumQualityDesc": "AI-powered upscaling that preserves every detail",
+      "securePrivate": "Secure & Private",
+      "securePrivateDesc": "Your images are processed securely and deleted after 24h",
+      "usersCount": "10,000+ users",
+      "trustPixelift": "trust Pixelift",
+      "testimonial": "The best AI image upscaler I've ever used. The results are simply amazing!"
+    },
+    "signup": {
+      "transformImages": "Transform Your Images with",
+      "aiPower": "AI Power",
+      "joinThousands": "Join thousands of users enhancing their images with cutting-edge AI technology",
+      "createAccount": "Create your account",
+      "startEnhancing": "Start enhancing your images today",
+      "quickSecure": "Quick & Secure",
+      "freeTier": "Free tier with 10 credits monthly",
+      "noCardRequired": "No credit card required",
+      "cancelAnytime": "Cancel anytime",
+      "signInLink": "Sign in",
+      "bySigningUp": "By signing up, you agree to our",
+      "lightningFast": "Lightning Fast Processing",
+      "lightningFastDesc": "Upscale images in 10-20 seconds with our optimized AI pipeline",
+      "upTo8x": "Up to 8x Upscaling",
+      "upTo8xDesc": "Enhance image quality with 2x, 4x, or 8x upscaling options",
+      "faceEnhancement": "Face Enhancement",
+      "faceEnhancementDesc": "Advanced AI models for professional face restoration",
+      "happyUsers": "Happy Users",
+      "imagesEnhanced": "Images Enhanced",
+      "userRating": "User Rating"
+    },
+    "error": {
+      "configuration": {
+        "title": "Configuration Error",
+        "description": "There is a problem with the server configuration. Please contact support."
+      },
+      "accessDenied": {
+        "title": "Access Denied",
+        "description": "You do not have permission to sign in."
+      },
+      "verification": {
+        "title": "Verification Error",
+        "description": "The verification link is invalid or has expired."
+      },
+      "default": {
+        "title": "Authentication Error",
+        "description": "An error occurred during authentication. Please try again."
+      },
+      "errorCode": "Error Code",
+      "adminCheck": "If you're an administrator, please check:",
+      "tryAgain": "Try Again",
+      "backToHome": "Back to Home",
+      "loading": "Loading..."
+    }
   },
   "upload": {
     "dragDrop": "Drag and drop your image here",
@@ -191,5 +335,666 @@
     "accept": "Accept",
     "decline": "Decline",
     "learnMore": "Learn more"
+  },
+  "pricing": {
+    "title": "Choose the Right Plan for You",
+    "freePlan": {
+      "title": "Free Plan",
+      "perCredit": "/credit",
+      "button": "Sign Up For Free",
+      "freeCredits": "3 free credits",
+      "freeDownloads": "3 free downloads",
+      "description": "Get 3 free credits and 3 free downloads every month to try the platform"
+    },
+    "subscription": {
+      "title": "Subscription Plan",
+      "mostPopular": "Most Popular",
+      "perCredit": "/credit",
+      "billed": "billed",
+      "monthly": "monthly",
+      "yearly": "yearly",
+      "billedYearly": "billed yearly",
+      "button": "Subscribe Now",
+      "save70": "Save 70%",
+      "creditsPerMonth": "Credits/month",
+      "perMonth": "/month",
+      "perYear": "/year",
+      "billedYearlyAuto": "Billed yearly (Auto-renews yearly)",
+      "save70Compared": "Save 70% compared to monthly billing",
+      "billedMonthlyAuto": "Billed monthly (Auto-renews monthly)",
+      "cancelAnytime": "Cancel anytime",
+      "noRefunds": "Due to the high cost of AI, we don't offer refunds. Please try the free plan before upgrading"
+    },
+    "oneTime": {
+      "title": "One time payment",
+      "perCredit": "/credit",
+      "billedOnce": "billed once",
+      "button": "Buy Now",
+      "credits": "Credits",
+      "validFor1Year": "Credits are valid for 1 year from purchase and are non-refundable"
+    },
+    "enterprise": {
+      "title": "Enterprise Plan",
+      "customSolutions": "Need custom solutions?",
+      "button": "Talk to Sales",
+      "scheduleDemo": "Schedule a demo with our team",
+      "getQuote": "Get a quote that fits your needs",
+      "emailUs": "Email us at",
+      "forQueries": "for any queries",
+      "bookSession": "Book a 1:1 session with our experts to see how Pixelift can help your business transform images at scale"
+    },
+    "features": {
+      "title": "Powerful Features Included",
+      "preview": {
+        "title": "FREE Preview System",
+        "description": "Try before you buy! Generate a FREE 200x200px preview with all your settings before using any credits. Perfect for testing different presets."
+      },
+      "batch": {
+        "title": "Batch Processing",
+        "description": "Upload and process up to 50 images at once with the same settings. Perfect for photographers and content creators working with multiple files."
+      },
+      "presets": {
+        "title": "7 AI Presets",
+        "description": "Quality Boost, Portrait, Landscape, Art, Restoration, Maximum, and Custom modes. Each optimized for specific use cases with one-click application."
+      },
+      "enhancements": {
+        "title": "Advanced Enhancements",
+        "description": "Denoising, JPEG artifact removal, color correction, and face enhancement. Fine-tune every aspect of your image processing."
+      },
+      "scaling": {
+        "title": "Flexible Scaling",
+        "description": "Choose from 1x (quality only), 2x, 4x, or 8x upscaling. Enhance without resizing or scale up to 8x the original resolution."
+      },
+      "comparison": {
+        "title": "Interactive Comparison",
+        "description": "Drag to compare before and after images side-by-side. See the quality improvements in real-time with our interactive slider."
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "description": "Start with our free plan or choose a paid option for more credits",
+      "startTrial": "Start Free Trial",
+      "contactSales": "Contact Sales"
+    }
+  },
+  "toolsPage": {
+    "badge": "9 AI-Powered Tools",
+    "title": "AI Image",
+    "titleHighlight": "Tools",
+    "subtitle": "Professional image editing powered by cutting-edge AI. Remove backgrounds, upscale, restore, colorize, and more - all in one place.",
+    "stats": {
+      "tools": "AI Tools",
+      "credits": "Credits/Task",
+      "processing": "Avg. Processing"
+    },
+    "tryItNow": "Try it now",
+    "whyChoose": {
+      "title": "Why Choose Our AI Tools?",
+      "subtitle": "Professional-grade image editing powered by the latest AI models.",
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Most tasks complete in under 10 seconds with our optimized AI pipeline."
+      },
+      "quality": {
+        "title": "Professional Quality",
+        "description": "Enterprise-grade AI models deliver results that match professional editing."
+      },
+      "payAsYouGo": {
+        "title": "Pay As You Go",
+        "description": "Only pay for what you use. No subscriptions, no hidden fees."
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Images?",
+      "subtitle": "Start with 3 free credits. No credit card required.",
+      "getStarted": "Get Started Free",
+      "viewPricing": "View Pricing"
+    },
+    "tools": {
+      "removeBackground": {
+        "name": "Background Remover",
+        "description": "Remove backgrounds from images instantly with AI. Perfect for product photos and portraits."
+      },
+      "upscaler": {
+        "name": "AI Upscaler",
+        "description": "Enhance and upscale images up to 8x with AI. Perfect for enlarging photos without losing quality."
+      },
+      "imageExpand": {
+        "name": "Image Expander",
+        "description": "Expand images beyond their borders with AI outpainting. Add more canvas to any image."
+      },
+      "colorize": {
+        "name": "Photo Colorizer",
+        "description": "Bring black & white photos to life with AI colorization. Perfect for historical images."
+      },
+      "restore": {
+        "name": "Photo Restorer",
+        "description": "Restore old, damaged, or noisy photos with AI. Remove scratches, noise, and JPEG artifacts."
+      },
+      "objectRemoval": {
+        "name": "Object Remover",
+        "description": "Remove unwanted objects, people, or text from photos. AI fills in the background naturally."
+      },
+      "packshotGenerator": {
+        "name": "Packshot Generator",
+        "description": "Create professional product packshots with AI. Perfect for e-commerce and marketplaces."
+      },
+      "backgroundGenerator": {
+        "name": "Background Generator",
+        "description": "Generate stunning AI backgrounds for your photos. Describe the background you want."
+      },
+      "imageCompressor": {
+        "name": "Image Compressor",
+        "description": "Reduce file size while maintaining quality. Perfect for web optimization."
+      }
+    },
+    "upscaler": {
+      "badge": "Powered by Real-ESRGAN AI",
+      "title": "AI",
+      "titleHighlight": "Image Upscaler",
+      "subtitle": "Enhance and enlarge your images up to 8x using Real-ESRGAN AI technology.",
+      "stats": {
+        "maxScale": "Max Scale",
+        "processing": "Processing",
+        "creditPerImage": "Credit/Image"
+      },
+      "uploadTerms": "By uploading a file you agree to our Terms of Use and Privacy Policy.",
+      "features": {
+        "fast": { "title": "Lightning Fast", "description": "Process images in 10-20 seconds." },
+        "scale": { "title": "Up to 8x Scale", "description": "Choose 2x, 4x, or 8x upscaling." },
+        "face": { "title": "Face Enhancement", "description": "Optional GFPGAN for portraits." }
+      },
+      "howItWorks": { "title": "How AI", "titleHighlight": "Upscaling Works" },
+      "cta": { "title": "Ready to Upscale?", "getStarted": "Get Started Free", "startUpscaling": "Start Upscaling" }
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back",
+    "manageAccount": "Manage your account and view your image processing history",
+    "stats": {
+      "imagesProcessed": "Images Processed",
+      "creditsRemaining": "Credits Remaining",
+      "currentPlan": "Current Plan",
+      "toolsAvailable": "Tools Available"
+    },
+    "tools": {
+      "title": "AI Tools",
+      "upscaler": {
+        "name": "Image Upscaler",
+        "description": "Enhance and enlarge images up to 8x"
+      },
+      "bgRemover": {
+        "name": "Background Remover",
+        "description": "Remove backgrounds with AI"
+      },
+      "faceRestore": {
+        "name": "Face Restoration",
+        "description": "Restore and enhance face photos"
+      },
+      "startUsing": "Start using",
+      "comingSoon": "SOON"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "noActivity": "No activity yet",
+      "noActivityDesc": "Start using our tools to see your processing history here",
+      "tryUpscaler": "Try Upscaler",
+      "tryBgRemover": "Try Background Remover",
+      "credit": "credit",
+      "credits": "credits"
+    },
+    "usage": {
+      "title": "Usage Overview",
+      "creditUsage": "Credit Usage",
+      "totalUsed": "Total Used",
+      "mostUsedTool": "Most Used Tool",
+      "noData": "No data yet",
+      "startProcessing": "Start processing images to see statistics",
+      "imagesProcessed": "images processed",
+      "imageProcessed": "image processed"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "imageHistory": "Image History",
+      "viewProcessed": "View all processed images",
+      "billing": "Billing",
+      "transactions": "Transactions & payments",
+      "upgrade": "Upgrade",
+      "getMoreCredits": "Get more credits",
+      "apiKeys": "API Keys",
+      "forDevelopers": "For developers",
+      "myTickets": "My Tickets",
+      "supportRequests": "Support requests",
+      "settings": "Settings",
+      "accountPreferences": "Account preferences"
+    },
+    "plans": {
+      "free": "Free",
+      "premium": "Premium",
+      "pro": "Pro"
+    }
+  },
+  "toolsShowcase": {
+    "badge": "9 Professional AI Tools",
+    "title": "All-in-One",
+    "titleHighlight": "AI Image Suite",
+    "subtitle": "Everything you need to enhance, edit, and transform your images. Professional results in seconds, no design skills required.",
+    "tools": {
+      "upscaler": { "name": "AI Upscaler", "description": "Enlarge images up to 8x with AI enhancement" },
+      "bgRemover": { "name": "Background Remover", "description": "Remove backgrounds instantly with AI precision" },
+      "colorize": { "name": "Photo Colorizer", "description": "Bring black & white photos to life with AI color" },
+      "restore": { "name": "Image Restore", "description": "Remove noise, artifacts & JPEG compression" },
+      "objectRemoval": { "name": "Object Removal", "description": "Erase unwanted objects, people & distractions" },
+      "bgGenerator": { "name": "Background Generator", "description": "Generate stunning AI backgrounds from prompts" },
+      "compressor": { "name": "Image Compressor", "description": "Reduce file size while keeping quality" },
+      "packshot": { "name": "Packshot Generator", "description": "Create professional product photos instantly" },
+      "expand": { "name": "Image Expand", "description": "Extend image borders with AI outpainting" }
+    },
+    "credits": {
+      "1": "1 credit",
+      "13": "1-3 credits",
+      "2": "2 credits",
+      "3": "3 credits",
+      "free": "Free"
+    },
+    "tryNow": "Try now",
+    "bottomCta": {
+      "text": "Start with",
+      "highlight": "3 free credits",
+      "suffix": "- no credit card required",
+      "button": "Get Started Free"
+    }
+  },
+  "trustBadges": {
+    "title": "Trusted by",
+    "titleHighlight": "Professionals Worldwide",
+    "badges": {
+      "ssl": { "title": "SSL Secured", "description": "256-bit encryption" },
+      "gdpr": { "title": "GDPR Compliant", "description": "EU data protection" },
+      "privacy": { "title": "Auto-Delete", "description": "Files deleted after 1h" },
+      "uptime": { "title": "99.9% Uptime", "description": "Enterprise reliability" },
+      "support": { "title": "24/7 Support", "description": "Always here to help" },
+      "noWatermark": { "title": "No Watermarks", "description": "Full quality exports" }
+    },
+    "trustedBy": "Trusted by leading brands",
+    "securityNote": "Your images are processed securely and never shared with third parties"
+  },
+  "faq": {
+    "title": "Frequently Asked",
+    "titleHighlight": "Questions",
+    "subtitle": "Here, we have listed some of the commonly asked questions from the community.",
+    "items": {
+      "upscaleQuality": {
+        "question": "Can you upscale a photo without losing quality?",
+        "answer": "Yes. AI upscaling preserves quality by using deep learning algorithms that reconstruct details of your image instead of just stretching pixels. Our Real-ESRGAN and GFPGAN models analyze your image and intelligently add realistic details."
+      },
+      "bestFreeTool": {
+        "question": "What's the best free tool to upscale images?",
+        "answer": "Pixelift is a top-rated free online tool. This offers watermark-free enhancement with AI-powered 2x, 4x, or 8x upscaling. We provide 3 free credits to start, with no signup required."
+      },
+      "mobileSupport": {
+        "question": "Does Pixelift work on mobile?",
+        "answer": "Yes, you can use Pixelift on your mobile browser without needing to install any apps or software. Our interface is fully responsive and optimized for touch devices."
+      },
+      "aiVsManual": {
+        "question": "How is AI upscaling better than manual resizing?",
+        "answer": "Since Pixelift is backed by AI, it adds realistic details to your images. This is done by using neural networks, which ensures you have high-resolution images as compared to manual resizing, which stretches out pixels, resulting in blurring."
+      },
+      "artworkSupport": {
+        "question": "Can AI enhance artwork, anime, or illustrations?",
+        "answer": "Yes. AI image-enhancing tools like Pixelift work exceptionally well for digital art, anime, and sketches. We recommend using our 'Art & Illustration' preset, which uses 8x upscaling optimized for preserving line art quality and colors without distortion."
+      },
+      "formats": {
+        "question": "What image formats are supported?",
+        "answer": "Pixelift supports PNG, JPG, JPEG, WEBP, HEIC, and BMP formats. Maximum file size is 10MB for free users, with higher limits available for premium subscribers."
+      },
+      "processingTime": {
+        "question": "How long does processing take?",
+        "answer": "Most images are processed in 10-20 seconds, depending on the selected upscaling level and whether face enhancement is enabled. 2x upscaling is fastest, while 8x with face enhancement may take up to 30 seconds."
+      },
+      "dataSafety": {
+        "question": "Is my data safe?",
+        "answer": "Yes. All images are processed securely using HTTPS encryption and automatically deleted from our servers after 24 hours. We never share your data with third parties and comply with GDPR regulations."
+      },
+      "aiPresets": {
+        "question": "What are AI Presets and which one should I use?",
+        "answer": "AI Presets are pre-configured settings optimized for different image types. Use 'Portrait Mode' for photos with faces, 'Landscape Mode' for nature/architecture, 'Art & Illustration' for digital art, 'Photo Restoration' for old photos, or 'Maximum Quality' for professional use."
+      },
+      "batchProcessing": {
+        "question": "Can I process multiple images at once?",
+        "answer": "Batch processing is available for Pro and Enterprise subscribers. Free users can process one image at a time, while premium users can upload and process up to 50 images simultaneously with our bulk transformation feature."
+      },
+      "scalingDifference": {
+        "question": "What's the difference between 2x, 4x, and 8x upscaling?",
+        "answer": "The number indicates how much we increase the resolution. 2x doubles both width and height (4x total pixels), 4x quadruples dimensions (16x total pixels), and 8x multiplies by eight (64x total pixels). Higher upscaling takes longer but produces larger, more detailed images."
+      },
+      "groupPhotos": {
+        "question": "Does face enhancement work on group photos?",
+        "answer": "Yes! Our GFPGAN face enhancement AI can detect and enhance multiple faces in a single image. It works great for group photos, wedding pictures, and family portraits. Enable 'Face Enhancement' or use the 'Portrait Mode' preset for best results."
+      },
+      "commercialUse": {
+        "question": "Can I use upscaled images commercially?",
+        "answer": "Yes, you retain full ownership of your images. Free users can use upscaled images for any purpose, including commercial use. We don't add watermarks or claim any rights to your content."
+      },
+      "aiModels": {
+        "question": "What AI models do you use?",
+        "answer": "We use Real-ESRGAN for general image upscaling and GFPGAN for facial enhancement. These are state-of-the-art AI models trained on millions of images to produce realistic, high-quality results."
+      },
+      "credits": {
+        "question": "How do credits work?",
+        "answer": "Each processed image costs 1 credit. Free users get 3 credits to start. You can purchase more credits through one-time packages or subscribe to a monthly plan for automatic credit refills. Credits never expire."
+      }
+    }
+  },
+  "useCases": {
+    "title": "Who Benefits from",
+    "titleHighlight": "AI Upscaling?",
+    "subtitle": "Powerful image enhancement for everyone, from casual users to enterprise businesses",
+    "keyBenefits": "Key Benefits:",
+    "perfectFor": "Perfect For:",
+    "cases": {
+      "individuals": {
+        "title": "For Individuals",
+        "description": "Perfect for personal photo enhancement and social media content",
+        "benefits": {
+          "b1": "Enhance your profile pictures",
+          "b2": "Restore old family photos",
+          "b3": "Improve social media images",
+          "b4": "Prepare photos for printing",
+          "b5": "Upscale wallpapers and backgrounds"
+        },
+        "examples": {
+          "e1": "Social Media Posts",
+          "e2": "Profile Pictures",
+          "e3": "Family Photo Albums",
+          "e4": "Desktop Wallpapers"
+        }
+      },
+      "professionals": {
+        "title": "For Professionals",
+        "description": "Professional-grade image enhancement for creative work",
+        "benefits": {
+          "b1": "Client photo restoration",
+          "b2": "Product photography enhancement",
+          "b3": "Real estate image optimization",
+          "b4": "Marketing material preparation",
+          "b5": "Portfolio image quality boost"
+        },
+        "examples": {
+          "e1": "Photography Studios",
+          "e2": "Real Estate Agents",
+          "e3": "Graphic Designers",
+          "e4": "Marketing Agencies"
+        }
+      },
+      "ecommerce": {
+        "title": "For E-commerce",
+        "description": "Optimize product images for maximum conversion",
+        "benefits": {
+          "b1": "Improve product photo quality",
+          "b2": "Batch process catalog images",
+          "b3": "Zoom-friendly detail enhancement",
+          "b4": "Consistent image quality",
+          "b5": "Faster loading with better quality"
+        },
+        "examples": {
+          "e1": "Online Stores",
+          "e2": "Marketplaces",
+          "e3": "Product Catalogs",
+          "e4": "Dropshipping Businesses"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Upload your first image and see the difference AI can make",
+      "button": "Try It Free"
+    },
+    "stats": {
+      "imagesEnhanced": "Images Enhanced",
+      "happyUsers": "Happy Users",
+      "averageRating": "Average Rating",
+      "maxUpscaling": "Max Upscaling"
+    }
+  },
+  "testimonials": {
+    "badge": "Customer Stories",
+    "title": "Loved by",
+    "titleHighlight": "Creators",
+    "titleSuffix": "Worldwide",
+    "subtitle": "Join thousands of professionals who trust Pixelift for their image enhancement needs",
+    "stats": {
+      "imagesProcessed": "Images Processed",
+      "happyUsers": "Happy Users",
+      "averageRating": "Average Rating"
+    },
+    "items": {
+      "user1": {
+        "quote": "Pixelift has completely transformed my workflow. I can now upscale old client photos to print-quality resolution in seconds. The AI preserves details I thought were lost forever.",
+        "name": "Sarah Mitchell",
+        "role": "Professional Photographer",
+        "company": "Mitchell Studios"
+      },
+      "user2": {
+        "quote": "We process thousands of product images monthly. Pixelift's batch capabilities and consistent quality have cut our editing time by 70%. The packshot generator is a game-changer.",
+        "name": "Marcus Chen",
+        "role": "E-commerce Manager",
+        "company": "TechStyle Co."
+      },
+      "user3": {
+        "quote": "As an illustrator, I need tools that understand artistic intent. Pixelift's AI upscaling maintains the integrity of my artwork while adding incredible detail. Simply amazing!",
+        "name": "Emma Rodriguez",
+        "role": "Digital Artist",
+        "company": "Freelance"
+      },
+      "user4": {
+        "quote": "Our agency switched from expensive desktop software to Pixelift. The cloud-based approach means our team can work from anywhere, and the results are consistently professional.",
+        "name": "David Park",
+        "role": "Marketing Director",
+        "company": "Brandify Agency"
+      },
+      "user5": {
+        "quote": "I use Pixelift daily for my social media content. The background remover is so precise, and the image expander helps me create perfect aspect ratios for every platform.",
+        "name": "Lisa Thompson",
+        "role": "Content Creator",
+        "company": "500K+ Followers"
+      },
+      "user6": {
+        "quote": "Property photos make or break a listing. Pixelift helps me enhance smartphone photos to professional quality. My listings now look like they were shot by a pro photographer.",
+        "name": "James Wilson",
+        "role": "Real Estate Agent",
+        "company": "Premier Properties"
+      }
+    }
+  },
+  "enterprise": {
+    "title": "Enterprise Solutions",
+    "subtitle": "Powerful tools for businesses that need to process thousands of images",
+    "bulk": {
+      "title": "Bulk Transformation",
+      "description": "Process hundreds or thousands of images simultaneously with our batch processing system",
+      "features": {
+        "f1": "Upload multiple images at once",
+        "f2": "Queue management system",
+        "f3": "Parallel processing for speed",
+        "f4": "Bulk download as ZIP archive",
+        "f5": "Progress tracking dashboard",
+        "f6": "Automatic retry on failures"
+      },
+      "stats": {
+        "speed": "Typical Speed",
+        "perImage": "per image",
+        "maxBatch": "Max Batch Size",
+        "unlimited": "Unlimited"
+      }
+    },
+    "api": {
+      "title": "Seamless API Integration",
+      "description": "Integrate our AI upscaling directly into your application or workflow with our RESTful API",
+      "features": {
+        "f1": "Simple RESTful API endpoints",
+        "f2": "Comprehensive documentation",
+        "f3": "Webhooks for async processing",
+        "f4": "SDKs for popular languages",
+        "f5": "99.9% uptime SLA",
+        "f6": "Dedicated support team"
+      }
+    },
+    "features": {
+      "secure": {
+        "title": "Secure",
+        "description": "SOC 2 compliant with end-to-end encryption"
+      },
+      "fast": {
+        "title": "Fast",
+        "description": "GPU-accelerated processing for maximum speed"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Detailed usage statistics and reporting"
+      },
+      "support": {
+        "title": "Support",
+        "description": "24/7 priority support for enterprise clients"
+      }
+    },
+    "cta": {
+      "title": "Ready to Scale Your Business?",
+      "subtitle": "Join hundreds of companies already using our enterprise solutions. Get custom pricing and dedicated support.",
+      "contactSales": "Contact Sales",
+      "viewDocs": "View API Docs",
+      "badges": {
+        "sla": "Custom SLA available",
+        "volume": "Volume discounts",
+        "whiteLabel": "White-label options"
+      }
+    }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "description": "Discover the latest articles, tutorials, and tips on AI image enhancement",
+    "noPostsYet": "No posts yet",
+    "checkBackSoon": "Check back soon for new content!",
+    "readMore": "Read more"
+  },
+  "knowledgePage": {
+    "title": "Knowledge Base",
+    "description": "Your complete guide to AI image generation. Learn about models, techniques, and terminology.",
+    "recentArticles": "Recent Articles",
+    "beingBuilt": "Knowledge base is being built",
+    "checkBackSoonArticles": "Check back soon for articles about AI image generation!",
+    "aboutKnowledgeBase": "About Our Knowledge Base",
+    "aboutText1": "Welcome to Pixelift's comprehensive knowledge base - your go-to resource for understanding AI-powered image generation and enhancement. Whether you're a beginner or an experienced creator, our guides will help you make the most of modern AI tools.",
+    "aboutText2": "Learn about cutting-edge models like Flux, SDXL, Recraft V3, and Ideogram. Discover techniques such as upscaling, inpainting, outpainting, and style transfer. Our glossary explains common AI terminology in simple terms.",
+    "articles": "articles",
+    "searchPlaceholder": "Search knowledge base..."
+  },
+  "knowledgeCategories": {
+    "models": {
+      "name": "AI Models",
+      "description": "Learn about different AI image generation models"
+    },
+    "techniques": {
+      "name": "Techniques",
+      "description": "Image processing and enhancement techniques"
+    },
+    "glossary": {
+      "name": "Glossary",
+      "description": "AI and image processing terminology"
+    },
+    "tutorials": {
+      "name": "Tutorials",
+      "description": "Step-by-step guides and how-tos"
+    },
+    "news": {
+      "name": "News",
+      "description": "Latest updates from AI industry"
+    }
+  },
+  "knowledgeArticle": {
+    "breadcrumbKnowledge": "Knowledge",
+    "relatedArticles": "Related Articles",
+    "backToKnowledge": "Back to Knowledge Base",
+    "tags": "TAGS"
+  },
+  "knowledgeCategoryPage": {
+    "backToKnowledge": "Back to Knowledge Base",
+    "noArticlesYet": "No articles yet",
+    "workingOnContent": "We're working on adding content to this category.",
+    "browseAllCategories": "Browse All Categories"
+  },
+  "knowledgeTagPage": {
+    "backToKnowledge": "Back to Knowledge Base",
+    "articlesCount": "{count, plural, one {# article} other {# articles}} with this tag"
+  },
+  "knowledgeSearchPage": {
+    "backToKnowledge": "Back to Knowledge Base",
+    "searchResults": "Search Results",
+    "resultsCount": "{count, plural, one {# result} other {# results}} for",
+    "enterSearchTerm": "Enter a search term",
+    "useSearchBox": "Use the search box above to find articles",
+    "noResultsFound": "No results found",
+    "noArticlesMatch": "No articles match your search for",
+    "suggestions": "Suggestions:",
+    "tryDifferentKeywords": "Try different keywords",
+    "checkSpelling": "Check spelling",
+    "useGeneralTerms": "Use more general terms",
+    "searchPlaceholder": "Search articles, topics, tags...",
+    "searchButton": "Search",
+    "browseByCategory": "Browse by Category"
+  },
+  "seoContent": {
+    "mainTitle": "Professional AI Image Upscaling - Enhance Your Photos Online",
+    "whatIs": {
+      "title": "What is AI Image Upscaling?",
+      "p1": "AI image upscaling is an advanced technology that uses artificial intelligence and machine learning to increase image resolution while preserving or even enhancing quality. Unlike traditional resizing methods that simply stretch pixels, our AI-powered upscaler analyzes your image and intelligently reconstructs details, resulting in sharp, high-quality photos at larger sizes.",
+      "p2": "Pixelift leverages state-of-the-art AI models including Real-ESRGAN and GFPGAN to deliver professional-grade results. Whether you're enhancing portraits, landscapes, artwork, or vintage photographs, our platform provides the tools you need to achieve stunning results in seconds."
+    },
+    "whyChoose": {
+      "title": "Why Choose Pixelift?",
+      "features": {
+        "f1": { "title": "Multiple AI Presets:", "description": "Optimized settings for portraits, landscapes, art, and more" },
+        "f2": { "title": "Up to 8x Upscaling:", "description": "Increase resolution by up to 64x total pixels" },
+        "f3": { "title": "Face Enhancement:", "description": "Specialized AI for improving facial features" },
+        "f4": { "title": "No Watermarks:", "description": "Download enhanced images without any branding" },
+        "f5": { "title": "Batch Processing:", "description": "Enterprise-grade bulk transformation capabilities" },
+        "f6": { "title": "Secure & Private:", "description": "Images deleted after 24 hours, GDPR compliant" }
+      }
+    },
+    "useCases": {
+      "title": "Common Use Cases for AI Image Enhancement",
+      "photography": {
+        "title": "Photography",
+        "description": "Perfect for photographers looking to enhance client photos, restore old photographs, or prepare images for large-format printing. Our face enhancement feature is ideal for portrait photography."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Optimize product images for online stores, improve zoom functionality, and ensure consistent quality across your catalog. Higher quality images lead to better conversion rates."
+      },
+      "digitalArt": {
+        "title": "Digital Art",
+        "description": "Upscale digital artwork, anime, illustrations, and sketches without losing detail. Our Art & Illustration preset is specifically optimized for preserving line art quality."
+      }
+    },
+    "howItWorks": {
+      "title": "How Does Our AI Upscaler Work?",
+      "steps": {
+        "s1": { "title": "Upload Your Image:", "description": "Drag and drop or select an image file (PNG, JPG, WEBP, HEIC, or BMP)" },
+        "s2": { "title": "Choose AI Preset:", "description": "Select from Portrait, Landscape, Art & Illustration, Photo Restoration, or Maximum Quality" },
+        "s3": { "title": "Process with AI:", "description": "Our Real-ESRGAN and GFPGAN models analyze and enhance your image" },
+        "s4": { "title": "Download Enhanced Image:", "description": "Compare before/after with our interactive slider, then download in high quality" }
+      }
+    },
+    "cta": {
+      "title": "Ready to Enhance Your Images?",
+      "subtitle": "Join over 500,000 users who trust Pixelift for professional AI image upscaling. Get started with 3 free credits - no signup required.",
+      "button": "Start Upscaling Now"
+    },
+    "stats": {
+      "upscalingOptions": "Upscaling Options",
+      "averageProcessing": "Average Processing",
+      "imagesEnhanced": "Images Enhanced",
+      "userRating": "User Rating"
+    }
   }
 }

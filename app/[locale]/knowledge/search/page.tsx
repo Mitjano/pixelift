@@ -1,6 +1,7 @@
 import { getPublishedArticles, KNOWLEDGE_CATEGORIES, getCategoryById, type KnowledgeArticle } from "@/lib/knowledge";
 import Link from "next/link";
 import Image from "next/image";
+import { getTranslations } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -63,6 +64,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const articles = await getPublishedArticles();
   const results = searchArticles(articles, query);
 
+  const t = await getTranslations('knowledgeSearchPage');
+  const tCat = await getTranslations('knowledgeCategories');
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
       {/* Header */}
@@ -75,16 +79,16 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Back to Knowledge Base
+            {t('backToKnowledge')}
           </Link>
 
           <h1 className="text-4xl font-bold text-white mb-4">
-            Search Results
+            {t('searchResults')}
           </h1>
 
           {query && (
             <p className="text-xl text-gray-400">
-              {results.length} result{results.length !== 1 ? 's' : ''} for "<span className="text-purple-400">{query}</span>"
+              {t('resultsCount', { count: results.length })} "<span className="text-purple-400">{query}</span>"
             </p>
           )}
 
@@ -110,14 +114,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 type="text"
                 name="q"
                 defaultValue={query}
-                placeholder="Search articles, topics, tags..."
+                placeholder={t('searchPlaceholder')}
                 className="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
               />
               <button
                 type="submit"
                 className="absolute inset-y-2 right-2 px-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
               >
-                Search
+                {t('searchButton')}
               </button>
             </div>
           </form>
@@ -129,22 +133,22 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         {!query ? (
           <div className="text-center py-20">
             <div className="text-6xl mb-4">🔍</div>
-            <h2 className="text-2xl font-semibold text-white mb-2">Enter a search term</h2>
-            <p className="text-gray-400">Use the search box above to find articles</p>
+            <h2 className="text-2xl font-semibold text-white mb-2">{t('enterSearchTerm')}</h2>
+            <p className="text-gray-400">{t('useSearchBox')}</p>
           </div>
         ) : results.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-6xl mb-4">📭</div>
-            <h2 className="text-2xl font-semibold text-white mb-2">No results found</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">{t('noResultsFound')}</h2>
             <p className="text-gray-400 mb-6">
-              No articles match your search for "{query}"
+              {t('noArticlesMatch')} "{query}"
             </p>
             <div className="text-gray-500 text-sm">
-              <p className="mb-2">Suggestions:</p>
+              <p className="mb-2">{t('suggestions')}</p>
               <ul className="list-disc list-inside">
-                <li>Try different keywords</li>
-                <li>Check spelling</li>
-                <li>Use more general terms</li>
+                <li>{t('tryDifferentKeywords')}</li>
+                <li>{t('checkSpelling')}</li>
+                <li>{t('useGeneralTerms')}</li>
               </ul>
             </div>
           </div>
@@ -152,6 +156,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.map((article) => {
               const category = getCategoryById(article.category);
+              const categoryName = category ? tCat(`${category.id}.name`) : '';
               return (
                 <Link
                   key={article.id}
@@ -171,7 +176,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-sm">{category?.icon}</span>
-                      <span className="text-xs text-purple-400">{category?.name}</span>
+                      <span className="text-xs text-purple-400">{categoryName}</span>
                     </div>
                     <h3 className="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors mb-2">
                       {article.title}
@@ -199,18 +204,21 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         {/* Browse Categories */}
         {results.length > 0 && (
           <div className="mt-16 pt-12 border-t border-gray-800">
-            <h2 className="text-xl font-bold text-white mb-6">Browse by Category</h2>
+            <h2 className="text-xl font-bold text-white mb-6">{t('browseByCategory')}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {KNOWLEDGE_CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.id}
-                  href={`/knowledge/category/${cat.id}`}
-                  className="flex items-center gap-2 p-3 bg-gray-800/50 border border-gray-700 rounded-lg hover:border-purple-500 transition-colors"
-                >
-                  <span>{cat.icon}</span>
-                  <span className="text-sm text-gray-300">{cat.name}</span>
-                </Link>
-              ))}
+              {KNOWLEDGE_CATEGORIES.map((cat) => {
+                const catName = tCat(`${cat.id}.name`);
+                return (
+                  <Link
+                    key={cat.id}
+                    href={`/knowledge/category/${cat.id}`}
+                    className="flex items-center gap-2 p-3 bg-gray-800/50 border border-gray-700 rounded-lg hover:border-purple-500 transition-colors"
+                  >
+                    <span>{cat.icon}</span>
+                    <span className="text-sm text-gray-300">{catName}</span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}

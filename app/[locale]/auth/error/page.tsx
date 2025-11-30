@@ -4,27 +4,29 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { FiAlertCircle } from "react-icons/fi";
 import { Suspense } from "react";
+import { useTranslations } from 'next-intl';
 
 function ErrorContent() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  const t = useTranslations('auth.error');
 
   const errorMessages: Record<string, { title: string; description: string }> = {
     Configuration: {
-      title: "Configuration Error",
-      description: "There is a problem with the server configuration. Please contact support.",
+      title: t('configuration.title'),
+      description: t('configuration.description'),
     },
     AccessDenied: {
-      title: "Access Denied",
-      description: "You do not have permission to sign in.",
+      title: t('accessDenied.title'),
+      description: t('accessDenied.description'),
     },
     Verification: {
-      title: "Verification Error",
-      description: "The verification link is invalid or has expired.",
+      title: t('verification.title'),
+      description: t('verification.description'),
     },
     Default: {
-      title: "Authentication Error",
-      description: "An error occurred during authentication. Please try again.",
+      title: t('default.title'),
+      description: t('default.description'),
     },
   };
 
@@ -48,8 +50,8 @@ function ErrorContent() {
 
             {error === "Configuration" && (
               <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6 text-sm text-yellow-200">
-                <p>Error Code: {error}</p>
-                <p className="mt-2">If you're an administrator, please check:</p>
+                <p>{t('errorCode')}: {error}</p>
+                <p className="mt-2">{t('adminCheck')}</p>
                 <ul className="list-disc list-inside mt-2 text-left">
                   <li>GOOGLE_CLIENT_ID is set</li>
                   <li>GOOGLE_CLIENT_SECRET is set</li>
@@ -63,7 +65,7 @@ function ErrorContent() {
               href="/auth/signin"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition"
             >
-              Try Again
+              {t('tryAgain')}
             </Link>
           </div>
         </div>
@@ -71,7 +73,7 @@ function ErrorContent() {
         {/* Back to Home */}
         <div className="text-center mt-6">
           <Link href="/" className="text-gray-400 hover:text-white transition">
-            ← Back to Home
+            ← {t('backToHome')}
           </Link>
         </div>
       </div>
@@ -79,13 +81,18 @@ function ErrorContent() {
   );
 }
 
+function LoadingFallback() {
+  const t = useTranslations('auth.error');
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex items-center justify-center px-4">
+      <div className="text-white">{t('loading')}</div>
+    </div>
+  );
+}
+
 export default function AuthErrorPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex items-center justify-center px-4">
-        <div className="text-white">Loading...</div>
-      </div>
-    }>
+    <Suspense fallback={<LoadingFallback />}>
       <ErrorContent />
     </Suspense>
   );

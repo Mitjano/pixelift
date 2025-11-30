@@ -1,7 +1,16 @@
 import { getPostsByCategory, getAllCategories } from "@/lib/blog";
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic';
+// ISR - revalidate every 60 seconds for fresh content
+export const revalidate = 60;
+
+// Generate static paths for all categories
+export async function generateStaticParams() {
+  const categories = await getAllCategories();
+  return categories.map((category) => ({
+    category: encodeURIComponent(category),
+  }));
+}
 
 interface PageProps {
   params: Promise<{ category: string }>;

@@ -1,11 +1,20 @@
-import { getPostBySlug } from "@/lib/blog";
+import { getPostBySlug, getPublishedPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import BlogViewTracker from "@/components/BlogViewTracker";
 import SafeHTML from "@/components/SafeHTML";
 
-export const dynamic = 'force-dynamic';
+// ISR - revalidate every 60 seconds for fresh content
+export const revalidate = 60;
+
+// Generate static paths for all blog posts
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;

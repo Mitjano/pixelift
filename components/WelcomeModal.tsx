@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 
 interface WelcomeModalProps {
   userName: string;
@@ -48,27 +49,45 @@ export default function WelcomeModal({ userName, credits, onClose }: WelcomeModa
   const [step, setStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 300);
+  };
+
+  const { containerRef, handleKeyDown } = useFocusTrap({
+    isActive: isVisible,
+    onEscape: handleClose,
+  });
+
   useEffect(() => {
     // Animate in
     const timer = setTimeout(() => setIsVisible(true), 50);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(onClose, 300);
-  };
-
   const firstName = userName?.split(' ')[0] || 'there';
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
 
   return (
     <div
       className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-300 ${
         isVisible ? 'bg-black/70 backdrop-blur-sm' : 'bg-transparent'
       }`}
-      onClick={handleClose}
+      onClick={handleBackdropClick}
+      role="presentation"
     >
       <div
+        ref={containerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="welcome-modal-title"
+        aria-describedby="welcome-modal-description"
+        onKeyDown={handleKeyDown}
         className={`relative w-full max-w-2xl bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl border border-gray-700 shadow-2xl overflow-hidden transition-all duration-300 ${
           isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
         }`}
@@ -78,14 +97,15 @@ export default function WelcomeModal({ userName, credits, onClose }: WelcomeModa
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition z-10"
+          aria-label="Close welcome dialog"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
         {/* Decorative background */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
         </div>
@@ -95,25 +115,25 @@ export default function WelcomeModal({ userName, credits, onClose }: WelcomeModa
             <div className="text-center">
               {/* Welcome animation */}
               <div className="mb-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl text-4xl animate-bounce">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl text-4xl animate-bounce" aria-hidden="true">
                   🎉
                 </div>
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              <h2 id="welcome-modal-title" className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 Welcome to Pixelift, {firstName}!
               </h2>
 
-              <p className="text-gray-300 text-lg mb-6 max-w-md mx-auto">
+              <p id="welcome-modal-description" className="text-gray-300 text-lg mb-6 max-w-md mx-auto">
                 You're all set to transform your images with the power of AI. Let's get started!
               </p>
 
               {/* Free credits badge */}
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-full mb-8">
-                <span className="text-2xl">💎</span>
+                <span className="text-2xl" aria-hidden="true">💎</span>
                 <div className="text-left">
                   <div className="text-sm text-gray-400">Your free credits</div>
-                  <div className="text-2xl font-bold text-white">{credits} Credits</div>
+                  <div className="text-2xl font-bold text-white" aria-live="polite">{credits} Credits</div>
                 </div>
               </div>
 
@@ -135,16 +155,17 @@ export default function WelcomeModal({ userName, credits, onClose }: WelcomeModa
                 Choose any tool to get started
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-4 mb-6" role="list" aria-label="Available AI tools">
                 {tools.map((tool) => (
                   <Link
                     key={tool.name}
                     href={tool.href}
                     onClick={handleClose}
                     className="group p-4 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-gray-600 rounded-xl transition-all hover:scale-[1.02]"
+                    role="listitem"
                   >
                     <div className="flex items-start gap-3">
-                      <div className={`text-3xl group-hover:scale-110 transition-transform`}>
+                      <div className={`text-3xl group-hover:scale-110 transition-transform`} aria-hidden="true">
                         {tool.icon}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -162,23 +183,23 @@ export default function WelcomeModal({ userName, credits, onClose }: WelcomeModa
               {/* Quick tips */}
               <div className="bg-gray-800/30 rounded-xl p-4 mb-6">
                 <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
-                  <span>💡</span> Quick Tips
+                  <span aria-hidden="true">💡</span> Quick Tips
                 </h3>
-                <ul className="space-y-2 text-sm text-gray-400">
+                <ul className="space-y-2 text-sm text-gray-400" aria-label="Quick tips for using Pixelift">
                   <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-green-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Drag & drop images directly into any tool</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-green-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Results are saved to your dashboard automatically</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-green-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Download in original quality - no watermarks!</span>
@@ -206,11 +227,14 @@ export default function WelcomeModal({ userName, credits, onClose }: WelcomeModa
         </div>
 
         {/* Progress dots */}
-        <div className="flex justify-center gap-2 pb-6">
+        <div className="flex justify-center gap-2 pb-6" role="tablist" aria-label="Modal steps">
           {[0, 1].map((s) => (
             <button
               key={s}
               onClick={() => setStep(s)}
+              role="tab"
+              aria-selected={step === s}
+              aria-label={`Step ${s + 1} of 2`}
               className={`w-2.5 h-2.5 rounded-full transition-all ${
                 step === s ? 'w-6 bg-green-500' : 'bg-gray-600 hover:bg-gray-500'
               }`}

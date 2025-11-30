@@ -1,21 +1,34 @@
-import { getPublishedArticles, KNOWLEDGE_CATEGORIES, getCategoryById } from "@/lib/knowledge";
+import { getPublishedArticles, KNOWLEDGE_CATEGORIES, getCategoryById, KnowledgeCategory, SupportedLocale } from "@/lib/knowledge";
 import Link from "next/link";
 import Image from "next/image";
 import KnowledgeSearch from "@/components/KnowledgeSearch";
+import { getTranslations } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata = {
-  title: "Knowledge Base - AI Image Generation Guide | Pixelift",
-  description: "Learn about AI image generation models, techniques, and terminology. Your complete guide to AI-powered image enhancement.",
-};
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
 
-export default async function KnowledgePage() {
-  const articles = await getPublishedArticles();
+export async function generateMetadata() {
+  const t = await getTranslations('knowledgePage');
+  return {
+    title: `${t('title')} - Pixelift`,
+    description: t('description'),
+  };
+}
 
-  // Group articles by category
-  const articlesByCategory = KNOWLEDGE_CATEGORIES.map(cat => ({
+export default async function KnowledgePage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations('knowledgePage');
+  const tCat = await getTranslations('knowledgeCategories');
+  const articles = await getPublishedArticles(locale as SupportedLocale);
+
+  // Categories with translations
+  const translatedCategories = KNOWLEDGE_CATEGORIES.map(cat => ({
     ...cat,
+    name: tCat(`${cat.id}.name`),
+    description: tCat(`${cat.id}.description`),
     articles: articles.filter(a => a.category === cat.id)
   }));
 
@@ -27,11 +40,11 @@ export default async function KnowledgePage() {
           <div className="flex items-center gap-3 mb-4">
             <span className="text-4xl">📚</span>
             <h1 className="text-5xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text">
-              Knowledge Base
+              {t('title')}
             </h1>
           </div>
           <p className="text-xl text-gray-400 max-w-2xl mb-8">
-            Your complete guide to AI image generation. Learn about models, techniques, and terminology.
+            {t('description')}
           </p>
 
           {/* Search */}
@@ -42,8 +55,8 @@ export default async function KnowledgePage() {
       {/* Categories Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {KNOWLEDGE_CATEGORIES.map((cat) => {
-            const count = articles.filter(a => a.category === cat.id).length;
+          {translatedCategories.map((cat) => {
+            const count = cat.articles.length;
             return (
               <Link
                 key={cat.id}
@@ -56,7 +69,7 @@ export default async function KnowledgePage() {
                     <h2 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
                       {cat.name}
                     </h2>
-                    <span className="text-sm text-gray-500">{count} articles</span>
+                    <span className="text-sm text-gray-500">{count} {t('articles')}</span>
                   </div>
                 </div>
                 <p className="text-gray-400 text-sm">{cat.description}</p>
@@ -68,10 +81,11 @@ export default async function KnowledgePage() {
         {/* Recent Articles */}
         {articles.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-2xl font-bold text-white mb-6">Recent Articles</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">{t('recentArticles')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.slice(0, 6).map((article) => {
                 const category = getCategoryById(article.category);
+                const categoryName = category ? tCat(`${category.id}.name`) : '';
                 return (
                   <Link
                     key={article.id}
@@ -91,7 +105,7 @@ export default async function KnowledgePage() {
                     <div className="p-5">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-sm">{category?.icon}</span>
-                        <span className="text-xs text-purple-400">{category?.name}</span>
+                        <span className="text-xs text-purple-400">{categoryName}</span>
                       </div>
                       <h3 className="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors mb-2">
                         {article.title}
@@ -118,25 +132,17 @@ export default async function KnowledgePage() {
         {articles.length === 0 && (
           <div className="text-center py-20">
             <div className="text-6xl mb-4">📖</div>
-            <h2 className="text-2xl font-semibold text-white mb-2">Knowledge base is being built</h2>
-            <p className="text-gray-400">Check back soon for articles about AI image generation!</p>
+            <h2 className="text-2xl font-semibold text-white mb-2">{t('beingBuilt')}</h2>
+            <p className="text-gray-400">{t('checkBackSoonArticles')}</p>
           </div>
         )}
 
         {/* SEO Content */}
         <div className="bg-gray-800/30 rounded-2xl border border-gray-700 p-8 mt-8">
-          <h2 className="text-2xl font-bold text-white mb-4">About Our Knowledge Base</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">{t('aboutKnowledgeBase')}</h2>
           <div className="text-gray-400 space-y-4">
-            <p>
-              Welcome to Pixelift's comprehensive knowledge base - your go-to resource for understanding
-              AI-powered image generation and enhancement. Whether you're a beginner or an experienced
-              creator, our guides will help you make the most of modern AI tools.
-            </p>
-            <p>
-              Learn about cutting-edge models like Flux, SDXL, Recraft V3, and Ideogram. Discover
-              techniques such as upscaling, inpainting, outpainting, and style transfer. Our glossary
-              explains common AI terminology in simple terms.
-            </p>
+            <p>{t('aboutText1')}</p>
+            <p>{t('aboutText2')}</p>
           </div>
         </div>
       </div>

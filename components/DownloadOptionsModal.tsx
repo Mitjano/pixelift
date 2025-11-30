@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useFocusTrap } from '@/hooks/useFocusTrap'
 
 type Resolution = 'low' | 'medium' | 'high' | 'original'
 type Format = 'png' | 'jpg'
@@ -28,6 +29,11 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
   const [selectedResolution, setSelectedResolution] = useState<Resolution>('low')
   const [selectedFormat, setSelectedFormat] = useState<Format>('png')
   const [downloading, setDownloading] = useState(false)
+
+  const { containerRef, handleKeyDown } = useFocusTrap({
+    isActive: true,
+    onEscape: onClose,
+  })
 
   const isFreeUser = userRole === 'user'
   const isPremiumOrAdmin = userRole === 'premium' || userRole === 'admin'
@@ -86,19 +92,39 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
     }
   }
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
-      <div className="relative w-full max-w-lg bg-white dark:bg-gray-800 rounded-xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      onClick={handleBackdropClick}
+      role="presentation"
+    >
+      <div
+        ref={containerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="download-modal-title"
+        aria-describedby="download-modal-description"
+        onKeyDown={handleKeyDown}
+        className="relative w-full max-w-lg bg-white dark:bg-gray-800 rounded-xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+          <h3 id="download-modal-title" className="text-lg font-bold text-gray-900 dark:text-white">
             Download Options
           </h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            aria-label="Close dialog"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -108,7 +134,11 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
         <div className="p-4">
           {/* Free User Notice */}
           {isFreeUser && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mb-4">
+            <div
+              id="download-modal-description"
+              className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mb-4"
+              role="alert"
+            >
               <p className="text-xs text-blue-800 dark:text-blue-300">
                 <strong>Free Account:</strong> Low resolution PNG only. <a href="/pricing" className="underline">Upgrade to Premium</a> for more options.
               </p>
@@ -119,10 +149,11 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
           <div className="grid grid-cols-2 gap-3 mb-4">
             {/* Resolution Select */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
+              <label htmlFor="resolution-select" className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 Resolution
               </label>
               <select
+                id="resolution-select"
                 value={selectedResolution}
                 onChange={(e) => {
                   const newValue = e.target.value as Resolution
@@ -137,7 +168,7 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
               >
                 {resolutionOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.label} {isFreeUser && option.premium ? '🔒' : ''}
+                    {option.label} {isFreeUser && option.premium ? '(Premium)' : ''}
                   </option>
                 ))}
               </select>
@@ -145,10 +176,11 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
 
             {/* Format Select */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
+              <label htmlFor="format-select" className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 Format
               </label>
               <select
+                id="format-select"
                 value={selectedFormat}
                 onChange={(e) => {
                   const newValue = e.target.value as Format
@@ -163,7 +195,7 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
               >
                 {formatOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.label} {isFreeUser && option.premium ? '🔒' : ''}
+                    {option.label} {isFreeUser && option.premium ? '(Premium)' : ''}
                   </option>
                 ))}
               </select>
@@ -175,18 +207,19 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
             onClick={handleDownload}
             disabled={downloading}
             className="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            aria-busy={downloading}
           >
             {downloading ? (
               <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Downloading...
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" aria-hidden="true"></div>
+                <span>Downloading...</span>
               </>
             ) : (
               <>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Download
+                <span>Download</span>
               </>
             )}
           </button>

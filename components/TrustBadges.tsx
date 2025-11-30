@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 const trustBadges = [
   {
     id: 'ssl',
@@ -77,6 +79,7 @@ const partnerLogos = [
 ];
 
 export default function TrustBadges() {
+  const t = useTranslations('trustBadges');
   return (
     <section className="py-16 border-t border-b border-gray-800">
       <div className="container mx-auto px-4">
@@ -90,8 +93,8 @@ export default function TrustBadges() {
               <div className={`${badge.color} mb-3 group-hover:scale-110 transition-transform`}>
                 {badge.icon}
               </div>
-              <h3 className="font-semibold text-white text-sm mb-1">{badge.title}</h3>
-              <p className="text-gray-500 text-xs">{badge.description}</p>
+              <h3 className="font-semibold text-white text-sm mb-1">{t(`badges.${badge.id}.title`)}</h3>
+              <p className="text-gray-500 text-xs">{t(`badges.${badge.id}.description`)}</p>
             </div>
           ))}
         </div>
@@ -99,7 +102,7 @@ export default function TrustBadges() {
         {/* Divider with text */}
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent flex-1 max-w-[200px]"></div>
-          <span className="text-gray-500 text-sm font-medium">Trusted by leading brands</span>
+          <span className="text-gray-500 text-sm font-medium">{t('trustedBy')}</span>
           <div className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent flex-1 max-w-[200px]"></div>
         </div>
 
@@ -124,7 +127,7 @@ export default function TrustBadges() {
               <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             <span className="text-sm text-gray-400">
-              Your images are processed securely and never shared with third parties
+              {t('securityNote')}
             </span>
           </div>
         </div>

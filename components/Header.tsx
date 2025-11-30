@@ -2,10 +2,11 @@
 
 import { useSession, signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
 
 // Tool icons
 const toolIcons = {
@@ -68,11 +69,26 @@ const toolConfigs = [
   { key: 'expand', href: '/tools/image-expand', color: 'from-indigo-500 to-indigo-600', bgColor: 'bg-indigo-500/10' },
 ];
 
+// User dropdown menu items
+const userMenuItems = [
+  { key: 'dashboard', href: '/dashboard' },
+  { key: 'apiKeys', href: '/dashboard/api' },
+  { key: 'settings', href: '/dashboard/settings' },
+] as const;
+
 export default function Header() {
   const { data: session, status } = useSession();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const t = useTranslations();
+
+  // Refs for dropdown containers
+  const toolsDropdownRef = useRef<HTMLDivElement>(null);
+  const toolsButtonRef = useRef<HTMLButtonElement>(null);
+  const userDropdownRef = useRef<HTMLDivElement>(null);
+  const userButtonRef = useRef<HTMLButtonElement>(null);
 
   // Check if we're on a tools page (accounting for locale prefix)
   const isToolsPage = pathname?.includes('/tools/');
@@ -86,47 +102,133 @@ export default function Header() {
     icon: toolIcons[config.key as keyof typeof toolIcons],
   }));
 
+  // Keyboard navigation for tools dropdown
+  const toolsNavigation = useKeyboardNavigation({
+    itemCount: tools.length,
+    isOpen: toolsDropdownOpen,
+    onSelect: (index) => {
+      // Navigate to tool - handled by Link click
+      const link = document.querySelector(`[data-tool-index="${index}"]`) as HTMLAnchorElement;
+      if (link) link.click();
+    },
+    onEscape: () => {
+      setToolsDropdownOpen(false);
+      toolsButtonRef.current?.focus();
+    },
+  });
+
+  // Keyboard navigation for user dropdown (including sign out)
+  const userNavigation = useKeyboardNavigation({
+    itemCount: userMenuItems.length + 1, // +1 for sign out
+    isOpen: userDropdownOpen,
+    onSelect: (index) => {
+      if (index < userMenuItems.length) {
+        const link = document.querySelector(`[data-user-index="${index}"]`) as HTMLAnchorElement;
+        if (link) link.click();
+      } else {
+        // Sign out
+        signOut({ callbackUrl: "/" });
+      }
+    },
+    onEscape: () => {
+      setUserDropdownOpen(false);
+      userButtonRef.current?.focus();
+    },
+  });
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (toolsDropdownRef.current && !toolsDropdownRef.current.contains(event.target as Node)) {
+        setToolsDropdownOpen(false);
+      }
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
+        setUserDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Handle dropdown button keyboard events
+  const handleDropdownKeyDown = useCallback(
+    (event: React.KeyboardEvent, setOpen: (open: boolean) => void, isOpen: boolean) => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        setOpen(true);
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setOpen(!isOpen);
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false);
+      }
+    },
+    []
+  );
+
   return (
     <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50">
-      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <nav className="container mx-auto px-4 py-4 flex items-center justify-between" role="navigation" aria-label="Main navigation">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg"></div>
+        <Link href="/" className="flex items-center gap-2" aria-label="Pixelift home">
+          <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg" aria-hidden="true"></div>
           <span className="text-xl font-bold" style={{color: '#ffffff'}}>Pixelift</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6 text-white">
-          {/* Tools Dropdown - Hover activated */}
-          <div className="relative group">
+          {/* Tools Dropdown */}
+          <div className="relative" ref={toolsDropdownRef}>
             <button
+              ref={toolsButtonRef}
+              onClick={() => setToolsDropdownOpen((prev) => !prev)}
+              onKeyDown={(e) => handleDropdownKeyDown(e, setToolsDropdownOpen, toolsDropdownOpen)}
               className={`flex items-center gap-1 transition font-medium py-2 ${
                 isToolsPage ? 'text-green-400' : 'text-white hover:text-green-400'
               }`}
+              aria-expanded={toolsDropdownOpen}
+              aria-haspopup="menu"
+              aria-controls="tools-menu"
             >
               {t('nav.tools')}
               <svg
-                className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                className={`w-4 h-4 transition-transform duration-200 ${toolsDropdownOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            {/* Dropdown Menu - Grid layout like Deep Image */}
-            <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-4 max-h-[500px] overflow-y-auto">
+            {/* Tools Dropdown Menu */}
+            <div
+              ref={toolsNavigation.containerRef}
+              id="tools-menu"
+              role="menu"
+              aria-label="Tools menu"
+              onKeyDown={toolsNavigation.handleKeyDown}
+              tabIndex={toolsDropdownOpen ? 0 : -1}
+              className={`absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-4 max-h-[500px] overflow-y-auto transition-all duration-200 ${
+                toolsDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+              }`}
+            >
               <div className="grid grid-cols-3 gap-2">
-                {tools.map((tool) => (
+                {tools.map((tool, index) => (
                   <Link
                     key={tool.href}
                     href={tool.href}
+                    role="menuitem"
+                    data-tool-index={index}
+                    onClick={() => setToolsDropdownOpen(false)}
                     className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-gray-700/70 ${
                       pathname?.includes(tool.href) ? 'bg-gray-700/50 ring-1 ring-green-500/50' : ''
-                    }`}
+                    } ${toolsNavigation.activeIndex === index ? 'bg-gray-700' : ''}`}
                   >
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${tool.color} text-white shrink-0`}>
+                    <div className={`p-2 rounded-lg bg-gradient-to-br ${tool.color} text-white shrink-0`} aria-hidden="true">
                       {tool.icon}
                     </div>
                     <div className="min-w-0">
@@ -152,7 +254,7 @@ export default function Header() {
               pathname?.includes('/ai-image') ? 'text-purple-400' : 'text-white hover:text-purple-400'
             }`}
           >
-            <span className="text-sm">✨</span>
+            <span className="text-sm" aria-hidden="true">✨</span>
             {t('nav.aiImage')}
           </Link>
           <Link href="/#use-cases" className="text-white hover:text-green-400 transition">
@@ -175,7 +277,7 @@ export default function Header() {
           <LanguageSwitcher />
 
           {status === "loading" ? (
-            <div className="w-8 h-8 border-2 border-gray-600 border-t-green-500 rounded-full animate-spin"></div>
+            <div className="w-8 h-8 border-2 border-gray-600 border-t-green-500 rounded-full animate-spin" aria-label="Loading"></div>
           ) : session ? (
             <>
               <Link
@@ -184,16 +286,26 @@ export default function Header() {
               >
                 {t('nav.dashboard')}
               </Link>
-              <div className="relative group">
-                <button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+              <div className="relative" ref={userDropdownRef}>
+                <button
+                  ref={userButtonRef}
+                  onClick={() => setUserDropdownOpen((prev) => !prev)}
+                  onKeyDown={(e) => handleDropdownKeyDown(e, setUserDropdownOpen, userDropdownOpen)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+                  aria-expanded={userDropdownOpen}
+                  aria-haspopup="menu"
+                  aria-controls="user-menu"
+                  aria-label={`User menu for ${session.user?.name || 'User'}`}
+                >
                   {session.user?.image ? (
                     <img
                       src={session.user.image}
-                      alt={session.user.name || "User"}
+                      alt=""
                       className="w-8 h-8 rounded-full"
+                      aria-hidden="true"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center" aria-hidden="true">
                       {session.user?.name?.[0] || "U"}
                     </div>
                   )}
@@ -202,33 +314,41 @@ export default function Header() {
                   </span>
                 </button>
 
-                {/* Dropdown */}
-                <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                  <Link
-                    href="/dashboard"
-                    className="block px-4 py-2 hover:bg-gray-700 transition"
-                    style={{color: '#ffffff'}}
-                  >
-                    {t('nav.dashboard')}
-                  </Link>
-                  <Link
-                    href="/dashboard/api"
-                    className="block px-4 py-2 hover:bg-gray-700 transition"
-                    style={{color: '#ffffff'}}
-                  >
-                    {t('nav.apiKeys')}
-                  </Link>
-                  <Link
-                    href="/dashboard/settings"
-                    className="block px-4 py-2 hover:bg-gray-700 transition"
-                    style={{color: '#ffffff'}}
-                  >
-                    {t('nav.settings')}
-                  </Link>
+                {/* User Dropdown */}
+                <div
+                  ref={userNavigation.containerRef}
+                  id="user-menu"
+                  role="menu"
+                  aria-label="User menu"
+                  onKeyDown={userNavigation.handleKeyDown}
+                  tabIndex={userDropdownOpen ? 0 : -1}
+                  className={`absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl transition-all duration-200 ${
+                    userDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+                  }`}
+                >
+                  {userMenuItems.map((item, index) => (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      role="menuitem"
+                      data-user-index={index}
+                      onClick={() => setUserDropdownOpen(false)}
+                      className={`block px-4 py-2 hover:bg-gray-700 transition ${
+                        userNavigation.activeIndex === index ? 'bg-gray-700' : ''
+                      }`}
+                      style={{color: '#ffffff'}}
+                    >
+                      {t(`nav.${item.key}`)}
+                    </Link>
+                  ))}
                   <hr className="border-gray-700" />
                   <button
+                    role="menuitem"
+                    data-user-index={userMenuItems.length}
                     onClick={() => signOut({ callbackUrl: "/" })}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-700 transition text-red-400"
+                    className={`w-full text-left px-4 py-2 hover:bg-gray-700 transition text-red-400 ${
+                      userNavigation.activeIndex === userMenuItems.length ? 'bg-gray-700' : ''
+                    }`}
                   >
                     {t('nav.signOut')}
                   </button>
@@ -256,12 +376,16 @@ export default function Header() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             <svg
               className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -276,7 +400,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-800 bg-gray-900">
+        <div id="mobile-menu" className="md:hidden border-t border-gray-800 bg-gray-900" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {/* Tools Section */}
             <div className="border-b border-gray-800 pb-3 mb-3">
@@ -298,7 +422,7 @@ export default function Header() {
               className="block py-2 text-purple-400 hover:text-purple-300 transition font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              ✨ {t('nav.aiImage')}
+              <span aria-hidden="true">✨</span> {t('nav.aiImage')}
             </Link>
             <Link
               href="/#use-cases"

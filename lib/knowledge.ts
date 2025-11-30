@@ -8,6 +8,8 @@ export type KnowledgeCategory =
   | "tutorials"   // How-to guides
   | "news";       // AI industry news
 
+export type SupportedLocale = "en" | "pl" | "es" | "fr";
+
 export interface KnowledgeArticle {
   id: string;
   title: string;
@@ -36,26 +38,32 @@ export const KNOWLEDGE_CATEGORIES: { id: KnowledgeCategory; name: string; icon: 
   { id: "news", name: "News", icon: "📰", description: "Latest updates from AI industry" },
 ];
 
-const KNOWLEDGE_DIR = path.join(process.cwd(), "data", "knowledge");
+const KNOWLEDGE_BASE_DIR = path.join(process.cwd(), "data", "knowledge");
 
-// Ensure knowledge directory exists
-async function ensureKnowledgeDir() {
+function getKnowledgeDir(locale: SupportedLocale = "en") {
+  return path.join(KNOWLEDGE_BASE_DIR, locale);
+}
+
+// Ensure knowledge directory exists for locale
+async function ensureKnowledgeDir(locale: SupportedLocale = "en") {
+  const dir = getKnowledgeDir(locale);
   try {
-    await fs.access(KNOWLEDGE_DIR);
+    await fs.access(dir);
   } catch {
-    await fs.mkdir(KNOWLEDGE_DIR, { recursive: true });
+    await fs.mkdir(dir, { recursive: true });
   }
 }
 
-export async function getAllArticles(): Promise<KnowledgeArticle[]> {
-  await ensureKnowledgeDir();
+export async function getAllArticles(locale: SupportedLocale = "en"): Promise<KnowledgeArticle[]> {
+  await ensureKnowledgeDir(locale);
+  const dir = getKnowledgeDir(locale);
   try {
-    const files = await fs.readdir(KNOWLEDGE_DIR);
+    const files = await fs.readdir(dir);
     const articles = await Promise.all(
       files
         .filter((file) => file.endsWith(".json"))
         .map(async (file) => {
-          const content = await fs.readFile(path.join(KNOWLEDGE_DIR, file), "utf-8");
+          const content = await fs.readFile(path.join(dir, file), "utf-8");
           return JSON.parse(content) as KnowledgeArticle;
         })
     );
@@ -65,36 +73,37 @@ export async function getAllArticles(): Promise<KnowledgeArticle[]> {
   }
 }
 
-export async function getPublishedArticles(): Promise<KnowledgeArticle[]> {
-  const articles = await getAllArticles();
+export async function getPublishedArticles(locale: SupportedLocale = "en"): Promise<KnowledgeArticle[]> {
+  const articles = await getAllArticles(locale);
   return articles.filter((article) => article.status === "published");
 }
 
-export async function getArticlesByCategory(category: KnowledgeCategory): Promise<KnowledgeArticle[]> {
-  const articles = await getPublishedArticles();
+export async function getArticlesByCategory(category: KnowledgeCategory, locale: SupportedLocale = "en"): Promise<KnowledgeArticle[]> {
+  const articles = await getPublishedArticles(locale);
   return articles.filter((article) => article.category === category);
 }
 
-export async function getArticlesByTag(tag: string): Promise<KnowledgeArticle[]> {
-  const articles = await getPublishedArticles();
+export async function getArticlesByTag(tag: string, locale: SupportedLocale = "en"): Promise<KnowledgeArticle[]> {
+  const articles = await getPublishedArticles(locale);
   return articles.filter((article) =>
     article.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   );
 }
 
-export async function getAllTags(): Promise<string[]> {
-  const articles = await getPublishedArticles();
+export async function getAllTags(locale: SupportedLocale = "en"): Promise<string[]> {
+  const articles = await getPublishedArticles(locale);
   const tagsSet = new Set<string>();
   articles.forEach(article => article.tags.forEach(tag => tagsSet.add(tag)));
   return Array.from(tagsSet).sort();
 }
 
-export async function getArticleBySlug(slug: string): Promise<KnowledgeArticle | null> {
-  await ensureKnowledgeDir();
+export async function getArticleBySlug(slug: string, locale: SupportedLocale = "en"): Promise<KnowledgeArticle | null> {
+  await ensureKnowledgeDir(locale);
+  const dir = getKnowledgeDir(locale);
   try {
-    const files = await fs.readdir(KNOWLEDGE_DIR);
+    const files = await fs.readdir(dir);
     for (const file of files) {
-      const content = await fs.readFile(path.join(KNOWLEDGE_DIR, file), "utf-8");
+      const content = await fs.readFile(path.join(dir, file), "utf-8");
       const article = JSON.parse(content) as KnowledgeArticle;
       if (article.slug === slug) {
         return article;
@@ -106,18 +115,20 @@ export async function getArticleBySlug(slug: string): Promise<KnowledgeArticle |
   }
 }
 
-export async function getArticleById(id: string): Promise<KnowledgeArticle | null> {
-  await ensureKnowledgeDir();
+export async function getArticleById(id: string, locale: SupportedLocale = "en"): Promise<KnowledgeArticle | null> {
+  await ensureKnowledgeDir(locale);
+  const dir = getKnowledgeDir(locale);
   try {
-    const content = await fs.readFile(path.join(KNOWLEDGE_DIR, `${id}.json`), "utf-8");
+    const content = await fs.readFile(path.join(dir, `${id}.json`), "utf-8");
     return JSON.parse(content) as KnowledgeArticle;
   } catch {
     return null;
   }
 }
 
-export async function createArticle(article: Omit<KnowledgeArticle, "id" | "createdAt" | "updatedAt">): Promise<KnowledgeArticle> {
-  await ensureKnowledgeDir();
+export async function createArticle(article: Omit<KnowledgeArticle, "id" | "createdAt" | "updatedAt">, locale: SupportedLocale = "en"): Promise<KnowledgeArticle> {
+  await ensureKnowledgeDir(locale);
+  const dir = getKnowledgeDir(locale);
   const id = Date.now().toString();
   const newArticle: KnowledgeArticle = {
     ...article,
@@ -125,12 +136,12 @@ export async function createArticle(article: Omit<KnowledgeArticle, "id" | "crea
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
-  await fs.writeFile(path.join(KNOWLEDGE_DIR, `${id}.json`), JSON.stringify(newArticle, null, 2));
+  await fs.writeFile(path.join(dir, `${id}.json`), JSON.stringify(newArticle, null, 2));
   return newArticle;
 }
 
-export async function updateArticle(id: string, updates: Partial<KnowledgeArticle>): Promise<KnowledgeArticle | null> {
-  const article = await getArticleById(id);
+export async function updateArticle(id: string, updates: Partial<KnowledgeArticle>, locale: SupportedLocale = "en"): Promise<KnowledgeArticle | null> {
+  const article = await getArticleById(id, locale);
   if (!article) return null;
 
   const updatedArticle: KnowledgeArticle = {
@@ -141,17 +152,41 @@ export async function updateArticle(id: string, updates: Partial<KnowledgeArticl
     updatedAt: new Date().toISOString(),
   };
 
-  await fs.writeFile(path.join(KNOWLEDGE_DIR, `${id}.json`), JSON.stringify(updatedArticle, null, 2));
+  const dir = getKnowledgeDir(locale);
+  await fs.writeFile(path.join(dir, `${id}.json`), JSON.stringify(updatedArticle, null, 2));
   return updatedArticle;
 }
 
-export async function deleteArticle(id: string): Promise<boolean> {
+export async function deleteArticle(id: string, locale: SupportedLocale = "en"): Promise<boolean> {
   try {
-    await fs.unlink(path.join(KNOWLEDGE_DIR, `${id}.json`));
+    const dir = getKnowledgeDir(locale);
+    await fs.unlink(path.join(dir, `${id}.json`));
     return true;
   } catch {
     return false;
   }
+}
+
+// Save article to specific locale folder (for translations)
+export async function saveArticleToLocale(article: KnowledgeArticle, locale: SupportedLocale): Promise<void> {
+  await ensureKnowledgeDir(locale);
+  const dir = getKnowledgeDir(locale);
+  // Use slug as filename for consistency across locales
+  const filename = `${article.slug}.json`;
+  await fs.writeFile(path.join(dir, filename), JSON.stringify(article, null, 2));
+}
+
+// Get article by slug from specific locale, with fallback to English
+export async function getArticleBySlugWithFallback(slug: string, locale: SupportedLocale = "en"): Promise<KnowledgeArticle | null> {
+  // First try the requested locale
+  let article = await getArticleBySlug(slug, locale);
+
+  // If not found and locale is not English, fallback to English
+  if (!article && locale !== "en") {
+    article = await getArticleBySlug(slug, "en");
+  }
+
+  return article;
 }
 
 export function getCategoryById(id: KnowledgeCategory) {

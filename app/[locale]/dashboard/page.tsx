@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 import WelcomeModal from "@/components/WelcomeModal";
 
 interface DashboardStats {
@@ -25,6 +26,7 @@ interface DashboardStats {
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const t = useTranslations('dashboard');
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
@@ -79,24 +81,24 @@ export default function DashboardPage() {
 
   const tools = [
     {
-      name: "Image Upscaler",
-      description: "Enhance and enlarge images up to 8x",
+      name: t('tools.upscaler.name'),
+      description: t('tools.upscaler.description'),
       icon: "🔍",
       gradient: "from-purple-500 to-pink-500",
       href: "/tools/upscaler",
       available: true
     },
     {
-      name: "Background Remover",
-      description: "Remove backgrounds with AI",
+      name: t('tools.bgRemover.name'),
+      description: t('tools.bgRemover.description'),
       icon: "✂️",
       gradient: "from-blue-500 to-cyan-500",
       href: "/tools/remove-background",
       available: true
     },
     {
-      name: "Face Restoration",
-      description: "Restore and enhance face photos",
+      name: t('tools.faceRestore.name'),
+      description: t('tools.faceRestore.description'),
       icon: "😊",
       gradient: "from-green-500 to-emerald-500",
       href: "#",
@@ -120,10 +122,10 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">
-            Welcome back, {session.user?.name?.split(" ")[0]}!
+            {t('welcomeBack')}, {session.user?.name?.split(" ")[0]}!
           </h1>
           <p className="text-gray-400">
-            Manage your account and view your image processing history
+            {t('manageAccount')}
           </p>
         </div>
 
@@ -138,7 +140,7 @@ export default function DashboardPage() {
                 stats?.totalImages || 0
               )}
             </div>
-            <div className="text-sm text-gray-400">Images Processed</div>
+            <div className="text-sm text-gray-400">{t('stats.imagesProcessed')}</div>
           </div>
 
           <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
@@ -150,7 +152,7 @@ export default function DashboardPage() {
                 stats?.credits || 0
               )}
             </div>
-            <div className="text-sm text-gray-400">Credits Remaining</div>
+            <div className="text-sm text-gray-400">{t('stats.creditsRemaining')}</div>
           </div>
 
           <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
@@ -159,10 +161,10 @@ export default function DashboardPage() {
               {loading ? (
                 <div className="h-8 w-20 bg-gray-700 animate-pulse rounded"></div>
               ) : (
-                stats?.role === 'user' ? 'Free' : stats?.role || 'Free'
+                stats?.role === 'user' ? t('plans.free') : stats?.role || t('plans.free')
               )}
             </div>
-            <div className="text-sm text-gray-400">Current Plan</div>
+            <div className="text-sm text-gray-400">{t('stats.currentPlan')}</div>
           </div>
 
           <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
@@ -174,13 +176,13 @@ export default function DashboardPage() {
                 stats?.toolsAvailable || 2
               )}
             </div>
-            <div className="text-sm text-gray-400">Tools Available</div>
+            <div className="text-sm text-gray-400">{t('stats.toolsAvailable')}</div>
           </div>
         </div>
 
         {/* Tools Grid */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">AI Tools</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('tools.title')}</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {tools.map((tool) => (
               <Link
@@ -205,7 +207,7 @@ export default function DashboardPage() {
                     {tool.name}
                     {tool.comingSoon && (
                       <span className="px-2 py-0.5 text-xs bg-gray-600 text-white rounded-full">
-                        SOON
+                        {t('tools.comingSoon')}
                       </span>
                     )}
                   </h3>
@@ -213,7 +215,7 @@ export default function DashboardPage() {
 
                   {tool.available && (
                     <div className="flex items-center text-green-400 text-sm font-medium">
-                      Start using
+                      {t('tools.startUsing')}
                       <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -228,7 +230,7 @@ export default function DashboardPage() {
         {/* Recent Activity */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold">Recent Activity</h2>
+            <h2 className="text-2xl font-bold">{t('activity.title')}</h2>
           </div>
 
           {loading ? (
@@ -274,22 +276,22 @@ export default function DashboardPage() {
           ) : (
             <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-8 text-center">
               <div className="text-6xl mb-4">📂</div>
-              <h3 className="text-xl font-semibold mb-2">No activity yet</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('activity.noActivity')}</h3>
               <p className="text-gray-400 mb-6">
-                Start using our tools to see your processing history here
+                {t('activity.noActivityDesc')}
               </p>
               <div className="flex gap-4 justify-center">
                 <Link
                   href="/tools/upscaler"
                   className="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium transition"
                 >
-                  Try Upscaler
+                  {t('activity.tryUpscaler')}
                 </Link>
                 <Link
                   href="/tools/remove-background"
                   className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
                 >
-                  Try Background Remover
+                  {t('activity.tryBgRemover')}
                 </Link>
               </div>
             </div>
@@ -298,12 +300,12 @@ export default function DashboardPage() {
 
         {/* Usage Stats */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Usage Overview</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('usage.title')}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Credits Usage */}
             <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
               <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span>💰</span> Credit Usage
+                <span>💰</span> {t('usage.creditUsage')}
               </h3>
               {loading ? (
                 <div className="space-y-4">
@@ -333,9 +335,9 @@ export default function DashboardPage() {
                   </div>
                   <div className="pt-4 border-t border-gray-700">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-400">Total Used</span>
+                      <span className="text-gray-400">{t('usage.totalUsed')}</span>
                       <span className="font-bold">
-                        {(stats?.upscalerUsage.credits || 0) + (stats?.bgRemovalUsage.credits || 0)} credits
+                        {(stats?.upscalerUsage.credits || 0) + (stats?.bgRemovalUsage.credits || 0)} {t('activity.credits')}
                       </span>
                     </div>
                   </div>
@@ -346,7 +348,7 @@ export default function DashboardPage() {
             {/* Most Used Tool */}
             <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
               <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span>📈</span> Most Used Tool
+                <span>📈</span> {t('usage.mostUsedTool')}
               </h3>
               {loading ? (
                 <div className="text-center py-8">
@@ -369,9 +371,9 @@ export default function DashboardPage() {
               ) : (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-3">🎯</div>
-                  <p className="text-gray-400">No data yet</p>
+                  <p className="text-gray-400">{t('usage.noData')}</p>
                   <p className="text-sm text-gray-500 mt-2">
-                    Start processing images to see statistics
+                    {t('usage.startProcessing')}
                   </p>
                 </div>
               )}
@@ -381,16 +383,16 @@ export default function DashboardPage() {
 
         {/* Quick Actions */}
         <div>
-          <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('quickActions.title')}</h2>
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
             <Link
               href="/dashboard/images"
               className="bg-gradient-to-br from-indigo-900/20 to-blue-900/20 rounded-xl border border-indigo-700/50 p-6 hover:border-indigo-500 transition group"
             >
               <div className="text-3xl mb-3 group-hover:scale-110 transition">🖼️</div>
-              <h3 className="text-lg font-semibold mb-2">Image History</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('quickActions.imageHistory')}</h3>
               <p className="text-gray-400 text-sm">
-                View all processed images
+                {t('quickActions.viewProcessed')}
               </p>
             </Link>
 
@@ -399,9 +401,9 @@ export default function DashboardPage() {
               className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 rounded-xl border border-yellow-700/50 p-6 hover:border-yellow-500 transition group"
             >
               <div className="text-3xl mb-3 group-hover:scale-110 transition">💰</div>
-              <h3 className="text-lg font-semibold mb-2">Billing</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('quickActions.billing')}</h3>
               <p className="text-gray-400 text-sm">
-                Transactions & payments
+                {t('quickActions.transactions')}
               </p>
             </Link>
 
@@ -410,9 +412,9 @@ export default function DashboardPage() {
               className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 rounded-xl border border-green-700/50 p-6 hover:border-green-500 transition group"
             >
               <div className="text-3xl mb-3 group-hover:scale-110 transition">💎</div>
-              <h3 className="text-lg font-semibold mb-2">Upgrade</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('quickActions.upgrade')}</h3>
               <p className="text-gray-400 text-sm">
-                Get more credits
+                {t('quickActions.getMoreCredits')}
               </p>
             </Link>
 
@@ -421,9 +423,9 @@ export default function DashboardPage() {
               className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 rounded-xl border border-blue-700/50 p-6 hover:border-blue-500 transition group"
             >
               <div className="text-3xl mb-3 group-hover:scale-110 transition">🔑</div>
-              <h3 className="text-lg font-semibold mb-2">API Keys</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('quickActions.apiKeys')}</h3>
               <p className="text-gray-400 text-sm">
-                For developers
+                {t('quickActions.forDevelopers')}
               </p>
             </Link>
 
@@ -432,9 +434,9 @@ export default function DashboardPage() {
               className="bg-gradient-to-br from-pink-900/20 to-rose-900/20 rounded-xl border border-pink-700/50 p-6 hover:border-pink-500 transition group"
             >
               <div className="text-3xl mb-3 group-hover:scale-110 transition">🎫</div>
-              <h3 className="text-lg font-semibold mb-2">My Tickets</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('quickActions.myTickets')}</h3>
               <p className="text-gray-400 text-sm">
-                Support requests
+                {t('quickActions.supportRequests')}
               </p>
             </Link>
 
@@ -443,9 +445,9 @@ export default function DashboardPage() {
               className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl border border-purple-700/50 p-6 hover:border-purple-500 transition group"
             >
               <div className="text-3xl mb-3 group-hover:scale-110 transition">⚙️</div>
-              <h3 className="text-lg font-semibold mb-2">Settings</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('quickActions.settings')}</h3>
               <p className="text-gray-400 text-sm">
-                Account preferences
+                {t('quickActions.accountPreferences')}
               </p>
             </Link>
           </div>

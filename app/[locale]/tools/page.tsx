@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 
-const tools = [
+const toolsData = [
   {
     id: 'remove-background',
     name: 'Background Remover',
@@ -115,6 +116,25 @@ const tools = [
 ];
 
 export default function ToolsPage() {
+  const t = useTranslations('toolsPage');
+
+  // Get translated tool data
+  const tools = toolsData.map(tool => ({
+    ...tool,
+    name: t(`tools.${tool.id === 'remove-background' ? 'removeBackground' :
+             tool.id === 'image-expand' ? 'imageExpand' :
+             tool.id === 'object-removal' ? 'objectRemoval' :
+             tool.id === 'packshot-generator' ? 'packshotGenerator' :
+             tool.id === 'background-generator' ? 'backgroundGenerator' :
+             tool.id === 'image-compressor' ? 'imageCompressor' : tool.id}.name`),
+    description: t(`tools.${tool.id === 'remove-background' ? 'removeBackground' :
+                    tool.id === 'image-expand' ? 'imageExpand' :
+                    tool.id === 'object-removal' ? 'objectRemoval' :
+                    tool.id === 'packshot-generator' ? 'packshotGenerator' :
+                    tool.id === 'background-generator' ? 'backgroundGenerator' :
+                    tool.id === 'image-compressor' ? 'imageCompressor' : tool.id}.description`),
+  }));
+
   return (
     <ToolsLayout>
       <div className="max-w-7xl mx-auto">
@@ -132,33 +152,32 @@ export default function ToolsPage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-purple-300">9 AI-Powered Tools</span>
+              <span className="text-purple-300">{t('badge')}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-white">AI Image </span>
+              <span className="text-white">{t('title')} </span>
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
-                Tools
+                {t('titleHighlight')}
               </span>
             </h1>
             <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-8">
-              Professional image editing powered by cutting-edge AI. Remove backgrounds, upscale, restore,
-              colorize, and more - all in one place.
+              {t('subtitle')}
             </p>
 
             {/* Stats */}
             <div className="flex flex-wrap justify-center gap-8 mb-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-400">9</div>
-                <div className="text-sm text-gray-500">AI Tools</div>
+                <div className="text-sm text-gray-500">{t('stats.tools')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-pink-400">1-3</div>
-                <div className="text-sm text-gray-500">Credits/Task</div>
+                <div className="text-sm text-gray-500">{t('stats.credits')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-400">~10s</div>
-                <div className="text-sm text-gray-500">Avg. Processing</div>
+                <div className="text-sm text-gray-500">{t('stats.processing')}</div>
               </div>
             </div>
           </div>
@@ -191,7 +210,7 @@ export default function ToolsPage() {
                   {tool.description}
                 </p>
                 <div className="flex items-center text-sm text-gray-500 group-hover:text-gray-300 transition">
-                  <span>Try it now</span>
+                  <span>{t('tryItNow')}</span>
                   <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -204,9 +223,9 @@ export default function ToolsPage() {
         {/* Features Section */}
         <section className="px-6 py-16 border-t border-gray-800">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-white">Why Choose Our AI Tools?</h2>
+            <h2 className="text-3xl font-bold mb-4 text-white">{t('whyChoose.title')}</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Professional-grade image editing powered by the latest AI models.
+              {t('whyChoose.subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -214,27 +233,27 @@ export default function ToolsPage() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-500/20 flex items-center justify-center">
                 <span className="text-3xl">⚡</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-white">Lightning Fast</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">{t('whyChoose.fast.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Most tasks complete in under 10 seconds with our optimized AI pipeline.
+                {t('whyChoose.fast.description')}
               </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-500/20 flex items-center justify-center">
                 <span className="text-3xl">🎯</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-white">Professional Quality</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">{t('whyChoose.quality.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Enterprise-grade AI models deliver results that match professional editing.
+                {t('whyChoose.quality.description')}
               </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-500/20 flex items-center justify-center">
                 <span className="text-3xl">💰</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-white">Pay As You Go</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">{t('whyChoose.payAsYouGo.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Only pay for what you use. No subscriptions, no hidden fees.
+                {t('whyChoose.payAsYouGo.description')}
               </p>
             </div>
           </div>
@@ -244,23 +263,23 @@ export default function ToolsPage() {
         <section className="px-6 pb-16">
           <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/30 rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Ready to Transform Your Images?
+              {t('cta.title')}
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-              Start with 3 free credits. No credit card required.
+              {t('cta.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/auth/signin"
                 className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-xl font-semibold text-lg transition shadow-lg shadow-purple-500/25"
               >
-                Get Started Free
+                {t('cta.getStarted')}
               </Link>
               <Link
                 href="/pricing"
                 className="px-8 py-4 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold text-lg transition"
               >
-                View Pricing
+                {t('cta.viewPricing')}
               </Link>
             </div>
           </div>

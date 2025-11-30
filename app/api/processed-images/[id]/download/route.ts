@@ -5,6 +5,7 @@ import { ProcessedImagesDB } from '@/lib/processed-images-db'
 import { readFile } from 'fs/promises'
 import path from 'path'
 import sharp from 'sharp'
+import { validateSafePath } from '@/lib/security'
 
 type Resolution = 'low' | 'medium' | 'high' | 'original'
 type Format = 'png' | 'jpg'
@@ -83,11 +84,17 @@ export async function GET(
       )
     }
 
-    // Read file from public directory
-    const filePath = path.join(process.cwd(), 'public', image.processedPath)
+    // Validate path to prevent path traversal attacks
+    const pathValidation = validateSafePath(image.processedPath)
+    if (!pathValidation.valid) {
+      return NextResponse.json(
+        { error: 'Invalid file path' },
+        { status: 400 }
+      )
+    }
 
     try {
-      const fileBuffer = await readFile(filePath)
+      const fileBuffer = await readFile(pathValidation.safePath)
 
       // Determine target resolution
       let targetWidth: number | null = null
@@ -159,7 +166,7 @@ export async function GET(
         }
       })
     } catch (fileError) {
-      console.error('File processing error:', filePath, fileError)
+      console.error('File processing error:', fileError)
       return NextResponse.json(
         { error: 'Failed to process file for download' },
         { status: 500 }

@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     const session = await auth();
     const author = validatedData.author || {
       name: session?.user?.name || 'Admin',
-      email: session?.user?.email || 'admin@pixelift.pl',
+      email: session?.user?.email || 'unknown@pixelift.pl',
     };
 
     const post = await createPost({

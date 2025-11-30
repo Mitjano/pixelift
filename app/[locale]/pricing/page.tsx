@@ -1,9 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { FaCheck, FaDatabase, FaDownload, FaEnvelope, FaQuoteLeft, FaCog } from "react-icons/fa";
+import { useTranslations } from 'next-intl';
+
+// Inline SVG icons to replace react-icons (better tree-shaking)
+const DatabaseIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+    <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" />
+    <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
+    <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
+  </svg>
+);
+
+const DownloadIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+  </svg>
+);
+
+const QuoteIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+    <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd" />
+  </svg>
+);
+
+const CogIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+    <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+  </svg>
+);
+
+const EnvelopeIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 20 20" width="16" height="16">
+    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+  </svg>
+);
 
 export default function PricingPage() {
+  const t = useTranslations('pricing');
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [selectedSubscription, setSelectedSubscription] = useState("plan-500");
   const [selectedOneTime, setSelectedOneTime] = useState(2); // Index 2 = 100 credits
@@ -86,7 +121,7 @@ export default function PricingPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">
-            Choose the Right Plan for You
+            {t('title')}
           </h1>
         </div>
 
@@ -94,37 +129,37 @@ export default function PricingPage() {
         <div className="grid lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
           {/* Free Plan */}
           <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-8 flex flex-col">
-            <h3 className="text-2xl font-bold mb-6">Free Plan</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('freePlan.title')}</h3>
 
             <div className="mb-6">
               <div className="flex items-baseline mb-2">
                 <span className="text-5xl font-bold">$0</span>
-                <span className="text-gray-400 ml-2">/credit</span>
+                <span className="text-gray-400 ml-2">{t('freePlan.perCredit')}</span>
               </div>
             </div>
 
             <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-8 transition">
-              Sign Up For Free
+              {t('freePlan.button')}
             </button>
 
             <div className="space-y-4 flex-grow">
               <div className="flex items-start gap-3">
-                <FaDatabase className="text-green-400 mt-1 flex-shrink-0" />
+                <DatabaseIcon className="text-green-400 mt-1 flex-shrink-0" />
                 <div>
-                  <div className="font-medium">3 free credits</div>
+                  <div className="font-medium">{t('freePlan.freeCredits')}</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <FaDownload className="text-blue-400 mt-1 flex-shrink-0" />
+                <DownloadIcon className="text-blue-400 mt-1 flex-shrink-0" />
                 <div>
-                  <div className="font-medium">3 free downloads</div>
+                  <div className="font-medium">{t('freePlan.freeDownloads')}</div>
                 </div>
               </div>
             </div>
 
             <div className="mt-6 pt-6 border-t border-gray-700">
               <p className="text-sm text-gray-400">
-                Get 3 free credits and 3 free downloads every month to try the platform
+                {t('freePlan.description')}
               </p>
             </div>
           </div>
@@ -133,31 +168,31 @@ export default function PricingPage() {
           <div className="bg-gray-800/50 rounded-2xl border-2 border-blue-500 p-8 flex flex-col relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span className="bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
-                Most Popular
+                {t('subscription.mostPopular')}
               </span>
             </div>
 
-            <h3 className="text-2xl font-bold mb-6">Subscription Plan</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('subscription.title')}</h3>
 
             <div className="mb-6">
               <div className="flex items-baseline mb-2">
                 <span className="text-5xl font-bold">
                   ${currentPricePerCredit}
                 </span>
-                <span className="text-gray-400 ml-2">/credit</span>
+                <span className="text-gray-400 ml-2">{t('subscription.perCredit')}</span>
               </div>
               <div className="text-sm text-gray-400">
-                ${currentPricePerMonth.toFixed(2)} billed {billingCycle === "yearly" ? "monthly" : "monthly"}
+                ${currentPricePerMonth.toFixed(2)} {t('subscription.billed')} {t('subscription.monthly')}
               </div>
               {billingCycle === "yearly" && totalYearlyPrice && (
                 <div className="text-xs text-gray-500">
-                  ${totalYearlyPrice} billed yearly
+                  ${totalYearlyPrice} {t('subscription.billedYearly')}
                 </div>
               )}
             </div>
 
             <button className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold mb-6 transition">
-              Subscribe Now
+              {t('subscription.button')}
             </button>
 
             {/* Billing Toggle */}
@@ -170,7 +205,7 @@ export default function PricingPage() {
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                Monthly
+                {t('subscription.monthly')}
               </button>
               <button
                 onClick={() => setBillingCycle("yearly")}
@@ -180,9 +215,9 @@ export default function PricingPage() {
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                Yearly
+                {t('subscription.yearly')}
                 <span className="text-xs bg-green-500 text-white px-2 py-0.5 rounded">
-                  Save 70%
+                  {t('subscription.save70')}
                 </span>
               </button>
             </div>
@@ -220,15 +255,15 @@ export default function PricingPage() {
                         className="w-4 h-4 text-blue-500"
                       />
                       <div>
-                        <div className="font-medium text-sm">{plan.credits} Credits/month</div>
+                        <div className="font-medium text-sm">{plan.credits} {t('subscription.creditsPerMonth')}</div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-bold text-sm">${pricePerCredit}/credit</div>
+                      <div className="font-bold text-sm">${pricePerCredit}{t('subscription.perCredit')}</div>
                       <div className="text-xs text-gray-400">
-                        ${pricePerMonth.toFixed(2)}/month
+                        ${pricePerMonth.toFixed(2)}{t('subscription.perMonth')}
                         {totalYearly && (
-                          <> ({totalYearly}/year)</>
+                          <> (${totalYearly}{t('subscription.perYear')})</>
                         )}
                       </div>
                     </div>
@@ -240,35 +275,35 @@ export default function PricingPage() {
             <div className="pt-6 border-t border-gray-700 space-y-2 text-sm text-gray-400">
               {billingCycle === "yearly" ? (
                 <>
-                  <p>Billed yearly (Auto-renews yearly)</p>
-                  <p>Save 70% compared to monthly billing</p>
+                  <p>{t('subscription.billedYearlyAuto')}</p>
+                  <p>{t('subscription.save70Compared')}</p>
                 </>
               ) : (
-                <p>Billed monthly (Auto-renews monthly)</p>
+                <p>{t('subscription.billedMonthlyAuto')}</p>
               )}
-              <p>Cancel anytime</p>
-              <p>Due to the high cost of AI, we don't offer refunds. Please try the free plan before upgrading</p>
+              <p>{t('subscription.cancelAnytime')}</p>
+              <p>{t('subscription.noRefunds')}</p>
             </div>
           </div>
 
           {/* One Time Payment */}
           <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-8 flex flex-col">
-            <h3 className="text-2xl font-bold mb-6">One time payment</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('oneTime.title')}</h3>
 
             <div className="mb-6">
               <div className="flex items-baseline mb-2">
                 <span className="text-5xl font-bold">
                   ${oneTimePlans[selectedOneTime].pricePerCredit.toFixed(2)}
                 </span>
-                <span className="text-gray-400 ml-2">/credit</span>
+                <span className="text-gray-400 ml-2">{t('oneTime.perCredit')}</span>
               </div>
               <div className="text-sm text-gray-400">
-                ${oneTimePlans[selectedOneTime].price.toFixed(2)} billed once
+                ${oneTimePlans[selectedOneTime].price.toFixed(2)} {t('oneTime.billedOnce')}
               </div>
             </div>
 
             <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-6 transition">
-              Buy Now
+              {t('oneTime.button')}
             </button>
 
             {/* One-time Options */}
@@ -291,116 +326,116 @@ export default function PricingPage() {
                       className="w-4 h-4 text-blue-500"
                     />
                     <div>
-                      <div className="font-medium">{plan.credits} Credits</div>
+                      <div className="font-medium">{plan.credits} {t('oneTime.credits')}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold">${plan.pricePerCredit.toFixed(2)}/credit</div>
-                    <div className="text-xs text-gray-400">${plan.price.toFixed(2)} billed once</div>
+                    <div className="font-bold">${plan.pricePerCredit.toFixed(2)}{t('oneTime.perCredit')}</div>
+                    <div className="text-xs text-gray-400">${plan.price.toFixed(2)} {t('oneTime.billedOnce')}</div>
                   </div>
                 </label>
               ))}
             </div>
 
             <div className="pt-6 border-t border-gray-700 text-sm text-gray-400">
-              <p>Credits are valid for 1 year from purchase and are non-refundable</p>
+              <p>{t('oneTime.validFor1Year')}</p>
             </div>
           </div>
 
           {/* Enterprise Plan */}
           <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-8 flex flex-col">
-            <h3 className="text-2xl font-bold mb-6">Enterprise Plan</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('enterprise.title')}</h3>
 
             <div className="mb-6">
-              <div className="text-3xl font-bold mb-2">Need custom solutions?</div>
+              <div className="text-3xl font-bold mb-2">{t('enterprise.customSolutions')}</div>
             </div>
 
             <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-8 transition">
-              Talk to Sales
+              {t('enterprise.button')}
             </button>
 
             <div className="space-y-4 flex-grow">
               <div className="flex items-start gap-3">
-                <FaQuoteLeft className="text-purple-400 mt-1 flex-shrink-0" />
+                <QuoteIcon className="text-purple-400 mt-1 flex-shrink-0" />
                 <div>
-                  <div className="font-medium">Schedule a demo with our team</div>
+                  <div className="font-medium">{t('enterprise.scheduleDemo')}</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <FaCog className="text-orange-400 mt-1 flex-shrink-0" />
+                <CogIcon className="text-orange-400 mt-1 flex-shrink-0" />
                 <div>
-                  <div className="font-medium">Get a quote that fits your needs</div>
+                  <div className="font-medium">{t('enterprise.getQuote')}</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <FaEnvelope className="text-blue-400 mt-1 flex-shrink-0" />
+                <EnvelopeIcon className="text-blue-400 mt-1 flex-shrink-0" />
                 <div>
-                  <div className="font-medium">Email us at <span className="text-blue-400">sales@pixelift.pl</span> for any queries</div>
+                  <div className="font-medium">{t('enterprise.emailUs')} <span className="text-blue-400">sales@pixelift.pl</span> {t('enterprise.forQueries')}</div>
                 </div>
               </div>
             </div>
 
             <div className="mt-6 pt-6 border-t border-gray-700 text-sm text-gray-400">
-              <p>Book a 1:1 session with our experts to see how Pixelift can help your business transform images at scale</p>
+              <p>{t('enterprise.bookSession')}</p>
             </div>
           </div>
         </div>
 
         {/* Features Section */}
         <div className="max-w-6xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12">Powerful Features Included</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t('features.title')}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Feature 1: FREE Preview */}
             <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/30 p-6">
               <div className="text-4xl mb-4">👁️</div>
-              <h3 className="text-xl font-bold mb-3">FREE Preview System</h3>
+              <h3 className="text-xl font-bold mb-3">{t('features.preview.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Try before you buy! Generate a FREE 200x200px preview with all your settings before using any credits. Perfect for testing different presets.
+                {t('features.preview.description')}
               </p>
             </div>
 
             {/* Feature 2: Batch Processing */}
             <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-xl border border-green-500/30 p-6">
               <div className="text-4xl mb-4">📦</div>
-              <h3 className="text-xl font-bold mb-3">Batch Processing</h3>
+              <h3 className="text-xl font-bold mb-3">{t('features.batch.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Upload and process up to 50 images at once with the same settings. Perfect for photographers and content creators working with multiple files.
+                {t('features.batch.description')}
               </p>
             </div>
 
             {/* Feature 3: AI Presets */}
             <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/30 p-6">
               <div className="text-4xl mb-4">✨</div>
-              <h3 className="text-xl font-bold mb-3">7 AI Presets</h3>
+              <h3 className="text-xl font-bold mb-3">{t('features.presets.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Quality Boost, Portrait, Landscape, Art, Restoration, Maximum, and Custom modes. Each optimized for specific use cases with one-click application.
+                {t('features.presets.description')}
               </p>
             </div>
 
             {/* Feature 4: Advanced Enhancement */}
             <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl border border-orange-500/30 p-6">
               <div className="text-4xl mb-4">🎨</div>
-              <h3 className="text-xl font-bold mb-3">Advanced Enhancements</h3>
+              <h3 className="text-xl font-bold mb-3">{t('features.enhancements.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Denoising, JPEG artifact removal, color correction, and face enhancement. Fine-tune every aspect of your image processing.
+                {t('features.enhancements.description')}
               </p>
             </div>
 
             {/* Feature 5: Scale Options */}
             <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-500/30 p-6">
               <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold mb-3">Flexible Scaling</h3>
+              <h3 className="text-xl font-bold mb-3">{t('features.scaling.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Choose from 1x (quality only), 2x, 4x, or 8x upscaling. Enhance without resizing or scale up to 8x the original resolution.
+                {t('features.scaling.description')}
               </p>
             </div>
 
             {/* Feature 6: Real-time Comparison */}
             <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-xl border border-yellow-500/30 p-6">
               <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-xl font-bold mb-3">Interactive Comparison</h3>
+              <h3 className="text-xl font-bold mb-3">{t('features.comparison.title')}</h3>
               <p className="text-gray-400 text-sm">
-                Drag to compare before and after images side-by-side. See the quality improvements in real-time with our interactive slider.
+                {t('features.comparison.description')}
               </p>
             </div>
           </div>
@@ -408,22 +443,22 @@ export default function PricingPage() {
 
         {/* CTA Section */}
         <div className="text-center mt-16 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl border border-green-500/20 p-12 max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-4">Ready to get started?</h2>
+          <h2 className="text-4xl font-bold mb-4">{t('cta.title')}</h2>
           <p className="text-xl text-gray-400 mb-8">
-            Start with our free plan or choose a paid option for more credits
+            {t('cta.description')}
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
             <a
               href="/auth/signin"
               className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 rounded-lg font-semibold text-lg transition shadow-lg"
             >
-              Start Free Trial
+              {t('cta.startTrial')}
             </a>
             <a
               href="mailto:sales@pixelift.pl"
               className="px-8 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold text-lg transition"
             >
-              Contact Sales
+              {t('cta.contactSales')}
             </a>
           </div>
         </div>

@@ -1,20 +1,21 @@
-import { getArticleBySlug, getCategoryById, getPublishedArticles } from "@/lib/knowledge";
+import { getArticleBySlugWithFallback, getCategoryById, getPublishedArticles, SupportedLocale } from "@/lib/knowledge";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import SafeHTML from "@/components/SafeHTML";
+import { getTranslations } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const { slug, locale } = await params;
+  const article = await getArticleBySlugWithFallback(slug, locale as SupportedLocale);
 
-  if (!article || article.status !== "published") {
+  if (!article) {
     return {
       title: "Article Not Found - Pixelift Knowledge",
     };
@@ -27,17 +28,20 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function KnowledgeArticlePage({ params }: PageProps) {
-  const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const { slug, locale } = await params;
+  const article = await getArticleBySlugWithFallback(slug, locale as SupportedLocale);
 
   if (!article || article.status !== "published") {
     notFound();
   }
 
+  const t = await getTranslations('knowledgeArticle');
+  const tCat = await getTranslations('knowledgeCategories');
   const category = getCategoryById(article.category);
+  const categoryName = category ? tCat(`${category.id}.name`) : '';
 
   // Get related articles
-  const allArticles = await getPublishedArticles();
+  const allArticles = await getPublishedArticles(locale as SupportedLocale);
   const relatedArticles = article.relatedSlugs
     ? allArticles.filter(a => article.relatedSlugs?.includes(a.slug))
     : allArticles.filter(a => a.category === article.category && a.id !== article.id).slice(0, 3);
@@ -50,14 +54,14 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
           {/* Breadcrumb */}
           <div className="mb-6 flex items-center gap-2 text-sm">
             <Link href="/knowledge" className="text-purple-400 hover:text-purple-300">
-              Knowledge
+              {t('breadcrumbKnowledge')}
             </Link>
             <span className="text-gray-600">/</span>
             <Link
               href={`/knowledge/category/${article.category}`}
               className="text-purple-400 hover:text-purple-300"
             >
-              {category?.name}
+              {categoryName}
             </Link>
           </div>
 
@@ -65,7 +69,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
           <div className="flex items-center gap-2 mb-4">
             <span className="text-2xl">{category?.icon}</span>
             <span className="text-sm px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full">
-              {category?.name}
+              {categoryName}
             </span>
           </div>
 
@@ -79,38 +83,32 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
 
       {/* Featured Image */}
       {article.featuredImage && (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="relative w-full h-96 rounded-xl overflow-hidden">
-            <Image
-              src={article.featuredImage}
-              alt={article.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+        <div className="relative w-full max-w-4xl mx-auto h-64 md:h-96 -mt-8">
+          <Image
+            src={article.featuredImage}
+            alt={article.title}
+            fill
+            className="object-cover rounded-xl shadow-2xl"
+            priority
+          />
         </div>
       )}
 
-      {/* Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Article Content */}
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <SafeHTML
           html={article.content}
-          className="prose prose-invert prose-lg max-w-none
+          className="prose prose-lg prose-invert max-w-none
             prose-headings:text-white prose-headings:font-bold
-            prose-h1:text-4xl prose-h1:mb-6
-            prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-8
-            prose-h3:text-2xl prose-h3:mb-3 prose-h3:mt-6
-            prose-p:text-gray-100 prose-p:leading-relaxed prose-p:mb-6
+            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+            prose-p:text-gray-300 prose-p:leading-relaxed
             prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300
-            prose-strong:text-white prose-strong:font-semibold
-            prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-6
-            prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-6
-            prose-li:text-gray-100 prose-li:mb-2
-            prose-blockquote:border-l-4 prose-blockquote:border-purple-500
-            prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-300
-            prose-code:bg-gray-800 prose-code:px-2 prose-code:py-1
-            prose-code:rounded prose-code:text-purple-400 prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+            prose-strong:text-white
+            prose-ul:text-gray-300 prose-ol:text-gray-300
+            prose-li:marker:text-purple-400
+            prose-blockquote:border-l-purple-500 prose-blockquote:text-gray-400 prose-blockquote:italic
+            prose-code:text-purple-300 prose-code:bg-gray-800 prose-code:px-2 prose-code:py-0.5 prose-code:rounded
             prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-700 prose-pre:text-gray-200
             prose-img:rounded-lg prose-img:shadow-lg"
         />
@@ -119,7 +117,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
       {/* Tags */}
       {article.tags.length > 0 && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-800">
-          <h3 className="text-sm font-semibold text-gray-400 mb-4">TAGS</h3>
+          <h3 className="text-sm font-semibold text-gray-400 mb-4">{t('tags')}</h3>
           <div className="flex flex-wrap gap-2">
             {article.tags.map((tag) => (
               <Link
@@ -137,10 +135,11 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-800">
-          <h3 className="text-xl font-semibold text-white mb-6">Related Articles</h3>
+          <h3 className="text-xl font-semibold text-white mb-6">{t('relatedArticles')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {relatedArticles.map((related) => {
               const relatedCat = getCategoryById(related.category);
+              const relatedCatName = relatedCat ? tCat(`${relatedCat.id}.name`) : '';
               return (
                 <Link
                   key={related.id}
@@ -149,7 +148,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-sm">{relatedCat?.icon}</span>
-                    <span className="text-xs text-gray-500">{relatedCat?.name}</span>
+                    <span className="text-xs text-gray-500">{relatedCatName}</span>
                   </div>
                   <h4 className="font-medium text-white group-hover:text-purple-400 transition line-clamp-2">
                     {related.title}
@@ -167,7 +166,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
           href="/knowledge"
           className="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition"
         >
-          ← Back to Knowledge Base
+          ← {t('backToKnowledge')}
         </Link>
       </div>
     </div>

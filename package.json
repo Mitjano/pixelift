@@ -31,6 +31,7 @@
   "license": "ISC",
   "description": "AI-powered image upscaling with Real-ESRGAN and GFPGAN",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
     "@prisma/client": "^7.0.1",
     "@sentry/nextjs": "^10.27.0",
     "@stripe/stripe-js": "^8.5.3",

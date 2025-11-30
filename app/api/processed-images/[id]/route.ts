@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { unlink } from 'fs/promises'
-import path from 'path'
 import { ProcessedImagesDB } from '@/lib/processed-images-db'
 import { auth } from '@/lib/auth'
+import { validateSafePath } from '@/lib/security'
 
 /**
  * DELETE /api/processed-images/[id]
@@ -42,22 +42,24 @@ export async function DELETE(
       )
     }
 
-    // Delete files from filesystem
+    // Delete files from filesystem with path validation
     try {
-      // Delete original file
-      const originalPath = path.join(process.cwd(), 'public', image.originalPath)
-      await unlink(originalPath).catch(() => {
-        // Ignore error if file doesn't exist
-        console.warn(`Original file not found: ${originalPath}`)
-      })
-
-      // Delete processed file if it exists
-      if (image.processedPath) {
-        const processedPath = path.join(process.cwd(), 'public', image.processedPath)
-        await unlink(processedPath).catch(() => {
+      // Validate and delete original file
+      const originalValidation = validateSafePath(image.originalPath)
+      if (originalValidation.valid) {
+        await unlink(originalValidation.safePath).catch(() => {
           // Ignore error if file doesn't exist
-          console.warn(`Processed file not found: ${processedPath}`)
         })
+      }
+
+      // Validate and delete processed file if it exists
+      if (image.processedPath) {
+        const processedValidation = validateSafePath(image.processedPath)
+        if (processedValidation.valid) {
+          await unlink(processedValidation.safePath).catch(() => {
+            // Ignore error if file doesn't exist
+          })
+        }
       }
     } catch (error) {
       console.error('Error deleting files:', error)
