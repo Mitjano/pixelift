@@ -1490,5 +1490,101 @@
       "getStarted": "Comenzar Gratis",
       "startColorizing": "Empezar a Colorizar"
     }
+  },
+  "restorePage": {
+    "badge": "Impulsado por SwinIR AI",
+    "title": "Restauración de Imágenes",
+    "titlePrefix": "AI ",
+    "subtitle": "Elimina ruido, grano y artefactos de compresión con la tecnología SwinIR AI. Restaura fotos antiguas y mejora la calidad de imagen al instante.",
+    "stats": {
+      "modes": "3",
+      "modesLabel": "Modos de Restauración",
+      "processing": "10s",
+      "processingLabel": "Procesamiento",
+      "creditCost": "1",
+      "creditCostLabel": "Crédito/Imagen"
+    },
+    "termsNotice": "Al subir un archivo aceptas nuestros Términos de Uso y Política de Privacidad.",
+    "features": {
+      "noiseRemoval": {
+        "title": "Eliminación de Ruido",
+        "description": "Elimina el grano y ruido de fotos con ISO alto preservando los detalles."
+      },
+      "jpegArtifacts": {
+        "title": "Eliminación de Artefactos JPEG",
+        "description": "Limpia los artefactos de compresión y restaura gradientes suaves."
+      },
+      "superResolution": {
+        "title": "Super Resolución",
+        "description": "Mejora y escala imágenes con reconstrucción inteligente de detalles."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona la ",
+      "titleHighlight": "Restauración AI",
+      "technology": {
+        "title": "Tecnología SwinIR",
+        "description": "SwinIR utiliza arquitectura transformer avanzada para entender la estructura de la imagen y restaurar inteligentemente la calidad. A diferencia de filtros simples, comprende el contexto y preserva detalles importantes mientras elimina artefactos no deseados.",
+        "feature1": "Preserva detalles finos y texturas",
+        "feature2": "Elimina ruido sin suavizar en exceso",
+        "feature3": "Resultados de restauración de imagen de última generación"
+      },
+      "modes": {
+        "title": "Modos de Restauración",
+        "superResolution": {
+          "title": "Super Resolución:",
+          "description": "Mejora general de imagen que aumenta la calidad y claridad"
+        },
+        "denoise": {
+          "title": "Reducción de Ruido:",
+          "description": "Elimina ruido y grano de fotos tomadas con poca luz o ISO alto"
+        },
+        "jpegArtifacts": {
+          "title": "Eliminación de Artefactos JPEG:",
+          "description": "Limpia los artefactos en bloques de la compresión JPEG"
+        }
+      }
+    },
+    "useCases": {
+      "title": "Casos de Uso",
+      "lowLight": {
+        "title": "Fotos con Poca Luz",
+        "description": "Arregla fotos con grano tomadas en condiciones oscuras o con configuración de ISO alto.",
+        "detail": "Usar: modo Reducción de Ruido"
+      },
+      "webImages": {
+        "title": "Imágenes Web",
+        "description": "Restaura la calidad de imágenes muy comprimidas descargadas de la web.",
+        "detail": "Usar: modo Eliminación de Artefactos JPEG"
+      },
+      "oldPhotos": {
+        "title": "Fotos Digitales Antiguas",
+        "description": "Mejora fotos de cámaras antiguas y primeros smartphones.",
+        "detail": "Usar: modo Super Resolución"
+      }
+    },
+    "tips": {
+      "title": "💡 Consejos para Mejores Resultados",
+      "bestPractices": {
+        "title": "✓ Elegir el Modo Correcto:",
+        "tip1": "Fotos con grano/ruido - usa Reducción de Ruido",
+        "tip2": "Artefactos JPEG en bloques - usa Eliminación de Artefactos JPEG",
+        "tip3": "Mejora general de calidad - usa Super Resolución",
+        "tip4": "Prueba múltiples modos para imágenes muy degradadas"
+      },
+      "proTips": {
+        "title": "⚡ Consejos Pro:",
+        "tip1": "Comienza con Super Resolución para mejoras generales",
+        "tip2": "Combina restauración con upscaling para fotos antiguas",
+        "tip3": "Procesa antes de colorizar para fotos vintage",
+        "tip4": "Los formatos de archivo originales preservan más detalles que capturas de pantalla"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Restaurar tus Imágenes?",
+      "subtitle": "Comienza con 3 créditos gratis. Sin tarjeta de crédito requerida.",
+      "getStarted": "Comenzar Gratis",
+      "startRestoring": "Empezar a Restaurar"
+    }
   }
 }

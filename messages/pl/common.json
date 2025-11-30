@@ -1490,5 +1490,101 @@
       "getStarted": "Zacznij Za Darmo",
       "startColorizing": "Zacznij Kolorować"
     }
+  },
+  "restorePage": {
+    "badge": "Napędzane przez SwinIR AI",
+    "title": "Restauracja Obrazów",
+    "titlePrefix": "AI ",
+    "subtitle": "Usuń szum, ziarno i artefakty kompresji dzięki technologii SwinIR AI. Odrestauruj stare zdjęcia i popraw jakość obrazu natychmiast.",
+    "stats": {
+      "modes": "3",
+      "modesLabel": "Tryby Restauracji",
+      "processing": "10s",
+      "processingLabel": "Przetwarzanie",
+      "creditCost": "1",
+      "creditCostLabel": "Kredyt/Obraz"
+    },
+    "termsNotice": "Przesyłając plik, zgadzasz się na nasze Warunki Użytkowania i Politykę Prywatności.",
+    "features": {
+      "noiseRemoval": {
+        "title": "Usuwanie Szumu",
+        "description": "Usuń ziarno i szum ze zdjęć o wysokim ISO, zachowując szczegóły."
+      },
+      "jpegArtifacts": {
+        "title": "Usuwanie Artefaktów JPEG",
+        "description": "Oczyść artefakty kompresji i przywróć płynne gradienty."
+      },
+      "superResolution": {
+        "title": "Super Rozdzielczość",
+        "description": "Ulepsz i powiększ obrazy z inteligentną rekonstrukcją szczegółów."
+      }
+    },
+    "howItWorks": {
+      "title": "Jak Działa ",
+      "titleHighlight": "Restauracja AI",
+      "technology": {
+        "title": "Technologia SwinIR",
+        "description": "SwinIR wykorzystuje zaawansowaną architekturę transformer do zrozumienia struktury obrazu i inteligentnej poprawy jakości. W przeciwieństwie do prostych filtrów, rozumie kontekst i zachowuje ważne szczegóły, usuwając niechciane artefakty.",
+        "feature1": "Zachowuje drobne szczegóły i tekstury",
+        "feature2": "Usuwa szum bez nadmiernego wygładzania",
+        "feature3": "Najnowocześniejsze wyniki restauracji obrazu"
+      },
+      "modes": {
+        "title": "Tryby Restauracji",
+        "superResolution": {
+          "title": "Super Rozdzielczość:",
+          "description": "Ogólne ulepszenie obrazu poprawiające jakość i ostrość"
+        },
+        "denoise": {
+          "title": "Odszumianie:",
+          "description": "Usuń szum i ziarno ze zdjęć wykonanych przy słabym oświetleniu lub wysokim ISO"
+        },
+        "jpegArtifacts": {
+          "title": "Usuwanie Artefaktów JPEG:",
+          "description": "Oczyść blokowe artefakty z kompresji JPEG"
+        }
+      }
+    },
+    "useCases": {
+      "title": "Przypadki Użycia",
+      "lowLight": {
+        "title": "Zdjęcia przy Słabym Świetle",
+        "description": "Napraw ziarniste zdjęcia wykonane w ciemnych warunkach lub z wysokimi ustawieniami ISO.",
+        "detail": "Użyj: trybu Odszumianie"
+      },
+      "webImages": {
+        "title": "Obrazy z Sieci",
+        "description": "Przywróć jakość mocno skompresowanym obrazom pobranym z sieci.",
+        "detail": "Użyj: trybu Usuwanie Artefaktów JPEG"
+      },
+      "oldPhotos": {
+        "title": "Stare Zdjęcia Cyfrowe",
+        "description": "Ulepsz zdjęcia ze starszych aparatów i wczesnych smartfonów.",
+        "detail": "Użyj: trybu Super Rozdzielczość"
+      }
+    },
+    "tips": {
+      "title": "💡 Wskazówki dla Najlepszych Rezultatów",
+      "bestPractices": {
+        "title": "✓ Wybór Odpowiedniego Trybu:",
+        "tip1": "Ziarniste/szumiące zdjęcia - użyj Odszumianie",
+        "tip2": "Blokowe artefakty JPEG - użyj Usuwanie Artefaktów JPEG",
+        "tip3": "Ogólna poprawa jakości - użyj Super Rozdzielczość",
+        "tip4": "Wypróbuj różne tryby dla mocno zniszczonych obrazów"
+      },
+      "proTips": {
+        "title": "⚡ Porady Pro:",
+        "tip1": "Zacznij od Super Rozdzielczości dla ogólnych ulepszeń",
+        "tip2": "Połącz restaurację z upscalingiem dla starych zdjęć",
+        "tip3": "Przetwórz przed kolorowaniem dla vintage zdjęć",
+        "tip4": "Oryginalne formaty plików zachowują więcej szczegółów niż zrzuty ekranu"
+      }
+    },
+    "cta": {
+      "title": "Gotowy Restaurować Swoje Obrazy?",
+      "subtitle": "Zacznij z 3 darmowymi kredytami. Bez karty kredytowej.",
+      "getStarted": "Zacznij Za Darmo",
+      "startRestoring": "Zacznij Restaurować"
+    }
   }
 }

@@ -1490,5 +1490,101 @@
       "getStarted": "Get Started Free",
       "startColorizing": "Start Colorizing"
     }
+  },
+  "restorePage": {
+    "badge": "Powered by SwinIR AI",
+    "title": "Image Restoration",
+    "titlePrefix": "AI ",
+    "subtitle": "Remove noise, grain, and compression artifacts with SwinIR AI technology. Restore old photos and improve image quality instantly.",
+    "stats": {
+      "modes": "3",
+      "modesLabel": "Restore Modes",
+      "processing": "10s",
+      "processingLabel": "Processing",
+      "creditCost": "1",
+      "creditCostLabel": "Credit/Image"
+    },
+    "termsNotice": "By uploading a file you agree to our Terms of Use and Privacy Policy.",
+    "features": {
+      "noiseRemoval": {
+        "title": "Noise Removal",
+        "description": "Remove grain and noise from high ISO photos while preserving detail."
+      },
+      "jpegArtifacts": {
+        "title": "JPEG Artifact Removal",
+        "description": "Clean up compression artifacts and restore smooth gradients."
+      },
+      "superResolution": {
+        "title": "Super Resolution",
+        "description": "Enhance and upscale images with intelligent detail reconstruction."
+      }
+    },
+    "howItWorks": {
+      "title": "How AI ",
+      "titleHighlight": "Restoration Works",
+      "technology": {
+        "title": "SwinIR Technology",
+        "description": "SwinIR uses advanced transformer architecture to understand image structure and intelligently restore quality. Unlike simple filters, it understands context and preserves important details while removing unwanted artifacts.",
+        "feature1": "Preserves fine details and textures",
+        "feature2": "Removes noise without over-smoothing",
+        "feature3": "State-of-the-art image restoration results"
+      },
+      "modes": {
+        "title": "Restoration Modes",
+        "superResolution": {
+          "title": "Super Resolution:",
+          "description": "General image enhancement that improves overall quality and clarity"
+        },
+        "denoise": {
+          "title": "Denoise:",
+          "description": "Remove noise and grain from photos taken in low light or high ISO"
+        },
+        "jpegArtifacts": {
+          "title": "JPEG Artifact Removal:",
+          "description": "Clean up blocky artifacts from JPEG compression"
+        }
+      }
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "lowLight": {
+        "title": "Low Light Photos",
+        "description": "Fix grainy photos taken in dark conditions or with high ISO settings.",
+        "detail": "Use: Denoise mode"
+      },
+      "webImages": {
+        "title": "Web Images",
+        "description": "Restore quality to heavily compressed images downloaded from the web.",
+        "detail": "Use: JPEG Artifact Removal mode"
+      },
+      "oldPhotos": {
+        "title": "Old Digital Photos",
+        "description": "Enhance photos from older cameras and early smartphone photos.",
+        "detail": "Use: Super Resolution mode"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Best Results",
+      "bestPractices": {
+        "title": "✓ Choosing the Right Mode:",
+        "tip1": "Grainy/noisy photos - use Denoise",
+        "tip2": "Blocky JPEG artifacts - use JPEG Artifact Removal",
+        "tip3": "General quality improvement - use Super Resolution",
+        "tip4": "Try multiple modes for severely degraded images"
+      },
+      "proTips": {
+        "title": "⚡ Pro Tips:",
+        "tip1": "Start with Super Resolution for general improvements",
+        "tip2": "Combine restoration with upscaling for old photos",
+        "tip3": "Process before colorization for vintage photos",
+        "tip4": "Original file formats preserve more detail than screenshots"
+      }
+    },
+    "cta": {
+      "title": "Ready to Restore Your Images?",
+      "subtitle": "Start with 3 free credits. No credit card required.",
+      "getStarted": "Get Started Free",
+      "startRestoring": "Start Restoring"
+    }
   }
 }

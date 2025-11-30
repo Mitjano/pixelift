@@ -1573,5 +1573,101 @@
       "getStarted": "Commencer Gratuitement",
       "startColorizing": "Commencer à Coloriser"
     }
+  },
+  "restorePage": {
+    "badge": "Propulsé par SwinIR AI",
+    "title": "Restauration d'Images",
+    "titlePrefix": "AI ",
+    "subtitle": "Supprimez le bruit, le grain et les artefacts de compression avec la technologie SwinIR AI. Restaurez les vieilles photos et améliorez la qualité d'image instantanément.",
+    "stats": {
+      "modes": "3",
+      "modesLabel": "Modes de Restauration",
+      "processing": "10s",
+      "processingLabel": "Traitement",
+      "creditCost": "1",
+      "creditCostLabel": "Crédit/Image"
+    },
+    "termsNotice": "En téléchargeant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.",
+    "features": {
+      "noiseRemoval": {
+        "title": "Suppression du Bruit",
+        "description": "Supprimez le grain et le bruit des photos à ISO élevé tout en préservant les détails."
+      },
+      "jpegArtifacts": {
+        "title": "Suppression des Artefacts JPEG",
+        "description": "Nettoyez les artefacts de compression et restaurez des dégradés lisses."
+      },
+      "superResolution": {
+        "title": "Super Résolution",
+        "description": "Améliorez et agrandissez les images avec une reconstruction intelligente des détails."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne la ",
+      "titleHighlight": "Restauration AI",
+      "technology": {
+        "title": "Technologie SwinIR",
+        "description": "SwinIR utilise une architecture transformer avancée pour comprendre la structure de l'image et restaurer intelligemment la qualité. Contrairement aux filtres simples, il comprend le contexte et préserve les détails importants tout en supprimant les artefacts indésirables.",
+        "feature1": "Préserve les détails fins et les textures",
+        "feature2": "Supprime le bruit sans trop lisser",
+        "feature3": "Résultats de restauration d'image à la pointe de la technologie"
+      },
+      "modes": {
+        "title": "Modes de Restauration",
+        "superResolution": {
+          "title": "Super Résolution:",
+          "description": "Amélioration générale de l'image qui augmente la qualité et la clarté"
+        },
+        "denoise": {
+          "title": "Réduction du Bruit:",
+          "description": "Supprimez le bruit et le grain des photos prises en basse lumière ou à ISO élevé"
+        },
+        "jpegArtifacts": {
+          "title": "Suppression des Artefacts JPEG:",
+          "description": "Nettoyez les artefacts en blocs de la compression JPEG"
+        }
+      }
+    },
+    "useCases": {
+      "title": "Cas d'Utilisation",
+      "lowLight": {
+        "title": "Photos en Basse Lumière",
+        "description": "Corrigez les photos granuleuses prises dans des conditions sombres ou avec des paramètres ISO élevés.",
+        "detail": "Utiliser: mode Réduction du Bruit"
+      },
+      "webImages": {
+        "title": "Images Web",
+        "description": "Restaurez la qualité des images fortement compressées téléchargées du web.",
+        "detail": "Utiliser: mode Suppression des Artefacts JPEG"
+      },
+      "oldPhotos": {
+        "title": "Vieilles Photos Numériques",
+        "description": "Améliorez les photos d'anciens appareils photo et des premiers smartphones.",
+        "detail": "Utiliser: mode Super Résolution"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils pour de Meilleurs Résultats",
+      "bestPractices": {
+        "title": "✓ Choisir le Bon Mode:",
+        "tip1": "Photos granuleuses/bruitées - utilisez Réduction du Bruit",
+        "tip2": "Artefacts JPEG en blocs - utilisez Suppression des Artefacts JPEG",
+        "tip3": "Amélioration générale de qualité - utilisez Super Résolution",
+        "tip4": "Essayez plusieurs modes pour les images très dégradées"
+      },
+      "proTips": {
+        "title": "⚡ Astuces Pro:",
+        "tip1": "Commencez par Super Résolution pour les améliorations générales",
+        "tip2": "Combinez la restauration avec l'upscaling pour les vieilles photos",
+        "tip3": "Traitez avant la colorisation pour les photos vintage",
+        "tip4": "Les formats de fichiers originaux préservent plus de détails que les captures d'écran"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Restaurer vos Images?",
+      "subtitle": "Commencez avec 3 crédits gratuits. Aucune carte de crédit requise.",
+      "getStarted": "Commencer Gratuitement",
+      "startRestoring": "Commencer à Restaurer"
+    }
   }
 }

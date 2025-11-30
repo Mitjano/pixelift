@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 
 // Lazy load heavy component
@@ -22,6 +23,7 @@ const ImageDenoiser = dynamic(
 export default function RestorePage() {
   const { data: session } = useSession();
   const [credits, setCredits] = useState(0);
+  const t = useTranslations('restorePage');
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -52,35 +54,34 @@ export default function RestorePage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-cyan-300">Powered by SwinIR AI</span>
+              <span className="text-cyan-300">{t('badge')}</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">AI </span>
+              <span className="text-white">{t('titlePrefix')}</span>
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                Image Restoration
+                {t('title')}
               </span>
             </h1>
 
             <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Remove noise, grain, and compression artifacts with SwinIR AI technology.
-              Restore old photos and improve image quality instantly.
+              {t('subtitle')}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">3</div>
-                <div className="text-gray-400 text-sm mt-1">Restore Modes</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('stats.modes')}</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.modesLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">10s</div>
-                <div className="text-gray-400 text-sm mt-1">Processing</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('stats.processing')}</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">1</div>
-                <div className="text-gray-400 text-sm mt-1">Credit/Image</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('stats.creditCost')}</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.creditCostLabel')}</div>
               </div>
             </div>
           </div>
@@ -92,7 +93,7 @@ export default function RestorePage() {
         <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
           <ImageDenoiser />
           <p className="text-sm text-gray-500 mt-4 text-center">
-            By uploading a file you agree to our Terms of Use and Privacy Policy.
+            {t('termsNotice')}
           </p>
         </div>
       </section>
@@ -103,20 +104,20 @@ export default function RestorePage() {
           {[
             {
               icon: '🔇',
-              title: 'Noise Removal',
-              description: 'Remove grain and noise from high ISO photos while preserving detail.',
+              titleKey: 'features.noiseRemoval.title',
+              descKey: 'features.noiseRemoval.description',
               gradient: 'from-cyan-500/20 to-blue-500/20',
             },
             {
               icon: '📦',
-              title: 'JPEG Artifact Removal',
-              description: 'Clean up compression artifacts and restore smooth gradients.',
+              titleKey: 'features.jpegArtifacts.title',
+              descKey: 'features.jpegArtifacts.description',
               gradient: 'from-blue-500/20 to-indigo-500/20',
             },
             {
               icon: '✨',
-              title: 'Super Resolution',
-              description: 'Enhance and upscale images with intelligent detail reconstruction.',
+              titleKey: 'features.superResolution.title',
+              descKey: 'features.superResolution.description',
               gradient: 'from-indigo-500/20 to-purple-500/20',
             },
           ].map((feature, idx) => (
@@ -125,8 +126,8 @@ export default function RestorePage() {
               className={`bg-gradient-to-br ${feature.gradient} backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:border-gray-600 transition`}
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+              <h3 className="text-xl font-semibold text-white mb-2">{t(feature.titleKey)}</h3>
+              <p className="text-gray-400">{t(feature.descKey)}</p>
             </div>
           ))}
         </div>
@@ -137,48 +138,43 @@ export default function RestorePage() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">How AI </span>
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Restoration Works</span>
+              <span className="text-white">{t('howItWorks.title')}</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">{t('howItWorks.titleHighlight')}</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-3 text-cyan-400">SwinIR Technology</h3>
+              <h3 className="text-xl font-semibold mb-3 text-cyan-400">{t('howItWorks.technology.title')}</h3>
               <p className="text-gray-400 mb-4">
-                SwinIR uses advanced transformer architecture to understand image structure and
-                intelligently restore quality. Unlike simple filters, it understands context and
-                preserves important details while removing unwanted artifacts.
+                {t('howItWorks.technology.description')}
               </p>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li className="flex items-start gap-2">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span>Preserves fine details and textures</span>
+                  <span>{t('howItWorks.technology.feature1')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span>Removes noise without over-smoothing</span>
+                  <span>{t('howItWorks.technology.feature2')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span>State-of-the-art image restoration results</span>
+                  <span>{t('howItWorks.technology.feature3')}</span>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-3 text-blue-400">Restoration Modes</h3>
+              <h3 className="text-xl font-semibold mb-3 text-blue-400">{t('howItWorks.modes.title')}</h3>
               <div className="space-y-3 text-gray-400">
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">Super Resolution:</strong> General image enhancement
-                  that improves overall quality and clarity
+                  <strong className="text-white">{t('howItWorks.modes.superResolution.title')}</strong> {t('howItWorks.modes.superResolution.description')}
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">Denoise:</strong> Remove noise and grain from photos
-                  taken in low light or high ISO
+                  <strong className="text-white">{t('howItWorks.modes.denoise.title')}</strong> {t('howItWorks.modes.denoise.description')}
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">JPEG Artifact Removal:</strong> Clean up blocky
-                  artifacts from JPEG compression
+                  <strong className="text-white">{t('howItWorks.modes.jpegArtifacts.title')}</strong> {t('howItWorks.modes.jpegArtifacts.description')}
                 </div>
               </div>
             </div>
@@ -190,7 +186,7 @@ export default function RestorePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Use Cases
+            {t('useCases.title')}
           </h2>
         </div>
 
@@ -198,28 +194,28 @@ export default function RestorePage() {
           {[
             {
               icon: '📷',
-              title: 'Low Light Photos',
-              description: 'Fix grainy photos taken in dark conditions or with high ISO settings.',
-              detail: 'Use: Denoise mode',
+              titleKey: 'useCases.lowLight.title',
+              descKey: 'useCases.lowLight.description',
+              detailKey: 'useCases.lowLight.detail',
             },
             {
               icon: '🌐',
-              title: 'Web Images',
-              description: 'Restore quality to heavily compressed images downloaded from the web.',
-              detail: 'Use: JPEG Artifact Removal mode',
+              titleKey: 'useCases.webImages.title',
+              descKey: 'useCases.webImages.description',
+              detailKey: 'useCases.webImages.detail',
             },
             {
               icon: '📸',
-              title: 'Old Digital Photos',
-              description: 'Enhance photos from older cameras and early smartphone photos.',
-              detail: 'Use: Super Resolution mode',
+              titleKey: 'useCases.oldPhotos.title',
+              descKey: 'useCases.oldPhotos.description',
+              detailKey: 'useCases.oldPhotos.detail',
             },
           ].map((useCase, idx) => (
             <div key={idx} className="bg-gray-800/30 rounded-xl border border-gray-700 p-6 hover:border-cyan-500/50 transition">
               <div className="text-3xl mb-3">{useCase.icon}</div>
-              <h3 className="text-lg font-semibold mb-2 text-white">{useCase.title}</h3>
-              <p className="text-sm text-gray-400 mb-3">{useCase.description}</p>
-              <div className="text-xs text-gray-500">{useCase.detail}</div>
+              <h3 className="text-lg font-semibold mb-2 text-white">{t(useCase.titleKey)}</h3>
+              <p className="text-sm text-gray-400 mb-3">{t(useCase.descKey)}</p>
+              <div className="text-xs text-gray-500">{t(useCase.detailKey)}</div>
             </div>
           ))}
         </div>
@@ -228,24 +224,24 @@ export default function RestorePage() {
       {/* Tips Section */}
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="bg-gray-800/20 rounded-xl border border-gray-700 p-8">
-          <h2 className="text-2xl font-bold mb-6">💡 Tips for Best Results</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('tips.title')}</h2>
           <div className="grid md:grid-cols-2 gap-6 text-gray-400">
             <div>
-              <h4 className="font-semibold text-white mb-2">✓ Choosing the Right Mode:</h4>
+              <h4 className="font-semibold text-white mb-2">{t('tips.bestPractices.title')}</h4>
               <ul className="space-y-2 text-sm">
-                <li>• Grainy/noisy photos - use Denoise</li>
-                <li>• Blocky JPEG artifacts - use JPEG Artifact Removal</li>
-                <li>• General quality improvement - use Super Resolution</li>
-                <li>• Try multiple modes for severely degraded images</li>
+                <li>• {t('tips.bestPractices.tip1')}</li>
+                <li>• {t('tips.bestPractices.tip2')}</li>
+                <li>• {t('tips.bestPractices.tip3')}</li>
+                <li>• {t('tips.bestPractices.tip4')}</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-2">⚡ Pro Tips:</h4>
+              <h4 className="font-semibold text-white mb-2">{t('tips.proTips.title')}</h4>
               <ul className="space-y-2 text-sm">
-                <li>• Start with Super Resolution for general improvements</li>
-                <li>• Combine restoration with upscaling for old photos</li>
-                <li>• Process before colorization for vintage photos</li>
-                <li>• Original file formats preserve more detail than screenshots</li>
+                <li>• {t('tips.proTips.tip1')}</li>
+                <li>• {t('tips.proTips.tip2')}</li>
+                <li>• {t('tips.proTips.tip3')}</li>
+                <li>• {t('tips.proTips.tip4')}</li>
               </ul>
             </div>
           </div>
@@ -256,24 +252,24 @@ export default function RestorePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="bg-gradient-to-r from-cyan-900/50 to-blue-900/50 border border-cyan-500/30 rounded-2xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Ready to Restore Your Images?
+            {t('cta.title')}
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-            Start with 3 free credits. No credit card required.
+            {t('cta.subtitle')}
           </p>
           {!session ? (
             <Link
               href="/auth/signin"
               className="inline-block px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
             >
-              Get Started Free
+              {t('cta.getStarted')}
             </Link>
           ) : (
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
             >
-              Start Restoring
+              {t('cta.startRestoring')}
             </button>
           )}
         </div>
