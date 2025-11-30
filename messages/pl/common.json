@@ -1408,5 +1408,87 @@
       "getStarted": "Zacznij Za Darmo",
       "startRemoving": "Zacznij Usuwać Tła"
     }
+  },
+  "colorizePage": {
+    "badge": "Napędzane przez DDColor AI",
+    "title": "Kolorowanie Zdjęć",
+    "titlePrefix": "AI ",
+    "subtitle": "Ożyw stare czarno-białe zdjęcia dzięki zaawansowanej technologii DDColor AI. Przekształć vintage wspomnienia w żywe, kolorowe obrazy.",
+    "stats": {
+      "naturalColors": "AI",
+      "naturalColorsLabel": "Naturalne Kolory",
+      "processing": "10s",
+      "processingLabel": "Przetwarzanie",
+      "creditCost": "1",
+      "creditCostLabel": "Kredyt/Obraz"
+    },
+    "termsNotice": "Przesyłając plik, zgadzasz się na nasze Warunki Użytkowania i Politykę Prywatności.",
+    "features": {
+      "naturalColors": {
+        "title": "Naturalne Kolory",
+        "description": "DDColor AI produkuje realistyczne, naturalnie wyglądające kolory, które ożywiają zdjęcia."
+      },
+      "historicalPhotos": {
+        "title": "Zdjęcia Historyczne",
+        "description": "Idealne do odnawiania starych zdjęć rodzinnych, vintage portretów i obrazów historycznych."
+      },
+      "fastProcessing": {
+        "title": "Szybkie Przetwarzanie",
+        "description": "Uzyskaj pokolorowane wyniki w kilka sekund dzięki zoptymalizowanemu pipeline AI."
+      }
+    },
+    "howItWorks": {
+      "title": "Jak Działa ",
+      "titleHighlight": "Kolorowanie AI",
+      "technology": {
+        "title": "Technologia DDColor",
+        "description": "Nasze kolorowanie wykorzystuje DDColor, najnowocześniejszy model deep learning, który rozumie semantyczną zawartość obrazów, aby zastosować odpowiednie kolory. Rozpoznaje obiekty, odcienie skóry, niebo, roślinność i więcej, aby stworzyć naturalnie wyglądające rezultaty.",
+        "feature1": "Rozumie kontekst sceny dla dokładnego kolorowania",
+        "feature2": "Zachowuje drobne szczegóły i tekstury",
+        "feature3": "Działa z portretami, pejzażami i zdjęciami historycznymi"
+      },
+      "perfectFor": {
+        "title": "Idealne Do",
+        "familyArchives": {
+          "title": "📷 Archiwa Rodzinne:",
+          "description": "Pokoloruj stare zdjęcia rodzinne i ożyw wspomnienia"
+        },
+        "historicalImages": {
+          "title": "🏛️ Obrazy Historyczne:",
+          "description": "Dodaj kolor do historycznych fotografii i dokumentów"
+        },
+        "filmRestoration": {
+          "title": "🎬 Restauracja Filmów:",
+          "description": "Pokoloruj klatki z klasycznych czarno-białych filmów"
+        },
+        "creativeProjects": {
+          "title": "🎨 Projekty Kreatywne:",
+          "description": "Wykorzystaj kolorowanie do prac artystycznych i projektowych"
+        }
+      }
+    },
+    "tips": {
+      "title": "💡 Wskazówki dla Najlepszych Rezultatów",
+      "bestPractices": {
+        "title": "✓ Najlepsze Praktyki:",
+        "tip1": "Używaj wysokorozdzielczych skanów oryginalnych zdjęć",
+        "tip2": "Upewnij się, że obraz jest ostry i dobrze naświetlony",
+        "tip3": "Oczyść zadrapania i uszkodzenia przed kolorowaniem",
+        "tip4": "Działa najlepiej z wyraźnie zdefiniowanym obiektem"
+      },
+      "proTips": {
+        "title": "⚡ Porady Pro:",
+        "tip1": "Portrety zazwyczaj kolorują się lepiej niż złożone sceny",
+        "tip2": "Zdjęcia plenerowe z niebem i roślinnością działają świetnie",
+        "tip3": "Wielokrotne przetwarzanie może czasem poprawić rezultaty",
+        "tip4": "Połącz z upscalingiem dla najlepszej jakości restauracji"
+      }
+    },
+    "cta": {
+      "title": "Gotowy Kolorować Swoje Zdjęcia?",
+      "subtitle": "Zacznij z 3 darmowymi kredytami. Bez karty kredytowej.",
+      "getStarted": "Zacznij Za Darmo",
+      "startColorizing": "Zacznij Kolorować"
+    }
   }
 }

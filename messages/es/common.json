@@ -1408,5 +1408,87 @@
       "getStarted": "Comenzar Gratis",
       "startRemoving": "Empezar a Eliminar Fondos"
     }
+  },
+  "colorizePage": {
+    "badge": "Impulsado por DDColor AI",
+    "title": "Colorización de Fotos",
+    "titlePrefix": "AI ",
+    "subtitle": "Da vida a viejas fotos en blanco y negro con la avanzada tecnología DDColor AI. Transforma recuerdos vintage en imágenes vibrantes y coloridas.",
+    "stats": {
+      "naturalColors": "AI",
+      "naturalColorsLabel": "Colores Naturales",
+      "processing": "10s",
+      "processingLabel": "Procesamiento",
+      "creditCost": "1",
+      "creditCostLabel": "Crédito/Imagen"
+    },
+    "termsNotice": "Al subir un archivo aceptas nuestros Términos de Uso y Política de Privacidad.",
+    "features": {
+      "naturalColors": {
+        "title": "Colores Naturales",
+        "description": "DDColor AI produce colores realistas y de aspecto natural que dan vida a las fotos."
+      },
+      "historicalPhotos": {
+        "title": "Fotos Históricas",
+        "description": "Perfecto para restaurar fotos familiares antiguas, retratos vintage e imágenes históricas."
+      },
+      "fastProcessing": {
+        "title": "Procesamiento Rápido",
+        "description": "Obtén resultados colorizados en segundos con nuestro pipeline de AI optimizado."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona la ",
+      "titleHighlight": "Colorización AI",
+      "technology": {
+        "title": "Tecnología DDColor",
+        "description": "Nuestra colorización utiliza DDColor, un modelo de deep learning de última generación que comprende el contenido semántico de las imágenes para aplicar colores apropiados. Reconoce objetos, tonos de piel, cielo, vegetación y más para crear resultados de aspecto natural.",
+        "feature1": "Comprende el contexto de la escena para colorización precisa",
+        "feature2": "Preserva detalles finos y texturas",
+        "feature3": "Funciona con retratos, paisajes y fotos históricas"
+      },
+      "perfectFor": {
+        "title": "Perfecto Para",
+        "familyArchives": {
+          "title": "📷 Archivos Familiares:",
+          "description": "Coloriza fotos familiares antiguas y da vida a los recuerdos"
+        },
+        "historicalImages": {
+          "title": "🏛️ Imágenes Históricas:",
+          "description": "Añade color a fotografías y documentos históricos"
+        },
+        "filmRestoration": {
+          "title": "🎬 Restauración de Películas:",
+          "description": "Coloriza fotogramas de películas clásicas en blanco y negro"
+        },
+        "creativeProjects": {
+          "title": "🎨 Proyectos Creativos:",
+          "description": "Usa la colorización para trabajos artísticos y de diseño"
+        }
+      }
+    },
+    "tips": {
+      "title": "💡 Consejos para Mejores Resultados",
+      "bestPractices": {
+        "title": "✓ Mejores Prácticas:",
+        "tip1": "Usa escaneos de alta resolución de fotos originales",
+        "tip2": "Asegúrate de que la imagen esté enfocada y bien expuesta",
+        "tip3": "Limpia rayones y daños antes de colorizar",
+        "tip4": "Funciona mejor con definición clara del sujeto"
+      },
+      "proTips": {
+        "title": "⚡ Consejos Pro:",
+        "tip1": "Los retratos típicamente colorizan mejor que escenas complejas",
+        "tip2": "Las fotos al aire libre con cielo y vegetación funcionan genial",
+        "tip3": "El procesamiento múltiple a veces puede mejorar los resultados",
+        "tip4": "Combina con upscaling para la mejor calidad de restauración"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Colorizar tus Fotos?",
+      "subtitle": "Comienza con 3 créditos gratis. Sin tarjeta de crédito requerida.",
+      "getStarted": "Comenzar Gratis",
+      "startColorizing": "Empezar a Colorizar"
+    }
   }
 }

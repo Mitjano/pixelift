@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 
 // Lazy load heavy component
@@ -22,6 +23,7 @@ const ImageColorizer = dynamic(
 export default function ColorizePage() {
   const { data: session } = useSession();
   const [credits, setCredits] = useState(0);
+  const t = useTranslations('colorizePage');
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -52,35 +54,34 @@ export default function ColorizePage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-purple-300">Powered by DDColor AI</span>
+              <span className="text-purple-300">{t('badge')}</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">AI </span>
+              <span className="text-white">{t('titlePrefix')}</span>
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                Photo Colorization
+                {t('title')}
               </span>
             </h1>
 
             <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Bring old black &amp; white photos to life with advanced DDColor AI technology.
-              Transform vintage memories into vibrant, colorful images.
+              {t('subtitle')}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">AI</div>
-                <div className="text-gray-400 text-sm mt-1">Natural Colors</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('stats.naturalColors')}</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.naturalColorsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">10s</div>
-                <div className="text-gray-400 text-sm mt-1">Processing</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('stats.processing')}</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">1</div>
-                <div className="text-gray-400 text-sm mt-1">Credit/Image</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('stats.creditCost')}</div>
+                <div className="text-gray-400 text-sm mt-1">{t('stats.creditCostLabel')}</div>
               </div>
             </div>
           </div>
@@ -92,7 +93,7 @@ export default function ColorizePage() {
         <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
           <ImageColorizer />
           <p className="text-sm text-gray-500 mt-4 text-center">
-            By uploading a file you agree to our Terms of Use and Privacy Policy.
+            {t('termsNotice')}
           </p>
         </div>
       </section>
@@ -103,20 +104,20 @@ export default function ColorizePage() {
           {[
             {
               icon: '🎨',
-              title: 'Natural Colors',
-              description: 'DDColor AI produces realistic, natural-looking colors that bring photos to life.',
+              titleKey: 'features.naturalColors.title',
+              descKey: 'features.naturalColors.description',
               gradient: 'from-purple-500/20 to-pink-500/20',
             },
             {
               icon: '📸',
-              title: 'Historical Photos',
-              description: 'Perfect for restoring old family photos, vintage portraits, and historical images.',
+              titleKey: 'features.historicalPhotos.title',
+              descKey: 'features.historicalPhotos.description',
               gradient: 'from-blue-500/20 to-cyan-500/20',
             },
             {
               icon: '⚡',
-              title: 'Fast Processing',
-              description: 'Get colorized results in seconds with our optimized AI pipeline.',
+              titleKey: 'features.fastProcessing.title',
+              descKey: 'features.fastProcessing.description',
               gradient: 'from-yellow-500/20 to-orange-500/20',
             },
           ].map((feature, idx) => (
@@ -125,8 +126,8 @@ export default function ColorizePage() {
               className={`bg-gradient-to-br ${feature.gradient} backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:border-gray-600 transition`}
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+              <h3 className="text-xl font-semibold text-white mb-2">{t(feature.titleKey)}</h3>
+              <p className="text-gray-400">{t(feature.descKey)}</p>
             </div>
           ))}
         </div>
@@ -137,52 +138,46 @@ export default function ColorizePage() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">How AI </span>
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Colorization Works</span>
+              <span className="text-white">{t('howItWorks.title')}</span>
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">{t('howItWorks.titleHighlight')}</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-3 text-purple-400">DDColor Technology</h3>
+              <h3 className="text-xl font-semibold mb-3 text-purple-400">{t('howItWorks.technology.title')}</h3>
               <p className="text-gray-400 mb-4">
-                Our colorization uses DDColor, a state-of-the-art deep learning model that understands
-                the semantic content of images to apply appropriate colors. It recognizes objects, skin
-                tones, sky, vegetation, and more to create natural-looking results.
+                {t('howItWorks.technology.description')}
               </p>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li className="flex items-start gap-2">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span>Understands scene context for accurate colorization</span>
+                  <span>{t('howItWorks.technology.feature1')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span>Preserves fine details and textures</span>
+                  <span>{t('howItWorks.technology.feature2')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span>Works with portraits, landscapes, and historical photos</span>
+                  <span>{t('howItWorks.technology.feature3')}</span>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-3 text-pink-400">Perfect For</h3>
+              <h3 className="text-xl font-semibold mb-3 text-pink-400">{t('howItWorks.perfectFor.title')}</h3>
               <div className="space-y-3 text-gray-400">
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">📷 Family Archives:</strong> Colorize old family photos
-                  and bring memories to life
+                  <strong className="text-white">{t('howItWorks.perfectFor.familyArchives.title')}</strong> {t('howItWorks.perfectFor.familyArchives.description')}
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">🏛️ Historical Images:</strong> Add color to historical
-                  photographs and documents
+                  <strong className="text-white">{t('howItWorks.perfectFor.historicalImages.title')}</strong> {t('howItWorks.perfectFor.historicalImages.description')}
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">🎬 Film Restoration:</strong> Colorize frames from
-                  classic black &amp; white films
+                  <strong className="text-white">{t('howItWorks.perfectFor.filmRestoration.title')}</strong> {t('howItWorks.perfectFor.filmRestoration.description')}
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-white">🎨 Creative Projects:</strong> Use colorization for
-                  artistic and design work
+                  <strong className="text-white">{t('howItWorks.perfectFor.creativeProjects.title')}</strong> {t('howItWorks.perfectFor.creativeProjects.description')}
                 </div>
               </div>
             </div>
@@ -193,24 +188,24 @@ export default function ColorizePage() {
       {/* Tips Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="bg-gray-800/20 rounded-xl border border-gray-700 p-8">
-          <h2 className="text-2xl font-bold mb-6">💡 Tips for Best Results</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('tips.title')}</h2>
           <div className="grid md:grid-cols-2 gap-6 text-gray-400">
             <div>
-              <h4 className="font-semibold text-white mb-2">✓ Best Practices:</h4>
+              <h4 className="font-semibold text-white mb-2">{t('tips.bestPractices.title')}</h4>
               <ul className="space-y-2 text-sm">
-                <li>• Use high-resolution scans of original photos</li>
-                <li>• Ensure the image is in focus and well-exposed</li>
-                <li>• Clean up scratches and damage before colorizing</li>
-                <li>• Works best with clear subject definition</li>
+                <li>• {t('tips.bestPractices.tip1')}</li>
+                <li>• {t('tips.bestPractices.tip2')}</li>
+                <li>• {t('tips.bestPractices.tip3')}</li>
+                <li>• {t('tips.bestPractices.tip4')}</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-2">⚡ Pro Tips:</h4>
+              <h4 className="font-semibold text-white mb-2">{t('tips.proTips.title')}</h4>
               <ul className="space-y-2 text-sm">
-                <li>• Portraits typically colorize better than complex scenes</li>
-                <li>• Outdoor photos with sky and vegetation work great</li>
-                <li>• Multiple processing can sometimes improve results</li>
-                <li>• Combine with upscaling for best quality restoration</li>
+                <li>• {t('tips.proTips.tip1')}</li>
+                <li>• {t('tips.proTips.tip2')}</li>
+                <li>• {t('tips.proTips.tip3')}</li>
+                <li>• {t('tips.proTips.tip4')}</li>
               </ul>
             </div>
           </div>
@@ -221,24 +216,24 @@ export default function ColorizePage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/30 rounded-2xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Ready to Colorize Your Photos?
+            {t('cta.title')}
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-            Start with 3 free credits. No credit card required.
+            {t('cta.subtitle')}
           </p>
           {!session ? (
             <Link
               href="/auth/signin"
               className="inline-block px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
             >
-              Get Started Free
+              {t('cta.getStarted')}
             </Link>
           ) : (
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold text-lg transition"
             >
-              Start Colorizing
+              {t('cta.startColorizing')}
             </button>
           )}
         </div>
