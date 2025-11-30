@@ -1716,5 +1716,87 @@
       "getStarted": "Get Started Free",
       "startExpanding": "Start Expanding"
     }
+  },
+  "objectRemovalPage": {
+    "badge": "Powered by BRIA Eraser AI",
+    "title": "AI Object Removal",
+    "subtitle": "Remove unwanted objects, people, text, or any distractions from your photos. Simply brush over what you want to remove and let AI fill in the background naturally.",
+    "stats": {
+      "precision": "Precision",
+      "precisionLabel": "Brush Control",
+      "processing": "~10s",
+      "processingLabel": "Processing",
+      "creditCost": "2 Credits",
+      "creditCostLabel": "Per Removal"
+    },
+    "creditsRemaining": "{credits} credits remaining",
+    "termsNotice": "By uploading a file you agree to our Terms of Use and Privacy Policy.",
+    "features": {
+      "preciseRemoval": {
+        "title": "Precise Removal",
+        "description": "Draw over exactly what you want to remove with adjustable brush size for perfect control."
+      },
+      "naturalInfill": {
+        "title": "Natural Infill",
+        "description": "AI intelligently fills the removed area to match surrounding content seamlessly."
+      },
+      "quickResults": {
+        "title": "Quick Results",
+        "description": "Process images in seconds with professional-quality results every time."
+      }
+    },
+    "howItWorks": {
+      "title": "How Object Removal Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Upload the photo containing objects you want to remove"
+      },
+      "step2": {
+        "title": "Brush Over Object",
+        "description": "Use the brush tool to paint over what you want removed"
+      },
+      "step3": {
+        "title": "Download Result",
+        "description": "AI removes the object and fills the space naturally"
+      }
+    },
+    "useCases": {
+      "title": "What You Can Remove",
+      "people": {
+        "title": "People & Photobombers",
+        "description": "Remove unwanted people, tourists, or photobombers from your scenic photos."
+      },
+      "text": {
+        "title": "Text & Watermarks",
+        "description": "Clean up images by removing text overlays, logos, or watermarks cleanly."
+      },
+      "distractions": {
+        "title": "Distractions & Clutter",
+        "description": "Remove trash, wires, signs, or other distracting elements from photos."
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "bestPractices": {
+        "title": "Best Practices",
+        "tip1": "Cover the entire object you want to remove",
+        "tip2": "Include a small margin around the object",
+        "tip3": "Works best with simpler backgrounds",
+        "tip4": "Use larger brush for bigger objects"
+      },
+      "proTips": {
+        "title": "Pro Tips",
+        "tip1": "Remove objects one at a time for complex edits",
+        "tip2": "Smaller objects generally remove more cleanly",
+        "tip3": "Textured backgrounds (grass, water) infill well",
+        "tip4": "Use Undo to correct brush strokes before processing"
+      }
+    },
+    "cta": {
+      "title": "Ready to Clean Up Your Photos?",
+      "subtitle": "Remove unwanted objects in seconds with AI-powered precision. No design skills needed.",
+      "getCredits": "Get Credits",
+      "exploreTools": "Explore All Tools"
+    }
   }
 }

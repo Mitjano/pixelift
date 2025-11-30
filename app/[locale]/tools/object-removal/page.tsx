@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 import Link from 'next/link';
 
@@ -22,6 +23,7 @@ const ObjectRemover = dynamic(
 export default function ObjectRemovalPage() {
   const { data: session } = useSession();
   const [credits, setCredits] = useState(0);
+  const t = useTranslations('objectRemovalPage');
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -51,32 +53,31 @@ export default function ObjectRemovalPage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-orange-300">Powered by BRIA Eraser AI</span>
+              <span className="text-orange-300">{t('badge')}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 bg-clip-text text-transparent">
-                AI Object Removal
+                {t('title')}
               </span>
             </h1>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
-              Remove unwanted objects, people, text, or any distractions from your photos.
-              Simply brush over what you want to remove and let AI fill in the background naturally.
+              {t('subtitle')}
             </p>
 
             {/* Stats */}
             <div className="flex flex-wrap justify-center gap-8 mb-8">
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400">Precision</div>
-                <div className="text-sm text-gray-500">Brush Control</div>
+                <div className="text-2xl font-bold text-orange-400">{t('stats.precision')}</div>
+                <div className="text-sm text-gray-500">{t('stats.precisionLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-red-400">~10s</div>
-                <div className="text-sm text-gray-500">Processing</div>
+                <div className="text-2xl font-bold text-red-400">{t('stats.processing')}</div>
+                <div className="text-sm text-gray-500">{t('stats.processingLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400">2 Credits</div>
-                <div className="text-sm text-gray-500">Per Removal</div>
+                <div className="text-2xl font-bold text-orange-400">{t('stats.creditCost')}</div>
+                <div className="text-sm text-gray-500">{t('stats.creditCostLabel')}</div>
               </div>
             </div>
 
@@ -87,7 +88,7 @@ export default function ObjectRemovalPage() {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
                 </svg>
                 <span className="text-sm font-medium text-orange-200">
-                  {credits} credits remaining
+                  {t('creditsRemaining', { credits })}
                 </span>
               </div>
             )}
@@ -99,7 +100,7 @@ export default function ObjectRemovalPage() {
           <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
             <ObjectRemover />
             <p className="text-sm text-gray-500 mt-4 text-center">
-              By uploading a file you agree to our Terms of Use and Privacy Policy.
+              {t('termsNotice')}
             </p>
           </div>
         </section>
@@ -111,27 +112,27 @@ export default function ObjectRemovalPage() {
               <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
                 <span className="text-2xl">🎯</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Precise Removal</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.preciseRemoval.title')}</h3>
               <p className="text-sm text-gray-400">
-                Draw over exactly what you want to remove with adjustable brush size for perfect control.
+                {t('features.preciseRemoval.description')}
               </p>
             </div>
             <div className="bg-gradient-to-br from-red-900/20 to-orange-900/20 rounded-xl border border-red-700/30 p-6">
               <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mb-4">
                 <span className="text-2xl">🖼️</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Natural Infill</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.naturalInfill.title')}</h3>
               <p className="text-sm text-gray-400">
-                AI intelligently fills the removed area to match surrounding content seamlessly.
+                {t('features.naturalInfill.description')}
               </p>
             </div>
             <div className="bg-gradient-to-br from-orange-900/20 to-red-900/20 rounded-xl border border-orange-700/30 p-6">
               <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
                 <span className="text-2xl">⚡</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Quick Results</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.quickResults.title')}</h3>
               <p className="text-sm text-gray-400">
-                Process images in seconds with professional-quality results every time.
+                {t('features.quickResults.description')}
               </p>
             </div>
           </div>
@@ -140,33 +141,33 @@ export default function ObjectRemovalPage() {
         {/* How It Works */}
         <section className="px-6 mb-16">
           <div className="bg-gray-800/30 rounded-2xl border border-gray-700 p-8">
-            <h2 className="text-2xl font-bold mb-8 text-center">How Object Removal Works</h2>
+            <h2 className="text-2xl font-bold mb-8 text-center">{t('howItWorks.title')}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
                   <span className="text-orange-400 font-bold text-2xl">1</span>
                 </div>
-                <h3 className="font-semibold mb-2">Upload Image</h3>
+                <h3 className="font-semibold mb-2">{t('howItWorks.step1.title')}</h3>
                 <p className="text-sm text-gray-400">
-                  Upload the photo containing objects you want to remove
+                  {t('howItWorks.step1.description')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center mx-auto mb-4 border border-red-500/30">
                   <span className="text-red-400 font-bold text-2xl">2</span>
                 </div>
-                <h3 className="font-semibold mb-2">Brush Over Object</h3>
+                <h3 className="font-semibold mb-2">{t('howItWorks.step2.title')}</h3>
                 <p className="text-sm text-gray-400">
-                  Use the brush tool to paint over what you want removed
+                  {t('howItWorks.step2.description')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
                   <span className="text-orange-400 font-bold text-2xl">3</span>
                 </div>
-                <h3 className="font-semibold mb-2">Download Result</h3>
+                <h3 className="font-semibold mb-2">{t('howItWorks.step3.title')}</h3>
                 <p className="text-sm text-gray-400">
-                  AI removes the object and fills the space naturally
+                  {t('howItWorks.step3.description')}
                 </p>
               </div>
             </div>
@@ -175,27 +176,27 @@ export default function ObjectRemovalPage() {
 
         {/* Use Cases */}
         <section className="px-6 mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">What You Can Remove</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center">{t('useCases.title')}</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6 hover:border-orange-500/50 transition">
               <div className="text-3xl mb-3">👥</div>
-              <h3 className="text-lg font-semibold mb-2">People & Photobombers</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('useCases.people.title')}</h3>
               <p className="text-sm text-gray-400">
-                Remove unwanted people, tourists, or photobombers from your scenic photos.
+                {t('useCases.people.description')}
               </p>
             </div>
             <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6 hover:border-orange-500/50 transition">
               <div className="text-3xl mb-3">📝</div>
-              <h3 className="text-lg font-semibold mb-2">Text & Watermarks</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('useCases.text.title')}</h3>
               <p className="text-sm text-gray-400">
-                Clean up images by removing text overlays, logos, or watermarks cleanly.
+                {t('useCases.text.description')}
               </p>
             </div>
             <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6 hover:border-orange-500/50 transition">
               <div className="text-3xl mb-3">🗑️</div>
-              <h3 className="text-lg font-semibold mb-2">Distractions & Clutter</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('useCases.distractions.title')}</h3>
               <p className="text-sm text-gray-400">
-                Remove trash, wires, signs, or other distracting elements from photos.
+                {t('useCases.distractions.description')}
               </p>
             </div>
           </div>
@@ -204,47 +205,47 @@ export default function ObjectRemovalPage() {
         {/* Tips */}
         <section className="px-6 mb-16">
           <div className="bg-gray-800/30 rounded-2xl border border-gray-700 p-8">
-            <h2 className="text-2xl font-bold mb-6">Tips for Best Results</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('tips.title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="font-semibold text-orange-400 mb-3">Best Practices</h4>
+                <h4 className="font-semibold text-orange-400 mb-3">{t('tips.bestPractices.title')}</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-0.5">✓</span>
-                    Cover the entire object you want to remove
+                    {t('tips.bestPractices.tip1')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-0.5">✓</span>
-                    Include a small margin around the object
+                    {t('tips.bestPractices.tip2')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-0.5">✓</span>
-                    Works best with simpler backgrounds
+                    {t('tips.bestPractices.tip3')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-0.5">✓</span>
-                    Use larger brush for bigger objects
+                    {t('tips.bestPractices.tip4')}
                   </li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-red-400 mb-3">Pro Tips</h4>
+                <h4 className="font-semibold text-red-400 mb-3">{t('tips.proTips.title')}</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
                   <li className="flex items-start gap-2">
                     <span className="text-orange-400 mt-0.5">★</span>
-                    Remove objects one at a time for complex edits
+                    {t('tips.proTips.tip1')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-orange-400 mt-0.5">★</span>
-                    Smaller objects generally remove more cleanly
+                    {t('tips.proTips.tip2')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-orange-400 mt-0.5">★</span>
-                    Textured backgrounds (grass, water) infill well
+                    {t('tips.proTips.tip3')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-orange-400 mt-0.5">★</span>
-                    Use Undo to correct brush strokes before processing
+                    {t('tips.proTips.tip4')}
                   </li>
                 </ul>
               </div>
@@ -255,22 +256,22 @@ export default function ObjectRemovalPage() {
         {/* CTA Section */}
         <section className="px-6 pb-12">
           <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-2xl border border-orange-700/30 p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Clean Up Your Photos?</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('cta.title')}</h2>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Remove unwanted objects in seconds with AI-powered precision. No design skills needed.
+              {t('cta.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/pricing"
                 className="px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 rounded-lg font-semibold transition"
               >
-                Get Credits
+                {t('cta.getCredits')}
               </Link>
               <Link
                 href="/tools"
                 className="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold transition"
               >
-                Explore All Tools
+                {t('cta.exploreTools')}
               </Link>
             </div>
           </div>

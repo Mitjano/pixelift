@@ -1799,5 +1799,87 @@
       "getStarted": "Commencer Gratuitement",
       "startExpanding": "Commencer à Étendre"
     }
+  },
+  "objectRemovalPage": {
+    "badge": "Propulsé par BRIA Eraser AI",
+    "title": "Suppression d'Objets par IA",
+    "subtitle": "Supprimez les objets indésirables, personnes, texte ou toute distraction de vos photos. Peignez simplement sur ce que vous voulez supprimer et laissez l'IA remplir l'arrière-plan naturellement.",
+    "stats": {
+      "precision": "Précision",
+      "precisionLabel": "Contrôle du Pinceau",
+      "processing": "~10s",
+      "processingLabel": "Traitement",
+      "creditCost": "2 Crédits",
+      "creditCostLabel": "Par Suppression"
+    },
+    "creditsRemaining": "{credits} crédits restants",
+    "termsNotice": "En téléchargeant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.",
+    "features": {
+      "preciseRemoval": {
+        "title": "Suppression Précise",
+        "description": "Dessinez exactement sur ce que vous voulez supprimer avec une taille de pinceau ajustable pour un contrôle parfait."
+      },
+      "naturalInfill": {
+        "title": "Remplissage Naturel",
+        "description": "L'IA remplit intelligemment la zone supprimée pour correspondre au contenu environnant."
+      },
+      "quickResults": {
+        "title": "Résultats Rapides",
+        "description": "Traitez les images en quelques secondes avec des résultats de qualité professionnelle à chaque fois."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne la Suppression d'Objets",
+      "step1": {
+        "title": "Téléchargez l'Image",
+        "description": "Téléchargez la photo contenant les objets que vous voulez supprimer"
+      },
+      "step2": {
+        "title": "Peignez sur l'Objet",
+        "description": "Utilisez l'outil pinceau pour peindre sur ce que vous voulez supprimer"
+      },
+      "step3": {
+        "title": "Téléchargez le Résultat",
+        "description": "L'IA supprime l'objet et remplit l'espace naturellement"
+      }
+    },
+    "useCases": {
+      "title": "Ce que Vous Pouvez Supprimer",
+      "people": {
+        "title": "Personnes et Photobombers",
+        "description": "Supprimez les personnes indésirables, touristes ou photobombers de vos photos panoramiques."
+      },
+      "text": {
+        "title": "Texte et Filigranes",
+        "description": "Nettoyez les images en supprimant les superpositions de texte, logos ou filigranes."
+      },
+      "distractions": {
+        "title": "Distractions et Désordre",
+        "description": "Supprimez les déchets, fils, panneaux ou autres éléments distrayants des photos."
+      }
+    },
+    "tips": {
+      "title": "Conseils pour les Meilleurs Résultats",
+      "bestPractices": {
+        "title": "Meilleures Pratiques",
+        "tip1": "Couvrez entièrement l'objet que vous voulez supprimer",
+        "tip2": "Incluez une petite marge autour de l'objet",
+        "tip3": "Fonctionne mieux avec des arrière-plans plus simples",
+        "tip4": "Utilisez un pinceau plus grand pour les objets plus grands"
+      },
+      "proTips": {
+        "title": "Conseils Pro",
+        "tip1": "Supprimez les objets un par un pour les éditions complexes",
+        "tip2": "Les objets plus petits se suppriment généralement plus proprement",
+        "tip3": "Les arrière-plans texturés (herbe, eau) se remplissent bien",
+        "tip4": "Utilisez Annuler pour corriger les coups de pinceau avant le traitement"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Nettoyer vos Photos?",
+      "subtitle": "Supprimez les objets indésirables en quelques secondes avec une précision alimentée par l'IA. Aucune compétence en design requise.",
+      "getCredits": "Obtenir des Crédits",
+      "exploreTools": "Explorer Tous les Outils"
+    }
   }
 }

@@ -1716,5 +1716,87 @@
       "getStarted": "Zacznij Za Darmo",
       "startExpanding": "Zacznij Rozszerzać"
     }
+  },
+  "objectRemovalPage": {
+    "badge": "Napędzane przez BRIA Eraser AI",
+    "title": "AI Usuwanie Obiektów",
+    "subtitle": "Usuń niechciane obiekty, ludzi, tekst lub inne rozpraszające elementy ze swoich zdjęć. Po prostu zamaluj to, co chcesz usunąć, a AI naturalnie wypełni tło.",
+    "stats": {
+      "precision": "Precyzja",
+      "precisionLabel": "Kontrola Pędzla",
+      "processing": "~10s",
+      "processingLabel": "Przetwarzanie",
+      "creditCost": "2 Kredyty",
+      "creditCostLabel": "Za Usunięcie"
+    },
+    "creditsRemaining": "Pozostało {credits} kredytów",
+    "termsNotice": "Przesyłając plik, akceptujesz nasz Regulamin i Politykę Prywatności.",
+    "features": {
+      "preciseRemoval": {
+        "title": "Precyzyjne Usuwanie",
+        "description": "Zamaluj dokładnie to, co chcesz usunąć, z regulowanym rozmiarem pędzla dla perfekcyjnej kontroli."
+      },
+      "naturalInfill": {
+        "title": "Naturalne Wypełnienie",
+        "description": "AI inteligentnie wypełnia usunięty obszar, dopasowując go do otaczającej zawartości."
+      },
+      "quickResults": {
+        "title": "Szybkie Rezultaty",
+        "description": "Przetwarzaj obrazy w sekundy z profesjonalną jakością za każdym razem."
+      }
+    },
+    "howItWorks": {
+      "title": "Jak Działa Usuwanie Obiektów",
+      "step1": {
+        "title": "Prześlij Obraz",
+        "description": "Prześlij zdjęcie zawierające obiekty, które chcesz usunąć"
+      },
+      "step2": {
+        "title": "Zamaluj Obiekt",
+        "description": "Użyj narzędzia pędzla, aby zamalować to, co chcesz usunąć"
+      },
+      "step3": {
+        "title": "Pobierz Rezultat",
+        "description": "AI usuwa obiekt i naturalnie wypełnia przestrzeń"
+      }
+    },
+    "useCases": {
+      "title": "Co Możesz Usunąć",
+      "people": {
+        "title": "Ludzie i Fotobomberzy",
+        "description": "Usuń niechcianych ludzi, turystów lub osoby psujące zdjęcia z widokowych fotografii."
+      },
+      "text": {
+        "title": "Tekst i Znaki Wodne",
+        "description": "Oczyść obrazy usuwając nakładki tekstowe, loga lub znaki wodne."
+      },
+      "distractions": {
+        "title": "Rozpraszacze i Bałagan",
+        "description": "Usuń śmieci, przewody, znaki lub inne rozpraszające elementy ze zdjęć."
+      }
+    },
+    "tips": {
+      "title": "Wskazówki dla Najlepszych Rezultatów",
+      "bestPractices": {
+        "title": "Najlepsze Praktyki",
+        "tip1": "Pokryj cały obiekt, który chcesz usunąć",
+        "tip2": "Dołącz mały margines wokół obiektu",
+        "tip3": "Działa najlepiej z prostszymi tłami",
+        "tip4": "Używaj większego pędzla dla większych obiektów"
+      },
+      "proTips": {
+        "title": "Wskazówki Pro",
+        "tip1": "Usuwaj obiekty pojedynczo przy złożonych edycjach",
+        "tip2": "Mniejsze obiekty zazwyczaj usuwają się czyściej",
+        "tip3": "Teksturowane tła (trawa, woda) dobrze się wypełniają",
+        "tip4": "Użyj Cofnij, aby poprawić pociągnięcia pędzla przed przetwarzaniem"
+      }
+    },
+    "cta": {
+      "title": "Gotowy Oczyścić Swoje Zdjęcia?",
+      "subtitle": "Usuń niechciane obiekty w sekundy z precyzją napędzaną przez AI. Nie potrzebujesz umiejętności projektowania.",
+      "getCredits": "Kup Kredyty",
+      "exploreTools": "Odkryj Wszystkie Narzędzia"
+    }
   }
 }

@@ -1716,5 +1716,87 @@
       "getStarted": "Comenzar Gratis",
       "startExpanding": "Empezar a Expandir"
     }
+  },
+  "objectRemovalPage": {
+    "badge": "Potenciado por BRIA Eraser AI",
+    "title": "Eliminación de Objetos con IA",
+    "subtitle": "Elimina objetos no deseados, personas, texto o cualquier distracción de tus fotos. Simplemente pinta sobre lo que quieres eliminar y deja que la IA rellene el fondo naturalmente.",
+    "stats": {
+      "precision": "Precisión",
+      "precisionLabel": "Control del Pincel",
+      "processing": "~10s",
+      "processingLabel": "Procesamiento",
+      "creditCost": "2 Créditos",
+      "creditCostLabel": "Por Eliminación"
+    },
+    "creditsRemaining": "{credits} créditos restantes",
+    "termsNotice": "Al subir un archivo, aceptas nuestros Términos de Uso y Política de Privacidad.",
+    "features": {
+      "preciseRemoval": {
+        "title": "Eliminación Precisa",
+        "description": "Dibuja exactamente sobre lo que quieres eliminar con tamaño de pincel ajustable para un control perfecto."
+      },
+      "naturalInfill": {
+        "title": "Relleno Natural",
+        "description": "La IA rellena inteligentemente el área eliminada para que coincida con el contenido circundante."
+      },
+      "quickResults": {
+        "title": "Resultados Rápidos",
+        "description": "Procesa imágenes en segundos con resultados de calidad profesional cada vez."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona la Eliminación de Objetos",
+      "step1": {
+        "title": "Sube la Imagen",
+        "description": "Sube la foto que contiene los objetos que quieres eliminar"
+      },
+      "step2": {
+        "title": "Pinta sobre el Objeto",
+        "description": "Usa la herramienta de pincel para pintar sobre lo que quieres eliminar"
+      },
+      "step3": {
+        "title": "Descarga el Resultado",
+        "description": "La IA elimina el objeto y rellena el espacio naturalmente"
+      }
+    },
+    "useCases": {
+      "title": "Qué Puedes Eliminar",
+      "people": {
+        "title": "Personas y Fotobombas",
+        "description": "Elimina personas no deseadas, turistas o fotobombas de tus fotos panorámicas."
+      },
+      "text": {
+        "title": "Texto y Marcas de Agua",
+        "description": "Limpia imágenes eliminando superposiciones de texto, logos o marcas de agua."
+      },
+      "distractions": {
+        "title": "Distracciones y Desorden",
+        "description": "Elimina basura, cables, señales u otros elementos distractores de las fotos."
+      }
+    },
+    "tips": {
+      "title": "Consejos para los Mejores Resultados",
+      "bestPractices": {
+        "title": "Mejores Prácticas",
+        "tip1": "Cubre todo el objeto que quieres eliminar",
+        "tip2": "Incluye un pequeño margen alrededor del objeto",
+        "tip3": "Funciona mejor con fondos más simples",
+        "tip4": "Usa un pincel más grande para objetos más grandes"
+      },
+      "proTips": {
+        "title": "Consejos Pro",
+        "tip1": "Elimina objetos uno a la vez para ediciones complejas",
+        "tip2": "Los objetos más pequeños generalmente se eliminan más limpiamente",
+        "tip3": "Los fondos texturizados (hierba, agua) se rellenan bien",
+        "tip4": "Usa Deshacer para corregir trazos de pincel antes de procesar"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Limpiar tus Fotos?",
+      "subtitle": "Elimina objetos no deseados en segundos con precisión potenciada por IA. No se necesitan habilidades de diseño.",
+      "getCredits": "Obtener Créditos",
+      "exploreTools": "Explorar Todas las Herramientas"
+    }
   }
 }
