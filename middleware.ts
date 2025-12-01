@@ -12,10 +12,12 @@ const ALLOWED_ORIGINS = [
 ];
 
 // Create the intl middleware
+// Using 'as-needed' so default locale (pl) doesn't have prefix
+// pixelift.pl/ → Polish, pixelift.pl/en → English, etc.
 const intlMiddleware = createIntlMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'always'
+  localePrefix: 'as-needed'
 });
 
 export default auth((req) => {
@@ -66,7 +68,8 @@ export default auth((req) => {
   }
 
   // Protect admin routes (including localized versions)
-  const adminPattern = /^(\/(pl|es|fr))?\/admin/;
+  // With 'as-needed': /admin (pl), /en/admin, /es/admin, /fr/admin
+  const adminPattern = /^(\/(en|es|fr))?\/admin/;
   if (adminPattern.test(pathname)) {
     // Check if user is authenticated
     if (!req.auth?.user) {
