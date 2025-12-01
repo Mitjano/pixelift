@@ -45,23 +45,30 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
-      images: images.map(img => ({
-        id: img.id,
-        thumbnailUrl: img.thumbnailUrl || img.outputUrl,
-        outputUrl: img.outputUrl,
-        prompt: img.prompt,
-        model: img.model,
-        aspectRatio: img.aspectRatio,
-        width: img.width,
-        height: img.height,
-        user: {
-          name: img.userName || 'Anonymous',
-          image: img.userImage,
-        },
-        likes: img.likes,
-        views: img.views,
-        createdAt: img.createdAt,
-      })),
+      images: images.map(img => {
+        // Use local view URL if available, otherwise fall back to outputUrl
+        const imageUrl = img.localPath
+          ? `/api/ai-image/${img.id}/view`
+          : img.outputUrl;
+
+        return {
+          id: img.id,
+          thumbnailUrl: img.thumbnailUrl || imageUrl,
+          outputUrl: imageUrl,
+          prompt: img.prompt,
+          model: img.model,
+          aspectRatio: img.aspectRatio,
+          width: img.width,
+          height: img.height,
+          user: {
+            name: img.userName || 'Anonymous',
+            image: img.userImage,
+          },
+          likes: img.likes,
+          views: img.views,
+          createdAt: img.createdAt,
+        };
+      }),
       hasMore,
       total,
       page,

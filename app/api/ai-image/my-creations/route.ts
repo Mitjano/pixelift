@@ -47,25 +47,32 @@ export async function GET(request: NextRequest) {
     const stats = getUserGenerationStats(user.id);
 
     return NextResponse.json({
-      images: images.map(img => ({
-        id: img.id,
-        thumbnailUrl: img.thumbnailUrl || img.outputUrl,
-        outputUrl: img.outputUrl,
-        prompt: img.prompt,
-        model: img.model,
-        mode: img.mode,
-        aspectRatio: img.aspectRatio,
-        width: img.width,
-        height: img.height,
-        isPublic: img.isPublic,
-        likes: img.likes,
-        views: img.views,
-        createdAt: img.createdAt,
-        user: {
-          name: img.userName || session.user.name || 'You',
-          image: img.userImage || session.user.image,
-        },
-      })),
+      images: images.map(img => {
+        // Use local view URL if available, otherwise fall back to outputUrl
+        const imageUrl = img.localPath
+          ? `/api/ai-image/${img.id}/view`
+          : img.outputUrl;
+
+        return {
+          id: img.id,
+          thumbnailUrl: img.thumbnailUrl || imageUrl,
+          outputUrl: imageUrl,
+          prompt: img.prompt,
+          model: img.model,
+          mode: img.mode,
+          aspectRatio: img.aspectRatio,
+          width: img.width,
+          height: img.height,
+          isPublic: img.isPublic,
+          likes: img.likes,
+          views: img.views,
+          createdAt: img.createdAt,
+          user: {
+            name: img.userName || session.user.name || 'You',
+            image: img.userImage || session.user.image,
+          },
+        };
+      }),
       hasMore,
       total,
       page,

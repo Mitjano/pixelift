@@ -6,6 +6,7 @@ import {
   deleteGeneratedImage,
   incrementViews,
 } from '@/lib/ai-image/db';
+import { deleteImageFile } from '@/lib/ai-image/storage';
 
 // GET - Get image details
 export async function GET(
@@ -48,6 +49,11 @@ export async function GET(
       }
     }
 
+    // Use local view URL if available, otherwise fall back to outputUrl
+    const imageUrl = image.localPath
+      ? `/api/ai-image/${image.id}/view`
+      : image.outputUrl;
+
     return NextResponse.json({
       id: image.id,
       prompt: image.prompt,
@@ -58,8 +64,8 @@ export async function GET(
       width: image.width,
       height: image.height,
       seed: image.seed,
-      outputUrl: image.outputUrl,
-      thumbnailUrl: image.thumbnailUrl,
+      outputUrl: imageUrl,
+      thumbnailUrl: image.thumbnailUrl || imageUrl,
       sourceImageUrl: isOwner ? image.sourceImageUrl : undefined,
       isPublic: image.isPublic,
       likes: image.likes,
@@ -112,6 +118,11 @@ export async function DELETE(
         { error: 'Not authorized to delete this image' },
         { status: 403 }
       );
+    }
+
+    // Delete local file if it exists
+    if (image.localPath) {
+      deleteImageFile(image.localPath);
     }
 
     const deleted = deleteGeneratedImage(id);

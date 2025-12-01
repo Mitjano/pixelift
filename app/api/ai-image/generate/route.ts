@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth';
 import { getUserByEmail, updateUser, createUsage, createUser } from '@/lib/db';
 import { generateImage, generateMultipleImages } from '@/lib/ai-image/generate';
 import { createGeneratedImage } from '@/lib/ai-image/db';
+import { saveImageFromUrl } from '@/lib/ai-image/storage';
 import {
   getModelById,
   getAspectRatioById,
@@ -11,6 +12,7 @@ import {
   type ImageCount,
 } from '@/lib/ai-image/models';
 import { applyStyleToPrompt, getStyleById, getStyleNegativePrompt } from '@/lib/ai-image/styles';
+import { nanoid } from 'nanoid';
 
 export async function POST(request: NextRequest) {
   try {
@@ -185,6 +187,16 @@ export async function POST(request: NextRequest) {
     const savedImages = [];
     for (const result of successfulResults) {
       if (result.outputUrl) {
+        // Generate unique ID for this image
+        const imageId = nanoid();
+
+        // Download and save image locally for persistent storage
+        let localPath: string | undefined;
+        const savedFile = await saveImageFromUrl(result.outputUrl, imageId);
+        if (savedFile) {
+          localPath = savedFile.localPath;
+        }
+
         const savedImage = createGeneratedImage({
           userId: user.id,
           userEmail: session.user.email,
@@ -201,6 +213,7 @@ export async function POST(request: NextRequest) {
           seed: result.seed,
           sourceImageUrl: sourceImage,
           outputUrl: result.outputUrl,
+          localPath,
           creditsUsed: creditsPerImage,
           processingTime: result.processingTime,
           isPublic,

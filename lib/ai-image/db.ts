@@ -40,6 +40,7 @@ export interface GeneratedImage {
   // Generated output
   outputUrl: string;
   thumbnailUrl?: string;
+  localPath?: string; // Local path to saved image file
 
   // Metadata
   creditsUsed: number;
@@ -73,6 +74,7 @@ export interface CreateGeneratedImageInput {
   sourceImageUrl?: string;
   outputUrl: string;
   thumbnailUrl?: string;
+  localPath?: string;
   creditsUsed: number;
   processingTime?: number;
   isPublic?: boolean;
