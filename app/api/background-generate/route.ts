@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
       {
         input: {
           image: dataUrl,
-          prompt: prompt,
+          bg_prompt: prompt,
           negative_prompt: negativePrompt,
           refine_prompt: refinePrompt,
         }
