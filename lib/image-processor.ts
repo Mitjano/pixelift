@@ -15,9 +15,9 @@ export class ImageProcessor {
    */
   static async removeBackground(dataUrl: string): Promise<string> {
     try {
-      // Call Replicate API with BRIA RMBG 2.0 model (better quality than rembg)
+      // Call Replicate API with BRIA Remove Background model
       const output = await this.replicate.run(
-        "bria-ai/bria-rmbg:d27e6dbcdae5e4d009ca4f7360f1fdbe7af1f07a3b0aa2f8a1e35e40f2eb9c99",
+        "bria/remove-background",
         {
           input: {
             image: dataUrl
