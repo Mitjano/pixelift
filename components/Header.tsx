@@ -55,6 +55,26 @@ const toolIcons = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
     </svg>
   ),
+  styleTransfer: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+    </svg>
+  ),
+  inpainting: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+    </svg>
+  ),
+  reimagine: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    </svg>
+  ),
+  structureControl: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  ),
 };
 
 const toolConfigs = [
@@ -67,6 +87,10 @@ const toolConfigs = [
   { key: 'compressor', href: '/tools/image-compressor', color: 'from-teal-500 to-cyan-600', bgColor: 'bg-teal-500/10' },
   { key: 'packshot', href: '/tools/packshot-generator', color: 'from-amber-500 to-orange-600', bgColor: 'bg-amber-500/10' },
   { key: 'expand', href: '/tools/image-expand', color: 'from-indigo-500 to-indigo-600', bgColor: 'bg-indigo-500/10' },
+  { key: 'styleTransfer', href: '/tools/style-transfer', color: 'from-pink-500 to-purple-600', bgColor: 'bg-pink-500/10' },
+  { key: 'inpainting', href: '/tools/inpainting', color: 'from-emerald-500 to-teal-600', bgColor: 'bg-emerald-500/10' },
+  { key: 'reimagine', href: '/tools/reimagine', color: 'from-violet-500 to-indigo-600', bgColor: 'bg-violet-500/10' },
+  { key: 'structureControl', href: '/tools/structure-control', color: 'from-amber-500 to-red-600', bgColor: 'bg-amber-500/10' },
 ];
 
 // User dropdown menu items

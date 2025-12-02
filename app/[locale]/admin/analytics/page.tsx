@@ -66,6 +66,10 @@ const TOOL_COLORS: Record<string, string> = {
   colorize: '#F97316',
   denoise: '#14B8A6',
   object_removal: '#EF4444',
+  style_transfer: '#D946EF',
+  inpainting: '#10B981',
+  reimagine: '#8B5CF6',
+  structure_control: '#F59E0B',
 };
 
 export default function AnalyticsPage() {

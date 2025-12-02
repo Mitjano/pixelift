@@ -127,10 +127,30 @@
     "expand": {
       "name": "Image Expand",
       "description": "Extend images with AI"
+    },
+    "styleTransfer": {
+      "name": "Style Transfer",
+      "description": "Transform photos into art styles",
+      "badge": "NEW"
+    },
+    "inpainting": {
+      "name": "AI Inpainting",
+      "description": "Fill & extend with AI",
+      "badge": "NEW"
+    },
+    "reimagine": {
+      "name": "Image Reimagine",
+      "description": "Generate variations of images",
+      "badge": "NEW"
+    },
+    "structureControl": {
+      "name": "Structure Control",
+      "description": "Generate with depth & edge control",
+      "badge": "NEW"
     }
   },
   "home": {
-    "badge": "9 AI-Powered Tools - 4 New Tools Just Launched!",
+    "badge": "13 AI-Powered Tools - 4 New FLUX Tools Just Launched!",
     "headline": {
       "line1": "Your Complete",
       "line2": "AI Image Studio"

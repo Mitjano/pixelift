@@ -127,10 +127,30 @@
     "expand": {
       "name": "Rozszerzanie Obrazu",
       "description": "Rozszerz obrazy za pomocą AI"
+    },
+    "styleTransfer": {
+      "name": "Transfer Stylu",
+      "description": "Przekształć zdjęcia w style artystyczne",
+      "badge": "NOWE"
+    },
+    "inpainting": {
+      "name": "AI Inpainting",
+      "description": "Wypełniaj i rozszerzaj z AI",
+      "badge": "NOWE"
+    },
+    "reimagine": {
+      "name": "Reimaginacja Obrazu",
+      "description": "Generuj wariacje obrazów",
+      "badge": "NOWE"
+    },
+    "structureControl": {
+      "name": "Kontrola Struktury",
+      "description": "Generuj z kontrolą głębi i krawędzi",
+      "badge": "NOWE"
     }
   },
   "home": {
-    "badge": "9 Narzędzi AI - 4 Nowe Narzędzia Właśnie Uruchomione!",
+    "badge": "13 Narzędzi AI - 4 Nowe Narzędzia FLUX!",
     "headline": {
       "line1": "Twoje Kompletne",
       "line2": "Studio Obrazów AI"
