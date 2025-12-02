@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
 
     // 7. CALL REPLICATE - BRIA Background Generation model
     const output = await replicate.run(
-      "bria-ai/bria-background-generation:15ddb1a21a3c5b48e858a78c7b4c26bd32daa39e4bcb4c6a7e5e4469dc522192",
+      "bria/generate-background",
       {
         input: {
           image: dataUrl,

@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
 
     // 7. CALL REPLICATE - BRIA Eraser model
     const output = await replicate.run(
-      "bria-ai/bria-eraser:9896ffa5fd2dd58f5cc94deab67a50a4b83b4e0b0cbf780e38f9b20e3a129ebd",
+      "bria/eraser",
       {
         input: {
           image: imageDataUrl,
