@@ -32,6 +32,58 @@ export default function StyleTransfer() {
   const [selectedStyle, setSelectedStyle] = useState('cyberpunk');
   const [customPrompt, setCustomPrompt] = useState('');
 
+  // Enhance prompt state
+  const [enhancing, setEnhancing] = useState(false);
+  const [enhancedPrompt, setEnhancedPrompt] = useState<string | null>(null);
+
+  const handleEnhancePrompt = async () => {
+    if (!session) {
+      alert('Please sign in to enhance prompts');
+      return;
+    }
+
+    if (!customPrompt.trim() || customPrompt.trim().length < 2) {
+      alert('Enter at least 2 characters to enhance');
+      return;
+    }
+
+    setEnhancing(true);
+    setEnhancedPrompt(null);
+
+    try {
+      const response = await fetch('/api/style-transfer/enhance-prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: customPrompt.trim(), stylePreset: selectedStyle }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || 'Failed to enhance prompt');
+        return;
+      }
+
+      setEnhancedPrompt(data.enhanced);
+    } catch (error) {
+      console.error('Enhance error:', error);
+      alert('Failed to enhance prompt');
+    } finally {
+      setEnhancing(false);
+    }
+  };
+
+  const applyEnhancedPrompt = () => {
+    if (enhancedPrompt) {
+      setCustomPrompt(enhancedPrompt);
+      setEnhancedPrompt(null);
+    }
+  };
+
+  const dismissEnhancedPrompt = () => {
+    setEnhancedPrompt(null);
+  };
+
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -306,14 +358,60 @@ export default function StyleTransfer() {
                 <div className="ml-8">
                   <textarea
                     value={customPrompt}
-                    onChange={(e) => setCustomPrompt(e.target.value)}
+                    onChange={(e) => {
+                      setCustomPrompt(e.target.value);
+                      setEnhancedPrompt(null);
+                    }}
                     placeholder={STYLE_PRESETS.find(s => s.id === selectedStyle)?.placeholder || 'Add details about the scene, clothing, background, mood...'}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg focus:border-pink-500 focus:outline-none resize-none text-white placeholder-gray-500"
                     rows={2}
                   />
-                  <p className="text-xs text-gray-500 mt-2">
-                    Your face and identity will be preserved automatically. Describe the scene, environment, clothing, or mood you want.
-                  </p>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-xs text-gray-500">
+                      Describe the scene, environment, clothing, or mood you want.
+                    </p>
+                    <button
+                      onClick={handleEnhancePrompt}
+                      disabled={enhancing || !customPrompt.trim() || customPrompt.trim().length < 2}
+                      className="px-3 py-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed rounded-lg font-medium transition flex items-center gap-1.5"
+                    >
+                      {enhancing ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          Enhancing...
+                        </>
+                      ) : (
+                        <>Enhance</>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Enhanced Prompt Preview */}
+                  {enhancedPrompt && (
+                    <div className="mt-3 p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-amber-400 font-medium text-sm">Enhanced prompt:</span>
+                      </div>
+                      <p className="text-gray-300 text-sm mb-3 leading-relaxed">{enhancedPrompt}</p>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={applyEnhancedPrompt}
+                          className="px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-black font-medium text-sm rounded-lg transition"
+                        >
+                          Use This
+                        </button>
+                        <button
+                          onClick={dismissEnhancedPrompt}
+                          className="px-4 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 text-sm rounded-lg transition"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
