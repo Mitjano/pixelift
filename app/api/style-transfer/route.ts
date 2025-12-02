@@ -121,27 +121,22 @@ export async function POST(request: NextRequest) {
 
     const finalPrompt = prompt || stylePrompts[stylePreset] || stylePrompts['artistic']
 
-    // 9. CALL REPLICATE - FLUX Redux for style transfer
+    // 9. CALL REPLICATE - FLUX 1.1 Pro with image_prompt for style transfer
+    // This model supports both text prompts AND image conditioning
     const input: Record<string, unknown> = {
       prompt: finalPrompt,
-      image: dataUrl,
-      num_outputs: 1,
-      guidance: 3.5,
-      megapixels: "1",
-      num_inference_steps: 28,
+      image_prompt: dataUrl, // Image to guide composition
+      aspect_ratio: "1:1",
       output_format: "png",
       output_quality: 100,
-    }
-
-    // If style image provided, use it for redux style reference
-    if (styleDataUrl) {
-      input.redux_image = styleDataUrl
+      safety_tolerance: 2,
+      prompt_upsampling: true,
     }
 
     const output = await replicate.run(
-      "black-forest-labs/flux-redux-schnell",
+      "black-forest-labs/flux-1.1-pro",
       { input }
-    ) as unknown as string[]
+    ) as unknown as string
 
     // 10. GET RESULT
     const resultUrl = Array.isArray(output) ? output[0] : output
@@ -161,7 +156,7 @@ export async function POST(request: NextRequest) {
       type: 'style_transfer',
       creditsUsed: CREDITS_PER_TRANSFER,
       imageSize: `${file.size} bytes`,
-      model: 'flux-redux-schnell',
+      model: 'flux-1.1-pro',
     })
 
     const newCredits = user.credits - CREDITS_PER_TRANSFER

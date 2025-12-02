@@ -108,6 +108,7 @@ export async function POST(request: NextRequest) {
     const maskDataUrl = `data:${mask.type};base64,${maskBase64}`
 
     // 8. CALL REPLICATE - FLUX Fill Pro for inpainting/outpainting
+    // Note: guidance default is 60 according to Replicate docs
     const output = await replicate.run(
       "black-forest-labs/flux-fill-pro",
       {
@@ -116,7 +117,7 @@ export async function POST(request: NextRequest) {
           mask: maskDataUrl,
           prompt: prompt,
           steps: 50,
-          guidance: 30,
+          guidance: 60, // Default recommended by Replicate docs
           output_format: "png",
           safety_tolerance: 2,
           prompt_upsampling: true,

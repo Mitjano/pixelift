@@ -99,17 +99,16 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
-    // 7. CALL REPLICATE - FLUX Redux for image variations
+    // 7. CALL REPLICATE - FLUX Redux Schnell for image variations
+    // FLUX Redux does NOT support prompt - it uses redux_image for conditioning
     const output = await replicate.run(
       "black-forest-labs/flux-redux-schnell",
       {
         input: {
-          prompt: prompt || "create a variation of this image, keeping the same composition and subject",
-          image: dataUrl,
+          redux_image: dataUrl, // Image to create variations from
           num_outputs: actualVariations,
-          guidance: 3 + (variationStrength * 4), // 3-7 based on strength
           megapixels: "1",
-          num_inference_steps: 28,
+          num_inference_steps: 4, // Schnell uses 1-4 steps
           output_format: "png",
           output_quality: 100,
         }
