@@ -5,17 +5,15 @@ import { useSession } from "next-auth/react";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaPalette } from "react-icons/fa";
 
+// Face-to-Many model supports: 3D, Emoji, Video game, Pixels, Clay, Toy
+// Uses InstantID for facial identity preservation
 const STYLE_PRESETS = [
-  { id: 'anime', name: 'Anime', icon: '🎌', description: 'Japanese animation style' },
-  { id: 'oil_painting', name: 'Oil Painting', icon: '🖼️', description: 'Classical textured art' },
-  { id: 'watercolor', name: 'Watercolor', icon: '💧', description: 'Soft fluid brushwork' },
-  { id: 'pencil_sketch', name: 'Pencil Sketch', icon: '✏️', description: 'Hand-drawn line art' },
-  { id: 'pop_art', name: 'Pop Art', icon: '🎨', description: 'Bold colors, comic style' },
-  { id: 'cyberpunk', name: 'Cyberpunk', icon: '🌃', description: 'Neon futuristic' },
-  { id: 'fantasy', name: 'Fantasy', icon: '✨', description: 'Magical ethereal' },
-  { id: 'vintage', name: 'Vintage', icon: '📷', description: 'Retro nostalgic' },
-  { id: 'minimalist', name: 'Minimalist', icon: '⬜', description: 'Clean simple design' },
-  { id: 'artistic', name: 'Artistic', icon: '🎭', description: 'Creative expression' },
+  { id: '3D', name: '3D Character', icon: '🎮', description: 'Pixar/3D animation style' },
+  { id: 'Emoji', name: 'Emoji', icon: '😊', description: 'Emoji avatar style' },
+  { id: 'Video game', name: 'Video Game', icon: '🕹️', description: 'Game character style' },
+  { id: 'Pixels', name: 'Pixel Art', icon: '👾', description: 'Retro pixel style' },
+  { id: 'Clay', name: 'Clay', icon: '🎨', description: 'Claymation style' },
+  { id: 'Toy', name: 'Toy', icon: '🧸', description: 'Toy figure style' },
 ];
 
 export default function StyleTransfer() {
@@ -28,7 +26,7 @@ export default function StyleTransfer() {
   const [progress, setProgress] = useState("");
   const [imageInfo, setImageInfo] = useState<{width: number, height: number, size: number} | null>(null);
   const [creditsRemaining, setCreditsRemaining] = useState<number | null>(null);
-  const [selectedStyle, setSelectedStyle] = useState('artistic');
+  const [selectedStyle, setSelectedStyle] = useState('3D');
   const [customPrompt, setCustomPrompt] = useState('');
 
   const handleDrag = useCallback((e: React.DragEvent) => {
@@ -105,7 +103,7 @@ export default function StyleTransfer() {
       }
 
       const styleName = STYLE_PRESETS.find(s => s.id === selectedStyle)?.name || 'Style';
-      setProgress(`Applying ${styleName} style with FLUX AI...`);
+      setProgress(`Transforming face to ${styleName} (preserving identity)...`);
 
       const response = await fetch("/api/style-transfer", {
         method: "POST",
@@ -358,7 +356,7 @@ export default function StyleTransfer() {
           </div>
 
           <div className="text-center text-sm text-gray-500">
-            <p>Powered by FLUX Redux AI - 4 credits per style transfer</p>
+            <p>Powered by InstantID Face-to-Many AI - Preserves your identity - 4 credits</p>
           </div>
         </div>
       )}

@@ -11,6 +11,10 @@ const replicate = new Replicate({
 
 const CREDITS_PER_TRANSFER = 4 // Style transfer is compute-intensive
 
+// Valid styles for face-to-many model
+const VALID_STYLES = ['3D', 'Emoji', 'Video game', 'Pixels', 'Clay', 'Toy'] as const
+type ValidStyle = typeof VALID_STYLES[number]
+
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting
@@ -41,10 +45,9 @@ export async function POST(request: NextRequest) {
     // 3. GET FILES FROM FORMDATA
     const formData = await request.formData()
     const file = formData.get('file') as File
-    const styleImage = formData.get('style_image') as File | null
-    const prompt = formData.get('prompt') as string || ''
-    const stylePreset = formData.get('style_preset') as string || 'artistic'
-    const strength = parseFloat(formData.get('strength') as string || '0.8')
+    const prompt = formData.get('prompt') as string || 'a person'
+    const stylePreset = formData.get('style_preset') as string || '3D'
+    const strength = parseFloat(formData.get('strength') as string || '0.65')
 
     if (!file) {
       return NextResponse.json(
@@ -96,52 +99,47 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
-    // 7. CONVERT STYLE IMAGE IF PROVIDED
-    let styleDataUrl: string | undefined
-    if (styleImage && styleImage.size > 0) {
-      const styleArrayBuffer = await styleImage.arrayBuffer()
-      const styleBuffer = Buffer.from(styleArrayBuffer)
-      const styleBase64 = styleBuffer.toString('base64')
-      styleDataUrl = `data:${styleImage.type};base64,${styleBase64}`
+    // 7. MAP STYLE PRESET TO VALID STYLE
+    // face-to-many supports: 3D, Emoji, Video game, Pixels, Clay, Toy
+    const styleMapping: Record<string, ValidStyle> = {
+      '3d': '3D',
+      '3D': '3D',
+      'emoji': 'Emoji',
+      'video_game': 'Video game',
+      'videogame': 'Video game',
+      'pixels': 'Pixels',
+      'pixel': 'Pixels',
+      'clay': 'Clay',
+      'toy': 'Toy',
     }
 
-    // 8. BUILD PROMPT BASED ON STYLE PRESET
-    const stylePrompts: Record<string, string> = {
-      'anime': 'anime style, japanese animation, vibrant colors, clean lines',
-      'oil_painting': 'oil painting style, textured brushstrokes, classical art, rich colors',
-      'watercolor': 'watercolor painting, soft colors, fluid brushwork, artistic',
-      'pencil_sketch': 'pencil sketch, hand drawn, detailed line art, graphite',
-      'pop_art': 'pop art style, bold colors, comic book aesthetic, Andy Warhol inspired',
-      'cyberpunk': 'cyberpunk style, neon colors, futuristic, high tech low life',
-      'fantasy': 'fantasy art style, magical, ethereal, dreamlike quality',
-      'vintage': 'vintage photograph, retro aesthetic, aged, nostalgic',
-      'minimalist': 'minimalist style, clean, simple, modern design',
-      'artistic': 'artistic interpretation, creative, expressive, unique style',
-    }
+    const mappedStyle: ValidStyle = styleMapping[stylePreset] || '3D'
 
-    const finalPrompt = prompt || stylePrompts[stylePreset] || stylePrompts['artistic']
-
-    // 9. CALL REPLICATE - FLUX 1.1 Pro with image_prompt for style transfer
-    // This model supports both text prompts AND image conditioning
-    const input: Record<string, unknown> = {
-      prompt: finalPrompt,
-      image_prompt: dataUrl, // Image to guide composition
-      aspect_ratio: "1:1",
-      output_format: "png",
-      output_quality: 100,
-      safety_tolerance: 2,
-      prompt_upsampling: true,
-    }
-
+    // 8. CALL REPLICATE - fofr/face-to-many for identity-preserving style transfer
+    // This model uses InstantID to preserve facial identity while applying artistic styles
     const output = await replicate.run(
-      "black-forest-labs/flux-1.1-pro",
-      { input }
-    ) as unknown as string
+      "fofr/face-to-many",
+      {
+        input: {
+          image: dataUrl,
+          style: mappedStyle,
+          prompt: prompt,
+          denoising_strength: strength, // How much to change (0.65 default preserves more)
+          instant_id_strength: 1, // Maximum identity preservation
+          control_depth_strength: 0.8, // Preserve depth/structure
+          prompt_strength: 4.5, // CFG scale
+        }
+      }
+    ) as unknown as string[]
 
-    // 10. GET RESULT
-    const resultUrl = Array.isArray(output) ? output[0] : output
+    // 9. GET RESULT
+    const outputArray = Array.isArray(output) ? output : [output]
+    if (outputArray.length === 0) {
+      throw new Error('No output generated')
+    }
+    const resultUrl = outputArray[0]
 
-    // 11. DOWNLOAD RESULT AND CONVERT TO BASE64
+    // 10. DOWNLOAD RESULT AND CONVERT TO BASE64
     const resultResponse = await fetch(resultUrl as string)
     if (!resultResponse.ok) {
       throw new Error('Failed to download styled image')
@@ -150,18 +148,18 @@ export async function POST(request: NextRequest) {
     const resultBase64 = resultBuffer.toString('base64')
     const resultDataUrl = `data:image/png;base64,${resultBase64}`
 
-    // 12. DEDUCT CREDITS & LOG USAGE
+    // 11. DEDUCT CREDITS & LOG USAGE
     await createUsage({
       userId: user.id,
       type: 'style_transfer',
       creditsUsed: CREDITS_PER_TRANSFER,
       imageSize: `${file.size} bytes`,
-      model: 'flux-1.1-pro',
+      model: 'face-to-many',
     })
 
     const newCredits = user.credits - CREDITS_PER_TRANSFER
 
-    // 13. SEND LOW CREDITS WARNING
+    // 12. SEND LOW CREDITS WARNING
     if (newCredits > 0 && newCredits <= 10) {
       sendCreditsLowEmail({
         userEmail: user.email,
@@ -171,12 +169,12 @@ export async function POST(request: NextRequest) {
       }).catch(err => console.error('Failed to send low credits email:', err))
     }
 
-    // 14. RETURN SUCCESS
+    // 13. RETURN SUCCESS
     return NextResponse.json({
       success: true,
       styledImage: resultDataUrl,
-      style: stylePreset,
-      prompt: finalPrompt,
+      style: mappedStyle,
+      prompt: prompt,
       creditsUsed: CREDITS_PER_TRANSFER,
       creditsRemaining: newCredits,
     })
