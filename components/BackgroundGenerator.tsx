@@ -3,16 +3,87 @@
 import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import ImageComparison from "./ImageComparison";
-import { FaTimes, FaInfoCircle, FaMagic } from "react-icons/fa";
+import { FaTimes, FaInfoCircle, FaMagic, FaShoppingCart, FaCamera, FaTree, FaSnowflake, FaUtensils, FaGem, FaPalette, FaHome } from "react-icons/fa";
 
-const PROMPT_PRESETS = [
-  { label: "Studio White", prompt: "professional white studio background, clean, minimal" },
-  { label: "Studio Gray", prompt: "professional gray studio background, gradient, elegant" },
-  { label: "Nature", prompt: "beautiful nature background, soft bokeh, outdoor, natural light" },
-  { label: "Office", prompt: "modern office background, professional workspace, clean" },
-  { label: "Urban", prompt: "urban city background, modern architecture, stylish" },
-  { label: "Abstract", prompt: "abstract gradient background, colorful, modern, artistic" },
+// Category definitions with icons and colors
+const PRESET_CATEGORIES = [
+  { id: 'ecommerce', label: 'E-commerce', icon: FaShoppingCart, gradient: 'from-blue-500 to-cyan-500' },
+  { id: 'studio', label: 'Studio', icon: FaCamera, gradient: 'from-gray-500 to-gray-700' },
+  { id: 'lifestyle', label: 'Lifestyle', icon: FaHome, gradient: 'from-amber-500 to-orange-500' },
+  { id: 'nature', label: 'Nature', icon: FaTree, gradient: 'from-green-500 to-emerald-500' },
+  { id: 'seasonal', label: 'Seasonal', icon: FaSnowflake, gradient: 'from-sky-400 to-blue-500' },
+  { id: 'food', label: 'Food & Drink', icon: FaUtensils, gradient: 'from-red-500 to-rose-500' },
+  { id: 'luxury', label: 'Luxury', icon: FaGem, gradient: 'from-purple-500 to-pink-500' },
+  { id: 'creative', label: 'Creative', icon: FaPalette, gradient: 'from-pink-500 to-violet-500' },
 ];
+
+// Comprehensive presets organized by category
+const PRESETS_BY_CATEGORY: Record<string, Array<{ label: string; prompt: string; negativePrompt: string }>> = {
+  ecommerce: [
+    { label: "Pure White", prompt: "pure white seamless studio background, e-commerce product photography, professional lighting, clean minimal, Amazon style listing photo", negativePrompt: "shadows, gradient, texture, patterns, objects, distractions" },
+    { label: "Light Gray", prompt: "light gray seamless studio background, soft professional lighting, e-commerce product shot, neutral clean backdrop", negativePrompt: "harsh shadows, color cast, gradients, textures" },
+    { label: "Soft Shadow", prompt: "white studio background with subtle soft shadow underneath, product photography, floating effect, professional e-commerce", negativePrompt: "harsh shadows, dark areas, cluttered background" },
+    { label: "Gradient White", prompt: "smooth white to light gray gradient background, professional product photography, soft lighting, e-commerce ready", negativePrompt: "harsh transitions, patterns, textures, distractions" },
+    { label: "Lifestyle Table", prompt: "clean white marble table surface with soft background blur, lifestyle product photography, minimalist e-commerce", negativePrompt: "cluttered, busy background, harsh shadows, distracting elements" },
+    { label: "Tech Dark", prompt: "sleek dark gradient background, premium tech product photography, subtle blue accent lighting, professional e-commerce", negativePrompt: "bright colors, cluttered, busy patterns, distracting elements" },
+  ],
+  studio: [
+    { label: "Classic White", prompt: "professional white studio background, clean, minimal, soft even lighting", negativePrompt: "shadows, gradients, textures, patterns" },
+    { label: "Neutral Gray", prompt: "professional medium gray studio background, even lighting, photography backdrop", negativePrompt: "color cast, patterns, textures, harsh shadows" },
+    { label: "Black Elegant", prompt: "pure black studio background, dramatic professional lighting, elegant minimal", negativePrompt: "gray areas, reflections, gradients, textures" },
+    { label: "Seamless Paper", prompt: "seamless paper studio backdrop, professional photography, soft lighting, clean", negativePrompt: "creases, wrinkles, seams, shadows" },
+    { label: "Cyclorama", prompt: "white cyclorama studio background, infinite white, no horizon line, professional lighting", negativePrompt: "seams, corners, shadows, floor lines" },
+    { label: "Split Light", prompt: "studio background with dramatic split lighting, half shadow half light, professional portrait", negativePrompt: "colored lights, patterns, busy background" },
+  ],
+  lifestyle: [
+    { label: "Modern Living", prompt: "modern minimalist living room background, soft natural lighting, neutral tones, blurred interior", negativePrompt: "cluttered, outdated furniture, harsh lighting" },
+    { label: "Cozy Home", prompt: "warm cozy home interior background, soft bokeh, natural light through window, lifestyle photography", negativePrompt: "cold tones, harsh shadows, cluttered mess" },
+    { label: "Office Desk", prompt: "clean modern office desk background, professional workspace, soft lighting, productive environment", negativePrompt: "messy desk, outdated equipment, cluttered" },
+    { label: "Kitchen Scene", prompt: "bright modern kitchen background, clean countertop, natural lighting, lifestyle photography", negativePrompt: "dirty dishes, cluttered counters, old appliances" },
+    { label: "Bedroom Cozy", prompt: "soft bedroom background, natural morning light, cozy bedding, peaceful atmosphere", negativePrompt: "messy bed, dark lighting, cluttered room" },
+    { label: "Cafe Vibes", prompt: "trendy cafe interior background, warm ambient lighting, bokeh effect, lifestyle photography", negativePrompt: "crowded, dirty tables, harsh lighting" },
+  ],
+  nature: [
+    { label: "Forest Bokeh", prompt: "beautiful forest background with soft bokeh, natural green tones, dappled sunlight, outdoor photography", negativePrompt: "harsh light, dead trees, dark shadows" },
+    { label: "Beach Sunset", prompt: "golden hour beach background, soft waves, warm sunset colors, peaceful ocean view", negativePrompt: "harsh midday sun, crowded beach, dark storm" },
+    { label: "Mountain Vista", prompt: "majestic mountain landscape background, soft morning mist, natural beauty, outdoor adventure", negativePrompt: "harsh weather, dark clouds, cluttered foreground" },
+    { label: "Garden Flowers", prompt: "beautiful garden background with colorful flowers, soft focus bokeh, natural sunlight, spring atmosphere", negativePrompt: "dead plants, weeds, harsh shadows" },
+    { label: "Autumn Leaves", prompt: "warm autumn forest background, golden and red leaves, soft natural lighting, fall atmosphere", negativePrompt: "bare trees, cold tones, dark shadows" },
+    { label: "Tropical Paradise", prompt: "tropical beach background, palm trees, turquoise water, paradise vacation vibes", negativePrompt: "crowded, trash, dark clouds, harsh sun" },
+  ],
+  seasonal: [
+    { label: "Winter Snow", prompt: "magical winter background with soft falling snow, cold blue tones, peaceful snowy landscape", negativePrompt: "harsh blizzard, dark storm, dirty snow" },
+    { label: "Christmas Festive", prompt: "festive Christmas background with bokeh lights, warm red and gold tones, holiday atmosphere", negativePrompt: "cluttered decorations, harsh lighting, tacky elements" },
+    { label: "Spring Bloom", prompt: "fresh spring background with cherry blossoms, soft pink petals, gentle sunlight, renewal atmosphere", negativePrompt: "dead flowers, harsh light, winter elements" },
+    { label: "Summer Vibes", prompt: "bright summer background, warm golden light, beach vacation vibes, relaxed atmosphere", negativePrompt: "cold tones, dark shadows, winter elements" },
+    { label: "Halloween Spooky", prompt: "atmospheric Halloween background, orange and purple tones, mysterious fog, spooky but elegant", negativePrompt: "gore, scary monsters, too dark, cheap decorations" },
+    { label: "Valentine Romance", prompt: "romantic Valentine's Day background, soft pink and red tones, hearts bokeh, love atmosphere", negativePrompt: "harsh colors, tacky decorations, cluttered" },
+  ],
+  food: [
+    { label: "Marble Surface", prompt: "elegant white marble surface background, food photography, soft overhead lighting, clean minimal", negativePrompt: "stains, cracks, busy patterns, cluttered" },
+    { label: "Rustic Wood", prompt: "warm rustic wooden table background, natural texture, food photography, cozy atmosphere", negativePrompt: "scratches, dirty surface, harsh lighting" },
+    { label: "Dark Moody", prompt: "dark moody food photography background, dramatic lighting, elegant shadows, restaurant quality", negativePrompt: "too bright, flat lighting, cluttered elements" },
+    { label: "Fresh Kitchen", prompt: "bright clean kitchen background, fresh ingredients scattered, natural lighting, culinary photography", negativePrompt: "dirty kitchen, cluttered mess, harsh shadows" },
+    { label: "Cafe Table", prompt: "trendy cafe table setting background, morning coffee vibes, soft natural light, lifestyle food photography", negativePrompt: "dirty dishes, cluttered table, harsh lighting" },
+    { label: "Outdoor Picnic", prompt: "beautiful outdoor picnic setting background, natural grass, soft sunlight, fresh and inviting", negativePrompt: "bugs, dirty blanket, harsh midday sun" },
+  ],
+  luxury: [
+    { label: "Black Velvet", prompt: "luxurious black velvet background, elegant texture, premium product photography, sophisticated lighting", negativePrompt: "cheap fabric, wrinkles, dust, harsh lighting" },
+    { label: "Gold Accent", prompt: "elegant dark background with subtle gold accents, luxury brand aesthetic, premium lighting", negativePrompt: "gaudy gold, cheap looking, too bright, cluttered" },
+    { label: "Marble Luxury", prompt: "premium white marble background with subtle gold veins, luxury product photography, elegant lighting", negativePrompt: "cheap marble, stains, busy patterns" },
+    { label: "Crystal Bokeh", prompt: "luxury background with crystal bokeh lights, elegant sparkle effect, premium brand aesthetic", negativePrompt: "gaudy, too busy, cheap glitter, harsh lights" },
+    { label: "Silk Waves", prompt: "flowing silk fabric background, elegant waves, luxury texture, soft sophisticated lighting", negativePrompt: "wrinkles, cheap fabric, harsh shadows" },
+    { label: "Rose Gold", prompt: "elegant rose gold metallic background, premium feminine aesthetic, soft luxury lighting", negativePrompt: "gaudy, cheap metallic, harsh reflections" },
+  ],
+  creative: [
+    { label: "Neon Glow", prompt: "vibrant neon glow background, cyberpunk aesthetic, pink and blue neon lights, futuristic", negativePrompt: "harsh pure colors, cluttered, too busy, pixelated" },
+    { label: "Abstract Waves", prompt: "artistic abstract wave background, flowing colors, gradient blend, creative photography", negativePrompt: "harsh transitions, pixelated, low quality, busy" },
+    { label: "Holographic", prompt: "iridescent holographic background, rainbow reflections, modern creative aesthetic, ethereal glow", negativePrompt: "gaudy colors, pixelated, cheap looking" },
+    { label: "Geometric", prompt: "modern geometric pattern background, clean lines, minimalist design, contemporary art", negativePrompt: "busy patterns, cluttered, harsh colors" },
+    { label: "Smoke Art", prompt: "artistic colorful smoke background, flowing wisps, dramatic lighting, creative photography", negativePrompt: "messy, chaotic, low quality, pixelated" },
+    { label: "Galaxy Space", prompt: "cosmic galaxy background, stars and nebula, deep space aesthetic, ethereal and majestic", negativePrompt: "cartoonish, low quality, too bright, harsh" },
+  ],
+};
 
 export default function BackgroundGenerator() {
   const { data: session } = useSession();
@@ -25,9 +96,17 @@ export default function BackgroundGenerator() {
   const [imageInfo, setImageInfo] = useState<{width: number, height: number, size: number} | null>(null);
   const [creditsRemaining, setCreditsRemaining] = useState<number | null>(null);
 
-  const [prompt, setPrompt] = useState("professional studio background, clean, elegant");
-  const [negativePrompt, setNegativePrompt] = useState("low quality, blurry, distorted, ugly");
+  const [prompt, setPrompt] = useState("pure white seamless studio background, e-commerce product photography, professional lighting, clean minimal");
+  const [negativePrompt, setNegativePrompt] = useState("shadows, gradient, texture, patterns, objects, distractions");
   const [refinePrompt, setRefinePrompt] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('ecommerce');
+  const [selectedPreset, setSelectedPreset] = useState<string | null>("Pure White");
+
+  const handlePresetSelect = (preset: { label: string; prompt: string; negativePrompt: string }) => {
+    setPrompt(preset.prompt);
+    setNegativePrompt(preset.negativePrompt);
+    setSelectedPreset(preset.label);
+  };
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -123,9 +202,10 @@ export default function BackgroundGenerator() {
         throw new Error("No generated image in response");
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Background generation error:", error);
-      alert(`Failed to generate background: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      alert(`Failed to generate background: ${errorMessage}`);
       setProgress("");
     } finally {
       setProcessing(false);
@@ -245,28 +325,63 @@ export default function BackgroundGenerator() {
             </div>
           )}
 
-          {/* Prompt Settings */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6 space-y-4">
+          {/* Background Settings with Categories */}
+          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6 space-y-5">
             <h3 className="text-lg font-semibold flex items-center gap-2">
               <FaMagic className="text-pink-400" />
               Background Settings
             </h3>
 
-            {/* Preset Buttons */}
-            <div className="flex flex-wrap gap-2">
-              {PROMPT_PRESETS.map((preset) => (
-                <button
-                  key={preset.label}
-                  onClick={() => setPrompt(preset.prompt)}
-                  className={`px-3 py-2 rounded-lg text-sm transition ${
-                    prompt === preset.prompt
-                      ? 'bg-pink-500 text-white'
-                      : 'bg-gray-700 hover:bg-gray-600 text-gray-300'
-                  }`}
-                >
-                  {preset.label}
-                </button>
-              ))}
+            {/* Category Tabs */}
+            <div className="space-y-3">
+              <label className="block text-sm font-medium text-gray-400">
+                Choose a category
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {PRESET_CATEGORIES.map((category) => {
+                  const IconComponent = category.icon;
+                  const isActive = activeCategory === category.id;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => {
+                        setActiveCategory(category.id);
+                        setSelectedPreset(null);
+                      }}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                        isActive
+                          ? `bg-gradient-to-r ${category.gradient} text-white shadow-lg`
+                          : 'bg-gray-700/50 hover:bg-gray-700 text-gray-300 border border-gray-600'
+                      }`}
+                    >
+                      <IconComponent className="w-4 h-4" />
+                      {category.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Preset Buttons for Selected Category */}
+            <div className="space-y-3">
+              <label className="block text-sm font-medium text-gray-400">
+                Select a preset from {PRESET_CATEGORIES.find(c => c.id === activeCategory)?.label}
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {PRESETS_BY_CATEGORY[activeCategory]?.map((preset) => (
+                  <button
+                    key={preset.label}
+                    onClick={() => handlePresetSelect(preset)}
+                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-all text-left ${
+                      selectedPreset === preset.label
+                        ? 'bg-pink-500 text-white ring-2 ring-pink-400 ring-offset-2 ring-offset-gray-800'
+                        : 'bg-gray-700/70 hover:bg-gray-600 text-gray-200 border border-gray-600'
+                    }`}
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Custom Prompt */}
@@ -276,9 +391,12 @@ export default function BackgroundGenerator() {
               </label>
               <textarea
                 value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
+                onChange={(e) => {
+                  setPrompt(e.target.value);
+                  setSelectedPreset(null);
+                }}
                 disabled={processing}
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm resize-none"
+                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm resize-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                 rows={2}
                 placeholder="professional studio background, clean, elegant..."
               />
@@ -294,7 +412,7 @@ export default function BackgroundGenerator() {
                 value={negativePrompt}
                 onChange={(e) => setNegativePrompt(e.target.value)}
                 disabled={processing}
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm"
+                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                 placeholder="low quality, blurry, distorted..."
               />
             </div>
@@ -338,7 +456,7 @@ export default function BackgroundGenerator() {
                         <p className="text-gray-400">{progress}</p>
                       </div>
                     ) : (
-                      <p className="text-gray-500">Click "Generate Background" to process</p>
+                      <p className="text-gray-500">Click &quot;Generate Background&quot; to process</p>
                     )}
                   </div>
                 </div>
