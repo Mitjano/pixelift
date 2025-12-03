@@ -1,10 +1,12 @@
 "use client";
 
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 
 /**
  * Before/After image comparison component
  * Used by: Upscaler, BackgroundRemover, ImageExpander
+ *
+ * Uses native img tags to avoid Next.js Image issues with API routes
  */
 
 export interface ImageComparisonProps {
@@ -48,11 +50,10 @@ export default function ImageComparison({
           {originalLabel}
         </h4>
         <div className={`relative ${aspect} rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700`}>
-          <Image
+          <img
             src={originalUrl}
             alt={originalLabel}
-            fill
-            className="object-contain"
+            className="absolute inset-0 w-full h-full object-contain"
           />
         </div>
       </div>
@@ -64,11 +65,10 @@ export default function ImageComparison({
           {processedLabel}
         </h4>
         <div className={`relative ${aspect} rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700`}>
-          <Image
+          <img
             src={processedUrl}
             alt={processedLabel}
-            fill
-            className="object-contain"
+            className="absolute inset-0 w-full h-full object-contain"
           />
         </div>
       </div>

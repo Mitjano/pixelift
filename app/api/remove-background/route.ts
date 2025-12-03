@@ -149,8 +149,7 @@ export async function POST(request: NextRequest) {
         }).catch(err => console.error('Credits low email failed:', err))
       }
 
-
-      // 12. Return success
+      // 12. Return success with URLs to view endpoint
       return NextResponse.json({
         success: true,
         image: {

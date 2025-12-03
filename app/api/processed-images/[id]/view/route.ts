@@ -2,13 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import path from 'path'
 import { ProcessedImagesDB } from '@/lib/processed-images-db'
-import { auth } from '@/lib/auth'
 import { validateSafePath } from '@/lib/security'
 
 /**
  * View image (original or processed)
  * Serves the image file from filesystem
  * Query param: ?type=original or ?type=processed (default)
+ *
+ * Note: No authentication required - images are accessed by unique UUID
+ * which is practically impossible to guess. This allows img tags to load
+ * images without session/cookie issues.
  */
 export async function GET(
   req: NextRequest,
@@ -19,12 +22,12 @@ export async function GET(
     const { searchParams } = new URL(req.url)
     const imageType = searchParams.get('type') || 'processed'
 
-    // Get session for auth
-    const session = await auth()
-    if (!session?.user?.email) {
+    // Validate UUID format to prevent abuse
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+    if (!uuidRegex.test(id)) {
       return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
+        { error: 'Invalid image ID' },
+        { status: 400 }
       )
     }
 
@@ -35,14 +38,6 @@ export async function GET(
       return NextResponse.json(
         { error: 'Image not found' },
         { status: 404 }
-      )
-    }
-
-    // Check ownership
-    if (image.userId !== session.user.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 403 }
       )
     }
 
