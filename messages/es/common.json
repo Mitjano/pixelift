@@ -2013,6 +2013,148 @@
       "exploreTools": "Explorar Todas las Herramientas"
     }
   },
+  "faqPage": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentra respuestas a preguntas comunes sobre las herramientas AI de Pixelift",
+    "categories": {
+      "all": "Todas",
+      "general": "General",
+      "pricing": "Precios",
+      "technical": "Técnico",
+      "account": "Cuenta"
+    },
+    "questions": {
+      "whatIsPixelift": {
+        "question": "¿Qué es Pixelift?",
+        "answer": "Pixelift es una plataforma de edición de imágenes impulsada por IA que ofrece herramientas profesionales para escalado de imágenes, eliminación de fondos, colorización, restauración y más. Todo el procesamiento se realiza utilizando modelos de IA de vanguardia como Real-ESRGAN, BRIA y DDColor."
+      },
+      "howDoesItWork": {
+        "question": "¿Cómo funciona el procesamiento de imágenes con IA?",
+        "answer": "Nuestros modelos de IA analizan tus imágenes utilizando redes neuronales de aprendizaje profundo entrenadas con millones de imágenes. Comprenden el contenido, contexto y detalles de la imagen para realizar mejoras inteligentes en lugar de simple manipulación de píxeles."
+      },
+      "whatFormats": {
+        "question": "¿Qué formatos de imagen son compatibles?",
+        "answer": "Soportamos formatos PNG, JPG, JPEG, WEBP, HEIC y BMP. El tamaño máximo de archivo es 10MB para usuarios gratuitos, con límites más altos para suscriptores premium."
+      },
+      "maxFileSize": {
+        "question": "¿Cuál es el tamaño máximo de archivo?",
+        "answer": "Los usuarios gratuitos pueden subir imágenes de hasta 10MB. Los usuarios premium tienen límites más altos. Para mejores resultados con el escalado, recomendamos imágenes de al menos 500x500 píxeles."
+      },
+      "isFree": {
+        "question": "¿Es Pixelift gratis?",
+        "answer": "¡Sí! Los nuevos usuarios obtienen 3 créditos gratuitos para probar cualquiera de nuestras herramientas. Cada herramienta cuesta 1-3 créditos por uso. Puedes comprar más créditos o suscribirte para créditos mensuales."
+      },
+      "whatAreCredits": {
+        "question": "¿Qué son los créditos y cómo funcionan?",
+        "answer": "Los créditos son nuestro sistema de pago. Cada tarea de procesamiento de IA cuesta 1-3 créditos dependiendo de la complejidad. Los nuevos usuarios obtienen 3 créditos gratuitos. Los créditos nunca expiran y se pueden comprar en paquetes o mediante suscripciones."
+      },
+      "refunds": {
+        "question": "¿Ofrecen reembolsos?",
+        "answer": "Debido al alto costo del procesamiento de IA, no ofrecemos reembolsos en créditos. Recomendamos probar nuestros créditos gratuitos primero para asegurarte de que las herramientas satisfagan tus necesidades antes de comprar."
+      },
+      "imageQuality": {
+        "question": "¿Qué tan buena es la calidad de imagen?",
+        "answer": "Nuestros modelos de IA producen resultados de nivel profesional. El escalado mantiene detalles nítidos incluso a 8x, la eliminación de fondos maneja bordes complejos como el cabello, y la colorización produce colores naturales y realistas."
+      },
+      "processingTime": {
+        "question": "¿Cuánto tiempo tarda el procesamiento?",
+        "answer": "La mayoría de las operaciones se completan en 5-20 segundos dependiendo de la herramienta y el tamaño de la imagen. El escalado a 8x puede tardar hasta 30 segundos para imágenes grandes."
+      },
+      "apiAccess": {
+        "question": "¿Hay una API disponible?",
+        "answer": "¡Sí! Ofrecemos una API REST para desarrolladores y empresas. La documentación de la API está disponible en tu panel de control. Los clientes empresariales pueden solicitar límites de API personalizados y soporte dedicado."
+      },
+      "dataPrivacy": {
+        "question": "¿Mis datos son privados y seguros?",
+        "answer": "Sí. Todas las imágenes se cifran durante la transferencia (HTTPS/TLS) y se eliminan automáticamente de nuestros servidores en 24 horas. Nunca compartimos tus datos con terceros y cumplimos plenamente con el RGPD."
+      },
+      "deleteAccount": {
+        "question": "¿Cómo elimino mi cuenta?",
+        "answer": "Puedes eliminar tu cuenta desde Configuración > Cuenta > Eliminar Cuenta. Esto eliminará permanentemente todos tus datos, incluido el historial de procesamiento. Los créditos no utilizados se perderán."
+      }
+    },
+    "stillHaveQuestions": {
+      "title": "¿Todavía Tienes Preguntas?",
+      "subtitle": "Nuestro equipo de soporte está aquí para ayudarte con cualquier pregunta o problema.",
+      "contactSupport": "Contactar Soporte"
+    }
+  },
+  "useCasesPage": {
+    "title": "Casos de Uso",
+    "subtitle": "Descubre cómo profesionales y empresas usan las herramientas AI de Pixelift para transformar sus imágenes",
+    "commonUses": "Usos comunes",
+    "cases": {
+      "photography": {
+        "title": "Fotografía",
+        "description": "Mejora fotos de clientes, restaura imágenes vintage y prepara impresiones con herramientas AI de nivel profesional.",
+        "use1": "Escala fotos de clientes de baja resolución",
+        "use2": "Restaura fotografías antiguas y dañadas",
+        "use3": "Mejora retratos con restauración facial"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Crea imágenes de productos consistentes y profesionales que aumentan las conversiones y generan confianza.",
+        "use1": "Elimina fondos para listados limpios",
+        "use2": "Genera packshots profesionales",
+        "use3": "Procesa catálogos de imágenes por lotes"
+      },
+      "printing": {
+        "title": "Impresión y Editorial",
+        "description": "Prepara imágenes para impresión de gran formato sin perder calidad ni detalles.",
+        "use1": "Escala imágenes para impresiones grandes",
+        "use2": "Elimina ruido de imágenes escaneadas",
+        "use3": "Coloriza fotografías históricas"
+      },
+      "gaming": {
+        "title": "Gaming y Modding",
+        "description": "Mejora texturas, escala assets de juegos y restaura gráficos retro.",
+        "use1": "Escala texturas de juegos a HD/4K",
+        "use2": "Mejora sprite art y pixel art",
+        "use3": "Restaura capturas de juegos clásicos"
+      },
+      "socialMedia": {
+        "title": "Redes Sociales",
+        "description": "Crea contenido llamativo que destaque en feeds saturados.",
+        "use1": "Elimina fondos para publicaciones limpias",
+        "use2": "Expande imágenes para diferentes formatos",
+        "use3": "Mejora fotos de baja calidad"
+      },
+      "realEstate": {
+        "title": "Inmobiliaria",
+        "description": "Haz que los listados de propiedades brillen con imágenes profesionales mejoradas.",
+        "use1": "Mejora fotografías de propiedades",
+        "use2": "Elimina objetos no deseados",
+        "use3": "Genera fondos de staging virtual"
+      },
+      "restoration": {
+        "title": "Restauración de Fotos",
+        "description": "Devuelve a la vida fotos familiares antiguas e imágenes históricas.",
+        "use1": "Coloriza fotos en blanco y negro",
+        "use2": "Elimina rayaduras y daños",
+        "use3": "Mejora rostros en retratos antiguos"
+      },
+      "video": {
+        "title": "Producción de Video",
+        "description": "Mejora fotogramas, crea miniaturas y prepara imágenes promocionales.",
+        "use1": "Escala fotogramas de video para pósters",
+        "use2": "Crea miniaturas HD para YouTube",
+        "use3": "Elimina fondos para superposiciones"
+      }
+    },
+    "toolsSection": {
+      "title": "Explora Nuestras Herramientas",
+      "upscaler": "Escalador AI",
+      "backgroundRemover": "Eliminador de Fondos",
+      "colorize": "Colorizador de Fotos",
+      "expand": "Expansor de Imágenes"
+    },
+    "cta": {
+      "title": "¿Listo para Transformar Tus Imágenes?",
+      "subtitle": "Comienza con 3 créditos gratis. Sin tarjeta de crédito.",
+      "tryTools": "Probar Herramientas",
+      "viewPricing": "Ver Precios"
+    }
+  },
   "imageCompressorPage": {
     "badge": "Impulsado por Sharp AI",
     "title": "Compresor de Imágenes AI",
@@ -2113,6 +2255,538 @@
       "subtitle": "Reduce tamaños de archivo dramáticamente manteniendo calidad visual. Perfecto para web y móvil.",
       "getCredits": "Obtener Créditos",
       "exploreTools": "Explorar Todas las Herramientas"
+    }
+  },
+  "privacyPage": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización",
+    "backToHome": "Volver al Inicio",
+    "sections": {
+      "infoCollect": {
+        "title": "1. Información que Recopilamos",
+        "intro": "Cuando usas Pixelift, recopilamos la siguiente información:",
+        "items": {
+          "account": "Información de la Cuenta:",
+          "accountDesc": "Nombre, dirección de correo electrónico cuando inicias sesión con Google",
+          "usage": "Datos de Uso:",
+          "usageDesc": "Imágenes que subes para procesar, estadísticas de uso de API",
+          "technical": "Datos Técnicos:",
+          "technicalDesc": "Dirección IP, tipo de navegador, información del dispositivo",
+          "payment": "Información de Pago:",
+          "paymentDesc": "Procesada de forma segura a través de proveedores de pago externos"
+        }
+      },
+      "howWeUse": {
+        "title": "2. Cómo Usamos tu Información",
+        "intro": "Usamos tu información para:",
+        "items": [
+          "Proporcionar y mejorar nuestros servicios de escalado de imágenes con IA",
+          "Procesar tus imágenes y entregar resultados",
+          "Gestionar tu cuenta y claves API",
+          "Enviar notificaciones relacionadas con el servicio",
+          "Analizar patrones de uso para mejorar nuestro servicio",
+          "Cumplir con obligaciones legales"
+        ]
+      },
+      "imageProcessing": {
+        "title": "3. Procesamiento y Almacenamiento de Imágenes",
+        "processing": "Procesamiento de Imágenes:",
+        "processingDesc": "Las imágenes que subes se procesan usando servicios de IA externos (Replicate.com) y se eliminan automáticamente después de completar el procesamiento.",
+        "tempStorage": "Almacenamiento Temporal:",
+        "tempStorageDesc": "Las imágenes procesadas se almacenan temporalmente para su descarga y se eliminan automáticamente en 24 horas.",
+        "noLongTerm": "Sin Almacenamiento a Largo Plazo:",
+        "noLongTermDesc": "No almacenamos permanentemente tus imágenes cargadas o procesadas a menos que las guardes explícitamente en tu cuenta."
+      },
+      "dataSharing": {
+        "title": "4. Compartir Datos",
+        "intro": "Solo compartimos tus datos con:",
+        "providers": "Proveedores de Servicios:",
+        "providersDesc": "Replicate (procesamiento IA), Firebase (autenticación y base de datos), procesadores de pagos",
+        "legal": "Requisitos Legales:",
+        "legalDesc": "Cuando lo requiera la ley o para proteger nuestros derechos",
+        "noSale": "Nunca vendemos tu información personal a terceros."
+      },
+      "dataSecurity": {
+        "title": "5. Seguridad de Datos",
+        "intro": "Implementamos medidas de seguridad estándar de la industria para proteger tus datos:",
+        "items": [
+          "Transmisión de datos encriptada (HTTPS/TLS)",
+          "Autenticación segura vía Google OAuth",
+          "Encriptación de claves API",
+          "Auditorías de seguridad regulares",
+          "Eliminación automática de imágenes después del procesamiento"
+        ]
+      },
+      "yourRights": {
+        "title": "6. Tus Derechos",
+        "intro": "Tienes derecho a:",
+        "access": "Acceso:",
+        "accessDesc": "Solicitar una copia de tus datos personales",
+        "rectification": "Rectificación:",
+        "rectificationDesc": "Corregir datos inexactos",
+        "deletion": "Eliminación:",
+        "deletionDesc": "Solicitar la eliminación de tu cuenta y datos",
+        "portability": "Portabilidad de Datos:",
+        "portabilityDesc": "Exportar tus datos",
+        "withdraw": "Retirar Consentimiento:",
+        "withdrawDesc": "Detener el procesamiento en cualquier momento",
+        "contact": "Para ejercer estos derechos, contáctanos en:"
+      },
+      "cookies": {
+        "title": "7. Cookies y Seguimiento",
+        "content": "Usamos cookies esenciales para autenticación y gestión de sesiones. No usamos cookies de seguimiento de terceros para publicidad."
+      },
+      "children": {
+        "title": "8. Privacidad de Menores",
+        "content": "Pixelift no está destinado a menores de 13 años. No recopilamos información a sabiendas de menores de 13 años."
+      },
+      "international": {
+        "title": "9. Transferencias Internacionales de Datos",
+        "content": "Tus datos pueden procesarse en servidores ubicados en la Unión Europea y Estados Unidos. Aseguramos protección adecuada mediante cláusulas contractuales estándar."
+      },
+      "changes": {
+        "title": "10. Cambios en esta Política",
+        "content": "Podemos actualizar esta Política de Privacidad de vez en cuando. Te notificaremos de cambios significativos por correo electrónico o a través de nuestro servicio."
+      },
+      "contact": {
+        "title": "11. Contáctanos",
+        "dataController": "Responsable del Tratamiento de Datos:",
+        "questions": "Si tienes preguntas sobre esta Política de Privacidad, contáctanos:",
+        "email": "Correo electrónico:",
+        "website": "Sitio web:"
+      }
+    },
+    "gdprNote": "Esta política de privacidad cumple con el RGPD (Reglamento General de Protección de Datos) y las leyes de privacidad aplicables."
+  },
+  "termsPage": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización",
+    "backToHome": "Volver al Inicio",
+    "sections": {
+      "acceptance": {
+        "title": "1. Aceptación de los Términos",
+        "content": "Al acceder y usar Pixelift (\"el Servicio\"), aceptas estar sujeto a estos Términos de Servicio. Si no estás de acuerdo con estos términos, por favor no uses nuestro servicio."
+      },
+      "description": {
+        "title": "2. Descripción del Servicio",
+        "intro": "Pixelift proporciona servicios de escalado y mejora de imágenes con IA a través de:",
+        "webApp": "Aplicación Web:",
+        "webAppDesc": "Interfaz interactiva de escalado de imágenes",
+        "api": "API Empresarial:",
+        "apiDesc": "Acceso programático para desarrolladores y empresas",
+        "batch": "Procesamiento por Lotes:",
+        "batchDesc": "Procesamiento de imágenes de alto volumen para clientes empresariales"
+      },
+      "registration": {
+        "title": "3. Registro de Cuenta",
+        "intro": "Para usar Pixelift, debes:",
+        "items": [
+          "Tener al menos 13 años de edad",
+          "Proporcionar información de registro precisa y completa",
+          "Mantener la seguridad de las credenciales de tu cuenta",
+          "Aceptar responsabilidad por todas las actividades bajo tu cuenta"
+        ]
+      },
+      "acceptableUse": {
+        "title": "4. Uso Aceptable",
+        "intro": "Aceptas NO:",
+        "items": [
+          "Subir contenido ilegal, dañino u ofensivo",
+          "Violar los derechos de propiedad intelectual de otros",
+          "Usar el servicio con fines fraudulentos o engañosos",
+          "Intentar eludir límites de tasa o medidas de seguridad",
+          "Subir imágenes que contengan datos personales sin consentimiento",
+          "Revender o redistribuir nuestro servicio sin autorización",
+          "Usar el servicio para crear deepfakes o contenido engañoso",
+          "Sobrecargar o interrumpir nuestra infraestructura"
+        ],
+        "violation": "La violación de estos términos puede resultar en la suspensión o terminación inmediata de la cuenta."
+      },
+      "intellectualProperty": {
+        "title": "5. Propiedad Intelectual",
+        "yourContent": "Tu Contenido:",
+        "yourContentDesc": "Conservas todos los derechos sobre las imágenes que subes. Al usar nuestro servicio, nos otorgas una licencia limitada para procesar tus imágenes únicamente con el fin de proporcionar el servicio.",
+        "ourService": "Nuestro Servicio:",
+        "ourServiceDesc": "Pixelift, incluido nuestro software, algoritmos, diseños y documentación, está protegido por derechos de autor y otras leyes de propiedad intelectual. No puedes copiar, modificar o realizar ingeniería inversa de nuestro servicio."
+      },
+      "pricing": {
+        "title": "6. Planes de Suscripción y Precios",
+        "plansTitle": "6.1 Planes",
+        "free": "Gratuito:",
+        "freeDesc": "Uso limitado con marcas de agua",
+        "pro": "Pro:",
+        "proDesc": "$29/mes - Escalado ilimitado, sin marcas de agua",
+        "enterprise": "Empresarial:",
+        "enterpriseDesc": "Precios personalizados para acceso API y procesamiento masivo",
+        "billingTitle": "6.2 Facturación",
+        "billingItems": [
+          "Las suscripciones se facturan mensual o anualmente por adelantado",
+          "Los precios están en USD a menos que se indique lo contrario",
+          "Nos autorizas a cobrar tu método de pago por todas las tarifas",
+          "Los impuestos pueden aplicarse según tu ubicación"
+        ],
+        "cancellationTitle": "6.3 Cancelación y Reembolsos",
+        "cancellationItems": [
+          "Puedes cancelar tu suscripción en cualquier momento",
+          "La cancelación tiene efecto al final del período de facturación actual",
+          "No hay reembolsos por meses parciales o créditos no utilizados",
+          "Los contratos empresariales pueden tener términos de cancelación específicos"
+        ]
+      },
+      "apiUsage": {
+        "title": "7. Uso de API",
+        "rateLimits": "Límites de Tasa:",
+        "freeLimit": "Gratuito: 10 solicitudes/hora",
+        "starterLimit": "Inicial: 100 solicitudes/hora",
+        "professionalLimit": "Profesional: 500 solicitudes/hora",
+        "enterpriseLimit": "Empresarial: 2,000 solicitudes/hora",
+        "exceeding": "Exceder los límites de tasa puede resultar en la suspensión temporal de la API. Los clientes empresariales pueden solicitar límites personalizados."
+      },
+      "dataPrivacy": {
+        "title": "8. Datos y Privacidad",
+        "content": "Tu uso de Pixelift está sujeto a nuestra",
+        "privacyLink": "Política de Privacidad",
+        "contentAfter": "No almacenamos permanentemente tus imágenes cargadas. Todas las imágenes se eliminan automáticamente en 24 horas."
+      },
+      "availability": {
+        "title": "9. Disponibilidad del Servicio",
+        "intro": "Nos esforzamos por un 99.9% de tiempo de actividad pero no podemos garantizar un servicio ininterrumpido. No somos responsables de:",
+        "items": [
+          "Tiempo de inactividad por mantenimiento programado",
+          "Interrupciones de servicios de terceros (ej. proveedores de IA, alojamiento en la nube)",
+          "Eventos de fuerza mayor fuera de nuestro control"
+        ]
+      },
+      "disclaimers": {
+        "title": "10. Descargos de Responsabilidad y Limitaciones de Responsabilidad",
+        "asIs": "EL SERVICIO SE PROPORCIONA \"TAL CUAL\" SIN GARANTÍAS DE NINGÚN TIPO.",
+        "intro": "Descartamos todas las garantías, incluyendo:",
+        "items": [
+          "Precisión o calidad de imágenes escaladas",
+          "Comerciabilidad o idoneidad para un propósito particular",
+          "No infracción de derechos de terceros"
+        ],
+        "liability": "Nuestra responsabilidad total por cualquier reclamación no excederá el monto que nos hayas pagado en los 12 meses anteriores a la reclamación."
+      },
+      "indemnification": {
+        "title": "11. Indemnización",
+        "content": "Aceptas indemnizar y eximir de responsabilidad a Pixelift de cualquier reclamación, daño o gasto que surja de tu uso del servicio o violación de estos términos."
+      },
+      "termination": {
+        "title": "12. Terminación",
+        "intro": "Podemos terminar o suspender tu cuenta inmediatamente si:",
+        "items": [
+          "Violas estos Términos de Servicio",
+          "No pagas las tarifas de suscripción",
+          "Participas en actividades fraudulentas o ilegales"
+        ],
+        "afterTermination": "Tras la terminación, tu derecho a usar el servicio cesa inmediatamente. Podemos eliminar los datos de tu cuenta de acuerdo con nuestra política de retención."
+      },
+      "changes": {
+        "title": "13. Cambios en los Términos",
+        "content": "Nos reservamos el derecho de modificar estos Términos en cualquier momento. Te notificaremos de cambios significativos por correo electrónico o a través del servicio. El uso continuado después de los cambios constituye la aceptación de los nuevos términos."
+      },
+      "governingLaw": {
+        "title": "14. Ley Aplicable",
+        "content": "Estos Términos se rigen por las leyes de Polonia. Cualquier disputa se resolverá en los tribunales de Polonia."
+      },
+      "contact": {
+        "title": "15. Información de Contacto",
+        "operatedBy": "Servicio operado por:",
+        "questions": "Para preguntas sobre estos Términos, contáctanos:",
+        "email": "Correo electrónico:",
+        "support": "Soporte:",
+        "website": "Sitio web:"
+      }
+    },
+    "agreement": "Al usar Pixelift, reconoces que has leído, entendido y aceptas estar sujeto a estos Términos de Servicio."
+  },
+  "cookiesPage": {
+    "title": "Política de Cookies",
+    "lastUpdated": "Última actualización: Enero 2025",
+    "backToHome": "Volver al Inicio",
+    "sections": {
+      "whatAreCookies": {
+        "title": "¿Qué Son las Cookies?",
+        "content": "Las cookies son pequeños archivos de texto que se colocan en tu ordenador o dispositivo móvil cuando visitas un sitio web. Se utilizan ampliamente para hacer que los sitios web funcionen de manera más eficiente y proporcionen información a los propietarios del sitio."
+      },
+      "howWeUse": {
+        "title": "Cómo Usamos las Cookies",
+        "content": "Pixelift usa cookies para mejorar tu experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido. Usamos tanto cookies propias (establecidas por nosotros) como cookies de terceros (establecidas por nuestros proveedores de servicios)."
+      },
+      "types": {
+        "title": "Tipos de Cookies que Usamos",
+        "necessary": {
+          "title": "Cookies Necesarias",
+          "alwaysActive": "Siempre Activas",
+          "description": "Estas cookies son esenciales para que el sitio web funcione correctamente. Permiten funciones básicas como navegación de páginas, autenticación y acceso a áreas seguras del sitio web.",
+          "examples": "Ejemplos:",
+          "items": {
+            "consent": "- Almacena tus preferencias de cookies",
+            "session": "- Sesión de autenticación",
+            "csrf": "- Token de seguridad"
+          }
+        },
+        "functional": {
+          "title": "Cookies Funcionales",
+          "description": "Estas cookies permiten funcionalidad mejorada y personalización, como recordar tus preferencias, configuración de idioma y personalizaciones de la interfaz de usuario.",
+          "examples": "Ejemplos:",
+          "items": {
+            "preferences": "- Preferencias y configuración de UI",
+            "theme": "- Preferencia de modo oscuro/claro",
+            "language": "- Preferencia de idioma"
+          }
+        },
+        "analytics": {
+          "title": "Cookies de Análisis",
+          "description": "Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web mediante la recopilación y notificación de información de forma anónima. Esto nos ayuda a mejorar nuestro servicio y experiencia de usuario.",
+          "examples": "Ejemplos:",
+          "items": {
+            "ga": "- Seguimiento de Google Analytics (si está habilitado)",
+            "gid": "- Seguimiento de sesión de Google Analytics",
+            "gat": "- Limitación de solicitudes de Google Analytics"
+          }
+        },
+        "marketing": {
+          "title": "Cookies de Marketing",
+          "description": "Estas cookies se usan para rastrear visitantes a través de sitios web para mostrar anuncios relevantes. Nos ayudan a medir la efectividad de nuestras campañas de marketing.",
+          "examples": "Ejemplos:",
+          "items": {
+            "fbp": "- Píxel de Facebook (si está habilitado)",
+            "ads": "- Identificadores de publicidad",
+            "conversion": "- Seguimiento de conversiones"
+          }
+        }
+      },
+      "thirdParty": {
+        "title": "Cookies de Terceros",
+        "intro": "Usamos servicios de proveedores externos que pueden establecer sus propias cookies:",
+        "items": {
+          "google": "Google OAuth:",
+          "googleDesc": "Para autenticación segura",
+          "replicate": "Replicate AI:",
+          "replicateDesc": "Para procesamiento de imágenes (no establece cookies directamente)",
+          "firebase": "Firebase:",
+          "firebaseDesc": "Para autenticación y gestión de usuarios",
+          "analytics": "Google Analytics:",
+          "analyticsDesc": "Para análisis de sitio web (si consientes)"
+        }
+      },
+      "managing": {
+        "title": "Gestionar tus Preferencias de Cookies",
+        "intro": "Puedes controlar y gestionar cookies de varias maneras:",
+        "items": {
+          "banner": "Banner de Cookies:",
+          "bannerDesc": "Cuando visitas nuestro sitio por primera vez, puedes elegir qué cookies aceptar",
+          "browser": "Configuración del Navegador:",
+          "browserDesc": "La mayoría de los navegadores te permiten bloquear o eliminar cookies a través de su configuración",
+          "optOut": "Enlaces de Exclusión:",
+          "optOutDesc": "Algunos servicios de terceros proporcionan mecanismos de exclusión"
+        },
+        "warning": "Nota Importante:",
+        "warningText": "Si desactivas las cookies necesarias, algunas funciones de nuestro sitio web pueden no funcionar correctamente. Puedes experimentar funcionalidad reducida o no poder usar ciertas características."
+      },
+      "browserInstructions": {
+        "title": "Instrucciones Específicas del Navegador",
+        "chrome": "Chrome:",
+        "chromeInstr": "Configuración → Privacidad y seguridad → Cookies y otros datos del sitio",
+        "firefox": "Firefox:",
+        "firefoxInstr": "Configuración → Privacidad y Seguridad → Cookies y Datos del Sitio",
+        "safari": "Safari:",
+        "safariInstr": "Preferencias → Privacidad → Gestionar Datos del Sitio Web",
+        "edge": "Edge:",
+        "edgeInstr": "Configuración → Permisos de cookies y sitios → Gestionar y eliminar cookies"
+      },
+      "retention": {
+        "title": "Retención de Cookies",
+        "intro": "Las cookies se almacenan durante diferentes períodos según su propósito:",
+        "session": "Cookies de Sesión:",
+        "sessionDesc": "Se eliminan cuando cierras tu navegador",
+        "persistent": "Cookies Persistentes:",
+        "persistentDesc": "Permanecen en tu dispositivo por un período establecido (típicamente 1-2 años)",
+        "auth": "Cookies de Autenticación:",
+        "authDesc": "Expiran después de 30 días de inactividad"
+      },
+      "updates": {
+        "title": "Actualizaciones de esta Política",
+        "content": "Podemos actualizar esta Política de Cookies de vez en cuando para reflejar cambios en nuestras prácticas o por razones legales, operativas o regulatorias. Te notificaremos de cualquier cambio material actualizando la fecha de \"Última actualización\" en la parte superior de esta página."
+      },
+      "contact": {
+        "title": "Contáctanos",
+        "operatedBy": "Servicio operado por:",
+        "questions": "Si tienes alguna pregunta sobre nuestro uso de cookies, por favor contáctanos:",
+        "email": "Correo electrónico:",
+        "website": "Sitio web:"
+      }
+    },
+    "relatedPolicies": "Políticas Relacionadas",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio"
+  },
+  "gdprPage": {
+    "title": "Cumplimiento del RGPD",
+    "subtitle": "Tus derechos de protección de datos bajo el Reglamento General de Protección de Datos",
+    "lastUpdated": "Última actualización",
+    "quickLinks": {
+      "title": "Enlaces Rápidos",
+      "rights": "Tus Derechos",
+      "dataCollection": "Datos que Recopilamos",
+      "dataUsage": "Cómo Usamos los Datos",
+      "dataRetention": "Retención de Datos",
+      "dataSecurity": "Seguridad de Datos",
+      "contact": "Contactar DPO"
+    },
+    "sections": {
+      "commitment": {
+        "title": "Nuestro Compromiso con el RGPD",
+        "content": "Pixelift está comprometido con la protección de tus datos personales y el respeto de tus derechos de privacidad. Cumplimos con el Reglamento General de Protección de Datos (RGPD) y otras leyes aplicables de protección de datos."
+      },
+      "rights": {
+        "title": "Tus Derechos bajo el RGPD",
+        "intro": "Bajo el RGPD, tienes los siguientes derechos con respecto a tus datos personales:",
+        "items": {
+          "access": {
+            "title": "Derecho de Acceso",
+            "description": "Puedes solicitar una copia de todos los datos personales que tenemos sobre ti."
+          },
+          "rectification": {
+            "title": "Derecho de Rectificación",
+            "description": "Puedes solicitar la corrección de datos inexactos o incompletos."
+          },
+          "erasure": {
+            "title": "Derecho de Supresión (Derecho al Olvido)",
+            "description": "Puedes solicitar la eliminación de tus datos personales en ciertas circunstancias."
+          },
+          "restrict": {
+            "title": "Derecho a Restringir el Procesamiento",
+            "description": "Puedes solicitar que limitemos cómo usamos tus datos."
+          },
+          "portability": {
+            "title": "Derecho a la Portabilidad de Datos",
+            "description": "Puedes solicitar tus datos en un formato estructurado y de uso común."
+          },
+          "object": {
+            "title": "Derecho de Oposición",
+            "description": "Puedes oponerte a ciertos tipos de procesamiento, incluido el marketing directo."
+          },
+          "automated": {
+            "title": "Derechos Relacionados con la Toma de Decisiones Automatizada",
+            "description": "Tienes derecho a no estar sujeto a decisiones basadas únicamente en procesamiento automatizado."
+          }
+        }
+      },
+      "dataCollection": {
+        "title": "Datos que Recopilamos",
+        "intro": "Recopilamos y procesamos los siguientes tipos de datos personales:",
+        "items": {
+          "account": "Información de la Cuenta:",
+          "accountDesc": "Nombre, dirección de correo electrónico, foto de perfil (cuando te registras)",
+          "images": "Imágenes:",
+          "imagesDesc": "Fotos que subes para procesar (eliminadas automáticamente después de 24 horas)",
+          "usage": "Datos de Uso:",
+          "usageDesc": "Número de imágenes procesadas, funciones utilizadas, marcas de tiempo",
+          "technical": "Datos Técnicos:",
+          "technicalDesc": "Dirección IP, tipo de navegador, información del dispositivo, cookies",
+          "payment": "Información de Pago:",
+          "paymentDesc": "Procesada de forma segura por Stripe (no almacenamos detalles de tarjetas)"
+        }
+      },
+      "dataUsage": {
+        "title": "Cómo Usamos tus Datos",
+        "intro": "Procesamos tus datos personales para los siguientes propósitos:",
+        "items": [
+          "Proporcionar y mantener nuestro servicio de escalado de imágenes",
+          "Procesar tus imágenes usando tecnología IA",
+          "Gestionar tu cuenta y suscripciones",
+          "Comunicarnos contigo sobre actualizaciones del servicio",
+          "Mejorar nuestros servicios y desarrollar nuevas funciones",
+          "Garantizar seguridad y prevenir fraude",
+          "Cumplir con obligaciones legales"
+        ]
+      },
+      "legalBasis": {
+        "title": "Base Legal para el Procesamiento",
+        "intro": "Procesamos tus datos basándonos en:",
+        "contract": {
+          "title": "Ejecución del Contrato",
+          "description": "Procesamiento necesario para proporcionarte nuestro servicio"
+        },
+        "legitimate": {
+          "title": "Interés Legítimo",
+          "description": "Mejorar nuestro servicio y prevenir fraude"
+        },
+        "consent": {
+          "title": "Consentimiento",
+          "description": "Para comunicaciones de marketing (puedes darte de baja en cualquier momento)"
+        },
+        "legal": {
+          "title": "Obligación Legal",
+          "description": "Cumplimiento con leyes y regulaciones aplicables"
+        }
+      },
+      "retention": {
+        "title": "Retención de Datos",
+        "images": "Imágenes Subidas:",
+        "imagesDesc": "Eliminadas automáticamente después de 24 horas",
+        "account": "Datos de la Cuenta:",
+        "accountDesc": "Retenidos mientras tu cuenta esté activa",
+        "logs": "Registros de Uso:",
+        "logsDesc": "Retenidos hasta 12 meses",
+        "afterDeletion": "Después de la Eliminación de la Cuenta:",
+        "afterDeletionDesc": "Todos los datos personales eliminados en 30 días (excepto cuando se requiera legalmente retenerlos)"
+      },
+      "security": {
+        "title": "Seguridad de Datos",
+        "intro": "Implementamos medidas técnicas y organizativas apropiadas para proteger tus datos:",
+        "encryption": {
+          "title": "Encriptación",
+          "description": "Todos los datos encriptados en tránsito (HTTPS/TLS)"
+        },
+        "storage": {
+          "title": "Almacenamiento Seguro",
+          "description": "Datos almacenados en centros de datos seguros y certificados"
+        },
+        "access": {
+          "title": "Control de Acceso",
+          "description": "Controles de acceso estrictos y autenticación"
+        },
+        "audits": {
+          "title": "Auditorías Regulares",
+          "description": "Auditorías de seguridad y evaluaciones de vulnerabilidad"
+        }
+      },
+      "sharing": {
+        "title": "Compartir Datos",
+        "intro": "No vendemos tus datos personales. Podemos compartir datos con:",
+        "providers": "Proveedores de Servicios:",
+        "providersDesc": "Replicate (procesamiento IA), Stripe (pagos), proveedores de alojamiento",
+        "legal": "Requisitos Legales:",
+        "legalDesc": "Cuando lo requiera la ley o para proteger nuestros derechos"
+      },
+      "international": {
+        "title": "Transferencias Internacionales de Datos",
+        "content": "Tus datos pueden transferirse y procesarse en países fuera del Espacio Económico Europeo (EEE). Aseguramos salvaguardias apropiadas, incluidas Cláusulas Contractuales Estándar aprobadas por la Comisión Europea."
+      },
+      "exercise": {
+        "title": "Cómo Ejercer tus Derechos",
+        "intro": "Para ejercer cualquiera de tus derechos del RGPD, por favor contáctanos:",
+        "dpoTitle": "Contactar a Nuestro Delegado de Protección de Datos",
+        "email": "Correo electrónico:",
+        "responseTime": "Tiempo de Respuesta:",
+        "responseTimeDesc": "Responderemos en 30 días",
+        "complaint": "También tienes derecho a presentar una queja ante tu autoridad local de protección de datos.",
+        "contactSupport": "Contactar Soporte"
+      },
+      "updates": {
+        "title": "Actualizaciones de la Política",
+        "content": "Podemos actualizar esta página de cumplimiento del RGPD de vez en cuando. Te notificaremos de cualquier cambio material por correo electrónico o mediante un aviso destacado en nuestro sitio web. Tu uso continuado de nuestro servicio después de dichos cambios constituye la aceptación de la política actualizada."
+      }
+    },
+    "relatedPolicies": {
+      "title": "Políticas Relacionadas",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio",
+      "cookies": "Política de Cookies"
     }
   }
 }

@@ -2013,6 +2013,148 @@
       "exploreTools": "Explore All Tools"
     }
   },
+  "faqPage": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about Pixelift AI tools",
+    "categories": {
+      "all": "All",
+      "general": "General",
+      "pricing": "Pricing",
+      "technical": "Technical",
+      "account": "Account"
+    },
+    "questions": {
+      "whatIsPixelift": {
+        "question": "What is Pixelift?",
+        "answer": "Pixelift is an AI-powered image editing platform that offers professional tools for image upscaling, background removal, colorization, restoration, and more. All processing is done using cutting-edge AI models like Real-ESRGAN, BRIA, and DDColor."
+      },
+      "howDoesItWork": {
+        "question": "How does AI image processing work?",
+        "answer": "Our AI models analyze your images using deep learning neural networks trained on millions of images. They understand image content, context, and details to make intelligent enhancements rather than simple pixel manipulation."
+      },
+      "whatFormats": {
+        "question": "What image formats are supported?",
+        "answer": "We support PNG, JPG, JPEG, WEBP, HEIC, and BMP formats. Maximum file size is 10MB for free users, with higher limits for premium subscribers."
+      },
+      "maxFileSize": {
+        "question": "What is the maximum file size?",
+        "answer": "Free users can upload images up to 10MB. Premium users have higher limits. For best results with upscaling, we recommend images at least 500x500 pixels."
+      },
+      "isFree": {
+        "question": "Is Pixelift free to use?",
+        "answer": "Yes! New users get 3 free credits to try any of our tools. Each tool costs 1-3 credits per use. You can purchase more credits or subscribe for monthly credits."
+      },
+      "whatAreCredits": {
+        "question": "What are credits and how do they work?",
+        "answer": "Credits are our payment system. Each AI processing task costs 1-3 credits depending on complexity. New users get 3 free credits. Credits never expire and can be purchased in packages or through subscriptions."
+      },
+      "refunds": {
+        "question": "Do you offer refunds?",
+        "answer": "Due to the high cost of AI processing, we don't offer refunds on credits. We recommend trying our free credits first to ensure the tools meet your needs before purchasing."
+      },
+      "imageQuality": {
+        "question": "How good is the image quality?",
+        "answer": "Our AI models produce professional-grade results. Upscaling maintains sharp details even at 8x, background removal handles complex edges like hair, and colorization produces natural, realistic colors."
+      },
+      "processingTime": {
+        "question": "How long does processing take?",
+        "answer": "Most operations complete in 5-20 seconds depending on the tool and image size. Upscaling to 8x may take up to 30 seconds for large images."
+      },
+      "apiAccess": {
+        "question": "Is there an API available?",
+        "answer": "Yes! We offer a REST API for developers and businesses. API documentation is available in your dashboard. Enterprise customers can request custom API limits and dedicated support."
+      },
+      "dataPrivacy": {
+        "question": "Is my data private and secure?",
+        "answer": "Yes. All images are encrypted during transfer (HTTPS/TLS) and automatically deleted from our servers within 24 hours. We never share your data with third parties and are fully GDPR compliant."
+      },
+      "deleteAccount": {
+        "question": "How do I delete my account?",
+        "answer": "You can delete your account from Settings > Account > Delete Account. This will permanently remove all your data, including processing history. Unused credits will be forfeited."
+      }
+    },
+    "stillHaveQuestions": {
+      "title": "Still Have Questions?",
+      "subtitle": "Our support team is here to help you with any questions or issues.",
+      "contactSupport": "Contact Support"
+    }
+  },
+  "useCasesPage": {
+    "title": "Use Cases",
+    "subtitle": "Discover how professionals and businesses use Pixelift AI tools to transform their images",
+    "commonUses": "Common uses",
+    "cases": {
+      "photography": {
+        "title": "Photography",
+        "description": "Enhance client photos, restore vintage images, and prepare prints with professional-grade AI tools.",
+        "use1": "Upscale low-resolution client photos",
+        "use2": "Restore old and damaged photographs",
+        "use3": "Enhance portraits with face restoration"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Create consistent, professional product images that increase conversions and build trust.",
+        "use1": "Remove backgrounds for clean listings",
+        "use2": "Generate professional packshots",
+        "use3": "Batch process catalog images"
+      },
+      "printing": {
+        "title": "Printing & Publishing",
+        "description": "Prepare images for large-format printing without losing quality or detail.",
+        "use1": "Upscale images for large prints",
+        "use2": "Remove noise from scanned images",
+        "use3": "Colorize historical photographs"
+      },
+      "gaming": {
+        "title": "Gaming & Modding",
+        "description": "Enhance textures, upscale game assets, and restore retro game graphics.",
+        "use1": "Upscale game textures to HD/4K",
+        "use2": "Enhance sprite art and pixel art",
+        "use3": "Restore classic game screenshots"
+      },
+      "socialMedia": {
+        "title": "Social Media",
+        "description": "Create eye-catching content that stands out in crowded feeds.",
+        "use1": "Remove backgrounds for clean posts",
+        "use2": "Expand images for different formats",
+        "use3": "Enhance low-quality photos"
+      },
+      "realEstate": {
+        "title": "Real Estate",
+        "description": "Make property listings shine with enhanced, professional imagery.",
+        "use1": "Enhance property photographs",
+        "use2": "Remove unwanted objects",
+        "use3": "Generate virtual staging backgrounds"
+      },
+      "restoration": {
+        "title": "Photo Restoration",
+        "description": "Bring old family photos and historical images back to life.",
+        "use1": "Colorize black & white photos",
+        "use2": "Remove scratches and damage",
+        "use3": "Enhance faces in old portraits"
+      },
+      "video": {
+        "title": "Video Production",
+        "description": "Enhance still frames, create thumbnails, and prepare promotional imagery.",
+        "use1": "Upscale video stills for posters",
+        "use2": "Create HD YouTube thumbnails",
+        "use3": "Remove backgrounds for overlays"
+      }
+    },
+    "toolsSection": {
+      "title": "Explore Our Tools",
+      "upscaler": "AI Upscaler",
+      "backgroundRemover": "Background Remover",
+      "colorize": "Photo Colorizer",
+      "expand": "Image Expander"
+    },
+    "cta": {
+      "title": "Ready to Transform Your Images?",
+      "subtitle": "Start with 3 free credits. No credit card required.",
+      "tryTools": "Try All Tools",
+      "viewPricing": "View Pricing"
+    }
+  },
   "imageCompressorPage": {
     "badge": "Powered by Sharp AI",
     "title": "AI Image Compressor",
@@ -2113,6 +2255,538 @@
       "subtitle": "Reduce file sizes dramatically while maintaining visual quality. Perfect for web and mobile.",
       "getCredits": "Get Credits",
       "exploreTools": "Explore All Tools"
+    }
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Home",
+    "sections": {
+      "infoCollect": {
+        "title": "1. Information We Collect",
+        "intro": "When you use Pixelift, we collect the following information:",
+        "items": {
+          "account": "Account Information:",
+          "accountDesc": "Name, email address when you sign in with Google",
+          "usage": "Usage Data:",
+          "usageDesc": "Images you upload for processing, API usage statistics",
+          "technical": "Technical Data:",
+          "technicalDesc": "IP address, browser type, device information",
+          "payment": "Payment Information:",
+          "paymentDesc": "Processed securely through third-party payment providers"
+        }
+      },
+      "howWeUse": {
+        "title": "2. How We Use Your Information",
+        "intro": "We use your information to:",
+        "items": [
+          "Provide and improve our AI image upscaling services",
+          "Process your images and deliver results",
+          "Manage your account and API keys",
+          "Send service-related notifications",
+          "Analyze usage patterns to improve our service",
+          "Comply with legal obligations"
+        ]
+      },
+      "imageProcessing": {
+        "title": "3. Image Processing and Storage",
+        "processing": "Image Processing:",
+        "processingDesc": "Images you upload are processed using third-party AI services (Replicate.com) and are automatically deleted after processing is complete.",
+        "tempStorage": "Temporary Storage:",
+        "tempStorageDesc": "Processed images are temporarily stored for download and are automatically deleted within 24 hours.",
+        "noLongTerm": "No Long-term Storage:",
+        "noLongTermDesc": "We do not permanently store your uploaded or processed images unless you explicitly save them to your account."
+      },
+      "dataSharing": {
+        "title": "4. Data Sharing",
+        "intro": "We share your data only with:",
+        "providers": "Service Providers:",
+        "providersDesc": "Replicate (AI processing), Firebase (authentication and database), payment processors",
+        "legal": "Legal Requirements:",
+        "legalDesc": "When required by law or to protect our rights",
+        "noSale": "We never sell your personal information to third parties."
+      },
+      "dataSecurity": {
+        "title": "5. Data Security",
+        "intro": "We implement industry-standard security measures to protect your data:",
+        "items": [
+          "Encrypted data transmission (HTTPS/TLS)",
+          "Secure authentication via Google OAuth",
+          "API key encryption",
+          "Regular security audits",
+          "Automatic image deletion after processing"
+        ]
+      },
+      "yourRights": {
+        "title": "6. Your Rights",
+        "intro": "You have the right to:",
+        "access": "Access:",
+        "accessDesc": "Request a copy of your personal data",
+        "rectification": "Rectification:",
+        "rectificationDesc": "Correct inaccurate data",
+        "deletion": "Deletion:",
+        "deletionDesc": "Request deletion of your account and data",
+        "portability": "Data Portability:",
+        "portabilityDesc": "Export your data",
+        "withdraw": "Withdraw Consent:",
+        "withdrawDesc": "Stop processing at any time",
+        "contact": "To exercise these rights, contact us at:"
+      },
+      "cookies": {
+        "title": "7. Cookies and Tracking",
+        "content": "We use essential cookies for authentication and session management. We do not use third-party tracking cookies for advertising."
+      },
+      "children": {
+        "title": "8. Children's Privacy",
+        "content": "Pixelift is not intended for children under 13. We do not knowingly collect information from children under 13."
+      },
+      "international": {
+        "title": "9. International Data Transfers",
+        "content": "Your data may be processed in servers located in the European Union and United States. We ensure adequate protection through standard contractual clauses."
+      },
+      "changes": {
+        "title": "10. Changes to This Policy",
+        "content": "We may update this Privacy Policy from time to time. We will notify you of significant changes via email or through our service."
+      },
+      "contact": {
+        "title": "11. Contact Us",
+        "dataController": "Data Controller:",
+        "questions": "If you have questions about this Privacy Policy, contact us:",
+        "email": "Email:",
+        "website": "Website:"
+      }
+    },
+    "gdprNote": "This privacy policy complies with GDPR (General Data Protection Regulation) and applicable privacy laws."
+  },
+  "termsPage": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Home",
+    "sections": {
+      "acceptance": {
+        "title": "1. Acceptance of Terms",
+        "content": "By accessing and using Pixelift (\"the Service\"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      },
+      "description": {
+        "title": "2. Service Description",
+        "intro": "Pixelift provides AI-powered image upscaling and enhancement services through:",
+        "webApp": "Web Application:",
+        "webAppDesc": "Interactive image upscaling interface",
+        "api": "Enterprise API:",
+        "apiDesc": "Programmatic access for developers and businesses",
+        "batch": "Batch Processing:",
+        "batchDesc": "High-volume image processing for enterprise customers"
+      },
+      "registration": {
+        "title": "3. Account Registration",
+        "intro": "To use Pixelift, you must:",
+        "items": [
+          "Be at least 13 years old",
+          "Provide accurate and complete registration information",
+          "Maintain the security of your account credentials",
+          "Accept responsibility for all activities under your account"
+        ]
+      },
+      "acceptableUse": {
+        "title": "4. Acceptable Use",
+        "intro": "You agree NOT to:",
+        "items": [
+          "Upload illegal, harmful, or offensive content",
+          "Violate intellectual property rights of others",
+          "Use the service for fraudulent or deceptive purposes",
+          "Attempt to bypass rate limits or security measures",
+          "Upload images containing personal data without consent",
+          "Resell or redistribute our service without authorization",
+          "Use the service to create deepfakes or misleading content",
+          "Overload or disrupt our infrastructure"
+        ],
+        "violation": "Violation of these terms may result in immediate account suspension or termination."
+      },
+      "intellectualProperty": {
+        "title": "5. Intellectual Property",
+        "yourContent": "Your Content:",
+        "yourContentDesc": "You retain all rights to images you upload. By using our service, you grant us a limited license to process your images solely for the purpose of providing the service.",
+        "ourService": "Our Service:",
+        "ourServiceDesc": "Pixelift, including our software, algorithms, designs, and documentation, is protected by copyright and other intellectual property laws. You may not copy, modify, or reverse-engineer our service."
+      },
+      "pricing": {
+        "title": "6. Subscription Plans and Pricing",
+        "plansTitle": "6.1 Plans",
+        "free": "Free:",
+        "freeDesc": "Limited usage with watermarks",
+        "pro": "Pro:",
+        "proDesc": "$29/month - Unlimited upscaling, no watermarks",
+        "enterprise": "Enterprise:",
+        "enterpriseDesc": "Custom pricing for API access and bulk processing",
+        "billingTitle": "6.2 Billing",
+        "billingItems": [
+          "Subscriptions are billed monthly or annually in advance",
+          "Prices are in USD unless otherwise stated",
+          "You authorize us to charge your payment method for all fees",
+          "Taxes may apply based on your location"
+        ],
+        "cancellationTitle": "6.3 Cancellation and Refunds",
+        "cancellationItems": [
+          "You may cancel your subscription at any time",
+          "Cancellation takes effect at the end of the current billing period",
+          "No refunds for partial months or unused credits",
+          "Enterprise contracts may have specific cancellation terms"
+        ]
+      },
+      "apiUsage": {
+        "title": "7. API Usage",
+        "rateLimits": "Rate Limits:",
+        "freeLimit": "Free: 10 requests/hour",
+        "starterLimit": "Starter: 100 requests/hour",
+        "professionalLimit": "Professional: 500 requests/hour",
+        "enterpriseLimit": "Enterprise: 2,000 requests/hour",
+        "exceeding": "Exceeding rate limits may result in temporary API suspension. Enterprise customers can request custom limits."
+      },
+      "dataPrivacy": {
+        "title": "8. Data and Privacy",
+        "content": "Your use of Pixelift is subject to our",
+        "privacyLink": "Privacy Policy",
+        "contentAfter": "We do not permanently store your uploaded images. All images are automatically deleted within 24 hours."
+      },
+      "availability": {
+        "title": "9. Service Availability",
+        "intro": "We strive for 99.9% uptime but cannot guarantee uninterrupted service. We are not liable for:",
+        "items": [
+          "Scheduled maintenance downtime",
+          "Third-party service outages (e.g., AI providers, cloud hosting)",
+          "Force majeure events beyond our control"
+        ]
+      },
+      "disclaimers": {
+        "title": "10. Disclaimers and Limitations of Liability",
+        "asIs": "THE SERVICE IS PROVIDED \"AS IS\" WITHOUT WARRANTIES OF ANY KIND.",
+        "intro": "We disclaim all warranties, including:",
+        "items": [
+          "Accuracy or quality of upscaled images",
+          "Merchantability or fitness for a particular purpose",
+          "Non-infringement of third-party rights"
+        ],
+        "liability": "Our total liability for any claim shall not exceed the amount you paid us in the 12 months preceding the claim."
+      },
+      "indemnification": {
+        "title": "11. Indemnification",
+        "content": "You agree to indemnify and hold harmless Pixelift from any claims, damages, or expenses arising from your use of the service or violation of these terms."
+      },
+      "termination": {
+        "title": "12. Termination",
+        "intro": "We may terminate or suspend your account immediately if you:",
+        "items": [
+          "Violate these Terms of Service",
+          "Fail to pay subscription fees",
+          "Engage in fraudulent or illegal activity"
+        ],
+        "afterTermination": "Upon termination, your right to use the service ceases immediately. We may delete your account data in accordance with our retention policy."
+      },
+      "changes": {
+        "title": "13. Changes to Terms",
+        "content": "We reserve the right to modify these Terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of new terms."
+      },
+      "governingLaw": {
+        "title": "14. Governing Law",
+        "content": "These Terms are governed by the laws of Poland. Any disputes shall be resolved in the courts of Poland."
+      },
+      "contact": {
+        "title": "15. Contact Information",
+        "operatedBy": "Service operated by:",
+        "questions": "For questions about these Terms, contact us:",
+        "email": "Email:",
+        "support": "Support:",
+        "website": "Website:"
+      }
+    },
+    "agreement": "By using Pixelift, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service."
+  },
+  "cookiesPage": {
+    "title": "Cookie Policy",
+    "lastUpdated": "Last updated: January 2025",
+    "backToHome": "Back to Home",
+    "sections": {
+      "whatAreCookies": {
+        "title": "What Are Cookies?",
+        "content": "Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners."
+      },
+      "howWeUse": {
+        "title": "How We Use Cookies",
+        "content": "Pixelift uses cookies to enhance your browsing experience, analyze site traffic, and personalize content. We use both first-party cookies (set by us) and third-party cookies (set by our service providers)."
+      },
+      "types": {
+        "title": "Types of Cookies We Use",
+        "necessary": {
+          "title": "Necessary Cookies",
+          "alwaysActive": "Always Active",
+          "description": "These cookies are essential for the website to function properly. They enable basic functions like page navigation, authentication, and access to secure areas of the website.",
+          "examples": "Examples:",
+          "items": {
+            "consent": "- Stores your cookie preferences",
+            "session": "- Authentication session",
+            "csrf": "- Security token"
+          }
+        },
+        "functional": {
+          "title": "Functional Cookies",
+          "description": "These cookies enable enhanced functionality and personalization, such as remembering your preferences, language settings, and user interface customizations.",
+          "examples": "Examples:",
+          "items": {
+            "preferences": "- UI preferences and settings",
+            "theme": "- Dark/light mode preference",
+            "language": "- Language preference"
+          }
+        },
+        "analytics": {
+          "title": "Analytics Cookies",
+          "description": "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our service and user experience.",
+          "examples": "Examples:",
+          "items": {
+            "ga": "- Google Analytics tracking (if enabled)",
+            "gid": "- Google Analytics session tracking",
+            "gat": "- Google Analytics request throttling"
+          }
+        },
+        "marketing": {
+          "title": "Marketing Cookies",
+          "description": "These cookies are used to track visitors across websites to display relevant advertisements. They help us measure the effectiveness of our marketing campaigns.",
+          "examples": "Examples:",
+          "items": {
+            "fbp": "- Facebook Pixel (if enabled)",
+            "ads": "- Advertising identifiers",
+            "conversion": "- Conversion tracking"
+          }
+        }
+      },
+      "thirdParty": {
+        "title": "Third-Party Cookies",
+        "intro": "We use services from third-party providers that may set their own cookies:",
+        "items": {
+          "google": "Google OAuth:",
+          "googleDesc": "For secure authentication",
+          "replicate": "Replicate AI:",
+          "replicateDesc": "For image processing (no cookies set directly)",
+          "firebase": "Firebase:",
+          "firebaseDesc": "For authentication and user management",
+          "analytics": "Google Analytics:",
+          "analyticsDesc": "For website analytics (if you consent)"
+        }
+      },
+      "managing": {
+        "title": "Managing Your Cookie Preferences",
+        "intro": "You can control and manage cookies in several ways:",
+        "items": {
+          "banner": "Cookie Banner:",
+          "bannerDesc": "When you first visit our site, you can choose which cookies to accept",
+          "browser": "Browser Settings:",
+          "browserDesc": "Most browsers allow you to block or delete cookies through their settings",
+          "optOut": "Opt-out Links:",
+          "optOutDesc": "Some third-party services provide opt-out mechanisms"
+        },
+        "warning": "Important Note:",
+        "warningText": "If you disable necessary cookies, some features of our website may not function properly. You may experience reduced functionality or be unable to use certain features."
+      },
+      "browserInstructions": {
+        "title": "Browser-Specific Instructions",
+        "chrome": "Chrome:",
+        "chromeInstr": "Settings → Privacy and security → Cookies and other site data",
+        "firefox": "Firefox:",
+        "firefoxInstr": "Settings → Privacy & Security → Cookies and Site Data",
+        "safari": "Safari:",
+        "safariInstr": "Preferences → Privacy → Manage Website Data",
+        "edge": "Edge:",
+        "edgeInstr": "Settings → Cookies and site permissions → Manage and delete cookies"
+      },
+      "retention": {
+        "title": "Cookie Retention",
+        "intro": "Cookies are stored for different periods depending on their purpose:",
+        "session": "Session Cookies:",
+        "sessionDesc": "Deleted when you close your browser",
+        "persistent": "Persistent Cookies:",
+        "persistentDesc": "Remain on your device for a set period (typically 1-2 years)",
+        "auth": "Authentication Cookies:",
+        "authDesc": "Expire after 30 days of inactivity"
+      },
+      "updates": {
+        "title": "Updates to This Policy",
+        "content": "We may update this Cookie Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. We will notify you of any material changes by updating the \"Last updated\" date at the top of this page."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "operatedBy": "Service operated by:",
+        "questions": "If you have any questions about our use of cookies, please contact us:",
+        "email": "Email:",
+        "website": "Website:"
+      }
+    },
+    "relatedPolicies": "Related Policies",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "gdprPage": {
+    "title": "GDPR Compliance",
+    "subtitle": "Your data protection rights under the General Data Protection Regulation",
+    "lastUpdated": "Last updated",
+    "quickLinks": {
+      "title": "Quick Links",
+      "rights": "Your Rights",
+      "dataCollection": "Data We Collect",
+      "dataUsage": "How We Use Data",
+      "dataRetention": "Data Retention",
+      "dataSecurity": "Data Security",
+      "contact": "Contact DPO"
+    },
+    "sections": {
+      "commitment": {
+        "title": "Our Commitment to GDPR",
+        "content": "Pixelift is committed to protecting your personal data and respecting your privacy rights. We comply with the General Data Protection Regulation (GDPR) and other applicable data protection laws."
+      },
+      "rights": {
+        "title": "Your GDPR Rights",
+        "intro": "Under GDPR, you have the following rights regarding your personal data:",
+        "items": {
+          "access": {
+            "title": "Right to Access",
+            "description": "You can request a copy of all personal data we hold about you."
+          },
+          "rectification": {
+            "title": "Right to Rectification",
+            "description": "You can request correction of inaccurate or incomplete data."
+          },
+          "erasure": {
+            "title": "Right to Erasure (Right to be Forgotten)",
+            "description": "You can request deletion of your personal data in certain circumstances."
+          },
+          "restrict": {
+            "title": "Right to Restrict Processing",
+            "description": "You can request that we limit how we use your data."
+          },
+          "portability": {
+            "title": "Right to Data Portability",
+            "description": "You can request your data in a structured, commonly used format."
+          },
+          "object": {
+            "title": "Right to Object",
+            "description": "You can object to certain types of processing, including direct marketing."
+          },
+          "automated": {
+            "title": "Rights Related to Automated Decision Making",
+            "description": "You have the right not to be subject to decisions based solely on automated processing."
+          }
+        }
+      },
+      "dataCollection": {
+        "title": "Data We Collect",
+        "intro": "We collect and process the following types of personal data:",
+        "items": {
+          "account": "Account Information:",
+          "accountDesc": "Name, email address, profile picture (when you sign up)",
+          "images": "Images:",
+          "imagesDesc": "Photos you upload for processing (automatically deleted after 24 hours)",
+          "usage": "Usage Data:",
+          "usageDesc": "Number of images processed, features used, timestamps",
+          "technical": "Technical Data:",
+          "technicalDesc": "IP address, browser type, device information, cookies",
+          "payment": "Payment Information:",
+          "paymentDesc": "Processed securely by Stripe (we don't store card details)"
+        }
+      },
+      "dataUsage": {
+        "title": "How We Use Your Data",
+        "intro": "We process your personal data for the following purposes:",
+        "items": [
+          "To provide and maintain our image upscaling service",
+          "To process your images using AI technology",
+          "To manage your account and subscriptions",
+          "To communicate with you about service updates",
+          "To improve our services and develop new features",
+          "To ensure security and prevent fraud",
+          "To comply with legal obligations"
+        ]
+      },
+      "legalBasis": {
+        "title": "Legal Basis for Processing",
+        "intro": "We process your data based on:",
+        "contract": {
+          "title": "Contract Performance",
+          "description": "Processing necessary to provide our service to you"
+        },
+        "legitimate": {
+          "title": "Legitimate Interest",
+          "description": "Improving our service and preventing fraud"
+        },
+        "consent": {
+          "title": "Consent",
+          "description": "For marketing communications (you can opt out anytime)"
+        },
+        "legal": {
+          "title": "Legal Obligation",
+          "description": "Compliance with applicable laws and regulations"
+        }
+      },
+      "retention": {
+        "title": "Data Retention",
+        "images": "Uploaded Images:",
+        "imagesDesc": "Automatically deleted after 24 hours",
+        "account": "Account Data:",
+        "accountDesc": "Retained while your account is active",
+        "logs": "Usage Logs:",
+        "logsDesc": "Retained for up to 12 months",
+        "afterDeletion": "After Account Deletion:",
+        "afterDeletionDesc": "All personal data deleted within 30 days (except where legally required to retain)"
+      },
+      "security": {
+        "title": "Data Security",
+        "intro": "We implement appropriate technical and organizational measures to protect your data:",
+        "encryption": {
+          "title": "Encryption",
+          "description": "All data encrypted in transit (HTTPS/TLS)"
+        },
+        "storage": {
+          "title": "Secure Storage",
+          "description": "Data stored in secure, certified data centers"
+        },
+        "access": {
+          "title": "Access Control",
+          "description": "Strict access controls and authentication"
+        },
+        "audits": {
+          "title": "Regular Audits",
+          "description": "Security audits and vulnerability assessments"
+        }
+      },
+      "sharing": {
+        "title": "Data Sharing",
+        "intro": "We do not sell your personal data. We may share data with:",
+        "providers": "Service Providers:",
+        "providersDesc": "Replicate (AI processing), Stripe (payments), hosting providers",
+        "legal": "Legal Requirements:",
+        "legalDesc": "When required by law or to protect our rights"
+      },
+      "international": {
+        "title": "International Data Transfers",
+        "content": "Your data may be transferred to and processed in countries outside the European Economic Area (EEA). We ensure appropriate safeguards are in place, including Standard Contractual Clauses approved by the European Commission."
+      },
+      "exercise": {
+        "title": "How to Exercise Your Rights",
+        "intro": "To exercise any of your GDPR rights, please contact us:",
+        "dpoTitle": "Contact Our Data Protection Officer",
+        "email": "Email:",
+        "responseTime": "Response Time:",
+        "responseTimeDesc": "We will respond within 30 days",
+        "complaint": "You also have the right to lodge a complaint with your local data protection authority.",
+        "contactSupport": "Contact Support"
+      },
+      "updates": {
+        "title": "Policy Updates",
+        "content": "We may update this GDPR compliance page from time to time. We will notify you of any material changes by email or through a prominent notice on our website. Your continued use of our service after such changes constitutes acceptance of the updated policy."
+      }
+    },
+    "relatedPolicies": {
+      "title": "Related Policies",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
     }
   }
 }

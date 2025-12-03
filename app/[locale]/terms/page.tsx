@@ -1,236 +1,340 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Terms of Service - Pixelift",
-  description: "Terms of Service for Pixelift AI Image Upscaling Service",
-};
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export default function TermsOfService() {
+  const t = useTranslations("termsPage");
+
+  const registrationItems = [
+    t("sections.registration.items.0"),
+    t("sections.registration.items.1"),
+    t("sections.registration.items.2"),
+    t("sections.registration.items.3"),
+  ];
+
+  const acceptableUseItems = [
+    t("sections.acceptableUse.items.0"),
+    t("sections.acceptableUse.items.1"),
+    t("sections.acceptableUse.items.2"),
+    t("sections.acceptableUse.items.3"),
+    t("sections.acceptableUse.items.4"),
+    t("sections.acceptableUse.items.5"),
+    t("sections.acceptableUse.items.6"),
+    t("sections.acceptableUse.items.7"),
+  ];
+
+  const billingItems = [
+    t("sections.pricing.billingItems.0"),
+    t("sections.pricing.billingItems.1"),
+    t("sections.pricing.billingItems.2"),
+    t("sections.pricing.billingItems.3"),
+  ];
+
+  const cancellationItems = [
+    t("sections.pricing.cancellationItems.0"),
+    t("sections.pricing.cancellationItems.1"),
+    t("sections.pricing.cancellationItems.2"),
+    t("sections.pricing.cancellationItems.3"),
+  ];
+
+  const availabilityItems = [
+    t("sections.availability.items.0"),
+    t("sections.availability.items.1"),
+    t("sections.availability.items.2"),
+  ];
+
+  const disclaimerItems = [
+    t("sections.disclaimers.items.0"),
+    t("sections.disclaimers.items.1"),
+    t("sections.disclaimers.items.2"),
+  ];
+
+  const terminationItems = [
+    t("sections.termination.items.0"),
+    t("sections.termination.items.1"),
+    t("sections.termination.items.2"),
+  ];
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
-        <p className="text-gray-400 mb-8">Last updated: {new Date().toLocaleDateString()}</p>
+        <h1 className="text-4xl font-bold mb-8">{t("title")}</h1>
+        <p className="text-gray-400 mb-8">
+          {t("lastUpdated")}: {new Date().toLocaleDateString()}
+        </p>
 
         <div className="space-y-8 text-gray-300">
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">1. Acceptance of Terms</h2>
-            <p>
-              By accessing and using Pixelift ("the Service"), you agree to be bound by these Terms of Service.
-              If you do not agree to these terms, please do not use our service.
-            </p>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.acceptance.title")}
+            </h2>
+            <p>{t("sections.acceptance.content")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">2. Service Description</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.description.title")}
+            </h2>
+            <p className="mb-4">{t("sections.description.intro")}</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>
+                <strong>{t("sections.description.webApp")}</strong>{" "}
+                {t("sections.description.webAppDesc")}
+              </li>
+              <li>
+                <strong>{t("sections.description.api")}</strong>{" "}
+                {t("sections.description.apiDesc")}
+              </li>
+              <li>
+                <strong>{t("sections.description.batch")}</strong>{" "}
+                {t("sections.description.batchDesc")}
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.registration.title")}
+            </h2>
+            <p className="mb-4">{t("sections.registration.intro")}</p>
+            <ul className="list-disc pl-6 space-y-2">
+              {registrationItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.acceptableUse.title")}
+            </h2>
             <p className="mb-4">
-              Pixelift provides AI-powered image upscaling and enhancement services through:
+              <strong>{t("sections.acceptableUse.intro")}</strong>
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Web Application:</strong> Interactive image upscaling interface</li>
-              <li><strong>Enterprise API:</strong> Programmatic access for developers and businesses</li>
-              <li><strong>Batch Processing:</strong> High-volume image processing for enterprise customers</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">3. Account Registration</h2>
-            <p className="mb-4">To use Pixelift, you must:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Be at least 13 years old</li>
-              <li>Provide accurate and complete registration information</li>
-              <li>Maintain the security of your account credentials</li>
-              <li>Accept responsibility for all activities under your account</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">4. Acceptable Use</h2>
-            <p className="mb-4"><strong>You agree NOT to:</strong></p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Upload illegal, harmful, or offensive content</li>
-              <li>Violate intellectual property rights of others</li>
-              <li>Use the service for fraudulent or deceptive purposes</li>
-              <li>Attempt to bypass rate limits or security measures</li>
-              <li>Upload images containing personal data without consent</li>
-              <li>Resell or redistribute our service without authorization</li>
-              <li>Use the service to create deepfakes or misleading content</li>
-              <li>Overload or disrupt our infrastructure</li>
+              {acceptableUseItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
             <p className="mt-4 font-semibold">
-              Violation of these terms may result in immediate account suspension or termination.
+              {t("sections.acceptableUse.violation")}
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">5. Intellectual Property</h2>
-            <p className="mb-4"><strong>Your Content:</strong></p>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.intellectualProperty.title")}
+            </h2>
             <p className="mb-4">
-              You retain all rights to images you upload. By using our service, you grant us a limited license
-              to process your images solely for the purpose of providing the service.
+              <strong>{t("sections.intellectualProperty.yourContent")}</strong>
             </p>
-            <p className="mb-4"><strong>Our Service:</strong></p>
-            <p>
-              Pixelift, including our software, algorithms, designs, and documentation, is protected by copyright
-              and other intellectual property laws. You may not copy, modify, or reverse-engineer our service.
+            <p className="mb-4">
+              {t("sections.intellectualProperty.yourContentDesc")}
             </p>
+            <p className="mb-4">
+              <strong>{t("sections.intellectualProperty.ourService")}</strong>
+            </p>
+            <p>{t("sections.intellectualProperty.ourServiceDesc")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">6. Subscription Plans and Pricing</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.pricing.title")}
+            </h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">6.1 Plans</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {t("sections.pricing.plansTitle")}
+                </h3>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Free:</strong> Limited usage with watermarks</li>
-                  <li><strong>Pro:</strong> $29/month - Unlimited upscaling, no watermarks</li>
-                  <li><strong>Enterprise:</strong> Custom pricing for API access and bulk processing</li>
+                  <li>
+                    <strong>{t("sections.pricing.free")}</strong>{" "}
+                    {t("sections.pricing.freeDesc")}
+                  </li>
+                  <li>
+                    <strong>{t("sections.pricing.pro")}</strong>{" "}
+                    {t("sections.pricing.proDesc")}
+                  </li>
+                  <li>
+                    <strong>{t("sections.pricing.enterprise")}</strong>{" "}
+                    {t("sections.pricing.enterpriseDesc")}
+                  </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">6.2 Billing</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {t("sections.pricing.billingTitle")}
+                </h3>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Subscriptions are billed monthly or annually in advance</li>
-                  <li>Prices are in USD unless otherwise stated</li>
-                  <li>You authorize us to charge your payment method for all fees</li>
-                  <li>Taxes may apply based on your location</li>
+                  {billingItems.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">6.3 Cancellation and Refunds</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {t("sections.pricing.cancellationTitle")}
+                </h3>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>You may cancel your subscription at any time</li>
-                  <li>Cancellation takes effect at the end of the current billing period</li>
-                  <li>No refunds for partial months or unused credits</li>
-                  <li>Enterprise contracts may have specific cancellation terms</li>
+                  {cancellationItems.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">7. API Usage</h2>
-            <p className="mb-4"><strong>Rate Limits:</strong></p>
-            <ul className="list-disc pl-6 space-y-2 mb-4">
-              <li>Free: 10 requests/hour</li>
-              <li>Starter: 100 requests/hour</li>
-              <li>Professional: 500 requests/hour</li>
-              <li>Enterprise: 2,000 requests/hour</li>
-            </ul>
-            <p>
-              Exceeding rate limits may result in temporary API suspension. Enterprise customers can request
-              custom limits.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">8. Data and Privacy</h2>
-            <p>
-              Your use of Pixelift is subject to our <a href="/privacy" className="text-green-500 hover:underline">Privacy Policy</a>.
-              We do not permanently store your uploaded images. All images are automatically deleted within 24 hours.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">9. Service Availability</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.apiUsage.title")}
+            </h2>
             <p className="mb-4">
-              We strive for 99.9% uptime but cannot guarantee uninterrupted service. We are not liable for:
+              <strong>{t("sections.apiUsage.rateLimits")}</strong>
             </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Scheduled maintenance downtime</li>
-              <li>Third-party service outages (e.g., AI providers, cloud hosting)</li>
-              <li>Force majeure events beyond our control</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">10. Disclaimers and Limitations of Liability</h2>
-            <p className="mb-4 font-semibold uppercase">
-              THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND.
-            </p>
-            <p className="mb-4">We disclaim all warranties, including:</p>
             <ul className="list-disc pl-6 space-y-2 mb-4">
-              <li>Accuracy or quality of upscaled images</li>
-              <li>Merchantability or fitness for a particular purpose</li>
-              <li>Non-infringement of third-party rights</li>
+              <li>{t("sections.apiUsage.freeLimit")}</li>
+              <li>{t("sections.apiUsage.starterLimit")}</li>
+              <li>{t("sections.apiUsage.professionalLimit")}</li>
+              <li>{t("sections.apiUsage.enterpriseLimit")}</li>
             </ul>
-            <p className="font-semibold">
-              Our total liability for any claim shall not exceed the amount you paid us in the 12 months
-              preceding the claim.
-            </p>
+            <p>{t("sections.apiUsage.exceeding")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">11. Indemnification</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.dataPrivacy.title")}
+            </h2>
             <p>
-              You agree to indemnify and hold harmless Pixelift from any claims, damages, or expenses arising
-              from your use of the service or violation of these terms.
+              {t("sections.dataPrivacy.content")}{" "}
+              <Link href="/privacy" className="text-green-500 hover:underline">
+                {t("sections.dataPrivacy.privacyLink")}
+              </Link>
+              . {t("sections.dataPrivacy.contentAfter")}
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">12. Termination</h2>
-            <p className="mb-4">We may terminate or suspend your account immediately if you:</p>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.availability.title")}
+            </h2>
+            <p className="mb-4">{t("sections.availability.intro")}</p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Violate these Terms of Service</li>
-              <li>Fail to pay subscription fees</li>
-              <li>Engage in fraudulent or illegal activity</li>
+              {availabilityItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
-            <p className="mt-4">
-              Upon termination, your right to use the service ceases immediately. We may delete your account
-              data in accordance with our retention policy.
-            </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">13. Changes to Terms</h2>
-            <p>
-              We reserve the right to modify these Terms at any time. We will notify you of significant changes
-              via email or through the service. Continued use after changes constitutes acceptance of new terms.
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.disclaimers.title")}
+            </h2>
+            <p className="mb-4 font-semibold uppercase">
+              {t("sections.disclaimers.asIs")}
             </p>
+            <p className="mb-4">{t("sections.disclaimers.intro")}</p>
+            <ul className="list-disc pl-6 space-y-2 mb-4">
+              {disclaimerItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <p className="font-semibold">{t("sections.disclaimers.liability")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">14. Governing Law</h2>
-            <p>
-              These Terms are governed by the laws of Poland. Any disputes shall be resolved in the courts
-              of Poland.
-            </p>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.indemnification.title")}
+            </h2>
+            <p>{t("sections.indemnification.content")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">15. Contact Information</h2>
-            <p className="mb-4">Service operated by:</p>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.termination.title")}
+            </h2>
+            <p className="mb-4">{t("sections.termination.intro")}</p>
+            <ul className="list-disc pl-6 space-y-2">
+              {terminationItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <p className="mt-4">{t("sections.termination.afterTermination")}</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.changes.title")}
+            </h2>
+            <p>{t("sections.changes.content")}</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.governingLaw.title")}
+            </h2>
+            <p>{t("sections.governingLaw.content")}</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              {t("sections.contact.title")}
+            </h2>
+            <p className="mb-4">{t("sections.contact.operatedBy")}</p>
             <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 mb-6">
-              <p className="font-semibold text-white mb-2">JuveStore.pl Michał Chmielarz</p>
+              <p className="font-semibold text-white mb-2">
+                JuveStore.pl Michał Chmielarz
+              </p>
               <p>ul. Dworcowa 67 D/4</p>
               <p>62-040 Puszczykowo</p>
               <p className="mt-2">NIP: 7773012345</p>
             </div>
-            <p className="mb-4">For questions about these Terms, contact us:</p>
+            <p className="mb-4">{t("sections.contact.questions")}</p>
             <ul className="space-y-2">
-              <li><strong>Email:</strong> <a href="mailto:legal@pixelift.pl" className="text-green-500 hover:underline">legal@pixelift.pl</a></li>
-              <li><strong>Support:</strong> <a href="mailto:support@pixelift.pl" className="text-green-500 hover:underline">support@pixelift.pl</a></li>
-              <li><strong>Website:</strong> <a href="https://pixelift.pl" className="text-green-500 hover:underline">pixelift.pl</a></li>
+              <li>
+                <strong>{t("sections.contact.email")}</strong>{" "}
+                <a
+                  href="mailto:legal@pixelift.pl"
+                  className="text-green-500 hover:underline"
+                >
+                  legal@pixelift.pl
+                </a>
+              </li>
+              <li>
+                <strong>{t("sections.contact.support")}</strong>{" "}
+                <a
+                  href="mailto:support@pixelift.pl"
+                  className="text-green-500 hover:underline"
+                >
+                  support@pixelift.pl
+                </a>
+              </li>
+              <li>
+                <strong>{t("sections.contact.website")}</strong>{" "}
+                <a
+                  href="https://pixelift.pl"
+                  className="text-green-500 hover:underline"
+                >
+                  pixelift.pl
+                </a>
+              </li>
             </ul>
           </section>
 
           <section className="border-t border-gray-800 pt-8 mt-12">
-            <p className="text-sm text-gray-500">
-              By using Pixelift, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
-            </p>
+            <p className="text-sm text-gray-500">{t("agreement")}</p>
           </section>
         </div>
 
         <div className="mt-12">
-          <a
+          <Link
             href="/"
             className="inline-block px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition"
           >
-            Back to Home
-          </a>
+            {t("backToHome")}
+          </Link>
         </div>
       </div>
     </div>

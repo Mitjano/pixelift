@@ -84,14 +84,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#use-cases" className="text-gray-400 hover:text-white transition text-sm">
+                <Link href="/use-cases" className="text-gray-400 hover:text-white transition text-sm">
                   {t('product.useCases')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#faq" className="text-gray-400 hover:text-white transition text-sm">
+                <Link href="/faq" className="text-gray-400 hover:text-white transition text-sm">
                   {t('product.faq')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
