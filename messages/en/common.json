@@ -250,6 +250,8 @@
     "download": "Download",
     "upload": "Upload",
     "processing": "Processing...",
+    "processingYourImage": "Processing your image...",
+    "thisMayTake": "This may take 5-10 seconds",
     "success": "Success!",
     "learnMore": "Learn more",
     "viewAll": "View all",
@@ -260,7 +262,72 @@
     "search": "Search",
     "noResults": "No results found",
     "credits": "credits",
-    "credit": "credit"
+    "credit": "credit",
+    "creditsRemaining": "{count} credits remaining",
+    "dropImageHere": "Drop your image here!",
+    "dragAndDropImage": "Drag & drop your image",
+    "dropProductPhotoHere": "Drop your product photo here!",
+    "dragAndDropProductPhoto": "Drag & drop your product photo",
+    "orDropImageAnywhere": "or drop image anywhere",
+    "orClickToBrowse": "or click to browse",
+    "signInRequired": "Sign in Required",
+    "createFreeAccount": "Create a free account to use this tool. Get 3 free credits to try it out!"
+  },
+  "components": {
+    "loginPrompt": {
+      "backgroundRemover": {
+        "title": "Sign in to Remove Backgrounds",
+        "description": "Create a free account to start removing backgrounds with AI. Get 3 free credits to try it out!"
+      },
+      "objectRemover": {
+        "title": "Sign in to Remove Objects",
+        "description": "Create a free account to start removing objects with AI. Get 3 free credits to try it out!"
+      },
+      "packshotGenerator": {
+        "title": "Sign in to Generate Packshots",
+        "description": "Create a free account to start generating professional packshots. Get 3 free credits to try it out!"
+      },
+      "backgroundGenerator": {
+        "title": "Sign in to Generate Backgrounds",
+        "description": "Create a free account to start generating AI backgrounds. Get 3 free credits to try it out!"
+      },
+      "imageExpander": {
+        "title": "Sign in to Expand Images",
+        "description": "Create a free account to start expanding images with AI. Get 3 free credits to try it out!"
+      },
+      "inpainting": {
+        "title": "Sign in to Use AI Inpainting",
+        "description": "Create a free account to fill and extend images with AI. Get 3 free credits to try it out!"
+      },
+      "colorizer": {
+        "title": "Sign in to Colorize Photos",
+        "description": "Create a free account to colorize black & white photos. Get 3 free credits to try it out!"
+      },
+      "denoiser": {
+        "title": "Sign in to Restore Images",
+        "description": "Create a free account to remove noise and restore images. Get 3 free credits to try it out!"
+      },
+      "styleTransfer": {
+        "title": "Sign in to Use Style Transfer",
+        "description": "Create a free account to transform photos into art styles. Get 3 free credits to try it out!"
+      },
+      "reimagine": {
+        "title": "Sign in to Reimagine Images",
+        "description": "Create a free account to generate image variations. Get 3 free credits to try it out!"
+      }
+    },
+    "backgroundGenerator": {
+      "presets": {
+        "ecommerce": "E-commerce",
+        "studio": "Studio",
+        "lifestyle": "Lifestyle",
+        "nature": "Nature",
+        "seasonal": "Seasonal",
+        "food": "Food & Drink",
+        "luxury": "Luxury",
+        "creative": "Creative"
+      }
+    }
   },
   "auth": {
     "signIn": "Sign In",

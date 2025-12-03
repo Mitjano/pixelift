@@ -250,6 +250,8 @@
     "download": "Télécharger",
     "upload": "Téléverser",
     "processing": "Traitement...",
+    "processingYourImage": "Traitement de votre image...",
+    "thisMayTake": "Cela peut prendre 5-10 secondes",
     "success": "Succès!",
     "learnMore": "En savoir plus",
     "viewAll": "Voir tout",
@@ -260,7 +262,72 @@
     "search": "Rechercher",
     "noResults": "Aucun résultat",
     "credits": "crédits",
-    "credit": "crédit"
+    "credit": "crédit",
+    "creditsRemaining": "{count} crédits restants",
+    "dropImageHere": "Déposez votre image ici!",
+    "dragAndDropImage": "Glissez et déposez votre image",
+    "dropProductPhotoHere": "Déposez la photo du produit ici!",
+    "dragAndDropProductPhoto": "Glissez et déposez la photo du produit",
+    "orDropImageAnywhere": "ou déposez l'image n'importe où",
+    "orClickToBrowse": "ou cliquez pour parcourir",
+    "signInRequired": "Connexion requise",
+    "createFreeAccount": "Créez un compte gratuit pour utiliser cet outil. Obtenez 3 crédits gratuits!"
+  },
+  "components": {
+    "loginPrompt": {
+      "backgroundRemover": {
+        "title": "Connectez-vous pour supprimer les arrière-plans",
+        "description": "Créez un compte gratuit pour supprimer les arrière-plans avec l'IA. Obtenez 3 crédits gratuits!"
+      },
+      "objectRemover": {
+        "title": "Connectez-vous pour supprimer des objets",
+        "description": "Créez un compte gratuit pour supprimer des objets avec l'IA. Obtenez 3 crédits gratuits!"
+      },
+      "packshotGenerator": {
+        "title": "Connectez-vous pour générer des packshots",
+        "description": "Créez un compte gratuit pour créer des packshots professionnels. Obtenez 3 crédits gratuits!"
+      },
+      "backgroundGenerator": {
+        "title": "Connectez-vous pour générer des arrière-plans",
+        "description": "Créez un compte gratuit pour générer des arrière-plans IA. Obtenez 3 crédits gratuits!"
+      },
+      "imageExpander": {
+        "title": "Connectez-vous pour agrandir les images",
+        "description": "Créez un compte gratuit pour agrandir les images avec l'IA. Obtenez 3 crédits gratuits!"
+      },
+      "inpainting": {
+        "title": "Connectez-vous pour utiliser AI Inpainting",
+        "description": "Créez un compte gratuit pour remplir et étendre les images avec l'IA. Obtenez 3 crédits gratuits!"
+      },
+      "colorizer": {
+        "title": "Connectez-vous pour coloriser les photos",
+        "description": "Créez un compte gratuit pour coloriser les photos noir et blanc. Obtenez 3 crédits gratuits!"
+      },
+      "denoiser": {
+        "title": "Connectez-vous pour restaurer les images",
+        "description": "Créez un compte gratuit pour supprimer le bruit et restaurer les images. Obtenez 3 crédits gratuits!"
+      },
+      "styleTransfer": {
+        "title": "Connectez-vous pour utiliser le transfert de style",
+        "description": "Créez un compte gratuit pour transformer les photos en styles artistiques. Obtenez 3 crédits gratuits!"
+      },
+      "reimagine": {
+        "title": "Connectez-vous pour réimaginer les images",
+        "description": "Créez un compte gratuit pour générer des variations d'images. Obtenez 3 crédits gratuits!"
+      }
+    },
+    "backgroundGenerator": {
+      "presets": {
+        "ecommerce": "E-commerce",
+        "studio": "Studio",
+        "lifestyle": "Style de vie",
+        "nature": "Nature",
+        "seasonal": "Saisonnier",
+        "food": "Nourriture et Boissons",
+        "luxury": "Luxe",
+        "creative": "Créatif"
+      }
+    }
   },
   "auth": {
     "signIn": "Se Connecter",

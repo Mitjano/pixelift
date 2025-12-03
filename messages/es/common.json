@@ -250,6 +250,8 @@
     "download": "Descargar",
     "upload": "Subir",
     "processing": "Procesando...",
+    "processingYourImage": "Procesando tu imagen...",
+    "thisMayTake": "Esto puede tomar 5-10 segundos",
     "success": "¡Éxito!",
     "learnMore": "Saber más",
     "viewAll": "Ver todo",
@@ -260,7 +262,72 @@
     "search": "Buscar",
     "noResults": "Sin resultados",
     "credits": "créditos",
-    "credit": "crédito"
+    "credit": "crédito",
+    "creditsRemaining": "{count} créditos restantes",
+    "dropImageHere": "¡Suelta tu imagen aquí!",
+    "dragAndDropImage": "Arrastra y suelta tu imagen",
+    "dropProductPhotoHere": "¡Suelta la foto del producto aquí!",
+    "dragAndDropProductPhoto": "Arrastra y suelta la foto del producto",
+    "orDropImageAnywhere": "o suelta la imagen en cualquier lugar",
+    "orClickToBrowse": "o haz clic para explorar",
+    "signInRequired": "Inicio de sesión requerido",
+    "createFreeAccount": "Crea una cuenta gratuita para usar esta herramienta. ¡Obtén 3 créditos gratis!"
+  },
+  "components": {
+    "loginPrompt": {
+      "backgroundRemover": {
+        "title": "Inicia sesión para eliminar fondos",
+        "description": "Crea una cuenta gratuita para eliminar fondos con IA. ¡Obtén 3 créditos gratis!"
+      },
+      "objectRemover": {
+        "title": "Inicia sesión para eliminar objetos",
+        "description": "Crea una cuenta gratuita para eliminar objetos con IA. ¡Obtén 3 créditos gratis!"
+      },
+      "packshotGenerator": {
+        "title": "Inicia sesión para generar packshots",
+        "description": "Crea una cuenta gratuita para generar packshots profesionales. ¡Obtén 3 créditos gratis!"
+      },
+      "backgroundGenerator": {
+        "title": "Inicia sesión para generar fondos",
+        "description": "Crea una cuenta gratuita para generar fondos con IA. ¡Obtén 3 créditos gratis!"
+      },
+      "imageExpander": {
+        "title": "Inicia sesión para expandir imágenes",
+        "description": "Crea una cuenta gratuita para expandir imágenes con IA. ¡Obtén 3 créditos gratis!"
+      },
+      "inpainting": {
+        "title": "Inicia sesión para usar AI Inpainting",
+        "description": "Crea una cuenta gratuita para rellenar y expandir imágenes con IA. ¡Obtén 3 créditos gratis!"
+      },
+      "colorizer": {
+        "title": "Inicia sesión para colorear fotos",
+        "description": "Crea una cuenta gratuita para colorear fotos en blanco y negro. ¡Obtén 3 créditos gratis!"
+      },
+      "denoiser": {
+        "title": "Inicia sesión para restaurar imágenes",
+        "description": "Crea una cuenta gratuita para eliminar ruido y restaurar imágenes. ¡Obtén 3 créditos gratis!"
+      },
+      "styleTransfer": {
+        "title": "Inicia sesión para usar transferencia de estilo",
+        "description": "Crea una cuenta gratuita para transformar fotos en estilos artísticos. ¡Obtén 3 créditos gratis!"
+      },
+      "reimagine": {
+        "title": "Inicia sesión para reimaginar imágenes",
+        "description": "Crea una cuenta gratuita para generar variaciones de imágenes. ¡Obtén 3 créditos gratis!"
+      }
+    },
+    "backgroundGenerator": {
+      "presets": {
+        "ecommerce": "E-commerce",
+        "studio": "Estudio",
+        "lifestyle": "Estilo de vida",
+        "nature": "Naturaleza",
+        "seasonal": "Estacional",
+        "food": "Comida y Bebidas",
+        "luxury": "Lujo",
+        "creative": "Creativo"
+      }
+    }
   },
   "auth": {
     "signIn": "Iniciar Sesión",

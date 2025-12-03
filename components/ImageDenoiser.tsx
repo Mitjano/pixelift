@@ -2,8 +2,10 @@
 
 import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle } from "react-icons/fa";
+import { LoginPrompt } from "./shared";
 
 type TaskType = 'real_sr' | 'denoise' | 'jpeg_car';
 
@@ -15,6 +17,7 @@ const TASK_OPTIONS: { value: TaskType; label: string; description: string }[] = 
 
 export default function ImageDenoiser() {
   const { data: session } = useSession();
+  const t = useTranslations('components.loginPrompt.imageDenoiser');
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -153,29 +156,13 @@ export default function ImageDenoiser() {
 
   if (!session) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 bg-gray-800/30">
-          <div className="text-center">
-            <div className="mb-6">
-              <svg className="mx-auto h-16 w-16 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Sign in to Restore Images</h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              Create a free account to start restoring and denoising your photos with AI.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <a href="/auth/signin" className="inline-block px-8 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-lg font-medium transition">
-                Sign In
-              </a>
-              <a href="/auth/signup" className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition">
-                Sign Up Free
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <LoginPrompt
+        title={t('title')}
+        description={t('description')}
+        callbackUrl="/tools/denoise"
+        accentColor="cyan"
+        features={["3 Free Credits", "No Credit Card", "AI Restoration"]}
+      />
     );
   }
 

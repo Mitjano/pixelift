@@ -250,6 +250,8 @@
     "download": "Pobierz",
     "upload": "Prześlij",
     "processing": "Przetwarzanie...",
+    "processingYourImage": "Przetwarzanie obrazu...",
+    "thisMayTake": "To może potrwać 5-10 sekund",
     "success": "Sukces!",
     "learnMore": "Dowiedz się więcej",
     "viewAll": "Zobacz wszystkie",
@@ -260,7 +262,72 @@
     "search": "Szukaj",
     "noResults": "Brak wyników",
     "credits": "kredytów",
-    "credit": "kredyt"
+    "credit": "kredyt",
+    "creditsRemaining": "Pozostało {count} kredytów",
+    "dropImageHere": "Upuść obraz tutaj!",
+    "dragAndDropImage": "Przeciągnij i upuść obraz",
+    "dropProductPhotoHere": "Upuść zdjęcie produktu tutaj!",
+    "dragAndDropProductPhoto": "Przeciągnij i upuść zdjęcie produktu",
+    "orDropImageAnywhere": "lub upuść obraz gdziekolwiek",
+    "orClickToBrowse": "lub kliknij aby wybrać",
+    "signInRequired": "Wymagane logowanie",
+    "createFreeAccount": "Utwórz darmowe konto aby użyć tego narzędzia. Otrzymaj 3 darmowe kredyty!"
+  },
+  "components": {
+    "loginPrompt": {
+      "backgroundRemover": {
+        "title": "Zaloguj się aby usunąć tło",
+        "description": "Utwórz darmowe konto aby usuwać tła z AI. Otrzymaj 3 darmowe kredyty!"
+      },
+      "objectRemover": {
+        "title": "Zaloguj się aby usunąć obiekty",
+        "description": "Utwórz darmowe konto aby usuwać obiekty z AI. Otrzymaj 3 darmowe kredyty!"
+      },
+      "packshotGenerator": {
+        "title": "Zaloguj się aby generować packshoty",
+        "description": "Utwórz darmowe konto aby tworzyć profesjonalne packshoty. Otrzymaj 3 darmowe kredyty!"
+      },
+      "backgroundGenerator": {
+        "title": "Zaloguj się aby generować tła",
+        "description": "Utwórz darmowe konto aby generować tła AI. Otrzymaj 3 darmowe kredyty!"
+      },
+      "imageExpander": {
+        "title": "Zaloguj się aby rozszerzać obrazy",
+        "description": "Utwórz darmowe konto aby rozszerzać obrazy z AI. Otrzymaj 3 darmowe kredyty!"
+      },
+      "inpainting": {
+        "title": "Zaloguj się aby użyć AI Inpainting",
+        "description": "Utwórz darmowe konto aby wypełniać i rozszerzać obrazy z AI. Otrzymaj 3 darmowe kredyty!"
+      },
+      "colorizer": {
+        "title": "Zaloguj się aby koloryzować zdjęcia",
+        "description": "Utwórz darmowe konto aby koloryzować czarno-białe zdjęcia. Otrzymaj 3 darmowe kredyty!"
+      },
+      "denoiser": {
+        "title": "Zaloguj się aby restaurować obrazy",
+        "description": "Utwórz darmowe konto aby usuwać szum i restaurować obrazy. Otrzymaj 3 darmowe kredyty!"
+      },
+      "styleTransfer": {
+        "title": "Zaloguj się aby użyć transferu stylu",
+        "description": "Utwórz darmowe konto aby przekształcać zdjęcia w style artystyczne. Otrzymaj 3 darmowe kredyty!"
+      },
+      "reimagine": {
+        "title": "Zaloguj się aby reimaginować obrazy",
+        "description": "Utwórz darmowe konto aby generować wariacje obrazów. Otrzymaj 3 darmowe kredyty!"
+      }
+    },
+    "backgroundGenerator": {
+      "presets": {
+        "ecommerce": "E-commerce",
+        "studio": "Studio",
+        "lifestyle": "Styl życia",
+        "nature": "Natura",
+        "seasonal": "Sezonowe",
+        "food": "Jedzenie i Napoje",
+        "luxury": "Luksus",
+        "creative": "Kreatywne"
+      }
+    }
   },
   "auth": {
     "signIn": "Zaloguj się",

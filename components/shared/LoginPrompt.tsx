@@ -1,15 +1,17 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 /**
  * Generic login prompt for unauthenticated users
- * Used by: Upscaler, BackgroundRemover, ImageExpander
+ * Used by: Upscaler, BackgroundRemover, ImageExpander, ObjectRemover, etc.
  */
 
 export interface LoginPromptProps {
   title?: string;
   description?: string;
   callbackUrl?: string;
-  accentColor?: 'green' | 'blue' | 'purple';
+  accentColor?: 'green' | 'blue' | 'purple' | 'orange' | 'pink' | 'cyan';
   features?: string[];
 }
 
@@ -26,6 +28,18 @@ const COLOR_CLASSES = {
     button: 'bg-purple-500 hover:bg-purple-600',
     icon: 'text-purple-400',
   },
+  orange: {
+    button: 'bg-orange-500 hover:bg-orange-600',
+    icon: 'text-orange-400',
+  },
+  pink: {
+    button: 'bg-pink-500 hover:bg-pink-600',
+    icon: 'text-pink-400',
+  },
+  cyan: {
+    button: 'bg-cyan-500 hover:bg-cyan-600',
+    icon: 'text-cyan-400',
+  },
 };
 
 export default function LoginPrompt({
@@ -35,6 +49,7 @@ export default function LoginPrompt({
   accentColor = 'green',
   features = ["3 Free Credits", "No Credit Card", "Cancel Anytime"],
 }: LoginPromptProps) {
+  const t = useTranslations('common');
   const colors = COLOR_CLASSES[accentColor];
 
   return (
@@ -65,13 +80,13 @@ export default function LoginPrompt({
               href={`/auth/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`}
               className={`inline-block px-8 py-3 ${colors.button} rounded-lg font-medium transition`}
             >
-              Sign In
+              {t('signIn')}
             </a>
             <a
               href="/auth/signup"
               className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition"
             >
-              Sign Up Free
+              {t('signUpFree')}
             </a>
           </div>
           {features.length > 0 && (

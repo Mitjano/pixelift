@@ -94,9 +94,8 @@ export async function generateMetadata({
       },
     },
     verification: {
-      // Add your verification codes here when ready
-      // google: "your-google-verification-code",
-      // yandex: "your-yandex-verification-code",
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+      // yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
     },
   };
 }

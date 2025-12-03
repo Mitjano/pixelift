@@ -2,8 +2,10 @@
 
 import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaPalette, FaMagic } from "react-icons/fa";
+import { LoginPrompt } from "./shared";
 
 // Style presets that change scene/background while preserving identity
 const STYLE_PRESETS = [
@@ -21,6 +23,7 @@ const STYLE_PRESETS = [
 
 export default function StyleTransfer() {
   const { data: session } = useSession();
+  const t = useTranslations('components.loginPrompt.styleDiffusion');
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -218,27 +221,13 @@ export default function StyleTransfer() {
 
   if (!session) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 bg-gray-800/30">
-          <div className="text-center">
-            <div className="mb-6">
-              <FaPalette className="mx-auto h-16 w-16 text-gray-500" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Sign in to Use Style Diffusion</h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              Transform your photos into different scenes and styles while keeping your identity perfectly preserved.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <a href="/auth/signin" className="inline-block px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 rounded-lg font-medium transition">
-                Sign In
-              </a>
-              <a href="/auth/signup" className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition">
-                Sign Up Free
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <LoginPrompt
+        title={t('title')}
+        description={t('description')}
+        callbackUrl="/tools/style-transfer"
+        accentColor="pink"
+        features={["3 Free Credits", "No Credit Card", "Identity-Preserving"]}
+      />
     );
   }
 

@@ -3,6 +3,7 @@
 import { useCallback, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useDropzone } from 'react-dropzone'
+import { useTranslations } from 'next-intl'
 import toast from 'react-hot-toast'
 import { DownloadOptionsModal } from './DownloadOptionsModal'
 import {
@@ -27,6 +28,8 @@ interface BackgroundRemoverProps {
 
 export function BackgroundRemover({ userRole = 'user' }: BackgroundRemoverProps) {
   const { data: session } = useSession()
+  const t = useTranslations('components.loginPrompt.backgroundRemover')
+  const tCommon = useTranslations('common')
   const [processing, setProcessing] = useState(false)
   const [result, setResult] = useState<ProcessingResult | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -84,8 +87,8 @@ export function BackgroundRemover({ userRole = 'user' }: BackgroundRemoverProps)
   if (!session) {
     return (
       <LoginPrompt
-        title="Sign in to Remove Backgrounds"
-        description="Create a free account to start removing backgrounds with AI. Get 3 free credits to try it out!"
+        title={t('title')}
+        description={t('description')}
         callbackUrl="/tools/remove-background"
         accentColor="blue"
         features={["3 Free Credits", "No Credit Card", "Transparent PNG"]}
@@ -125,22 +128,22 @@ export function BackgroundRemover({ userRole = 'user' }: BackgroundRemoverProps)
             {processing ? (
               <>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Processing your image...
+                  {tCommon('processingYourImage')}
                 </h3>
                 <div className="flex justify-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  This may take 5-10 seconds
+                  {tCommon('thisMayTake')}
                 </p>
               </>
             ) : (
               <>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {isDragActive ? 'Drop your image here!' : 'Drag & drop your image'}
+                  {isDragActive ? tCommon('dropImageHere') : tCommon('dragAndDropImage')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  or click to browse
+                  {tCommon('orClickToBrowse')}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-500">
                   Supports JPG, PNG, WEBP • Max 10MB • 1 credit per image

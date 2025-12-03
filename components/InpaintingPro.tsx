@@ -2,11 +2,14 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaPaintBrush, FaEraser, FaUndo } from "react-icons/fa";
+import { LoginPrompt } from "./shared";
 
 export default function InpaintingPro() {
   const { data: session } = useSession();
+  const t = useTranslations('components.loginPrompt.inpaintingPro');
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -267,27 +270,13 @@ export default function InpaintingPro() {
 
   if (!session) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 bg-gray-800/30">
-          <div className="text-center">
-            <div className="mb-6">
-              <FaPaintBrush className="mx-auto h-16 w-16 text-gray-500" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Sign in to Use AI Inpainting Pro</h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              Create a free account to fill, replace, or extend parts of your images with AI.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <a href="/auth/signin" className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 rounded-lg font-medium transition">
-                Sign In
-              </a>
-              <a href="/auth/signup" className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition">
-                Sign Up Free
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <LoginPrompt
+        title={t('title')}
+        description={t('description')}
+        callbackUrl="/tools/inpainting"
+        accentColor="cyan"
+        features={["3 Free Credits", "No Credit Card", "AI-Powered"]}
+      />
     );
   }
 
