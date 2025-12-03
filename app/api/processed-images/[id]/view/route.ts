@@ -22,9 +22,10 @@ export async function GET(
     const { searchParams } = new URL(req.url)
     const imageType = searchParams.get('type') || 'processed'
 
-    // Validate UUID format to prevent abuse
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-    if (!uuidRegex.test(id)) {
+    // Validate ID format to prevent abuse
+    // Accepts both UUID format and img_timestamp_random format
+    const validIdRegex = /^(img_\d+_[a-z0-9]+|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i
+    if (!validIdRegex.test(id)) {
       return NextResponse.json(
         { error: 'Invalid image ID' },
         { status: 400 }
