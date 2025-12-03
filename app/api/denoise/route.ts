@@ -67,14 +67,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate task type
-    const validTasks = ['real_sr', 'denoise', 'jpeg_car']
+    // Map old task names to new Replicate task_type values
+    const taskMapping: Record<string, string> = {
+      'real_sr': 'Real-World Image Super-Resolution-Large',
+      'denoise': 'Color Image Denoising',
+      'jpeg_car': 'JPEG Compression Artifact Reduction',
+    }
+
+    const validTasks = Object.keys(taskMapping)
     if (!validTasks.includes(task)) {
       return NextResponse.json(
         { error: 'Invalid task. Supported: real_sr, denoise, jpeg_car' },
         { status: 400 }
       )
     }
+
+    const replicateTaskType = taskMapping[task]
 
     // 5. CHECK CREDITS
     if (user.credits < CREDITS_PER_DENOISE) {
@@ -104,11 +112,11 @@ export async function POST(request: NextRequest) {
 
     // 7. CALL REPLICATE - SwinIR model
     const output = await replicate.run(
-      "jingyunliang/swinir:660d922d33153019e8c263a3bba265de882e7f4f70396571f16765507b29b690",
+      "jingyunliang/swinir:660d922d33153019e8c263a3bba265de882e7f4f70396546b6c9c8f9d47a021a",
       {
         input: {
           image: dataUrl,
-          task_type: task, // real_sr, denoise, jpeg_car
+          task_type: replicateTaskType,
         }
       }
     ) as unknown as string
