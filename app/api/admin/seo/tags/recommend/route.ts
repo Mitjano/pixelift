@@ -28,7 +28,7 @@ interface TagGroup {
 }
 
 // AI prompt to analyze content and extract relevant tags
-const TAG_EXTRACTION_PROMPT = `You are an SEO expert specializing in tag/keyword extraction for blog posts.
+const getTagExtractionPrompt = (locale: string) => `You are an SEO expert specializing in tag/keyword extraction for blog posts.
 
 Analyze the given title and optional content, then extract:
 1. Primary keywords (most important, directly mentioned)
@@ -63,7 +63,8 @@ Return JSON format:
 
 Rules:
 - Extract 20-40 keywords
-- Include both English and Polish if the title is in either language
+- IMPORTANT: Generate keywords ONLY in ${locale === 'pl' ? 'Polish' : locale === 'es' ? 'Spanish' : locale === 'fr' ? 'French' : 'English'} language
+- Do NOT mix languages - all keywords must be in the specified target language
 - Prioritize actionable keywords with clear search intent
 - Include long-tail keywords (3-5 words)`;
 
@@ -113,10 +114,10 @@ export async function POST(request: NextRequest) {
       const aiResponse = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: TAG_EXTRACTION_PROMPT },
+          { role: 'system', content: getTagExtractionPrompt(locale) },
           {
             role: 'user',
-            content: `Title: ${title}\n\n${content ? `Content: ${content.slice(0, 2000)}` : 'No content provided'}`,
+            content: `Title: ${title}\nTarget Language: ${locale === 'pl' ? 'Polish' : locale === 'es' ? 'Spanish' : locale === 'fr' ? 'French' : 'English'}\n\n${content ? `Content: ${content.slice(0, 2000)}` : 'No content provided'}`,
           },
         ],
         temperature: 0.3,
