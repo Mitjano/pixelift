@@ -134,14 +134,14 @@ async function sendSEOReport(report: SEOReport, recipients: string[]) {
 - [ ] Send via email button
 - [ ] PDF export
 
-### Cron Jobs
+### Cron Jobs ✅ ZAIMPLEMENTOWANE
 
 **Endpoints:**
-- [ ] `POST /api/cron/seo/check-positions` - Daily position check (high priority keywords)
-- [ ] `POST /api/cron/seo/check-backlinks` - Weekly backlink status check
-- [ ] `POST /api/cron/seo/weekly-report` - Weekly report generation
+- [x] `GET /api/cron/seo/check-positions` - Daily position check (high priority keywords)
+- [x] `GET /api/cron/seo/check-backlinks` - Weekly backlink status check
+- [x] `GET /api/cron/seo/weekly-report` - Weekly report generation + email
 
-**Vercel Cron Configuration** (`vercel.json`):
+**Vercel Cron Configuration** (`vercel.json`) - ✅ Utworzone:
 ```json
 {
   "crons": [
@@ -159,6 +159,42 @@ async function sendSEOReport(report: SEOReport, recipients: string[]) {
     }
   ]
 }
+```
+
+**Harmonogram:**
+| Cron Job | Kiedy | Co robi |
+|----------|-------|---------|
+| check-positions | Codziennie 6:00 UTC | Sprawdza pozycje do 50 keywords (priorytet + najdawniej sprawdzane) |
+| check-backlinks | Niedziela 7:00 UTC | Sprawdza status wszystkich backlinków |
+| weekly-report | Poniedziałek 8:00 UTC | Generuje raport tygodniowy + wysyła email |
+
+**Wymagane zmienne środowiskowe:**
+```env
+# Wymagane dla bezpieczeństwa cron jobs
+CRON_SECRET=your-random-secret-here
+
+# Opcjonalne - dla wysyłki raportów email
+ADMIN_EMAIL=admin@pixelift.pl
+# lub
+SEO_REPORT_EMAIL=seo@pixelift.pl
+```
+
+**Testowanie lokalne:**
+```bash
+# Test position check
+curl -X GET http://localhost:3000/api/cron/seo/check-positions
+
+# Test backlink check
+curl -X GET http://localhost:3000/api/cron/seo/check-backlinks
+
+# Test weekly report
+curl -X GET http://localhost:3000/api/cron/seo/weekly-report
+```
+
+**Na produkcji (z CRON_SECRET):**
+```bash
+curl -X GET https://pixelift.pl/api/cron/seo/check-positions \
+  -H "Authorization: Bearer YOUR_CRON_SECRET"
 ```
 
 ---
