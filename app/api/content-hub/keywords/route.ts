@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
     let keywordsToAdd: Array<{ keyword: string; locale?: string; cluster?: string }> = [];
 
     if (Array.isArray(body.keywords)) {
-      keywordsToAdd = body.keywords.map((k: string | { keyword: string }) => {
+      keywordsToAdd = body.keywords.map((k: string | { keyword: string; locale?: string; cluster?: string }) => {
         if (typeof k === 'string') {
           return { keyword: k, locale: defaultLocale, cluster: defaultCluster };
         }
