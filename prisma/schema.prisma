@@ -1578,3 +1578,317 @@ model AnalyticsData {
   @@index([source])
   @@index([landingPage])
 }
+
+// =====================
+// CONTENT HUB
+// =====================
+
+// Keyword Bank - storage for researched keywords
+model KeywordBank {
+  id              String   @id @default(cuid())
+  keyword         String
+  locale          String   // en, pl, es, fr
+
+  // Metrics
+  searchVolume    Int?
+  difficulty      Int?     // 0-100 competition score
+  cpc             Float?   // cost per click estimate
+
+  // Classification
+  intent          String?  // informational, transactional, commercial, navigational
+  cluster         String?  // topic cluster name
+
+  // Status tracking
+  status          String   @default("new") // new, planned, writing, used, archived
+  priority        Int      @default(0)     // 0-100, higher = more important
+
+  // Source & metadata
+  source          String?  // tag_recommender, manual, competitor_analysis, ai_suggestion
+  relatedKeywords String[] @default([])
+  serpFeatures    String[] @default([]) // featured_snippet, people_also_ask, images, videos
+  trend           String?  // rising, stable, falling
+
+  // Tracking
+  lastChecked     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  usedInArticles  ContentArticleKeyword[]
+
+  @@unique([keyword, locale])
+  @@index([locale, status])
+  @@index([cluster])
+  @@index([priority])
+  @@index([status])
+}
+
+// Keyword Clusters - grouping keywords by topic
+model KeywordCluster {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  locale      String
+  color       String?  // hex color for UI
+  parentId    String?  // for hierarchical clusters
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([name, locale])
+  @@index([locale])
+  @@index([parentId])
+}
+
+// Content Plan - planning articles before writing
+model ContentPlan {
+  id                String   @id @default(cuid())
+
+  // Basic info
+  title             String
+  titleVariants     String[] @default([]) // A/B testing variants
+  slug              String
+  targetKeyword     String
+  secondaryKeywords String[] @default([])
+
+  // Content type & locale
+  contentType       String   // blog, knowledge, tutorial, comparison, case-study, faq
+  targetLocale      String   @default("en")
+
+  // Status & scheduling
+  status            String   @default("planned") // planned, researching, writing, review, published, archived
+  priority          Int      @default(0)
+  scheduledFor      DateTime?
+  scheduledTimezone String?
+
+  // Content planning
+  outline           Json?    // article structure with headings
+  brief             Json?    // detailed brief for AI writer
+  serpAnalysis      Json?    // TOP 10 analysis data
+  competitorUrls    String[] @default([])
+
+  // Word count
+  estimatedWords    Int?
+  actualWords       Int?
+
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  keywords          ContentArticleKeyword[]
+  articles          ContentArticle[]
+
+  @@index([status])
+  @@index([targetLocale])
+  @@index([scheduledFor])
+  @@index([priority])
+}
+
+// Junction table for Content Plan <-> Keyword Bank
+model ContentArticleKeyword {
+  id            String      @id @default(cuid())
+  keywordId     String
+  contentPlanId String
+  isPrimary     Boolean     @default(false)
+
+  keyword       KeywordBank @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+  contentPlan   ContentPlan @relation(fields: [contentPlanId], references: [id], onDelete: Cascade)
+
+  @@unique([keywordId, contentPlanId])
+  @@index([contentPlanId])
+}
+
+// SERP Snapshot - cached SERP analysis
+model SerpSnapshot {
+  id              String   @id @default(cuid())
+  keyword         String
+  locale          String
+
+  // Analysis results
+  results         Json     // top 10 results with metadata
+  avgWordCount    Int?
+  commonHeadings  String[] @default([])
+  commonQuestions String[] @default([])
+  featuredSnippet Json?
+
+  createdAt       DateTime @default(now())
+
+  @@index([keyword, locale])
+  @@index([createdAt])
+}
+
+// Content Article - the actual article content
+model ContentArticle {
+  id              String   @id @default(cuid())
+  contentPlanId   String?
+
+  // Basic info
+  locale          String
+  title           String
+  slug            String
+  content         String   @db.Text
+  excerpt         String?  @db.Text
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  featuredImage   String?
+
+  // Authorship
+  author          String   @default("Pixelift Team")
+
+  // Classification
+  categories      String[] @default([])
+  tags            String[] @default([])
+  contentType     String   // blog, knowledge
+
+  // Status
+  status          String   @default("draft") // draft, review, scheduled, published, archived
+
+  // Metrics
+  wordCount       Int?
+  seoScore        Int?     // 0-100
+  readabilityScore Float?
+
+  // AI tracking
+  aiGenerated     Boolean  @default(false)
+  aiModel         String?  // claude-sonnet-4-20250514, etc.
+
+  // Publishing
+  publishedAt     DateTime?
+  scheduledAt     DateTime?
+
+  // Translation tracking
+  sourceArticleId String?  // ID of source article (for translations)
+  isTranslation   Boolean  @default(false)
+
+  // Version
+  version         Int      @default(1)
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  contentPlan     ContentPlan?     @relation(fields: [contentPlanId], references: [id], onDelete: SetNull)
+  sourceArticle   ContentArticle?  @relation("ArticleTranslations", fields: [sourceArticleId], references: [id], onDelete: SetNull)
+  translations    ContentArticle[] @relation("ArticleTranslations")
+  versions        ContentArticleVersion[]
+  optimizations   ContentArticleOptimization[]
+
+  @@unique([slug, locale])
+  @@index([status])
+  @@index([locale])
+  @@index([contentType])
+  @@index([publishedAt])
+  @@index([sourceArticleId])
+}
+
+// Article Version History
+model ContentArticleVersion {
+  id          String   @id @default(cuid())
+  articleId   String
+  version     Int
+  content     String   @db.Text
+  changes     String?  // description of changes
+  wordCount   Int
+  seoScore    Int?
+  createdAt   DateTime @default(now())
+  createdBy   String   // "ai_generation" | "ai_optimization" | "ai_refresh" | "manual" | userId
+
+  article     ContentArticle @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, version])
+  @@index([articleId])
+}
+
+// Article Optimization History
+model ContentArticleOptimization {
+  id              String   @id @default(cuid())
+  articleId       String
+
+  initialScore    Int
+  finalScore      Int
+  iterations      Int
+  improvements    Json     // what was improved
+  qualityGates    Json     // quality gates results
+  internalLinks   String[] @default([]) // links added
+
+  createdAt       DateTime @default(now())
+
+  article         ContentArticle @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId])
+}
+
+// Content Alerts - notifications about content issues
+model ContentAlert {
+  id          String   @id @default(cuid())
+  articleId   String?
+  keyword     String?
+
+  type        String   // position_drop, competitor_update, content_stale, keyword_opportunity
+  severity    String   // high, medium, low
+  message     String
+  data        Json?    // additional context
+
+  status      String   @default("new") // new, acknowledged, resolved, ignored
+
+  createdAt   DateTime @default(now())
+  resolvedAt  DateTime?
+  resolvedBy  String?
+
+  @@index([status, severity])
+  @@index([articleId])
+  @@index([createdAt])
+}
+
+// Content Publish Schedule
+model ContentPublishSchedule {
+  id          String   @id @default(cuid())
+  articleId   String
+  locale      String
+
+  scheduledAt DateTime
+  timezone    String
+  status      String   @default("scheduled") // scheduled, publishing, published, failed, cancelled
+
+  publishedAt DateTime?
+  error       String?
+
+  createdAt   DateTime @default(now())
+
+  @@index([status, scheduledAt])
+  @@index([articleId])
+}
+
+// Content Social Posts - generated social media content
+model ContentSocialPost {
+  id          String   @id @default(cuid())
+  articleId   String
+
+  platform    String   // twitter, linkedin, facebook, instagram
+  content     String   @db.Text
+  mediaUrls   String[] @default([])
+
+  scheduledAt DateTime?
+  status      String   @default("draft") // draft, scheduled, posting, posted, failed
+
+  postedAt    DateTime?
+  postUrl     String?  // URL to the published post
+  error       String?
+
+  // Engagement metrics (updated after posting)
+  likes       Int      @default(0)
+  comments    Int      @default(0)
+  shares      Int      @default(0)
+  clicks      Int      @default(0)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([articleId])
+  @@index([platform])
+  @@index([status, scheduledAt])
+}
