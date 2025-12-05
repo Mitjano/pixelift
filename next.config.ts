@@ -88,6 +88,24 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Prevent Cloudflare from caching admin pages
+      {
+        source: '/:locale/admin/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'no-store',
+          },
+          {
+            key: 'Cloudflare-CDN-Cache-Control',
+            value: 'no-store',
+          },
+        ],
+      },
     ];
   },
 };

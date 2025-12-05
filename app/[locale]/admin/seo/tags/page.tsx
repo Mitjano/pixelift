@@ -365,12 +365,34 @@ export default function TagRecommenderPage() {
         )}
       </div>
 
-      {/* Volume Source Info */}
-      {volumeSource && volumeData.size > 0 && (
-        <div className="text-xs text-gray-500 flex items-center gap-2">
-          <span>Data source: {volumeSource === 'google_ads' ? 'Google Ads (accurate)' : 'Google Trends (estimated)'}</span>
-          <span>•</span>
-          <span>{volumeData.size} keywords with volume data</span>
+      {/* Volume Source Info & Button (fallback location) */}
+      {recommendations.length > 0 && (
+        <div className="flex items-center justify-between bg-gray-800/30 rounded-lg p-3">
+          <div className="text-sm text-gray-400">
+            {volumeData.size > 0 ? (
+              <span>
+                Data source: {volumeSource === 'google_ads' ? 'Google Ads (accurate)' : 'Google Trends (estimated)'} • {volumeData.size} keywords
+              </span>
+            ) : (
+              <span>Click "Fetch Search Volume" to get volume and trend data for keywords</span>
+            )}
+          </div>
+          <button
+            onClick={fetchAllVolumes}
+            disabled={loadingVolume}
+            className="px-4 py-2 bg-purple-500 hover:bg-purple-600 disabled:opacity-50 text-white font-semibold rounded-lg transition flex items-center gap-2"
+          >
+            {loadingVolume ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Fetching Volume...
+              </>
+            ) : (
+              <>
+                <span>📊</span> Fetch Search Volume
+              </>
+            )}
+          </button>
         </div>
       )}
 
