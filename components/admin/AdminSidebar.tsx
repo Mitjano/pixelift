@@ -21,6 +21,11 @@ const navigation = [
     icon: "📝",
   },
   {
+    name: "Content Hub",
+    href: "/admin/content-hub",
+    icon: "✍️",
+  },
+  {
     name: "Users",
     href: "/admin/users",
     icon: "👥",
