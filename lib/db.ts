@@ -56,6 +56,7 @@ export interface User {
   id: string;
   email: string;
   name?: string;
+  displayName?: string;
   image?: string;
   role: 'user' | 'premium' | 'admin';
   status: 'active' | 'banned' | 'suspended';
