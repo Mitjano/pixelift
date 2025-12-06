@@ -44,7 +44,7 @@ export default function PricingPage() {
   const [selectedOneTime, setSelectedOneTime] = useState(2); // Index 2 = 100 credits
 
   // Subscription Plans - simplified to 4 options
-  // Yearly gives 70% discount
+  // Yearly gives 30% discount
   const subscriptionPlans = [
     {
       id: "plan-100",
@@ -75,9 +75,9 @@ export default function PricingPage() {
   // Get current selected plan
   const selectedPlan = subscriptionPlans.find(p => p.id === selectedSubscription);
 
-  // Yearly daje 70% zniżki (30% ceny monthly)
+  // Yearly gives 30% discount (70% of monthly price)
   const currentPricePerMonth = billingCycle === "yearly" && selectedPlan
-    ? selectedPlan.priceMonthly * 0.3 // 70% off
+    ? selectedPlan.priceMonthly * 0.7 // 30% off
     : selectedPlan?.priceMonthly || 0;
 
   const currentPricePerCredit = selectedPlan
@@ -86,10 +86,10 @@ export default function PricingPage() {
 
   // For yearly: show total yearly price
   const totalYearlyPrice = billingCycle === "yearly" && selectedPlan
-    ? (selectedPlan.priceMonthly * 0.3 * 12).toFixed(2)
+    ? (selectedPlan.priceMonthly * 0.7 * 12).toFixed(2)
     : undefined;
 
-  // One-time payment plans - simplified to 4 options
+  // One-time payment plans - 6 options including 500 and 1000 credits
   const oneTimePlans = [
     {
       credits: 25,
@@ -111,6 +111,16 @@ export default function PricingPage() {
       credits: 200,
       price: 39.99,
       pricePerCredit: 0.20
+    },
+    {
+      credits: 500,
+      price: 89.99,
+      pricePerCredit: 0.18
+    },
+    {
+      credits: 1000,
+      price: 159.99,
+      pricePerCredit: 0.16
     }
   ];
 
@@ -126,60 +136,57 @@ export default function PricingPage() {
         </div>
 
         {/* Plans Grid */}
-        <div className="grid lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
+        <div className="grid lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16 items-stretch">
           {/* Free Plan */}
-          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-8 flex flex-col">
-            <h3 className="text-2xl font-bold mb-6">{t('freePlan.title')}</h3>
+          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 flex flex-col h-full">
+            <h3 className="text-xl font-bold mb-4 h-8">{t('freePlan.title')}</h3>
 
-            <div className="mb-6">
+            <div className="mb-4 h-20">
               <div className="flex items-baseline mb-2">
-                <span className="text-5xl font-bold">$0</span>
-                <span className="text-gray-400 ml-2">{t('freePlan.perCredit')}</span>
+                <span className="text-4xl font-bold">$0</span>
+                <span className="text-gray-400 ml-2 text-sm">{t('freePlan.perCredit')}</span>
               </div>
+              <div className="text-sm text-gray-400">&nbsp;</div>
             </div>
 
-            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-8 transition">
+            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('freePlan.button')}
             </button>
 
-            <div className="space-y-4 flex-grow">
+            <div className="space-y-3 flex-grow">
               <div className="flex items-start gap-3">
                 <DatabaseIcon className="text-green-400 mt-1 flex-shrink-0" />
-                <div>
-                  <div className="font-medium">{t('freePlan.freeCredits')}</div>
-                </div>
+                <div className="font-medium text-sm">{t('freePlan.freeCredits')}</div>
               </div>
               <div className="flex items-start gap-3">
                 <DownloadIcon className="text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <div className="font-medium">{t('freePlan.freeDownloads')}</div>
-                </div>
+                <div className="font-medium text-sm">{t('freePlan.freeDownloads')}</div>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-700">
-              <p className="text-sm text-gray-400">
+            <div className="mt-auto pt-4 border-t border-gray-700">
+              <p className="text-xs text-gray-400 leading-relaxed">
                 {t('freePlan.description')}
               </p>
             </div>
           </div>
 
           {/* Subscription Plan */}
-          <div className="bg-gray-800/50 rounded-2xl border-2 border-blue-500 p-8 flex flex-col relative">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <span className="bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
+          <div className="bg-gray-800/50 rounded-2xl border-2 border-blue-500 p-6 flex flex-col relative h-full">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">
                 {t('subscription.mostPopular')}
               </span>
             </div>
 
-            <h3 className="text-2xl font-bold mb-6">{t('subscription.title')}</h3>
+            <h3 className="text-xl font-bold mb-4 h-8 mt-2">{t('subscription.title')}</h3>
 
-            <div className="mb-6">
-              <div className="flex items-baseline mb-2">
-                <span className="text-5xl font-bold">
+            <div className="mb-4 h-20">
+              <div className="flex items-baseline mb-1">
+                <span className="text-4xl font-bold">
                   ${currentPricePerCredit}
                 </span>
-                <span className="text-gray-400 ml-2">{t('subscription.perCredit')}</span>
+                <span className="text-gray-400 ml-2 text-sm">{t('subscription.perCredit')}</span>
               </div>
               <div className="text-sm text-gray-400">
                 ${currentPricePerMonth.toFixed(2)} {t('subscription.billed')} {t('subscription.monthly')}
@@ -191,15 +198,15 @@ export default function PricingPage() {
               )}
             </div>
 
-            <button className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold mb-6 transition">
+            <button className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('subscription.button')}
             </button>
 
             {/* Billing Toggle */}
-            <div className="inline-flex items-center bg-gray-700 rounded-lg p-1 mb-6 w-full">
+            <div className="inline-flex items-center bg-gray-700 rounded-lg p-1 mb-4 w-full">
               <button
                 onClick={() => setBillingCycle("monthly")}
-                className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition ${
+                className={`flex-1 px-3 py-1.5 rounded-md text-xs font-medium transition ${
                   billingCycle === "monthly"
                     ? "bg-gray-900 text-white"
                     : "text-gray-400 hover:text-white"
@@ -209,74 +216,67 @@ export default function PricingPage() {
               </button>
               <button
                 onClick={() => setBillingCycle("yearly")}
-                className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition flex items-center justify-center gap-2 ${
+                className={`flex-1 px-3 py-1.5 rounded-md text-xs font-medium transition flex items-center justify-center gap-1 ${
                   billingCycle === "yearly"
                     ? "bg-gray-900 text-white"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
                 {t('subscription.yearly')}
-                <span className="text-xs bg-green-500 text-white px-2 py-0.5 rounded">
-                  {t('subscription.save70')}
+                <span className="text-[10px] bg-green-500 text-white px-1.5 py-0.5 rounded">
+                  {t('subscription.save30')}
                 </span>
               </button>
             </div>
 
             {/* Subscription Options */}
-            <div className="space-y-2 flex-grow mb-6">
+            <div className="space-y-2 flex-grow mb-4">
               {subscriptionPlans.map((plan) => {
-                // Oblicz cenę per month (z 70% zniżką dla yearly)
+                // Oblicz cenę per month (z 30% zniżką dla yearly = 0.7 * cena)
                 const pricePerMonth = billingCycle === "yearly"
-                  ? plan.priceMonthly * 0.3
+                  ? plan.priceMonthly * 0.7
                   : plan.priceMonthly;
 
                 const pricePerCredit = (pricePerMonth / plan.credits).toFixed(2);
 
                 // Dla yearly pokazujemy całkowitą roczną cenę w małym tekście
                 const totalYearly = billingCycle === "yearly"
-                  ? (plan.priceMonthly * 0.3 * 12).toFixed(2)
+                  ? (plan.priceMonthly * 0.7 * 12).toFixed(2)
                   : null;
 
                 return (
                   <label
                     key={plan.id}
-                    className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition ${
+                    className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition ${
                       selectedSubscription === plan.id
                         ? "bg-blue-500/20 border border-blue-500"
                         : "bg-gray-700/30 hover:bg-gray-700/50"
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                       <input
                         type="radio"
                         name="subscription"
                         checked={selectedSubscription === plan.id}
                         onChange={() => setSelectedSubscription(plan.id)}
-                        className="w-4 h-4 text-blue-500"
+                        className="w-3 h-3 text-blue-500"
                       />
-                      <div>
-                        <div className="font-medium text-sm">{plan.credits} {t('subscription.creditsPerMonth')}</div>
-                      </div>
+                      <div className="font-medium text-sm">{plan.credits} {t('subscription.creditsPerMonth')}</div>
                     </div>
                     <div className="text-right">
                       <div className="font-bold text-sm">${pricePerCredit}{t('subscription.perCredit')}</div>
-                      <div className="text-xs text-gray-400">
-                        ${pricePerMonth.toFixed(2)}{t('subscription.perMonth')}
-                        {totalYearly && (
-                          <> (${totalYearly}{t('subscription.perYear')})</>
-                        )}
-                      </div>
+                      <div className="text-xs text-gray-400">${pricePerMonth.toFixed(2)}{t('subscription.perMonth')}</div>
                     </div>
                   </label>
                 );
               })}
             </div>
 
-            <div className="pt-6 border-t border-gray-700 space-y-2 text-sm text-gray-400">
+            <div className="mt-auto pt-4 border-t border-gray-700 space-y-1 text-xs text-gray-400">
               {billingCycle === "yearly" ? (
                 <>
                   <p>{t('subscription.billedYearlyAuto')}</p>
-                  <p>{t('subscription.save70Compared')}</p>
+                  <p>{t('subscription.save30Compared')}</p>
                 </>
               ) : (
                 <p>{t('subscription.billedMonthlyAuto')}</p>
@@ -287,96 +287,88 @@ export default function PricingPage() {
           </div>
 
           {/* One Time Payment */}
-          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-8 flex flex-col">
-            <h3 className="text-2xl font-bold mb-6">{t('oneTime.title')}</h3>
+          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 flex flex-col h-full">
+            <h3 className="text-xl font-bold mb-4 h-8">{t('oneTime.title')}</h3>
 
-            <div className="mb-6">
-              <div className="flex items-baseline mb-2">
-                <span className="text-5xl font-bold">
+            <div className="mb-4 h-20">
+              <div className="flex items-baseline mb-1">
+                <span className="text-4xl font-bold">
                   ${oneTimePlans[selectedOneTime].pricePerCredit.toFixed(2)}
                 </span>
-                <span className="text-gray-400 ml-2">{t('oneTime.perCredit')}</span>
+                <span className="text-gray-400 ml-2 text-sm">{t('oneTime.perCredit')}</span>
               </div>
               <div className="text-sm text-gray-400">
                 ${oneTimePlans[selectedOneTime].price.toFixed(2)} {t('oneTime.billedOnce')}
               </div>
             </div>
 
-            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-6 transition">
+            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('oneTime.button')}
             </button>
 
             {/* One-time Options */}
-            <div className="space-y-3 flex-grow mb-6">
+            <div className="space-y-2 flex-grow mb-4">
               {oneTimePlans.map((plan, index) => (
                 <label
                   key={index}
-                  className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition ${
+                  className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition ${
                     selectedOneTime === index
                       ? "bg-blue-500/20 border border-blue-500"
                       : "bg-gray-700/50 hover:bg-gray-700"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     <input
                       type="radio"
                       name="onetime"
                       checked={selectedOneTime === index}
                       onChange={() => setSelectedOneTime(index)}
-                      className="w-4 h-4 text-blue-500"
+                      className="w-3 h-3 text-blue-500"
                     />
-                    <div>
-                      <div className="font-medium">{plan.credits} {t('oneTime.credits')}</div>
-                    </div>
+                    <div className="font-medium text-sm">{plan.credits} {t('oneTime.credits')}</div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold">${plan.pricePerCredit.toFixed(2)}{t('oneTime.perCredit')}</div>
-                    <div className="text-xs text-gray-400">${plan.price.toFixed(2)} {t('oneTime.billedOnce')}</div>
+                    <div className="font-bold text-sm">${plan.pricePerCredit.toFixed(2)}{t('oneTime.perCredit')}</div>
+                    <div className="text-xs text-gray-400">${plan.price.toFixed(2)}</div>
                   </div>
                 </label>
               ))}
             </div>
 
-            <div className="pt-6 border-t border-gray-700 text-sm text-gray-400">
-              <p>{t('oneTime.validFor1Year')}</p>
+            <div className="mt-auto pt-4 border-t border-gray-700">
+              <p className="text-xs text-gray-400 leading-relaxed">{t('oneTime.validFor1Year')}</p>
             </div>
           </div>
 
           {/* Enterprise Plan */}
-          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-8 flex flex-col">
-            <h3 className="text-2xl font-bold mb-6">{t('enterprise.title')}</h3>
+          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 flex flex-col h-full">
+            <h3 className="text-xl font-bold mb-4 h-8">{t('enterprise.title')}</h3>
 
-            <div className="mb-6">
-              <div className="text-3xl font-bold mb-2">{t('enterprise.customSolutions')}</div>
+            <div className="mb-4 h-20">
+              <div className="text-lg font-bold leading-tight">{t('enterprise.customSolutions')}</div>
             </div>
 
-            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-8 transition">
+            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('enterprise.button')}
             </button>
 
-            <div className="space-y-4 flex-grow">
+            <div className="space-y-3 flex-grow">
               <div className="flex items-start gap-3">
                 <QuoteIcon className="text-purple-400 mt-1 flex-shrink-0" />
-                <div>
-                  <div className="font-medium">{t('enterprise.scheduleDemo')}</div>
-                </div>
+                <div className="font-medium text-sm">{t('enterprise.scheduleDemo')}</div>
               </div>
               <div className="flex items-start gap-3">
                 <CogIcon className="text-orange-400 mt-1 flex-shrink-0" />
-                <div>
-                  <div className="font-medium">{t('enterprise.getQuote')}</div>
-                </div>
+                <div className="font-medium text-sm">{t('enterprise.getQuote')}</div>
               </div>
               <div className="flex items-start gap-3">
                 <EnvelopeIcon className="text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <div className="font-medium">{t('enterprise.emailUs')} <span className="text-blue-400">sales@pixelift.pl</span> {t('enterprise.forQueries')}</div>
-                </div>
+                <div className="font-medium text-sm">{t('enterprise.emailUs')} <span className="text-blue-400">sales@pixelift.pl</span></div>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-700 text-sm text-gray-400">
-              <p>{t('enterprise.bookSession')}</p>
+            <div className="mt-auto pt-4 border-t border-gray-700">
+              <p className="text-xs text-gray-400 leading-relaxed">{t('enterprise.bookSession')}</p>
             </div>
           </div>
         </div>

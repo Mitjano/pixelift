@@ -106,7 +106,12 @@ export default function SettingsPage() {
     credits: number;
     role: string;
     createdAt?: string;
+    displayName?: string;
   } | null>(null);
+
+  // Display name state
+  const [displayName, setDisplayName] = useState("");
+  const [savingDisplayName, setSavingDisplayName] = useState(false);
 
   // Email preferences
   const [emailPrefs, setEmailPrefs] = useState({
@@ -142,6 +147,7 @@ export default function SettingsPage() {
         .then(data => {
           if (!data.error) {
             setUserData(data);
+            setDisplayName(data.displayName || data.name || '');
           }
         })
         .catch(err => console.error('Failed to load user data:', err));
@@ -168,6 +174,33 @@ export default function SettingsPage() {
 
   const handleAppPrefChange = (key: keyof typeof appPrefs, value: string | boolean) => {
     setAppPrefs(prev => ({ ...prev, [key]: value }));
+  };
+
+  const saveDisplayName = async () => {
+    if (!displayName.trim() || displayName.trim().length < 2) {
+      toast.error('Display name must be at least 2 characters');
+      return;
+    }
+    setSavingDisplayName(true);
+    try {
+      const response = await fetch('/api/user', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ displayName: displayName.trim() }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to save');
+      }
+
+      toast.success('Display name saved!');
+    } catch (error) {
+      console.error('Save display name error:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to save display name');
+    } finally {
+      setSavingDisplayName(false);
+    }
   };
 
   const saveEmailPreferences = async () => {
@@ -440,14 +473,33 @@ export default function SettingsPage() {
                       <label className="block text-sm font-medium text-gray-400 mb-2">
                         Display Name
                       </label>
-                      <input
-                        type="text"
-                        value={session.user?.name || ""}
-                        disabled
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-gray-400 cursor-not-allowed"
-                      />
+                      <div className="flex gap-3">
+                        <input
+                          type="text"
+                          value={displayName}
+                          onChange={(e) => setDisplayName(e.target.value)}
+                          maxLength={50}
+                          placeholder="Enter your display name"
+                          className="flex-1 px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white focus:border-green-500 focus:outline-none transition-colors"
+                        />
+                        <button
+                          onClick={saveDisplayName}
+                          disabled={savingDisplayName || !displayName.trim()}
+                          className="px-4 py-3 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-2"
+                        >
+                          {savingDisplayName ? (
+                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                          ) : (
+                            <CheckIcon />
+                          )}
+                          Save
+                        </button>
+                      </div>
                       <p className="text-xs text-gray-500 mt-1">
-                        Name is managed through your Google account
+                        Your public display name (2-50 characters)
                       </p>
                     </div>
                   </div>
