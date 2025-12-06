@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { User } from '@/lib/db';
 import toast from 'react-hot-toast';
 
@@ -9,11 +10,16 @@ interface UsersClientProps {
 }
 
 export default function UsersClient({ users: initialUsers }: UsersClientProps) {
+  const router = useRouter();
   const [users, setUsers] = useState(initialUsers);
   const [search, setSearch] = useState('');
   const [filterRole, setFilterRole] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [editingCredits, setEditingCredits] = useState<{ [key: string]: number }>({});
+
+  const navigateToUser = (userId: string) => {
+    router.push(`/admin/users/${userId}`);
+  };
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.email.toLowerCase().includes(search.toLowerCase()) ||
@@ -125,8 +131,8 @@ export default function UsersClient({ users: initialUsers }: UsersClientProps) {
                 </tr>
               ) : (
                 filteredUsers.map((user) => (
-                  <tr key={user.id} className="border-b border-gray-800 hover:bg-gray-700/30">
-                    <td className="py-4 px-6">
+                  <tr key={user.id} className="border-b border-gray-800 hover:bg-gray-700/30 cursor-pointer transition">
+                    <td className="py-4 px-6" onClick={() => navigateToUser(user.id)}>
                       <div className="flex items-center gap-3">
                         {user.image ? (
                           <img src={user.image} alt="" className="w-10 h-10 rounded-full" />
@@ -136,7 +142,7 @@ export default function UsersClient({ users: initialUsers }: UsersClientProps) {
                           </div>
                         )}
                         <div>
-                          <div className="font-semibold text-white">{user.name || 'No name'}</div>
+                          <div className="font-semibold text-white hover:text-green-400 transition">{user.name || 'No name'}</div>
                           <div className="text-sm text-gray-400">{user.email}</div>
                         </div>
                       </div>
@@ -205,16 +211,23 @@ export default function UsersClient({ users: initialUsers }: UsersClientProps) {
                       )}
                     </td>
                     <td className="py-4 px-6 text-right">
-                      <button
-                        onClick={() => {
-                          if (confirm(`Add 10 credits to ${user.email}?`)) {
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => navigateToUser(user.id)}
+                          className="px-3 py-1 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 rounded-lg text-sm font-medium transition"
+                        >
+                          View
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
                             handleUpdateUser(user.id, { credits: user.credits + 10 });
-                          }
-                        }}
-                        className="px-3 py-1 bg-green-500/20 hover:bg-green-500/30 text-green-400 rounded-lg text-sm font-medium transition"
-                      >
-                        +10 Credits
-                      </button>
+                          }}
+                          className="px-3 py-1 bg-green-500/20 hover:bg-green-500/30 text-green-400 rounded-lg text-sm font-medium transition"
+                        >
+                          +10 Credits
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))

@@ -11,6 +11,7 @@ import {
 import { sendWelcomeEmail } from '@/lib/email';
 import { authLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 import { isAdminEmail } from '@/lib/admin-config';
+import { getGeoFromIP } from '@/lib/geo';
 
 // Helper to parse user agent for detailed info
 function parseUserAgent(ua: string) {
@@ -98,6 +99,14 @@ export async function POST(request: NextRequest) {
     // Get language and accept-language
     const language = request.headers.get('accept-language')?.split(',')[0] || undefined;
 
+    // Get geolocation from IP (async, won't block)
+    let geoData: Awaited<ReturnType<typeof getGeoFromIP>> = null;
+    try {
+      geoData = await getGeoFromIP(ipAddress);
+    } catch (err) {
+      console.error('[register-user] Geo lookup failed:', err);
+    }
+
     // Check if user exists (async for PostgreSQL support)
     let user = await getUserByEmailAsync(email);
     const isNewUser = !user;
@@ -115,10 +124,25 @@ export async function POST(request: NextRequest) {
         lastLoginAt: new Date().toISOString(),
       });
 
-      // Track signup data
+      // Track signup data with all available info
       await updateUserOnSignup(user.id, {
         ipAddress,
         userAgent,
+        browser,
+        browserVersion,
+        os,
+        osVersion,
+        deviceType,
+        language,
+        // Geo data from IP
+        country: geoData?.countryCode,
+        countryName: geoData?.country,
+        city: geoData?.city,
+        region: geoData?.region,
+        timezone: geoData?.timezone,
+        latitude: geoData?.lat,
+        longitude: geoData?.lon,
+        // Marketing attribution
         referrer: trackingData.referrer,
         utmSource: trackingData.utm_source,
         utmMedium: trackingData.utm_medium,
@@ -160,15 +184,22 @@ export async function POST(request: NextRequest) {
       // Update last login with tracking data (async for PostgreSQL support)
       await updateUserLoginAsync(email);
 
-      // Also update extended login data
+      // Also update extended login data with geo
       await updateUserOnLogin(user.id, {
         ipAddress,
         userAgent,
         browser,
+        browserVersion,
         os,
+        osVersion,
         deviceType,
-        country: trackingData.country,
-        city: trackingData.city,
+        language,
+        // Use geo data from IP lookup (more reliable than client-provided)
+        country: geoData?.countryCode || trackingData.country,
+        countryName: geoData?.country,
+        city: geoData?.city || trackingData.city,
+        region: geoData?.region,
+        timezone: geoData?.timezone,
       }).catch(err => console.error('[register-user] Failed to track login data:', err));
     }
 

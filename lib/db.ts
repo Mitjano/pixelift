@@ -3063,6 +3063,21 @@ export async function updateUserExtendedData(userId: string, data: ExtendedUserD
 export async function updateUserOnSignup(userId: string, data: {
   ipAddress?: string;
   userAgent?: string;
+  browser?: string;
+  browserVersion?: string;
+  os?: string;
+  osVersion?: string;
+  deviceType?: string;
+  language?: string;
+  // Geo data
+  country?: string;
+  countryName?: string;
+  city?: string;
+  region?: string;
+  timezone?: string;
+  latitude?: number;
+  longitude?: number;
+  // Marketing
   referrer?: string;
   utmSource?: string;
   utmMedium?: string;
@@ -3082,9 +3097,26 @@ export async function updateUserOnSignup(userId: string, data: {
     await prisma.user.update({
       where: { id: userId },
       data: {
+        // IP addresses
         signupIpAddress: data.ipAddress,
         lastIpAddress: data.ipAddress,
+        // Device info
         userAgent: data.userAgent,
+        browser: data.browser,
+        browserVersion: data.browserVersion,
+        os: data.os,
+        osVersion: data.osVersion,
+        deviceType: data.deviceType,
+        language: data.language,
+        // Geolocation
+        country: data.country,
+        countryName: data.countryName,
+        city: data.city,
+        region: data.region,
+        timezone: data.timezone,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        // Marketing attribution
         referrerUrl: data.referrer,
         referralSource: data.utmSource,
         referralMedium: data.utmMedium,
@@ -3107,10 +3139,16 @@ export async function updateUserOnLogin(userId: string, data: {
   ipAddress?: string;
   userAgent?: string;
   browser?: string;
+  browserVersion?: string;
   os?: string;
+  osVersion?: string;
   deviceType?: string;
+  language?: string;
   country?: string;
+  countryName?: string;
   city?: string;
+  region?: string;
+  timezone?: string;
 }): Promise<void> {
   if (USE_POSTGRES) {
     const prisma = await getPrisma();
@@ -3120,12 +3158,19 @@ export async function updateUserOnLogin(userId: string, data: {
         lastIpAddress: data.ipAddress,
         userAgent: data.userAgent,
         browser: data.browser,
+        browserVersion: data.browserVersion,
         os: data.os,
+        osVersion: data.osVersion,
         deviceType: data.deviceType,
+        language: data.language,
         country: data.country,
+        countryName: data.countryName,
         city: data.city,
+        region: data.region,
+        timezone: data.timezone,
         lastLoginAt: new Date(),
         lastActiveAt: new Date(),
+        totalSessions: { increment: 1 },
       },
     });
   }
