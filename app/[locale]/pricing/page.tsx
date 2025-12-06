@@ -49,25 +49,25 @@ export default function PricingPage() {
     {
       id: "plan-100",
       credits: 100,
-      priceMonthly: 7.99,
+      priceMonthly: 12.99,
       selected: false
     },
     {
       id: "plan-300",
       credits: 300,
-      priceMonthly: 21.99,
+      priceMonthly: 34.99,
       selected: false
     },
     {
       id: "plan-500",
       credits: 500,
-      priceMonthly: 34.99,
+      priceMonthly: 54.99,
       selected: true // Default selected
     },
     {
       id: "plan-1000",
       credits: 1000,
-      priceMonthly: 59.99,
+      priceMonthly: 89.99,
       selected: false
     }
   ];
