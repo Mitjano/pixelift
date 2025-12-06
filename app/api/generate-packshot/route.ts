@@ -5,6 +5,7 @@ import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -16,26 +17,28 @@ interface PackshotPreset {
   credits: number
 }
 
+const PACKSHOT_CREDITS = CREDIT_COSTS.packshot.cost
+
 const PRESETS: Record<string, PackshotPreset> = {
   white: {
     name: 'White Background',
     backgroundColor: '#FFFFFF',
-    credits: 2,
+    credits: PACKSHOT_CREDITS,
   },
   gray: {
     name: 'Light Gray',
     backgroundColor: '#F5F5F5',
-    credits: 2,
+    credits: PACKSHOT_CREDITS,
   },
   beige: {
     name: 'Beige',
     backgroundColor: '#F5E6D3',
-    credits: 2,
+    credits: PACKSHOT_CREDITS,
   },
   blue: {
     name: 'Light Blue',
     backgroundColor: '#E3F2FD',
-    credits: 2,
+    credits: PACKSHOT_CREDITS,
   },
 }
 

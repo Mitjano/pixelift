@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaPaintBrush, FaEraser, FaUndo } from "react-icons/fa";
-import { LoginPrompt } from "./shared";
+import { LoginPrompt, CreditCostBadge } from "./shared";
+import { CREDIT_COSTS } from '@/lib/credits-config';
 
 export default function InpaintingPro() {
   const { data: session } = useSession();
@@ -450,8 +451,10 @@ export default function InpaintingPro() {
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500">
-            <p>Powered by FLUX Fill Pro AI - 5 credits per inpainting</p>
+          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+            <span>Powered by FLUX Fill Pro AI -</span>
+            <CreditCostBadge tool="inpainting" size="xs" />
+            <span>per inpainting</span>
           </div>
         </div>
       )}

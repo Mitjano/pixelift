@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle } from "react-icons/fa";
-import { LoginPrompt } from "./shared";
+import { LoginPrompt, CreditCostBadge } from "./shared";
+import { CREDIT_COSTS } from '@/lib/credits-config';
 
 type TaskType = 'real_sr' | 'denoise' | 'jpeg_car';
 
@@ -222,7 +223,8 @@ export default function ImageDenoiser() {
               <p className="text-gray-400 mt-4">or drop image anywhere</p>
               <div className="mt-6 text-sm text-gray-500">
                 <p className="mb-2">Supported formats: png | jpeg | jpg | webp</p>
-                <p>Maximum file size: 20MB</p>
+                <p className="mb-2">Maximum file size: 20MB</p>
+                <CreditCostBadge tool="denoise" size="sm" />
               </div>
             </div>
           </div>

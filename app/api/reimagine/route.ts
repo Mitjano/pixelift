@@ -4,12 +4,13 @@ import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
 })
 
-const CREDITS_PER_REIMAGINE = 3 // Image variation generation
+const CREDITS_PER_REIMAGINE = CREDIT_COSTS.reimagine.cost
 
 export async function POST(request: NextRequest) {
   try {

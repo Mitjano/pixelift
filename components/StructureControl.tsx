@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaLayerGroup, FaRuler, FaBorderAll } from "react-icons/fa";
+import { CreditCostBadge } from './shared';
+import { CREDIT_COSTS } from '@/lib/credits-config';
 
 const CONTROL_MODES = [
   {
@@ -420,8 +422,10 @@ export default function StructureControl() {
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500">
-            <p>Powered by FLUX {controlMode === 'depth' ? 'Depth' : 'Canny'} Pro AI - 4 credits per generation</p>
+          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+            <span>Powered by FLUX {controlMode === 'depth' ? 'Depth' : 'Canny'} Pro AI -</span>
+            <CreditCostBadge tool="structure_control" size="xs" />
+            <span>per generation</span>
           </div>
         </div>
       )}

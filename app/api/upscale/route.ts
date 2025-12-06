@@ -5,6 +5,7 @@ import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from "
 import { validateFileSize, validateFileType, MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES } from "@/lib/validation";
 import { authenticateRequest } from "@/lib/api-auth";
 import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
+import { calculateUpscaleCost, CREDIT_COSTS } from "@/lib/credits-config";
 
 export async function POST(request: NextRequest) {
   try {
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Calculate credits needed (quality boost costs more)
-    const creditsNeeded = qualityBoost ? 2 : 1;
+    const creditsNeeded = calculateUpscaleCost(qualityBoost);
 
     // Check if user has enough credits
     if (user.credits < creditsNeeded) {

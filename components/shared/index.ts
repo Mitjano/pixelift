@@ -20,3 +20,6 @@ export type { ErrorMessageProps } from './ErrorMessage';
 
 export { default as ActionButton } from './ActionButton';
 export type { ActionButtonProps } from './ActionButton';
+
+export { CreditCostBadge, CreditsRemaining, CreditCostInfo } from './CreditCostBadge';
+export type { CreditCostBadgeProps, CreditsRemainingProps, CreditCostInfoProps } from './CreditCostBadge';

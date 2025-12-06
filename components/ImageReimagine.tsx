@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { FaTimes, FaInfoCircle, FaMagic, FaRandom } from "react-icons/fa";
+import { CREDIT_COSTS, calculateReimagineCost } from '@/lib/credits-config';
+import { CreditCostBadge } from './shared';
 
 export default function ImageReimagine() {
   const { data: session } = useSession();
@@ -250,7 +252,7 @@ export default function ImageReimagine() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">
-                    Number of Variations ({numVariations * 3} credits)
+                    Number of Variations ({calculateReimagineCost(numVariations)} credits)
                   </label>
                   <div className="flex gap-2">
                     {[1, 2, 3, 4].map((num) => (
@@ -407,8 +409,10 @@ export default function ImageReimagine() {
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500">
-            <p>Powered by FLUX Redux AI - 3 credits per variation</p>
+          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+            <span>Powered by FLUX Redux AI -</span>
+            <CreditCostBadge tool="reimagine" size="xs" />
+            <span>per variation</span>
           </div>
         </div>
       )}

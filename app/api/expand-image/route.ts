@@ -7,6 +7,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { fetchWithTimeout } from '@/lib/fetch-with-timeout'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -94,7 +95,7 @@ const EXPAND_MODE_MAP: Record<string, string> = {
   'expand_down': 'Bottom outpaint',
 }
 
-const CREDITS_PER_EXPAND = 2
+const CREDITS_PER_EXPAND = CREDIT_COSTS.expand.cost
 
 // Helper to extract URL from Replicate output
 function extractResultUrl(output: unknown): string {

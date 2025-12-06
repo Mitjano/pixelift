@@ -4,12 +4,13 @@ import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
 })
 
-const CREDITS_PER_CONTROL = 4 // Structure control is compute-intensive
+const CREDITS_PER_CONTROL = CREDIT_COSTS.structure_control.cost
 
 export async function POST(request: NextRequest) {
   try {

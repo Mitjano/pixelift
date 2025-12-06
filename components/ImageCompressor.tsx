@@ -2,6 +2,8 @@
 
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { CreditCostBadge } from './shared';
+import { CREDIT_COSTS } from '@/lib/credits-config';
 
 interface CompressionStats {
   originalSize: number;
@@ -190,7 +192,8 @@ export default function ImageCompressor() {
             </svg>
           </div>
           <p className="text-lg font-medium mb-2">Click or drag image to compress</p>
-          <p className="text-sm text-gray-400">JPG, PNG, WebP up to 20MB</p>
+          <p className="text-sm text-gray-400 mb-2">JPG, PNG, WebP up to 20MB</p>
+          <CreditCostBadge tool="compress" size="sm" />
         </div>
       ) : (
         <div>

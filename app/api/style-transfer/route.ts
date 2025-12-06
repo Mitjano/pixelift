@@ -4,12 +4,13 @@ import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
 })
 
-const CREDITS_PER_TRANSFER = 4 // Style transfer is compute-intensive
+const CREDITS_PER_TRANSFER = CREDIT_COSTS.style_transfer.cost
 
 // Style presets with prompts - these define different scene/style transformations
 // while preserving the person's identity

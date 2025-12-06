@@ -11,7 +11,9 @@ import {
   CreditsInfo,
   ErrorMessage,
   ActionButton,
+  CreditCostBadge,
 } from './shared'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 interface ExpandResult {
   expandedImage: string
@@ -43,56 +45,56 @@ const EXPAND_PRESETS: ExpandPreset[] = [
     name: 'Zoom Out 1.5x',
     description: 'Expand canvas by 50%',
     icon: '🔍',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'zoom_2x',
     name: 'Zoom Out 2x',
     description: 'Double the canvas size',
     icon: '🔎',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'make_square',
     name: 'Make Square',
     description: 'Convert to square format',
     icon: '⬜',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'expand_horizontal',
     name: 'Expand Left & Right',
     description: 'Extend both sides at once',
     icon: '↔️',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'expand_left',
     name: 'Expand Left',
     description: 'Extend image to the left',
     icon: '⬅️',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'expand_right',
     name: 'Expand Right',
     description: 'Extend image to the right',
     icon: '➡️',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'expand_up',
     name: 'Expand Up',
     description: 'Extend image upward',
     icon: '⬆️',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
   {
     id: 'expand_down',
     name: 'Expand Down',
     description: 'Extend image downward',
     icon: '⬇️',
-    credits: 2,
+    credits: CREDIT_COSTS.expand.cost,
   },
 ]
 
@@ -384,7 +386,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
               accentColor="purple"
               variant="secondary"
             >
-              Same Result (2 cr)
+              Same Result ({CREDIT_COSTS.expand.cost} cr)
             </ActionButton>
             <ActionButton
               onClick={() => {
@@ -395,7 +397,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
               icon="lightning"
               accentColor="green"
             >
-              Try Different (2 cr)
+              Try Different ({CREDIT_COSTS.expand.cost} cr)
             </ActionButton>
             <ActionButton
               onClick={() => {

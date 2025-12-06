@@ -12,7 +12,9 @@ import {
   CreditsInfo,
   ErrorMessage,
   ActionButton,
+  CreditCostBadge,
 } from './shared'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 interface ProcessingResult {
   id: string
@@ -145,9 +147,10 @@ export function BackgroundRemover({ userRole = 'user' }: BackgroundRemoverProps)
                 <p className="text-gray-600 dark:text-gray-400">
                   {tCommon('orClickToBrowse')}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  Supports JPG, PNG, WEBP • Max 10MB • 1 credit per image
-                </p>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-500">
+                  <span>Supports JPG, PNG, WEBP • Max 10MB •</span>
+                  <CreditCostBadge tool="remove_background" size="sm" />
+                </div>
               </>
             )}
           </div>

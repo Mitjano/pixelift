@@ -2,6 +2,8 @@
 
 import { useCallback } from "react";
 import { useTranslations } from 'next-intl';
+import { CreditCostBadge } from '../shared';
+import { CREDIT_COSTS, calculateUpscaleCost } from '@/lib/credits-config';
 
 interface DropZoneProps {
   onFilesSelected: (files: File[]) => void;
@@ -121,12 +123,14 @@ export default function DropZone({
           {batchMode ? (
             <>
               <p className="mb-2">{t('batchInfo')}</p>
-              <p>{t('batchSettings')}</p>
+              <p className="mb-2">{t('batchSettings')}</p>
+              <CreditCostBadge tool="upscale" size="sm" />
             </>
           ) : (
             <>
               <p className="mb-2">{t('paste')}</p>
-              <p>{t('formats')}</p>
+              <p className="mb-2">{t('formats')}</p>
+              <CreditCostBadge tool="upscale" size="sm" />
             </>
           )}
         </div>

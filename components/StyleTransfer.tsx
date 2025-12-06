@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaPalette, FaMagic } from "react-icons/fa";
-import { LoginPrompt } from "./shared";
+import { LoginPrompt, CreditCostBadge } from "./shared";
+import { CREDIT_COSTS } from '@/lib/credits-config';
 
 // Style presets that change scene/background while preserving identity
 const STYLE_PRESETS = [
@@ -480,8 +481,10 @@ export default function StyleTransfer() {
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500">
-            <p>Powered by InstantID + IPAdapter AI - Your face stays identical - 4 credits per transform</p>
+          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+            <span>Powered by InstantID + IPAdapter AI - Your face stays identical -</span>
+            <CreditCostBadge tool="style_transfer" size="xs" />
+            <span>per transform</span>
           </div>
         </div>
       )}

@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaMagic, FaShoppingCart, FaCamera, FaTree, FaSnowflake, FaUtensils, FaGem, FaPalette, FaHome } from "react-icons/fa";
-import { LoginPrompt } from "./shared";
+import { LoginPrompt, CreditCostBadge } from "./shared";
+import { CREDIT_COSTS } from '@/lib/credits-config';
 
 // Category definitions with icons and colors
 const PRESET_CATEGORIES = [
@@ -285,7 +286,8 @@ export default function BackgroundGenerator() {
             <p className="text-gray-400 mt-4">or drop image anywhere</p>
             <div className="mt-6 text-sm text-gray-500">
               <p className="mb-2">Best results with transparent PNG or images with removed background</p>
-              <p>Maximum file size: 20MB</p>
+              <p className="mb-2">Maximum file size: 20MB</p>
+              <CreditCostBadge tool="background_generate" size="sm" />
             </div>
           </div>
         </div>

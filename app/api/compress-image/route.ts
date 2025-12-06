@@ -3,6 +3,7 @@ import { getUserByEmail, createUsage } from '@/lib/db'
 import sharp from 'sharp'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -65,7 +66,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 6. Check credits (1 credit per compression)
-    const creditsNeeded = 1
+    const creditsNeeded = CREDIT_COSTS.compress.cost
 
     if (user.credits < creditsNeeded) {
       return NextResponse.json(

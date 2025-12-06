@@ -5,6 +5,7 @@ import { ProcessedImagesDB } from '@/lib/processed-images-db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -56,7 +57,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 5. Check credits (1 credit per background removal)
-    const creditsNeeded = 1
+    const creditsNeeded = CREDIT_COSTS.remove_background.cost
 
     if (user.credits < creditsNeeded) {
       // Send credits depleted email

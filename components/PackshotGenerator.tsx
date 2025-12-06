@@ -6,7 +6,8 @@ import { useTranslations } from 'next-intl'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
-import { LoginPrompt } from './shared'
+import { LoginPrompt, CreditCostBadge } from './shared'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
 interface PackshotResult {
   packshot: string
@@ -37,28 +38,28 @@ const PRESETS: Preset[] = [
     name: 'White Background',
     description: '2000x2000px • Perfect for Amazon & e-commerce',
     icon: '⚪',
-    credits: 1,
+    credits: CREDIT_COSTS.packshot.cost,
   },
   {
     id: 'gray',
     name: 'Light Gray',
     description: '2000x2000px • Elegant & professional',
     icon: '🔘',
-    credits: 1,
+    credits: CREDIT_COSTS.packshot.cost,
   },
   {
     id: 'beige',
     name: 'Beige',
     description: '2000x2000px • Warm & natural look',
     icon: '🟤',
-    credits: 1,
+    credits: CREDIT_COSTS.packshot.cost,
   },
   {
     id: 'blue',
     name: 'Light Blue',
     description: '2000x2000px • Fresh & modern',
     icon: '🔵',
-    credits: 1,
+    credits: CREDIT_COSTS.packshot.cost,
   },
 ]
 
