@@ -233,7 +233,8 @@
       "terms": "Términos de Servicio",
       "privacy": "Política de Privacidad",
       "cookies": "Política de Cookies",
-      "gdpr": "Cumplimiento RGPD"
+      "gdpr": "Cumplimiento RGPD",
+      "refund": "Política de Reembolsos"
     },
     "copyright": "© {year} Pixelift. Todos los derechos reservados.",
     "madeWith": "Hecho con ❤️ en Polonia",
@@ -2790,5 +2791,88 @@
       "terms": "Términos de Servicio",
       "cookies": "Política de Cookies"
     }
+  },
+  "refundPage": {
+    "title": "Política de Reembolsos",
+    "lastUpdated": "Última actualización",
+    "backToHome": "Volver al Inicio",
+    "viewTerms": "Ver Términos de Servicio",
+    "sections": {
+      "overview": {
+        "title": "1. Resumen",
+        "intro": "En Pixelift, nos esforzamos por proporcionar servicios de procesamiento de imágenes con IA de alta calidad. Entendemos que a veces las cosas no funcionan como se esperaba, y queremos asegurarnos de que tengas una experiencia justa.",
+        "commitment": "Esta Política de Reembolsos describe las condiciones bajo las cuales puedes solicitar un reembolso por nuestros servicios, incluyendo planes de suscripción y compras de créditos."
+      },
+      "eligibility": {
+        "title": "2. Elegibilidad para Reembolso",
+        "intro": "Puedes ser elegible para un reembolso en los siguientes casos:",
+        "items": [
+          "Solicitud realizada dentro de los 14 días posteriores a la compra (Derechos del Consumidor de la UE)",
+          "No se han utilizado créditos de tu compra",
+          "Problemas técnicos de nuestra parte impidieron la entrega del servicio",
+          "Cargos duplicados o erróneos"
+        ]
+      },
+      "nonEligible": {
+        "title": "3. Casos No Reembolsables",
+        "intro": "Los reembolsos generalmente no están disponibles en estas situaciones:",
+        "items": [
+          "Los créditos ya se han utilizado para el procesamiento de imágenes",
+          "Solicitud realizada más de 14 días después de la compra",
+          "El servicio se entregó exitosamente según lo descrito",
+          "Violación de nuestros Términos de Servicio"
+        ]
+      },
+      "subscriptions": {
+        "title": "4. Reembolsos de Suscripciones",
+        "cancellation": "Cancelación:",
+        "cancellationDesc": "Puedes cancelar tu suscripción en cualquier momento desde tu panel de control. Tu suscripción permanecerá activa hasta el final del período de facturación actual.",
+        "refund": "Reembolso Completo:",
+        "refundDesc": "Si cancelas dentro de los 14 días de suscripción y no has usado ningún crédito, puedes solicitar un reembolso completo.",
+        "prorated": "Reembolsos Prorrateados:",
+        "proratedDesc": "Los reembolsos prorrateados no están disponibles. Al cancelar, mantienes el acceso hasta el final de tu período de facturación."
+      },
+      "creditPurchases": {
+        "title": "5. Compras Únicas de Créditos",
+        "intro": "Para compras únicas de paquetes de créditos:",
+        "unused": "Créditos No Utilizados:",
+        "unusedDesc": "Si no has usado ningún crédito de tu compra, puedes solicitar un reembolso completo dentro de los 14 días.",
+        "partial": "Uso Parcial:",
+        "partialDesc": "Si se han usado algunos créditos, podemos ofrecer un reembolso parcial a nuestra discreción, calculado en base a los créditos no utilizados menos una tarifa de procesamiento."
+      },
+      "process": {
+        "title": "6. Cómo Solicitar un Reembolso",
+        "intro": "Para solicitar un reembolso, sigue estos pasos:",
+        "steps": [
+          "Envía un correo electrónico a refunds@pixelift.pl con el asunto \"Solicitud de Reembolso\"",
+          "Incluye tu dirección de correo electrónico registrada y los detalles del pedido",
+          "Describe el motivo de tu solicitud de reembolso",
+          "Espera hasta 5 días hábiles para que nuestro equipo revise tu solicitud"
+        ],
+        "timing": "Los reembolsos aprobados se procesan típicamente en 5-10 días hábiles y se devuelven a tu método de pago original."
+      },
+      "exceptions": {
+        "title": "7. Excepciones",
+        "intro": "Podemos hacer excepciones a esta política en ciertas circunstancias:",
+        "technical": "Fallos Técnicos:",
+        "technicalDesc": "Si nuestro servicio experimentó tiempo de inactividad significativo o problemas técnicos que afectaron tu capacidad de usar los créditos comprados, proporcionaremos una compensación adecuada.",
+        "billing": "Errores de Facturación:",
+        "billingDesc": "Los cargos no autorizados o duplicados se reembolsarán de inmediato tras la verificación."
+      },
+      "euRights": {
+        "title": "8. Derechos del Consumidor en la UE",
+        "intro": "Si eres un consumidor en la Unión Europea, tienes derecho a desistir de un contrato a distancia en un plazo de 14 días sin dar ninguna razón.",
+        "withdrawal": "El período de desistimiento expira 14 días después del día de la conclusión del contrato. Para ejercer el derecho de desistimiento, debes informarnos de tu decisión mediante una declaración inequívoca (por ejemplo, una carta enviada por correo postal o electrónico).",
+        "exception": "Ten en cuenta que el derecho de desistimiento no se aplica al contenido digital que ha sido accedido o utilizado (es decir, créditos que se han consumido para el procesamiento de imágenes)."
+      },
+      "contact": {
+        "title": "9. Contacto",
+        "intro": "Si tienes preguntas sobre esta Política de Reembolsos o necesitas asistencia, contáctanos:",
+        "email": "Solicitudes de Reembolso:",
+        "support": "Soporte General:",
+        "website": "Sitio Web:"
+      }
+    },
+    "euNote": "Esta política de reembolsos cumple con la Directiva de Protección del Consumidor de la UE 2011/83/UE y las leyes de protección del consumidor aplicables."
   }
 }

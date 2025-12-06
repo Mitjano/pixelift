@@ -233,7 +233,8 @@
       "terms": "Conditions d'Utilisation",
       "privacy": "Politique de Confidentialité",
       "cookies": "Politique de Cookies",
-      "gdpr": "Conformité RGPD"
+      "gdpr": "Conformité RGPD",
+      "refund": "Politique de Remboursement"
     },
     "copyright": "© {year} Pixelift. Tous droits réservés.",
     "madeWith": "Fait avec ❤️ en Pologne",
@@ -2873,5 +2874,88 @@
       "getCredits": "Obtenir des Crédits",
       "exploreTools": "Explorer Tous les Outils"
     }
+  },
+  "refundPage": {
+    "title": "Politique de Remboursement",
+    "lastUpdated": "Dernière mise à jour",
+    "backToHome": "Retour à l'Accueil",
+    "viewTerms": "Voir les Conditions d'Utilisation",
+    "sections": {
+      "overview": {
+        "title": "1. Aperçu",
+        "intro": "Chez Pixelift, nous nous efforçons de fournir des services de traitement d'images IA de haute qualité. Nous comprenons que parfois les choses ne se passent pas comme prévu, et nous voulons vous garantir une expérience équitable.",
+        "commitment": "Cette Politique de Remboursement décrit les conditions dans lesquelles vous pouvez demander un remboursement pour nos services, y compris les plans d'abonnement et les achats de crédits."
+      },
+      "eligibility": {
+        "title": "2. Éligibilité au Remboursement",
+        "intro": "Vous pouvez être éligible à un remboursement dans les cas suivants:",
+        "items": [
+          "Demande effectuée dans les 14 jours suivant l'achat (Droits des Consommateurs UE)",
+          "Aucun crédit de votre achat n'a été utilisé",
+          "Des problèmes techniques de notre côté ont empêché la livraison du service",
+          "Frais en double ou erronés"
+        ]
+      },
+      "nonEligible": {
+        "title": "3. Cas Non Remboursables",
+        "intro": "Les remboursements ne sont généralement pas disponibles dans ces situations:",
+        "items": [
+          "Les crédits ont déjà été utilisés pour le traitement d'images",
+          "Demande effectuée plus de 14 jours après l'achat",
+          "Le service a été fourni avec succès comme décrit",
+          "Violation de nos Conditions d'Utilisation"
+        ]
+      },
+      "subscriptions": {
+        "title": "4. Remboursements d'Abonnements",
+        "cancellation": "Annulation:",
+        "cancellationDesc": "Vous pouvez annuler votre abonnement à tout moment depuis votre tableau de bord. Votre abonnement restera actif jusqu'à la fin de la période de facturation en cours.",
+        "refund": "Remboursement Complet:",
+        "refundDesc": "Si vous annulez dans les 14 jours suivant votre abonnement et n'avez utilisé aucun crédit, vous pouvez demander un remboursement complet.",
+        "prorated": "Remboursements au Prorata:",
+        "proratedDesc": "Les remboursements au prorata ne sont pas disponibles. À l'annulation, vous conservez l'accès jusqu'à la fin de votre période de facturation."
+      },
+      "creditPurchases": {
+        "title": "5. Achats Ponctuels de Crédits",
+        "intro": "Pour les achats ponctuels de packs de crédits:",
+        "unused": "Crédits Non Utilisés:",
+        "unusedDesc": "Si vous n'avez utilisé aucun crédit de votre achat, vous pouvez demander un remboursement complet dans les 14 jours.",
+        "partial": "Utilisation Partielle:",
+        "partialDesc": "Si certains crédits ont été utilisés, nous pouvons offrir un remboursement partiel à notre discrétion, calculé sur la base des crédits non utilisés moins des frais de traitement."
+      },
+      "process": {
+        "title": "6. Comment Demander un Remboursement",
+        "intro": "Pour demander un remboursement, suivez ces étapes:",
+        "steps": [
+          "Envoyez un e-mail à refunds@pixelift.pl avec le sujet \"Demande de Remboursement\"",
+          "Incluez votre adresse e-mail enregistrée et les détails de la commande",
+          "Décrivez la raison de votre demande de remboursement",
+          "Attendez jusqu'à 5 jours ouvrables pour que notre équipe examine votre demande"
+        ],
+        "timing": "Les remboursements approuvés sont généralement traités dans les 5-10 jours ouvrables et retournés à votre méthode de paiement originale."
+      },
+      "exceptions": {
+        "title": "7. Exceptions",
+        "intro": "Nous pouvons faire des exceptions à cette politique dans certaines circonstances:",
+        "technical": "Défaillances Techniques:",
+        "technicalDesc": "Si notre service a connu des temps d'arrêt importants ou des problèmes techniques affectant votre capacité à utiliser les crédits achetés, nous fournirons une compensation appropriée.",
+        "billing": "Erreurs de Facturation:",
+        "billingDesc": "Les frais non autorisés ou en double seront remboursés rapidement après vérification."
+      },
+      "euRights": {
+        "title": "8. Droits des Consommateurs UE",
+        "intro": "Si vous êtes un consommateur dans l'Union Européenne, vous avez le droit de vous rétracter d'un contrat à distance dans un délai de 14 jours sans donner de raison.",
+        "withdrawal": "Le délai de rétractation expire 14 jours après le jour de la conclusion du contrat. Pour exercer le droit de rétractation, vous devez nous informer de votre décision par une déclaration sans équivoque (par exemple, une lettre envoyée par la poste ou par e-mail).",
+        "exception": "Veuillez noter que le droit de rétractation ne s'applique pas au contenu numérique qui a été accédé ou utilisé (c'est-à-dire les crédits qui ont été consommés pour le traitement d'images)."
+      },
+      "contact": {
+        "title": "9. Nous Contacter",
+        "intro": "Si vous avez des questions sur cette Politique de Remboursement ou avez besoin d'assistance, veuillez nous contacter:",
+        "email": "Demandes de Remboursement:",
+        "support": "Support Général:",
+        "website": "Site Web:"
+      }
+    },
+    "euNote": "Cette politique de remboursement est conforme à la Directive UE sur les Droits des Consommateurs 2011/83/UE et aux lois applicables de protection des consommateurs."
   }
 }

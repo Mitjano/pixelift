@@ -233,7 +233,8 @@
       "terms": "Terms of Service",
       "privacy": "Privacy Policy",
       "cookies": "Cookie Policy",
-      "gdpr": "GDPR Compliance"
+      "gdpr": "GDPR Compliance",
+      "refund": "Refund Policy"
     },
     "copyright": "© {year} Pixelift. All rights reserved.",
     "madeWith": "Made with ❤️ in Poland",
@@ -2790,5 +2791,88 @@
       "terms": "Terms of Service",
       "cookies": "Cookie Policy"
     }
+  },
+  "refundPage": {
+    "title": "Refund Policy",
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Home",
+    "viewTerms": "View Terms of Service",
+    "sections": {
+      "overview": {
+        "title": "1. Overview",
+        "intro": "At Pixelift, we strive to provide high-quality AI image processing services. We understand that sometimes things don't work out as expected, and we want to ensure you have a fair experience.",
+        "commitment": "This Refund Policy outlines the conditions under which you may request a refund for our services, including subscription plans and credit purchases."
+      },
+      "eligibility": {
+        "title": "2. Refund Eligibility",
+        "intro": "You may be eligible for a refund in the following cases:",
+        "items": [
+          "Request made within 14 days of purchase (EU Consumer Rights)",
+          "No credits have been used from your purchase",
+          "Technical issues on our end prevented service delivery",
+          "Duplicate or erroneous charges"
+        ]
+      },
+      "nonEligible": {
+        "title": "3. Non-Refundable Cases",
+        "intro": "Refunds are generally not available in these situations:",
+        "items": [
+          "Credits have already been used for image processing",
+          "Request made more than 14 days after purchase",
+          "Service was delivered successfully as described",
+          "Violation of our Terms of Service"
+        ]
+      },
+      "subscriptions": {
+        "title": "4. Subscription Refunds",
+        "cancellation": "Cancellation:",
+        "cancellationDesc": "You can cancel your subscription at any time from your dashboard. Your subscription will remain active until the end of the current billing period.",
+        "refund": "Full Refund:",
+        "refundDesc": "If you cancel within 14 days of subscribing and haven't used any credits, you may request a full refund.",
+        "prorated": "Prorated Refunds:",
+        "proratedDesc": "Prorated refunds are not available. Upon cancellation, you retain access until the end of your billing period."
+      },
+      "creditPurchases": {
+        "title": "5. One-Time Credit Purchases",
+        "intro": "For one-time credit package purchases:",
+        "unused": "Unused Credits:",
+        "unusedDesc": "If you haven't used any credits from your purchase, you may request a full refund within 14 days.",
+        "partial": "Partial Use:",
+        "partialDesc": "If some credits have been used, we may offer a partial refund at our discretion, calculated based on unused credits minus a processing fee."
+      },
+      "process": {
+        "title": "6. How to Request a Refund",
+        "intro": "To request a refund, follow these steps:",
+        "steps": [
+          "Send an email to refunds@pixelift.pl with the subject \"Refund Request\"",
+          "Include your registered email address and order details",
+          "Describe the reason for your refund request",
+          "Allow up to 5 business days for our team to review your request"
+        ],
+        "timing": "Approved refunds are typically processed within 5-10 business days and will be returned to your original payment method."
+      },
+      "exceptions": {
+        "title": "7. Exceptions",
+        "intro": "We may make exceptions to this policy in certain circumstances:",
+        "technical": "Technical Failures:",
+        "technicalDesc": "If our service experienced significant downtime or technical issues affecting your ability to use purchased credits, we will provide appropriate compensation.",
+        "billing": "Billing Errors:",
+        "billingDesc": "Unauthorized or duplicate charges will be refunded promptly upon verification."
+      },
+      "euRights": {
+        "title": "8. EU Consumer Rights",
+        "intro": "If you are a consumer in the European Union, you have the right to withdraw from a distance contract within 14 days without giving any reason.",
+        "withdrawal": "The withdrawal period expires 14 days from the day of the conclusion of the contract. To exercise the right of withdrawal, you must inform us of your decision by an unequivocal statement (e.g., a letter sent by post or e-mail).",
+        "exception": "Please note that the right of withdrawal does not apply to digital content that has been accessed or used (i.e., credits that have been consumed for image processing)."
+      },
+      "contact": {
+        "title": "9. Contact Us",
+        "intro": "If you have questions about this Refund Policy or need assistance, please contact us:",
+        "email": "Refund Requests:",
+        "support": "General Support:",
+        "website": "Website:"
+      }
+    },
+    "euNote": "This refund policy complies with EU Consumer Protection Directive 2011/83/EU and applicable consumer protection laws."
   }
 }

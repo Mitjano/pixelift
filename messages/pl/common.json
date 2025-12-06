@@ -233,7 +233,8 @@
       "terms": "Regulamin",
       "privacy": "Polityka Prywatności",
       "cookies": "Polityka Cookies",
-      "gdpr": "Zgodność RODO"
+      "gdpr": "Zgodność RODO",
+      "refund": "Polityka Zwrotów"
     },
     "copyright": "© {year} Pixelift. Wszelkie prawa zastrzeżone.",
     "madeWith": "Zrobione z ❤️ w Polsce",
@@ -2790,5 +2791,88 @@
       "terms": "Regulamin",
       "cookies": "Polityka Cookies"
     }
+  },
+  "refundPage": {
+    "title": "Polityka Zwrotów",
+    "lastUpdated": "Ostatnia aktualizacja",
+    "backToHome": "Powrót na stronę główną",
+    "viewTerms": "Zobacz Regulamin",
+    "sections": {
+      "overview": {
+        "title": "1. Informacje ogólne",
+        "intro": "W Pixelift dążymy do świadczenia wysokiej jakości usług przetwarzania obrazów AI. Rozumiemy, że czasami rzeczy nie idą zgodnie z oczekiwaniami i chcemy zapewnić Ci uczciwe doświadczenie.",
+        "commitment": "Niniejsza Polityka Zwrotów określa warunki, na jakich możesz ubiegać się o zwrot środków za nasze usługi, w tym plany subskrypcyjne i zakupy kredytów."
+      },
+      "eligibility": {
+        "title": "2. Kwalifikacja do zwrotu",
+        "intro": "Możesz kwalifikować się do zwrotu w następujących przypadkach:",
+        "items": [
+          "Wniosek złożony w ciągu 14 dni od zakupu (Prawa Konsumenta UE)",
+          "Żadne kredyty z zakupu nie zostały wykorzystane",
+          "Problemy techniczne po naszej stronie uniemożliwiły realizację usługi",
+          "Zduplikowane lub błędne obciążenia"
+        ]
+      },
+      "nonEligible": {
+        "title": "3. Przypadki bez możliwości zwrotu",
+        "intro": "Zwroty zazwyczaj nie są dostępne w następujących sytuacjach:",
+        "items": [
+          "Kredyty zostały już wykorzystane do przetwarzania obrazów",
+          "Wniosek złożony później niż 14 dni po zakupie",
+          "Usługa została zrealizowana zgodnie z opisem",
+          "Naruszenie naszego Regulaminu"
+        ]
+      },
+      "subscriptions": {
+        "title": "4. Zwroty za subskrypcje",
+        "cancellation": "Anulowanie:",
+        "cancellationDesc": "Możesz anulować subskrypcję w dowolnym momencie z panelu użytkownika. Twoja subskrypcja pozostanie aktywna do końca bieżącego okresu rozliczeniowego.",
+        "refund": "Pełny zwrot:",
+        "refundDesc": "Jeśli anulujesz w ciągu 14 dni od subskrypcji i nie wykorzystałeś żadnych kredytów, możesz ubiegać się o pełny zwrot.",
+        "prorated": "Zwroty proporcjonalne:",
+        "proratedDesc": "Zwroty proporcjonalne nie są dostępne. Po anulowaniu zachowujesz dostęp do końca okresu rozliczeniowego."
+      },
+      "creditPurchases": {
+        "title": "5. Jednorazowe zakupy kredytów",
+        "intro": "W przypadku jednorazowych zakupów pakietów kredytów:",
+        "unused": "Niewykorzystane kredyty:",
+        "unusedDesc": "Jeśli nie wykorzystałeś żadnych kredytów z zakupu, możesz ubiegać się o pełny zwrot w ciągu 14 dni.",
+        "partial": "Częściowe wykorzystanie:",
+        "partialDesc": "Jeśli część kredytów została wykorzystana, możemy według własnego uznania zaoferować częściowy zwrot, obliczony na podstawie niewykorzystanych kredytów minus opłata manipulacyjna."
+      },
+      "process": {
+        "title": "6. Jak złożyć wniosek o zwrot",
+        "intro": "Aby złożyć wniosek o zwrot, wykonaj następujące kroki:",
+        "steps": [
+          "Wyślij e-mail na adres refunds@pixelift.pl z tematem \"Wniosek o zwrot\"",
+          "Podaj swój zarejestrowany adres e-mail i szczegóły zamówienia",
+          "Opisz powód wniosku o zwrot",
+          "Poczekaj do 5 dni roboczych na rozpatrzenie wniosku przez nasz zespół"
+        ],
+        "timing": "Zatwierdzone zwroty są zazwyczaj przetwarzane w ciągu 5-10 dni roboczych i zwracane na oryginalną metodę płatności."
+      },
+      "exceptions": {
+        "title": "7. Wyjątki",
+        "intro": "W pewnych okolicznościach możemy zrobić wyjątki od tej polityki:",
+        "technical": "Awarie techniczne:",
+        "technicalDesc": "Jeśli nasza usługa doświadczyła znaczących przestojów lub problemów technicznych wpływających na możliwość wykorzystania zakupionych kredytów, zapewnimy odpowiednią rekompensatę.",
+        "billing": "Błędy rozliczeniowe:",
+        "billingDesc": "Nieautoryzowane lub zduplikowane obciążenia zostaną niezwłocznie zwrócone po weryfikacji."
+      },
+      "euRights": {
+        "title": "8. Prawa konsumenta w UE",
+        "intro": "Jeśli jesteś konsumentem w Unii Europejskiej, masz prawo odstąpić od umowy zawartej na odległość w ciągu 14 dni bez podawania przyczyny.",
+        "withdrawal": "Termin do odstąpienia od umowy wygasa po upływie 14 dni od dnia zawarcia umowy. Aby skorzystać z prawa odstąpienia od umowy, musisz poinformować nas o swojej decyzji w drodze jednoznacznego oświadczenia (np. listem wysłanym pocztą lub e-mailem).",
+        "exception": "Zwracamy uwagę, że prawo odstąpienia od umowy nie dotyczy treści cyfrowych, które zostały udostępnione lub wykorzystane (tj. kredytów, które zostały zużyte na przetwarzanie obrazów)."
+      },
+      "contact": {
+        "title": "9. Kontakt",
+        "intro": "Jeśli masz pytania dotyczące tej Polityki Zwrotów lub potrzebujesz pomocy, skontaktuj się z nami:",
+        "email": "Wnioski o zwrot:",
+        "support": "Wsparcie ogólne:",
+        "website": "Strona internetowa:"
+      }
+    },
+    "euNote": "Niniejsza polityka zwrotów jest zgodna z Dyrektywą UE w sprawie praw konsumentów 2011/83/UE oraz obowiązującymi przepisami o ochronie konsumentów."
   }
 }

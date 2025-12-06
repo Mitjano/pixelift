@@ -147,6 +147,11 @@ export default function Footer() {
                   {t('legal.gdpr')}
                 </Link>
               </li>
+              <li>
+                <Link href="/refund" className="text-gray-400 hover:text-white transition text-sm">
+                  {t('legal.refund')}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
