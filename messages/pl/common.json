@@ -2085,6 +2085,23 @@
     "title": "Zastosowania",
     "subtitle": "Odkryj jak profesjonaliści i firmy używają narzędzi AI Pixelift do transformacji swoich obrazów",
     "commonUses": "Częste zastosowania",
+    "badge": "Rozwiązania AI dla Obrazów",
+    "heroTitle1": "Transformuj Swoje Obrazy z",
+    "heroTitleHighlight": "Profesjonalnymi Narzędziami AI",
+    "stats": {
+      "activeUsers": "Aktywnych Użytkowników",
+      "imagesProcessed": "Przetworzonych Obrazów",
+      "aiTools": "Narzędzi AI",
+      "userRating": "Ocena Użytkowników"
+    },
+    "heroCta": {
+      "tryTools": "Wypróbuj Narzędzia Za Darmo",
+      "exploreCases": "Zobacz Zastosowania"
+    },
+    "industriesTitle1": "Rozwiązania dla Każdej",
+    "industriesTitleHighlight": "Branży",
+    "industriesSubtitle": "Zobacz jak profesjonaliści z różnych branż używają naszych narzędzi AI do usprawnienia pracy",
+    "recommendedTools": "Polecane Narzędzia",
     "cases": {
       "photography": {
         "title": "Fotografia",
@@ -2145,16 +2162,53 @@
     },
     "toolsSection": {
       "title": "Odkryj Nasze Narzędzia",
+      "title1": "Potężne",
+      "titleHighlight": "Narzędzia AI",
+      "subtitle": "Profesjonalne narzędzia do każdej potrzeby edycji obrazów",
+      "tools": {
+        "upscaler": "Zwiększaj rozdzielczość do 8x z AI",
+        "remove-background": "Usuwaj tła jednym kliknięciem",
+        "colorize": "Przywracaj kolory czarno-białym zdjęciom",
+        "restore": "Naprawiaj stare, uszkodzone zdjęcia",
+        "image-expand": "Rozszerzaj obrazy poza krawędzie",
+        "object-removal": "Usuwaj niechciane obiekty płynnie",
+        "packshot-generator": "Twórz profesjonalne zdjęcia produktów",
+        "background-generator": "Generuj niestandardowe tła AI"
+      },
       "upscaler": "Powiększacz AI",
       "backgroundRemover": "Usuwanie Tła",
       "colorize": "Koloryzacja Zdjęć",
       "expand": "Rozszerzanie Obrazów"
     },
+    "howItWorks": {
+      "title1": "Jak To",
+      "titleHighlight": "Działa",
+      "step1": {
+        "title": "Prześlij Obraz",
+        "desc": "Przeciągnij i upuść lub wybierz dowolny format"
+      },
+      "step2": {
+        "title": "Wybierz Narzędzie",
+        "desc": "Wybierz spośród 12+ narzędzi AI"
+      },
+      "step3": {
+        "title": "Pobierz Wynik",
+        "desc": "Pobierz ulepszony obraz natychmiast"
+      }
+    },
+    "testimonials": {
+      "title": "Zaufali Nam Profesjonaliści",
+      "subtitle": "Zobacz co mówią nasi użytkownicy o Pixelift",
+      "quote1": "Pixelift całkowicie zmienił nasz workflow fotografii produktowej. Usuwanie tła jest niesamowicie dokładne.",
+      "quote2": "Powiększacz AI to przełom dla naszej drukarni. Możemy teraz akceptować pliki niższej rozdzielczości i nadal dostarczać oszałamiające wyniki.",
+      "quote3": "Wypróbowałem wiele narzędzi do restauracji zdjęć, ale AI Pixelift dostarcza najbardziej naturalne i realistyczne rezultaty."
+    },
     "cta": {
       "title": "Gotowy do Transformacji Swoich Obrazów?",
       "subtitle": "Zacznij z 3 darmowymi kredytami. Bez karty kredytowej.",
       "tryTools": "Wypróbuj Narzędzia",
-      "viewPricing": "Zobacz Cennik"
+      "viewPricing": "Zobacz Cennik",
+      "noCard": "Bez karty kredytowej"
     }
   },
   "imageCompressorPage": {

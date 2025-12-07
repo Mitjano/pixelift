@@ -2085,6 +2085,23 @@
     "title": "Casos de Uso",
     "subtitle": "Descubre cómo profesionales y empresas usan las herramientas AI de Pixelift para transformar sus imágenes",
     "commonUses": "Usos comunes",
+    "badge": "Soluciones AI para Imágenes",
+    "heroTitle1": "Transforma Tus Imágenes con",
+    "heroTitleHighlight": "Herramientas AI Profesionales",
+    "stats": {
+      "activeUsers": "Usuarios Activos",
+      "imagesProcessed": "Imágenes Procesadas",
+      "aiTools": "Herramientas AI",
+      "userRating": "Valoración"
+    },
+    "heroCta": {
+      "tryTools": "Prueba Gratis",
+      "exploreCases": "Ver Casos de Uso"
+    },
+    "industriesTitle1": "Soluciones para Cada",
+    "industriesTitleHighlight": "Industria",
+    "industriesSubtitle": "Descubre cómo profesionales de diferentes industrias usan nuestras herramientas AI",
+    "recommendedTools": "Herramientas Recomendadas",
     "cases": {
       "photography": {
         "title": "Fotografía",
@@ -2145,16 +2162,53 @@
     },
     "toolsSection": {
       "title": "Explora Nuestras Herramientas",
+      "title1": "Potentes",
+      "titleHighlight": "Herramientas AI",
+      "subtitle": "Herramientas profesionales para cada necesidad de edición",
+      "tools": {
+        "upscaler": "Mejora la resolución hasta 8x con AI",
+        "remove-background": "Elimina fondos al instante",
+        "colorize": "Da vida a fotos en blanco y negro",
+        "restore": "Repara fotos antiguas y dañadas",
+        "image-expand": "Extiende imágenes más allá de sus bordes",
+        "object-removal": "Elimina objetos no deseados",
+        "packshot-generator": "Crea fotos de productos profesionales",
+        "background-generator": "Genera fondos AI personalizados"
+      },
       "upscaler": "Escalador AI",
       "backgroundRemover": "Eliminador de Fondos",
       "colorize": "Colorizador de Fotos",
       "expand": "Expansor de Imágenes"
     },
+    "howItWorks": {
+      "title1": "Cómo",
+      "titleHighlight": "Funciona",
+      "step1": {
+        "title": "Sube Tu Imagen",
+        "desc": "Arrastra y suelta o selecciona cualquier formato"
+      },
+      "step2": {
+        "title": "Elige Tu Herramienta",
+        "desc": "Selecciona entre 12+ herramientas AI"
+      },
+      "step3": {
+        "title": "Descarga Resultados",
+        "desc": "Obtén tu imagen mejorada al instante"
+      }
+    },
+    "testimonials": {
+      "title": "Confiado por Profesionales",
+      "subtitle": "Mira lo que dicen nuestros usuarios sobre Pixelift",
+      "quote1": "Pixelift ha transformado completamente nuestro flujo de trabajo de fotografía de productos. La eliminación de fondos es increíblemente precisa.",
+      "quote2": "El escalador AI es revolucionario para nuestro negocio de impresión. Ahora podemos aceptar archivos de menor resolución y entregar resultados impresionantes.",
+      "quote3": "He probado muchas herramientas de restauración de fotos, pero el AI de Pixelift ofrece los resultados más naturales y realistas."
+    },
     "cta": {
       "title": "¿Listo para Transformar Tus Imágenes?",
       "subtitle": "Comienza con 3 créditos gratis. Sin tarjeta de crédito.",
       "tryTools": "Probar Herramientas",
-      "viewPricing": "Ver Precios"
+      "viewPricing": "Ver Precios",
+      "noCard": "Sin tarjeta de crédito"
     }
   },
   "imageCompressorPage": {

@@ -2085,6 +2085,23 @@
     "title": "Use Cases",
     "subtitle": "Discover how professionals and businesses use Pixelift AI tools to transform their images",
     "commonUses": "Common uses",
+    "badge": "AI-Powered Image Solutions",
+    "heroTitle1": "Transform Your Images with",
+    "heroTitleHighlight": "Professional AI Tools",
+    "stats": {
+      "activeUsers": "Active Users",
+      "imagesProcessed": "Images Processed",
+      "aiTools": "AI Tools",
+      "userRating": "User Rating"
+    },
+    "heroCta": {
+      "tryTools": "Try All Tools Free",
+      "exploreCases": "Explore Use Cases"
+    },
+    "industriesTitle1": "Solutions for Every",
+    "industriesTitleHighlight": "Industry",
+    "industriesSubtitle": "See how professionals across different industries use our AI tools to enhance their workflow",
+    "recommendedTools": "Recommended Tools",
     "cases": {
       "photography": {
         "title": "Photography",
@@ -2145,16 +2162,53 @@
     },
     "toolsSection": {
       "title": "Explore Our Tools",
+      "title1": "Powerful",
+      "titleHighlight": "AI Tools",
+      "subtitle": "Professional-grade tools for every image editing need",
+      "tools": {
+        "upscaler": "Enhance resolution up to 8x with AI upscaling",
+        "remove-background": "Remove backgrounds instantly with one click",
+        "colorize": "Bring black & white photos to life",
+        "restore": "Fix old, damaged, or noisy photos",
+        "image-expand": "Extend images beyond their borders",
+        "object-removal": "Remove unwanted objects seamlessly",
+        "packshot-generator": "Create professional product photos",
+        "background-generator": "Generate custom AI backgrounds"
+      },
       "upscaler": "AI Upscaler",
       "backgroundRemover": "Background Remover",
       "colorize": "Photo Colorizer",
       "expand": "Image Expander"
     },
+    "howItWorks": {
+      "title1": "How It",
+      "titleHighlight": "Works",
+      "step1": {
+        "title": "Upload Your Image",
+        "desc": "Drag and drop or select any image format"
+      },
+      "step2": {
+        "title": "Choose Your Tool",
+        "desc": "Select from 12+ AI-powered tools"
+      },
+      "step3": {
+        "title": "Download Results",
+        "desc": "Get your enhanced image instantly"
+      }
+    },
+    "testimonials": {
+      "title": "Trusted by Professionals",
+      "subtitle": "See what our users say about Pixelift",
+      "quote1": "Pixelift has completely transformed our product photography workflow. The background removal is incredibly accurate.",
+      "quote2": "The AI upscaler is a game-changer for our print business. We can now accept lower resolution files and still deliver stunning results.",
+      "quote3": "I've tried many photo restoration tools, but Pixelift's AI delivers the most natural and realistic results."
+    },
     "cta": {
       "title": "Ready to Transform Your Images?",
       "subtitle": "Start with 3 free credits. No credit card required.",
       "tryTools": "Try All Tools",
-      "viewPricing": "View Pricing"
+      "viewPricing": "View Pricing",
+      "noCard": "No credit card required"
     }
   },
   "imageCompressorPage": {
