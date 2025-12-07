@@ -2961,9 +2961,14 @@
       "fileSize": "Rozmiar pliku"
     },
     "gallery": {
-      "title": "Twoje filmy",
-      "titleHighlight": "Galeria",
-      "subtitle": "Przeglądaj i zarządzaj wygenerowanymi filmami",
+      "title1": "Galeria ",
+      "titleHighlight": "Społeczności",
+      "subtitle": "Odkryj niesamowite kreacje naszej społeczności. Zainspiruj się i twórz własne arcydzieła.",
+      "explore": "Przeglądaj",
+      "myCreations": "Moje Dzieła",
+      "signInRequired": "Zaloguj się, aby zobaczyć swoje dzieła",
+      "signInDescription": "Zaloguj się, aby przeglądać wygenerowane obrazy i filmy, śledzić historię i zarządzać swoimi kreacjami.",
+      "signInButton": "Zaloguj się, aby kontynuować",
       "noVideos": "Brak filmów",
       "noVideosDesc": "Wygeneruj swój pierwszy film, aby zobaczyć go tutaj",
       "delete": "Usuń",

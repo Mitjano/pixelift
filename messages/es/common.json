@@ -2961,9 +2961,14 @@
       "fileSize": "Tamaño del archivo"
     },
     "gallery": {
-      "title": "Tus videos",
-      "titleHighlight": "Galería",
-      "subtitle": "Ve y gestiona tus videos generados",
+      "title1": "Galería de la ",
+      "titleHighlight": "Comunidad",
+      "subtitle": "Descubre creaciones increíbles de nuestra comunidad. Inspírate y crea tus propias obras maestras.",
+      "explore": "Explorar",
+      "myCreations": "Mis Creaciones",
+      "signInRequired": "Inicia sesión para ver tus creaciones",
+      "signInDescription": "Inicia sesión para ver tus imágenes y videos generados, seguir tu historial y gestionar tus creaciones.",
+      "signInButton": "Iniciar Sesión para Continuar",
       "noVideos": "Sin videos aún",
       "noVideosDesc": "Genera tu primer video para verlo aquí",
       "delete": "Eliminar",

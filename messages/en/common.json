@@ -2961,9 +2961,14 @@
       "fileSize": "File size"
     },
     "gallery": {
-      "title": "Your Videos",
+      "title1": "Community ",
       "titleHighlight": "Gallery",
-      "subtitle": "View and manage your generated videos",
+      "subtitle": "Discover amazing creations from our community. Get inspired and create your own masterpieces.",
+      "explore": "Explore",
+      "myCreations": "My Creations",
+      "signInRequired": "Sign in to see your creations",
+      "signInDescription": "Sign in to view your generated images and videos, track your history, and manage your creations.",
+      "signInButton": "Sign In to Continue",
       "noVideos": "No videos yet",
       "noVideosDesc": "Generate your first video to see it here",
       "delete": "Delete",

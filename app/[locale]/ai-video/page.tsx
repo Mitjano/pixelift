@@ -22,6 +22,18 @@ const AIVideoGenerator = dynamic(
   }
 );
 
+const ExploreGallery = dynamic(
+  () => import('@/components/ai-image/ExploreGallery'),
+  {
+    loading: () => (
+      <div className="flex items-center justify-center p-12">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500"></div>
+      </div>
+    ),
+    ssr: false,
+  }
+);
+
 // Stats component
 function AnimatedStat({ value, label, suffix = '' }: { value: number; label: string; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -67,6 +79,7 @@ export default function AIVideoPage() {
   const t = useTranslations('aiVideoPage');
   const { data: session } = useSession();
   const generatorRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<'explore' | 'my-creations'>('explore');
 
   const activeModels = getActiveModels();
 
@@ -169,6 +182,69 @@ export default function AIVideoPage() {
       {/* Generator Section */}
       <section ref={generatorRef} className="max-w-7xl mx-auto px-6 py-12">
         <AIVideoGenerator />
+      </section>
+
+      {/* Gallery Section */}
+      <section id="gallery" className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-white">{t('gallery.title1')}</span>
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">{t('gallery.titleHighlight')}</span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            {t('gallery.subtitle')}
+          </p>
+        </div>
+
+        <div className="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
+          {/* Tabs */}
+          <div className="flex border-b border-gray-700">
+            <button
+              onClick={() => setActiveTab('explore')}
+              className={`flex-1 py-4 px-6 text-sm font-medium transition flex items-center justify-center gap-2 ${
+                activeTab === 'explore'
+                  ? 'text-cyan-400 border-b-2 border-cyan-400 bg-cyan-500/5'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+              }`}
+            >
+              <span>🌍</span>
+              {t('gallery.explore')}
+            </button>
+            <button
+              onClick={() => setActiveTab('my-creations')}
+              className={`flex-1 py-4 px-6 text-sm font-medium transition flex items-center justify-center gap-2 ${
+                activeTab === 'my-creations'
+                  ? 'text-cyan-400 border-b-2 border-cyan-400 bg-cyan-500/5'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+              }`}
+            >
+              <span>🎨</span>
+              {t('gallery.myCreations')}
+            </button>
+          </div>
+
+          {/* Tab Content */}
+          <div className="p-6">
+            {activeTab === 'explore' && <ExploreGallery />}
+            {activeTab === 'my-creations' && (
+              session ? (
+                <ExploreGallery showMyCreations />
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-5xl mb-4">🔒</div>
+                  <h3 className="text-xl font-semibold mb-2">{t('gallery.signInRequired')}</h3>
+                  <p className="text-gray-400 mb-6">{t('gallery.signInDescription')}</p>
+                  <Link
+                    href="/auth/signin"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 rounded-lg font-medium transition"
+                  >
+                    {t('gallery.signInButton')}
+                  </Link>
+                </div>
+              )
+            )}
+          </div>
+        </div>
       </section>
 
       {/* Models Showcase */}
