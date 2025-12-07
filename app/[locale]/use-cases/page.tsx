@@ -1,153 +1,462 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import {
   FaCamera, FaShoppingCart, FaPrint, FaGamepad,
-  FaImage, FaBuilding, FaHeart, FaFilm
+  FaImage, FaBuilding, FaHeart, FaFilm,
+  FaArrowRight, FaCheck, FaStar
 } from 'react-icons/fa';
+import { HiSparkles, HiLightningBolt, HiPhotograph } from 'react-icons/hi';
 
-const useCaseIcons: Record<string, React.ReactNode> = {
-  photography: <FaCamera className="w-8 h-8" />,
-  ecommerce: <FaShoppingCart className="w-8 h-8" />,
-  printing: <FaPrint className="w-8 h-8" />,
-  gaming: <FaGamepad className="w-8 h-8" />,
-  socialMedia: <FaImage className="w-8 h-8" />,
-  realEstate: <FaBuilding className="w-8 h-8" />,
-  restoration: <FaHeart className="w-8 h-8" />,
-  video: <FaFilm className="w-8 h-8" />,
+// Use case data with enhanced info
+const useCaseData = {
+  ecommerce: {
+    icon: FaShoppingCart,
+    gradient: 'from-emerald-500 to-green-600',
+    bgGradient: 'from-emerald-500/10 to-green-600/10',
+    borderColor: 'border-emerald-500/30',
+    hoverBorder: 'hover:border-emerald-500/60',
+    tools: ['remove-background', 'packshot-generator', 'upscaler'],
+    stat: '85%',
+    statLabel: 'conversion boost',
+  },
+  photography: {
+    icon: FaCamera,
+    gradient: 'from-violet-500 to-purple-600',
+    bgGradient: 'from-violet-500/10 to-purple-600/10',
+    borderColor: 'border-violet-500/30',
+    hoverBorder: 'hover:border-violet-500/60',
+    tools: ['upscaler', 'restore', 'colorize'],
+    stat: '4x',
+    statLabel: 'resolution',
+  },
+  realEstate: {
+    icon: FaBuilding,
+    gradient: 'from-amber-500 to-orange-600',
+    bgGradient: 'from-amber-500/10 to-orange-600/10',
+    borderColor: 'border-amber-500/30',
+    hoverBorder: 'hover:border-amber-500/60',
+    tools: ['object-removal', 'image-expand', 'upscaler'],
+    stat: '3x',
+    statLabel: 'faster edits',
+  },
+  socialMedia: {
+    icon: FaImage,
+    gradient: 'from-pink-500 to-rose-600',
+    bgGradient: 'from-pink-500/10 to-rose-600/10',
+    borderColor: 'border-pink-500/30',
+    hoverBorder: 'hover:border-pink-500/60',
+    tools: ['remove-background', 'image-expand', 'upscaler'],
+    stat: '2x',
+    statLabel: 'engagement',
+  },
+  restoration: {
+    icon: FaHeart,
+    gradient: 'from-cyan-500 to-teal-600',
+    bgGradient: 'from-cyan-500/10 to-teal-600/10',
+    borderColor: 'border-cyan-500/30',
+    hoverBorder: 'hover:border-cyan-500/60',
+    tools: ['colorize', 'restore', 'upscaler'],
+    stat: '100%',
+    statLabel: 'memories saved',
+  },
+  printing: {
+    icon: FaPrint,
+    gradient: 'from-blue-500 to-indigo-600',
+    bgGradient: 'from-blue-500/10 to-indigo-600/10',
+    borderColor: 'border-blue-500/30',
+    hoverBorder: 'hover:border-blue-500/60',
+    tools: ['upscaler', 'restore', 'image-compressor'],
+    stat: '16x',
+    statLabel: 'upscale',
+  },
+  gaming: {
+    icon: FaGamepad,
+    gradient: 'from-red-500 to-orange-600',
+    bgGradient: 'from-red-500/10 to-orange-600/10',
+    borderColor: 'border-red-500/30',
+    hoverBorder: 'hover:border-red-500/60',
+    tools: ['upscaler', 'colorize', 'restore'],
+    stat: '4K',
+    statLabel: 'textures',
+  },
+  video: {
+    icon: FaFilm,
+    gradient: 'from-indigo-500 to-violet-600',
+    bgGradient: 'from-indigo-500/10 to-violet-600/10',
+    borderColor: 'border-indigo-500/30',
+    hoverBorder: 'hover:border-indigo-500/60',
+    tools: ['upscaler', 'remove-background', 'image-expand'],
+    stat: 'HD',
+    statLabel: 'thumbnails',
+  },
 };
 
-const useCaseColors: Record<string, string> = {
-  photography: 'from-purple-500/20 to-pink-500/20 border-purple-500/30',
-  ecommerce: 'from-green-500/20 to-emerald-500/20 border-green-500/30',
-  printing: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30',
-  gaming: 'from-red-500/20 to-orange-500/20 border-red-500/30',
-  socialMedia: 'from-pink-500/20 to-rose-500/20 border-pink-500/30',
-  realEstate: 'from-amber-500/20 to-yellow-500/20 border-amber-500/30',
-  restoration: 'from-teal-500/20 to-cyan-500/20 border-teal-500/30',
-  video: 'from-indigo-500/20 to-violet-500/20 border-indigo-500/30',
+// Tool info for quick access
+const toolInfo: Record<string, { name: string; icon: string; href: string }> = {
+  'upscaler': { name: 'AI Upscaler', icon: '🔍', href: '/tools/upscaler' },
+  'remove-background': { name: 'BG Remover', icon: '✂️', href: '/tools/remove-background' },
+  'colorize': { name: 'Colorizer', icon: '🎨', href: '/tools/colorize' },
+  'restore': { name: 'Restore', icon: '✨', href: '/tools/restore' },
+  'image-expand': { name: 'Expand', icon: '↔️', href: '/tools/image-expand' },
+  'object-removal': { name: 'Object Removal', icon: '🗑️', href: '/tools/object-removal' },
+  'packshot-generator': { name: 'Packshot', icon: '📦', href: '/tools/packshot-generator' },
+  'image-compressor': { name: 'Compressor', icon: '📉', href: '/tools/image-compressor' },
 };
+
+// Animated counter component
+function AnimatedStat({ value }: { value: string }) {
+  return (
+    <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+      {value}
+    </span>
+  );
+}
 
 export default function UseCasesPage() {
   const t = useTranslations('useCasesPage');
+  const [activeCase, setActiveCase] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const useCases = [
-    'photography',
-    'ecommerce',
-    'printing',
-    'gaming',
-    'socialMedia',
-    'realEstate',
-    'restoration',
-    'video',
-  ];
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const useCases = Object.keys(useCaseData) as (keyof typeof useCaseData)[];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-transparent" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
-        <div className="absolute top-20 right-1/4 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-gray-950 text-white overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-28">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-green-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-0 left-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        </div>
 
-        <div className="relative max-w-6xl mx-auto px-6 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              {t('title')}
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
+          {/* Badge */}
+          <div className={`inline-flex items-center gap-2 mb-6 px-4 py-2 bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-full transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <HiSparkles className="w-4 h-4 text-green-400" />
+            <span className="text-sm font-semibold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+              {t('badge') || 'AI-Powered Solutions'}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h1 className={`text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <span className="block text-white mb-2">{t('heroTitle1') || 'Transform Your'}</span>
+            <span className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+              {t('heroTitleHighlight') || 'Creative Workflow'}
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+
+          <p className={`text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {t('subtitle')}
           </p>
-        </div>
-      </section>
 
-      {/* Use Cases Grid */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="grid md:grid-cols-2 gap-6">
-          {useCases.map((useCase) => (
-            <div
-              key={useCase}
-              className={`bg-gradient-to-br ${useCaseColors[useCase]} border rounded-2xl p-8 hover:scale-[1.02] transition-transform`}
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-gray-800/50 rounded-xl text-white">
-                  {useCaseIcons[useCase]}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">{t(`cases.${useCase}.title`)}</h3>
-                  <p className="text-gray-400 mb-4">{t(`cases.${useCase}.description`)}</p>
-                  <div className="space-y-2">
-                    <p className="text-sm text-gray-500 font-medium">{t('commonUses')}:</p>
-                    <ul className="text-sm text-gray-400 space-y-1">
-                      <li>• {t(`cases.${useCase}.use1`)}</li>
-                      <li>• {t(`cases.${useCase}.use2`)}</li>
-                      <li>• {t(`cases.${useCase}.use3`)}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+          {/* Stats Row */}
+          <div className={`flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-12 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className="text-center">
+              <AnimatedStat value="10K+" />
+              <p className="text-gray-500 text-sm mt-1">{t('stats.activeUsers') || 'Active Users'}</p>
             </div>
-          ))}
-        </div>
-      </section>
+            <div className="text-center">
+              <AnimatedStat value="500K+" />
+              <p className="text-gray-500 text-sm mt-1">{t('stats.imagesProcessed') || 'Images Processed'}</p>
+            </div>
+            <div className="text-center">
+              <AnimatedStat value="12+" />
+              <p className="text-gray-500 text-sm mt-1">{t('stats.aiTools') || 'AI Tools'}</p>
+            </div>
+            <div className="text-center">
+              <AnimatedStat value="4.9" />
+              <p className="text-gray-500 text-sm mt-1">{t('stats.userRating') || 'User Rating'}</p>
+            </div>
+          </div>
 
-      {/* Tools Section */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="bg-gray-800/30 border border-gray-700 rounded-2xl p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center">{t('toolsSection.title')}</h2>
-          <div className="grid md:grid-cols-4 gap-4">
+          {/* Quick CTA */}
+          <div className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Link
-              href="/tools/upscaler"
-              className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl text-center transition"
+              href="/tools"
+              className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-105"
             >
-              <div className="text-2xl mb-2">🔍</div>
-              <div className="font-medium">{t('toolsSection.upscaler')}</div>
+              <HiLightningBolt className="w-5 h-5" />
+              <span>{t('heroCta.tryTools') || 'Try All Tools Free'}</span>
+              <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href="/tools/remove-background"
-              className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl text-center transition"
+              href="#use-cases"
+              className="flex items-center gap-2 px-6 py-3 bg-gray-800/50 border border-gray-700 hover:border-gray-600 rounded-xl font-semibold transition-all duration-300"
             >
-              <div className="text-2xl mb-2">✂️</div>
-              <div className="font-medium">{t('toolsSection.backgroundRemover')}</div>
-            </Link>
-            <Link
-              href="/tools/colorize"
-              className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl text-center transition"
-            >
-              <div className="text-2xl mb-2">🎨</div>
-              <div className="font-medium">{t('toolsSection.colorize')}</div>
-            </Link>
-            <Link
-              href="/tools/image-expand"
-              className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl text-center transition"
-            >
-              <div className="text-2xl mb-2">↔️</div>
-              <div className="font-medium">{t('toolsSection.expand')}</div>
+              <span>{t('heroCta.exploreCases') || 'Explore Use Cases'}</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="max-w-4xl mx-auto px-6 pb-16">
-        <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700/30 rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">{t('cta.title')}</h2>
-          <p className="text-gray-400 mb-6">{t('cta.subtitle')}</p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/tools"
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition"
-            >
-              {t('cta.tryTools')}
-            </Link>
-            <Link
-              href="/pricing"
-              className="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold transition"
-            >
-              {t('cta.viewPricing')}
-            </Link>
+      {/* Industry Use Cases Grid */}
+      <section id="use-cases" className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-white">{t('industriesTitle1') || 'Solutions for '}</span>
+            <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+              {t('industriesTitleHighlight') || 'Every Industry'}
+            </span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            {t('industriesSubtitle') || 'Discover how professionals across different industries leverage our AI tools'}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {useCases.map((useCase, index) => {
+            const data = useCaseData[useCase];
+            const IconComponent = data.icon;
+
+            return (
+              <div
+                key={useCase}
+                className={`group relative bg-gradient-to-br ${data.bgGradient} border ${data.borderColor} ${data.hoverBorder} rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl cursor-pointer`}
+                onMouseEnter={() => setActiveCase(useCase)}
+                onMouseLeave={() => setActiveCase(null)}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {/* Glow effect on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${data.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
+
+                <div className="relative">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-3 bg-gradient-to-br ${data.gradient} rounded-xl shadow-lg`}>
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <div className={`text-2xl font-bold bg-gradient-to-r ${data.gradient} bg-clip-text text-transparent`}>
+                        {data.stat}
+                      </div>
+                      <div className="text-xs text-gray-500">{data.statLabel}</div>
+                    </div>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                    {t(`cases.${useCase}.title`)}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                    {t(`cases.${useCase}.description`)}
+                  </p>
+
+                  {/* Key Benefits */}
+                  <div className="space-y-2 mb-4">
+                    {['use1', 'use2', 'use3'].map((key) => (
+                      <div key={key} className="flex items-center gap-2 text-sm text-gray-300">
+                        <FaCheck className="w-3 h-3 text-green-500 flex-shrink-0" />
+                        <span>{t(`cases.${useCase}.${key}`)}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Recommended Tools */}
+                  <div className="pt-4 border-t border-gray-700/50">
+                    <p className="text-xs text-gray-500 mb-2">{t('recommendedTools') || 'Recommended Tools'}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {data.tools.map((tool) => (
+                        <Link
+                          key={tool}
+                          href={toolInfo[tool].href}
+                          className="flex items-center gap-1 px-2 py-1 bg-gray-800/80 hover:bg-gray-700 rounded-lg text-xs font-medium transition-colors"
+                        >
+                          <span>{toolInfo[tool].icon}</span>
+                          <span className="text-gray-300">{toolInfo[tool].name}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Featured Tools Section */}
+      <section className="py-16 bg-gradient-to-b from-transparent via-gray-900/50 to-transparent">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-white">{t('toolsSection.title1') || 'Powerful '}</span>
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                {t('toolsSection.titleHighlight') || 'AI Tools'}
+              </span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              {t('toolsSection.subtitle') || 'Professional-grade image processing at your fingertips'}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { key: 'upscaler', href: '/tools/upscaler', icon: '🔍', gradient: 'from-green-500 to-emerald-600', desc: 'Enhance up to 16x' },
+              { key: 'remove-background', href: '/tools/remove-background', icon: '✂️', gradient: 'from-blue-500 to-cyan-600', desc: 'One-click removal' },
+              { key: 'colorize', href: '/tools/colorize', icon: '🎨', gradient: 'from-purple-500 to-pink-600', desc: 'Bring photos to life' },
+              { key: 'restore', href: '/tools/restore', icon: '✨', gradient: 'from-amber-500 to-orange-600', desc: 'Fix old photos' },
+              { key: 'image-expand', href: '/tools/image-expand', icon: '↔️', gradient: 'from-teal-500 to-cyan-600', desc: 'AI outpainting' },
+              { key: 'object-removal', href: '/tools/object-removal', icon: '🗑️', gradient: 'from-red-500 to-rose-600', desc: 'Remove anything' },
+              { key: 'packshot-generator', href: '/tools/packshot-generator', icon: '📦', gradient: 'from-indigo-500 to-violet-600', desc: 'Product photos' },
+              { key: 'background-generator', href: '/tools/background-generator', icon: '🖼️', gradient: 'from-pink-500 to-rose-600', desc: 'AI backgrounds' },
+            ].map((tool) => (
+              <Link
+                key={tool.key}
+                href={tool.href}
+                className="group relative p-5 bg-gray-800/30 hover:bg-gray-800/50 border border-gray-700 hover:border-gray-600 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity`} />
+                <div className="relative flex items-start gap-3">
+                  <div className={`text-3xl p-2 bg-gradient-to-br ${tool.gradient} rounded-lg`}>
+                    {tool.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-white group-hover:text-green-400 transition-colors">
+                      {t(`toolsSection.tools.${tool.key}`) || tool.key}
+                    </h3>
+                    <p className="text-sm text-gray-500">{tool.desc}</p>
+                  </div>
+                  <FaArrowRight className="w-4 h-4 text-gray-600 group-hover:text-green-400 group-hover:translate-x-1 transition-all" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-white">{t('howItWorks.title1') || 'How It '}</span>
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              {t('howItWorks.titleHighlight') || 'Works'}
+            </span>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { step: '01', icon: HiPhotograph, title: t('howItWorks.step1.title') || 'Upload Image', desc: t('howItWorks.step1.desc') || 'Drag & drop or click to upload any image format' },
+            { step: '02', icon: HiSparkles, title: t('howItWorks.step2.title') || 'Choose AI Tool', desc: t('howItWorks.step2.desc') || 'Select from 12+ professional AI enhancement tools' },
+            { step: '03', icon: HiLightningBolt, title: t('howItWorks.step3.title') || 'Get Results', desc: t('howItWorks.step3.desc') || 'Download your enhanced image in seconds' },
+          ].map((item, index) => (
+            <div key={item.step} className="relative text-center group">
+              {/* Connection line */}
+              {index < 2 && (
+                <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-gray-700 to-transparent" />
+              )}
+
+              <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
+                <div className="relative w-full h-full bg-gray-800 rounded-2xl flex items-center justify-center border border-gray-700 group-hover:border-green-500/50 transition-colors">
+                  <item.icon className="w-10 h-10 text-green-400" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-sm font-bold shadow-lg">
+                  {item.step}
+                </div>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+              <p className="text-gray-400 text-sm max-w-xs mx-auto">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Social Proof */}
+      <section className="py-16 bg-gradient-to-b from-transparent via-green-900/10 to-transparent">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className="w-6 h-6 text-yellow-400" />
+              ))}
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              {t('testimonials.title') || 'Trusted by 10,000+ Professionals'}
+            </h2>
+            <p className="text-gray-400">
+              {t('testimonials.subtitle') || 'Join photographers, designers, and businesses worldwide'}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Sarah M.', role: 'Photographer', quote: t('testimonials.quote1') || 'The AI upscaler saved my old family photos. Incredible quality!' },
+              { name: 'Alex K.', role: 'E-commerce', quote: t('testimonials.quote2') || 'Background removal is instant. Cut our product photo time by 80%.' },
+              { name: 'James L.', role: 'Designer', quote: t('testimonials.quote3') || 'Best colorization AI I\'ve used. Natural colors every time.' },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="p-6 bg-gray-800/30 border border-gray-700 rounded-xl"
+              >
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="w-4 h-4 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center font-bold">
+                    {testimonial.name[0]}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">{testimonial.name}</p>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="max-w-5xl mx-auto px-6 py-20">
+        <div className="relative overflow-hidden bg-gradient-to-br from-green-900/40 via-gray-900 to-blue-900/40 border border-green-500/20 rounded-3xl p-8 md:p-12 text-center">
+          {/* Background effects */}
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-green-500/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl" />
+
+          <div className="relative">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <span className="text-white">{t('cta.title')}</span>
+            </h2>
+            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+              {t('cta.subtitle')}
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/tools"
+                className="group flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl font-semibold text-lg hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-105"
+              >
+                <span>{t('cta.tryTools')}</span>
+                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="flex items-center gap-2 px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-xl font-semibold text-lg transition-all duration-300"
+              >
+                {t('cta.viewPricing')}
+              </Link>
+            </div>
+
+            <p className="mt-6 text-sm text-gray-500">
+              {t('cta.noCard') || 'No credit card required. 3 free credits to start.'}
+            </p>
           </div>
         </div>
       </section>
