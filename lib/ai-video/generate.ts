@@ -253,6 +253,25 @@ async function generateViaFal(
       if (input.sourceImageUrl) {
         requestBody.image_url = input.sourceImageUrl;
       }
+    } else if (input.model === 'kling-2.6-fal') {
+      // Kling 2.6 Pro via Fal.ai (with audio support!)
+      const klingEndpoint = input.sourceImageUrl
+        ? 'fal-ai/kling-video/v2.6/pro/image-to-video'
+        : 'fal-ai/kling-video/v2.6/pro/text-to-video';
+      endpoint = `https://queue.fal.run/${klingEndpoint}`;
+      requestBody = {
+        prompt: input.prompt,
+        duration: input.duration === 5 ? '5' : '10',
+        aspect_ratio: input.aspectRatio,
+        // Enable audio generation (Kling 2.6 feature!)
+        audio: true,
+      };
+      if (input.negativePrompt) {
+        requestBody.negative_prompt = input.negativePrompt;
+      }
+      if (input.sourceImageUrl) {
+        requestBody.image_url = input.sourceImageUrl;
+      }
     } else {
       return {
         success: false,

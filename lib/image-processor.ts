@@ -10,12 +10,128 @@ export class ImageProcessor {
   })
 
   /**
-   * Remove background from image using Replicate API
-   * Uses BRIA RMBG 2.0 - professional quality background removal
+   * Remove background from image using Fal.ai BiRefNet
+   * FREE - $0 per compute second!
+   * Falls back to Replicate BRIA if Fal.ai fails
    */
   static async removeBackground(dataUrl: string): Promise<string> {
+    const falApiKey = process.env.FAL_API_KEY
+
+    // Try Fal.ai BiRefNet first (FREE!)
+    if (falApiKey) {
+      try {
+        const result = await this.removeBackgroundViaFal(dataUrl, falApiKey)
+        if (result) return result
+      } catch (error) {
+        console.error('Fal.ai BiRefNet failed, falling back to Replicate:', error)
+      }
+    }
+
+    // Fallback to Replicate BRIA
+    return this.removeBackgroundViaReplicate(dataUrl)
+  }
+
+  /**
+   * Remove background using Fal.ai BiRefNet (FREE!)
+   */
+  private static async removeBackgroundViaFal(dataUrl: string, apiKey: string): Promise<string> {
     try {
-      // Call Replicate API with BRIA Remove Background model
+      // Submit request to Fal.ai
+      const submitResponse = await fetch('https://queue.fal.run/fal-ai/birefnet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Key ${apiKey}`,
+        },
+        body: JSON.stringify({
+          image_url: dataUrl,
+          model: 'General Use (Light)',
+          operating_resolution: '1024x1024',
+          output_format: 'png',
+          refine_foreground: true,
+        }),
+      })
+
+      if (!submitResponse.ok) {
+        const error = await submitResponse.text()
+        throw new Error(`Fal.ai submit failed: ${error}`)
+      }
+
+      const submitData = await submitResponse.json()
+      const requestId = submitData.request_id
+
+      if (!requestId) {
+        throw new Error('No request_id returned from Fal.ai')
+      }
+
+      // Poll for result (BiRefNet is usually fast)
+      let attempts = 0
+      const maxAttempts = 60 // 60 seconds max
+
+      while (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        const statusResponse = await fetch(
+          `https://queue.fal.run/fal-ai/birefnet/requests/${requestId}/status`,
+          {
+            headers: {
+              'Authorization': `Key ${apiKey}`,
+            },
+          }
+        )
+
+        if (!statusResponse.ok) {
+          attempts++
+          continue
+        }
+
+        const statusData = await statusResponse.json()
+
+        if (statusData.status === 'COMPLETED') {
+          // Get result
+          const resultResponse = await fetch(
+            `https://queue.fal.run/fal-ai/birefnet/requests/${requestId}`,
+            {
+              headers: {
+                'Authorization': `Key ${apiKey}`,
+              },
+            }
+          )
+
+          if (!resultResponse.ok) {
+            throw new Error('Failed to get result from Fal.ai')
+          }
+
+          const resultData = await resultResponse.json()
+
+          // BiRefNet returns { image: { url: "..." } }
+          if (resultData.image?.url) {
+            console.log('Background removed via Fal.ai BiRefNet (FREE)')
+            return resultData.image.url
+          }
+
+          throw new Error('No image URL in Fal.ai response')
+        }
+
+        if (statusData.status === 'FAILED') {
+          throw new Error(`Fal.ai processing failed: ${statusData.error || 'Unknown error'}`)
+        }
+
+        attempts++
+      }
+
+      throw new Error('Fal.ai processing timeout')
+    } catch (error) {
+      console.error('Fal.ai BiRefNet error:', error)
+      throw error
+    }
+  }
+
+  /**
+   * Remove background using Replicate BRIA (fallback)
+   */
+  private static async removeBackgroundViaReplicate(dataUrl: string): Promise<string> {
+    try {
       const output = await this.replicate.run(
         "bria/remove-background",
         {
@@ -25,12 +141,11 @@ export class ImageProcessor {
         }
       )
 
-      // Output should be a string (URL to processed image)
       const resultUrl = typeof output === 'string' ? output : String(output)
-
+      console.log('Background removed via Replicate BRIA')
       return resultUrl
     } catch (error) {
-      console.error('Background removal failed:', error)
+      console.error('Replicate background removal failed:', error)
       throw new Error(`Background removal failed: ${error}`)
     }
   }

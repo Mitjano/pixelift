@@ -10,6 +10,7 @@ export type VideoProvider = 'replicate' | 'piapi' | 'runway' | 'fal';
 export type VideoModelId =
   | 'pixverse-v5'
   | 'kling-2.5'
+  | 'kling-2.6-fal'
   | 'veo-3.1'
   | 'runway-gen4'
   | 'hailuo-02'
@@ -103,6 +104,29 @@ export const VIDEO_MODELS: Record<VideoModelId, VideoModelConfig> = {
       10: 0.66,
     },
     tags: ['budget', 'quality', 'motion'],
+    isActive: true,
+    isPremium: false,
+  },
+  'kling-2.6-fal': {
+    id: 'kling-2.6-fal',
+    name: 'Kling 2.6 Pro',
+    description: 'Najnowszy Kling z obsługą audio! Kinematograficzne wideo z natywnym dźwiękiem.',
+    provider: 'fal',
+    modelIdentifier: 'fal-ai/kling-video/v2.6/pro/text-to-video',
+    durations: [5, 10],
+    aspectRatios: ['16:9', '9:16', '1:1'],
+    resolutions: ['720p', '1080p'],
+    supportsImageToVideo: true,
+    supportsAudio: true,
+    estimatedProcessingTime: {
+      min: 120,
+      max: 360,
+    },
+    costPerGeneration: {
+      5: 0.35,  // $0.07/s * 5s = $0.35
+      10: 0.70, // $0.07/s * 10s = $0.70
+    },
+    tags: ['premium', 'audio', 'cinematic', 'new'],
     isActive: true,
     isPremium: false,
   },
@@ -277,6 +301,8 @@ export function getToolTypeForModel(modelId: VideoModelId, duration: Duration): 
       return duration === 5 ? 'video_pixverse_5s' : 'video_pixverse_8s';
     case 'kling-2.5':
       return duration === 5 ? 'video_kling_5s' : 'video_kling_10s';
+    case 'kling-2.6-fal':
+      return duration === 5 ? 'video_kling26_5s' : 'video_kling26_10s';
     case 'veo-3.1':
       if (duration === 4) return 'video_veo_4s';
       if (duration === 6) return 'video_veo_6s';
