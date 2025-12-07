@@ -124,14 +124,6 @@ export async function GET(request: NextRequest) {
           videoUrl: { not: null },
           ...(videoDateFilter && { createdAt: { gte: videoDateFilter } }),
         },
-        include: {
-          user: {
-            select: {
-              name: true,
-              image: true,
-            },
-          },
-        },
         orderBy: sortBy === 'best'
           ? [{ likes: 'desc' }, { createdAt: 'desc' }]
           : { createdAt: 'desc' },
@@ -164,8 +156,8 @@ export async function GET(request: NextRequest) {
           height,
           duration: video.duration,
           user: {
-            name: video.user?.name || video.userName || 'Anonymous',
-            image: video.user?.image || undefined,
+            name: video.userName || 'Anonymous',
+            image: undefined,
           },
           likes: video.likes,
           views: video.views,
