@@ -197,7 +197,7 @@ export const AI_MODELS: AIModel[] = [
     name: 'Nano Banana Pro',
     replicateId: 'google/nano-banana-pro',
     description: 'Google Gemini 3 - industry-leading text rendering, up to 4K',
-    credits: 5,
+    credits: 7,
     costUSD: 0.15,
     modes: ['text-to-image', 'image-to-image'],
     features: ['Best text', '14 ref images', '4K', 'Premium'],

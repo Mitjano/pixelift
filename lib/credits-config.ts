@@ -146,27 +146,27 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     description: 'Generowanie wideo AI - 8 sekund (PixVerse)',
   },
   video_kling_5s: {
-    cost: 12,
+    cost: 14,
     displayName: 'Kling 2.5 (5s)',
     description: 'Generowanie wideo AI - 5 sekund (Kling)',
   },
   video_kling_10s: {
-    cost: 22,
+    cost: 28,
     displayName: 'Kling 2.5 (10s)',
     description: 'Generowanie wideo AI - 10 sekund (Kling)',
   },
   video_veo_4s: {
-    cost: 40,
+    cost: 55,
     displayName: 'Google Veo 3 (4s)',
     description: 'Premium wideo AI z dźwiękiem - 4 sekundy (Veo)',
   },
   video_veo_6s: {
-    cost: 60,
+    cost: 80,
     displayName: 'Google Veo 3 (6s)',
     description: 'Premium wideo AI z dźwiękiem - 6 sekund (Veo)',
   },
   video_veo_8s: {
-    cost: 80,
+    cost: 105,
     displayName: 'Google Veo 3 (8s)',
     description: 'Premium wideo AI z dźwiękiem - 8 sekund (Veo)',
   },
