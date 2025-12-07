@@ -1,22 +1,26 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import ImageModal from './ImageModal';
+import { FaPlay } from 'react-icons/fa';
 
 type TimeFilter = 'today' | '7days' | '30days' | 'all';
 type SortBy = 'newest' | 'best';
 
 interface GalleryImage {
   id: string;
+  type?: 'image' | 'video';
   thumbnailUrl: string;
   outputUrl: string;
+  videoUrl?: string;
   prompt: string;
   model: string;
   aspectRatio: string;
   width: number;
   height: number;
+  duration?: number;
   user: {
     name: string;
     image?: string;
@@ -53,6 +57,8 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
   const [sortBy, setSortBy] = useState<SortBy>('newest');
+  const [hoveredVideoId, setHoveredVideoId] = useState<string | null>(null);
+  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
 
   const fetchImages = useCallback(async (pageNum: number, append: boolean = false) => {
     try {
@@ -213,61 +219,124 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
       {/* Filters */}
       <FiltersUI />
 
-      {/* Image Grid */}
+      {/* Image/Video Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {images.map((image) => (
-          <div
-            key={image.id}
-            onClick={() => handleImageClick(image)}
-            className="relative group cursor-pointer rounded-lg overflow-hidden bg-gray-800 aspect-square"
-          >
-            <img
-              src={image.thumbnailUrl || image.outputUrl}
-              alt={image.prompt.substring(0, 50)}
-              className="w-full h-full object-cover transition group-hover:scale-105"
-              loading="lazy"
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition">
-              <div className="absolute bottom-0 left-0 right-0 p-3">
-                <p className="text-sm text-white line-clamp-2 mb-2">
-                  {image.prompt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {image.user.image ? (
-                      <img
-                        src={image.user.image}
-                        alt={image.user.name}
-                        className="w-5 h-5 rounded-full"
-                      />
-                    ) : (
-                      <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-xs">
-                        {image.user.name[0]?.toUpperCase()}
-                      </div>
-                    )}
-                    <span className="text-xs text-gray-300">{image.user.name}</span>
+        {images.map((image) => {
+          const isVideo = image.type === 'video';
+          const isHovered = hoveredVideoId === image.id;
+
+          return (
+            <div
+              key={image.id}
+              onClick={() => handleImageClick(image)}
+              onMouseEnter={() => {
+                if (isVideo) {
+                  setHoveredVideoId(image.id);
+                  videoRefs.current[image.id]?.play().catch(() => {});
+                }
+              }}
+              onMouseLeave={() => {
+                if (isVideo) {
+                  setHoveredVideoId(null);
+                  const video = videoRefs.current[image.id];
+                  if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                  }
+                }
+              }}
+              className="relative group cursor-pointer rounded-lg overflow-hidden bg-gray-800 aspect-square"
+            >
+              {isVideo ? (
+                <>
+                  {/* Video thumbnail */}
+                  <img
+                    src={image.thumbnailUrl || image.outputUrl}
+                    alt={image.prompt.substring(0, 50)}
+                    className={`w-full h-full object-cover transition group-hover:scale-105 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+                    loading="lazy"
+                  />
+                  {/* Video element for hover preview */}
+                  <video
+                    ref={(el) => { videoRefs.current[image.id] = el; }}
+                    src={image.videoUrl || image.outputUrl}
+                    className={`absolute inset-0 w-full h-full object-cover transition ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                  />
+                  {/* Play icon overlay */}
+                  <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
+                    <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center">
+                      <FaPlay className="text-white text-lg ml-1" />
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-gray-300">
-                    <span>❤️ {image.likes}</span>
+                  {/* Duration badge */}
+                  {image.duration && (
+                    <div className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/60 text-xs text-white">
+                      {image.duration}s
+                    </div>
+                  )}
+                </>
+              ) : (
+                <img
+                  src={image.thumbnailUrl || image.outputUrl}
+                  alt={image.prompt.substring(0, 50)}
+                  className="w-full h-full object-cover transition group-hover:scale-105"
+                  loading="lazy"
+                />
+              )}
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition">
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <p className="text-sm text-white line-clamp-2 mb-2">
+                    {image.prompt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {image.user.image ? (
+                        <img
+                          src={image.user.image}
+                          alt={image.user.name}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      ) : (
+                        <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-xs">
+                          {image.user.name[0]?.toUpperCase()}
+                        </div>
+                      )}
+                      <span className="text-xs text-gray-300">{image.user.name}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-gray-300">
+                      <span>❤️ {image.likes}</span>
+                    </div>
                   </div>
                 </div>
               </div>
+              {/* Video type badge */}
+              {isVideo && !showMyCreations && (
+                <div className="absolute top-2 right-2">
+                  <span className="px-2 py-0.5 rounded bg-purple-600/80 text-xs font-medium text-white">
+                    🎬 Video
+                  </span>
+                </div>
+              )}
+              {/* Public/Private badge for my creations */}
+              {showMyCreations && (
+                <div className="absolute top-2 right-2">
+                  <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                    image.isPublic
+                      ? 'bg-green-600/80 text-white'
+                      : 'bg-gray-600/80 text-gray-200'
+                  }`}>
+                    {image.isPublic ? '🌐' : '🔒'}
+                  </span>
+                </div>
+              )}
             </div>
-            {/* Public/Private badge for my creations */}
-            {showMyCreations && (
-              <div className="absolute top-2 right-2">
-                <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                  image.isPublic
-                    ? 'bg-green-600/80 text-white'
-                    : 'bg-gray-600/80 text-gray-200'
-                }`}>
-                  {image.isPublic ? '🌐' : '🔒'}
-                </span>
-              </div>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Load More */}
