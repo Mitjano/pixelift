@@ -288,7 +288,7 @@ export default function Header() {
             <span className="text-sm" aria-hidden="true">🎬</span>
             {t('nav.aiVideo')}
           </Link>
-          <Link href="/#use-cases" className="text-white hover:text-green-400 transition">
+          <Link href="/use-cases" className="text-white hover:text-green-400 transition">
             {t('nav.useCases')}
           </Link>
           <Link href="/pricing" className="text-white hover:text-green-400 transition">
@@ -463,7 +463,7 @@ export default function Header() {
               <span aria-hidden="true">🎬</span> {t('nav.aiVideo')}
             </Link>
             <Link
-              href="/#use-cases"
+              href="/use-cases"
               className="block py-2 text-white hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
