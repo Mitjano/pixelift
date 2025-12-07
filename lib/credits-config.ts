@@ -25,7 +25,8 @@ export type ToolType =
   | 'video_pixverse_8s'
   | 'video_kling_5s'
   | 'video_kling_10s'
-  | 'video_veo_5s'
+  | 'video_veo_4s'
+  | 'video_veo_6s'
   | 'video_veo_8s';
 
 export interface ToolCreditConfig {
@@ -154,10 +155,15 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     displayName: 'Kling 2.5 (10s)',
     description: 'Generowanie wideo AI - 10 sekund (Kling)',
   },
-  video_veo_5s: {
-    cost: 50,
-    displayName: 'Google Veo 3 (5s)',
-    description: 'Premium wideo AI z dźwiękiem - 5 sekund (Veo)',
+  video_veo_4s: {
+    cost: 40,
+    displayName: 'Google Veo 3 (4s)',
+    description: 'Premium wideo AI z dźwiękiem - 4 sekundy (Veo)',
+  },
+  video_veo_6s: {
+    cost: 60,
+    displayName: 'Google Veo 3 (6s)',
+    description: 'Premium wideo AI z dźwiękiem - 6 sekund (Veo)',
   },
   video_veo_8s: {
     cost: 80,
@@ -256,7 +262,8 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
   'video-pixverse-8s': 'video_pixverse_8s',
   'video-kling-5s': 'video_kling_5s',
   'video-kling-10s': 'video_kling_10s',
-  'video-veo-5s': 'video_veo_5s',
+  'video-veo-4s': 'video_veo_4s',
+  'video-veo-6s': 'video_veo_6s',
   'video-veo-8s': 'video_veo_8s',
 };
 

@@ -15,7 +15,7 @@ export type VideoModelId =
 
 export type AspectRatio = '16:9' | '9:16' | '1:1' | '4:3' | '3:4';
 export type Resolution = '360p' | '540p' | '720p' | '1080p';
-export type Duration = 5 | 8 | 10;
+export type Duration = 4 | 5 | 6 | 8 | 10;
 
 export interface VideoModelConfig {
   id: VideoModelId;
@@ -109,7 +109,7 @@ export const VIDEO_MODELS: Record<VideoModelId, VideoModelConfig> = {
     description: 'Premium model od Google z natywną generacją dźwięku. Najwyższa jakość i realizm.',
     provider: 'replicate',
     modelIdentifier: 'google/veo-3.1',
-    durations: [5, 8],
+    durations: [4, 6, 8],
     aspectRatios: ['16:9', '9:16', '1:1', '4:3'],
     resolutions: ['720p', '1080p'],
     supportsImageToVideo: false,
@@ -119,8 +119,9 @@ export const VIDEO_MODELS: Record<VideoModelId, VideoModelConfig> = {
       max: 420,
     },
     costPerGeneration: {
-      5: 1.60,
-      8: 2.40,
+      4: 1.30,
+      6: 1.90,
+      8: 2.50,
     },
     tags: ['premium', 'audio', 'cinematic', 'google'],
     isActive: true,
@@ -208,7 +209,9 @@ export function getToolTypeForModel(modelId: VideoModelId, duration: Duration): 
     case 'kling-2.5':
       return duration === 5 ? 'video_kling_5s' : 'video_kling_10s';
     case 'veo-3.1':
-      return duration === 5 ? 'video_veo_5s' : 'video_veo_8s';
+      if (duration === 4) return 'video_veo_4s';
+      if (duration === 6) return 'video_veo_6s';
+      return 'video_veo_8s';
     default:
       return 'video_pixverse_5s';
   }
