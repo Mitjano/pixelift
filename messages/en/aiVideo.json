@@ -1,0 +1,49 @@
+{
+  "pageTitle": "AI Video Generator - Create Videos from Text",
+  "pageDescription": "Transform your ideas into stunning videos with AI. Multiple models, various durations and aspect ratios. Professional video generation in minutes.",
+  "heading": "AI Video Generator",
+  "subheading": "Create stunning videos from text descriptions using the latest AI models",
+  "title": "Generate Video",
+  "promptLabel": "Describe your video",
+  "promptPlaceholder": "A majestic lion walking through a golden savanna at sunset, cinematic lighting, slow motion...",
+  "modelLabel": "Model",
+  "durationLabel": "Duration",
+  "aspectRatioLabel": "Aspect Ratio",
+  "resolutionLabel": "Resolution",
+  "seconds": "seconds",
+  "cost": "Cost",
+  "credits": "credits",
+  "yourCredits": "Your credits",
+  "generate": "Generate Video",
+  "generating": "Generating...",
+  "generationInProgress": "Video Generation in Progress",
+  "pleaseWait": "Please wait, this may take a few minutes",
+  "videoReady": "Your Video is Ready!",
+  "download": "Download",
+  "yourVideos": "Your Generated Videos",
+  "failed": "Failed",
+  "confirmDelete": "Are you sure you want to delete this video?",
+  "estimatedTime": "Est. time",
+  "withAudio": "With Audio",
+  "supportsImage": "Supports Image Input",
+  "errors": {
+    "promptRequired": "Please enter a prompt to generate video",
+    "insufficientCredits": "Not enough credits. Please purchase more credits.",
+    "generationFailed": "Video generation failed. Please try again.",
+    "timeout": "Generation timed out. Please try again."
+  },
+  "features": {
+    "fast": {
+      "title": "Fast Generation",
+      "description": "Generate professional quality videos in just a few minutes with our optimized AI pipeline."
+    },
+    "models": {
+      "title": "Multiple AI Models",
+      "description": "Choose from PixVerse, Kling, Veo and more. Each model offers unique strengths for different styles."
+    },
+    "quality": {
+      "title": "High Quality Output",
+      "description": "Up to 1080p resolution with smooth motion and cinematic quality. Perfect for professional use."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "pageTitle": "Generador de Video AI - Crea Videos desde Texto",
+  "pageDescription": "Transforma tus ideas en videos impresionantes con AI. Múltiples modelos, varias duraciones y relaciones de aspecto. Generación de video profesional en minutos.",
+  "heading": "Generador de Video AI",
+  "subheading": "Crea videos impresionantes a partir de descripciones de texto usando los últimos modelos de AI",
+  "title": "Generar Video",
+  "promptLabel": "Describe tu video",
+  "promptPlaceholder": "Un león majestuoso caminando por una sabana dorada al atardecer, iluminación cinematográfica, cámara lenta...",
+  "modelLabel": "Modelo",
+  "durationLabel": "Duración",
+  "aspectRatioLabel": "Relación de Aspecto",
+  "resolutionLabel": "Resolución",
+  "seconds": "segundos",
+  "cost": "Costo",
+  "credits": "créditos",
+  "yourCredits": "Tus créditos",
+  "generate": "Generar Video",
+  "generating": "Generando...",
+  "generationInProgress": "Generación de Video en Progreso",
+  "pleaseWait": "Por favor espera, esto puede tardar unos minutos",
+  "videoReady": "¡Tu Video está Listo!",
+  "download": "Descargar",
+  "yourVideos": "Tus Videos Generados",
+  "failed": "Fallido",
+  "confirmDelete": "¿Estás seguro de que quieres eliminar este video?",
+  "estimatedTime": "Tiempo est.",
+  "withAudio": "Con Audio",
+  "supportsImage": "Soporta Imagen de Entrada",
+  "errors": {
+    "promptRequired": "Por favor ingresa una descripción para generar el video",
+    "insufficientCredits": "Créditos insuficientes. Por favor compra más créditos.",
+    "generationFailed": "La generación de video falló. Por favor intenta de nuevo.",
+    "timeout": "Tiempo de generación agotado. Por favor intenta de nuevo."
+  },
+  "features": {
+    "fast": {
+      "title": "Generación Rápida",
+      "description": "Genera videos de calidad profesional en solo minutos con nuestro pipeline de AI optimizado."
+    },
+    "models": {
+      "title": "Múltiples Modelos AI",
+      "description": "Elige entre PixVerse, Kling, Veo y más. Cada modelo ofrece fortalezas únicas para diferentes estilos."
+    },
+    "quality": {
+      "title": "Salida de Alta Calidad",
+      "description": "Hasta 1080p de resolución con movimiento suave y calidad cinematográfica. Perfecto para uso profesional."
+    }
+  }
+}

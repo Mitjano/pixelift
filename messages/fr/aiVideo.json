@@ -1,0 +1,49 @@
+{
+  "pageTitle": "Générateur Vidéo AI - Créez des Vidéos à partir de Texte",
+  "pageDescription": "Transformez vos idées en vidéos époustouflantes avec l'AI. Plusieurs modèles, diverses durées et rapports d'aspect. Génération vidéo professionnelle en minutes.",
+  "heading": "Générateur Vidéo AI",
+  "subheading": "Créez des vidéos époustouflantes à partir de descriptions textuelles en utilisant les derniers modèles AI",
+  "title": "Générer Vidéo",
+  "promptLabel": "Décrivez votre vidéo",
+  "promptPlaceholder": "Un lion majestueux marchant dans une savane dorée au coucher du soleil, éclairage cinématographique, ralenti...",
+  "modelLabel": "Modèle",
+  "durationLabel": "Durée",
+  "aspectRatioLabel": "Format",
+  "resolutionLabel": "Résolution",
+  "seconds": "secondes",
+  "cost": "Coût",
+  "credits": "crédits",
+  "yourCredits": "Vos crédits",
+  "generate": "Générer Vidéo",
+  "generating": "Génération...",
+  "generationInProgress": "Génération Vidéo en Cours",
+  "pleaseWait": "Veuillez patienter, cela peut prendre quelques minutes",
+  "videoReady": "Votre Vidéo est Prête !",
+  "download": "Télécharger",
+  "yourVideos": "Vos Vidéos Générées",
+  "failed": "Échec",
+  "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette vidéo ?",
+  "estimatedTime": "Temps est.",
+  "withAudio": "Avec Audio",
+  "supportsImage": "Supporte Image Source",
+  "errors": {
+    "promptRequired": "Veuillez entrer une description pour générer la vidéo",
+    "insufficientCredits": "Crédits insuffisants. Veuillez acheter plus de crédits.",
+    "generationFailed": "La génération vidéo a échoué. Veuillez réessayer.",
+    "timeout": "Délai de génération dépassé. Veuillez réessayer."
+  },
+  "features": {
+    "fast": {
+      "title": "Génération Rapide",
+      "description": "Générez des vidéos de qualité professionnelle en quelques minutes avec notre pipeline AI optimisé."
+    },
+    "models": {
+      "title": "Plusieurs Modèles AI",
+      "description": "Choisissez parmi PixVerse, Kling, Veo et plus. Chaque modèle offre des atouts uniques pour différents styles."
+    },
+    "quality": {
+      "title": "Sortie Haute Qualité",
+      "description": "Jusqu'à 1080p de résolution avec mouvement fluide et qualité cinématographique. Parfait pour un usage professionnel."
+    }
+  }
+}

@@ -1893,3 +1893,91 @@ model ContentSocialPost {
   @@index([platform])
   @@index([status, scheduledAt])
 }
+
+// ===================
+// AI Video Generation
+// ===================
+
+enum VideoGenerationStatus {
+  pending
+  processing
+  completed
+  failed
+  cancelled
+}
+
+model GeneratedVideo {
+  id              String                 @id @default(cuid())
+
+  // Ownership
+  userId          String
+  userEmail       String
+  userName        String?
+
+  // Input parameters
+  prompt          String                 @db.Text
+  enhancedPrompt  String?                @db.Text
+  negativePrompt  String?
+
+  // Model & Provider
+  model           String                 // pixverse-v5, kling-2.5, veo-3.1, runway-gen4
+  provider        String                 // replicate, piapi, runway
+  modelVersion    String?
+
+  // Video settings
+  duration        Int                    // 5, 8, 10 seconds
+  resolution      String                 // 360p, 540p, 720p, 1080p
+  aspectRatio     String                 // 16:9, 9:16, 1:1
+  fps             Int                    @default(24)
+  withAudio       Boolean                @default(false)
+
+  // Source image (for image-to-video)
+  sourceImageUrl  String?
+  sourceImagePath String?
+
+  // Generation status
+  status          VideoGenerationStatus  @default(pending)
+  progress        Int                    @default(0) // 0-100
+  jobId           String?                // Provider job ID for tracking
+  webhookUrl      String?
+
+  // Output
+  videoUrl        String?                // Provider CDN URL
+  localPath       String?                // Local file path
+  thumbnailUrl    String?
+  thumbnailPath   String?
+
+  // Metadata
+  fileSize        Int?                   // bytes
+  actualDuration  Float?                 // actual duration in seconds
+  processingTime  Int?                   // processing time in ms
+  seed            Int?
+
+  // Billing
+  creditsUsed     Int                    @default(0)
+  creditsReserved Int                    @default(0)
+  costUSD         Float?                 // actual API cost
+
+  // Social/Gallery
+  isPublic        Boolean                @default(false)
+  likes           Int                    @default(0)
+  views           Int                    @default(0)
+  likedBy         String[]               @default([])
+
+  // Error handling
+  errorMessage    String?
+  errorCode       String?
+  retryCount      Int                    @default(0)
+
+  // Timestamps
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  completedAt     DateTime?
+
+  @@index([userId])
+  @@index([status])
+  @@index([model])
+  @@index([provider])
+  @@index([isPublic, createdAt])
+  @@index([jobId])
+}

@@ -1,0 +1,49 @@
+{
+  "pageTitle": "Generator Wideo AI - Twórz filmy z tekstu",
+  "pageDescription": "Przekształć swoje pomysły w niesamowite filmy wideo za pomocą AI. Wiele modeli, różne długości i proporcje. Profesjonalne generowanie wideo w kilka minut.",
+  "heading": "Generator Wideo AI",
+  "subheading": "Twórz niesamowite filmy z opisów tekstowych używając najnowszych modeli AI",
+  "title": "Generuj wideo",
+  "promptLabel": "Opisz swoje wideo",
+  "promptPlaceholder": "Majestatyczny lew spacerujący przez złotą sawannę o zachodzie słońca, kinematograficzne oświetlenie, zwolnione tempo...",
+  "modelLabel": "Model",
+  "durationLabel": "Czas trwania",
+  "aspectRatioLabel": "Proporcje",
+  "resolutionLabel": "Rozdzielczość",
+  "seconds": "sekund",
+  "cost": "Koszt",
+  "credits": "kredytów",
+  "yourCredits": "Twoje kredyty",
+  "generate": "Generuj wideo",
+  "generating": "Generowanie...",
+  "generationInProgress": "Trwa generowanie wideo",
+  "pleaseWait": "Proszę czekać, to może potrwać kilka minut",
+  "videoReady": "Twoje wideo jest gotowe!",
+  "download": "Pobierz",
+  "yourVideos": "Twoje wygenerowane wideo",
+  "failed": "Nieudane",
+  "confirmDelete": "Czy na pewno chcesz usunąć to wideo?",
+  "estimatedTime": "Szac. czas",
+  "withAudio": "Z dźwiękiem",
+  "supportsImage": "Obsługuje obraz źródłowy",
+  "errors": {
+    "promptRequired": "Proszę wprowadzić opis, aby wygenerować wideo",
+    "insufficientCredits": "Niewystarczająca liczba kredytów. Proszę dokupić kredyty.",
+    "generationFailed": "Generowanie wideo nie powiodło się. Spróbuj ponownie.",
+    "timeout": "Przekroczono limit czasu generowania. Spróbuj ponownie."
+  },
+  "features": {
+    "fast": {
+      "title": "Szybkie generowanie",
+      "description": "Generuj profesjonalnej jakości filmy w zaledwie kilka minut dzięki zoptymalizowanemu pipeline AI."
+    },
+    "models": {
+      "title": "Wiele modeli AI",
+      "description": "Wybieraj spośród PixVerse, Kling, Veo i innych. Każdy model oferuje unikalne zalety dla różnych stylów."
+    },
+    "quality": {
+      "title": "Wysoka jakość wyjścia",
+      "description": "Do 1080p rozdzielczości z płynnym ruchem i kinematograficzną jakością. Idealne do profesjonalnego użytku."
+    }
+  }
+}

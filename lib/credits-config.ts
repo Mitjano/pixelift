@@ -19,7 +19,14 @@ export type ToolType =
   | 'background_generate'
   | 'style_transfer'
   | 'structure_control'
-  | 'inpainting';
+  | 'inpainting'
+  // AI Video tools
+  | 'video_pixverse_5s'
+  | 'video_pixverse_8s'
+  | 'video_kling_5s'
+  | 'video_kling_10s'
+  | 'video_veo_5s'
+  | 'video_veo_8s';
 
 export interface ToolCreditConfig {
   /** Bazowy koszt w kredytach */
@@ -126,6 +133,37 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     displayName: 'Inpainting',
     description: 'Zaawansowana edycja fragmentów obrazu',
   },
+  // AI Video tools
+  video_pixverse_5s: {
+    cost: 15,
+    displayName: 'PixVerse V5 (5s)',
+    description: 'Generowanie wideo AI - 5 sekund (PixVerse)',
+  },
+  video_pixverse_8s: {
+    cost: 25,
+    displayName: 'PixVerse V5 (8s)',
+    description: 'Generowanie wideo AI - 8 sekund (PixVerse)',
+  },
+  video_kling_5s: {
+    cost: 12,
+    displayName: 'Kling 2.5 (5s)',
+    description: 'Generowanie wideo AI - 5 sekund (Kling)',
+  },
+  video_kling_10s: {
+    cost: 22,
+    displayName: 'Kling 2.5 (10s)',
+    description: 'Generowanie wideo AI - 10 sekund (Kling)',
+  },
+  video_veo_5s: {
+    cost: 50,
+    displayName: 'Google Veo 3 (5s)',
+    description: 'Premium wideo AI z dźwiękiem - 5 sekund (Veo)',
+  },
+  video_veo_8s: {
+    cost: 80,
+    displayName: 'Google Veo 3 (8s)',
+    description: 'Premium wideo AI z dźwiękiem - 8 sekund (Veo)',
+  },
 };
 
 /**
@@ -213,6 +251,13 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
   'structure-control': 'structure_control',
   'structureControl': 'structure_control',
   'inpainting': 'inpainting',
+  // AI Video mappings
+  'video-pixverse-5s': 'video_pixverse_5s',
+  'video-pixverse-8s': 'video_pixverse_8s',
+  'video-kling-5s': 'video_kling_5s',
+  'video-kling-10s': 'video_kling_10s',
+  'video-veo-5s': 'video_veo_5s',
+  'video-veo-8s': 'video_veo_8s',
 };
 
 /**
