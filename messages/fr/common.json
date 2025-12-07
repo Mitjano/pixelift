@@ -2958,5 +2958,196 @@
       }
     },
     "euNote": "Cette politique de remboursement est conforme à la Directive UE sur les Droits des Consommateurs 2011/83/UE et aux lois applicables de protection des consommateurs."
+  },
+  "aiVideoPage": {
+    "badge": "Génération de vidéo par IA",
+    "hero": {
+      "title1": "Créez des ",
+      "titleHighlight": "vidéos époustouflantes",
+      "title2": "avec l'IA",
+      "subtitle": "Transformez vos idées en vidéos professionnelles en quelques minutes. Propulsé par les modèles d'IA de génération vidéo les plus avancés au monde.",
+      "startCreating": "Commencer à créer",
+      "viewGallery": "Voir la galerie"
+    },
+    "stats": {
+      "aiModels": "Modèles IA",
+      "videosCreated": "Vidéos créées",
+      "maxDuration": "Durée max."
+    },
+    "generator": {
+      "title": "Générer une vidéo",
+      "promptLabel": "Décrivez votre vidéo",
+      "promptPlaceholder": "Un lion majestueux marchant dans une savane dorée au coucher du soleil, éclairage cinématographique, ralenti...",
+      "negativePromptLabel": "Prompt négatif (optionnel)",
+      "negativePromptPlaceholder": "flou, basse qualité, déformé...",
+      "modelLabel": "Modèle IA",
+      "durationLabel": "Durée",
+      "aspectRatioLabel": "Format d'image",
+      "resolutionLabel": "Résolution",
+      "seconds": "secondes",
+      "cost": "Coût",
+      "credits": "crédits",
+      "yourCredits": "Vos crédits",
+      "generate": "Générer la vidéo",
+      "generating": "Génération...",
+      "estimatedTime": "Temps est.",
+      "minutes": "min",
+      "withAudio": "Avec audio",
+      "supportsImage": "Image vers vidéo",
+      "premium": "PREMIUM"
+    },
+    "processing": {
+      "title": "Génération vidéo en cours",
+      "subtitle": "Veuillez patienter, cela peut prendre quelques minutes",
+      "step1": "Traitement de votre prompt",
+      "step2": "Génération des images",
+      "step3": "Rendu de la vidéo finale",
+      "almostDone": "Presque terminé..."
+    },
+    "result": {
+      "title": "Votre vidéo est prête !",
+      "download": "Télécharger",
+      "share": "Partager",
+      "generateAnother": "Générer une autre",
+      "processingTime": "Temps de traitement",
+      "fileSize": "Taille du fichier"
+    },
+    "gallery": {
+      "title": "Vos vidéos",
+      "titleHighlight": "Galerie",
+      "subtitle": "Consultez et gérez vos vidéos générées",
+      "noVideos": "Pas encore de vidéos",
+      "noVideosDesc": "Générez votre première vidéo pour la voir ici",
+      "delete": "Supprimer",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette vidéo ?",
+      "processing": "Traitement...",
+      "failed": "Échoué"
+    },
+    "models": {
+      "title": "Modèles ",
+      "titleHighlight": "IA disponibles",
+      "subtitle": "Choisissez parmi plusieurs modèles d'IA de pointe, chacun avec des forces uniques",
+      "pixverse": {
+        "name": "PixVerse V5",
+        "description": "Modèle texte-vers-vidéo rapide et de haute qualité. Parfait pour les clips promotionnels courts et le contenu des réseaux sociaux.",
+        "tags": "Rapide, Populaire, Bon mouvement"
+      },
+      "kling": {
+        "name": "Kling 2.5",
+        "description": "Modèle économique de Kuaishou avec une excellente qualité de mouvement et de détails. Idéal pour les scènes dynamiques.",
+        "tags": "Économique, Mouvement, Détails"
+      },
+      "veo": {
+        "name": "Google Veo 3",
+        "description": "Modèle premium de Google avec génération audio native. Qualité et réalisme maximum pour les productions professionnelles.",
+        "tags": "Premium, Audio, Cinématographique"
+      },
+      "runway": {
+        "name": "Runway Gen-4",
+        "description": "Dernier modèle de Runway avec excellent contrôle du style et mouvement de caméra. Parfait pour les vidéos artistiques.",
+        "tags": "Cinématographique, Contrôle, Artistique"
+      },
+      "credits": "crédits",
+      "perVideo": "par vidéo"
+    },
+    "useCases": {
+      "title": "Que pouvez-vous ",
+      "titleHighlight": "créer ?",
+      "subtitle": "La génération vidéo par IA ouvre des possibilités créatives infinies",
+      "marketing": {
+        "title": "Marketing et publicités",
+        "description": "Créez des vidéos promotionnelles engageantes, des démos de produits et des publicités pour les réseaux sociaux en minutes au lieu de jours.",
+        "examples": "Lancements de produits, Publicités sociales, Vidéos explicatives"
+      },
+      "content": {
+        "title": "Création de contenu",
+        "description": "Générez du contenu vidéo unique pour YouTube, TikTok, Instagram et d'autres plateformes sans équipement coûteux.",
+        "examples": "Intros YouTube, Clips TikTok, Contenu Stories"
+      },
+      "education": {
+        "title": "Éducation et formation",
+        "description": "Créez des vidéos éducatives, des tutoriels et des supports de formation avec des visuels personnalisés.",
+        "examples": "Tutoriels, Contenu de cours, Vidéos pratiques"
+      },
+      "entertainment": {
+        "title": "Divertissement et art",
+        "description": "Donnez vie à vos visions créatives. Créez des clips musicaux, des courts-métrages et du contenu visuel artistique.",
+        "examples": "Clips musicaux, Courts-métrages, Projets artistiques"
+      },
+      "business": {
+        "title": "Business et corporate",
+        "description": "Générez des présentations professionnelles, des vidéos d'entreprise et des communications business rapidement.",
+        "examples": "Présentations, Rapports, Communication interne"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Présentez vos produits avec du contenu vidéo dynamique. Créez des vidéos de produits engageantes qui augmentent les conversions.",
+        "examples": "Vidéos de produits, Plans lifestyle, Publicités"
+      }
+    },
+    "features": {
+      "title": "Pourquoi Pixelift Video ?",
+      "subtitle": "Génération vidéo IA professionnelle simplifiée",
+      "fast": {
+        "title": "Génération rapide",
+        "description": "Obtenez vos vidéos en minutes, pas en heures. Notre pipeline optimisé livre des résultats professionnels rapidement."
+      },
+      "models": {
+        "title": "Multiples modèles IA",
+        "description": "Accédez à PixVerse, Kling, Google Veo et Runway - chacun optimisé pour différents styles et cas d'utilisation."
+      },
+      "quality": {
+        "title": "Haute qualité",
+        "description": "Jusqu'à 1080p de résolution avec mouvement fluide et qualité cinématographique. Parfait pour un usage professionnel."
+      },
+      "audio": {
+        "title": "Génération audio",
+        "description": "Certains modèles génèrent automatiquement de l'audio et des effets sonores pour des expériences vidéo complètes."
+      },
+      "aspectRatios": {
+        "title": "Formats flexibles",
+        "description": "Générez dans n'importe quel format - 16:9 pour YouTube, 9:16 pour TikTok/Reels, 1:1 pour Instagram."
+      },
+      "imageToVideo": {
+        "title": "Image vers vidéo",
+        "description": "Transformez vos images en vidéos animées. Parfait pour donner vie à des photos et des œuvres d'art."
+      }
+    },
+    "pricing": {
+      "title": "Tarification simple et transparente",
+      "subtitle": "Payez uniquement ce que vous utilisez. Pas d'abonnement requis.",
+      "from": "À partir de",
+      "credits": "crédits",
+      "perVideo": "par vidéo",
+      "getCredits": "Obtenir des crédits",
+      "viewPlans": "Voir tous les plans"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": "Combien de temps prend la génération vidéo ?",
+      "a1": "Le temps de génération varie selon le modèle et la durée. PixVerse prend 1-3 minutes, Kling 2-5 minutes, et Veo 3-7 minutes. Vous verrez un indicateur de progression pendant la génération.",
+      "q2": "Quels formats et résolutions sont supportés ?",
+      "a2": "Nous supportons les résolutions 720p et 1080p dans plusieurs formats : 16:9 (paysage), 9:16 (vertical/mobile), 1:1 (carré) et 4:3. Le format de sortie est MP4.",
+      "q3": "Puis-je utiliser les vidéos générées commercialement ?",
+      "a3": "Oui ! Toutes les vidéos que vous générez sont à vous pour un usage commercial. Vous conservez tous les droits sur vos créations pour le marketing, les réseaux sociaux ou tout usage professionnel.",
+      "q4": "Quel modèle dois-je choisir ?",
+      "a4": "PixVerse est excellent pour des vidéos rapides et polyvalentes. Kling excelle dans les scènes de mouvement et d'action. Veo offre la plus haute qualité avec audio pour les productions premium.",
+      "q5": "Que se passe-t-il si la génération échoue ?",
+      "a5": "Si la génération vidéo échoue, vos crédits sont automatiquement remboursés. Vous pouvez réessayer avec des paramètres différents ou un autre modèle.",
+      "q6": "Puis-je créer des vidéos à partir de mes images ?",
+      "a6": "Oui ! PixVerse, Kling et Runway supportent la génération vidéo à partir d'images. Téléchargez une image pour l'animer en vidéo."
+    },
+    "cta": {
+      "title": "Prêt à créer des vidéos incroyables ?",
+      "subtitle": "Commencez à générer des vidéos IA professionnelles aujourd'hui. Aucune expérience requise.",
+      "startNow": "Commencer maintenant",
+      "freeCredits": "Obtenez 3 crédits gratuits à l'inscription"
+    },
+    "errors": {
+      "promptRequired": "Veuillez entrer un prompt pour générer la vidéo",
+      "insufficientCredits": "Crédits insuffisants. Veuillez acheter plus de crédits.",
+      "generationFailed": "La génération vidéo a échoué. Veuillez réessayer.",
+      "timeout": "Délai de génération dépassé. Veuillez réessayer."
+    }
   }
 }

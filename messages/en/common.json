@@ -2875,5 +2875,196 @@
       }
     },
     "euNote": "This refund policy complies with EU Consumer Protection Directive 2011/83/EU and applicable consumer protection laws."
+  },
+  "aiVideoPage": {
+    "badge": "AI-Powered Video Generation",
+    "hero": {
+      "title1": "Create ",
+      "titleHighlight": "Stunning Videos",
+      "title2": "with AI",
+      "subtitle": "Transform your ideas into professional videos in minutes. Powered by the world's most advanced AI video generation models.",
+      "startCreating": "Start Creating",
+      "viewGallery": "View Gallery"
+    },
+    "stats": {
+      "aiModels": "AI Models",
+      "videosCreated": "Videos Created",
+      "maxDuration": "Max Duration"
+    },
+    "generator": {
+      "title": "Generate Video",
+      "promptLabel": "Describe your video",
+      "promptPlaceholder": "A majestic lion walking through a golden savanna at sunset, cinematic lighting, slow motion...",
+      "negativePromptLabel": "Negative prompt (optional)",
+      "negativePromptPlaceholder": "blurry, low quality, distorted...",
+      "modelLabel": "AI Model",
+      "durationLabel": "Duration",
+      "aspectRatioLabel": "Aspect Ratio",
+      "resolutionLabel": "Resolution",
+      "seconds": "seconds",
+      "cost": "Cost",
+      "credits": "credits",
+      "yourCredits": "Your credits",
+      "generate": "Generate Video",
+      "generating": "Generating...",
+      "estimatedTime": "Est. time",
+      "minutes": "min",
+      "withAudio": "With Audio",
+      "supportsImage": "Image-to-Video",
+      "premium": "PREMIUM"
+    },
+    "processing": {
+      "title": "Video Generation in Progress",
+      "subtitle": "Please wait, this may take a few minutes",
+      "step1": "Processing your prompt",
+      "step2": "Generating video frames",
+      "step3": "Rendering final video",
+      "almostDone": "Almost done..."
+    },
+    "result": {
+      "title": "Your Video is Ready!",
+      "download": "Download",
+      "share": "Share",
+      "generateAnother": "Generate Another",
+      "processingTime": "Processing time",
+      "fileSize": "File size"
+    },
+    "gallery": {
+      "title": "Your Videos",
+      "titleHighlight": "Gallery",
+      "subtitle": "View and manage your generated videos",
+      "noVideos": "No videos yet",
+      "noVideosDesc": "Generate your first video to see it here",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this video?",
+      "processing": "Processing...",
+      "failed": "Failed"
+    },
+    "models": {
+      "title": "Available ",
+      "titleHighlight": "AI Models",
+      "subtitle": "Choose from multiple cutting-edge AI models, each with unique strengths",
+      "pixverse": {
+        "name": "PixVerse V5",
+        "description": "Fast and high-quality text-to-video model. Perfect for short promotional clips and social media content.",
+        "tags": "Fast, Popular, Great Motion"
+      },
+      "kling": {
+        "name": "Kling 2.5",
+        "description": "Budget-friendly model from Kuaishou with excellent motion quality and details. Great for dynamic scenes.",
+        "tags": "Budget, Motion, Details"
+      },
+      "veo": {
+        "name": "Google Veo 3",
+        "description": "Premium model from Google with native audio generation. Highest quality and realism for professional productions.",
+        "tags": "Premium, Audio, Cinematic"
+      },
+      "runway": {
+        "name": "Runway Gen-4",
+        "description": "Latest model from Runway with excellent style control and camera movement. Perfect for artistic videos.",
+        "tags": "Cinematic, Control, Artistic"
+      },
+      "credits": "credits",
+      "perVideo": "per video"
+    },
+    "useCases": {
+      "title": "What Can You ",
+      "titleHighlight": "Create?",
+      "subtitle": "AI video generation opens endless creative possibilities",
+      "marketing": {
+        "title": "Marketing & Ads",
+        "description": "Create engaging promotional videos, product demos, and social media ads in minutes instead of days.",
+        "examples": "Product launches, Social ads, Explainer videos"
+      },
+      "content": {
+        "title": "Content Creation",
+        "description": "Generate unique video content for YouTube, TikTok, Instagram and other platforms without expensive equipment.",
+        "examples": "YouTube intros, TikTok clips, Story content"
+      },
+      "education": {
+        "title": "Education & Training",
+        "description": "Create educational videos, tutorials, and training materials with custom visuals and scenarios.",
+        "examples": "Tutorials, Course content, How-to videos"
+      },
+      "entertainment": {
+        "title": "Entertainment & Art",
+        "description": "Bring your creative visions to life. Create music videos, short films, and artistic visual content.",
+        "examples": "Music videos, Short films, Art projects"
+      },
+      "business": {
+        "title": "Business & Corporate",
+        "description": "Generate professional presentations, corporate videos, and business communications quickly.",
+        "examples": "Presentations, Reports, Internal comms"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Showcase products with dynamic video content. Create engaging product videos that boost conversions.",
+        "examples": "Product videos, Lifestyle shots, Ads"
+      }
+    },
+    "features": {
+      "title": "Why Choose Pixelift Video?",
+      "subtitle": "Professional AI video generation made simple",
+      "fast": {
+        "title": "Fast Generation",
+        "description": "Get your videos in minutes, not hours. Our optimized pipeline delivers professional results quickly."
+      },
+      "models": {
+        "title": "Multiple AI Models",
+        "description": "Access PixVerse, Kling, Google Veo, and Runway - each optimized for different styles and use cases."
+      },
+      "quality": {
+        "title": "High Quality Output",
+        "description": "Up to 1080p resolution with smooth motion and cinematic quality. Perfect for professional use."
+      },
+      "audio": {
+        "title": "Audio Generation",
+        "description": "Some models generate matching audio and sound effects automatically for complete video experiences."
+      },
+      "aspectRatios": {
+        "title": "Flexible Formats",
+        "description": "Generate in any format - 16:9 for YouTube, 9:16 for TikTok/Reels, 1:1 for Instagram posts."
+      },
+      "imageToVideo": {
+        "title": "Image-to-Video",
+        "description": "Transform your images into animated videos. Perfect for bringing still photos and artwork to life."
+      }
+    },
+    "pricing": {
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "Pay only for what you use. No subscriptions required.",
+      "from": "From",
+      "credits": "credits",
+      "perVideo": "per video",
+      "getCredits": "Get Credits",
+      "viewPlans": "View All Plans"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How long does video generation take?",
+      "a1": "Generation time varies by model and duration. PixVerse takes 1-3 minutes, Kling 2-5 minutes, and Veo 3-7 minutes. You'll see a progress indicator during generation.",
+      "q2": "What video formats and resolutions are supported?",
+      "a2": "We support 720p and 1080p resolutions in multiple aspect ratios: 16:9 (widescreen), 9:16 (vertical/mobile), 1:1 (square), and 4:3. Output format is MP4.",
+      "q3": "Can I use generated videos commercially?",
+      "a3": "Yes! All videos you generate are yours to use commercially. You retain full rights to your creations for marketing, social media, or any business purpose.",
+      "q4": "Which model should I choose?",
+      "a4": "PixVerse is great for fast, general-purpose videos. Kling excels at motion and action scenes. Veo offers the highest quality with audio for premium productions.",
+      "q5": "What happens if generation fails?",
+      "a5": "If video generation fails, your credits are automatically refunded. You can try again with adjusted settings or a different model.",
+      "q6": "Can I create videos from my images?",
+      "a6": "Yes! PixVerse, Kling, and Runway support image-to-video generation. Upload an image to animate it into a video."
+    },
+    "cta": {
+      "title": "Ready to Create Amazing Videos?",
+      "subtitle": "Start generating professional AI videos today. No experience required.",
+      "startNow": "Start Creating Now",
+      "freeCredits": "Get 3 free credits when you sign up"
+    },
+    "errors": {
+      "promptRequired": "Please enter a prompt to generate video",
+      "insufficientCredits": "Not enough credits. Please purchase more credits.",
+      "generationFailed": "Video generation failed. Please try again.",
+      "timeout": "Generation timed out. Please try again."
+    }
   }
 }
