@@ -249,22 +249,15 @@ export default function ExploreGallery({ showMyCreations = false }: ExploreGalle
             >
               {isVideo ? (
                 <>
-                  {/* Video thumbnail */}
-                  <img
-                    src={image.thumbnailUrl || image.outputUrl}
-                    alt={image.prompt.substring(0, 50)}
-                    className={`w-full h-full object-cover transition group-hover:scale-105 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-                    loading="lazy"
-                  />
-                  {/* Video element for hover preview */}
+                  {/* Video thumbnail - use video element with preload=metadata to show first frame */}
                   <video
                     ref={(el) => { videoRefs.current[image.id] = el; }}
                     src={image.videoUrl || image.outputUrl}
-                    className={`absolute inset-0 w-full h-full object-cover transition ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                    className="w-full h-full object-cover transition group-hover:scale-105"
                     muted
                     loop
                     playsInline
-                    preload="none"
+                    preload="metadata"
                   />
                   {/* Play icon overlay */}
                   <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity ${isHovered ? 'opacity-0' : 'opacity-100'}`}>

@@ -147,13 +147,13 @@ export default function AIVideoPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </button>
-              <a
-                href="#models"
+              <Link
+                href="/ai-image"
                 className="w-full sm:w-auto px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-xl font-semibold text-lg transition flex items-center justify-center gap-2"
               >
                 <span>{t('hero.viewGallery')}</span>
                 <span>→</span>
-              </a>
+              </Link>
             </div>
 
             {/* Stats */}
