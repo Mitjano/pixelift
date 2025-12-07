@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { FaVideo, FaSpinner, FaPlay, FaDownload, FaTrash, FaClock, FaCoins, FaMagic } from "react-icons/fa";
+import { FaVideo, FaSpinner, FaPlay, FaDownload, FaClock, FaCoins, FaMagic } from "react-icons/fa";
 import { MdAspectRatio, MdHighQuality } from "react-icons/md";
 
 interface VideoModel {
@@ -45,14 +45,12 @@ export default function AIVideoGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<GeneratedVideo | null>(null);
-  const [userVideos, setUserVideos] = useState<GeneratedVideo[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [credits, setCredits] = useState<number>(0);
 
   // Fetch available models on mount
   useEffect(() => {
     fetchModels();
-    fetchUserVideos();
     fetchCredits();
   }, []);
 
@@ -65,18 +63,6 @@ export default function AIVideoGenerator() {
       }
     } catch (err) {
       console.error("Failed to fetch models:", err);
-    }
-  };
-
-  const fetchUserVideos = async () => {
-    try {
-      const response = await fetch("/api/ai-video/list");
-      if (response.ok) {
-        const data = await response.json();
-        setUserVideos(data.videos || []);
-      }
-    } catch (err) {
-      console.error("Failed to fetch user videos:", err);
     }
   };
 
@@ -126,7 +112,6 @@ export default function AIVideoGenerator() {
 
         if (data.status === "completed") {
           setIsGenerating(false);
-          fetchUserVideos();
           fetchCredits();
         } else if (data.status === "failed") {
           setError(data.errorMessage || t("errors.generationFailed"));
@@ -195,25 +180,6 @@ export default function AIVideoGenerator() {
     } catch (err) {
       setError(err instanceof Error ? err.message : t("errors.generationFailed"));
       setIsGenerating(false);
-    }
-  };
-
-  const handleDelete = async (videoId: string) => {
-    if (!confirm(t("confirmDelete"))) return;
-
-    try {
-      const response = await fetch(`/api/ai-video/${videoId}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        setUserVideos((prev) => prev.filter((v) => v.id !== videoId));
-        if (currentVideo?.id === videoId) {
-          setCurrentVideo(null);
-        }
-      }
-    } catch (err) {
-      console.error("Delete error:", err);
     }
   };
 
@@ -508,102 +474,6 @@ export default function AIVideoGenerator() {
         </div>
       )}
 
-      {/* User's Video History - 3-Column Grid with Square Thumbnails */}
-      {userVideos.length > 0 && (
-        <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
-          <h3 className="text-lg font-medium text-white mb-4">{t("yourVideos")}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {userVideos.map((video) => (
-              <div
-                key={video.id}
-                className="bg-gray-900/50 rounded-lg overflow-hidden hover:bg-gray-900 transition group"
-              >
-                {/* Square Thumbnail */}
-                <div className="relative aspect-square w-full bg-gray-800">
-                  {video.status === "completed" && video.videoUrl ? (
-                    <>
-                      <video
-                        src={video.videoUrl}
-                        className="w-full h-full object-cover"
-                        poster={video.thumbnailUrl}
-                        muted
-                        loop
-                        onMouseEnter={(e) => e.currentTarget.play()}
-                        onMouseLeave={(e) => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-                        <button
-                          onClick={() => {
-                            const videoEl = document.createElement('video');
-                            videoEl.src = video.videoUrl!;
-                            videoEl.controls = true;
-                            videoEl.className = 'max-w-full max-h-[80vh]';
-                            const modal = document.createElement('div');
-                            modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4';
-                            modal.onclick = () => modal.remove();
-                            modal.appendChild(videoEl);
-                            document.body.appendChild(modal);
-                            videoEl.play();
-                          }}
-                          className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition"
-                        >
-                          <FaPlay className="text-white text-lg" />
-                        </button>
-                      </div>
-                      {/* Action buttons overlay */}
-                      <div className="absolute bottom-2 right-2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
-                        <a
-                          href={video.videoUrl}
-                          download
-                          className="p-2 bg-green-500 hover:bg-green-600 rounded-lg transition"
-                          title={t("download")}
-                        >
-                          <FaDownload className="text-white text-xs" />
-                        </a>
-                        <button
-                          onClick={() => handleDelete(video.id)}
-                          className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition"
-                          title={t("delete")}
-                        >
-                          <FaTrash className="text-white text-xs" />
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      {video.status === "processing" && (
-                        <div className="text-center">
-                          <FaSpinner className="text-green-400 animate-spin text-2xl mx-auto mb-2" />
-                          <span className="text-gray-400 text-xs">{t("processing")}</span>
-                        </div>
-                      )}
-                      {video.status === "pending" && (
-                        <div className="text-center">
-                          <FaClock className="text-yellow-400 text-2xl mx-auto mb-2" />
-                          <span className="text-gray-400 text-xs">{t("pending")}</span>
-                        </div>
-                      )}
-                      {video.status === "failed" && (
-                        <div className="text-center">
-                          <span className="text-red-400 text-sm">{t("failed")}</span>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Info */}
-                <div className="p-3">
-                  <p className="text-gray-300 text-sm line-clamp-2">{video.prompt}</p>
-                  <p className="text-gray-500 text-xs mt-1">
-                    {new Date(video.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
