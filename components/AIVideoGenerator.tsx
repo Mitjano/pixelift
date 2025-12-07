@@ -400,80 +400,141 @@ export default function AIVideoGenerator() {
         </div>
       )}
 
-      {/* Completed Video Preview */}
+      {/* Completed Video Preview - Compact Card */}
       {currentVideo && currentVideo.status === "completed" && currentVideo.videoUrl && (
-        <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
-          <h3 className="text-lg font-medium text-white mb-4">{t("videoReady")}</h3>
-          <div className="bg-gray-900 rounded-lg overflow-hidden">
-            <video
-              src={currentVideo.videoUrl}
-              controls
-              className="w-full max-h-[500px] object-contain"
-              poster={currentVideo.thumbnailUrl}
-            />
-            <div className="p-4 flex items-center justify-between">
-              <p className="text-gray-300 text-sm line-clamp-2">{currentVideo.prompt}</p>
-              <a
-                href={currentVideo.videoUrl}
-                download
-                className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition"
-              >
-                <FaDownload />
-                {t("download")}
-              </a>
+        <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-4">
+          <div className="flex items-start gap-4">
+            {/* Video Thumbnail/Player - Compact */}
+            <div className="relative w-48 h-28 flex-shrink-0 rounded-lg overflow-hidden bg-gray-900 group">
+              <video
+                src={currentVideo.videoUrl}
+                className="w-full h-full object-cover"
+                poster={currentVideo.thumbnailUrl}
+                muted
+                loop
+                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseLeave={(e) => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition">
+                <FaPlay className="text-white text-xl" />
+              </div>
+            </div>
+
+            {/* Info */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-xs rounded-full font-medium">
+                  {t("videoReady")}
+                </span>
+              </div>
+              <p className="text-gray-300 text-sm line-clamp-2 mb-3">{currentVideo.prompt}</p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    const videoEl = document.createElement('video');
+                    videoEl.src = currentVideo.videoUrl!;
+                    videoEl.controls = true;
+                    videoEl.className = 'max-w-full max-h-[80vh]';
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4';
+                    modal.onclick = () => modal.remove();
+                    modal.appendChild(videoEl);
+                    document.body.appendChild(modal);
+                    videoEl.play();
+                  }}
+                  className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white text-sm rounded-lg transition"
+                >
+                  <FaPlay className="text-xs" />
+                  {t("play") || "Odtwórz"}
+                </button>
+                <a
+                  href={currentVideo.videoUrl}
+                  download
+                  className="flex items-center gap-2 px-3 py-1.5 bg-green-500 hover:bg-green-600 text-white text-sm rounded-lg transition"
+                >
+                  <FaDownload className="text-xs" />
+                  {t("download")}
+                </a>
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* User's Video History */}
+      {/* User's Video History - Compact List */}
       {userVideos.length > 0 && (
         <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
           <h3 className="text-lg font-medium text-white mb-4">{t("yourVideos")}</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="space-y-3">
             {userVideos.map((video) => (
               <div
                 key={video.id}
-                className="bg-gray-900 rounded-lg overflow-hidden group"
+                className="flex items-center gap-4 p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900 transition group"
               >
-                {video.status === "completed" && video.videoUrl ? (
-                  <div className="relative aspect-video">
-                    <video
-                      src={video.videoUrl}
-                      className="w-full h-full object-cover"
-                      poster={video.thumbnailUrl}
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                      <button
-                        onClick={() => setCurrentVideo(video)}
-                        className="p-3 bg-green-500 rounded-full hover:bg-green-600 transition"
-                      >
-                        <FaPlay className="text-white" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(video.id)}
-                        className="p-3 bg-red-500 rounded-full hover:bg-red-600 transition"
-                      >
-                        <FaTrash className="text-white" />
-                      </button>
+                {/* Thumbnail */}
+                <div className="relative w-32 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gray-800">
+                  {video.status === "completed" && video.videoUrl ? (
+                    <>
+                      <video
+                        src={video.videoUrl}
+                        className="w-full h-full object-cover"
+                        poster={video.thumbnailUrl}
+                        muted
+                        loop
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition">
+                        <FaPlay className="text-white text-sm" />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      {video.status === "processing" && (
+                        <FaSpinner className="text-green-400 animate-spin" />
+                      )}
+                      {video.status === "failed" && (
+                        <span className="text-red-400 text-xs">{t("failed")}</span>
+                      )}
                     </div>
-                  </div>
-                ) : (
-                  <div className="aspect-video bg-gray-800 flex items-center justify-center">
-                    {video.status === "processing" && (
-                      <FaSpinner className="text-green-400 text-2xl animate-spin" />
-                    )}
-                    {video.status === "failed" && (
-                      <span className="text-red-400 text-sm">{t("failed")}</span>
-                    )}
-                  </div>
-                )}
-                <div className="p-3">
-                  <p className="text-gray-300 text-sm line-clamp-2">{video.prompt}</p>
+                  )}
+                </div>
+
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-300 text-sm line-clamp-1">{video.prompt}</p>
                   <p className="text-gray-500 text-xs mt-1">
                     {new Date(video.createdAt).toLocaleDateString()}
                   </p>
                 </div>
+
+                {/* Actions */}
+                {video.status === "completed" && video.videoUrl && (
+                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button
+                      onClick={() => setCurrentVideo(video)}
+                      className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition"
+                      title={t("play") || "Odtwórz"}
+                    >
+                      <FaPlay className="text-white text-xs" />
+                    </button>
+                    <a
+                      href={video.videoUrl}
+                      download
+                      className="p-2 bg-green-500 hover:bg-green-600 rounded-lg transition"
+                      title={t("download")}
+                    >
+                      <FaDownload className="text-white text-xs" />
+                    </a>
+                    <button
+                      onClick={() => handleDelete(video.id)}
+                      className="p-2 bg-red-500/20 hover:bg-red-500/40 rounded-lg transition"
+                      title={t("delete") || "Usuń"}
+                    >
+                      <FaTrash className="text-red-400 text-xs" />
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
