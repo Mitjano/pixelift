@@ -82,7 +82,6 @@ export async function GET(request: NextRequest) {
         views: true,
         createdAt: true,
         userName: true,
-        userImage: true,
       },
     });
 
@@ -141,7 +140,7 @@ export async function GET(request: NextRequest) {
         createdAt: video.createdAt,
         user: {
           name: video.userName || session.user?.name || 'You',
-          image: video.userImage || session.user?.image,
+          image: session.user?.image,
         },
       };
     });
