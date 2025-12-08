@@ -4,9 +4,9 @@
  * Konfiguracja dostępnych modeli do generowania muzyki
  */
 
-export type MusicProvider = 'fal';
+export type MusicProvider = 'fal' | 'suno';
 
-export type MusicModelId = 'minimax-music-2.0';
+export type MusicModelId = 'suno-v4' | 'minimax-music-2.0';
 
 export type MusicStyle =
   | 'pop'
@@ -70,6 +70,38 @@ export interface MusicModelConfig {
 }
 
 export const MUSIC_MODELS: Record<MusicModelId, MusicModelConfig> = {
+  'suno-v4': {
+    id: 'suno-v4',
+    name: 'Suno AI v4',
+    description: 'Industry-leading AI music generation. Up to 4 minutes with exceptional vocal quality and creativity.',
+    provider: 'suno',
+    modelIdentifier: 'goapi-suno-v4',
+    isActive: true,
+    supportsLyrics: true,
+    supportsInstrumental: true,
+    maxDuration: 240,
+    minDuration: 60,
+    durations: [60, 120, 180, 240],
+    styles: ['pop', 'rock', 'hiphop', 'rnb', 'jazz', 'electronic', 'classical', 'country', 'folk', 'metal', 'reggae', 'blues', 'latin', 'indie'],
+    moods: ['happy', 'sad', 'energetic', 'calm', 'romantic', 'melancholic', 'uplifting', 'dark', 'dreamy', 'aggressive', 'nostalgic', 'epic'],
+    creditCost: {
+      base: 10,       // Suno via GoAPI: $0.02/creation = ~10 credits
+      perMinute: 0,   // Fixed cost per generation
+    },
+    estimatedProcessingTime: {
+      min: 60,
+      max: 180,
+    },
+    outputFormat: 'mp3',
+    sampleRate: 44100,
+    features: [
+      'Best-in-class AI vocals',
+      'Advanced lyrics understanding',
+      'Generates 2 variations',
+      'Up to 4 minutes',
+      'Viral music quality',
+    ],
+  },
   'minimax-music-2.0': {
     id: 'minimax-music-2.0',
     name: 'MiniMax Music 2.0',
@@ -153,7 +185,7 @@ export function getMasteringCost(intensity: MasteringIntensity): number {
 }
 
 export const DEFAULT_MUSIC_SETTINGS = {
-  model: 'minimax-music-2.0' as MusicModelId,
+  model: 'suno-v4' as MusicModelId,
   duration: 120 as MusicDuration,
   style: 'pop' as MusicStyle,
   mood: 'happy' as MusicMood,

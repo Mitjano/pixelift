@@ -25,12 +25,24 @@ export {
 
 // Generation
 export {
+  type MusicProviderType,
   type MusicGenerationInput,
   type MusicGenerationResult,
   generateMusic,
   checkMusicGenerationStatus,
   cancelMusicGeneration,
 } from './generate';
+
+// Suno Provider (direct access if needed)
+export {
+  type SunoGenerationInput,
+  type SunoGenerationResult,
+  type SunoStatusResult,
+  type SunoClip,
+  generateMusicSuno,
+  checkSunoStatus,
+  cancelSunoGeneration,
+} from './suno-provider';
 
 // Mastering
 export {

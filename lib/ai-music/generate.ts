@@ -1,8 +1,18 @@
 /**
  * AI Music Generation Module
  *
- * Obsługuje generowanie muzyki przez Fal.ai (MiniMax Music 2.0)
+ * Obsługuje generowanie muzyki przez:
+ * - Suno AI (via GoAPI) - Domyślny provider
+ * - Fal.ai (MiniMax Music 2.0) - Backup/legacy
  */
+
+import {
+  generateMusicSuno,
+  checkSunoStatus,
+  cancelSunoGeneration,
+} from './suno-provider';
+
+export type MusicProviderType = 'suno' | 'fal';
 
 export interface MusicGenerationInput {
   prompt: string;        // Tekst piosenki / lyrics (dla custom) lub opis (dla simple)
@@ -10,22 +20,64 @@ export interface MusicGenerationInput {
   instrumental?: boolean;
   title?: string;
   mode?: 'simple' | 'custom';
+  provider?: MusicProviderType;  // 'suno' (default) or 'fal' (MiniMax)
 }
 
 export interface MusicGenerationResult {
   success: boolean;
   jobId?: string;
-  provider: 'fal';
+  provider: MusicProviderType;
   status: 'pending' | 'processing' | 'completed' | 'failed';
   audioUrl?: string;
+  audioUrls?: string[];  // Suno generates multiple clips
   error?: string;
   estimatedTime?: number;
 }
 
 /**
- * Generate music via Fal.ai (MiniMax Music 2.0)
+ * Main function to generate music - routes to appropriate provider
  */
 export async function generateMusic(
+  input: MusicGenerationInput
+): Promise<MusicGenerationResult> {
+  // Default to Suno if GOAPI_API_KEY is available, otherwise fall back to MiniMax
+  const provider = input.provider || (process.env.GOAPI_API_KEY ? 'suno' : 'fal');
+
+  if (provider === 'suno') {
+    return generateMusicViaSuno(input);
+  }
+  return generateMusicViaFal(input);
+}
+
+/**
+ * Generate music via Suno (GoAPI)
+ */
+async function generateMusicViaSuno(
+  input: MusicGenerationInput
+): Promise<MusicGenerationResult> {
+  const result = await generateMusicSuno({
+    prompt: input.prompt,
+    stylePrompt: input.stylePrompt,
+    title: input.title,
+    instrumental: input.instrumental,
+    mode: input.mode,
+  });
+
+  return {
+    success: result.success,
+    jobId: result.taskId,
+    provider: 'suno',
+    status: result.status,
+    audioUrls: result.audioUrls,
+    error: result.error,
+    estimatedTime: result.estimatedTime,
+  };
+}
+
+/**
+ * Generate music via Fal.ai (MiniMax Music 2.0)
+ */
+async function generateMusicViaFal(
   input: MusicGenerationInput
 ): Promise<MusicGenerationResult> {
   const apiKey = process.env.FAL_API_KEY;
@@ -127,9 +179,41 @@ export async function generateMusic(
 }
 
 /**
- * Check music generation status
+ * Check music generation status - routes to appropriate provider
  */
 export async function checkMusicGenerationStatus(
+  jobId: string,
+  provider: MusicProviderType = 'suno'
+): Promise<MusicGenerationResult> {
+  if (provider === 'suno') {
+    return checkSunoStatusWrapper(jobId);
+  }
+  return checkFalStatus(jobId);
+}
+
+/**
+ * Check Suno generation status
+ */
+async function checkSunoStatusWrapper(
+  jobId: string
+): Promise<MusicGenerationResult> {
+  const result = await checkSunoStatus(jobId);
+
+  return {
+    success: result.success,
+    jobId: result.taskId,
+    provider: 'suno',
+    status: result.status,
+    audioUrl: result.audioUrls?.[0],  // Primary clip
+    audioUrls: result.audioUrls,
+    error: result.error,
+  };
+}
+
+/**
+ * Check Fal.ai (MiniMax) generation status
+ */
+async function checkFalStatus(
   jobId: string
 ): Promise<MusicGenerationResult> {
   const apiKey = process.env.FAL_API_KEY;
@@ -211,9 +295,22 @@ export async function checkMusicGenerationStatus(
 }
 
 /**
- * Cancel music generation (if supported)
+ * Cancel music generation - routes to appropriate provider
  */
-export async function cancelMusicGeneration(jobId: string): Promise<boolean> {
+export async function cancelMusicGeneration(
+  jobId: string,
+  provider: MusicProviderType = 'suno'
+): Promise<boolean> {
+  if (provider === 'suno') {
+    return cancelSunoGeneration(jobId);
+  }
+  return cancelFalGeneration(jobId);
+}
+
+/**
+ * Cancel Fal.ai (MiniMax) generation
+ */
+async function cancelFalGeneration(jobId: string): Promise<boolean> {
   try {
     const apiKey = process.env.FAL_API_KEY;
     if (!apiKey) return false;

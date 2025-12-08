@@ -4,9 +4,10 @@ import { prisma } from '@/lib/prisma';
 import {
   generateMusic,
   createMusicRecord,
+  type MusicProviderType,
 } from '@/lib/ai-music';
 
-const CREDIT_COST = 10; // Fixed cost for MiniMax Music (~60s generation)
+const CREDIT_COST = 10; // Fixed cost for Suno AI ($0.02/generation = ~10 credits)
 
 export async function POST(request: NextRequest) {
   try {
@@ -90,6 +91,10 @@ export async function POST(request: NextRequest) {
       data: { credits: { decrement: CREDIT_COST } },
     });
 
+    // Determine provider - Suno if GOAPI key available, otherwise Fal
+    const provider: MusicProviderType = process.env.GOAPI_API_KEY ? 'suno' : 'fal';
+    const model = provider === 'suno' ? 'suno-v4' : 'minimax-music-2.0';
+
     // Create music record
     const musicRecord = await createMusicRecord({
       userId: user.id,
@@ -99,9 +104,9 @@ export async function POST(request: NextRequest) {
       lyrics: mode === 'custom' && !instrumental ? prompt?.trim() : undefined,
       style: stylePrompt?.trim() as any,
       mood: 'energetic' as any,
-      model: 'minimax-music-2.0' as any,
-      provider: 'fal',
-      duration: 60, // MiniMax generates ~60s
+      model: model as any,
+      provider,
+      duration: provider === 'suno' ? 120 : 60, // Suno generates ~2min, MiniMax ~60s
       instrumental: instrumental || false,
       title: title?.trim() || undefined,
       folderId: folderId || undefined,
@@ -115,6 +120,7 @@ export async function POST(request: NextRequest) {
       instrumental: instrumental || false,
       title: title?.trim(),
       mode: mode as 'simple' | 'custom',
+      provider, // Use determined provider
     });
 
     if (!result.success) {
