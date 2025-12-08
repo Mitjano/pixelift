@@ -40,10 +40,13 @@ export interface SunoClip {
   status: string;
 }
 
-const GOAPI_BASE_URL = 'https://api.goapi.ai/api/suno/v1';
+// GoAPI Unified Task API endpoint
+// Docs: https://goapi.ai/docs/music-api/create-task
+// Model: music-u (Suno-based), pricing: $0.05/generation
+const GOAPI_BASE_URL = 'https://api.goapi.ai/api/v1';
 
 /**
- * Generate music via GoAPI Suno
+ * Generate music via GoAPI (music-u model)
  */
 export async function generateMusicSuno(
   input: SunoGenerationInput
@@ -58,38 +61,36 @@ export async function generateMusicSuno(
   }
 
   try {
-    // Build request body based on mode
-    // GoAPI Suno supports custom_mode for full control
-    const isCustomMode = input.mode === 'custom' && input.prompt && input.stylePrompt;
-
-    // Prepare request body
-    let requestBody: Record<string, unknown>;
-
-    if (isCustomMode) {
-      // Custom mode: user provides lyrics and style separately
-      requestBody = {
-        custom_mode: true,
-        input: {
-          title: input.title || 'Untitled',
-          prompt: input.prompt,           // Lyrics
-          tags: input.stylePrompt || '',  // Style tags
-          make_instrumental: input.instrumental || false,
-        },
-      };
+    // Determine lyrics type based on input
+    let lyricsType: 'generate' | 'instrumental' | 'user';
+    if (input.instrumental) {
+      lyricsType = 'instrumental';
+    } else if (input.mode === 'custom' && input.prompt) {
+      lyricsType = 'user';
     } else {
-      // Simple mode: AI generates everything from description
-      requestBody = {
-        custom_mode: false,
-        input: {
-          gpt_description_prompt: input.prompt,
-          make_instrumental: input.instrumental || false,
-        },
-      };
+      lyricsType = 'generate';
     }
 
-    console.log('Suno GoAPI request:', JSON.stringify(requestBody, null, 2));
+    // Build request body for GoAPI unified task API
+    const requestBody: Record<string, unknown> = {
+      model: 'music-u',
+      task_type: 'generate_music',
+      input: {
+        lyrics_type: lyricsType,
+        prompt: input.stylePrompt || input.prompt, // Style/mood description
+        title: input.title || undefined,
+      },
+    };
 
-    const response = await fetch(`${GOAPI_BASE_URL}/music`, {
+    // Add lyrics for custom mode with user-provided lyrics
+    if (lyricsType === 'user' && input.prompt) {
+      (requestBody.input as Record<string, unknown>).lyrics = input.prompt;
+      (requestBody.input as Record<string, unknown>).gpt_description_prompt = input.stylePrompt || 'Create a song';
+    }
+
+    console.log('GoAPI music request:', JSON.stringify(requestBody, null, 2));
+
+    const response = await fetch(`${GOAPI_BASE_URL}/task`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -100,11 +101,11 @@ export async function generateMusicSuno(
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Suno GoAPI error response:', errorText);
-      let errorMessage = 'Suno generation failed';
+      console.error('GoAPI error response:', errorText);
+      let errorMessage = 'Music generation failed';
       try {
         const errorData = JSON.parse(errorText);
-        errorMessage = errorData.message || errorData.detail || errorMessage;
+        errorMessage = errorData.error?.message || errorData.message || errorData.detail || errorMessage;
       } catch {
         errorMessage = errorText || errorMessage;
       }
@@ -112,21 +113,22 @@ export async function generateMusicSuno(
     }
 
     const data = await response.json();
-    console.log('Suno GoAPI response:', JSON.stringify(data, null, 2));
+    console.log('GoAPI response:', JSON.stringify(data, null, 2));
 
-    // GoAPI returns: { code: 200, data: { task_id: "..." }, message: "success" }
-    if (data.code !== 200 || !data.data?.task_id) {
-      throw new Error(data.message || 'Failed to create task');
+    // GoAPI unified API returns: { data: { task_id: "..." }, ... }
+    const taskId = data.data?.task_id || data.task_id;
+    if (!taskId) {
+      throw new Error(data.error?.message || data.message || 'Failed to create task');
     }
 
     return {
       success: true,
-      taskId: data.data.task_id,
+      taskId: taskId,
       status: 'processing',
-      estimatedTime: 120, // Suno typically takes 1-3 minutes
+      estimatedTime: 120, // Typically takes 1-3 minutes
     };
   } catch (error) {
-    console.error('Suno GoAPI generation error:', error);
+    console.error('GoAPI generation error:', error);
     return {
       success: false,
       status: 'failed',
@@ -136,7 +138,7 @@ export async function generateMusicSuno(
 }
 
 /**
- * Check Suno generation status
+ * Check music generation status via GoAPI unified task API
  */
 export async function checkSunoStatus(
   taskId: string
@@ -152,7 +154,8 @@ export async function checkSunoStatus(
   }
 
   try {
-    const response = await fetch(`${GOAPI_BASE_URL}/music/${taskId}`, {
+    // GoAPI unified task API: GET /api/v1/task/{task_id}
+    const response = await fetch(`${GOAPI_BASE_URL}/task/${taskId}`, {
       headers: {
         'X-API-Key': apiKey,
       },
@@ -160,31 +163,45 @@ export async function checkSunoStatus(
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Suno status check failed:', response.status, errorText);
+      console.error('GoAPI status check failed:', response.status, errorText);
       throw new Error(`Failed to check status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('Suno status response:', JSON.stringify(data, null, 2));
+    console.log('GoAPI status response:', JSON.stringify(data, null, 2));
 
-    // Parse response - GoAPI returns different structures
-    // Success: { code: 200, data: { status: "completed", clips: [...] } }
-    if (data.code !== 200) {
-      throw new Error(data.message || 'Status check failed');
-    }
-
-    const taskData = data.data;
+    // Parse response - GoAPI unified API returns: { data: { status: "...", output: {...} } }
+    const taskData = data.data || data;
     const status = parseGoAPIStatus(taskData.status);
 
-    if (status === 'completed' && taskData.clips) {
-      const clips: SunoClip[] = taskData.clips.map((clip: any) => ({
-        id: clip.id,
-        title: clip.title || 'Untitled',
-        audioUrl: clip.audio_url,
-        imageUrl: clip.image_url,
-        duration: clip.duration,
-        status: clip.status,
-      }));
+    if (status === 'completed') {
+      // Output contains the audio URL(s)
+      const output = taskData.output || {};
+      const audioUrl = output.audio_url || output.url || output.audio;
+
+      // Some responses may have multiple clips
+      const clips: SunoClip[] = [];
+      if (output.clips && Array.isArray(output.clips)) {
+        for (const clip of output.clips) {
+          clips.push({
+            id: clip.id || taskId,
+            title: clip.title || 'Generated Music',
+            audioUrl: clip.audio_url || clip.url,
+            imageUrl: clip.image_url,
+            duration: clip.duration,
+            status: 'completed',
+          });
+        }
+      } else if (audioUrl) {
+        clips.push({
+          id: taskId,
+          title: output.title || 'Generated Music',
+          audioUrl: audioUrl,
+          imageUrl: output.image_url,
+          duration: output.duration,
+          status: 'completed',
+        });
+      }
 
       return {
         success: true,
@@ -200,7 +217,7 @@ export async function checkSunoStatus(
         success: false,
         taskId,
         status: 'failed',
-        error: taskData.error || 'Generation failed',
+        error: taskData.error?.message || taskData.error || 'Generation failed',
       };
     }
 
