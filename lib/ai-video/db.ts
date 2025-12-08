@@ -80,6 +80,7 @@ export async function createVideoRecord(params: CreateVideoParams) {
       creditsReserved: params.creditsReserved,
       seed: params.seed,
       status: 'pending',
+      isPublic: true,
     },
   });
 }
