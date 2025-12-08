@@ -91,9 +91,10 @@ export async function POST(request: NextRequest) {
       data: { credits: { decrement: CREDIT_COST } },
     });
 
-    // Determine provider - Suno if GOAPI key available, otherwise Fal
-    const provider: MusicProviderType = process.env.GOAPI_API_KEY ? 'suno' : 'fal';
-    const model = provider === 'suno' ? 'suno-v4' : 'minimax-music-2.0';
+    // Determine provider - Use Fal.ai (MiniMax) as default since Suno/GoAPI has backend issues
+    // TODO: Switch back to Suno when GoAPI stabilizes
+    const provider: MusicProviderType = process.env.FAL_API_KEY ? 'fal' : 'suno';
+    const model = provider === 'fal' ? 'minimax-music-2.0' : 'suno-v4';
 
     // Create music record
     const musicRecord = await createMusicRecord({

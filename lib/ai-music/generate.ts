@@ -40,8 +40,9 @@ export interface MusicGenerationResult {
 export async function generateMusic(
   input: MusicGenerationInput
 ): Promise<MusicGenerationResult> {
-  // Default to Suno if GOAPI_API_KEY is available, otherwise fall back to MiniMax
-  const provider = input.provider || (process.env.GOAPI_API_KEY ? 'suno' : 'fal');
+  // Default to Fal.ai (MiniMax) since Suno/GoAPI has backend issues
+  // TODO: Switch back to Suno when GoAPI stabilizes
+  const provider = input.provider || (process.env.FAL_API_KEY ? 'fal' : 'suno');
 
   if (provider === 'suno') {
     return generateMusicViaSuno(input);
