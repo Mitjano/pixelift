@@ -116,6 +116,7 @@
   "creating": "Tworzenie piosenki...",
   "yourSong": "Twoja piosenka",
   "modelDescription": "Wysokiej jakości generowanie muzyki z wokalami i instrumentami",
+  "durationNote": "Każda generacja tworzy ~60 sekundowy klip. Nie można dostosować czasu trwania.",
 
   "signInTitle": "Zaloguj się, aby tworzyć muzykę",
   "signInDescription": "Twórz profesjonalne piosenki z wokalami i instrumentami generowanymi przez AI",

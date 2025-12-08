@@ -217,7 +217,8 @@ export default function AIMusicGenerator() {
         return;
       }
     } else {
-      if (!lyrics.trim() || lyrics.trim().length < 10) {
+      // Custom mode - lyrics required only if NOT instrumental
+      if (!instrumental && (!lyrics.trim() || lyrics.trim().length < 10)) {
         setError(t('errors.lyricsRequired'));
         return;
       }
@@ -248,7 +249,10 @@ export default function AIMusicGenerator() {
         apiStylePrompt = simplePrompt.trim();
       } else {
         // Custom mode: użytkownik podaje tekst i styl osobno
-        apiPrompt = lyrics.trim();
+        // Dla instrumental bez lyrics, użyj style jako prompt
+        apiPrompt = instrumental && !lyrics.trim()
+          ? '[Instrumental]'
+          : lyrics.trim();
         apiStylePrompt = stylePrompt.trim() || buildStylePrompt();
       }
 
@@ -716,6 +720,9 @@ export default function AIMusicGenerator() {
                 <h4 className="font-semibold text-white">MiniMax Music 2.0</h4>
                 <p className="text-xs text-gray-400">{t('modelDescription')}</p>
               </div>
+            </div>
+            <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-gray-500">
+              <p>{t('durationNote')}</p>
             </div>
           </div>
         </div>

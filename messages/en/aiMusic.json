@@ -116,6 +116,7 @@
   "creating": "Creating your song...",
   "yourSong": "Your Song",
   "modelDescription": "High quality music generation with vocals and instrumentals",
+  "durationNote": "Each generation creates ~60 second clips. Duration cannot be adjusted.",
 
   "signInTitle": "Sign in to Create Music",
   "signInDescription": "Create professional AI-generated songs with vocals and instrumentals",
