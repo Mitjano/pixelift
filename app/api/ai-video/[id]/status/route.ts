@@ -78,7 +78,8 @@ export async function GET(
 
     const result = await checkGenerationStatus(
       video.jobId,
-      video.provider as VideoProvider
+      video.provider as VideoProvider,
+      video.model
     );
 
     // Update progress

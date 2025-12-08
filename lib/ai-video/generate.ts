@@ -456,7 +456,8 @@ export async function generateVideo(
  */
 export async function checkGenerationStatus(
   jobId: string,
-  provider: VideoProvider
+  provider: VideoProvider,
+  modelId?: string
 ): Promise<VideoGenerationResult> {
   switch (provider) {
     case 'replicate':
@@ -466,7 +467,7 @@ export async function checkGenerationStatus(
     case 'runway':
       return checkRunwayStatus(jobId);
     case 'fal':
-      return checkFalStatus(jobId);
+      return checkFalStatus(jobId, modelId);
     default:
       return {
         success: false,
@@ -647,7 +648,7 @@ async function checkRunwayStatus(jobId: string): Promise<VideoGenerationResult> 
   }
 }
 
-async function checkFalStatus(jobId: string): Promise<VideoGenerationResult> {
+async function checkFalStatus(jobId: string, modelId?: string): Promise<VideoGenerationResult> {
   const apiKey = process.env.FAL_API_KEY;
   if (!apiKey) {
     return {
@@ -659,21 +660,37 @@ async function checkFalStatus(jobId: string): Promise<VideoGenerationResult> {
   }
 
   try {
-    const response = await fetch(`https://queue.fal.run/fal-ai/requests/${jobId}/status`, {
+    // Get the correct endpoint based on model
+    let modelEndpoint: string;
+
+    if (modelId?.startsWith('hailuo')) {
+      modelEndpoint = 'fal-ai/minimax-video';
+    } else if (modelId === 'luma-ray2-flash') {
+      modelEndpoint = 'fal-ai/luma-dream-machine';
+    } else if (modelId === 'kling-2.6-fal') {
+      modelEndpoint = 'fal-ai/kling-video/v2.6/pro/text-to-video';
+    } else {
+      // Fallback to minimax-video as default
+      modelEndpoint = 'fal-ai/minimax-video';
+    }
+
+    const response = await fetch(`https://queue.fal.run/${modelEndpoint}/requests/${jobId}/status`, {
       headers: {
         'Authorization': `Key ${apiKey}`,
       },
     });
 
     if (!response.ok) {
-      throw new Error('Failed to check Fal.ai status');
+      const errorText = await response.text();
+      console.error('Fal.ai status check failed:', response.status, errorText);
+      throw new Error(`Failed to check Fal.ai status: ${response.status}`);
     }
 
     const data = await response.json();
 
     if (data.status === 'COMPLETED') {
       // Fetch the result
-      const resultResponse = await fetch(`https://queue.fal.run/fal-ai/requests/${jobId}`, {
+      const resultResponse = await fetch(`https://queue.fal.run/${modelEndpoint}/requests/${jobId}`, {
         headers: {
           'Authorization': `Key ${apiKey}`,
         },
