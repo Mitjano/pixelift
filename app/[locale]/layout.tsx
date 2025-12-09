@@ -10,6 +10,7 @@ import LayoutWrapper from "@/components/LayoutWrapper";
 import StructuredData from "@/components/StructuredData";
 import HreflangTags from "@/components/HreflangTags";
 import Analytics from "@/components/Analytics";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -148,6 +149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <Analytics />
+        <AnalyticsTracker />
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <LayoutWrapper>{children}</LayoutWrapper>
