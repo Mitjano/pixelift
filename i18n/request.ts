@@ -11,10 +11,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
   }
 
   // Load all translation files and merge them
-  const [common, aiVideo, aiMusic] = await Promise.all([
+  const [common, aiVideo] = await Promise.all([
     import(`../messages/${locale}/common.json`).then(m => m.default),
     import(`../messages/${locale}/aiVideo.json`).then(m => m.default).catch(() => ({})),
-    import(`../messages/${locale}/aiMusic.json`).then(m => m.default).catch(() => ({})),
   ]);
 
   return {
@@ -22,7 +21,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
     messages: {
       ...common,
       aiVideo,
-      aiMusic,
     }
   };
 });

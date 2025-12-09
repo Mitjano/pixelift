@@ -20,7 +20,14 @@ export type ToolType =
   | 'style_transfer'
   | 'structure_control'
   | 'inpainting'
-  // AI Video tools
+  // AI Video Tools
+  | 'video_script'
+  | 'voiceover'
+  | 'captions'
+  | 'lipsync'
+  | 'talking_avatar'
+  | 'url_to_video'
+  // AI Video Generation
   | 'video_pixverse_5s'
   | 'video_pixverse_8s'
   | 'video_kling_5s'
@@ -139,7 +146,52 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     displayName: 'Inpainting',
     description: 'Zaawansowana edycja fragmentów obrazu',
   },
-  // AI Video tools
+  // AI Video Script & Voiceover
+  video_script: {
+    cost: 1,
+    displayName: 'AI Script Generator',
+    description: 'Generowanie scenariuszy wideo z AI',
+  },
+  voiceover: {
+    cost: 2,
+    minCost: 2,
+    maxCost: 7,
+    isDynamic: true,
+    costDescription: {
+      en: '2 credits + 1 per 1000 characters',
+      pl: '2 kredyty + 1 za każde 1000 znaków',
+    },
+    displayName: 'AI Voiceover',
+    description: 'Generowanie lektora AI z tekstu',
+  },
+  captions: {
+    cost: 3,
+    displayName: 'Auto Captions',
+    description: 'Automatyczna transkrypcja audio/wideo z napisami',
+  },
+  lipsync: {
+    cost: 10,
+    displayName: 'AI Lip Sync',
+    description: 'Synchronizacja ruchu ust z dźwiękiem',
+  },
+  talking_avatar: {
+    cost: 15,
+    displayName: 'Talking Avatar',
+    description: 'Wygeneruj mówiący awatar z tekstu lub audio',
+  },
+  url_to_video: {
+    cost: 20,
+    minCost: 20,
+    maxCost: 50,
+    isDynamic: true,
+    costDescription: {
+      en: '20 credits base + 10 per minute of video',
+      pl: '20 kredytów bazowo + 10 za minutę wideo',
+    },
+    displayName: 'URL to Video',
+    description: 'Konwertuj artykuł lub stronę na wideo',
+  },
+  // AI Video Generation
   video_pixverse_5s: {
     cost: 15,
     displayName: 'PixVerse V5 (5s)',
@@ -287,7 +339,20 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
   'structure-control': 'structure_control',
   'structureControl': 'structure_control',
   'inpainting': 'inpainting',
-  // AI Video mappings
+  // AI Video Tools
+  'video-script': 'video_script',
+  'video_script': 'video_script',
+  'voiceover': 'voiceover',
+  'ai-voiceover': 'voiceover',
+  'captions': 'captions',
+  'auto-captions': 'captions',
+  'lipsync': 'lipsync',
+  'lip-sync': 'lipsync',
+  'talking-avatar': 'talking_avatar',
+  'talking_avatar': 'talking_avatar',
+  'url-to-video': 'url_to_video',
+  'url_to_video': 'url_to_video',
+  // AI Video Generation
   'video-pixverse-5s': 'video_pixverse_5s',
   'video-pixverse-8s': 'video_pixverse_8s',
   'video-kling-5s': 'video_kling_5s',

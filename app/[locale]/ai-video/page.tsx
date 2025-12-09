@@ -252,6 +252,123 @@ export default function AIVideoPage() {
         </div>
       </section>
 
+      {/* AI Video Tools Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-white">AI Video </span>
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Tools</span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Complete suite of AI-powered video creation tools
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Script Generator */}
+          <Link
+            href="/ai-video/script"
+            className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl mb-4">
+              📝
+            </div>
+            <h3 className="font-semibold text-white group-hover:text-cyan-400 transition text-lg mb-2">
+              AI Script Generator
+            </h3>
+            <p className="text-sm text-gray-400 mb-3">
+              Generate professional video scripts for TikTok, YouTube, ads and more
+            </p>
+            <div className="text-cyan-400 text-sm font-medium">1 credit →</div>
+          </Link>
+
+          {/* Voiceover */}
+          <Link
+            href="/ai-video/voiceover"
+            className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-2xl mb-4">
+              🎤
+            </div>
+            <h3 className="font-semibold text-white group-hover:text-cyan-400 transition text-lg mb-2">
+              AI Voiceover
+            </h3>
+            <p className="text-sm text-gray-400 mb-3">
+              Convert text to natural speech with multiple voices and languages
+            </p>
+            <div className="text-cyan-400 text-sm font-medium">2+ credits →</div>
+          </Link>
+
+          {/* Auto Captions */}
+          <Link
+            href="/ai-video/captions"
+            className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-2xl mb-4">
+              📝
+            </div>
+            <h3 className="font-semibold text-white group-hover:text-cyan-400 transition text-lg mb-2">
+              Auto Captions
+            </h3>
+            <p className="text-sm text-gray-400 mb-3">
+              Automatic transcription with SRT, VTT, and JSON export
+            </p>
+            <div className="text-cyan-400 text-sm font-medium">3 credits →</div>
+          </Link>
+
+          {/* Lip Sync */}
+          <Link
+            href="/ai-video/lipsync"
+            className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-2xl mb-4">
+              👄
+            </div>
+            <h3 className="font-semibold text-white group-hover:text-cyan-400 transition text-lg mb-2">
+              AI Lip Sync
+            </h3>
+            <p className="text-sm text-gray-400 mb-3">
+              Sync lip movements to any audio for dubbing and localization
+            </p>
+            <div className="text-cyan-400 text-sm font-medium">10 credits →</div>
+          </Link>
+
+          {/* Talking Avatar */}
+          <Link
+            href="/ai-video/talking-avatar"
+            className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-2xl mb-4">
+              🧑
+            </div>
+            <h3 className="font-semibold text-white group-hover:text-cyan-400 transition text-lg mb-2">
+              Talking Avatar
+            </h3>
+            <p className="text-sm text-gray-400 mb-3">
+              Generate realistic talking avatar videos from text or audio
+            </p>
+            <div className="text-cyan-400 text-sm font-medium">15 credits →</div>
+          </Link>
+
+          {/* URL to Video */}
+          <Link
+            href="/ai-video/url-to-video"
+            className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition group"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-2xl mb-4">
+              🔗
+            </div>
+            <h3 className="font-semibold text-white group-hover:text-cyan-400 transition text-lg mb-2">
+              URL to Video
+            </h3>
+            <p className="text-sm text-gray-400 mb-3">
+              Convert any article or webpage into a professional video
+            </p>
+            <div className="text-cyan-400 text-sm font-medium">20+ credits →</div>
+          </Link>
+        </div>
+      </section>
+
       {/* Models Showcase */}
       <section id="models" className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
