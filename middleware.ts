@@ -26,9 +26,10 @@ export default auth((req) => {
     pathname.startsWith('/api/') ||
     pathname.startsWith('/_next/') ||
     pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/generated-music/') ||
     pathname === '/sitemap.xml' ||
     pathname === '/robots.txt' ||
-    pathname.match(/\.(svg|png|jpg|jpeg|gif|webp|ico|css|js|xml|txt)$/)
+    pathname.match(/\.(svg|png|jpg|jpeg|gif|webp|ico|css|js|xml|txt|mp3|wav|ogg|m4a)$/)
   ) {
     const response = NextResponse.next();
 
@@ -93,7 +94,7 @@ export default auth((req) => {
 
 export const config = {
   matcher: [
-    // Match all routes except static files
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // Match all routes except static files and generated content
+    "/((?!_next/static|_next/image|favicon.ico|generated-music|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3|wav|ogg|m4a)$).*)",
   ],
 };
