@@ -46,12 +46,10 @@ export async function POST(request: NextRequest) {
       title,
       mode = 'simple',
       folderId,
-      duration: requestedDuration,
     } = body;
 
-    // Validate and clamp duration to allowed values (60, 120, 180, 240 seconds)
-    const allowedDurations = [60, 120, 180, 240];
-    const duration = allowedDurations.includes(requestedDuration) ? requestedDuration : 120;
+    // Note: Duration is NOT supported by GoAPI - Suno generates ~2-3 min tracks automatically
+    const duration = 120; // Default for DB record only
 
     // Validate inputs based on mode
     if (mode === 'simple') {
@@ -123,14 +121,13 @@ export async function POST(request: NextRequest) {
     });
 
     // Start generation with new simplified interface
+    // Note: Duration is NOT passed - GoAPI does not support it
     const result = await generateMusic({
-
       prompt: prompt?.trim() || '',
       stylePrompt: stylePrompt.trim(),
       instrumental: instrumental || false,
       title: title?.trim(),
       mode: mode as 'simple' | 'custom',
-            duration, // Pass user-selected duration (60, 120, 180, 240 seconds)
       provider, // Use determined provider
     });
 

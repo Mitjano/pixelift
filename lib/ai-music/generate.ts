@@ -27,7 +27,7 @@ export interface MusicGenerationInput {
   instrumental?: boolean;
   title?: string;
   mode?: 'simple' | 'custom';
-  duration?: number;     // Duration in seconds (60, 120, 180, 240)
+  // Note: Duration is NOT supported by GoAPI - Suno generates ~2-3 min tracks automatically
   provider?: MusicProviderType;  // 'suno' (default) or 'fal' (MiniMax)
 }
 
@@ -76,7 +76,7 @@ async function generateMusicViaSuno(
     title: input.title,
     instrumental: input.instrumental,
     mode: input.mode,
-    duration: input.duration,
+    // Note: Duration removed - GoAPI does not support it
   });
 
   return {

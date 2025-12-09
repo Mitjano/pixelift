@@ -82,7 +82,6 @@ export default function AIMusicGenerator() {
   // Common state
   const [title, setTitle] = useState('');
   const [instrumental, setInstrumental] = useState(false);
-  const [duration, setDuration] = useState<number>(120); // 60, 120, 180, 240 seconds
 
   // UI state
   const [isGenerating, setIsGenerating] = useState(false);
@@ -266,7 +265,6 @@ export default function AIMusicGenerator() {
           instrumental,
           title: title.trim() || undefined,
           mode,
-          duration,
         }),
       });
 
@@ -289,7 +287,7 @@ export default function AIMusicGenerator() {
       setError(err instanceof Error ? err.message : 'Generation failed');
       setIsGenerating(false);
     }
-  }, [mode, simplePrompt, lyrics, stylePrompt, buildStylePrompt, instrumental, title, duration, userCredits, t]);
+  }, [mode, simplePrompt, lyrics, stylePrompt, buildStylePrompt, instrumental, title, userCredits, t]);
 
   // Insert structure tag into lyrics
   const insertTag = (tag: string) => {
@@ -630,28 +628,12 @@ export default function AIMusicGenerator() {
               />
             </div>
 
-            {/* Duration Selector */}
-            <div className="flex-1 min-w-[180px]">
-              <label className="block text-xs text-gray-500 mb-1">{t('generator.durationLabel') || 'Duration'}</label>
-              <div className="flex gap-1">
-                {[60, 120, 180, 240].map((d) => (
-                  <button
-                    key={d}
-                    onClick={() => setDuration(d)}
-                    className={`flex-1 px-2 py-2 rounded-lg text-xs font-medium transition ${
-                      duration === d
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-gray-800 border border-gray-700 text-gray-400 hover:border-purple-500/50'
-                    }`}
-                    disabled={isGenerating}
-                  >
-                    {d / 60}m
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                {instrumental && duration < 180 && (t('generator.durationHintInstrumental') || 'Tip: Instrumentals sound better at 3+ minutes')}
-              </p>
+            {/* Duration Info */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 rounded-lg">
+              <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-xs text-gray-400">{t('generator.durationInfo') || 'AI generates 2-3 min tracks'}</span>
             </div>
 
             {/* Instrumental Toggle */}
@@ -733,7 +715,7 @@ export default function AIMusicGenerator() {
                       <input
                         type="range"
                         min={0}
-                        max={duration || 100}
+                        max={audioDuration || 100}
                         value={currentTime}
                         onChange={handleSeek}
                         className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
@@ -743,7 +725,7 @@ export default function AIMusicGenerator() {
                       />
                       <div className="flex justify-between text-xs text-gray-400 mt-1">
                         <span>{formatTime(currentTime)}</span>
-                        <span>{formatTime(duration)}</span>
+                        <span>{formatTime(audioDuration)}</span>
                       </div>
                     </div>
                   </div>
@@ -789,7 +771,7 @@ export default function AIMusicGenerator() {
                   {selectedStyle && selectedMood && ' • '}
                   {selectedMood && MOOD_TAGS.find(m => m.id === selectedMood)?.label}
                   {(selectedStyle || selectedMood) && ' • '}
-                  {duration / 60}:{(duration % 60).toString().padStart(2, '0')}
+                  ~2-3 min
                 </p>
               </div>
             )}
@@ -851,7 +833,7 @@ export default function AIMusicGenerator() {
               </div>
             </div>
             <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-gray-500">
-              <p>Generates 2 song variations • {duration / 60} minute{duration > 60 ? 's' : ''}</p>
+              <p>Generates 2 song variations • ~2-3 minutes each</p>
             </div>
           </div>
         </div>
