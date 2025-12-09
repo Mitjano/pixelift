@@ -91,12 +91,13 @@ export async function POST(request: NextRequest) {
       data: { credits: { decrement: CREDIT_COST } },
     });
 
-    // Determine provider - Use PiAPI (Udio) as default since it works reliably
-    // Fallback order: PiAPI (Udio) > Fal.ai (MiniMax) > Suno/GoAPI
-    const provider: MusicProviderType = process.env.GOAPI_API_KEY ? 'piapi' :
-      process.env.FAL_API_KEY ? 'fal' : 'suno';
-    const model = provider === 'piapi' ? 'udio-music' :
-      provider === 'fal' ? 'minimax-music-2.0' : 'suno-v4';
+    // Determine provider - Use Fal.ai (MiniMax v1.5) as default since it works reliably
+    // PiAPI/GoAPI have backend issues (error 1001), so Fal.ai is now default
+    // Fallback order: Fal.ai (MiniMax v1.5) > PiAPI (Udio) > Suno/GoAPI
+    const provider: MusicProviderType = process.env.FAL_API_KEY ? 'fal' :
+      process.env.GOAPI_API_KEY ? 'piapi' : 'suno';
+    const model = provider === 'fal' ? 'minimax-music-1.5' :
+      provider === 'piapi' ? 'udio-music' : 'suno-v4';
 
     // Create music record
     const musicRecord = await createMusicRecord({

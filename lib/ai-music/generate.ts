@@ -2,8 +2,9 @@
  * AI Music Generation Module
  *
  * Obsługuje generowanie muzyki przez:
- * - Suno AI (via GoAPI) - Domyślny provider
- * - Fal.ai (MiniMax Music 2.0) - Backup/legacy
+ * - Fal.ai (MiniMax Music v1.5) - Domyślny, stabilny provider
+ * - PiAPI (Udio) - Alternatywa (obecnie problemy z backendem)
+ * - Suno AI (via GoAPI) - Legacy fallback
  */
 
 import {
@@ -46,12 +47,12 @@ export interface MusicGenerationResult {
 export async function generateMusic(
   input: MusicGenerationInput
 ): Promise<MusicGenerationResult> {
-  // Provider priority: PiAPI (Udio) > Fal.ai (MiniMax) > Suno/GoAPI
-  // PiAPI uses the same GOAPI_API_KEY but with a different, working endpoint
+  // Provider priority: Fal.ai (MiniMax v1.5) > PiAPI (Udio) > Suno/GoAPI
+  // Fal.ai is now the default because PiAPI/GoAPI have backend issues (error 1001)
   const provider = input.provider ||
-    (process.env.GOAPI_API_KEY ? 'piapi' : // Use PiAPI (Udio) as default when GOAPI key is available
-     process.env.FAL_API_KEY ? 'fal' :     // Fallback to Fal.ai if no GOAPI key
-     'suno');                               // Legacy fallback
+    (process.env.FAL_API_KEY ? 'fal' :       // Use Fal.ai MiniMax v1.5 as default (stable)
+     process.env.GOAPI_API_KEY ? 'piapi' :   // Fallback to PiAPI if no FAL key
+     'suno');                                 // Legacy fallback
 
   if (provider === 'suno') {
     return generateMusicViaSuno(input);
@@ -112,7 +113,8 @@ async function generateMusicViaPiAPI(
 }
 
 /**
- * Generate music via Fal.ai (MiniMax Music 2.0)
+ * Generate music via Fal.ai (MiniMax Music v1.5)
+ * Note: We use v1.5 because it doesn't require reference_audio_url
  */
 async function generateMusicViaFal(
   input: MusicGenerationInput
@@ -128,9 +130,9 @@ async function generateMusicViaFal(
   }
 
   try {
-    // MiniMax Music 2.0 API parameters:
-    // - prompt: Lyrics with structure tags (10-600 chars) - TEKST PIOSENKI
-    // - lyrics_prompt: Style/mood description (10-3000 chars) - OPIS STYLU MUZYKI
+    // MiniMax Music v1.5 API parameters:
+    // - prompt: Lyrics with structure tags (10-600 chars)
+    // - lyrics_prompt: Style/mood description (10-3000 chars)
 
     // Prepare prompt (lyrics/song content)
     let promptContent = input.prompt;
@@ -162,15 +164,16 @@ async function generateMusicViaFal(
       styleContent = styleContent.padEnd(10, '.');
     }
 
-    // MiniMax Music 2.0 API request body
+    // MiniMax Music v1.5 API request body
     const requestBody = {
       prompt: promptContent,
       lyrics_prompt: styleContent,
     };
 
-    console.log('MiniMax Music request:', JSON.stringify(requestBody, null, 2));
+    console.log('MiniMax Music v1.5 request:', JSON.stringify(requestBody, null, 2));
 
-    const endpoint = 'https://queue.fal.run/fal-ai/minimax-music';
+    // Use v1.5 endpoint - doesn't require reference_audio_url
+    const endpoint = 'https://queue.fal.run/fal-ai/minimax-music/v1.5';
 
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -195,7 +198,7 @@ async function generateMusicViaFal(
     }
 
     const data = await response.json();
-    console.log('MiniMax Music response:', JSON.stringify(data, null, 2));
+    console.log('MiniMax Music v1.5 response:', JSON.stringify(data, null, 2));
 
     return {
       success: true,
@@ -271,6 +274,7 @@ async function checkPiAPIStatusWrapper(
 
 /**
  * Check Fal.ai (MiniMax) generation status
+ * Note: First check /status endpoint, then fetch full result from main endpoint
  */
 async function checkFalStatus(
   jobId: string
@@ -286,35 +290,40 @@ async function checkFalStatus(
   }
 
   try {
-    const modelEndpoint = 'fal-ai/minimax-music';
+    // First check status endpoint
+    const statusUrl = `https://queue.fal.run/fal-ai/minimax-music/requests/${jobId}/status`;
 
-    const response = await fetch(`https://queue.fal.run/${modelEndpoint}/requests/${jobId}/status`, {
+    const statusResponse = await fetch(statusUrl, {
       headers: {
         'Authorization': `Key ${apiKey}`,
       },
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Fal.ai music status check failed:', response.status, errorText);
-      throw new Error(`Failed to check Fal.ai status: ${response.status}`);
+    if (!statusResponse.ok) {
+      const errorText = await statusResponse.text();
+      console.error('Fal.ai music status check failed:', statusResponse.status, errorText);
+      throw new Error(`Failed to check Fal.ai status: ${statusResponse.status}`);
     }
 
-    const data = await response.json();
-    console.log('MiniMax status:', data.status, 'for job:', jobId);
+    const statusData = await statusResponse.json();
+    console.log('MiniMax status:', statusData.status, 'for job:', jobId);
 
-    if (data.status === 'COMPLETED') {
-      // Fetch the result
-      const resultResponse = await fetch(`https://queue.fal.run/${modelEndpoint}/requests/${jobId}`, {
+    if (statusData.status === 'COMPLETED') {
+      // Fetch full result from main endpoint (not /status)
+      const resultUrl = `https://queue.fal.run/fal-ai/minimax-music/requests/${jobId}`;
+      const resultResponse = await fetch(resultUrl, {
         headers: {
           'Authorization': `Key ${apiKey}`,
         },
       });
-      const result = await resultResponse.json();
-      console.log('MiniMax result:', JSON.stringify(result, null, 2));
 
-      // MiniMax returns audio in different formats depending on version
-      const audioUrl = result.audio?.url || result.audio_url || result.output?.audio_url;
+      let audioUrl: string | undefined;
+
+      if (resultResponse.ok) {
+        const result = await resultResponse.json();
+        console.log('MiniMax result:', JSON.stringify(result, null, 2));
+        audioUrl = result.audio?.url || result.audio_url;
+      }
 
       return {
         success: true,
@@ -325,13 +334,13 @@ async function checkFalStatus(
       };
     }
 
-    if (data.status === 'FAILED') {
+    if (statusData.status === 'FAILED') {
       return {
         success: false,
         jobId,
         provider: 'fal',
         status: 'failed',
-        error: data.error || 'Generation failed',
+        error: statusData.error || 'Generation failed',
       };
     }
 
