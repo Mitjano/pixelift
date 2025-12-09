@@ -44,9 +44,10 @@ export default function ExtendPanel({ track, onClose, onExtendStarted }: ExtendP
   const [isExtending, setIsExtending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Min/max for continue point
-  const minContinueAt = 30;
-  const maxContinueAt = Math.max(minContinueAt, audioDuration - 10);
+  // Min/max for continue point - adjust for short tracks
+  // For tracks under 40s, allow extending from 5s before the end
+  const minContinueAt = Math.min(10, Math.max(5, audioDuration - 10));
+  const maxContinueAt = Math.max(minContinueAt, audioDuration - 5);
 
   // Setup audio
   useEffect(() => {

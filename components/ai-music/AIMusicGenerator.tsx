@@ -633,7 +633,7 @@ export default function AIMusicGenerator() {
               <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-xs text-gray-400">{t('generator.durationInfo') || 'AI generates 2-3 min tracks'}</span>
+              <span className="text-xs text-gray-400">~30-60s clips, extend for full songs</span>
             </div>
 
             {/* Instrumental Toggle */}
@@ -833,7 +833,7 @@ export default function AIMusicGenerator() {
               </div>
             </div>
             <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-gray-500">
-              <p>Generates 2 song variations • ~2-3 minutes each</p>
+              <p>Generates ~30-60s clips • Use "Extend" in Library for full songs</p>
             </div>
           </div>
         </div>
