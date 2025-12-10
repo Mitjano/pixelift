@@ -233,6 +233,9 @@ export default function CaptionsGenerator() {
                   <p className="text-gray-500 text-sm mt-1">
                     {t('supportedFormats')}: {config?.limits.supportedFormats.join(', ')}
                   </p>
+                  <p className="text-yellow-500 text-xs mt-2">
+                    ⚠️ {t('fileSizeWarning') || 'Max 10MB. For large files, use MP3 format instead of WAV.'}
+                  </p>
                 </div>
               )}
             </div>

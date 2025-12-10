@@ -5,6 +5,10 @@ import { prisma } from '@/lib/prisma';
 import { createUsage } from '@/lib/db';
 import Replicate from 'replicate';
 
+// For App Router - increase timeout for long audio processing
+export const maxDuration = 300; // 5 minutes timeout for long audio files
+export const dynamic = 'force-dynamic';
+
 // Output format options
 const OUTPUT_FORMATS = ['srt', 'vtt', 'json', 'txt'] as const;
 type OutputFormat = typeof OUTPUT_FORMATS[number];
@@ -301,8 +305,9 @@ export async function GET() {
       { id: 'txt', name: 'Plain Text', description: 'Simple text transcription' },
     ],
     limits: {
-      maxFileSize: 100 * 1024 * 1024, // 100MB
+      maxFileSize: 10 * 1024 * 1024, // 10MB (Next.js API route limit)
       supportedFormats: ['mp3', 'mp4', 'wav', 'webm', 'm4a', 'ogg', 'flac'],
+      recommendedFormat: 'mp3', // WAV files are large, recommend MP3 for better upload
     },
     pricing: {
       cost: 3,
