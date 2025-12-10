@@ -1,14 +1,73 @@
 # Plan Wdrożenia Ulepszeń Pixelift
 
-## Przegląd Faz
+**Ostatnia aktualizacja:** 2024-12-10
+**Ocena z audytu:** 7.2/10
+**Wersja:** 2.0
 
-| Faza | Nazwa | Czas | Status |
-|------|-------|------|--------|
-| 1 | Bezpieczeństwo | 1 tydzień | 🔴 Do zrobienia |
-| 2 | Stabilność & Testy | 2 tygodnie | 🔴 Do zrobienia |
-| 3 | Wydajność | 1 tydzień | 🔴 Do zrobienia |
-| 4 | Baza Danych | 2 tygodnie | 🔴 Do zrobienia |
-| 5 | Nowe Funkcje | Ongoing | 🔴 Do zrobienia |
+---
+
+## Przegląd Faz (Zaktualizowany)
+
+| Faza | Nazwa | Czas | Status | Priorytet |
+|------|-------|------|--------|-----------|
+| 1 | Infrastruktura Krytyczna | 1-2 tygodnie | 🔴 Do zrobienia | KRYTYCZNY |
+| 2 | Testy & Jakość Kodu | 2 tygodnie | 🔴 Do zrobienia | WYSOKI |
+| 3 | UX/UI & Wydajność | 2 tygodnie | 🔴 Do zrobienia | ŚREDNI |
+| 4 | Dokumentacja | 1-2 tygodnie | 🔴 Do zrobienia | ŚREDNI |
+
+---
+
+## NOWE PRIORYTETY Z AUDYTU (2024-12-10)
+
+### Top 5 Krytycznych Problemów
+
+| # | Problem | Wpływ | Rozwiązanie |
+|---|---------|-------|-------------|
+| 1 | Rate limiting w pamięci | Nie skaluje się | Przenieść do Redis |
+| 2 | Brak CI/CD | Brak safety net | GitHub Actions |
+| 3 | 709 TODO/FIXME w kodzie | Tech debt | Przejrzeć i naprawić |
+| 4 | Brak testów komponentów | Regresje | Testing Library + Playwright |
+| 5 | Brak dokumentacji API | DX | OpenAPI/Swagger |
+
+### Metryki do poprawy
+
+| Metryka | Obecnie | Cel |
+|---------|---------|-----|
+| Test Coverage | ~5% | 80% |
+| TODO/FIXME | 709 | <50 |
+| API Documentation | 0% | 100% |
+| Lighthouse Performance | ? | >90 |
+| Lighthouse Accessibility | ? | >90 |
+
+---
+
+## FAZA 0: Quick Wins (Natychmiast, <2h każde)
+
+### 0.1 Environment Validation
+```typescript
+// lib/env.ts - Zod validation dla env vars
+```
+**Status:** 🔴 | **Czas:** 1-2h
+
+### 0.2 API Response Helper
+```typescript
+// lib/api-response.ts - Standaryzacja responses
+```
+**Status:** 🔴 | **Czas:** 1-2h
+
+### 0.3 Skeleton Component
+```typescript
+// components/ui/Skeleton.tsx - Lepszy UX ładowania
+```
+**Status:** 🔴 | **Czas:** 1-2h
+
+### 0.4 Basic GitHub Actions
+```yaml
+# .github/workflows/ci.yml - Build check na PR
+```
+**Status:** 🔴 | **Czas:** 1-2h
+
+---
 
 ---
 
@@ -523,3 +582,76 @@ STRIPE_PRICE_ENTERPRISE=""
 - Dodać: response time monitoring
 - Dodać: database query performance
 - Dodać: Redis hit rate metrics
+
+---
+
+## NOWE PROPOZYCJE FUNKCJI (z audytu 2024-12-10)
+
+### Funkcjonalności użytkownika
+
+| # | Funkcja | Opis | Priorytet |
+|---|---------|------|-----------|
+| 1 | Before/After Slider | Porównanie przed i po przetworzeniu | WYSOKI |
+| 2 | Batch Processing UI | Lepszy interfejs do wielu obrazów | ŚREDNI |
+| 3 | Ulubione narzędzia | Zapisywanie w dashboardzie | NISKI |
+| 4 | Historia z filtrami | Filtrowanie po typie/dacie | ŚREDNI |
+| 5 | Udostępnianie wyników | Publiczne linki jak imgur | NISKI |
+
+### Funkcjonalności biznesowe
+
+| # | Funkcja | Opis | Priorytet |
+|---|---------|------|-----------|
+| 6 | Team accounts | Konta firmowe z wieloma użytkownikami | ŚREDNI |
+| 7 | API usage dashboard | Wykresy użycia API w czasie | WYSOKI |
+| 8 | Webhooks dla użytkowników | Powiadomienia o zakończeniu | ŚREDNI |
+| 9 | Affiliate program | Program partnerski | NISKI |
+
+### Techniczne ulepszenia
+
+| # | Funkcja | Opis | Priorytet |
+|---|---------|------|-----------|
+| 10 | PWA | Offline support, instalacja | ŚREDNI |
+| 11 | WebSocket updates | Real-time zamiast polling | WYSOKI |
+| 12 | Image CDN | Cloudflare Images dla szybkości | ŚREDNI |
+| 13 | Design System | Button, Input, Modal components | WYSOKI |
+
+---
+
+## CHECKLISTY DO WYKONANIA
+
+### Przed każdym deployem
+- [ ] Testy przechodzą (`npm test`)
+- [ ] Build się kompiluje (`npm run build`)
+- [ ] Brak nowych błędów TypeScript
+- [ ] Sprawdzone na mobile
+
+### Tygodniowy przegląd
+- [ ] Sprawdzić Sentry errors
+- [ ] Przejrzeć nowe TODO/FIXME
+- [ ] Sprawdzić performance metrics
+- [ ] Review otwartych issues
+
+### Miesięczny przegląd
+- [ ] Security audit (dependencies)
+- [ ] Bundle size analysis
+- [ ] Lighthouse audit
+- [ ] Translation completeness
+
+---
+
+## KONTAKTY I ZASOBY
+
+**Serwer produkcyjny:** 138.68.79.23
+**Repozytorium:** https://github.com/Mitjano/upsizer
+**Domena:** pixelift.pl
+
+**Usługi zewnętrzne:**
+- Firebase (storage, auth)
+- Replicate (AI models)
+- Stripe (płatności)
+- Sentry (monitoring błędów)
+- DigitalOcean (hosting)
+
+---
+
+*Dokument aktualizowany po każdym audycie.*
