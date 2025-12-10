@@ -3226,5 +3226,13 @@
       "generationFailed": "La generación de video falló. Por favor intenta de nuevo.",
       "timeout": "Se agotó el tiempo de generación. Por favor intenta de nuevo."
     }
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "description": "Hemos encontrado un error inesperado. Nuestro equipo ha sido notificado.",
+    "tryAgain": "Intentar de nuevo",
+    "goHome": "Ir a la página principal",
+    "persistentIssue": "Si este problema persiste,",
+    "contactSupport": "contacta con nuestro soporte"
   }
 }

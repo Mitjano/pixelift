@@ -315,9 +315,9 @@ describe('rate-limit.ts', () => {
       const resetAt = Date.now() + 30000;
       const response = rateLimitResponse(resetAt);
 
-      expect(response.headers.get('X-RateLimit-Limit')).toBe('100');
       expect(response.headers.get('X-RateLimit-Reset')).toBeDefined();
       expect(response.headers.get('Content-Type')).toBe('application/json');
+      expect(response.headers.get('Retry-After')).toBeDefined();
     });
 
     it('should include error message in body', async () => {

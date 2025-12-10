@@ -3226,5 +3226,13 @@
       "generationFailed": "Generowanie wideo nie powiodło się. Spróbuj ponownie.",
       "timeout": "Przekroczono limit czasu generowania. Spróbuj ponownie."
     }
+  },
+  "error": {
+    "title": "Coś poszło nie tak",
+    "description": "Wystąpił nieoczekiwany błąd. Nasz zespół został powiadomiony.",
+    "tryAgain": "Spróbuj ponownie",
+    "goHome": "Przejdź do strony głównej",
+    "persistentIssue": "Jeśli problem się powtarza,",
+    "contactSupport": "skontaktuj się z naszym wsparciem"
   }
 }

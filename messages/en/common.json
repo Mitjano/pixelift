@@ -3226,5 +3226,13 @@
       "generationFailed": "Video generation failed. Please try again.",
       "timeout": "Generation timed out. Please try again."
     }
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "We've encountered an unexpected error. Our team has been notified.",
+    "tryAgain": "Try again",
+    "goHome": "Go to homepage",
+    "persistentIssue": "If this issue persists,",
+    "contactSupport": "contact our support team"
   }
 }

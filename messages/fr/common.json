@@ -3309,5 +3309,13 @@
       "generationFailed": "La génération vidéo a échoué. Veuillez réessayer.",
       "timeout": "Délai de génération dépassé. Veuillez réessayer."
     }
+  },
+  "error": {
+    "title": "Une erreur est survenue",
+    "description": "Nous avons rencontré une erreur inattendue. Notre équipe a été notifiée.",
+    "tryAgain": "Réessayer",
+    "goHome": "Aller à l'accueil",
+    "persistentIssue": "Si ce problème persiste,",
+    "contactSupport": "contactez notre support"
   }
 }
