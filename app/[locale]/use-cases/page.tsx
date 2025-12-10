@@ -109,7 +109,7 @@ const toolInfo: Record<string, { name: string; icon: string; href: string }> = {
 // Animated counter component
 function AnimatedStat({ value }: { value: string }) {
   return (
-    <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+    <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
       {value}
     </span>
   );
@@ -127,7 +127,7 @@ export default function UseCasesPage() {
   const useCases = Object.keys(useCaseData) as (keyof typeof useCaseData)[];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white overflow-hidden">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-gray-900 dark:text-white overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-20 md:py-28">
         {/* Animated Background */}
@@ -150,13 +150,13 @@ export default function UseCasesPage() {
 
           {/* Title */}
           <h1 className={`text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <span className="block text-white mb-2">{t('heroTitle1') || 'Transform Your'}</span>
+            <span className="block text-gray-900 dark:text-white mb-2">{t('heroTitle1') || 'Transform Your'}</span>
             <span className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
               {t('heroTitleHighlight') || 'Creative Workflow'}
             </span>
           </h1>
 
-          <p className={`text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-10 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {t('subtitle')}
           </p>
 
@@ -164,19 +164,19 @@ export default function UseCasesPage() {
           <div className={`flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-12 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="text-center">
               <AnimatedStat value="10K+" />
-              <p className="text-gray-500 text-sm mt-1">{t('stats.activeUsers') || 'Active Users'}</p>
+              <p className="text-gray-600 dark:text-gray-500 text-sm mt-1">{t('stats.activeUsers') || 'Active Users'}</p>
             </div>
             <div className="text-center">
               <AnimatedStat value="500K+" />
-              <p className="text-gray-500 text-sm mt-1">{t('stats.imagesProcessed') || 'Images Processed'}</p>
+              <p className="text-gray-600 dark:text-gray-500 text-sm mt-1">{t('stats.imagesProcessed') || 'Images Processed'}</p>
             </div>
             <div className="text-center">
               <AnimatedStat value="12+" />
-              <p className="text-gray-500 text-sm mt-1">{t('stats.aiTools') || 'AI Tools'}</p>
+              <p className="text-gray-600 dark:text-gray-500 text-sm mt-1">{t('stats.aiTools') || 'AI Tools'}</p>
             </div>
             <div className="text-center">
               <AnimatedStat value="4.9" />
-              <p className="text-gray-500 text-sm mt-1">{t('stats.userRating') || 'User Rating'}</p>
+              <p className="text-gray-600 dark:text-gray-500 text-sm mt-1">{t('stats.userRating') || 'User Rating'}</p>
             </div>
           </div>
 
@@ -192,7 +192,7 @@ export default function UseCasesPage() {
             </Link>
             <Link
               href="#use-cases"
-              className="flex items-center gap-2 px-6 py-3 bg-gray-800/50 border border-gray-700 hover:border-gray-600 rounded-xl font-semibold transition-all duration-300"
+              className="flex items-center gap-2 px-6 py-3 bg-gray-200/50 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-xl font-semibold transition-all duration-300"
             >
               <span>{t('heroCta.exploreCases') || 'Explore Use Cases'}</span>
             </Link>
@@ -204,12 +204,12 @@ export default function UseCasesPage() {
       <section id="use-cases" className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-white">{t('industriesTitle1') || 'Solutions for '}</span>
+            <span className="text-gray-900 dark:text-white">{t('industriesTitle1') || 'Solutions for '}</span>
             <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
               {t('industriesTitleHighlight') || 'Every Industry'}
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             {t('industriesSubtitle') || 'Discover how professionals across different industries leverage our AI tools'}
           </p>
         </div>
@@ -245,17 +245,17 @@ export default function UseCasesPage() {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors">
                     {t(`cases.${useCase}.title`)}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
                     {t(`cases.${useCase}.description`)}
                   </p>
 
                   {/* Key Benefits */}
                   <div className="space-y-2 mb-4">
                     {['use1', 'use2', 'use3'].map((key) => (
-                      <div key={key} className="flex items-center gap-2 text-sm text-gray-300">
+                      <div key={key} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                         <FaCheck className="w-3 h-3 text-green-500 flex-shrink-0" />
                         <span>{t(`cases.${useCase}.${key}`)}</span>
                       </div>
@@ -263,17 +263,17 @@ export default function UseCasesPage() {
                   </div>
 
                   {/* Recommended Tools */}
-                  <div className="pt-4 border-t border-gray-700/50">
+                  <div className="pt-4 border-t border-gray-300/50 dark:border-gray-700/50">
                     <p className="text-xs text-gray-500 mb-2">{t('recommendedTools') || 'Recommended Tools'}</p>
                     <div className="flex flex-wrap gap-2">
                       {data.tools.map((tool) => (
                         <Link
                           key={tool}
                           href={toolInfo[tool].href}
-                          className="flex items-center gap-1 px-2 py-1 bg-gray-800/80 hover:bg-gray-700 rounded-lg text-xs font-medium transition-colors"
+                          className="flex items-center gap-1 px-2 py-1 bg-gray-200/80 dark:bg-gray-800/80 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg text-xs font-medium transition-colors"
                         >
                           <span>{toolInfo[tool].icon}</span>
-                          <span className="text-gray-300">{toolInfo[tool].name}</span>
+                          <span className="text-gray-700 dark:text-gray-300">{toolInfo[tool].name}</span>
                         </Link>
                       ))}
                     </div>
@@ -302,12 +302,12 @@ export default function UseCasesPage() {
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span className="text-white">{t('aiStudio.title1') || 'Create with '}</span>
+              <span className="text-gray-900 dark:text-white">{t('aiStudio.title1') || 'Create with '}</span>
               <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
                 {t('aiStudio.titleHighlight') || 'AI Power'}
               </span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               {t('aiStudio.subtitle') || 'Generate stunning images and videos with state-of-the-art AI models'}
             </p>
           </div>
@@ -334,10 +334,10 @@ export default function UseCasesPage() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-500 dark:group-hover:text-purple-300 transition-colors">
                   {t('aiStudio.aiImage.title') || 'AI Image Generation'}
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
                   {t('aiStudio.aiImage.description') || 'Create stunning images from text prompts using FLUX, Stable Diffusion, and more. Transform your ideas into visual reality.'}
                 </p>
 
@@ -349,7 +349,7 @@ export default function UseCasesPage() {
                     t('aiStudio.aiImage.feature3') || 'Image-to-image transformations',
                     t('aiStudio.aiImage.feature4') || 'Community gallery & inspiration',
                   ].map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3 text-gray-300">
+                    <div key={i} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                       <div className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
                         <FaCheck className="w-3 h-3 text-purple-400" />
                       </div>
@@ -361,7 +361,7 @@ export default function UseCasesPage() {
                 {/* Models preview */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {['FLUX Pro', 'FLUX Dev', 'SD 3.5', 'SDXL'].map((model) => (
-                    <span key={model} className="px-3 py-1 bg-gray-800/80 border border-gray-700 rounded-lg text-xs font-medium text-gray-300">
+                    <span key={model} className="px-3 py-1 bg-gray-200/80 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-700 dark:text-gray-300">
                       {model}
                     </span>
                   ))}
@@ -399,10 +399,10 @@ export default function UseCasesPage() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 transition-colors">
                   {t('aiStudio.aiVideo.title') || 'AI Video Generation'}
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
                   {t('aiStudio.aiVideo.description') || 'Generate cinematic videos from text with Runway, PixVerse, Veo and more. Bring your stories to life.'}
                 </p>
 
@@ -414,7 +414,7 @@ export default function UseCasesPage() {
                     t('aiStudio.aiVideo.feature3') || 'Multiple aspect ratios & resolutions',
                     t('aiStudio.aiVideo.feature4') || 'Prompt enhancement with AI',
                   ].map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3 text-gray-300">
+                    <div key={i} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                       <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
                         <FaCheck className="w-3 h-3 text-cyan-400" />
                       </div>
@@ -426,7 +426,7 @@ export default function UseCasesPage() {
                 {/* Models preview */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {['Runway Gen4', 'Veo 3.1', 'PixVerse V5', 'Kling'].map((model) => (
-                    <span key={model} className="px-3 py-1 bg-gray-800/80 border border-gray-700 rounded-lg text-xs font-medium text-gray-300">
+                    <span key={model} className="px-3 py-1 bg-gray-200/80 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-700 dark:text-gray-300">
                       {model}
                     </span>
                   ))}
@@ -448,16 +448,16 @@ export default function UseCasesPage() {
       </section>
 
       {/* Featured Tools Section */}
-      <section className="py-16 bg-gradient-to-b from-transparent via-gray-900/50 to-transparent">
+      <section className="py-16 bg-gradient-to-b from-transparent via-gray-200/50 dark:via-gray-900/50 to-transparent">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">{t('toolsSection.title1') || 'Powerful '}</span>
+              <span className="text-gray-900 dark:text-white">{t('toolsSection.title1') || 'Powerful '}</span>
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 {t('toolsSection.titleHighlight') || 'AI Tools'}
               </span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               {t('toolsSection.subtitle') || 'Professional-grade image processing at your fingertips'}
             </p>
           </div>
@@ -476,7 +476,7 @@ export default function UseCasesPage() {
               <Link
                 key={tool.key}
                 href={tool.href}
-                className="group relative p-5 bg-gray-800/30 hover:bg-gray-800/50 border border-gray-700 hover:border-gray-600 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+                className="group relative p-5 bg-gray-100/30 dark:bg-gray-800/30 hover:bg-gray-200/50 dark:hover:bg-gray-800/50 border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-xl transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity`} />
                 <div className="relative flex items-start gap-3">
@@ -484,12 +484,12 @@ export default function UseCasesPage() {
                     {tool.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-white group-hover:text-green-400 transition-colors">
+                    <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors">
                       {t(`toolsSection.tools.${tool.key}`) || tool.key}
                     </h3>
-                    <p className="text-sm text-gray-500">{tool.desc}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-500">{tool.desc}</p>
                   </div>
-                  <FaArrowRight className="w-4 h-4 text-gray-600 group-hover:text-green-400 group-hover:translate-x-1 transition-all" />
+                  <FaArrowRight className="w-4 h-4 text-gray-400 dark:text-gray-600 group-hover:text-green-500 dark:group-hover:text-green-400 group-hover:translate-x-1 transition-all" />
                 </div>
               </Link>
             ))}
@@ -501,7 +501,7 @@ export default function UseCasesPage() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-white">{t('howItWorks.title1') || 'How It '}</span>
+            <span className="text-gray-900 dark:text-white">{t('howItWorks.title1') || 'How It '}</span>
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               {t('howItWorks.titleHighlight') || 'Works'}
             </span>
@@ -522,23 +522,23 @@ export default function UseCasesPage() {
 
               <div className="relative inline-flex items-center justify-center w-24 h-24 mb-4">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
-                <div className="relative w-full h-full bg-gray-800 rounded-2xl flex items-center justify-center border border-gray-700 group-hover:border-green-500/50 transition-colors">
-                  <item.icon className="w-10 h-10 text-green-400" />
+                <div className="relative w-full h-full bg-gray-100 dark:bg-gray-800 rounded-2xl flex items-center justify-center border border-gray-300 dark:border-gray-700 group-hover:border-green-500/50 transition-colors">
+                  <item.icon className="w-10 h-10 text-green-500 dark:text-green-400" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-sm font-bold shadow-lg">
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-sm font-bold text-white shadow-lg">
                   {item.step}
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-              <p className="text-gray-400 text-sm max-w-xs mx-auto">{item.desc}</p>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm max-w-xs mx-auto">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Social Proof */}
-      <section className="py-16 bg-gradient-to-b from-transparent via-green-900/10 to-transparent">
+      <section className="py-16 bg-gradient-to-b from-transparent via-green-100/50 dark:via-green-900/10 to-transparent">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-1 mb-4">
@@ -546,10 +546,10 @@ export default function UseCasesPage() {
                 <FaStar key={i} className="w-6 h-6 text-yellow-400" />
               ))}
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               {t('testimonials.title') || 'Trusted by 10,000+ Professionals'}
             </h2>
-            <p className="text-gray-400">
+            <p className="text-gray-600 dark:text-gray-400">
               {t('testimonials.subtitle') || 'Join photographers, designers, and businesses worldwide'}
             </p>
           </div>
@@ -562,20 +562,20 @@ export default function UseCasesPage() {
             ].map((testimonial, index) => (
               <div
                 key={index}
-                className="p-6 bg-gray-800/30 border border-gray-700 rounded-xl"
+                className="p-6 bg-white/50 dark:bg-gray-800/30 border border-gray-300 dark:border-gray-700 rounded-xl"
               >
                 <div className="flex items-center gap-1 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <FaStar key={i} className="w-4 h-4 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-300 mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center font-bold text-white">
                     {testimonial.name[0]}
                   </div>
                   <div>
-                    <p className="font-semibold text-white">{testimonial.name}</p>
+                    <p className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
                     <p className="text-sm text-gray-500">{testimonial.role}</p>
                   </div>
                 </div>
@@ -594,9 +594,9 @@ export default function UseCasesPage() {
 
           <div className="relative">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span className="text-white">{t('cta.title')}</span>
+              <span className="text-gray-900 dark:text-white">{t('cta.title')}</span>
             </h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
               {t('cta.subtitle')}
             </p>
 
@@ -610,7 +610,7 @@ export default function UseCasesPage() {
               </Link>
               <Link
                 href="/pricing"
-                className="flex items-center gap-2 px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-xl font-semibold text-lg transition-all duration-300"
+                className="flex items-center gap-2 px-8 py-4 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-xl font-semibold text-lg transition-all duration-300"
               >
                 {t('cta.viewPricing')}
               </Link>
