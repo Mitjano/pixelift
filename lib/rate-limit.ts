@@ -1,23 +1,38 @@
 /**
- * Simple in-memory rate limiter for API routes
- * Tracks requests per IP address with sliding window
+ * Rate limiter for API routes
+ * Uses Redis for persistence across instances, with in-memory fallback
  */
+
+import { getRedisClient, isRedisAvailable } from './redis';
 
 interface RateLimitEntry {
   count: number;
   resetAt: number;
 }
 
+export interface RateLimitResult {
+  allowed: boolean;
+  remaining: number;
+  resetAt: number;
+  limit: number;
+}
+
 class RateLimiter {
   private requests = new Map<string, RateLimitEntry>();
   private windowMs: number;
   private maxRequests: number;
+  private redisPrefix: string;
 
-  constructor(windowMs: number = 15 * 60 * 1000, maxRequests: number = 100) {
+  constructor(
+    redisPrefix: string,
+    windowMs: number = 15 * 60 * 1000,
+    maxRequests: number = 100
+  ) {
+    this.redisPrefix = redisPrefix;
     this.windowMs = windowMs;
     this.maxRequests = maxRequests;
 
-    // Cleanup expired entries every minute
+    // Cleanup expired entries every minute (for fallback map)
     if (typeof setInterval !== 'undefined') {
       setInterval(() => this.cleanup(), 60000);
     }
@@ -25,9 +40,39 @@ class RateLimiter {
 
   /**
    * Check if request is allowed
-   * @returns { allowed: boolean, remaining: number, resetAt: number }
+   * Tries Redis first, falls back to in-memory
    */
   check(identifier: string): { allowed: boolean; remaining: number; resetAt: number } {
+    // Try Redis if available
+    if (isRedisAvailable()) {
+      // Note: This is synchronous API for backwards compatibility
+      // Redis check happens in the background, we use in-memory as immediate response
+      this.checkRedisAsync(identifier).catch(() => {});
+    }
+
+    return this.checkInMemory(identifier);
+  }
+
+  /**
+   * Async version that properly uses Redis
+   */
+  async checkAsync(identifier: string): Promise<RateLimitResult> {
+    if (isRedisAvailable()) {
+      try {
+        return await this.checkRedis(identifier);
+      } catch (error) {
+        console.warn('Redis rate limit error, using fallback:', error);
+      }
+    }
+
+    const result = this.checkInMemory(identifier);
+    return { ...result, limit: this.maxRequests };
+  }
+
+  /**
+   * In-memory rate limiting (fallback)
+   */
+  private checkInMemory(identifier: string): { allowed: boolean; remaining: number; resetAt: number } {
     const now = Date.now();
     const entry = this.requests.get(identifier);
 
@@ -63,14 +108,80 @@ class RateLimiter {
   }
 
   /**
+   * Redis-based rate limiting using sliding window
+   */
+  private async checkRedis(identifier: string): Promise<RateLimitResult> {
+    const key = `${this.redisPrefix}:${identifier}`;
+    const now = Date.now();
+    const redis = getRedisClient();
+
+    const luaScript = `
+      local key = KEYS[1]
+      local now = tonumber(ARGV[1])
+      local window = tonumber(ARGV[2])
+      local limit = tonumber(ARGV[3])
+      local windowStart = now - window
+
+      -- Remove old entries
+      redis.call('ZREMRANGEBYSCORE', key, '-inf', windowStart)
+
+      -- Count current entries
+      local count = redis.call('ZCARD', key)
+
+      if count >= limit then
+        local resetAt = now + window
+        return {0, 0, resetAt, limit}
+      end
+
+      -- Add current request
+      redis.call('ZADD', key, now, now .. '-' .. math.random())
+      redis.call('PEXPIRE', key, window)
+
+      return {1, limit - count - 1, now + window, limit}
+    `;
+
+    const result = await redis.eval(
+      luaScript,
+      1,
+      key,
+      now.toString(),
+      this.windowMs.toString(),
+      this.maxRequests.toString()
+    ) as number[];
+
+    return {
+      allowed: result[0] === 1,
+      remaining: result[1],
+      resetAt: result[2],
+      limit: result[3],
+    };
+  }
+
+  /**
+   * Background Redis sync (fire and forget)
+   */
+  private async checkRedisAsync(identifier: string): Promise<void> {
+    try {
+      await this.checkRedis(identifier);
+    } catch {
+      // Silently fail - in-memory is primary
+    }
+  }
+
+  /**
    * Reset rate limit for identifier
    */
   reset(identifier: string): void {
     this.requests.delete(identifier);
+
+    if (isRedisAvailable()) {
+      const key = `${this.redisPrefix}:${identifier}`;
+      getRedisClient().del(key).catch(() => {});
+    }
   }
 
   /**
-   * Clean up expired entries
+   * Clean up expired in-memory entries
    */
   private cleanup(): void {
     const now = Date.now();
@@ -93,22 +204,16 @@ class RateLimiter {
 }
 
 // Default limiters for different use cases
-export const apiLimiter = new RateLimiter(15 * 60 * 1000, 100); // 100 req per 15 min
-export const authLimiter = new RateLimiter(15 * 60 * 1000, 5);   // 5 req per 15 min (login attempts)
-export const strictLimiter = new RateLimiter(60 * 1000, 10);     // 10 req per minute
-
-// Heavy operations limiter (image processing) - 20 per 15 min per IP
-export const imageProcessingLimiter = new RateLimiter(15 * 60 * 1000, 20);
-
-// Analytics tracking - 60 per minute (page views etc)
-export const analyticsLimiter = new RateLimiter(60 * 1000, 60);
+export const apiLimiter = new RateLimiter('rl:api', 15 * 60 * 1000, 100); // 100 req per 15 min
+export const authLimiter = new RateLimiter('rl:auth', 15 * 60 * 1000, 5);   // 5 req per 15 min
+export const strictLimiter = new RateLimiter('rl:strict', 60 * 1000, 10);   // 10 req per minute
+export const imageProcessingLimiter = new RateLimiter('rl:image', 15 * 60 * 1000, 20); // 20 per 15 min
+export const analyticsLimiter = new RateLimiter('rl:analytics', 60 * 1000, 60); // 60 per minute
 
 /**
  * Get client identifier from request
- * Uses IP address or fallback to a header
  */
 export function getClientIdentifier(request: Request): string {
-  // Try to get real IP from headers (behind proxy)
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     return forwarded.split(',')[0].trim();
@@ -119,8 +224,6 @@ export function getClientIdentifier(request: Request): string {
     return realIp;
   }
 
-  // Fallback to connection info (not available in Edge runtime)
-  // Use a session-based identifier if IP not available
   return request.headers.get('user-agent') || 'unknown';
 }
 
@@ -140,8 +243,7 @@ export function rateLimitResponse(resetAt: number) {
       status: 429,
       headers: {
         'Content-Type': 'application/json',
-        'Retry-After': retryAfter.toString(),
-        'X-RateLimit-Limit': '100',
+        'Retry-After': Math.max(1, retryAfter).toString(),
         'X-RateLimit-Reset': new Date(resetAt).toISOString(),
       },
     }
@@ -163,12 +265,10 @@ export function withRateLimit(
       return rateLimitResponse(resetAt);
     }
 
-    // Add rate limit headers to response
     const response = await handler(request);
 
-    // Clone response to add headers
+    // Add rate limit headers to response
     const headers = new Headers(response.headers);
-    headers.set('X-RateLimit-Limit', limiter['maxRequests'].toString());
     headers.set('X-RateLimit-Remaining', remaining.toString());
     headers.set('X-RateLimit-Reset', new Date(resetAt).toISOString());
 

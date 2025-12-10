@@ -40,3 +40,10 @@ export async function disconnectRedis() {
     redis = null;
   }
 }
+
+/**
+ * Check if Redis URL is configured
+ */
+export function isRedisAvailable(): boolean {
+  return !!process.env.REDIS_URL;
+}
