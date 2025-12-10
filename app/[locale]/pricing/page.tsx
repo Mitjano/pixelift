@@ -125,7 +125,7 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
 
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
@@ -138,41 +138,41 @@ export default function PricingPage() {
         {/* Plans Grid */}
         <div className="grid lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16 items-stretch">
           {/* Free Plan */}
-          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 flex flex-col h-full">
+          <div className="bg-white/50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col h-full">
             <h3 className="text-xl font-bold mb-4 h-8">{t('freePlan.title')}</h3>
 
             <div className="mb-4 h-20">
               <div className="flex items-baseline mb-2">
                 <span className="text-4xl font-bold">$0</span>
-                <span className="text-gray-400 ml-2 text-sm">{t('freePlan.perCredit')}</span>
+                <span className="text-gray-500 dark:text-gray-400 ml-2 text-sm">{t('freePlan.perCredit')}</span>
               </div>
-              <div className="text-sm text-gray-400">&nbsp;</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">&nbsp;</div>
             </div>
 
-            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
+            <button className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('freePlan.button')}
             </button>
 
             <div className="space-y-3 flex-grow">
               <div className="flex items-start gap-3">
-                <DatabaseIcon className="text-green-400 mt-1 flex-shrink-0" />
+                <DatabaseIcon className="text-green-600 dark:text-green-400 mt-1 flex-shrink-0" />
                 <div className="font-medium text-sm">{t('freePlan.freeCredits')}</div>
               </div>
               <div className="flex items-start gap-3">
-                <DownloadIcon className="text-blue-400 mt-1 flex-shrink-0" />
+                <DownloadIcon className="text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
                 <div className="font-medium text-sm">{t('freePlan.freeDownloads')}</div>
               </div>
             </div>
 
-            <div className="mt-auto pt-4 border-t border-gray-700">
-              <p className="text-xs text-gray-400 leading-relaxed">
+            <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                 {t('freePlan.description')}
               </p>
             </div>
           </div>
 
           {/* Subscription Plan */}
-          <div className="bg-gray-800/50 rounded-2xl border-2 border-blue-500 p-6 flex flex-col relative h-full">
+          <div className="bg-white/50 dark:bg-gray-800/50 rounded-2xl border-2 border-blue-500 p-6 flex flex-col relative h-full">
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
               <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">
                 {t('subscription.mostPopular')}
@@ -186,9 +186,9 @@ export default function PricingPage() {
                 <span className="text-4xl font-bold">
                   ${currentPricePerCredit}
                 </span>
-                <span className="text-gray-400 ml-2 text-sm">{t('subscription.perCredit')}</span>
+                <span className="text-gray-500 dark:text-gray-400 ml-2 text-sm">{t('subscription.perCredit')}</span>
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
                 ${currentPricePerMonth.toFixed(2)} {t('subscription.billed')} {t('subscription.monthly')}
               </div>
               {billingCycle === "yearly" && totalYearlyPrice && (
@@ -203,13 +203,13 @@ export default function PricingPage() {
             </button>
 
             {/* Billing Toggle */}
-            <div className="inline-flex items-center bg-gray-700 rounded-lg p-1 mb-4 w-full">
+            <div className="inline-flex items-center bg-gray-200 dark:bg-gray-700 rounded-lg p-1 mb-4 w-full">
               <button
                 onClick={() => setBillingCycle("monthly")}
                 className={`flex-1 px-3 py-1.5 rounded-md text-xs font-medium transition ${
                   billingCycle === "monthly"
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-400 hover:text-white"
+                    ? "bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
                 {t('subscription.monthly')}
@@ -218,8 +218,8 @@ export default function PricingPage() {
                 onClick={() => setBillingCycle("yearly")}
                 className={`flex-1 px-3 py-1.5 rounded-md text-xs font-medium transition flex items-center justify-center gap-1 ${
                   billingCycle === "yearly"
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-400 hover:text-white"
+                    ? "bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
                 {t('subscription.yearly')}
@@ -250,7 +250,7 @@ export default function PricingPage() {
                     className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition ${
                       selectedSubscription === plan.id
                         ? "bg-blue-500/20 border border-blue-500"
-                        : "bg-gray-700/30 hover:bg-gray-700/50"
+                        : "bg-gray-100/50 dark:bg-gray-700/30 hover:bg-gray-200/50 dark:hover:bg-gray-700/50"
                     }`}
                   >
                     <div className="flex items-center gap-2">
@@ -265,14 +265,14 @@ export default function PricingPage() {
                     </div>
                     <div className="text-right">
                       <div className="font-bold text-sm">${pricePerCredit}{t('subscription.perCredit')}</div>
-                      <div className="text-xs text-gray-400">${pricePerMonth.toFixed(2)}{t('subscription.perMonth')}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">${pricePerMonth.toFixed(2)}{t('subscription.perMonth')}</div>
                     </div>
                   </label>
                 );
               })}
             </div>
 
-            <div className="mt-auto pt-4 border-t border-gray-700 space-y-1 text-xs text-gray-400">
+            <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700 space-y-1 text-xs text-gray-500 dark:text-gray-400">
               {billingCycle === "yearly" ? (
                 <>
                   <p>{t('subscription.billedYearlyAuto')}</p>
@@ -287,7 +287,7 @@ export default function PricingPage() {
           </div>
 
           {/* One Time Payment */}
-          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 flex flex-col h-full">
+          <div className="bg-white/50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col h-full">
             <h3 className="text-xl font-bold mb-4 h-8">{t('oneTime.title')}</h3>
 
             <div className="mb-4 h-20">
@@ -295,14 +295,14 @@ export default function PricingPage() {
                 <span className="text-4xl font-bold">
                   ${oneTimePlans[selectedOneTime].pricePerCredit.toFixed(2)}
                 </span>
-                <span className="text-gray-400 ml-2 text-sm">{t('oneTime.perCredit')}</span>
+                <span className="text-gray-500 dark:text-gray-400 ml-2 text-sm">{t('oneTime.perCredit')}</span>
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
                 ${oneTimePlans[selectedOneTime].price.toFixed(2)} {t('oneTime.billedOnce')}
               </div>
             </div>
 
-            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
+            <button className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('oneTime.button')}
             </button>
 
@@ -314,7 +314,7 @@ export default function PricingPage() {
                   className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition ${
                     selectedOneTime === index
                       ? "bg-blue-500/20 border border-blue-500"
-                      : "bg-gray-700/50 hover:bg-gray-700"
+                      : "bg-gray-100/50 dark:bg-gray-700/50 hover:bg-gray-200/50 dark:hover:bg-gray-700"
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -329,46 +329,46 @@ export default function PricingPage() {
                   </div>
                   <div className="text-right">
                     <div className="font-bold text-sm">${plan.pricePerCredit.toFixed(2)}{t('oneTime.perCredit')}</div>
-                    <div className="text-xs text-gray-400">${plan.price.toFixed(2)}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">${plan.price.toFixed(2)}</div>
                   </div>
                 </label>
               ))}
             </div>
 
-            <div className="mt-auto pt-4 border-t border-gray-700">
-              <p className="text-xs text-gray-400 leading-relaxed">{t('oneTime.validFor1Year')}</p>
+            <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{t('oneTime.validFor1Year')}</p>
             </div>
           </div>
 
           {/* Enterprise Plan */}
-          <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 flex flex-col h-full">
+          <div className="bg-white/50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col h-full">
             <h3 className="text-xl font-bold mb-4 h-8">{t('enterprise.title')}</h3>
 
             <div className="mb-4 h-20">
               <div className="text-lg font-bold leading-tight">{t('enterprise.customSolutions')}</div>
             </div>
 
-            <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold mb-4 transition">
+            <button className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white py-3 rounded-lg font-semibold mb-4 transition">
               {t('enterprise.button')}
             </button>
 
             <div className="space-y-3 flex-grow">
               <div className="flex items-start gap-3">
-                <QuoteIcon className="text-purple-400 mt-1 flex-shrink-0" />
+                <QuoteIcon className="text-purple-600 dark:text-purple-400 mt-1 flex-shrink-0" />
                 <div className="font-medium text-sm">{t('enterprise.scheduleDemo')}</div>
               </div>
               <div className="flex items-start gap-3">
-                <CogIcon className="text-orange-400 mt-1 flex-shrink-0" />
+                <CogIcon className="text-orange-600 dark:text-orange-400 mt-1 flex-shrink-0" />
                 <div className="font-medium text-sm">{t('enterprise.getQuote')}</div>
               </div>
               <div className="flex items-start gap-3">
-                <EnvelopeIcon className="text-blue-400 mt-1 flex-shrink-0" />
-                <div className="font-medium text-sm">{t('enterprise.emailUs')} <span className="text-blue-400">sales@pixelift.pl</span></div>
+                <EnvelopeIcon className="text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
+                <div className="font-medium text-sm">{t('enterprise.emailUs')} <span className="text-blue-600 dark:text-blue-400">sales@pixelift.pl</span></div>
               </div>
             </div>
 
-            <div className="mt-auto pt-4 border-t border-gray-700">
-              <p className="text-xs text-gray-400 leading-relaxed">{t('enterprise.bookSession')}</p>
+            <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{t('enterprise.bookSession')}</p>
             </div>
           </div>
         </div>
@@ -381,7 +381,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/30 p-6">
               <div className="text-4xl mb-4">👁️</div>
               <h3 className="text-xl font-bold mb-3">{t('features.preview.title')}</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 {t('features.preview.description')}
               </p>
             </div>
@@ -390,7 +390,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-xl border border-green-500/30 p-6">
               <div className="text-4xl mb-4">📦</div>
               <h3 className="text-xl font-bold mb-3">{t('features.batch.title')}</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 {t('features.batch.description')}
               </p>
             </div>
@@ -399,7 +399,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/30 p-6">
               <div className="text-4xl mb-4">✨</div>
               <h3 className="text-xl font-bold mb-3">{t('features.presets.title')}</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 {t('features.presets.description')}
               </p>
             </div>
@@ -408,7 +408,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl border border-orange-500/30 p-6">
               <div className="text-4xl mb-4">🎨</div>
               <h3 className="text-xl font-bold mb-3">{t('features.enhancements.title')}</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 {t('features.enhancements.description')}
               </p>
             </div>
@@ -417,7 +417,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-500/30 p-6">
               <div className="text-4xl mb-4">⚡</div>
               <h3 className="text-xl font-bold mb-3">{t('features.scaling.title')}</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 {t('features.scaling.description')}
               </p>
             </div>
@@ -426,7 +426,7 @@ export default function PricingPage() {
             <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-xl border border-yellow-500/30 p-6">
               <div className="text-4xl mb-4">🔍</div>
               <h3 className="text-xl font-bold mb-3">{t('features.comparison.title')}</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 {t('features.comparison.description')}
               </p>
             </div>
@@ -436,19 +436,19 @@ export default function PricingPage() {
         {/* CTA Section */}
         <div className="text-center mt-16 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl border border-green-500/20 p-12 max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-4">{t('cta.title')}</h2>
-          <p className="text-xl text-gray-400 mb-8">
+          <p className="text-xl text-gray-500 dark:text-gray-400 mb-8">
             {t('cta.description')}
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
             <a
               href="/auth/signin"
-              className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 rounded-lg font-semibold text-lg transition shadow-lg"
+              className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white rounded-lg font-semibold text-lg transition shadow-lg"
             >
               {t('cta.startTrial')}
             </a>
             <a
               href="mailto:sales@pixelift.pl"
-              className="px-8 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold text-lg transition"
+              className="px-8 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-semibold text-lg transition"
             >
               {t('cta.contactSales')}
             </a>

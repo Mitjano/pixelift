@@ -57,44 +57,44 @@ export default function TermsOfService() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <h1 className="text-4xl font-bold mb-8">{t("title")}</h1>
-        <p className="text-gray-400 mb-8">
+        <p className="text-gray-500 dark:text-gray-400 mb-8">
           {t("lastUpdated")}: {new Date().toLocaleDateString()}
         </p>
 
-        <div className="space-y-8 text-gray-300">
+        <div className="space-y-8 text-gray-600 dark:text-gray-300">
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.acceptance.title")}
             </h2>
             <p>{t("sections.acceptance.content")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.description.title")}
             </h2>
             <p className="mb-4">{t("sections.description.intro")}</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>
-                <strong>{t("sections.description.webApp")}</strong>{" "}
+                <strong className="text-gray-900 dark:text-white">{t("sections.description.webApp")}</strong>{" "}
                 {t("sections.description.webAppDesc")}
               </li>
               <li>
-                <strong>{t("sections.description.api")}</strong>{" "}
+                <strong className="text-gray-900 dark:text-white">{t("sections.description.api")}</strong>{" "}
                 {t("sections.description.apiDesc")}
               </li>
               <li>
-                <strong>{t("sections.description.batch")}</strong>{" "}
+                <strong className="text-gray-900 dark:text-white">{t("sections.description.batch")}</strong>{" "}
                 {t("sections.description.batchDesc")}
               </li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.registration.title")}
             </h2>
             <p className="mb-4">{t("sections.registration.intro")}</p>
@@ -106,11 +106,11 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.acceptableUse.title")}
             </h2>
             <p className="mb-4">
-              <strong>{t("sections.acceptableUse.intro")}</strong>
+              <strong className="text-gray-900 dark:text-white">{t("sections.acceptableUse.intro")}</strong>
             </p>
             <ul className="list-disc pl-6 space-y-2">
               {acceptableUseItems.map((item, index) => (
@@ -123,48 +123,48 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.intellectualProperty.title")}
             </h2>
             <p className="mb-4">
-              <strong>{t("sections.intellectualProperty.yourContent")}</strong>
+              <strong className="text-gray-900 dark:text-white">{t("sections.intellectualProperty.yourContent")}</strong>
             </p>
             <p className="mb-4">
               {t("sections.intellectualProperty.yourContentDesc")}
             </p>
             <p className="mb-4">
-              <strong>{t("sections.intellectualProperty.ourService")}</strong>
+              <strong className="text-gray-900 dark:text-white">{t("sections.intellectualProperty.ourService")}</strong>
             </p>
             <p>{t("sections.intellectualProperty.ourServiceDesc")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.pricing.title")}
             </h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {t("sections.pricing.plansTitle")}
                 </h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
-                    <strong>{t("sections.pricing.free")}</strong>{" "}
+                    <strong className="text-gray-900 dark:text-white">{t("sections.pricing.free")}</strong>{" "}
                     {t("sections.pricing.freeDesc")}
                   </li>
                   <li>
-                    <strong>{t("sections.pricing.pro")}</strong>{" "}
+                    <strong className="text-gray-900 dark:text-white">{t("sections.pricing.pro")}</strong>{" "}
                     {t("sections.pricing.proDesc")}
                   </li>
                   <li>
-                    <strong>{t("sections.pricing.enterprise")}</strong>{" "}
+                    <strong className="text-gray-900 dark:text-white">{t("sections.pricing.enterprise")}</strong>{" "}
                     {t("sections.pricing.enterpriseDesc")}
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {t("sections.pricing.billingTitle")}
                 </h3>
                 <ul className="list-disc pl-6 space-y-2">
@@ -175,7 +175,7 @@ export default function TermsOfService() {
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {t("sections.pricing.cancellationTitle")}
                 </h3>
                 <ul className="list-disc pl-6 space-y-2">
@@ -188,11 +188,11 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.apiUsage.title")}
             </h2>
             <p className="mb-4">
-              <strong>{t("sections.apiUsage.rateLimits")}</strong>
+              <strong className="text-gray-900 dark:text-white">{t("sections.apiUsage.rateLimits")}</strong>
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-4">
               <li>{t("sections.apiUsage.freeLimit")}</li>
@@ -204,12 +204,12 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.dataPrivacy.title")}
             </h2>
             <p>
               {t("sections.dataPrivacy.content")}{" "}
-              <Link href="/privacy" className="text-green-500 hover:underline">
+              <Link href="/privacy" className="text-green-600 dark:text-green-500 hover:underline">
                 {t("sections.dataPrivacy.privacyLink")}
               </Link>
               . {t("sections.dataPrivacy.contentAfter")}
@@ -217,7 +217,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.availability.title")}
             </h2>
             <p className="mb-4">{t("sections.availability.intro")}</p>
@@ -229,7 +229,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.disclaimers.title")}
             </h2>
             <p className="mb-4 font-semibold uppercase">
@@ -245,14 +245,14 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.indemnification.title")}
             </h2>
             <p>{t("sections.indemnification.content")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.termination.title")}
             </h2>
             <p className="mb-4">{t("sections.termination.intro")}</p>
@@ -265,26 +265,26 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.changes.title")}
             </h2>
             <p>{t("sections.changes.content")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.governingLaw.title")}
             </h2>
             <p>{t("sections.governingLaw.content")}</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               {t("sections.contact.title")}
             </h2>
             <p className="mb-4">{t("sections.contact.operatedBy")}</p>
-            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 mb-6">
-              <p className="font-semibold text-white mb-2">
+            <div className="bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-6">
+              <p className="font-semibold text-gray-900 dark:text-white mb-2">
                 JuveStore.pl Michał Chmielarz
               </p>
               <p>ul. Dworcowa 67 D/4</p>
@@ -294,28 +294,28 @@ export default function TermsOfService() {
             <p className="mb-4">{t("sections.contact.questions")}</p>
             <ul className="space-y-2">
               <li>
-                <strong>{t("sections.contact.email")}</strong>{" "}
+                <strong className="text-gray-900 dark:text-white">{t("sections.contact.email")}</strong>{" "}
                 <a
                   href="mailto:legal@pixelift.pl"
-                  className="text-green-500 hover:underline"
+                  className="text-green-600 dark:text-green-500 hover:underline"
                 >
                   legal@pixelift.pl
                 </a>
               </li>
               <li>
-                <strong>{t("sections.contact.support")}</strong>{" "}
+                <strong className="text-gray-900 dark:text-white">{t("sections.contact.support")}</strong>{" "}
                 <a
                   href="mailto:support@pixelift.pl"
-                  className="text-green-500 hover:underline"
+                  className="text-green-600 dark:text-green-500 hover:underline"
                 >
                   support@pixelift.pl
                 </a>
               </li>
               <li>
-                <strong>{t("sections.contact.website")}</strong>{" "}
+                <strong className="text-gray-900 dark:text-white">{t("sections.contact.website")}</strong>{" "}
                 <a
                   href="https://pixelift.pl"
-                  className="text-green-500 hover:underline"
+                  className="text-green-600 dark:text-green-500 hover:underline"
                 >
                   pixelift.pl
                 </a>
@@ -323,7 +323,7 @@ export default function TermsOfService() {
             </ul>
           </section>
 
-          <section className="border-t border-gray-800 pt-8 mt-12">
+          <section className="border-t border-gray-200 dark:border-gray-800 pt-8 mt-12">
             <p className="text-sm text-gray-500">{t("agreement")}</p>
           </section>
         </div>
