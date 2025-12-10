@@ -15,15 +15,6 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Increase body size limit for server actions (file uploads)
-  serverActions: {
-    bodySizeLimit: '100mb',
-  },
-  experimental: {
-    serverActions: {
-      bodySizeLimit: '100mb',
-    },
-  },
   // Remove console.log in production builds
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
