@@ -814,6 +814,22 @@
       "expand": {
         "name": "Rozszerzanie Obrazu",
         "description": "Rozszerz obrazy z AI"
+      },
+      "inpainting": {
+        "name": "AI Inpainting",
+        "description": "Wypełnij i rozszerz z AI"
+      },
+      "reimagine": {
+        "name": "Reimagine",
+        "description": "Generuj wariacje obrazów"
+      },
+      "styleTransfer": {
+        "name": "Style Diffusion",
+        "description": "Przekształć w dowolną scenę"
+      },
+      "structureControl": {
+        "name": "Kontrola Struktury",
+        "description": "Generuj z kontrolą głębi"
       }
     },
     "activity": {

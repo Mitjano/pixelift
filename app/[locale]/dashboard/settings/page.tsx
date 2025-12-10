@@ -68,6 +68,18 @@ const SparklesIcon = () => (
   </svg>
 );
 
+const KeyIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+  </svg>
+);
+
+const PaletteIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+  </svg>
+);
+
 const CheckIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -86,6 +98,8 @@ const languages = [
 const tabs = [
   { id: 'account', label: 'Account', icon: UserIcon },
   { id: 'preferences', label: 'Preferences', icon: CogIcon },
+  { id: 'appearance', label: 'Appearance', icon: PaletteIcon },
+  { id: 'connections', label: 'Connections', icon: KeyIcon },
   { id: 'notifications', label: 'Notifications', icon: BellIcon },
   { id: 'language', label: 'Language', icon: GlobeIcon },
   { id: 'privacy', label: 'Privacy & Data', icon: ShieldIcon },
@@ -129,6 +143,14 @@ export default function SettingsPage() {
     autoDownload: false,
   });
   const [savingAppPrefs, setSavingAppPrefs] = useState(false);
+
+  // Appearance preferences
+  const [appearancePrefs, setAppearancePrefs] = useState({
+    theme: 'dark',
+    compactMode: false,
+    showCreditsInHeader: true,
+    animationsEnabled: true,
+  });
 
   // Get current locale from pathname
   const currentLocale = pathname.split('/')[1] || 'pl';
@@ -625,6 +647,198 @@ export default function SettingsPage() {
                         </>
                       )}
                     </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Appearance Tab */}
+              {activeTab === "appearance" && (
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-xl font-semibold mb-1">Appearance</h2>
+                    <p className="text-gray-400 text-sm">Customize how Pixelift looks and feels</p>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* Theme Selection */}
+                    <div className="bg-gray-700/30 rounded-xl p-5 border border-gray-600/50">
+                      <label className="block text-sm font-medium text-gray-300 mb-3">
+                        Theme
+                      </label>
+                      <div className="grid grid-cols-3 gap-3">
+                        {[
+                          { value: 'dark', label: 'Dark', icon: '🌙' },
+                          { value: 'light', label: 'Light', icon: '☀️', disabled: true },
+                          { value: 'system', label: 'System', icon: '💻', disabled: true },
+                        ].map((theme) => (
+                          <button
+                            key={theme.value}
+                            disabled={theme.disabled}
+                            onClick={() => setAppearancePrefs(prev => ({ ...prev, theme: theme.value }))}
+                            className={`py-3 px-4 rounded-xl font-medium transition-all ${
+                              appearancePrefs.theme === theme.value
+                                ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white'
+                                : theme.disabled
+                                ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            }`}
+                          >
+                            <span className="text-xl block mb-1">{theme.icon}</span>
+                            {theme.label}
+                            {theme.disabled && (
+                              <span className="block text-xs mt-1 text-gray-500">Coming soon</span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* UI Toggles */}
+                    <div className="bg-gray-700/30 rounded-xl p-5 border border-gray-600/50 flex items-center justify-between">
+                      <div>
+                        <h3 className="font-medium">Compact Mode</h3>
+                        <p className="text-sm text-gray-400 mt-1">
+                          Reduce spacing for a more compact interface
+                        </p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="sr-only peer"
+                          checked={appearancePrefs.compactMode}
+                          onChange={() => setAppearancePrefs(prev => ({ ...prev, compactMode: !prev.compactMode }))}
+                        />
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                      </label>
+                    </div>
+
+                    <div className="bg-gray-700/30 rounded-xl p-5 border border-gray-600/50 flex items-center justify-between">
+                      <div>
+                        <h3 className="font-medium">Show Credits in Header</h3>
+                        <p className="text-sm text-gray-400 mt-1">
+                          Display your credit balance in the navigation bar
+                        </p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="sr-only peer"
+                          checked={appearancePrefs.showCreditsInHeader}
+                          onChange={() => setAppearancePrefs(prev => ({ ...prev, showCreditsInHeader: !prev.showCreditsInHeader }))}
+                        />
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                      </label>
+                    </div>
+
+                    <div className="bg-gray-700/30 rounded-xl p-5 border border-gray-600/50 flex items-center justify-between">
+                      <div>
+                        <h3 className="font-medium">Animations</h3>
+                        <p className="text-sm text-gray-400 mt-1">
+                          Enable smooth animations and transitions
+                        </p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="sr-only peer"
+                          checked={appearancePrefs.animationsEnabled}
+                          onChange={() => setAppearancePrefs(prev => ({ ...prev, animationsEnabled: !prev.animationsEnabled }))}
+                        />
+                        <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+                    <p className="text-sm text-blue-300">
+                      <strong>Note:</strong> Some appearance settings are still in development. Light theme and system theme will be available in a future update.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Connections Tab */}
+              {activeTab === "connections" && (
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-xl font-semibold mb-1">Connections & API</h2>
+                    <p className="text-gray-400 text-sm">Manage API access and integrations</p>
+                  </div>
+
+                  {/* API Keys Section */}
+                  <div className="bg-gray-700/30 rounded-xl p-6 border border-gray-600/50">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-green-500/20">
+                        <KeyIcon />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-lg mb-2">API Keys</h3>
+                        <p className="text-gray-400 text-sm mb-4">
+                          Create and manage API keys to integrate Pixelift with your applications.
+                          Use our REST API to upscale images, remove backgrounds, and more programmatically.
+                        </p>
+                        <Link
+                          href="/dashboard/api"
+                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl font-medium hover:opacity-90 transition-opacity"
+                        >
+                          <KeyIcon />
+                          Manage API Keys
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Connected Apps */}
+                  <div className="bg-gray-700/30 rounded-xl p-6 border border-gray-600/50">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-purple-500/20">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-lg mb-2">Connected Apps</h3>
+                        <p className="text-gray-400 text-sm mb-4">
+                          You&apos;re signed in with Google. Third-party app integrations will be available soon.
+                        </p>
+                        <div className="flex items-center gap-3 p-3 bg-gray-600/30 rounded-lg">
+                          <div className="p-2 bg-white rounded-lg">
+                            <svg className="w-5 h-5" viewBox="0 0 24 24">
+                              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <div className="font-medium text-sm">Google</div>
+                            <div className="text-xs text-gray-400">Connected for sign-in</div>
+                          </div>
+                          <span className="ml-auto text-xs text-green-400 bg-green-500/20 px-2 py-1 rounded">Active</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Webhooks - Coming Soon */}
+                  <div className="bg-gray-700/30 rounded-xl p-6 border border-gray-600/50 opacity-60">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-orange-500/20">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h3 className="font-semibold text-lg">Webhooks</h3>
+                          <span className="text-xs text-orange-400 bg-orange-500/20 px-2 py-0.5 rounded">Coming Soon</span>
+                        </div>
+                        <p className="text-gray-400 text-sm">
+                          Receive real-time notifications when images are processed.
+                          Set up webhook endpoints to automate your workflow.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}

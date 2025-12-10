@@ -814,6 +814,22 @@
       "expand": {
         "name": "Image Expand",
         "description": "Extend images with AI"
+      },
+      "inpainting": {
+        "name": "AI Inpainting",
+        "description": "Fill & extend with AI"
+      },
+      "reimagine": {
+        "name": "Image Reimagine",
+        "description": "Generate image variations"
+      },
+      "styleTransfer": {
+        "name": "Style Diffusion",
+        "description": "Transform into any scene"
+      },
+      "structureControl": {
+        "name": "Structure Control",
+        "description": "Generate with depth control"
       }
     },
     "activity": {

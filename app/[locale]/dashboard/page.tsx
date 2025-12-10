@@ -79,6 +79,10 @@ const allTools = [
   { nameKey: 'compressor', href: '/tools/image-compressor', icon: '📦', color: 'text-teal-400', credits: 'free' },
   { nameKey: 'packshot', href: '/tools/packshot-generator', icon: '📷', color: 'text-amber-400', credits: '2' },
   { nameKey: 'expand', href: '/tools/image-expand', icon: '↔️', color: 'text-indigo-400', credits: '2' },
+  { nameKey: 'inpainting', href: '/tools/inpainting', icon: '🖌️', color: 'text-cyan-400', credits: '2', badge: 'NEW' },
+  { nameKey: 'reimagine', href: '/tools/reimagine', icon: '🔮', color: 'text-violet-400', credits: '2', badge: 'NEW' },
+  { nameKey: 'styleTransfer', href: '/tools/style-transfer', icon: '🎭', color: 'text-pink-400', credits: '3', badge: 'NEW' },
+  { nameKey: 'structureControl', href: '/tools/structure-control', icon: '🏗️', color: 'text-amber-400', credits: '2', badge: 'NEW' },
 ];
 
 // Quick actions
@@ -295,10 +299,10 @@ export default function DashboardPage() {
         {/* All Tools - Compact Grid */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-400">All Tools</h3>
-            <Link href="/tools" className="text-xs text-gray-500 hover:text-gray-300">View all →</Link>
+            <h3 className="text-sm font-medium text-gray-400">All Tools ({allTools.length})</h3>
+            <Link href="/tools" className="text-xs text-gray-500 hover:text-gray-300">Explore tools →</Link>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2">
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-13 gap-2">
             {allTools.map((tool) => (
               <Link
                 key={tool.href}
