@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 
 // GET - List all connected accounts
 export async function GET() {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const accounts = await prisma.socialAccount.findMany({
       orderBy: [{ isPrimary: "desc" }, { createdAt: "desc" }],
@@ -59,6 +65,11 @@ export async function GET() {
 
 // POST - Add new account (manual for now, OAuth later)
 export async function POST(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const {
@@ -116,7 +127,7 @@ export async function POST(request: NextRequest) {
     // Create new account
     const account = await prisma.socialAccount.create({
       data: {
-        userId: "admin", // TODO: Get from session
+        userId: session.user.id || session.user.email || "admin",
         platform,
         platformType,
         accountId,
@@ -142,6 +153,11 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update account
 export async function PUT(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { id, ...updateData } = body;
@@ -174,6 +190,11 @@ export async function PUT(request: NextRequest) {
 
 // DELETE - Disconnect account
 export async function DELETE(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");

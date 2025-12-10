@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 
 // GET - List all posts
 export async function GET(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
@@ -54,6 +60,11 @@ export async function GET(request: NextRequest) {
 
 // POST - Create new post
 export async function POST(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const {
@@ -93,7 +104,7 @@ export async function POST(request: NextRequest) {
 
     const post = await prisma.socialPost.create({
       data: {
-        userId: "admin", // TODO: Get from session
+        userId: session.user.id || session.user.email || "admin",
         content,
         mediaUrls,
         mediaTypes,
@@ -126,6 +137,11 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update post
 export async function PUT(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { id, ...updateData } = body;
@@ -170,6 +186,11 @@ export async function PUT(request: NextRequest) {
 
 // DELETE - Delete post
 export async function DELETE(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user?.isAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
