@@ -96,7 +96,7 @@ export function errorResponse(
     error: {
       code,
       message,
-      ...(details && { details }),
+      ...(details !== undefined ? { details } : {}),
     },
     meta: {
       timestamp: new Date().toISOString(),
