@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Tool icons
 const toolIcons = {
@@ -107,6 +108,7 @@ export default function Header() {
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const t = useTranslations();
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   // Refs for dropdown containers
   const toolsDropdownRef = useRef<HTMLDivElement>(null);
@@ -193,16 +195,16 @@ export default function Header() {
   );
 
   return (
-    <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50">
+    <header className="border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50 transition-colors">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between" role="navigation" aria-label="Main navigation">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" aria-label="Pixelift home">
           <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg" aria-hidden="true"></div>
-          <span className="text-xl font-bold" style={{color: '#ffffff'}}>Pixelift</span>
+          <span className="text-xl font-bold text-gray-900 dark:text-white">Pixelift</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 text-white">
+        <div className="hidden md:flex items-center gap-6 text-gray-700 dark:text-white">
           {/* Tools Dropdown */}
           <div className="relative" ref={toolsDropdownRef}>
             <button
@@ -210,7 +212,7 @@ export default function Header() {
               onClick={() => setToolsDropdownOpen((prev) => !prev)}
               onKeyDown={(e) => handleDropdownKeyDown(e, setToolsDropdownOpen, toolsDropdownOpen)}
               className={`flex items-center gap-1 transition font-medium py-2 ${
-                isToolsPage ? 'text-green-400' : 'text-white hover:text-green-400'
+                isToolsPage ? 'text-green-500 dark:text-green-400' : 'text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400'
               }`}
               aria-expanded={toolsDropdownOpen}
               aria-haspopup="menu"
@@ -236,7 +238,7 @@ export default function Header() {
               aria-label="Tools menu"
               onKeyDown={toolsNavigation.handleKeyDown}
               tabIndex={toolsDropdownOpen ? 0 : -1}
-              className={`absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-4 max-h-[500px] overflow-y-auto transition-all duration-200 ${
+              className={`absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl p-4 max-h-[500px] overflow-y-auto transition-all duration-200 ${
                 toolsDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
               }`}
             >
@@ -248,23 +250,23 @@ export default function Header() {
                     role="menuitem"
                     data-tool-index={index}
                     onClick={() => setToolsDropdownOpen(false)}
-                    className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-gray-700/70 ${
-                      pathname?.includes(tool.href) ? 'bg-gray-700/50 ring-1 ring-green-500/50' : ''
-                    } ${toolsNavigation.activeIndex === index ? 'bg-gray-700' : ''}`}
+                    className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700/70 ${
+                      pathname?.includes(tool.href) ? 'bg-gray-100 dark:bg-gray-700/50 ring-1 ring-green-500/50' : ''
+                    } ${toolsNavigation.activeIndex === index ? 'bg-gray-100 dark:bg-gray-700' : ''}`}
                   >
                     <div className={`p-2 rounded-lg bg-gradient-to-br ${tool.color} text-white shrink-0`} aria-hidden="true">
                       {tool.icon}
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-white text-sm">{tool.name}</span>
+                        <span className="font-semibold text-gray-900 dark:text-white text-sm">{tool.name}</span>
                         {tool.badge && (
                           <span className="px-1.5 py-0.5 text-[10px] bg-green-500 text-white rounded-full font-medium">
                             {tool.badge}
                           </span>
                         )}
                       </div>
-                      <div className="text-xs text-gray-400 mt-0.5">{tool.description}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{tool.description}</div>
                     </div>
                   </Link>
                 ))}
@@ -275,7 +277,7 @@ export default function Header() {
           <Link
             href="/ai-image"
             className={`flex items-center gap-1 transition font-medium ${
-              pathname?.includes('/ai-image') ? 'text-purple-400' : 'text-white hover:text-purple-400'
+              pathname?.includes('/ai-image') ? 'text-purple-500 dark:text-purple-400' : 'text-gray-700 dark:text-white hover:text-purple-500 dark:hover:text-purple-400'
             }`}
           >
             <span className="text-sm" aria-hidden="true">✨</span>
@@ -284,38 +286,55 @@ export default function Header() {
           <Link
             href="/ai-video"
             className={`flex items-center gap-1 transition font-medium ${
-              pathname?.includes('/ai-video') ? 'text-cyan-400' : 'text-white hover:text-cyan-400'
+              pathname?.includes('/ai-video') ? 'text-cyan-500 dark:text-cyan-400' : 'text-gray-700 dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400'
             }`}
           >
             <span className="text-sm" aria-hidden="true">🎬</span>
             {t('nav.aiVideo')}
           </Link>
-          <Link href="/use-cases" className="text-white hover:text-green-400 transition">
+          <Link href="/use-cases" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
             {t('nav.useCases')}
           </Link>
-          <Link href="/pricing" className="text-white hover:text-green-400 transition">
+          <Link href="/pricing" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
             {t('nav.pricing')}
           </Link>
-          <Link href="/blog" className="text-white hover:text-green-400 transition">
+          <Link href="/blog" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
             {t('nav.blog')}
           </Link>
-          <Link href="/#faq" className="text-white hover:text-green-400 transition">
+          <Link href="/#faq" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
             {t('nav.faq')}
           </Link>
         </div>
 
         {/* Auth Buttons & Language Switcher */}
         <div className="flex items-center gap-3">
+          {/* Theme Toggle */}
+          <button
+            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label={resolvedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {resolvedTheme === 'dark' ? (
+              <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
+          </button>
+
           {/* Language Switcher */}
           <LanguageSwitcher />
 
           {status === "loading" ? (
-            <div className="w-8 h-8 border-2 border-gray-600 border-t-green-500 rounded-full animate-spin" aria-label="Loading"></div>
+            <div className="w-8 h-8 border-2 border-gray-300 dark:border-gray-600 border-t-green-500 rounded-full animate-spin" aria-label="Loading"></div>
           ) : session ? (
             <>
               <Link
                 href="/dashboard"
-                className="hidden md:block px-4 py-2 text-white hover:text-green-400 transition"
+                className="hidden md:block px-4 py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
               >
                 {t('nav.dashboard')}
               </Link>
@@ -324,7 +343,7 @@ export default function Header() {
                   ref={userButtonRef}
                   onClick={() => setUserDropdownOpen((prev) => !prev)}
                   onKeyDown={(e) => handleDropdownKeyDown(e, setUserDropdownOpen, userDropdownOpen)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                   aria-expanded={userDropdownOpen}
                   aria-haspopup="menu"
                   aria-controls="user-menu"
@@ -338,11 +357,11 @@ export default function Header() {
                       aria-hidden="true"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center" aria-hidden="true">
+                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white" aria-hidden="true">
                       {session.user?.name?.[0] || "U"}
                     </div>
                   )}
-                  <span className="hidden md:block" style={{color: '#ffffff'}}>
+                  <span className="hidden md:block text-gray-900 dark:text-white">
                     {session.user?.name?.split(" ")[0]}
                   </span>
                 </button>
@@ -355,7 +374,7 @@ export default function Header() {
                   aria-label="User menu"
                   onKeyDown={userNavigation.handleKeyDown}
                   tabIndex={userDropdownOpen ? 0 : -1}
-                  className={`absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl transition-all duration-200 ${
+                  className={`absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl transition-all duration-200 ${
                     userDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
                   }`}
                 >
@@ -366,21 +385,20 @@ export default function Header() {
                       role="menuitem"
                       data-user-index={index}
                       onClick={() => setUserDropdownOpen(false)}
-                      className={`block px-4 py-2 hover:bg-gray-700 transition ${
-                        userNavigation.activeIndex === index ? 'bg-gray-700' : ''
+                      className={`block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition ${
+                        userNavigation.activeIndex === index ? 'bg-gray-100 dark:bg-gray-700' : ''
                       }`}
-                      style={{color: '#ffffff'}}
                     >
                       {t(`nav.${item.key}`)}
                     </Link>
                   ))}
-                  <hr className="border-gray-700" />
+                  <hr className="border-gray-200 dark:border-gray-700" />
                   <button
                     role="menuitem"
                     data-user-index={userMenuItems.length}
                     onClick={() => signOut({ callbackUrl: "/" })}
-                    className={`w-full text-left px-4 py-2 hover:bg-gray-700 transition text-red-400 ${
-                      userNavigation.activeIndex === userMenuItems.length ? 'bg-gray-700' : ''
+                    className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-red-500 dark:text-red-400 ${
+                      userNavigation.activeIndex === userMenuItems.length ? 'bg-gray-100 dark:bg-gray-700' : ''
                     }`}
                   >
                     {t('nav.signOut')}
@@ -392,7 +410,7 @@ export default function Header() {
             <>
               <Link
                 href="/auth/signin"
-                className="px-4 py-2 text-white hover:text-green-400 transition"
+                className="px-4 py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
               >
                 {t('nav.login')}
               </Link>
@@ -408,7 +426,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden"
+            className="md:hidden text-gray-700 dark:text-white"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -433,71 +451,71 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t border-gray-800 bg-gray-900" role="navigation" aria-label="Mobile navigation">
+        <div id="mobile-menu" className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {/* Tools Section */}
-            <div className="border-b border-gray-800 pb-3 mb-3">
+            <div className="border-b border-gray-200 dark:border-gray-800 pb-3 mb-3">
               <div className="text-xs font-semibold text-gray-500 uppercase mb-2">{t('nav.tools')}</div>
               {tools.map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="block py-2 text-white hover:text-green-400 transition"
+                  className="block py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {tool.name} {tool.badge && <span className="text-xs bg-green-500 px-2 py-0.5 rounded-full ml-2">{tool.badge}</span>}
+                  {tool.name} {tool.badge && <span className="text-xs bg-green-500 text-white px-2 py-0.5 rounded-full ml-2">{tool.badge}</span>}
                 </Link>
               ))}
             </div>
 
             <Link
               href="/ai-image"
-              className="block py-2 text-purple-400 hover:text-purple-300 transition font-medium"
+              className="block py-2 text-purple-500 dark:text-purple-400 hover:text-purple-400 dark:hover:text-purple-300 transition font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span aria-hidden="true">✨</span> {t('nav.aiImage')}
             </Link>
             <Link
               href="/ai-video"
-              className="block py-2 text-cyan-400 hover:text-cyan-300 transition font-medium"
+              className="block py-2 text-cyan-500 dark:text-cyan-400 hover:text-cyan-400 dark:hover:text-cyan-300 transition font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span aria-hidden="true">🎬</span> {t('nav.aiVideo')}
             </Link>
             <Link
               href="/use-cases"
-              className="block py-2 text-white hover:text-green-400 transition"
+              className="block py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('nav.useCases')}
             </Link>
             <Link
               href="/pricing"
-              className="block py-2 text-white hover:text-green-400 transition"
+              className="block py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('nav.pricing')}
             </Link>
             <Link
               href="/blog"
-              className="block py-2 text-white hover:text-green-400 transition"
+              className="block py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('nav.blog')}
             </Link>
             <Link
               href="/#faq"
-              className="block py-2 text-white hover:text-green-400 transition"
+              className="block py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('nav.faq')}
             </Link>
             {session && (
               <>
-                <hr className="border-gray-800" />
+                <hr className="border-gray-200 dark:border-gray-800" />
                 <Link
                   href="/dashboard"
-                  className="block py-2 text-white hover:text-green-400 transition"
+                  className="block py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {t('nav.dashboard')}

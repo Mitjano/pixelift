@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { useTheme } from "@/contexts/ThemeContext";
 
 // SVG Icons
 const UserIcon = () => (
@@ -109,6 +110,7 @@ export default function SettingsPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
   const [activeTab, setActiveTab] = useState("account");
   const [exporting, setExporting] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -668,26 +670,20 @@ export default function SettingsPage() {
                       <div className="grid grid-cols-3 gap-3">
                         {[
                           { value: 'dark', label: 'Dark', icon: '🌙' },
-                          { value: 'light', label: 'Light', icon: '☀️', disabled: true },
-                          { value: 'system', label: 'System', icon: '💻', disabled: true },
-                        ].map((theme) => (
+                          { value: 'light', label: 'Light', icon: '☀️' },
+                          { value: 'system', label: 'System', icon: '💻' },
+                        ].map((themeOption) => (
                           <button
-                            key={theme.value}
-                            disabled={theme.disabled}
-                            onClick={() => setAppearancePrefs(prev => ({ ...prev, theme: theme.value }))}
+                            key={themeOption.value}
+                            onClick={() => setTheme(themeOption.value as 'dark' | 'light' | 'system')}
                             className={`py-3 px-4 rounded-xl font-medium transition-all ${
-                              appearancePrefs.theme === theme.value
+                              theme === themeOption.value
                                 ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white'
-                                : theme.disabled
-                                ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
                                 : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                             }`}
                           >
-                            <span className="text-xl block mb-1">{theme.icon}</span>
-                            {theme.label}
-                            {theme.disabled && (
-                              <span className="block text-xs mt-1 text-gray-500">Coming soon</span>
-                            )}
+                            <span className="text-xl block mb-1">{themeOption.icon}</span>
+                            {themeOption.label}
                           </button>
                         ))}
                       </div>
@@ -749,11 +745,6 @@ export default function SettingsPage() {
                     </div>
                   </div>
 
-                  <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
-                    <p className="text-sm text-blue-300">
-                      <strong>Note:</strong> Some appearance settings are still in development. Light theme and system theme will be available in a future update.
-                    </p>
-                  </div>
                 </div>
               )}
 
