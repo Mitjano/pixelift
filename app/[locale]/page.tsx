@@ -69,65 +69,65 @@ export default function Home() {
           </p>
 
           {/* Feature Pills */}
-          <div className="flex items-center justify-center gap-3 mb-10 flex-wrap">
-            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-green-500 rounded-full transition-all duration-300 shadow-sm">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition">
+          <div className="flex items-center justify-center gap-2 mb-10 flex-wrap px-2">
+            <div className="group px-3 py-1.5 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-green-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition">
                 {t('features.proTools')}
               </span>
             </div>
-            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-blue-500 rounded-full transition-all duration-300 shadow-sm">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+            <div className="group px-3 py-1.5 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-blue-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
                 {t('features.instantResults')}
               </span>
             </div>
-            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-purple-500 rounded-full transition-all duration-300 shadow-sm">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
+            <div className="group px-3 py-1.5 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-purple-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
                 {t('features.private')}
               </span>
             </div>
-            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-yellow-500 rounded-full transition-all duration-300 shadow-sm">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">
+            <div className="group px-3 py-1.5 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-yellow-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">
                 {t('features.noWatermarks')}
               </span>
             </div>
           </div>
 
           {/* Quick Tool Access */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 px-2">
             <Link
               href="/tools/upscaler"
-              className="group flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-105"
+              className="group flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl font-semibold text-sm sm:text-base hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-105"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
               </svg>
               <span>{t('cta.aiUpscaler')}</span>
             </Link>
             <Link
               href="/tools/remove-background"
-              className="group flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
+              className="group flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl font-semibold text-sm sm:text-base hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <span>{t('cta.removeBg')}</span>
             </Link>
             <Link
               href="/tools/colorize"
-              className="group relative flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-violet-500 to-purple-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
+              className="group relative flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-violet-500 to-purple-600 rounded-xl font-semibold text-sm sm:text-base hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
             >
-              <span className="absolute -top-2 -right-2 px-2 py-0.5 text-[10px] font-bold bg-yellow-500 text-black rounded-full">NEW</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="absolute -top-2 -right-2 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold bg-yellow-500 text-black rounded-full">NEW</span>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
               </svg>
               <span>{t('cta.colorize')}</span>
             </Link>
             <Link
               href="/tools/object-removal"
-              className="group relative flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300 hover:scale-105"
+              className="group relative flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl font-semibold text-sm sm:text-base hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300 hover:scale-105"
             >
-              <span className="absolute -top-2 -right-2 px-2 py-0.5 text-[10px] font-bold bg-yellow-500 text-black rounded-full">NEW</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="absolute -top-2 -right-2 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold bg-yellow-500 text-black rounded-full">NEW</span>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
               <span>{t('cta.objectRemoval')}</span>
