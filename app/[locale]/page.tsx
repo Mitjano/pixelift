@@ -93,7 +93,7 @@ export default function Home() {
           </div>
 
           {/* Quick Tool Access */}
-          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-3 mb-10 max-w-sm sm:max-w-none mx-auto px-2 sm:px-0">
+          <div className="grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-3 mb-10 max-w-[320px] sm:max-w-none mx-auto">
             <Link
               href="/tools/upscaler"
               className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl font-semibold text-xs sm:text-sm text-white shadow-lg hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 sm:hover:scale-105"
