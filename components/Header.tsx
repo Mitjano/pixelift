@@ -78,21 +78,81 @@ const toolIcons = {
   ),
 };
 
-const toolConfigs = [
-  { key: 'upscaler', href: '/tools/upscaler', color: 'from-purple-500 to-purple-600', bgColor: 'bg-purple-500/10' },
-  { key: 'removeBackground', href: '/tools/remove-background', color: 'from-blue-500 to-blue-600', bgColor: 'bg-blue-500/10' },
-  { key: 'colorize', href: '/tools/colorize', color: 'from-violet-500 to-purple-600', bgColor: 'bg-violet-500/10' },
-  { key: 'restore', href: '/tools/restore', color: 'from-cyan-500 to-blue-600', bgColor: 'bg-cyan-500/10' },
-  { key: 'objectRemoval', href: '/tools/object-removal', color: 'from-orange-500 to-red-600', bgColor: 'bg-orange-500/10' },
-  { key: 'backgroundGenerator', href: '/tools/background-generator', color: 'from-pink-500 to-rose-600', bgColor: 'bg-pink-500/10' },
-  { key: 'compressor', href: '/tools/image-compressor', color: 'from-teal-500 to-cyan-600', bgColor: 'bg-teal-500/10' },
-  { key: 'packshot', href: '/tools/packshot-generator', color: 'from-amber-500 to-orange-600', bgColor: 'bg-amber-500/10' },
-  { key: 'expand', href: '/tools/image-expand', color: 'from-indigo-500 to-indigo-600', bgColor: 'bg-indigo-500/10' },
-  { key: 'styleTransfer', href: '/tools/style-transfer', color: 'from-pink-500 to-purple-600', bgColor: 'bg-pink-500/10' },
-  { key: 'inpainting', href: '/tools/inpainting', color: 'from-emerald-500 to-teal-600', bgColor: 'bg-emerald-500/10' },
-  { key: 'reimagine', href: '/tools/reimagine', color: 'from-violet-500 to-indigo-600', bgColor: 'bg-violet-500/10' },
-  { key: 'structureControl', href: '/tools/structure-control', color: 'from-amber-500 to-red-600', bgColor: 'bg-amber-500/10' },
+// Tool categories for mega menu
+const toolCategories = [
+  {
+    id: 'enhance',
+    labelKey: 'toolCategories.enhance',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    tools: [
+      { key: 'upscaler', href: '/tools/upscaler', color: 'from-purple-500 to-purple-600' },
+      { key: 'restore', href: '/tools/restore', color: 'from-cyan-500 to-blue-600' },
+      { key: 'colorize', href: '/tools/colorize', color: 'from-violet-500 to-purple-600' },
+    ],
+  },
+  {
+    id: 'remove',
+    labelKey: 'toolCategories.remove',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+      </svg>
+    ),
+    tools: [
+      { key: 'removeBackground', href: '/tools/remove-background', color: 'from-blue-500 to-blue-600' },
+      { key: 'objectRemoval', href: '/tools/object-removal', color: 'from-orange-500 to-red-600' },
+    ],
+  },
+  {
+    id: 'generate',
+    labelKey: 'toolCategories.generate',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    ),
+    tools: [
+      { key: 'backgroundGenerator', href: '/tools/background-generator', color: 'from-pink-500 to-rose-600' },
+      { key: 'packshot', href: '/tools/packshot-generator', color: 'from-amber-500 to-orange-600' },
+      { key: 'expand', href: '/tools/image-expand', color: 'from-indigo-500 to-indigo-600' },
+      { key: 'inpainting', href: '/tools/inpainting', color: 'from-emerald-500 to-teal-600' },
+    ],
+  },
+  {
+    id: 'transform',
+    labelKey: 'toolCategories.transform',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+    ),
+    tools: [
+      { key: 'styleTransfer', href: '/tools/style-transfer', color: 'from-pink-500 to-purple-600' },
+      { key: 'reimagine', href: '/tools/reimagine', color: 'from-violet-500 to-indigo-600' },
+      { key: 'structureControl', href: '/tools/structure-control', color: 'from-amber-500 to-red-600' },
+    ],
+  },
+  {
+    id: 'utilities',
+    labelKey: 'toolCategories.utilities',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+    tools: [
+      { key: 'compressor', href: '/tools/image-compressor', color: 'from-teal-500 to-cyan-600' },
+    ],
+  },
 ];
+
+// Flatten tools for keyboard navigation
+const toolConfigs = toolCategories.flatMap(cat => cat.tools);
 
 // User dropdown menu items
 const userMenuItems = [
@@ -119,14 +179,21 @@ export default function Header() {
   // Check if we're on a tools page (accounting for locale prefix)
   const isToolsPage = pathname?.includes('/tools/');
 
-  // Build tools array with translations
-  const tools = toolConfigs.map(config => ({
-    ...config,
-    name: t(`tools.${config.key}.name`),
-    description: t(`tools.${config.key}.description`),
-    badge: t.has(`tools.${config.key}.badge`) ? t(`tools.${config.key}.badge`) : undefined,
-    icon: toolIcons[config.key as keyof typeof toolIcons],
+  // Build categories with translated tools
+  const categories = toolCategories.map(category => ({
+    ...category,
+    label: t.has(category.labelKey) ? t(category.labelKey) : category.id,
+    tools: category.tools.map(tool => ({
+      ...tool,
+      name: t(`tools.${tool.key}.name`),
+      description: t(`tools.${tool.key}.description`),
+      badge: t.has(`tools.${tool.key}.badge`) ? t(`tools.${tool.key}.badge`) : undefined,
+      icon: toolIcons[tool.key as keyof typeof toolIcons],
+    })),
   }));
+
+  // Flatten tools for keyboard navigation and mobile menu
+  const tools = categories.flatMap(cat => cat.tools);
 
   // Keyboard navigation for tools dropdown
   const toolsNavigation = useKeyboardNavigation({
@@ -230,7 +297,7 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* Tools Dropdown Menu */}
+            {/* Mega Menu */}
             <div
               ref={toolsNavigation.containerRef}
               id="tools-menu"
@@ -238,38 +305,81 @@ export default function Header() {
               aria-label="Tools menu"
               onKeyDown={toolsNavigation.handleKeyDown}
               tabIndex={toolsDropdownOpen ? 0 : -1}
-              className={`absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl p-4 max-h-[500px] overflow-y-auto transition-all duration-200 ${
-                toolsDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+              className={`absolute left-1/2 -translate-x-1/2 mt-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top ${
+                toolsDropdownOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'
               }`}
             >
-              <div className="grid grid-cols-3 gap-2">
-                {tools.map((tool, index) => (
-                  <Link
-                    key={tool.href}
-                    href={tool.href}
-                    role="menuitem"
-                    data-tool-index={index}
-                    onClick={() => setToolsDropdownOpen(false)}
-                    className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700/70 ${
-                      pathname?.includes(tool.href) ? 'bg-gray-100 dark:bg-gray-700/50 ring-1 ring-green-500/50' : ''
-                    } ${toolsNavigation.activeIndex === index ? 'bg-gray-100 dark:bg-gray-700' : ''}`}
-                  >
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${tool.color} text-white shrink-0`} aria-hidden="true">
-                      {tool.icon}
-                    </div>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="font-semibold text-gray-900 dark:text-white text-sm">{tool.name}</span>
-                        {tool.badge && (
-                          <span className="px-1.5 py-0.5 text-[10px] bg-green-500 text-white rounded-full font-medium">
-                            {tool.badge}
-                          </span>
-                        )}
+              <div className="flex">
+                {categories.map((category, catIndex) => {
+                  // Calculate tool index offset for keyboard navigation
+                  const toolIndexOffset = categories
+                    .slice(0, catIndex)
+                    .reduce((sum, cat) => sum + cat.tools.length, 0);
+
+                  return (
+                    <div
+                      key={category.id}
+                      className={`py-4 px-3 min-w-[180px] ${
+                        catIndex !== categories.length - 1 ? 'border-r border-gray-100 dark:border-gray-800' : ''
+                      }`}
+                    >
+                      {/* Category Header */}
+                      <div className="flex items-center gap-2 px-2 mb-3">
+                        <span className="text-gray-400 dark:text-gray-500">{category.icon}</span>
+                        <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                          {category.label}
+                        </span>
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{tool.description}</div>
+
+                      {/* Category Tools */}
+                      <div className="space-y-0.5">
+                        {category.tools.map((tool, toolIndex) => {
+                          const globalIndex = toolIndexOffset + toolIndex;
+                          return (
+                            <Link
+                              key={tool.href}
+                              href={tool.href}
+                              role="menuitem"
+                              data-tool-index={globalIndex}
+                              onClick={() => setToolsDropdownOpen(false)}
+                              className={`flex items-center gap-2.5 px-2 py-2 rounded-lg transition-all duration-150 group ${
+                                pathname?.includes(tool.href)
+                                  ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
+                                  : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+                              } ${toolsNavigation.activeIndex === globalIndex ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
+                            >
+                              <div className={`p-1.5 rounded-md bg-gradient-to-br ${tool.color} text-white shrink-0 transition-transform group-hover:scale-110`}>
+                                <div className="w-4 h-4">{tool.icon}</div>
+                              </div>
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <span className="text-sm font-medium truncate">{tool.name}</span>
+                                {tool.badge && (
+                                  <span className="px-1.5 py-0.5 text-[9px] bg-green-500 text-white rounded font-semibold shrink-0">
+                                    {tool.badge}
+                                  </span>
+                                )}
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </Link>
-                ))}
+                  );
+                })}
+              </div>
+
+              {/* Footer - All Tools Link */}
+              <div className="bg-gray-50 dark:bg-gray-800/50 px-4 py-2.5 border-t border-gray-100 dark:border-gray-800">
+                <Link
+                  href="/tools"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-green-500 dark:hover:text-green-400 transition-colors font-medium"
+                >
+                  {t('nav.viewAllTools')}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>

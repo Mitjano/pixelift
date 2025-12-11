@@ -86,7 +86,15 @@
     "settings": "Ustawienia",
     "signOut": "Wyloguj się",
     "login": "Zaloguj się",
-    "signUp": "Zarejestruj się"
+    "signUp": "Zarejestruj się",
+    "viewAllTools": "Zobacz wszystkie narzędzia"
+  },
+  "toolCategories": {
+    "enhance": "Ulepszanie",
+    "remove": "Usuwanie",
+    "generate": "Generowanie",
+    "transform": "Przekształcanie",
+    "utilities": "Narzędzia"
   },
   "tools": {
     "upscaler": {

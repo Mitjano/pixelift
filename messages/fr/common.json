@@ -86,7 +86,15 @@
     "settings": "Paramètres",
     "signOut": "Se Déconnecter",
     "login": "Se Connecter",
-    "signUp": "S'inscrire"
+    "signUp": "S'inscrire",
+    "viewAllTools": "Voir tous les outils"
+  },
+  "toolCategories": {
+    "enhance": "Améliorer",
+    "remove": "Supprimer",
+    "generate": "Générer",
+    "transform": "Transformer",
+    "utilities": "Utilitaires"
   },
   "tools": {
     "upscaler": {

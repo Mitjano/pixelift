@@ -86,7 +86,15 @@
     "settings": "Settings",
     "signOut": "Sign Out",
     "login": "Login",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "viewAllTools": "View all tools"
+  },
+  "toolCategories": {
+    "enhance": "Enhance",
+    "remove": "Remove",
+    "generate": "Generate",
+    "transform": "Transform",
+    "utilities": "Utilities"
   },
   "tools": {
     "upscaler": {
