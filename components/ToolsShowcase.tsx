@@ -153,8 +153,8 @@ export default function ToolsShowcase() {
   return (
     <section id="tools" className="container mx-auto px-4 py-20">
       <div className="text-center mb-16">
-        <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-full">
-          <span className="text-sm font-semibold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+        <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-500/20 dark:to-blue-500/20 border border-green-300 dark:border-green-500/30 rounded-full">
+          <span className="text-sm font-semibold bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-400 dark:to-blue-400 bg-clip-text text-transparent">
             {t('badge')}
           </span>
         </div>
@@ -172,7 +172,7 @@ export default function ToolsShowcase() {
           <Link
             key={tool.href}
             href={tool.href}
-            className="group relative bg-gradient-to-br from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl overflow-hidden"
+            className="group relative bg-white dark:bg-gradient-to-br dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 p-6 transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-xl overflow-hidden"
           >
             {/* Gradient overlay on hover */}
             <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
@@ -188,7 +188,7 @@ export default function ToolsShowcase() {
 
             <div className="relative">
               {/* Icon */}
-              <div className={`w-14 h-14 ${tool.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-gray-200/50 dark:border-white/5`}>
+              <div className={`w-14 h-14 ${tool.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-gray-200 dark:border-white/5`}>
                 <div className={tool.iconColor}>
                   {tool.icon}
                 </div>

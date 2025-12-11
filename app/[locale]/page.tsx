@@ -45,12 +45,12 @@ export default function Home() {
 
         <div className="relative z-10">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-full">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-500/20 dark:to-blue-500/20 border border-green-300 dark:border-green-500/30 rounded-full">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-sm font-semibold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="text-sm font-semibold bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-400 dark:to-blue-400 bg-clip-text text-transparent">
               {t('badge')}
             </span>
           </div>
@@ -70,23 +70,23 @@ export default function Home() {
 
           {/* Feature Pills */}
           <div className="flex items-center justify-center gap-3 mb-10 flex-wrap">
-            <div className="group px-4 py-2 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-green-500 rounded-full transition-all duration-300">
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition">
+            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-green-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition">
                 {t('features.proTools')}
               </span>
             </div>
-            <div className="group px-4 py-2 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-blue-500 rounded-full transition-all duration-300">
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-blue-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
                 {t('features.instantResults')}
               </span>
             </div>
-            <div className="group px-4 py-2 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-purple-500 rounded-full transition-all duration-300">
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
+            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-purple-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
                 {t('features.private')}
               </span>
             </div>
-            <div className="group px-4 py-2 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-yellow-500 rounded-full transition-all duration-300">
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">
+            <div className="group px-4 py-2 bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-yellow-500 rounded-full transition-all duration-300 shadow-sm">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">
                 {t('features.noWatermarks')}
               </span>
             </div>
@@ -188,44 +188,44 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          <div className="group relative bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-green-500 transition-all duration-300 hover:scale-105">
-            <div className="w-12 h-12 mb-4 bg-green-500/10 rounded-xl flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-              <svg className="w-6 h-6 text-green-500 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="group relative bg-white dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-green-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg">
+            <div className="w-12 h-12 mb-4 bg-green-100 dark:bg-green-500/10 rounded-xl flex items-center justify-center group-hover:bg-green-200 dark:group-hover:bg-green-500/20 transition-colors">
+              <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold mb-2">{t('whyChoose.fast.title')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('whyChoose.fast.description')}</p>
+            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('whyChoose.fast.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{t('whyChoose.fast.description')}</p>
           </div>
 
-          <div className="group relative bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-105">
-            <div className="w-12 h-12 mb-4 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-              <svg className="w-6 h-6 text-blue-500 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="group relative bg-white dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg">
+            <div className="w-12 h-12 mb-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors">
+              <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold mb-2">{t('whyChoose.private.title')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('whyChoose.private.description')}</p>
+            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('whyChoose.private.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{t('whyChoose.private.description')}</p>
           </div>
 
-          <div className="group relative bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-purple-500 transition-all duration-300 hover:scale-105">
-            <div className="w-12 h-12 mb-4 bg-purple-500/10 rounded-xl flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
-              <svg className="w-6 h-6 text-purple-500 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="group relative bg-white dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-purple-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg">
+            <div className="w-12 h-12 mb-4 bg-purple-100 dark:bg-purple-500/10 rounded-xl flex items-center justify-center group-hover:bg-purple-200 dark:group-hover:bg-purple-500/20 transition-colors">
+              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold mb-2">{t('whyChoose.proTools.title')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('whyChoose.proTools.description')}</p>
+            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('whyChoose.proTools.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{t('whyChoose.proTools.description')}</p>
           </div>
 
-          <div className="group relative bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-orange-500 transition-all duration-300 hover:scale-105">
-            <div className="w-12 h-12 mb-4 bg-orange-500/10 rounded-xl flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
-              <svg className="w-6 h-6 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="group relative bg-white dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 p-6 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-orange-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg">
+            <div className="w-12 h-12 mb-4 bg-orange-100 dark:bg-orange-500/10 rounded-xl flex items-center justify-center group-hover:bg-orange-200 dark:group-hover:bg-orange-500/20 transition-colors">
+              <svg className="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold mb-2">{t('whyChoose.payPerUse.title')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('whyChoose.payPerUse.description')}</p>
+            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('whyChoose.payPerUse.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{t('whyChoose.payPerUse.description')}</p>
           </div>
         </div>
       </section>
@@ -242,7 +242,7 @@ export default function Home() {
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition duration-500"></div>
 
-            <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border border-gray-300 dark:border-gray-700 rounded-3xl p-12 md:p-16 text-center overflow-hidden">
+            <div className="relative bg-white dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 border border-gray-300 dark:border-gray-700 rounded-3xl p-12 md:p-16 text-center overflow-hidden shadow-lg">
               <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
 

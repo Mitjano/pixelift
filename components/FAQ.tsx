@@ -43,7 +43,7 @@ export default function FAQ() {
           {faqKeys.map((key, index) => (
             <div
               key={key}
-              className="bg-white/50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+              className="bg-white dark:bg-gray-800/50 rounded-lg border border-gray-300 dark:border-gray-700 overflow-hidden shadow-sm"
             >
               <button
                 onClick={() => toggleFAQ(index)}

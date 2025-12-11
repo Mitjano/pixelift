@@ -44,7 +44,7 @@ export default function UseCases() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 md:p-12">
+      <div className="bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-300 dark:border-gray-700 p-8 md:p-12 shadow-sm">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Left Column - Benefits */}
           <div>
@@ -86,7 +86,7 @@ export default function UseCases() {
               {[1, 2, 3, 4].map((index) => (
                 <div
                   key={index}
-                  className="bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center hover:border-blue-500 transition-all hover:shadow-lg hover:shadow-blue-500/10"
+                  className="bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-700 rounded-lg p-4 text-center hover:border-blue-500 transition-all hover:shadow-lg hover:shadow-blue-500/10"
                 >
                   <p className="font-medium">{t(`cases.${activeTab}.examples.e${index}`)}</p>
                 </div>
@@ -112,21 +112,21 @@ export default function UseCases() {
 
       {/* Stats Row */}
       <div className="grid md:grid-cols-4 gap-6 mt-12">
-        <div className="bg-gray-100/30 dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-300 dark:border-gray-700 shadow-sm">
           <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">10M+</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">{t('stats.imagesEnhanced')}</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{t('stats.imagesEnhanced')}</div>
         </div>
-        <div className="bg-gray-100/30 dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-300 dark:border-gray-700 shadow-sm">
           <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">500K+</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">{t('stats.happyUsers')}</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{t('stats.happyUsers')}</div>
         </div>
-        <div className="bg-gray-100/30 dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-300 dark:border-gray-700 shadow-sm">
           <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">4.9/5</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">{t('stats.averageRating')}</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{t('stats.averageRating')}</div>
         </div>
-        <div className="bg-gray-100/30 dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800/30 rounded-xl p-6 text-center border border-gray-300 dark:border-gray-700 shadow-sm">
           <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">8x</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">{t('stats.maxUpscaling')}</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{t('stats.maxUpscaling')}</div>
         </div>
       </div>
     </section>

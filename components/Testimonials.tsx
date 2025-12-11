@@ -74,7 +74,7 @@ export default function Testimonials() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-block mb-4 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full">
+          <div className="inline-block mb-4 px-4 py-2 bg-green-100 dark:bg-green-500/10 border border-green-300 dark:border-green-500/20 rounded-full">
             <span className="text-sm font-semibold text-green-600 dark:text-green-400">{t('badge')}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
@@ -131,7 +131,7 @@ export default function Testimonials() {
             </button>
 
             {/* Testimonial Card */}
-            <div className="relative bg-gradient-to-br from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-3xl p-8 md:p-12">
+            <div className="relative bg-white dark:bg-gradient-to-br dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-3xl p-8 md:p-12 shadow-lg">
               {/* Quote Icon */}
               <div className="absolute top-6 right-8 text-green-500/20">
                 <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
@@ -187,7 +187,7 @@ export default function Testimonials() {
           {testimonialKeys.slice(0, 3).map((key, index) => (
             <div
               key={key}
-              className={`group p-6 bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl hover:border-green-500/50 transition-all duration-300 ${
+              className={`group p-6 bg-white dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-2xl hover:border-green-500/50 transition-all duration-300 shadow-sm ${
                 index === currentIndex ? 'ring-2 ring-green-500/30' : ''
               }`}
             >
