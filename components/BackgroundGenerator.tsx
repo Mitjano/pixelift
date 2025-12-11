@@ -257,7 +257,7 @@ export default function BackgroundGenerator() {
       {!previewUrl ? (
         <div
           className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
-            dragActive ? "border-pink-500 bg-pink-500/10" : "border-gray-600 hover:border-gray-500"
+            dragActive ? "border-pink-500 bg-pink-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -274,7 +274,7 @@ export default function BackgroundGenerator() {
 
           <div className="text-center">
             <div className="mb-4">
-              <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+              <svg className="mx-auto h-12 w-12 text-gray-600 dark:text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                 <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
@@ -283,8 +283,8 @@ export default function BackgroundGenerator() {
               Upload Image (with transparent/removed background)
             </label>
 
-            <p className="text-gray-400 mt-4">or drop image anywhere</p>
-            <div className="mt-6 text-sm text-gray-500">
+            <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
+            <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
               <p className="mb-2">Best results with transparent PNG or images with removed background</p>
               <p className="mb-2">Maximum file size: 20MB</p>
               <CreditCostBadge tool="background_generate" size="md" />
@@ -300,7 +300,7 @@ export default function BackgroundGenerator() {
           </div>
 
           {imageInfo && (
-            <div className="flex items-center gap-4 text-sm text-gray-400 bg-gray-800/30 rounded-lg p-3">
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-3">
               <FaInfoCircle className="text-pink-400" />
               <span>{imageInfo.width} x {imageInfo.height} px</span>
               <span>-</span>
@@ -315,15 +315,15 @@ export default function BackgroundGenerator() {
           )}
 
           {/* Background Settings with Categories */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6 space-y-5">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 space-y-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
               <FaMagic className="text-pink-400" />
               Background Settings
             </h3>
 
             {/* Category Tabs */}
             <div className="space-y-3">
-              <label className="block text-sm font-medium text-gray-400">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400">
                 Choose a category
               </label>
               <div className="flex flex-wrap gap-2">
@@ -340,7 +340,7 @@ export default function BackgroundGenerator() {
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                         isActive
                           ? `bg-gradient-to-r ${category.gradient} text-white shadow-lg`
-                          : 'bg-gray-700/50 hover:bg-gray-700 text-gray-300 border border-gray-600'
+                          : 'bg-gray-200 dark:bg-gray-700/50 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600'
                       }`}
                     >
                       <IconComponent className="w-4 h-4" />
@@ -353,7 +353,7 @@ export default function BackgroundGenerator() {
 
             {/* Preset Buttons for Selected Category */}
             <div className="space-y-3">
-              <label className="block text-sm font-medium text-gray-400">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400">
                 Select a preset from {PRESET_CATEGORIES.find(c => c.id === activeCategory)?.label}
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -363,8 +363,8 @@ export default function BackgroundGenerator() {
                     onClick={() => handlePresetSelect(preset)}
                     className={`px-4 py-3 rounded-lg text-sm font-medium transition-all text-left ${
                       selectedPreset === preset.label
-                        ? 'bg-pink-500 text-white ring-2 ring-pink-400 ring-offset-2 ring-offset-gray-800'
-                        : 'bg-gray-700/70 hover:bg-gray-600 text-gray-200 border border-gray-600'
+                        ? 'bg-pink-500 text-white ring-2 ring-pink-400 ring-offset-2 ring-offset-white dark:ring-offset-gray-800'
+                        : 'bg-gray-200 dark:bg-gray-700/70 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-600'
                     }`}
                   >
                     {preset.label}
@@ -375,7 +375,7 @@ export default function BackgroundGenerator() {
 
             {/* Custom Prompt */}
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
                 Describe the background you want
               </label>
               <textarea
@@ -385,7 +385,7 @@ export default function BackgroundGenerator() {
                   setSelectedPreset(null);
                 }}
                 disabled={processing}
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm resize-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-sm resize-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900 dark:text-white"
                 rows={2}
                 placeholder="professional studio background, clean, elegant..."
               />
@@ -393,7 +393,7 @@ export default function BackgroundGenerator() {
 
             {/* Negative Prompt */}
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
                 What to avoid (negative prompt)
               </label>
               <input
@@ -401,7 +401,7 @@ export default function BackgroundGenerator() {
                 value={negativePrompt}
                 onChange={(e) => setNegativePrompt(e.target.value)}
                 disabled={processing}
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900 dark:text-white"
                 placeholder="low quality, blurry, distorted..."
               />
             </div>
@@ -414,15 +414,15 @@ export default function BackgroundGenerator() {
                 checked={refinePrompt}
                 onChange={(e) => setRefinePrompt(e.target.checked)}
                 disabled={processing}
-                className="w-4 h-4 rounded border-gray-700 bg-gray-900 text-pink-500 focus:ring-pink-500"
+                className="w-4 h-4 rounded border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-pink-500 focus:ring-pink-500"
               />
-              <label htmlFor="refine-prompt" className="text-sm text-gray-400">
+              <label htmlFor="refine-prompt" className="text-sm text-gray-600 dark:text-gray-400">
                 Let AI refine my prompt for better results
               </label>
             </div>
           </div>
 
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             {generatedUrl && previewUrl ? (
               <ImageComparison
                 beforeImage={previewUrl}
@@ -433,19 +433,19 @@ export default function BackgroundGenerator() {
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Original Image</h3>
-                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-600" />
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Original Image</h3>
+                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-300 dark:border-gray-600" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Generated Preview</h3>
-                  <div className="w-full aspect-square bg-gray-700 rounded-lg border border-gray-600 flex items-center justify-center">
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Generated Preview</h3>
+                  <div className="w-full aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center">
                     {processing ? (
                       <div className="text-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mx-auto mb-4"></div>
-                        <p className="text-gray-400">{progress}</p>
+                        <p className="text-gray-600 dark:text-gray-400">{progress}</p>
                       </div>
                     ) : (
-                      <p className="text-gray-500">Click &quot;Generate Background&quot; to process</p>
+                      <p className="text-gray-500 dark:text-gray-500">Click &quot;Generate Background&quot; to process</p>
                     )}
                   </div>
                 </div>
@@ -485,7 +485,7 @@ export default function BackgroundGenerator() {
             <button
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition text-gray-900 dark:text-white"
             >
               Upload New Image
             </button>

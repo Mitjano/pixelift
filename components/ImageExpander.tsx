@@ -216,7 +216,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
       {/* Preset Selection - show when no result yet */}
       {!result && !processing && (
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-white">Choose Expand Mode</h3>
+          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Choose Expand Mode</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {EXPAND_PRESETS.map((preset) => (
               <button
@@ -227,16 +227,16 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
                   relative p-4 rounded-xl border-2 transition-all text-left
                   ${
                     selectedPreset === preset.id
-                      ? 'border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/20'
-                      : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                      ? 'border-purple-500 bg-purple-100 dark:bg-purple-500/10 shadow-lg shadow-purple-500/20'
+                      : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 hover:border-gray-300 dark:hover:border-gray-600'
                   }
                   ${processing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
               >
                 <div className="text-2xl mb-2">{preset.icon}</div>
-                <h4 className="font-semibold text-white text-sm mb-1">{preset.name}</h4>
-                <p className="text-xs text-gray-400">{preset.description}</p>
-                <p className="text-xs text-purple-400 mt-1">{preset.credits} credits</p>
+                <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">{preset.name}</h4>
+                <p className="text-xs text-gray-600 dark:text-gray-400">{preset.description}</p>
+                <p className="text-xs text-purple-600 dark:text-purple-400 mt-1">{preset.credits} credits</p>
                 {selectedPreset === preset.id && (
                   <div className="absolute top-2 right-2 w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center">
                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

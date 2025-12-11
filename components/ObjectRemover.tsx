@@ -307,7 +307,7 @@ export default function ObjectRemover() {
       {!previewUrl ? (
         <div
           className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
-            dragActive ? "border-orange-500 bg-orange-500/10" : "border-gray-600 hover:border-gray-500"
+            dragActive ? "border-orange-500 bg-orange-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -324,7 +324,7 @@ export default function ObjectRemover() {
 
           <div className="text-center">
             <div className="mb-4">
-              <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+              <svg className="mx-auto h-12 w-12 text-gray-600 dark:text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                 <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
@@ -333,8 +333,8 @@ export default function ObjectRemover() {
               Upload Image
             </label>
 
-            <p className="text-gray-400 mt-4">or drop image anywhere</p>
-            <div className="mt-6 text-sm text-gray-500">
+            <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
+            <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
               <p className="mb-2">Supported formats: png | jpeg | jpg | webp</p>
               <p className="mb-2">Maximum file size: 20MB</p>
               <CreditCostBadge tool="object_removal" size="md" />
@@ -344,7 +344,7 @@ export default function ObjectRemover() {
       ) : !processedUrl ? (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
               <FaInfoCircle className="inline mr-2 text-orange-400" />
               Draw over the object you want to remove
             </div>
@@ -354,10 +354,10 @@ export default function ObjectRemover() {
           </div>
 
           {/* Drawing Tools */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-4 flex items-center gap-4 flex-wrap">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2">
               <FaPaintBrush className="text-orange-400" />
-              <span className="text-sm text-gray-400">Brush Size:</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">Brush Size:</span>
               <input
                 type="range"
                 min="10"
@@ -366,20 +366,20 @@ export default function ObjectRemover() {
                 onChange={(e) => setBrushSize(Number(e.target.value))}
                 className="w-24"
               />
-              <span className="text-sm text-gray-400">{brushSize}px</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">{brushSize}px</span>
             </div>
             <div className="flex gap-2">
               <button
                 onClick={undoLastStroke}
                 disabled={paths.length === 0}
-                className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm transition"
+                className="flex items-center gap-2 px-3 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm transition"
               >
                 <FaUndo /> Undo
               </button>
               <button
                 onClick={clearMask}
                 disabled={paths.length === 0}
-                className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm transition"
+                className="flex items-center gap-2 px-3 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm transition"
               >
                 <FaEraser /> Clear
               </button>
@@ -387,7 +387,7 @@ export default function ObjectRemover() {
           </div>
 
           {/* Canvas for drawing */}
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <div className="relative overflow-auto max-h-[600px]">
               <canvas
                 ref={canvasRef}
@@ -411,7 +411,7 @@ export default function ObjectRemover() {
             <button
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
             >
               Upload New Image
             </button>
@@ -426,21 +426,21 @@ export default function ObjectRemover() {
           </div>
 
           {creditsRemaining !== null && (
-            <div className="flex items-center gap-4 text-sm text-gray-400 bg-gray-800/30 rounded-lg p-3">
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-3">
               <FaInfoCircle className="text-orange-400" />
               <span className="text-orange-400">{creditsRemaining} credits remaining</span>
             </div>
           )}
 
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-3">Original Image</h3>
-                <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-600" />
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Original Image</h3>
+                <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-300 dark:border-gray-600" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-3">Object Removed</h3>
-                <img src={processedUrl} alt="Processed" className="w-full rounded-lg border border-gray-600" />
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Object Removed</h3>
+                <img src={processedUrl} alt="Processed" className="w-full rounded-lg border border-gray-300 dark:border-gray-600" />
               </div>
             </div>
           </div>
@@ -463,7 +463,7 @@ export default function ObjectRemover() {
             </button>
             <button
               onClick={handleReset}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-semibold transition"
             >
               Upload New Image
             </button>

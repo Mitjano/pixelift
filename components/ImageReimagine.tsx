@@ -159,20 +159,20 @@ export default function ImageReimagine() {
   if (!session) {
     return (
       <div className="max-w-6xl mx-auto">
-        <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 bg-gray-800/30">
+        <div className="relative border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-12 bg-gray-100 dark:bg-gray-800/30">
           <div className="text-center">
             <div className="mb-6">
-              <FaMagic className="mx-auto h-16 w-16 text-gray-500" />
+              <FaMagic className="mx-auto h-16 w-16 text-gray-500 dark:text-gray-500" />
             </div>
             <h3 className="text-2xl font-bold mb-3">Sign in to Use AI Image Reimagine</h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
               Create a free account to generate creative variations of your images with AI.
             </p>
             <div className="flex gap-4 justify-center">
               <a href="/auth/signin" className="inline-block px-8 py-3 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 rounded-lg font-medium transition">
                 Sign In
               </a>
-              <a href="/auth/signup" className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition">
+              <a href="/auth/signup" className="inline-block px-8 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-medium transition">
                 Sign Up Free
               </a>
             </div>
@@ -187,7 +187,7 @@ export default function ImageReimagine() {
       {!previewUrl ? (
         <div
           className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
-            dragActive ? "border-violet-500 bg-violet-500/10" : "border-gray-600 hover:border-gray-500"
+            dragActive ? "border-violet-500 bg-violet-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -204,15 +204,15 @@ export default function ImageReimagine() {
 
           <div className="text-center">
             <div className="mb-4">
-              <FaMagic className="mx-auto h-12 w-12 text-violet-400" />
+              <FaMagic className="mx-auto h-12 w-12 text-violet-600 dark:text-violet-400" />
             </div>
 
             <label htmlFor="file-upload" className="cursor-pointer inline-block px-8 py-3 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 rounded-lg font-medium transition mb-4">
               Upload Image to Reimagine
             </label>
 
-            <p className="text-gray-400 mt-4">or drop image anywhere</p>
-            <div className="mt-6 text-sm text-gray-500">
+            <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
+            <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
               <p className="mb-2">Supported formats: PNG, JPEG, JPG, WEBP</p>
               <p>Maximum file size: 20MB</p>
             </div>
@@ -227,15 +227,15 @@ export default function ImageReimagine() {
           </div>
 
           {imageInfo && (
-            <div className="flex items-center gap-4 text-sm text-gray-400 bg-gray-800/30 rounded-lg p-3">
-              <FaInfoCircle className="text-violet-400" />
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-3">
+              <FaInfoCircle className="text-violet-600 dark:text-violet-400" />
               <span>{imageInfo.width} x {imageInfo.height} px</span>
               <span>-</span>
               <span>{(imageInfo.size / 1024 / 1024).toFixed(2)} MB</span>
               {creditsRemaining !== null && (
                 <>
                   <span>-</span>
-                  <span className="text-violet-400">{creditsRemaining} credits remaining</span>
+                  <span className="text-violet-600 dark:text-violet-400">{creditsRemaining} credits remaining</span>
                 </>
               )}
             </div>
@@ -243,15 +243,15 @@ export default function ImageReimagine() {
 
           {/* Settings */}
           {variations.length === 0 && (
-            <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <FaRandom className="text-violet-400" />
+                <FaRandom className="text-violet-600 dark:text-violet-400" />
                 Variation Settings
               </h3>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
                     Number of Variations ({calculateReimagineCost(numVariations)} credits)
                   </label>
                   <div className="flex gap-2">
@@ -262,7 +262,7 @@ export default function ImageReimagine() {
                         className={`flex-1 py-3 rounded-lg font-semibold transition ${
                           numVariations === num
                             ? 'bg-violet-500 text-white'
-                            : 'bg-gray-700 hover:bg-gray-600'
+                            : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
                         }`}
                       >
                         {num}
@@ -272,7 +272,7 @@ export default function ImageReimagine() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
                     Variation Strength: {(strength * 100).toFixed(0)}%
                   </label>
                   <input
@@ -284,7 +284,7 @@ export default function ImageReimagine() {
                     onChange={(e) => setStrength(parseFloat(e.target.value))}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <div className="flex justify-between text-xs text-gray-500 dark:text-gray-500 mt-1">
                     <span>Subtle</span>
                     <span>Creative</span>
                   </div>
@@ -292,7 +292,7 @@ export default function ImageReimagine() {
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-400 mb-2">
+                <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
                   Guiding Prompt (optional)
                 </label>
                 <input
@@ -300,31 +300,31 @@ export default function ImageReimagine() {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="e.g., 'make it more vibrant', 'add a dreamy atmosphere'"
-                  className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg focus:border-violet-500 focus:outline-none"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-violet-500 focus:outline-none"
                 />
               </div>
             </div>
           )}
 
           {/* Preview / Results */}
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             {variations.length > 0 ? (
               <div>
                 <h3 className="text-lg font-semibold mb-4">Generated Variations</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {/* Original */}
                   <div className="relative">
-                    <p className="text-sm text-gray-400 mb-2">Original</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Original</p>
                     <img
                       src={previewUrl || undefined}
                       alt="Original"
-                      className="w-full rounded-lg border-2 border-gray-600"
+                      className="w-full rounded-lg border-2 border-gray-300 dark:border-gray-600"
                     />
                   </div>
                   {/* Variations */}
                   {variations.map((variation, index) => (
                     <div key={index} className="relative">
-                      <p className="text-sm text-gray-400 mb-2">Variation {index + 1}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Variation {index + 1}</p>
                       <img
                         src={variation}
                         alt={`Variation ${index + 1}`}
@@ -332,7 +332,7 @@ export default function ImageReimagine() {
                         className={`w-full rounded-lg border-2 cursor-pointer transition ${
                           selectedVariation === index
                             ? 'border-violet-500 ring-2 ring-violet-500/50'
-                            : 'border-gray-600 hover:border-gray-500'
+                            : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
                         }`}
                       />
                       <button
@@ -351,19 +351,19 @@ export default function ImageReimagine() {
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Original Image</h3>
-                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-600" />
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Original Image</h3>
+                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-300 dark:border-gray-600" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Variations Preview</h3>
-                  <div className="w-full aspect-square bg-gray-700 rounded-lg border border-gray-600 flex items-center justify-center">
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Variations Preview</h3>
+                  <div className="w-full aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center">
                     {processing ? (
                       <div className="text-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-500 mx-auto mb-4"></div>
-                        <p className="text-gray-400">{progress}</p>
+                        <p className="text-gray-600 dark:text-gray-400">{progress}</p>
                       </div>
                     ) : (
-                      <p className="text-gray-500">Click &quot;Generate Variations&quot; to create</p>
+                      <p className="text-gray-500 dark:text-gray-500">Click &quot;Generate Variations&quot; to create</p>
                     )}
                   </div>
                 </div>
@@ -403,13 +403,13 @@ export default function ImageReimagine() {
             <button
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
             >
               Upload New Image
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+          <div className="text-center text-sm text-gray-500 dark:text-gray-500 flex items-center justify-center gap-2">
             <span>Powered by FLUX Redux AI -</span>
             <CreditCostBadge tool="reimagine" size="xs" />
             <span>per variation</span>

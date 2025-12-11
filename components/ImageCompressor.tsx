@@ -146,11 +146,11 @@ export default function ImageCompressor() {
   if (!session) {
     return (
       <div className="max-w-6xl mx-auto">
-        <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 bg-gray-800/30">
+        <div className="relative border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-12 bg-gray-100 dark:bg-gray-800/30">
           <div className="text-center">
             <div className="mb-6">
               <svg
-                className="mx-auto h-16 w-16 text-gray-500"
+                className="mx-auto h-16 w-16 text-gray-500 dark:text-gray-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -163,20 +163,20 @@ export default function ImageCompressor() {
                 />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold mb-3">Sign in to Compress Images</h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
+            <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Sign in to Compress Images</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
               Create a free account to start compressing your images. Get 3 free credits to try it out!
             </p>
             <div className="flex gap-4 justify-center">
               <a
                 href="/auth/signin"
-                className="inline-block px-8 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition"
+                className="inline-block px-8 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition text-gray-900 dark:text-white"
               >
                 Sign In
               </a>
               <a
                 href="/auth/signup"
-                className="inline-block px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition"
+                className="inline-block px-8 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-medium transition text-gray-900 dark:text-white"
               >
                 Sign Up Free
               </a>
@@ -190,7 +190,7 @@ export default function ImageCompressor() {
   return (
     <div className="max-w-6xl mx-auto">
       {!originalImage ? (
-        <div className="relative border-2 border-dashed border-gray-600 rounded-2xl p-12 text-center hover:border-green-500 transition-colors bg-gray-800/30">
+        <div className="relative border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-12 text-center hover:border-green-500 transition-colors bg-gray-100 dark:bg-gray-800/30">
           <input
             type="file"
             accept="image/jpeg,image/jpg,image/png,image/webp"
@@ -198,24 +198,24 @@ export default function ImageCompressor() {
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           />
           <div className="mb-4">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="mx-auto h-12 w-12 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
           </div>
-          <p className="text-lg font-medium mb-2">Click or drag image to compress</p>
-          <p className="text-sm text-gray-400 mb-2">JPG, PNG, WebP up to 20MB</p>
+          <p className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Click or drag image to compress</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">JPG, PNG, WebP up to 20MB</p>
           <CreditCostBadge tool="compress" size="md" />
         </div>
       ) : (
         <div>
           {/* Settings Panel */}
-          <div className="mb-6 bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-            <h3 className="text-lg font-semibold mb-4">Compression Settings</h3>
+          <div className="mb-6 bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Compression Settings</h3>
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Quality Slider */}
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">
                   Quality: {quality}%
                 </label>
                 <input
@@ -224,10 +224,10 @@ export default function ImageCompressor() {
                   max="100"
                   value={quality}
                   onChange={(e) => setQuality(parseInt(e.target.value))}
-                  className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   disabled={loading}
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-500 mt-1">
                   <span>Smaller file</span>
                   <span>Better quality</span>
                 </div>
@@ -235,13 +235,13 @@ export default function ImageCompressor() {
 
               {/* Format Selector */}
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">
                   Output Format
                 </label>
                 <select
                   value={format}
                   onChange={(e) => setFormat(e.target.value)}
-                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-gray-900 dark:text-white"
                   disabled={loading}
                 >
                   <option value="auto">Auto (Recommended)</option>
@@ -256,13 +256,13 @@ export default function ImageCompressor() {
               <button
                 onClick={handleCompress}
                 disabled={loading}
-                className="px-6 py-3 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 rounded-lg font-medium transition"
+                className="px-6 py-3 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 rounded-lg font-medium transition text-gray-900 dark:text-white"
               >
                 {loading ? 'Compressing...' : 'Compress Image'}
               </button>
               <button
                 onClick={reset}
-                className="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition"
+                className="px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-medium transition text-gray-900 dark:text-white"
               >
                 Upload New Image
               </button>
@@ -286,9 +286,9 @@ export default function ImageCompressor() {
           {/* Comparison */}
           <div className="grid md:grid-cols-2 gap-6">
             {/* Original */}
-            <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-              <h3 className="text-lg font-semibold mb-4">Original</h3>
-              <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-900">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Original</h3>
+              <div className="relative aspect-square rounded-lg overflow-hidden bg-white dark:bg-gray-900">
                 <img
                   src={originalImage}
                   alt="Original"
@@ -298,9 +298,9 @@ export default function ImageCompressor() {
             </div>
 
             {/* Compressed */}
-            <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-              <h3 className="text-lg font-semibold mb-4">Compressed</h3>
-              <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-900">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Compressed</h3>
+              <div className="relative aspect-square rounded-lg overflow-hidden bg-white dark:bg-gray-900">
                 {compressedImage ? (
                   <img
                     src={compressedImage}
@@ -308,7 +308,7 @@ export default function ImageCompressor() {
                     className="w-full h-full object-contain"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-500">
+                  <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-500">
                     {loading ? 'Processing...' : 'Click "Compress Image" to start'}
                   </div>
                 )}
@@ -318,30 +318,30 @@ export default function ImageCompressor() {
 
           {/* Stats */}
           {stats && (
-            <div className="mt-6 bg-gray-800/50 rounded-xl border border-gray-700 p-6">
-              <h3 className="text-lg font-semibold mb-4">Compression Results</h3>
+            <div className="mt-6 bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Compression Results</h3>
               <div className="grid md:grid-cols-4 gap-6">
                 <div>
-                  <p className="text-sm text-gray-400 mb-1">Original Size</p>
-                  <p className="text-xl font-bold">{formatFileSize(stats.originalSize)}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Original Size</p>
+                  <p className="text-xl font-bold text-gray-900 dark:text-white">{formatFileSize(stats.originalSize)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 mb-1">Compressed Size</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Compressed Size</p>
                   <p className="text-xl font-bold text-green-400">{formatFileSize(stats.compressedSize)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 mb-1">Space Saved</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Space Saved</p>
                   <p className="text-xl font-bold text-green-400">{stats.compressionRatio}%</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 mb-1">Format</p>
-                  <p className="text-xl font-bold uppercase">{stats.format}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Format</p>
+                  <p className="text-xl font-bold uppercase text-gray-900 dark:text-white">{stats.format}</p>
                 </div>
               </div>
 
               <button
                 onClick={downloadImage}
-                className="mt-6 w-full px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition"
+                className="mt-6 w-full px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-medium transition text-gray-900 dark:text-white"
               >
                 Download Compressed Image
               </button>

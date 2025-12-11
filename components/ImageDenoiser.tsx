@@ -173,7 +173,7 @@ export default function ImageDenoiser() {
         <div>
           {/* Task Selection */}
           <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-400 mb-3">Select Restoration Type</h3>
+            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Select Restoration Type</h3>
             <div className="grid md:grid-cols-3 gap-3">
               {TASK_OPTIONS.map((option) => (
                 <button
@@ -182,11 +182,11 @@ export default function ImageDenoiser() {
                   className={`p-4 rounded-lg border-2 text-left transition ${
                     task === option.value
                       ? 'border-cyan-500 bg-cyan-500/10'
-                      : 'border-gray-700 hover:border-gray-600'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
                   }`}
                 >
                   <div className="font-semibold">{option.label}</div>
-                  <div className="text-xs text-gray-400 mt-1">{option.description}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">{option.description}</div>
                 </button>
               ))}
             </div>
@@ -194,7 +194,7 @@ export default function ImageDenoiser() {
 
           <div
             className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
-              dragActive ? "border-cyan-500 bg-cyan-500/10" : "border-gray-600 hover:border-gray-500"
+              dragActive ? "border-cyan-500 bg-cyan-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
             }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -211,7 +211,7 @@ export default function ImageDenoiser() {
 
             <div className="text-center">
               <div className="mb-4">
-                <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                <svg className="mx-auto h-12 w-12 text-gray-600 dark:text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                   <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
@@ -220,8 +220,8 @@ export default function ImageDenoiser() {
                 Upload Image to Restore
               </label>
 
-              <p className="text-gray-400 mt-4">or drop image anywhere</p>
-              <div className="mt-6 text-sm text-gray-500">
+              <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
+              <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
                 <p className="mb-2">Supported formats: png | jpeg | jpg | webp</p>
                 <p className="mb-2">Maximum file size: 20MB</p>
                 <CreditCostBadge tool="denoise" size="md" />
@@ -238,7 +238,7 @@ export default function ImageDenoiser() {
           </div>
 
           {imageInfo && (
-            <div className="flex items-center gap-4 text-sm text-gray-400 bg-gray-800/30 rounded-lg p-3">
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-3">
               <FaInfoCircle className="text-cyan-400" />
               <span>{imageInfo.width} x {imageInfo.height} px</span>
               <span>-</span>
@@ -255,8 +255,8 @@ export default function ImageDenoiser() {
           )}
 
           {/* Task Selection */}
-          <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-4">
-            <h3 className="text-sm font-medium text-gray-400 mb-3">Restoration Type</h3>
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Restoration Type</h3>
             <div className="grid md:grid-cols-3 gap-3">
               {TASK_OPTIONS.map((option) => (
                 <button
@@ -266,17 +266,17 @@ export default function ImageDenoiser() {
                   className={`p-3 rounded-lg border-2 text-left transition ${
                     task === option.value
                       ? 'border-cyan-500 bg-cyan-500/10'
-                      : 'border-gray-700 hover:border-gray-600'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
                   } ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   <div className="font-semibold text-sm">{option.label}</div>
-                  <div className="text-xs text-gray-400 mt-1">{option.description}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">{option.description}</div>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             {processedUrl && previewUrl ? (
               <ImageComparison
                 beforeImage={previewUrl}
@@ -287,19 +287,19 @@ export default function ImageDenoiser() {
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Original Image</h3>
-                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-600" />
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Original Image</h3>
+                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-300 dark:border-gray-600" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Restored Preview</h3>
-                  <div className="w-full aspect-square bg-gray-700 rounded-lg border border-gray-600 flex items-center justify-center">
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Restored Preview</h3>
+                  <div className="w-full aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center">
                     {processing ? (
                       <div className="text-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
-                        <p className="text-gray-400">{progress}</p>
+                        <p className="text-gray-600 dark:text-gray-400">{progress}</p>
                       </div>
                     ) : (
-                      <p className="text-gray-500">Click "Restore Image" to process</p>
+                      <p className="text-gray-500 dark:text-gray-500">Click "Restore Image" to process</p>
                     )}
                   </div>
                 </div>
@@ -339,7 +339,7 @@ export default function ImageDenoiser() {
             <button
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
             >
               Upload New Image
             </button>

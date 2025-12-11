@@ -129,7 +129,7 @@ export default function ImageUploader() {
           className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
             dragActive
               ? "border-green-500 bg-green-500/10"
-              : "border-gray-600 hover:border-gray-500"
+              : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -147,7 +147,7 @@ export default function ImageUploader() {
           <div className="text-center">
             <div className="mb-4">
               <svg
-                className="mx-auto h-12 w-12 text-gray-400"
+                className="mx-auto h-12 w-12 text-gray-600 dark:text-gray-400"
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 48 48"
@@ -168,9 +168,9 @@ export default function ImageUploader() {
               Upload Image
             </label>
 
-            <p className="text-gray-400 mt-4">or drop image anywhere</p>
+            <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
 
-            <div className="mt-6 text-sm text-gray-500">
+            <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
               <p className="mb-2">Paste image or URL • Ctrl + V</p>
               <p>Supported formats: png | jpeg | jpg | webp | heic</p>
             </div>
@@ -179,20 +179,20 @@ export default function ImageUploader() {
       ) : (
         <div className="space-y-6">
           {/* Preview Section */}
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-3">
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
                   Original Image
                 </h3>
                 <img
                   src={previewUrl}
                   alt="Original"
-                  className="w-full rounded-lg border border-gray-600"
+                  className="w-full rounded-lg border border-gray-300 dark:border-gray-600"
                 />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-400 mb-3">
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
                   AI Upscaled to {scale}x {upscaledUrl && `(${scale * 100}%)`}
                 </h3>
                 {upscaledUrl ? (
@@ -202,14 +202,14 @@ export default function ImageUploader() {
                     className="w-full rounded-lg border border-green-500"
                   />
                 ) : (
-                  <div className="w-full aspect-square bg-gray-700 rounded-lg border border-gray-600 flex items-center justify-center">
+                  <div className="w-full aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center">
                     {processing ? (
                       <div className="text-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
-                        <p className="text-gray-400">{progress}</p>
+                        <p className="text-gray-600 dark:text-gray-400">{progress}</p>
                       </div>
                     ) : (
-                      <p className="text-gray-500">Click &quot;Process Image&quot; to upscale</p>
+                      <p className="text-gray-500 dark:text-gray-500">Click &quot;Process Image&quot; to upscale</p>
                     )}
                   </div>
                 )}
@@ -220,9 +220,9 @@ export default function ImageUploader() {
           {/* Controls */}
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <div className="flex items-center gap-2">
-              <label className="text-sm font-medium">Upscale to</label>
+              <label className="text-sm font-medium text-gray-900 dark:text-white">Upscale to</label>
               <select
-                className="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2"
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white"
                 value={scale}
                 onChange={(e) => setScale(parseInt(e.target.value))}
                 disabled={processing}
@@ -234,12 +234,12 @@ export default function ImageUploader() {
             </div>
 
             <div className="flex items-center gap-2">
-              <label className="text-sm font-medium">Enhance Face Quality</label>
+              <label className="text-sm font-medium text-gray-900 dark:text-white">Enhance Face Quality</label>
               <button
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                   enhanceFace
                     ? "bg-green-500 text-white"
-                    : "bg-gray-700 text-gray-300"
+                    : "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300"
                 }`}
                 onClick={() => setEnhanceFace(!enhanceFace)}
                 disabled={processing}
@@ -278,14 +278,14 @@ export default function ImageUploader() {
                 setProgress("");
               }}
               disabled={processing}
-              className="px-8 py-3 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-medium transition"
+              className="px-8 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-medium transition text-gray-900 dark:text-white"
             >
               Upload New
             </button>
           </div>
 
           {/* Limits Notice */}
-          <div className="text-center text-sm text-gray-400 bg-gray-800/30 rounded-lg p-4">
+          <div className="text-center text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-4">
             <p>Your outputs will be capped to a maximum resolution of 10000 x 10000 px.</p>
             <p className="mt-1">
               <button className="text-green-400 hover:underline">Sign Up</button> to unlock

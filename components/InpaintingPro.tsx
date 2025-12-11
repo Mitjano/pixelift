@@ -286,7 +286,7 @@ export default function InpaintingPro() {
       {!previewUrl ? (
         <div
           className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
-            dragActive ? "border-cyan-500 bg-cyan-500/10" : "border-gray-600 hover:border-gray-500"
+            dragActive ? "border-cyan-500 bg-cyan-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -310,8 +310,8 @@ export default function InpaintingPro() {
               Upload Image for AI Inpainting
             </label>
 
-            <p className="text-gray-400 mt-4">or drop image anywhere</p>
-            <div className="mt-6 text-sm text-gray-500">
+            <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
+            <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
               <p className="mb-2">Supported formats: PNG, JPEG, JPG, WEBP</p>
               <p>Maximum file size: 20MB</p>
             </div>
@@ -326,7 +326,7 @@ export default function InpaintingPro() {
           </div>
 
           {imageInfo && (
-            <div className="flex items-center gap-4 text-sm text-gray-400 bg-gray-800/30 rounded-lg p-3">
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-3">
               <FaInfoCircle className="text-cyan-400" />
               <span>{imageInfo.width} x {imageInfo.height} px</span>
               <span>-</span>
@@ -341,8 +341,8 @@ export default function InpaintingPro() {
           )}
 
           {!processedUrl ? (
-            <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                 <FaPaintBrush className="text-cyan-400" />
                 Draw Over Areas to Fill/Replace
               </h3>
@@ -350,7 +350,7 @@ export default function InpaintingPro() {
               {/* Tools */}
               <div className="flex items-center gap-4 mb-4 flex-wrap">
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-gray-400">Brush Size:</label>
+                  <label className="text-sm text-gray-600 dark:text-gray-400">Brush Size:</label>
                   <input
                     type="range"
                     min="10"
@@ -359,11 +359,11 @@ export default function InpaintingPro() {
                     onChange={(e) => setBrushSize(parseInt(e.target.value))}
                     className="w-32"
                   />
-                  <span className="text-sm text-gray-500">{brushSize}px</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-500">{brushSize}px</span>
                 </div>
                 <button
                   onClick={clearMask}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg transition"
                 >
                   <FaUndo />
                   Clear Mask
@@ -371,7 +371,7 @@ export default function InpaintingPro() {
               </div>
 
               {/* Canvas */}
-              <div className="relative border border-gray-600 rounded-lg overflow-hidden inline-block">
+              <div className="relative border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden inline-block">
                 <canvas
                   ref={canvasRef}
                   onMouseDown={() => setIsDrawing(true)}
@@ -384,13 +384,13 @@ export default function InpaintingPro() {
                 <canvas ref={maskCanvasRef} className="hidden" />
               </div>
 
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
                 Paint red over the areas you want to fill or replace
               </p>
 
               {/* Prompt */}
               <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-400 mb-2">
+                <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
                   What should appear in the painted area?
                 </label>
                 <input
@@ -398,12 +398,12 @@ export default function InpaintingPro() {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="e.g., 'a beautiful garden', 'clear blue sky', 'wooden texture'"
-                  className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg focus:border-cyan-500 focus:outline-none"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-cyan-500 focus:outline-none text-gray-900 dark:text-white"
                 />
               </div>
             </div>
           ) : (
-            <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <ImageComparison
                 beforeImage={previewUrl}
                 afterImage={processedUrl}
@@ -445,13 +445,13 @@ export default function InpaintingPro() {
             <button
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
             >
               Upload New Image
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+          <div className="text-center text-sm text-gray-500 dark:text-gray-500 flex items-center justify-center gap-2">
             <span>Powered by FLUX Fill Pro AI -</span>
             <CreditCostBadge tool="inpainting" size="xs" />
             <span>per inpainting</span>

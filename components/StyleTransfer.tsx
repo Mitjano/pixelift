@@ -237,10 +237,10 @@ export default function StyleTransfer() {
       {/* Info Banner */}
       <div className="mb-6 bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-xl p-4">
         <div className="flex items-start gap-3">
-          <FaMagic className="text-pink-400 mt-1 flex-shrink-0" />
+          <FaMagic className="text-pink-600 dark:text-pink-400 mt-1 flex-shrink-0" />
           <div>
-            <h4 className="font-semibold text-pink-300">Identity-Preserving Style Transfer</h4>
-            <p className="text-sm text-gray-400 mt-1">
+            <h4 className="font-semibold text-pink-600 dark:text-pink-300">Identity-Preserving Style Transfer</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               Your face and identity stay exactly the same - only the scene, background, and artistic style change.
               Perfect for creating professional headshots, fantasy portraits, or placing yourself in any environment!
             </p>
@@ -251,7 +251,7 @@ export default function StyleTransfer() {
       {!previewUrl ? (
         <div
           className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
-            dragActive ? "border-pink-500 bg-pink-500/10" : "border-gray-600 hover:border-gray-500"
+            dragActive ? "border-pink-500 bg-pink-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -268,15 +268,15 @@ export default function StyleTransfer() {
 
           <div className="text-center">
             <div className="mb-4">
-              <FaPalette className="mx-auto h-12 w-12 text-pink-400" />
+              <FaPalette className="mx-auto h-12 w-12 text-pink-600 dark:text-pink-400" />
             </div>
 
             <label htmlFor="file-upload" className="cursor-pointer inline-block px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 rounded-lg font-medium transition mb-4">
               Upload Your Photo
             </label>
 
-            <p className="text-gray-400 mt-4">or drop image anywhere</p>
-            <div className="mt-6 text-sm text-gray-500">
+            <p className="text-gray-600 dark:text-gray-400 mt-4">or drop image anywhere</p>
+            <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
               <p className="mb-2">Best results with clear face photos - frontal view recommended</p>
               <p>Supported formats: PNG, JPEG, WEBP • Max size: 20MB</p>
             </div>
@@ -291,15 +291,15 @@ export default function StyleTransfer() {
           </div>
 
           {imageInfo && (
-            <div className="flex items-center gap-4 text-sm text-gray-400 bg-gray-800/30 rounded-lg p-3">
-              <FaInfoCircle className="text-pink-400" />
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/30 rounded-lg p-3">
+              <FaInfoCircle className="text-pink-600 dark:text-pink-400" />
               <span>{imageInfo.width} x {imageInfo.height} px</span>
               <span>-</span>
               <span>{(imageInfo.size / 1024 / 1024).toFixed(2)} MB</span>
               {creditsRemaining !== null && (
                 <>
                   <span>-</span>
-                  <span className="text-pink-400">{creditsRemaining} credits remaining</span>
+                  <span className="text-pink-600 dark:text-pink-400">{creditsRemaining} credits remaining</span>
                 </>
               )}
             </div>
@@ -307,14 +307,14 @@ export default function StyleTransfer() {
 
           {/* Style Presets */}
           {!styledUrl && (
-            <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               {/* Step 1: Choose Style */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-pink-500 text-white text-sm font-bold">1</span>
-                  <h3 className="text-lg font-semibold">Choose Style</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Choose Style</h3>
                 </div>
-                <p className="text-sm text-gray-400 mb-4 ml-8">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 ml-8">
                   Select a base style for your transformation
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
@@ -325,25 +325,25 @@ export default function StyleTransfer() {
                       className={`p-3 rounded-xl border-2 transition-all text-center ${
                         selectedStyle === style.id
                           ? 'border-pink-500 bg-pink-500/20'
-                          : 'border-gray-600 hover:border-gray-500 bg-gray-800/50'
+                          : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 bg-white dark:bg-gray-800/50'
                       }`}
                     >
                       <div className="text-2xl mb-1">{style.icon}</div>
-                      <div className="font-medium text-sm">{style.name}</div>
+                      <div className="font-medium text-sm text-gray-900 dark:text-white">{style.name}</div>
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Step 2: Customize Details */}
-              <div className="border-t border-gray-700 pt-6">
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-pink-500 text-white text-sm font-bold">2</span>
-                  <h3 className="text-lg font-semibold">Customize Your Scene</h3>
-                  <span className="text-xs text-gray-500 ml-2">(optional but recommended)</span>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Customize Your Scene</h3>
+                  <span className="text-xs text-gray-500 dark:text-gray-500 ml-2">(optional but recommended)</span>
                 </div>
-                <p className="text-sm text-gray-400 mb-3 ml-8">
-                  Add specific details to make your <span className="text-pink-400 font-medium">{STYLE_PRESETS.find(s => s.id === selectedStyle)?.name}</span> transformation unique
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 ml-8">
+                  Add specific details to make your <span className="text-pink-600 dark:text-pink-400 font-medium">{STYLE_PRESETS.find(s => s.id === selectedStyle)?.name}</span> transformation unique
                 </p>
                 <div className="ml-8">
                   <textarea
@@ -353,11 +353,11 @@ export default function StyleTransfer() {
                       setEnhancedPrompt(null);
                     }}
                     placeholder={STYLE_PRESETS.find(s => s.id === selectedStyle)?.placeholder || 'Add details about the scene, clothing, background, mood...'}
-                    className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg focus:border-pink-500 focus:outline-none resize-none text-white placeholder-gray-500"
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-pink-500 focus:outline-none resize-none text-gray-900 dark:text-white placeholder-gray-500"
                     rows={2}
                   />
                   <div className="flex justify-between items-center mt-2">
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-gray-500">
                       Describe the scene, environment, clothing, or mood you want.
                     </p>
                     <button
@@ -383,9 +383,9 @@ export default function StyleTransfer() {
                   {enhancedPrompt && (
                     <div className="mt-3 p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-amber-400 font-medium text-sm">Enhanced prompt:</span>
+                        <span className="text-amber-600 dark:text-amber-400 font-medium text-sm">Enhanced prompt:</span>
                       </div>
-                      <p className="text-gray-300 text-sm mb-3 leading-relaxed">{enhancedPrompt}</p>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm mb-3 leading-relaxed">{enhancedPrompt}</p>
                       <div className="flex gap-2">
                         <button
                           onClick={applyEnhancedPrompt}
@@ -395,7 +395,7 @@ export default function StyleTransfer() {
                         </button>
                         <button
                           onClick={dismissEnhancedPrompt}
-                          className="px-4 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 text-sm rounded-lg transition"
+                          className="px-4 py-1.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-sm rounded-lg transition"
                         >
                           Cancel
                         </button>
@@ -407,7 +407,7 @@ export default function StyleTransfer() {
             </div>
           )}
 
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             {styledUrl && previewUrl ? (
               <ImageComparison
                 beforeImage={previewUrl}
@@ -418,23 +418,23 @@ export default function StyleTransfer() {
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Your Photo</h3>
-                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-600" />
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Your Photo</h3>
+                  <img src={previewUrl || undefined} alt="Original" className="w-full rounded-lg border border-gray-300 dark:border-gray-600" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Styled Result</h3>
-                  <div className="w-full aspect-square bg-gray-700 rounded-lg border border-gray-600 flex items-center justify-center">
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Styled Result</h3>
+                  <div className="w-full aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center">
                     {processing ? (
                       <div className="text-center p-6">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mx-auto mb-4"></div>
-                        <p className="text-gray-400">{progress}</p>
-                        <p className="text-xs text-gray-500 mt-2">This may take 20-40 seconds...</p>
+                        <p className="text-gray-600 dark:text-gray-400">{progress}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">This may take 20-40 seconds...</p>
                       </div>
                     ) : (
                       <div className="text-center p-6">
-                        <FaMagic className="mx-auto h-10 w-10 text-gray-500 mb-3" />
-                        <p className="text-gray-500">Select a style and click &quot;Transform&quot;</p>
-                        <p className="text-xs text-gray-600 mt-2">Your identity will be perfectly preserved</p>
+                        <FaMagic className="mx-auto h-10 w-10 text-gray-500 dark:text-gray-500 mb-3" />
+                        <p className="text-gray-500 dark:text-gray-500">Select a style and click &quot;Transform&quot;</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-600 mt-2">Your identity will be perfectly preserved</p>
                       </div>
                     )}
                   </div>
@@ -475,13 +475,13 @@ export default function StyleTransfer() {
             <button
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition text-gray-900 dark:text-white"
             >
               Upload New Photo
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
+          <div className="text-center text-sm text-gray-500 dark:text-gray-500 flex items-center justify-center gap-2">
             <span>Powered by InstantID + IPAdapter AI - Your face stays identical -</span>
             <CreditCostBadge tool="style_transfer" size="xs" />
             <span>per transform</span>

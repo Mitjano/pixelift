@@ -115,7 +115,7 @@ export function BackgroundRemover({ userRole = 'user' }: BackgroundRemoverProps)
             transition-all duration-300 ease-in-out
             ${isDragActive
               ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 scale-[1.02]'
-              : 'border-gray-300 dark:border-gray-700 hover:border-blue-400 dark:hover:bg-gray-800/50'
+              : 'border-gray-300 dark:border-gray-700 hover:border-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800/50'
             }
             ${processing ? 'opacity-50 cursor-not-allowed' : ''}
           `}

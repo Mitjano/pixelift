@@ -162,7 +162,7 @@ export function PackshotGenerator({ userRole = 'user' }: PackshotGeneratorProps)
       {/* Preset Selection */}
       {!result && (
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-white">Choose Preset</h3>
+          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Choose Preset</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {PRESETS.map((preset) => (
               <button
@@ -174,15 +174,15 @@ export function PackshotGenerator({ userRole = 'user' }: PackshotGeneratorProps)
                   ${
                     selectedPreset === preset.id
                       ? 'border-green-500 bg-green-500/10 shadow-lg shadow-green-500/20'
-                      : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                      : 'border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800/50 hover:border-gray-300 dark:hover:border-gray-600'
                   }
                   ${processing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                   ${preset.disabled && userRole === 'user' ? 'opacity-50' : ''}
                 `}
               >
                 <div className="text-3xl mb-2">{preset.icon}</div>
-                <h4 className="font-semibold text-white mb-1">{preset.name}</h4>
-                <p className="text-xs text-gray-400 mb-2">{preset.description}</p>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{preset.name}</h4>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">{preset.description}</p>
                 <div className="flex items-center justify-center gap-1 text-xs">
                   <span className="text-green-400">{preset.credits} credit{preset.credits > 1 ? 's' : ''}</span>
                 </div>
@@ -274,7 +274,7 @@ export function PackshotGenerator({ userRole = 'user' }: PackshotGeneratorProps)
                 <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
                 Original
               </h4>
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                 <Image src={originalImage} alt="Original" fill className="object-contain" />
               </div>
             </div>
