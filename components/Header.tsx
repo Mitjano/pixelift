@@ -262,7 +262,7 @@ export default function Header() {
   );
 
   return (
-    <header className="border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50 transition-colors overflow-x-hidden">
+    <header className="border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50 transition-colors">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between" role="navigation" aria-label="Main navigation">
         {/* Logo - fixed width for balance with right side (only on desktop) */}
         <Link href="/" className="flex items-center gap-2 md:w-[280px] shrink-0" aria-label="Pixelift home">
