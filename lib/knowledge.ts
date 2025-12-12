@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { generateThumbnail, thumbnailExists } from "./knowledge-thumbnails";
 
 export type KnowledgeCategory =
   | "models"      // AI models (Flux, SDXL, Recraft, etc.)
@@ -140,6 +141,24 @@ export async function createArticle(article: Omit<KnowledgeArticle, "id" | "crea
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
+
+  // Auto-generate thumbnail if it doesn't exist
+  if (!thumbnailExists(newArticle.slug)) {
+    try {
+      console.log(`Auto-generating thumbnail for new article: ${newArticle.slug}`);
+      const result = await generateThumbnail(newArticle.title, newArticle.category, newArticle.slug);
+      if (result.success && result.imagePath) {
+        newArticle.featuredImage = result.imagePath;
+        console.log(`Thumbnail generated: ${result.imagePath}`);
+      }
+    } catch (error) {
+      console.error(`Failed to auto-generate thumbnail for ${newArticle.slug}:`, error);
+      // Continue without thumbnail - don't fail article creation
+    }
+  } else if (!newArticle.featuredImage) {
+    newArticle.featuredImage = `/api/knowledge-image/${newArticle.slug}`;
+  }
+
   await fs.writeFile(path.join(dir, `${id}.json`), JSON.stringify(newArticle, null, 2));
   return newArticle;
 }
@@ -172,12 +191,33 @@ export async function deleteArticle(id: string, locale: SupportedLocale = "en"):
 }
 
 // Save article to specific locale folder (for translations)
-export async function saveArticleToLocale(article: KnowledgeArticle, locale: SupportedLocale): Promise<void> {
+// Automatically generates AI thumbnail if not exists
+export async function saveArticleToLocale(article: KnowledgeArticle, locale: SupportedLocale): Promise<KnowledgeArticle> {
   await ensureKnowledgeDir(locale);
   const dir = getKnowledgeDir(locale);
+
+  // Auto-generate thumbnail if it doesn't exist
+  if (!thumbnailExists(article.slug)) {
+    try {
+      console.log(`Auto-generating thumbnail for article: ${article.slug}`);
+      const result = await generateThumbnail(article.title, article.category, article.slug);
+      if (result.success && result.imagePath) {
+        article.featuredImage = result.imagePath;
+        console.log(`Thumbnail generated: ${result.imagePath}`);
+      }
+    } catch (error) {
+      console.error(`Failed to auto-generate thumbnail for ${article.slug}:`, error);
+      // Continue without thumbnail - don't fail article creation
+    }
+  } else if (!article.featuredImage) {
+    // Thumbnail exists but article doesn't have the path set
+    article.featuredImage = `/api/knowledge-image/${article.slug}`;
+  }
+
   // Use slug as filename for consistency across locales
   const filename = `${article.slug}.json`;
   await fs.writeFile(path.join(dir, filename), JSON.stringify(article, null, 2));
+  return article;
 }
 
 // Get article by slug from specific locale, with fallback to English
