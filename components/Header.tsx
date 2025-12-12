@@ -305,11 +305,11 @@ export default function Header() {
               aria-label="Tools menu"
               onKeyDown={toolsNavigation.handleKeyDown}
               tabIndex={toolsDropdownOpen ? 0 : -1}
-              className={`absolute left-1/2 -translate-x-1/2 mt-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top z-[9999] ${
+              className={`absolute left-1/2 -translate-x-1/2 mt-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top z-[9999] max-h-[calc(100vh-100px)] overflow-y-auto ${
                 toolsDropdownOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'
               }`}
             >
-              <div className="flex">
+              <div className="flex flex-wrap lg:flex-nowrap">
                 {categories.map((category, catIndex) => {
                   // Calculate tool index offset for keyboard navigation
                   const toolIndexOffset = categories
