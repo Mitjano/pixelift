@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T18:09:29.826Z",
   "publishedAt": "2024-11-29T15:08:00.000Z",
   "metaTitle": "Échantillonneurs et Planificateurs Expliqués - Paramètres Image IA | Pixelift",
-  "metaDescription": "Comprendre les échantillonneurs et planificateurs dans la génération d'images IA. Découvrez comment Euler, DPM++, DDIM et d'autres affectent la qualité, la vitesse et le style de l'image."
+  "metaDescription": "Comprendre les échantillonneurs et planificateurs dans la génération d'images IA. Découvrez comment Euler, DPM++, DDIM et d'autres affectent la qualité, la vitesse et le style de l'image.",
+  "featuredImage": "/api/knowledge-image/samplers-schedulers-explained"
 }

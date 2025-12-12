@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T17:21:18.172Z",
   "publishedAt": "2024-11-29T21:38:00.000Z",
   "metaTitle": "Wyjaśnienie Skali CFG: Pełny Przewodnik | Pixelift",
-  "metaDescription": "Opanuj Skalerę CFG (Przewodnictwo Bez-Klasifikatora) dla generowania obrazów AI. Naucz się optymalnych wartości, rozwiązuj typowe problemy i popraw swoje wyniki."
+  "metaDescription": "Opanuj Skalerę CFG (Przewodnictwo Bez-Klasifikatora) dla generowania obrazów AI. Naucz się optymalnych wartości, rozwiązuj typowe problemy i popraw swoje wyniki.",
+  "featuredImage": "/api/knowledge-image/cfg-scale-explained"
 }

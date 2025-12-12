@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T18:00:55.569Z",
   "publishedAt": "2024-11-29T15:06:00.000Z",
   "metaTitle": "Modèles de Diffusion Expliqués - Comment Fonctionne la Génération d'Images par IA | Pixelift",
-  "metaDescription": "Comprendre les modèles de diffusion - la technologie derrière Stable Diffusion, Flux, et les générateurs d'images AI modernes. Découvrez comment ils créent des images à partir de bruit."
+  "metaDescription": "Comprendre les modèles de diffusion - la technologie derrière Stable Diffusion, Flux, et les générateurs d'images AI modernes. Découvrez comment ils créent des images à partir de bruit.",
+  "featuredImage": "/api/knowledge-image/diffusion-models-explained"
 }

@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T17:59:47.369Z",
   "publishedAt": "2024-11-29T21:38:00.000Z",
   "metaTitle": "Échelle CFG Expliquée : Le Guide Complet | Pixelift",
-  "metaDescription": "Maîtriser l'échelle CFG (Classifier-Free Guidance) pour la génération d'images IA. Apprenez les valeurs optimales, résolvez les problèmes courants et améliorez vos résultats."
+  "metaDescription": "Maîtriser l'échelle CFG (Classifier-Free Guidance) pour la génération d'images IA. Apprenez les valeurs optimales, résolvez les problèmes courants et améliorez vos résultats.",
+  "featuredImage": "/api/knowledge-image/cfg-scale-explained"
 }

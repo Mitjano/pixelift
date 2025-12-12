@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T18:08:36.988Z",
   "publishedAt": "2024-11-29T15:07:00.000Z",
   "metaTitle": "Guide des Invites Négatifs - Améliorez la Qualité de l'Image IA | Pixelift",
-  "metaDescription": "Maîtrisez les invites négatifs pour la génération d'images IA. Découvrez ce qu'il faut éviter, les bonnes pratiques et les modèles pour de meilleurs résultats avec moins d'artefacts."
+  "metaDescription": "Maîtrisez les invites négatifs pour la génération d'images IA. Découvrez ce qu'il faut éviter, les bonnes pratiques et les modèles pour de meilleurs résultats avec moins d'artefacts.",
+  "featuredImage": "/api/knowledge-image/negative-prompts-guide"
 }

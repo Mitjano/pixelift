@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T17:49:03.296Z",
   "publishedAt": "2024-11-29T21:52:00.000Z",
   "metaTitle": "Guía de Ajuste Fino de LoRA: Personaliza Modelos de Imágenes de IA | Pixelift",
-  "metaDescription": "Domina LoRA (Adaptación de Baja Rango) para la generación de imágenes de IA. Aprende a entrenar, usar y combinar LoRAs para estilos, personajes y conceptos personalizados."
+  "metaDescription": "Domina LoRA (Adaptación de Baja Rango) para la generación de imágenes de IA. Aprende a entrenar, usar y combinar LoRAs para estilos, personajes y conceptos personalizados.",
+  "featuredImage": "/api/knowledge-image/lora-fine-tuning-guide"
 }

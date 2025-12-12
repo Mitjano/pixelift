@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T17:51:49.970Z",
   "publishedAt": "2024-11-29T15:08:00.000Z",
   "metaTitle": "Muestreadores y Programadores Explicados - Configuraciones de Imagen AI | Pixelift",
-  "metaDescription": "Entiende los muestreadores y programadores en la generación de imágenes AI. Aprende cómo Euler, DPM++, DDIM y otros afectan la calidad, velocidad y estilo de la imagen."
+  "metaDescription": "Entiende los muestreadores y programadores en la generación de imágenes AI. Aprende cómo Euler, DPM++, DDIM y otros afectan la calidad, velocidad y estilo de la imagen.",
+  "featuredImage": "/api/knowledge-image/samplers-schedulers-explained"
 }

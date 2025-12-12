@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T17:33:25.745Z",
   "publishedAt": "2024-11-29T15:08:00.000Z",
   "metaTitle": "Samplery i Harmonogramy Wyjaśnione - Ustawienia Obrazów AI | Pixelift",
-  "metaDescription": "Zrozum samplery i harmonogramy w generowaniu obrazów AI. Dowiedz się, jak Euler, DPM++, DDIM i inne wpływają na jakość, szybkość i styl obrazu."
+  "metaDescription": "Zrozum samplery i harmonogramy w generowaniu obrazów AI. Dowiedz się, jak Euler, DPM++, DDIM i inne wpływają na jakość, szybkość i styl obrazu.",
+  "featuredImage": "/api/knowledge-image/samplers-schedulers-explained"
 }

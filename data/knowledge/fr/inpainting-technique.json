@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T18:06:54.996Z",
   "publishedAt": "2024-11-29T15:00:00.000Z",
   "metaTitle": "Inpainting - Guide de Suppression et Remplacement d'Objets par l'IA | Pixelift",
-  "metaDescription": "Découvrez l'inpainting - la technique IA pour supprimer les objets non désirés et les remplacer par un contenu homogène. Conseils, cas d'utilisation et meilleures pratiques."
+  "metaDescription": "Découvrez l'inpainting - la technique IA pour supprimer les objets non désirés et les remplacer par un contenu homogène. Conseils, cas d'utilisation et meilleures pratiques.",
+  "featuredImage": "/api/knowledge-image/inpainting-technique"
 }

@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T17:29:22.122Z",
   "publishedAt": "2024-11-29T21:52:00.000Z",
   "metaTitle": "Przewodnik po Dostosowywaniu LoRA: Personalizacja Modelli Obrazów AI | Pixelift",
-  "metaDescription": "Opanuj LoRA (Low-Rank Adaptation) do generowania obrazów AI. Naucz się trenować, używać i łączyć LoRA do niestandardowych stylów, postaci i koncepcji."
+  "metaDescription": "Opanuj LoRA (Low-Rank Adaptation) do generowania obrazów AI. Naucz się trenować, używać i łączyć LoRA do niestandardowych stylów, postaci i koncepcji.",
+  "featuredImage": "/api/knowledge-image/lora-fine-tuning-guide"
 }

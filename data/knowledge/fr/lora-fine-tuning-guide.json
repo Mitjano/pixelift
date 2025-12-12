@@ -17,5 +17,6 @@
   "updatedAt": "2025-11-30T18:07:29.011Z",
   "publishedAt": "2024-11-29T21:52:00.000Z",
   "metaTitle": "Guide de l'Ajustement Fin LoRA : Personnaliser les Modèles d'Images IA | Pixelift",
-  "metaDescription": "Maîtrisez LoRA (Adaptation de Faible Rang) pour la génération d'images IA. Apprenez à entraîner, utiliser et combiner les LoRA pour des styles, personnages et concepts personnalisés."
+  "metaDescription": "Maîtrisez LoRA (Adaptation de Faible Rang) pour la génération d'images IA. Apprenez à entraîner, utiliser et combiner les LoRA pour des styles, personnages et concepts personnalisés.",
+  "featuredImage": "/api/knowledge-image/lora-fine-tuning-guide"
 }
