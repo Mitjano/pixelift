@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { isAdmin } from '@/lib/auth';
 import { generateThumbnail, thumbnailExists, generateMissingThumbnails } from '@/lib/knowledge-thumbnails';
 import { getAllArticles, updateArticle, SupportedLocale } from '@/lib/knowledge';
 
 // POST: Generate thumbnail for a specific article
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.email || session.user.role !== 'ADMIN') {
+    if (!(await isAdmin())) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -58,9 +55,7 @@ export async function POST(request: NextRequest) {
 // PUT: Generate thumbnails for all articles that don't have one
 export async function PUT(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.email || session.user.role !== 'ADMIN') {
+    if (!(await isAdmin())) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -119,9 +114,7 @@ export async function PUT(request: NextRequest) {
 // GET: Check thumbnail status for all articles
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.email || session.user.role !== 'ADMIN') {
+    if (!(await isAdmin())) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
