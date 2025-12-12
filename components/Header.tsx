@@ -305,11 +305,11 @@ export default function Header() {
               aria-label="Tools menu"
               onKeyDown={toolsNavigation.handleKeyDown}
               tabIndex={toolsDropdownOpen ? 0 : -1}
-              className={`absolute left-1/2 -translate-x-1/2 mt-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top z-[9999] max-h-[calc(100vh-100px)] overflow-y-auto ${
+              className={`fixed left-1/2 -translate-x-1/2 top-[70px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top z-[9999] max-h-[calc(100vh-100px)] overflow-y-auto max-w-[calc(100vw-32px)] ${
                 toolsDropdownOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'
               }`}
             >
-              <div className="flex flex-wrap lg:flex-nowrap">
+              <div className="flex flex-wrap xl:flex-nowrap overflow-x-auto">
                 {categories.map((category, catIndex) => {
                   // Calculate tool index offset for keyboard navigation
                   const toolIndexOffset = categories
@@ -319,8 +319,8 @@ export default function Header() {
                   return (
                     <div
                       key={category.id}
-                      className={`py-4 px-3 min-w-[180px] ${
-                        catIndex !== categories.length - 1 ? 'border-r border-gray-100 dark:border-gray-800' : ''
+                      className={`py-4 px-3 min-w-[160px] flex-shrink-0 ${
+                        catIndex !== categories.length - 1 ? 'xl:border-r border-gray-100 dark:border-gray-800' : ''
                       }`}
                     >
                       {/* Category Header */}
