@@ -5,6 +5,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { ImageProcessor } from '@/lib/image-processor'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -100,13 +101,16 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
+    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU
+    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl)
+
     // 7. CALL REPLICATE - FLUX Redux Schnell for image variations
     // FLUX Redux does NOT support prompt - it uses redux_image for conditioning
     const output = await replicate.run(
       "black-forest-labs/flux-redux-schnell",
       {
         input: {
-          redux_image: dataUrl, // Image to create variations from
+          redux_image: resizedDataUrl, // Image to create variations from
           num_outputs: actualVariations,
           megapixels: "1",
           num_inference_steps: 4, // Schnell uses 1-4 steps

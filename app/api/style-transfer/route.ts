@@ -5,6 +5,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { ImageProcessor } from '@/lib/image-processor'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -140,6 +141,9 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
+    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU
+    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl)
+
     // 7. BUILD FINAL PROMPT - combine preset with user's custom details
     const preset = STYLE_PRESETS[stylePreset] || STYLE_PRESETS.cyberpunk
     let finalPrompt = preset.prompt
@@ -157,7 +161,7 @@ export async function POST(request: NextRequest) {
       "zsxkib/instant-id-ipadapter-plus-face:32402fb5c493d883aa6cf098ce3e4cc80f1fe6871f6ae7f632a8dbde01a3d161",
       {
         input: {
-          image: dataUrl,
+          image: resizedDataUrl,
           prompt: finalPrompt,
           negative_prompt: negativePrompt,
           // Face preservation settings - HIGH values to keep identity

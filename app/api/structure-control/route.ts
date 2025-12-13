@@ -5,6 +5,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { ImageProcessor } from '@/lib/image-processor'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -103,6 +104,9 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
+    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU
+    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl)
+
     // 7. SELECT MODEL BASED ON CONTROL MODE
     let modelId: string
     let inputParams: Record<string, unknown>
@@ -111,7 +115,7 @@ export async function POST(request: NextRequest) {
       // FLUX Canny - Edge detection based control
       modelId = "black-forest-labs/flux-canny-pro"
       inputParams = {
-        control_image: dataUrl,
+        control_image: resizedDataUrl,
         prompt: prompt,
         steps: 50,
         guidance: 30,
@@ -123,7 +127,7 @@ export async function POST(request: NextRequest) {
       // FLUX Depth - Depth map based control (default)
       modelId = "black-forest-labs/flux-depth-pro"
       inputParams = {
-        control_image: dataUrl,
+        control_image: resizedDataUrl,
         prompt: prompt,
         steps: 50,
         guidance: 30,

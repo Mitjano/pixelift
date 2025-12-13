@@ -5,6 +5,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { ImageProcessor } from '@/lib/image-processor'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -93,12 +94,15 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
+    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU
+    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl)
+
     // 7. CALL REPLICATE - DDColor model
     const output = await replicate.run(
       "piddnad/ddcolor:ca494ba129e44e45f661d6ece83c4c98a9a7c774309beca01429b58fce8aa695",
       {
         input: {
-          image: dataUrl,
+          image: resizedDataUrl,
           model_size: "large", // 'tiny', 'small', 'medium', 'large'
         }
       }

@@ -5,6 +5,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { ImageProcessor } from '@/lib/image-processor'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -108,14 +109,18 @@ export async function POST(request: NextRequest) {
     const maskBase64 = maskBuffer.toString('base64')
     const maskDataUrl = `data:${mask.type};base64,${maskBase64}`
 
+    // 7.5. RESIZE IF TOO LARGE FOR REPLICATE GPU
+    const resizedImageDataUrl = await ImageProcessor.resizeForUpscale(imageDataUrl)
+    const resizedMaskDataUrl = await ImageProcessor.resizeForUpscale(maskDataUrl)
+
     // 8. CALL REPLICATE - FLUX Fill Pro for inpainting/outpainting
     // Note: guidance default is 60 according to Replicate docs
     const output = await replicate.run(
       "black-forest-labs/flux-fill-pro",
       {
         input: {
-          image: imageDataUrl,
-          mask: maskDataUrl,
+          image: resizedImageDataUrl,
+          mask: resizedMaskDataUrl,
           prompt: prompt,
           steps: 50,
           guidance: 60, // Default recommended by Replicate docs
