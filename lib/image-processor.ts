@@ -571,59 +571,49 @@ export class ImageProcessor {
   }
 
   /**
-   * Professional product photography using fal.ai Product Photography
-   * Generates professional studio photos with realistic lighting ($0.04/image)
+   * Professional packshot using Photoroom API ($0.10/image)
+   * Industry standard - removes background, adds shadow, beautifies product
    */
-  static async generateProductPhotography(
-    productImageUrl: string
-  ): Promise<string> {
-    const falApiKey = process.env.FAL_API_KEY
-    if (!falApiKey) {
-      throw new Error('FAL_API_KEY not configured')
+  static async generatePackshotPhotoroom(
+    imageBuffer: Buffer,
+    backgroundColor: string = 'FFFFFF'
+  ): Promise<Buffer> {
+    const photoroomApiKey = process.env.PHOTOROOM_API_KEY
+    if (!photoroomApiKey) {
+      throw new Error('PHOTOROOM_API_KEY not configured')
     }
 
-    console.log('Starting fal.ai Product Photography...')
+    console.log('Starting Photoroom packshot generation...')
 
-    // Use synchronous endpoint - only send required parameter
-    const response = await fetch('https://fal.run/fal-ai/image-apps-v2/product-photography', {
+    // Create form data with image
+    const formData = new FormData()
+    const blob = new Blob([imageBuffer], { type: 'image/png' })
+    formData.append('imageFile', blob, 'image.png')
+    formData.append('removeBackground', 'true')
+    formData.append('beautifier', 'ai.auto') // Professional packshot beautifier
+    formData.append('background.color', backgroundColor)
+    formData.append('shadow.mode', 'ai.soft') // Soft AI shadow
+    formData.append('padding', '0.1') // 10% padding
+    formData.append('outputSize', '2000x2000')
+
+    const response = await fetch('https://image-api.photoroom.com/v2/edit', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Key ${falApiKey}`,
+        'x-api-key': photoroomApiKey,
+        'Accept': 'image/png',
       },
-      body: JSON.stringify({
-        product_image_url: productImageUrl,
-      }),
+      body: formData,
     })
 
     if (!response.ok) {
       const error = await response.text()
-      console.error('Product Photography error:', error)
-      throw new Error(`Product Photography failed: ${error}`)
+      console.error('Photoroom error:', error)
+      throw new Error(`Photoroom failed: ${error}`)
     }
 
-    const result = await response.json()
-    console.log('Product Photography result keys:', Object.keys(result))
-
-    // Try various response formats
-    if (result.image?.url) {
-      console.log('Product photography generated via fal.ai')
-      return result.image.url
-    }
-
-    if (result.images?.[0]?.url) {
-      return result.images[0].url
-    }
-
-    if (typeof result.output === 'string') {
-      return result.output
-    }
-
-    if (result.url) {
-      return result.url
-    }
-
-    console.error('Unexpected response:', JSON.stringify(result).slice(0, 500))
-    throw new Error('No image URL in Product Photography response')
+    // Response is the image directly
+    const resultBuffer = Buffer.from(await response.arrayBuffer())
+    console.log('Packshot generated via Photoroom')
+    return resultBuffer
   }
 }

@@ -9,108 +9,49 @@ import { ImageProcessor } from '@/lib/image-processor'
 
 interface PackshotPreset {
   name: string
-  background: { r: number; g: number; b: number }
+  backgroundColor: string // Hex color for Photoroom
   credits: number
 }
 
 const PACKSHOT_CREDITS = CREDIT_COSTS.packshot.cost
 
-// Professional packshot presets - BiRefNet background removal + shadow
+// Professional packshot presets - using Photoroom API
 const PRESETS: Record<string, PackshotPreset> = {
   white: {
     name: 'White Background',
-    background: { r: 255, g: 255, b: 255 },
+    backgroundColor: 'FFFFFF',
     credits: PACKSHOT_CREDITS,
   },
   gray: {
     name: 'Light Gray',
-    background: { r: 240, g: 240, b: 240 },
+    backgroundColor: 'F0F0F0',
     credits: PACKSHOT_CREDITS,
   },
   studio: {
     name: 'Studio Setup',
-    background: { r: 250, g: 250, b: 250 },
+    backgroundColor: 'FAFAFA',
     credits: PACKSHOT_CREDITS,
   },
   lifestyle: {
     name: 'Lifestyle',
-    background: { r: 245, g: 243, b: 240 },
+    backgroundColor: 'F5F3F0',
     credits: PACKSHOT_CREDITS,
   },
 }
 
 async function generatePackshot(imageBuffer: Buffer, preset: PackshotPreset): Promise<Buffer> {
-  // Convert image to base64 data URL
-  const base64Image = imageBuffer.toString('base64')
-  const dataUrl = `data:image/png;base64,${base64Image}`
-
-  // Step 1: Remove background using BiRefNet
-  console.log('Removing background with BiRefNet...')
-  const transparentUrl = await ImageProcessor.removeBackground(dataUrl)
-
-  // Download transparent image
-  const transparentResponse = await fetch(transparentUrl)
-  if (!transparentResponse.ok) {
-    throw new Error('Failed to download transparent image')
-  }
-  const transparentBuffer = Buffer.from(await transparentResponse.arrayBuffer())
-
-  // Step 2: Get product dimensions and calculate layout
-  const productMeta = await sharp(transparentBuffer).metadata()
-  const productWidth = productMeta.width || 1000
-  const productHeight = productMeta.height || 1000
-
-  const canvasSize = 2000
-  const maxProductHeight = canvasSize * 0.75 // Product takes max 75% of canvas height
-  const scale = Math.min(
-    (canvasSize * 0.85) / productWidth,  // 85% width
-    maxProductHeight / productHeight
+  // Use Photoroom API - industry standard for professional packshots
+  const resultBuffer = await ImageProcessor.generatePackshotPhotoroom(
+    imageBuffer,
+    preset.backgroundColor
   )
 
-  const scaledWidth = Math.round(productWidth * scale)
-  const scaledHeight = Math.round(productHeight * scale)
-  const productX = Math.round((canvasSize - scaledWidth) / 2)
-  const productY = Math.round((canvasSize - scaledHeight) / 2) - 50 // Slightly above center
-
-  // Step 3: Resize product
-  const resizedProduct = await sharp(transparentBuffer)
-    .resize(scaledWidth, scaledHeight, { fit: 'contain' })
-    .png()
-    .toBuffer()
-
-  // Step 4: Create shadow (soft ellipse below product)
-  const shadowWidth = Math.round(scaledWidth * 0.7)
-  const shadowHeight = Math.round(scaledHeight * 0.08)
-  const shadowX = productX + Math.round((scaledWidth - shadowWidth) / 2)
-  const shadowY = productY + scaledHeight - Math.round(shadowHeight * 0.3)
-
-  const shadowSvg = Buffer.from(
-    `<svg width="${shadowWidth}" height="${shadowHeight}">
-      <defs>
-        <radialGradient id="shadow" cx="50%" cy="50%" rx="50%" ry="50%">
-          <stop offset="0%" style="stop-color:rgb(0,0,0);stop-opacity:0.15"/>
-          <stop offset="60%" style="stop-color:rgb(0,0,0);stop-opacity:0.05"/>
-          <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:0"/>
-        </radialGradient>
-      </defs>
-      <ellipse cx="${shadowWidth/2}" cy="${shadowHeight/2}" rx="${shadowWidth/2}" ry="${shadowHeight/2}" fill="url(#shadow)"/>
-    </svg>`
-  )
-
-  // Step 5: Compose final image
-  console.log('Compositing final packshot...')
-  const finalImage = await sharp({
-    create: {
-      width: canvasSize,
-      height: canvasSize,
-      channels: 3,
-      background: preset.background,
-    }
-  })
-    .composite([
-      { input: shadowSvg, left: shadowX, top: shadowY },
-      { input: resizedProduct, left: productX, top: productY },
-    ])
+  // Ensure output is 2000x2000
+  const finalImage = await sharp(resultBuffer)
+    .resize(2000, 2000, {
+      fit: 'contain',
+      background: { r: 255, g: 255, b: 255, alpha: 1 }
+    })
     .png({ quality: 100 })
     .toBuffer()
 
@@ -226,7 +167,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'birefnet-packshot',
+      model: 'photoroom',
     })
 
     const newCredits = user.credits - creditsNeeded
