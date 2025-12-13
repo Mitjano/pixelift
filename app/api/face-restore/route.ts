@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Replicate from 'replicate'
 import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
-import { CREDIT_COSTS } from '@/lib/credits-config'
 import { ImageProcessor } from '@/lib/image-processor'
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN!,
-})
-
-const CREDITS_PER_DENOISE = CREDIT_COSTS.denoise.cost
+const CREDITS_PER_RESTORE = 2 // CodeFormer is a premium feature
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,7 +37,10 @@ export async function POST(request: NextRequest) {
     // 3. GET FILE FROM FORMDATA
     const formData = await request.formData()
     const file = formData.get('file') as File
-    const task = formData.get('task') as string || 'real_sr' // real_sr, denoise, jpeg_car
+    const fidelityParam = parseFloat(formData.get('fidelity') as string) || 0.7
+
+    // Fidelity between 0 and 1 (higher = more faithful to original, lower = more enhancement)
+    const fidelity = Math.max(0, Math.min(1, fidelityParam))
 
     if (!file) {
       return NextResponse.json(
@@ -69,27 +66,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Map old task names to new Replicate task_type values
-    const taskMapping: Record<string, string> = {
-      'real_sr': 'Real-World Image Super-Resolution-Large',
-      'denoise': 'Color Image Denoising',
-      'jpeg_car': 'JPEG Compression Artifact Reduction',
-      'old_photo': 'FLUX Kontext Restore', // New: AI photo restoration
-    }
-
-    const validTasks = Object.keys(taskMapping)
-    if (!validTasks.includes(task)) {
-      return NextResponse.json(
-        { error: 'Invalid task. Supported: real_sr, denoise, jpeg_car, old_photo' },
-        { status: 400 }
-      )
-    }
-
-    const replicateTaskType = taskMapping[task]
-    const isOldPhotoRestore = task === 'old_photo'
-
     // 5. CHECK CREDITS
-    if (user.credits < CREDITS_PER_DENOISE) {
+    if (user.credits < CREDITS_PER_RESTORE) {
       if (user.credits === 0) {
         sendCreditsDepletedEmail({
           userEmail: user.email,
@@ -100,7 +78,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'Insufficient credits',
-          required: CREDITS_PER_DENOISE,
+          required: CREDITS_PER_RESTORE,
           available: user.credits,
         },
         { status: 402 }
@@ -114,32 +92,13 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
-    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU (max ~2 million pixels)
-    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl)
-
-    // 7. CALL APPROPRIATE MODEL
-    let output: string
-
-    if (isOldPhotoRestore) {
-      // Use FLUX Kontext for old photo restoration (better for scratches, damage, colorization)
-      output = await ImageProcessor.restoreOldPhoto(resizedDataUrl)
-    } else {
-      // Use SwinIR for denoise, jpeg artifact removal, and super-resolution
-      output = await replicate.run(
-        "jingyunliang/swinir:660d922d33153019e8c263a3bba265de882e7f4f70396546b6c9c8f9d47a021a",
-        {
-          input: {
-            image: resizedDataUrl,
-            task_type: replicateTaskType,
-          }
-        }
-      ) as unknown as string
-    }
+    // 7. CALL CODEFORMER
+    const resultUrl = await ImageProcessor.restoreFace(dataUrl, fidelity)
 
     // 8. DOWNLOAD RESULT AND CONVERT TO BASE64
-    const resultResponse = await fetch(output)
+    const resultResponse = await fetch(resultUrl)
     if (!resultResponse.ok) {
-      throw new Error('Failed to download processed image')
+      throw new Error('Failed to download restored image')
     }
     const resultBuffer = Buffer.from(await resultResponse.arrayBuffer())
     const resultBase64 = resultBuffer.toString('base64')
@@ -148,13 +107,13 @@ export async function POST(request: NextRequest) {
     // 9. DEDUCT CREDITS & LOG USAGE
     await createUsage({
       userId: user.id,
-      type: isOldPhotoRestore ? 'old_photo_restore' : 'denoise',
-      creditsUsed: CREDITS_PER_DENOISE,
+      type: 'face_restore',
+      creditsUsed: CREDITS_PER_RESTORE,
       imageSize: `${file.size} bytes`,
-      model: isOldPhotoRestore ? 'flux-kontext-restore' : `swinir-${task}`,
+      model: 'CodeFormer',
     })
 
-    const newCredits = user.credits - CREDITS_PER_DENOISE
+    const newCredits = user.credits - CREDITS_PER_RESTORE
 
     // 10. SEND LOW CREDITS WARNING
     if (newCredits > 0 && newCredits <= 10) {
@@ -168,18 +127,19 @@ export async function POST(request: NextRequest) {
     // 11. RETURN SUCCESS
     return NextResponse.json({
       success: true,
-      processedImage: resultDataUrl,
-      task: task,
-      creditsUsed: CREDITS_PER_DENOISE,
+      restoredImage: resultDataUrl,
+      model: 'CodeFormer',
+      fidelity: fidelity,
+      creditsUsed: CREDITS_PER_RESTORE,
       creditsRemaining: newCredits,
     })
 
   } catch (error: unknown) {
-    console.error('[Denoise] Error:', error)
     const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    console.error('Face restoration error:', error)
     return NextResponse.json(
       {
-        error: 'Failed to process image',
+        error: 'Failed to restore face',
         details: errorMessage,
       },
       { status: 500 }

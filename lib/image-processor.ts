@@ -45,8 +45,8 @@ export class ImageProcessor {
         },
         body: JSON.stringify({
           image_url: dataUrl,
-          model: 'General Use (Light)',
-          operating_resolution: '1024x1024',
+          model: 'Portrait',  // Optimized for portraits - better hair/face edges
+          operating_resolution: '2048x2048',  // Higher resolution for better quality
           output_format: 'png',
           refine_foreground: true,
         }),
@@ -344,6 +344,130 @@ export class ImageProcessor {
 
     const resultUrl = typeof output === 'string' ? output : String(output)
     console.log('Image upscaled via Replicate Real-ESRGAN')
+    return resultUrl
+  }
+
+  /**
+   * Premium upscale using Clarity Upscaler (best quality, $0.017/run)
+   * Best for: portraits, products, detailed images
+   */
+  static async upscaleWithClarity(
+    dataUrl: string,
+    scale: number = 2,
+    creativity: number = 0.35
+  ): Promise<string> {
+    console.log(`Starting Clarity Upscaler ${scale}x upscale...`)
+
+    // Resize if too large (Clarity works best with reasonable input sizes)
+    const resizedDataUrl = await this.resizeForUpscale(dataUrl, 4000000) // 4MP limit for Clarity
+
+    const output = await this.replicate.run(
+      "philz1337x/clarity-upscaler",
+      {
+        input: {
+          image: resizedDataUrl,
+          scale_factor: scale,
+          creativity: creativity,
+          resemblance: 0.6,
+          dynamic: 6,
+          output_format: "png",
+        },
+      }
+    )
+
+    const resultUrl = typeof output === 'string' ? output : String(output)
+    console.log('Image upscaled via Clarity Upscaler')
+    return resultUrl
+  }
+
+  /**
+   * Fast upscale using fal.ai AuraSR v2 (good quality, cheap/free)
+   * Best for: quick upscales, AI-generated images
+   */
+  static async upscaleWithAuraSR(dataUrl: string): Promise<string> {
+    const falApiKey = process.env.FAL_API_KEY
+    if (!falApiKey) {
+      throw new Error('FAL_API_KEY not configured')
+    }
+
+    console.log('Starting AuraSR v2 4x upscale...')
+
+    // Use synchronous endpoint for faster response
+    const response = await fetch('https://fal.run/fal-ai/aura-sr', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Key ${falApiKey}`,
+      },
+      body: JSON.stringify({
+        image_url: dataUrl,
+        overlapping_tiles: true, // Reduces seams
+      }),
+    })
+
+    if (!response.ok) {
+      const error = await response.text()
+      throw new Error(`AuraSR failed: ${error}`)
+    }
+
+    const result = await response.json()
+    const imageUrl = result.image?.url || result.output?.url
+
+    if (!imageUrl) {
+      throw new Error('No image URL in AuraSR response')
+    }
+
+    console.log('Image upscaled via AuraSR v2')
+    return imageUrl
+  }
+
+  /**
+   * Face restoration using CodeFormer (best for faces)
+   */
+  static async restoreFace(dataUrl: string, fidelity: number = 0.7): Promise<string> {
+    console.log('Starting CodeFormer face restoration...')
+
+    const resizedDataUrl = await this.resizeForUpscale(dataUrl)
+
+    const output = await this.replicate.run(
+      "sczhou/codeformer:7de2ea26c616d5bf2245ad0d5e24f0ff9a6204578a5c876db53142edd9d2cd56",
+      {
+        input: {
+          image: resizedDataUrl,
+          codeformer_fidelity: fidelity,
+          background_enhance: true,
+          face_upsample: true,
+          upscale: 2,
+        },
+      }
+    )
+
+    const resultUrl = typeof output === 'string' ? output : String(output)
+    console.log('Face restored via CodeFormer')
+    return resultUrl
+  }
+
+  /**
+   * Old photo restoration using FLUX Kontext ($0.04/run)
+   * Fixes scratches, damage, and can colorize
+   */
+  static async restoreOldPhoto(dataUrl: string): Promise<string> {
+    console.log('Starting FLUX Kontext photo restoration...')
+
+    const resizedDataUrl = await this.resizeForUpscale(dataUrl)
+
+    const output = await this.replicate.run(
+      "flux-kontext-apps/restore-image",
+      {
+        input: {
+          image: resizedDataUrl,
+          output_format: "png",
+        },
+      }
+    )
+
+    const resultUrl = typeof output === 'string' ? output : String(output)
+    console.log('Photo restored via FLUX Kontext')
     return resultUrl
   }
 }

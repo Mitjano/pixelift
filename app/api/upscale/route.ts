@@ -7,10 +7,12 @@ import { authenticateRequest } from "@/lib/api-auth";
 import { ImageProcessor } from "@/lib/image-processor";
 import { ProcessedImagesDB } from "@/lib/processed-images-db";
 
-// Credit costs - 1 credit per upscale, +1 for face enhancement
+// Credit costs per model
 const CREDIT_COSTS = {
-  standard: 1,
-  faceEnhance: 1, // Additional credit for GFPGAN face enhancement
+  standard: 1,        // Real-ESRGAN
+  faceEnhance: 1,     // Additional credit for face enhancement
+  clarity: 3,         // Clarity Upscaler (premium quality)
+  aurasr: 1,          // AuraSR (fast, good quality)
 };
 
 export async function POST(request: NextRequest) {
@@ -51,8 +53,12 @@ export async function POST(request: NextRequest) {
     const faceEnhanceParam = formData.get("faceEnhance") === "true";
     const faceEnhance = qualityBoost || faceEnhanceParam;
 
-    // Validate and set scale (2, 4, or 8)
-    const scale = [2, 4, 8].includes(scaleParam) ? scaleParam as 2 | 4 | 8 : 2;
+    // Model selection: 'standard' (Real-ESRGAN), 'clarity' (premium), 'aurasr' (fast)
+    const modelParam = formData.get("model") as string || "standard";
+    const model = ["standard", "clarity", "aurasr"].includes(modelParam) ? modelParam : "standard";
+
+    // Validate and set scale (2, 4, or 8) - AuraSR is always 4x
+    const scale = model === "aurasr" ? 4 : ([2, 4, 8].includes(scaleParam) ? scaleParam as 2 | 4 | 8 : 2);
 
     if (!image) {
       return NextResponse.json(
@@ -76,8 +82,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Calculate credits needed (1 base + 1 for face enhancement)
-    const creditsNeeded = CREDIT_COSTS.standard + (faceEnhance ? CREDIT_COSTS.faceEnhance : 0);
+    // Calculate credits needed based on model
+    let creditsNeeded = CREDIT_COSTS.standard;
+    if (model === "clarity") {
+      creditsNeeded = CREDIT_COSTS.clarity;
+    } else if (model === "aurasr") {
+      creditsNeeded = CREDIT_COSTS.aurasr;
+    } else if (faceEnhance) {
+      creditsNeeded = CREDIT_COSTS.standard + CREDIT_COSTS.faceEnhance;
+    }
 
     // Check if user has enough credits
     if (user.credits < creditsNeeded) {
@@ -129,9 +142,22 @@ export async function POST(request: NextRequest) {
       isProcessed: false
     });
 
-    // Use Replicate for upscaling (Real-ESRGAN or GFPGAN)
-    console.log(`Starting upscale: scale=${scale}x, faceEnhance=${faceEnhance}`);
-    const resultUrl = await ImageProcessor.upscaleImage(dataUrl, scale, faceEnhance);
+    // Use selected model for upscaling
+    console.log(`Starting upscale: model=${model}, scale=${scale}x, faceEnhance=${faceEnhance}`);
+
+    let resultUrl: string;
+    let modelName: string;
+
+    if (model === "clarity") {
+      resultUrl = await ImageProcessor.upscaleWithClarity(dataUrl, scale);
+      modelName = "Clarity Upscaler";
+    } else if (model === "aurasr") {
+      resultUrl = await ImageProcessor.upscaleWithAuraSR(dataUrl);
+      modelName = "AuraSR v2";
+    } else {
+      resultUrl = await ImageProcessor.upscaleImage(dataUrl, scale, faceEnhance);
+      modelName = faceEnhance ? "Real-ESRGAN + Face Enhance" : "Real-ESRGAN";
+    }
 
     // Download processed image from Replicate
     const processedBuffer = await ImageProcessor.downloadImage(resultUrl);
@@ -156,12 +182,16 @@ export async function POST(request: NextRequest) {
     const oldCredits = user.credits;
 
     // Track usage and deduct credits
+    const usageType = model === "clarity" ? "upscale_clarity" :
+                      model === "aurasr" ? "upscale_aurasr" :
+                      faceEnhance ? "upscale_enhanced" : "upscale_standard";
+
     await createUsage({
       userId: user.id,
-      type: faceEnhance ? 'upscale_enhanced' : 'upscale_standard',
+      type: usageType,
       creditsUsed: creditsNeeded,
       imageSize: `${image.size} bytes`,
-      model: faceEnhance ? 'Real-ESRGAN + Face Enhance' : 'Real-ESRGAN',
+      model: modelName,
     });
 
     // Credits are already deducted by createUsage function
@@ -198,7 +228,7 @@ export async function POST(request: NextRequest) {
       originalUrl: `/api/processed-images/${imageRecord.id}/view?type=original`,
       scale: scale,
       faceEnhance: faceEnhance,
-      model: faceEnhance ? 'Real-ESRGAN + Face Enhance' : 'Real-ESRGAN',
+      model: modelName,
       creditsUsed: creditsNeeded,
       creditsRemaining: updatedUser?.credits || 0,
     };
