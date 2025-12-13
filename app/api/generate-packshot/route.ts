@@ -22,22 +22,22 @@ const PACKSHOT_CREDITS = CREDIT_COSTS.packshot.cost
 const PRESETS: Record<string, PackshotPreset> = {
   white: {
     name: 'White Background',
-    prompt: 'Place this product on a pure white background in a professional product photography studio setting. Add soft studio lighting with gentle shadows. Keep the product exactly as it is, only change the background to clean white with professional lighting.',
+    prompt: 'Transform this into a professional commercial product photography shot. Place the product on a pure white seamless background with two-softbox studio lighting setup. Add dramatic specular highlights and reflections on metallic/glossy surfaces. Create soft diffused shadows underneath. Use 85mm lens perspective, f/8 aperture look. High dynamic range, studio-quality lighting with rim light accent. The product must remain exactly identical - only enhance the lighting, add professional reflections, and change background to pure white studio sweep. Commercial packshot quality, dust-free, sharp focus.',
     credits: PACKSHOT_CREDITS,
   },
   gray: {
     name: 'Light Gray',
-    prompt: 'Place this product on a clean light gray gradient background in a professional product photography studio. Add soft diffused lighting with subtle shadows. Keep the product exactly as it is, only change the background.',
+    prompt: 'Transform this into a professional commercial product photography shot. Place the product on a light gray gradient seamless backdrop with professional three-point lighting setup. Add specular highlights on reflective surfaces and soft shadow underneath. Use dramatic side lighting to emphasize product contours and textures. 85mm lens perspective with shallow depth of field feel. The product must remain exactly identical - only enhance with professional studio lighting, reflections on shiny parts, and gray gradient background. Commercial packshot quality, high-end advertising look.',
     credits: PACKSHOT_CREDITS,
   },
   studio: {
     name: 'Studio Setup',
-    prompt: 'Transform this into a professional product photography shot. Place the product on a clean surface with professional studio lighting, soft shadows, and a neutral gradient background. Keep the product exactly as it is.',
+    prompt: 'Transform this into a premium commercial product photography shot worthy of high-end advertising. Place on white acrylic reflective surface with professional multi-light studio setup. Add dramatic specular highlights, light flares on metallic parts, and mirror-like reflection below the product. Use rim lighting to separate product from background. Professional packshot with 85mm f/8 lens look. The product must remain exactly identical - only add professional studio lighting effects, reflections, and highlights. Magazine advertisement quality, ultra sharp, high dynamic range.',
     credits: PACKSHOT_CREDITS,
   },
   lifestyle: {
     name: 'Lifestyle',
-    prompt: 'Place this product in a modern, clean lifestyle setting with soft natural lighting. Add a subtle, elegant background that complements the product. Keep the product exactly as it is.',
+    prompt: 'Transform this into a premium lifestyle product photography shot. Place product in an elegant, minimal modern setting with soft natural window lighting and gentle shadows. Add subtle reflections and professional lighting accents. Clean, sophisticated background that complements the product. The product must remain exactly identical - only enhance lighting and place in lifestyle context. High-end brand photography style, editorial quality.',
     credits: PACKSHOT_CREDITS,
   },
 }
@@ -57,6 +57,7 @@ async function generatePackshot(imageBuffer: Buffer, prompt: string): Promise<Bu
         aspect_ratio: "1:1",
         output_format: "png",
         safety_tolerance: 2,
+        prompt_upsampling: true, // Enhance prompt for better results
       }
     }
   ) as unknown as string
