@@ -584,9 +584,10 @@ export class ImageProcessor {
     }
 
     console.log('Starting Bria Product Shot generation...')
+    console.log('Scene description:', sceneDescription)
 
-    // Submit request to Fal.ai Bria Product Shot
-    const submitResponse = await fetch('https://queue.fal.run/fal-ai/bria/product-shot', {
+    // Use synchronous endpoint (fal.run instead of queue.fal.run)
+    const response = await fetch('https://fal.run/fal-ai/bria/product-shot', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -602,73 +603,31 @@ export class ImageProcessor {
       }),
     })
 
-    if (!submitResponse.ok) {
-      const error = await submitResponse.text()
-      throw new Error(`Bria Product Shot submit failed: ${error}`)
+    if (!response.ok) {
+      const error = await response.text()
+      console.error('Bria Product Shot error:', error)
+      throw new Error(`Bria Product Shot failed: ${error}`)
     }
 
-    const submitData = await submitResponse.json()
-    const requestId = submitData.request_id
+    const result = await response.json()
+    console.log('Bria result keys:', Object.keys(result))
 
-    if (!requestId) {
-      throw new Error('No request_id returned from Bria Product Shot')
+    // Bria returns { images: [{ url: "..." }] }
+    if (result.images?.[0]?.url) {
+      console.log('Product shot generated via Bria')
+      return result.images[0].url
     }
 
-    // Poll for result
-    let attempts = 0
-    const maxAttempts = 120 // 2 minutes max
-
-    while (attempts < maxAttempts) {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-
-      const statusResponse = await fetch(
-        `https://queue.fal.run/fal-ai/bria/product-shot/requests/${requestId}/status`,
-        {
-          headers: {
-            'Authorization': `Key ${falApiKey}`,
-          },
-        }
-      )
-
-      if (!statusResponse.ok) {
-        attempts++
-        continue
-      }
-
-      const statusData = await statusResponse.json()
-
-      if (statusData.status === 'COMPLETED') {
-        const resultResponse = await fetch(
-          `https://queue.fal.run/fal-ai/bria/product-shot/requests/${requestId}`,
-          {
-            headers: {
-              'Authorization': `Key ${falApiKey}`,
-            },
-          }
-        )
-
-        if (!resultResponse.ok) {
-          throw new Error('Failed to get result from Bria Product Shot')
-        }
-
-        const resultData = await resultResponse.json()
-
-        // Bria returns { images: [{ url: "..." }] }
-        if (resultData.images?.[0]?.url) {
-          console.log('Product shot generated via Bria')
-          return resultData.images[0].url
-        }
-
-        throw new Error('No image URL in Bria Product Shot response')
-      }
-
-      if (statusData.status === 'FAILED') {
-        throw new Error(`Bria Product Shot failed: ${statusData.error || 'Unknown error'}`)
-      }
-
-      attempts++
+    // Try alternative response formats
+    if (result.image?.url) {
+      return result.image.url
     }
 
-    throw new Error('Bria Product Shot processing timeout')
+    if (typeof result.output === 'string') {
+      return result.output
+    }
+
+    console.error('Unexpected Bria response:', JSON.stringify(result).slice(0, 500))
+    throw new Error('No image URL in Bria Product Shot response')
   }
 }
