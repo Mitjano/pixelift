@@ -575,8 +575,7 @@ export class ImageProcessor {
    * Generates professional studio photos with realistic lighting ($0.04/image)
    */
   static async generateProductPhotography(
-    productImageUrl: string,
-    aspectRatio: string = '1:1'
+    productImageUrl: string
   ): Promise<string> {
     const falApiKey = process.env.FAL_API_KEY
     if (!falApiKey) {
@@ -585,7 +584,7 @@ export class ImageProcessor {
 
     console.log('Starting fal.ai Product Photography...')
 
-    // Use synchronous endpoint
+    // Use synchronous endpoint - only send required parameter
     const response = await fetch('https://fal.run/fal-ai/image-apps-v2/product-photography', {
       method: 'POST',
       headers: {
@@ -594,7 +593,6 @@ export class ImageProcessor {
       },
       body: JSON.stringify({
         product_image_url: productImageUrl,
-        aspect_ratio: aspectRatio,
       }),
     })
 

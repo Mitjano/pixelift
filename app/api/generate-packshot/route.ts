@@ -46,7 +46,7 @@ async function generatePackshot(imageBuffer: Buffer, preset: PackshotPreset): Pr
 
   // Use fal.ai Product Photography - professional studio photos with realistic lighting
   console.log('Generating professional product photography via fal.ai...')
-  const resultUrl = await ImageProcessor.generateProductPhotography(dataUrl, preset.aspectRatio)
+  const resultUrl = await ImageProcessor.generateProductPhotography(dataUrl)
 
   // Download result
   const response = await fetch(resultUrl)
