@@ -239,6 +239,62 @@ export class ImageProcessor {
   }
 
   /**
+   * Resize image if it exceeds the maximum pixel count for Replicate GPU
+   * Replicate's Real-ESRGAN has a limit of ~2 million pixels
+   * @param dataUrl - Base64 data URL of the image
+   * @param maxPixels - Maximum number of pixels allowed (default 2 million)
+   * @returns Resized data URL if needed, or original if within limits
+   */
+  static async resizeForUpscale(dataUrl: string, maxPixels: number = 2000000): Promise<string> {
+    try {
+      // Extract base64 data from data URL
+      const matches = dataUrl.match(/^data:([^;]+);base64,(.+)$/)
+      if (!matches) {
+        console.log('Invalid data URL format, returning as-is')
+        return dataUrl
+      }
+
+      const mimeType = matches[1]
+      const base64Data = matches[2]
+      const buffer = Buffer.from(base64Data, 'base64')
+
+      // Get image dimensions
+      const metadata = await sharp(buffer).metadata()
+      const width = metadata.width || 0
+      const height = metadata.height || 0
+      const totalPixels = width * height
+
+      console.log(`Image dimensions: ${width}x${height} = ${totalPixels} pixels (max: ${maxPixels})`)
+
+      // If within limits, return original
+      if (totalPixels <= maxPixels) {
+        return dataUrl
+      }
+
+      // Calculate resize ratio to fit within maxPixels
+      const ratio = Math.sqrt(maxPixels / totalPixels)
+      const newWidth = Math.floor(width * ratio)
+      const newHeight = Math.floor(height * ratio)
+
+      console.log(`Resizing image from ${width}x${height} to ${newWidth}x${newHeight} for upscaling`)
+
+      // Resize image
+      const resizedBuffer = await sharp(buffer)
+        .resize(newWidth, newHeight, { fit: 'inside' })
+        .png() // Use PNG to preserve quality
+        .toBuffer()
+
+      // Convert back to data URL
+      const resizedBase64 = resizedBuffer.toString('base64')
+      return `data:image/png;base64,${resizedBase64}`
+    } catch (error) {
+      console.error('Error resizing image for upscale:', error)
+      // Return original on error
+      return dataUrl
+    }
+  }
+
+  /**
    * Upscale image using Replicate Real-ESRGAN
    * @param dataUrl - Base64 data URL of the image
    * @param scale - Upscale factor (2, 4, or 8)
@@ -251,9 +307,12 @@ export class ImageProcessor {
     faceEnhance: boolean = false
   ): Promise<string> {
     try {
+      // Resize image if too large for Replicate GPU (max ~2 million pixels)
+      const resizedDataUrl = await this.resizeForUpscale(dataUrl)
+
       // Use Real-ESRGAN with built-in face_enhance option
       // This is more stable than separate GFPGAN model which has upload errors
-      return await this.upscaleWithRealESRGAN(dataUrl, scale, faceEnhance)
+      return await this.upscaleWithRealESRGAN(resizedDataUrl, scale, faceEnhance)
     } catch (error) {
       console.error('Replicate upscaling failed:', error)
       throw error
