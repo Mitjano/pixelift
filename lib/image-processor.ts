@@ -270,6 +270,7 @@ export class ImageProcessor {
 
   /**
    * Upscale using Fal.ai ESRGAN (fast, supports 2x and 4x)
+   * Uses synchronous fal.run endpoint for faster response
    */
   private static async upscaleViaESRGAN(
     dataUrl: string,
@@ -278,8 +279,8 @@ export class ImageProcessor {
   ): Promise<string> {
     console.log(`Starting ESRGAN ${scale}x upscale...`)
 
-    // Submit request to Fal.ai ESRGAN
-    const submitResponse = await fetch('https://queue.fal.run/fal-ai/esrgan', {
+    // Use synchronous endpoint for faster response
+    const response = await fetch('https://fal.run/fal-ai/esrgan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -288,27 +289,29 @@ export class ImageProcessor {
       body: JSON.stringify({
         image_url: dataUrl,
         scale: scale,
+        model: 'RealESRGAN_x4plus',
+        output_format: 'png',
       }),
     })
 
-    if (!submitResponse.ok) {
-      const error = await submitResponse.text()
-      throw new Error(`Fal.ai ESRGAN submit failed: ${error}`)
+    if (!response.ok) {
+      const error = await response.text()
+      throw new Error(`Fal.ai ESRGAN failed: ${error}`)
     }
 
-    const submitData = await submitResponse.json()
-    const requestId = submitData.request_id
+    const result = await response.json()
 
-    if (!requestId) {
-      throw new Error('No request_id returned from Fal.ai ESRGAN')
+    if (result.image?.url) {
+      console.log('Image upscaled via Fal.ai ESRGAN')
+      return result.image.url
     }
 
-    // Poll for result
-    return await this.pollFalResult('fal-ai/esrgan', requestId, apiKey, 'ESRGAN')
+    throw new Error('No image URL in Fal.ai ESRGAN response')
   }
 
   /**
    * Upscale using Fal.ai AuraSR v2 (best quality, 4x only)
+   * Uses synchronous fal.run endpoint
    */
   private static async upscaleViaAuraSR(
     dataUrl: string,
@@ -316,8 +319,8 @@ export class ImageProcessor {
   ): Promise<string> {
     console.log('Starting AuraSR v2 4x upscale...')
 
-    // Submit request to Fal.ai AuraSR
-    const submitResponse = await fetch('https://queue.fal.run/fal-ai/aura-sr', {
+    // Use synchronous endpoint
+    const response = await fetch('https://fal.run/fal-ai/aura-sr', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -326,24 +329,23 @@ export class ImageProcessor {
       body: JSON.stringify({
         image_url: dataUrl,
         upscaling_factor: 4,
-        overlapping_tiles: true, // Better quality, removes seams
+        overlapping_tiles: true,
       }),
     })
 
-    if (!submitResponse.ok) {
-      const error = await submitResponse.text()
-      throw new Error(`Fal.ai AuraSR submit failed: ${error}`)
+    if (!response.ok) {
+      const error = await response.text()
+      throw new Error(`Fal.ai AuraSR failed: ${error}`)
     }
 
-    const submitData = await submitResponse.json()
-    const requestId = submitData.request_id
+    const result = await response.json()
 
-    if (!requestId) {
-      throw new Error('No request_id returned from Fal.ai AuraSR')
+    if (result.image?.url) {
+      console.log('Image upscaled via Fal.ai AuraSR')
+      return result.image.url
     }
 
-    // Poll for result
-    return await this.pollFalResult('fal-ai/aura-sr', requestId, apiKey, 'AuraSR')
+    throw new Error('No image URL in Fal.ai AuraSR response')
   }
 
   /**
