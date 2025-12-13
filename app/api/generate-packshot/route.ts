@@ -51,32 +51,10 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } {
   }
 }
 
-/**
- * Create a gradient mask for reflection effect (fades from top to bottom)
- */
-async function createReflectionGradient(width: number, height: number): Promise<Buffer> {
-  // Create SVG gradient mask
-  const svg = `
-    <svg width="${width}" height="${height}">
-      <defs>
-        <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:white;stop-opacity:0.25" />
-          <stop offset="100%" style="stop-color:white;stop-opacity:0" />
-        </linearGradient>
-      </defs>
-      <rect width="${width}" height="${height}" fill="url(#grad)" />
-    </svg>
-  `
-  return Buffer.from(svg)
-}
-
 async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): Promise<Buffer> {
   const TARGET_SIZE = 2000
-  const PRODUCT_SCALE = 0.65 // Product takes 65% of canvas (leave room for shadow + reflection)
+  const PRODUCT_SCALE = 0.75 // Product takes 75% of canvas
   const MAX_PRODUCT_SIZE = Math.round(TARGET_SIZE * PRODUCT_SCALE)
-  const REFLECTION_HEIGHT_RATIO = 0.3 // Reflection is 30% of product height
-  const SHADOW_BLUR = 25
-  const SHADOW_OFFSET_Y = 15
 
   // Step 1: Remove background using BiRefNet (better quality)
   const base64Image = imageBuffer.toString('base64')
@@ -102,11 +80,10 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
 
   const scaledWidth = Math.round(metadata.width * scale)
   const scaledHeight = Math.round(metadata.height * scale)
-  const reflectionHeight = Math.round(scaledHeight * REFLECTION_HEIGHT_RATIO)
 
-  // Position product higher to leave room for reflection
+  // Center product on canvas
   const productLeft = Math.round((TARGET_SIZE - scaledWidth) / 2)
-  const productTop = Math.round((TARGET_SIZE - scaledHeight - reflectionHeight) / 2)
+  const productTop = Math.round((TARGET_SIZE - scaledHeight) / 2)
 
   // Step 4: Resize product image
   const resizedProduct = await sharp(nobgBuffer)
@@ -117,35 +94,29 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
     .ensureAlpha()
     .toBuffer()
 
-  // Step 5: Create shadow (black silhouette, blurred, offset)
-  // Extract alpha channel, make it black, blur it
-  const shadowBuffer = await sharp(resizedProduct)
-    .ensureAlpha()
-    // Tint to black while preserving alpha
-    .modulate({ brightness: 0 })
-    .blur(SHADOW_BLUR)
-    .toBuffer()
+  // Step 5: Create simple drop shadow using SVG
+  const shadowBlur = 40
+  const shadowOpacity = 0.3
+  const shadowOffsetY = 20
 
-  // Step 6: Create reflection (flip vertically + fade gradient)
-  const flippedProduct = await sharp(resizedProduct)
-    .flip() // Flip vertically
-    .toBuffer()
+  const shadowSvg = `
+    <svg width="${scaledWidth + shadowBlur * 2}" height="${scaledHeight + shadowBlur * 2}">
+      <defs>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="${shadowBlur / 2}" />
+          <feOffset dx="0" dy="${shadowOffsetY}" />
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="${shadowOpacity}" />
+          </feComponentTransfer>
+        </filter>
+      </defs>
+      <rect x="${shadowBlur}" y="${shadowBlur}" width="${scaledWidth}" height="${scaledHeight}"
+            fill="black" filter="url(#shadow)" />
+    </svg>
+  `
+  const shadowBuffer = Buffer.from(shadowSvg)
 
-  // Create gradient mask for reflection
-  const gradientMask = await createReflectionGradient(scaledWidth, reflectionHeight)
-
-  // Crop to reflection height and apply gradient
-  const reflectionBuffer = await sharp(flippedProduct)
-    .extract({ left: 0, top: 0, width: scaledWidth, height: reflectionHeight })
-    .composite([
-      {
-        input: gradientMask,
-        blend: 'dest-in', // Use gradient as alpha mask
-      }
-    ])
-    .toBuffer()
-
-  // Step 7: Compose everything on background
+  // Step 6: Compose everything on background
   const bgColor = hexToRgb(backgroundColor)
 
   const finalImage = await sharp({
@@ -157,18 +128,11 @@ async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): P
     },
   })
     .composite([
-      // Shadow (below product, offset down)
+      // Shadow
       {
         input: shadowBuffer,
-        left: productLeft,
-        top: productTop + SHADOW_OFFSET_Y,
-        blend: 'multiply',
-      },
-      // Reflection (below product)
-      {
-        input: reflectionBuffer,
-        left: productLeft,
-        top: productTop + scaledHeight + 5, // Small gap between product and reflection
+        left: productLeft - shadowBlur,
+        top: productTop - shadowBlur,
       },
       // Product (on top)
       {
