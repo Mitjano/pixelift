@@ -2,13 +2,14 @@
 
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
 
 // Lazy load heavy component
-const EnhancedImageUploader = dynamic(
-  () => import('@/components/EnhancedImageUploader'),
+const ImageUpscaler = dynamic(
+  () => import('@/components/ImageUpscaler').then((mod) => ({ default: mod.ImageUpscaler })),
   {
     loading: () => (
       <div className="flex items-center justify-center p-12">
@@ -21,8 +22,20 @@ const EnhancedImageUploader = dynamic(
 
 export default function UpscalerPage() {
   const { data: session } = useSession();
+  const [userRole, setUserRole] = useState<'user' | 'premium' | 'admin'>('user');
   const t = useTranslations('toolsPage.upscaler');
   const tCommon = useTranslations('common');
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      fetch('/api/user')
+        .then(res => res.json())
+        .then(data => {
+          if (data.role) setUserRole(data.role);
+        })
+        .catch(err => console.error('Error fetching user data:', err));
+    }
+  }, [session]);
 
   return (
     <ToolsLayout>
@@ -60,15 +73,15 @@ export default function UpscalerPage() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">8x</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">4x</div>
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.maxScale')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">10s</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">5s</div>
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processing')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">1</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">1-2</div>
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.creditPerImage')}</div>
               </div>
             </div>
@@ -79,7 +92,7 @@ export default function UpscalerPage() {
       {/* Tool Section */}
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-          <EnhancedImageUploader />
+          <ImageUpscaler userRole={userRole} />
           <p className="text-sm text-gray-500 mt-4 text-center">
             {t('uploadTerms')}
           </p>
@@ -133,24 +146,23 @@ export default function UpscalerPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-3 text-purple-600 dark:text-purple-400">Real-ESRGAN Technology</h3>
+              <h3 className="text-xl font-semibold mb-3 text-purple-600 dark:text-purple-400">Two Powerful AI Models</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Our upscaler uses Real-ESRGAN (Enhanced Super-Resolution Generative Adversarial Networks),
-                a state-of-the-art AI model trained on millions of images. Unlike traditional upscaling that
-                simply stretches pixels, Real-ESRGAN intelligently reconstructs missing details.
+                Choose between ESRGAN for fast, reliable upscaling or AuraSR v2 for the highest quality results.
+                Both models use advanced AI to intelligently reconstruct missing details.
               </p>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
-                  <span>Restores fine details and textures lost in low-resolution images</span>
+                  <span><strong>ESRGAN (Standard):</strong> Fast 2x/4x upscaling, 1 credit per image</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
-                  <span>Reduces noise and compression artifacts</span>
+                  <span><strong>AuraSR v2 (Premium):</strong> GAN-based 4x upscaling with superior detail preservation, 2 credits</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
-                  <span>Sharpens edges and enhances clarity</span>
+                  <span>Both reduce noise and compression artifacts automatically</span>
                 </li>
               </ul>
             </div>
@@ -171,7 +183,7 @@ export default function UpscalerPage() {
                 </div>
                 <div className="bg-white dark:bg-gray-800/50 rounded-lg p-3 border border-gray-200 dark:border-transparent">
                   <strong className="text-gray-900 dark:text-white">👤 Portraits:</strong> Restore old family photos with
-                  face enhancement
+                  enhanced detail
                 </div>
               </div>
             </div>
@@ -184,24 +196,22 @@ export default function UpscalerPage() {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-300 dark:border-purple-700/50 p-6">
             <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-              <span>🔧</span> Upscaling Options
+              <span>🔧</span> Upscaling Models
             </h3>
             <div className="space-y-3 text-gray-700 dark:text-gray-300">
               <div>
-                <strong className="text-gray-900 dark:text-white">2x Upscaling:</strong> Best for quick enhancements,
-                ideal for web graphics and social media
+                <strong className="text-gray-900 dark:text-white">Standard (ESRGAN):</strong> Fast and reliable upscaling,
+                supports 2x and 4x, costs 1 credit
               </div>
               <div>
-                <strong className="text-gray-900 dark:text-white">4x Upscaling:</strong> Perfect balance of quality and
-                processing time, great for most use cases
+                <strong className="text-gray-900 dark:text-white">Premium (AuraSR v2):</strong> Best quality with GAN-based
+                super-resolution, 4x upscaling, costs 2 credits
               </div>
               <div>
-                <strong className="text-gray-900 dark:text-white">8x Upscaling:</strong> Maximum enhancement for printing
-                large formats and professional projects
+                <strong className="text-gray-900 dark:text-white">Processing Time:</strong> Most images complete in 5-15 seconds
               </div>
               <div>
-                <strong className="text-gray-900 dark:text-white">Face Enhancement:</strong> Optional GFPGAN processing
-                specifically optimized for portraits
+                <strong className="text-gray-900 dark:text-white">Quality:</strong> Both models preserve fine textures and reduce artifacts
               </div>
             </div>
           </div>
@@ -215,15 +225,13 @@ export default function UpscalerPage() {
                 <strong className="text-gray-900 dark:text-white">Input:</strong> JPG, PNG, WebP - up to 10MB per image
               </div>
               <div>
-                <strong className="text-gray-900 dark:text-white">Output:</strong> High-quality PNG or JPG formats
+                <strong className="text-gray-900 dark:text-white">Output:</strong> High-quality PNG format
               </div>
               <div>
-                <strong className="text-gray-900 dark:text-white">Resolution:</strong> Free users get low-res preview,
-                Premium members unlock full resolution downloads
+                <strong className="text-gray-900 dark:text-white">Scale Options:</strong> 2x or 4x with Standard, 4x with Premium
               </div>
               <div>
-                <strong className="text-gray-900 dark:text-white">Processing:</strong> Each upscale costs 1 credit,
-                processed in 10-20 seconds
+                <strong className="text-gray-900 dark:text-white">Credits:</strong> 1 credit for Standard, 2 credits for Premium
               </div>
             </div>
           </div>
@@ -239,18 +247,18 @@ export default function UpscalerPage() {
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">✓ Do:</h4>
               <ul className="space-y-2 text-sm">
                 <li>• Use the highest quality source image available</li>
-                <li>• Enable face enhancement for portraits and selfies</li>
-                <li>• Start with 2x or 4x for most images</li>
-                <li>• Use 8x for images you plan to print in large format</li>
+                <li>• Use Premium (AuraSR) for portraits and detailed images</li>
+                <li>• Start with 2x for web use, 4x for printing</li>
+                <li>• Use Standard (ESRGAN) for quick, cost-effective upscaling</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">✗ Avoid:</h4>
               <ul className="space-y-2 text-sm">
                 <li>• Upscaling already heavily compressed or pixelated images</li>
-                <li>• Using 8x on images that don&apos;t need extreme enlargement</li>
-                <li>• Applying face enhancement to non-portrait images</li>
+                <li>• Using 4x when 2x would be sufficient</li>
                 <li>• Expecting perfect results from extremely low-quality sources</li>
+                <li>• Uploading images larger than 10MB</li>
               </ul>
             </div>
           </div>

@@ -237,4 +237,180 @@ export class ImageProcessor {
       throw new Error(`Failed to download image: ${error}`)
     }
   }
+
+  /**
+   * Upscale image using Fal.ai models
+   * @param dataUrl - Base64 data URL of the image
+   * @param scale - Upscale factor (2 or 4)
+   * @param model - Model to use: 'esrgan' (fast) or 'aura-sr' (best quality)
+   * @returns URL of the upscaled image
+   */
+  static async upscaleImage(
+    dataUrl: string,
+    scale: 2 | 4,
+    model: 'esrgan' | 'aura-sr' = 'esrgan'
+  ): Promise<string> {
+    const falApiKey = process.env.FAL_API_KEY
+
+    if (!falApiKey) {
+      throw new Error('FAL_API_KEY environment variable is required for upscaling')
+    }
+
+    try {
+      if (model === 'aura-sr') {
+        return await this.upscaleViaAuraSR(dataUrl, falApiKey)
+      } else {
+        return await this.upscaleViaESRGAN(dataUrl, scale, falApiKey)
+      }
+    } catch (error) {
+      console.error(`Fal.ai ${model} upscaling failed:`, error)
+      throw error
+    }
+  }
+
+  /**
+   * Upscale using Fal.ai ESRGAN (fast, supports 2x and 4x)
+   */
+  private static async upscaleViaESRGAN(
+    dataUrl: string,
+    scale: 2 | 4,
+    apiKey: string
+  ): Promise<string> {
+    console.log(`Starting ESRGAN ${scale}x upscale...`)
+
+    // Submit request to Fal.ai ESRGAN
+    const submitResponse = await fetch('https://queue.fal.run/fal-ai/esrgan', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Key ${apiKey}`,
+      },
+      body: JSON.stringify({
+        image_url: dataUrl,
+        scale: scale,
+      }),
+    })
+
+    if (!submitResponse.ok) {
+      const error = await submitResponse.text()
+      throw new Error(`Fal.ai ESRGAN submit failed: ${error}`)
+    }
+
+    const submitData = await submitResponse.json()
+    const requestId = submitData.request_id
+
+    if (!requestId) {
+      throw new Error('No request_id returned from Fal.ai ESRGAN')
+    }
+
+    // Poll for result
+    return await this.pollFalResult('fal-ai/esrgan', requestId, apiKey, 'ESRGAN')
+  }
+
+  /**
+   * Upscale using Fal.ai AuraSR v2 (best quality, 4x only)
+   */
+  private static async upscaleViaAuraSR(
+    dataUrl: string,
+    apiKey: string
+  ): Promise<string> {
+    console.log('Starting AuraSR v2 4x upscale...')
+
+    // Submit request to Fal.ai AuraSR
+    const submitResponse = await fetch('https://queue.fal.run/fal-ai/aura-sr', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Key ${apiKey}`,
+      },
+      body: JSON.stringify({
+        image_url: dataUrl,
+        upscaling_factor: 4,
+        overlapping_tiles: true, // Better quality, removes seams
+      }),
+    })
+
+    if (!submitResponse.ok) {
+      const error = await submitResponse.text()
+      throw new Error(`Fal.ai AuraSR submit failed: ${error}`)
+    }
+
+    const submitData = await submitResponse.json()
+    const requestId = submitData.request_id
+
+    if (!requestId) {
+      throw new Error('No request_id returned from Fal.ai AuraSR')
+    }
+
+    // Poll for result
+    return await this.pollFalResult('fal-ai/aura-sr', requestId, apiKey, 'AuraSR')
+  }
+
+  /**
+   * Poll Fal.ai for result (shared by upscaling methods)
+   */
+  private static async pollFalResult(
+    modelPath: string,
+    requestId: string,
+    apiKey: string,
+    modelName: string
+  ): Promise<string> {
+    let attempts = 0
+    const maxAttempts = 120 // 2 minutes max
+
+    while (attempts < maxAttempts) {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      const statusResponse = await fetch(
+        `https://queue.fal.run/${modelPath}/requests/${requestId}/status`,
+        {
+          headers: {
+            'Authorization': `Key ${apiKey}`,
+          },
+        }
+      )
+
+      if (!statusResponse.ok) {
+        attempts++
+        continue
+      }
+
+      const statusData = await statusResponse.json()
+
+      if (statusData.status === 'COMPLETED') {
+        // Get result
+        const resultResponse = await fetch(
+          `https://queue.fal.run/${modelPath}/requests/${requestId}`,
+          {
+            headers: {
+              'Authorization': `Key ${apiKey}`,
+            },
+          }
+        )
+
+        if (!resultResponse.ok) {
+          throw new Error(`Failed to get result from Fal.ai ${modelName}`)
+        }
+
+        const resultData = await resultResponse.json()
+
+        // ESRGAN returns { image: { url: "..." } }
+        // AuraSR returns { image: { url: "..." } }
+        if (resultData.image?.url) {
+          console.log(`Image upscaled via Fal.ai ${modelName}`)
+          return resultData.image.url
+        }
+
+        throw new Error(`No image URL in Fal.ai ${modelName} response`)
+      }
+
+      if (statusData.status === 'FAILED') {
+        throw new Error(`Fal.ai ${modelName} processing failed: ${statusData.error || 'Unknown error'}`)
+      }
+
+      attempts++
+    }
+
+    throw new Error(`Fal.ai ${modelName} processing timeout`)
+  }
 }

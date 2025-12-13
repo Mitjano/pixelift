@@ -4,8 +4,13 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail, sendFirstUploadEmail } f
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from "@/lib/rate-limit";
 import { validateFileSize, validateFileType, MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES } from "@/lib/validation";
 import { authenticateRequest } from "@/lib/api-auth";
-import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
-import { calculateUpscaleCost, CREDIT_COSTS } from "@/lib/credits-config";
+import { ImageProcessor } from "@/lib/image-processor";
+
+// Credit costs
+const CREDIT_COSTS = {
+  standard: 1, // ESRGAN
+  premium: 2,  // AuraSR
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -38,8 +43,15 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
     const image = formData.get("image") as File;
-    const scale = parseInt(formData.get("scale") as string) || 2;
+    const scaleParam = parseInt(formData.get("scale") as string) || 2;
+    const modelParam = formData.get("model") as string || "esrgan";
+
+    // Support legacy qualityBoost parameter for backward compatibility
     const qualityBoost = formData.get("qualityBoost") === "true";
+    const model = qualityBoost ? "aura-sr" : (modelParam === "aura-sr" ? "aura-sr" : "esrgan");
+
+    // AuraSR only supports 4x, ESRGAN supports 2x and 4x
+    const scale = model === "aura-sr" ? 4 : (scaleParam === 4 ? 4 : 2) as 2 | 4;
 
     if (!image) {
       return NextResponse.json(
@@ -63,16 +75,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate scale
-    if (![2, 4, 8].includes(scale)) {
-      return NextResponse.json(
-        { error: "Invalid scale. Must be 2, 4, or 8" },
-        { status: 400 }
-      );
-    }
-
-    // Calculate credits needed (quality boost costs more)
-    const creditsNeeded = calculateUpscaleCost(qualityBoost);
+    // Calculate credits needed
+    const creditsNeeded = model === "aura-sr" ? CREDIT_COSTS.premium : CREDIT_COSTS.standard;
 
     // Check if user has enough credits
     if (user.credits < creditsNeeded) {
@@ -102,87 +106,9 @@ export async function POST(request: NextRequest) {
     const mimeType = image.type;
     const dataUrl = `data:${mimeType};base64,${base64}`;
 
-    // Use Replicate HTTP API directly
-    // Quality Boost ON = GFPGAN (premium model with face enhancement + quality boost)
-    // Quality Boost OFF = Real-ESRGAN (standard fast model)
-    const version = qualityBoost
-      ? "9283608cc6b7be6b65a8e44983db012355fde4132009bf99d976b2f0896856a3" // GFPGAN (Premium)
-      : "f121d640bd286e1fdc67f9799164c1d5be36ff74576ee11c803ae5b665dd46aa"; // Real-ESRGAN (Standard)
-
-    const input = qualityBoost
-      ? {
-          img: dataUrl,
-          scale: scale,
-          version: "v1.4",
-        }
-      : {
-          image: dataUrl,
-          scale: scale,
-          face_enhance: false,
-        };
-
-    // Create prediction
-    const createResponse = await fetchWithTimeout("https://api.replicate.com/v1/predictions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        version: version,
-        input: input,
-      }),
-      timeout: 30000, // 30 seconds
-    });
-
-    if (!createResponse.ok) {
-      const error = await createResponse.text();
-      console.error("Replicate create error:", error);
-      throw new Error(`Replicate API error: ${createResponse.status} - ${error}`);
-    }
-
-    const prediction = await createResponse.json();
-
-    // Poll for completion
-    let resultUrl: string | null = null;
-    let pollCount = 0;
-    const maxPolls = 120; // 2 minutes max for full image
-
-    while (pollCount < maxPolls) {
-      const pollResponse = await fetchWithTimeout(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
-        headers: {
-          "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`,
-        },
-        timeout: 10000, // 10 seconds for polling
-      });
-
-      const status = await pollResponse.json();
-
-      if (status.status === "succeeded") {
-        // Output is an array of URLs or a single URL
-        if (Array.isArray(status.output) && status.output.length > 0) {
-          resultUrl = status.output[0];
-        } else if (typeof status.output === 'string') {
-          resultUrl = status.output;
-        }
-        break;
-      } else if (status.status === "failed" || status.status === "canceled") {
-        // Check if it's a transient Replicate error (upload issues)
-        const errorMsg = status.error || 'Unknown error';
-        if (errorMsg.includes('upload output files') || errorMsg.includes('Cog')) {
-          throw new Error(`Replicate temporary error. Please try again in a moment. (${errorMsg})`);
-        }
-        throw new Error(`Replicate processing failed: ${errorMsg}`);
-      }
-
-      // Wait 1 second before next poll
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      pollCount++;
-    }
-
-    if (!resultUrl) {
-      throw new Error("Replicate processing timed out or returned no output");
-    }
+    // Use fal.ai for upscaling
+    console.log(`Starting upscale: model=${model}, scale=${scale}x`);
+    const resultUrl = await ImageProcessor.upscaleImage(dataUrl, scale, model as 'esrgan' | 'aura-sr');
 
     // Track if this is first upload before deducting credits
     const isFirstUpload = !user.firstUploadAt;
@@ -191,10 +117,10 @@ export async function POST(request: NextRequest) {
     // Track usage and deduct credits
     await createUsage({
       userId: user.id,
-      type: qualityBoost ? 'upscale_premium' : 'upscale_standard',
+      type: model === 'aura-sr' ? 'upscale_premium' : 'upscale_standard',
       creditsUsed: creditsNeeded,
       imageSize: `${image.size} bytes`,
-      model: qualityBoost ? 'GFPGAN' : 'Real-ESRGAN',
+      model: model === 'aura-sr' ? 'AuraSR' : 'ESRGAN',
     });
 
     // Credits are already deducted by createUsage function
@@ -228,19 +154,20 @@ export async function POST(request: NextRequest) {
       success: true,
       imageUrl: resultUrl,
       scale: scale,
-      qualityBoost: qualityBoost,
+      model: model,
       creditsUsed: creditsNeeded,
       creditsRemaining: updatedUser?.credits || 0,
     };
 
     return NextResponse.json(responseData);
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error("Error processing image:", error);
     return NextResponse.json(
       {
         error: "Failed to process image",
-        details: error.message
+        details: errorMessage
       },
       { status: 500 }
     );
