@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       userId: user.id,
       type,
       creditsUsed: creditsCost,
-      imageSize: scale,
+      imageSize: scale !== undefined ? String(scale) : null,
       model: enhanceFace ? 'enhanced' : 'standard',
     });
 
