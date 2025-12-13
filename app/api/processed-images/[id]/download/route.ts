@@ -7,10 +7,6 @@ import path from 'path'
 import sharp from 'sharp'
 import { validateSafePath } from '@/lib/security'
 
-// Increase sharp's pixel limit for large upscaled images (8x upscale can create huge images)
-// Default is 268402689 (16384 x 16384), we need more for 8x upscaled images
-sharp.limitInputPixels(false) // Disable limit entirely for download processing
-
 type Resolution = 'low' | 'medium' | 'high' | 'original'
 type Format = 'png' | 'jpg'
 
@@ -120,7 +116,8 @@ export async function GET(
       }
 
       // Process image with sharp
-      let sharpInstance = sharp(fileBuffer)
+      // Disable pixel limit for large upscaled images (8x upscale can create huge images)
+      let sharpInstance = sharp(fileBuffer, { limitInputPixels: false })
 
       // Resize if needed
       if (targetWidth) {
