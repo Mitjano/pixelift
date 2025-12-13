@@ -1,15 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
+import Replicate from 'replicate'
 import sharp from 'sharp'
 import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
-import { ImageProcessor } from '@/lib/image-processor'
+
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN!,
+})
 
 interface PackshotPreset {
   name: string
-  backgroundColor: string
+  prompt: string
   credits: number
 }
 
@@ -18,100 +22,59 @@ const PACKSHOT_CREDITS = CREDIT_COSTS.packshot.cost
 const PRESETS: Record<string, PackshotPreset> = {
   white: {
     name: 'White Background',
-    backgroundColor: '#FFFFFF',
+    prompt: 'Place this product on a pure white background in a professional product photography studio setting. Add soft studio lighting with gentle shadows. Keep the product exactly as it is, only change the background to clean white with professional lighting.',
     credits: PACKSHOT_CREDITS,
   },
   gray: {
     name: 'Light Gray',
-    backgroundColor: '#F5F5F5',
+    prompt: 'Place this product on a clean light gray gradient background in a professional product photography studio. Add soft diffused lighting with subtle shadows. Keep the product exactly as it is, only change the background.',
     credits: PACKSHOT_CREDITS,
   },
-  beige: {
-    name: 'Beige',
-    backgroundColor: '#F5E6D3',
+  studio: {
+    name: 'Studio Setup',
+    prompt: 'Transform this into a professional product photography shot. Place the product on a clean surface with professional studio lighting, soft shadows, and a neutral gradient background. Keep the product exactly as it is.',
     credits: PACKSHOT_CREDITS,
   },
-  blue: {
-    name: 'Light Blue',
-    backgroundColor: '#E3F2FD',
+  lifestyle: {
+    name: 'Lifestyle',
+    prompt: 'Place this product in a modern, clean lifestyle setting with soft natural lighting. Add a subtle, elegant background that complements the product. Keep the product exactly as it is.',
     credits: PACKSHOT_CREDITS,
   },
 }
 
-// Parse hex color to RGB
-function hexToRgb(hex: string): { r: number; g: number; b: number } {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!result) {
-    return { r: 255, g: 255, b: 255 } // Default to white
-  }
-  return {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16),
-  }
-}
-
-async function generatePackshot(imageBuffer: Buffer, backgroundColor: string): Promise<Buffer> {
-  const TARGET_SIZE = 2000
-  const PRODUCT_SCALE = 0.85 // Product takes 85% of canvas
-  const MAX_PRODUCT_SIZE = Math.round(TARGET_SIZE * PRODUCT_SCALE)
-
-  // Step 1: Remove background using BiRefNet (better quality)
+async function generatePackshot(imageBuffer: Buffer, prompt: string): Promise<Buffer> {
+  // Convert image to base64 data URL
   const base64Image = imageBuffer.toString('base64')
-  const mimeType = 'image/png'
-  const dataUrl = `data:${mimeType};base64,${base64Image}`
+  const dataUrl = `data:image/png;base64,${base64Image}`
 
-  const rmbgUrl = await ImageProcessor.removeBackground(dataUrl)
-  const nobgResponse = await fetch(rmbgUrl)
-  const nobgBuffer = Buffer.from(await nobgResponse.arrayBuffer())
+  // Use FLUX Kontext Pro to generate professional packshot
+  const output = await replicate.run(
+    "black-forest-labs/flux-kontext-pro",
+    {
+      input: {
+        prompt: prompt,
+        input_image: dataUrl,
+        aspect_ratio: "1:1",
+        output_format: "png",
+        safety_tolerance: 2,
+      }
+    }
+  ) as unknown as string
 
-  // Step 2: Get metadata of the transparent image
-  const metadata = await sharp(nobgBuffer).metadata()
-
-  if (!metadata.width || !metadata.height) {
-    throw new Error('Invalid image metadata')
+  // Download result
+  const response = await fetch(output)
+  if (!response.ok) {
+    throw new Error('Failed to download generated packshot')
   }
 
-  // Step 3: Calculate scaling to fit product in canvas
-  const scale = Math.min(
-    MAX_PRODUCT_SIZE / metadata.width,
-    MAX_PRODUCT_SIZE / metadata.height
-  )
+  const resultBuffer = Buffer.from(await response.arrayBuffer())
 
-  const scaledWidth = Math.round(metadata.width * scale)
-  const scaledHeight = Math.round(metadata.height * scale)
-
-  // Center product on canvas
-  const productLeft = Math.round((TARGET_SIZE - scaledWidth) / 2)
-  const productTop = Math.round((TARGET_SIZE - scaledHeight) / 2)
-
-  // Step 4: Resize product image
-  const resizedProduct = await sharp(nobgBuffer)
-    .resize(scaledWidth, scaledHeight, {
-      fit: 'inside',
-      kernel: sharp.kernel.lanczos3,
+  // Resize to target size (2000x2000)
+  const finalImage = await sharp(resultBuffer)
+    .resize(2000, 2000, {
+      fit: 'contain',
+      background: { r: 255, g: 255, b: 255, alpha: 1 }
     })
-    .ensureAlpha()
-    .toBuffer()
-
-  // Step 5: Compose product on background (clean, no shadow - Amazon style)
-  const bgColor = hexToRgb(backgroundColor)
-
-  const finalImage = await sharp({
-    create: {
-      width: TARGET_SIZE,
-      height: TARGET_SIZE,
-      channels: 4,
-      background: { r: bgColor.r, g: bgColor.g, b: bgColor.b, alpha: 1 },
-    },
-  })
-    .composite([
-      {
-        input: resizedProduct,
-        left: productLeft,
-        top: productTop,
-      },
-    ])
     .png({ quality: 100 })
     .toBuffer()
 
@@ -148,7 +111,7 @@ export async function POST(request: NextRequest) {
     // 3. EXTRACT FORMDATA
     const formData = await request.formData()
     const file = formData.get('file') as File
-    const presetName = (formData.get('preset') as string) || 'amazon'
+    const presetName = (formData.get('preset') as string) || 'white'
 
     if (!file) {
       return NextResponse.json(
@@ -206,11 +169,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 6. PROCESS IMAGE - Background removal + composition
+    // 6. PROCESS IMAGE - Generate professional packshot with AI
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const finalImage = await generatePackshot(buffer, preset.backgroundColor)
+    const finalImage = await generatePackshot(buffer, preset.prompt)
 
     // Convert to data URL
     const base64 = finalImage.toString('base64')
@@ -227,7 +190,7 @@ export async function POST(request: NextRequest) {
       type: 'packshot_generation',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'birefnet-packshot',
+      model: 'flux-kontext-pro',
     })
 
     const newCredits = user.credits - creditsNeeded
