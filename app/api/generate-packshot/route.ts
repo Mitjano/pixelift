@@ -136,16 +136,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 6. UPLOAD IMAGE TO GET URL
-    // First remove background, then upload to fal storage
+    // 6. CONVERT TO DATA URL AND REMOVE BACKGROUND
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
+    const inputDataUrl = `data:${file.type};base64,${buffer.toString('base64')}`
 
     // Remove background first for cleaner product isolation
-    const noBgBuffer = await ImageProcessor.removeBackground(buffer)
+    const noBgDataUrl = await ImageProcessor.removeBackground(inputDataUrl)
 
-    // Upload to fal storage
-    const uploadedUrl = await fal.storage.upload(new Blob([noBgBuffer], { type: 'image/png' }))
+    // Upload to fal storage (convert data URL to blob)
+    const base64Data = noBgDataUrl.split(',')[1]
+    const noBgBuffer = Buffer.from(base64Data, 'base64')
+    const uploadedUrl = await fal.storage.upload(new Blob([new Uint8Array(noBgBuffer)], { type: 'image/png' }))
 
     // 7. GENERATE AI BACKGROUND
     const resultUrl = await generateAIBackground(uploadedUrl, backgroundPrompt)
