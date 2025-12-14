@@ -1653,8 +1653,8 @@
     "titlePrefix": "AI ",
     "subtitle": "Usuń szum, ziarno i artefakty kompresji dzięki technologii SwinIR AI. Odrestauruj stare zdjęcia i popraw jakość obrazu natychmiast.",
     "stats": {
-      "modes": "3",
-      "modesLabel": "Tryby Restauracji",
+      "modes": "AI",
+      "modesLabel": "Super Rozdzielczość",
       "processing": "10s",
       "processingLabel": "Przetwarzanie",
       "creditCost": "1",
@@ -1662,17 +1662,17 @@
     },
     "termsNotice": "Przesyłając plik, zgadzasz się na nasze Warunki Użytkowania i Politykę Prywatności.",
     "features": {
-      "noiseRemoval": {
-        "title": "Usuwanie Szumu",
-        "description": "Usuń ziarno i szum ze zdjęć o wysokim ISO, zachowując szczegóły."
-      },
-      "jpegArtifacts": {
-        "title": "Usuwanie Artefaktów JPEG",
-        "description": "Oczyść artefakty kompresji i przywróć płynne gradienty."
-      },
       "superResolution": {
-        "title": "Super Rozdzielczość",
-        "description": "Ulepsz i powiększ obrazy z inteligentną rekonstrukcją szczegółów."
+        "title": "Super Rozdzielczość AI",
+        "description": "Ulepsz i powiększ obrazy z inteligentną rekonstrukcją szczegółów za pomocą AI."
+      },
+      "detailEnhancement": {
+        "title": "Poprawa Szczegółów",
+        "description": "Wyostrz rozmyte zdjęcia i przywróć utracone detale tekstur i krawędzi."
+      },
+      "oldPhotos": {
+        "title": "Restauracja Starych Zdjęć",
+        "description": "Odśwież stare zdjęcia cyfrowe z wczesnych aparatów i smartfonów."
       }
     },
     "howItWorks": {

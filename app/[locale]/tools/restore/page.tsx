@@ -103,21 +103,21 @@ export default function RestorePage() {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
-              icon: '🔇',
-              titleKey: 'features.noiseRemoval.title',
-              descKey: 'features.noiseRemoval.description',
-              gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20',
-            },
-            {
-              icon: '📦',
-              titleKey: 'features.jpegArtifacts.title',
-              descKey: 'features.jpegArtifacts.description',
-              gradient: 'from-blue-100 dark:from-blue-500/20 to-indigo-100 dark:to-indigo-500/20',
-            },
-            {
               icon: '✨',
               titleKey: 'features.superResolution.title',
               descKey: 'features.superResolution.description',
+              gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20',
+            },
+            {
+              icon: '🖼️',
+              titleKey: 'features.detailEnhancement.title',
+              descKey: 'features.detailEnhancement.description',
+              gradient: 'from-blue-100 dark:from-blue-500/20 to-indigo-100 dark:to-indigo-500/20',
+            },
+            {
+              icon: '📸',
+              titleKey: 'features.oldPhotos.title',
+              descKey: 'features.oldPhotos.description',
               gradient: 'from-indigo-100 dark:from-indigo-500/20 to-purple-100 dark:to-purple-500/20',
             },
           ].map((feature, idx) => (
@@ -143,41 +143,25 @@ export default function RestorePage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-3 text-cyan-600 dark:text-cyan-400">{t('howItWorks.technology.title')}</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {t('howItWorks.technology.description')}
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex items-start gap-2">
-                  <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
-                  <span>{t('howItWorks.technology.feature1')}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
-                  <span>{t('howItWorks.technology.feature2')}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
-                  <span>{t('howItWorks.technology.feature3')}</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">{t('howItWorks.modes.title')}</h3>
-              <div className="space-y-3 text-gray-600 dark:text-gray-400">
-                <div className="bg-white dark:bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-gray-900 dark:text-white">{t('howItWorks.modes.superResolution.title')}</strong> {t('howItWorks.modes.superResolution.description')}
-                </div>
-                <div className="bg-white dark:bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-gray-900 dark:text-white">{t('howItWorks.modes.denoise.title')}</strong> {t('howItWorks.modes.denoise.description')}
-                </div>
-                <div className="bg-white dark:bg-gray-800/50 rounded-lg p-3">
-                  <strong className="text-gray-900 dark:text-white">{t('howItWorks.modes.jpegArtifacts.title')}</strong> {t('howItWorks.modes.jpegArtifacts.description')}
-                </div>
-              </div>
-            </div>
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-xl font-semibold mb-3 text-cyan-600 dark:text-cyan-400">{t('howItWorks.technology.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              {t('howItWorks.technology.description')}
+            </p>
+            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
+                <span>{t('howItWorks.technology.feature1')}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
+                <span>{t('howItWorks.technology.feature2')}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
+                <span>{t('howItWorks.technology.feature3')}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>

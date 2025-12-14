@@ -1740,8 +1740,8 @@
     "titlePrefix": "AI ",
     "subtitle": "Supprimez le bruit, le grain et les artefacts de compression avec la technologie SwinIR AI. Restaurez les vieilles photos et améliorez la qualité d'image instantanément.",
     "stats": {
-      "modes": "3",
-      "modesLabel": "Modes de Restauration",
+      "modes": "AI",
+      "modesLabel": "Super Résolution",
       "processing": "10s",
       "processingLabel": "Traitement",
       "creditCost": "1",
@@ -1749,17 +1749,17 @@
     },
     "termsNotice": "En téléchargeant un fichier, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.",
     "features": {
-      "noiseRemoval": {
-        "title": "Suppression du Bruit",
-        "description": "Supprimez le grain et le bruit des photos à ISO élevé tout en préservant les détails."
-      },
-      "jpegArtifacts": {
-        "title": "Suppression des Artefacts JPEG",
-        "description": "Nettoyez les artefacts de compression et restaurez des dégradés lisses."
-      },
       "superResolution": {
-        "title": "Super Résolution",
-        "description": "Améliorez et agrandissez les images avec une reconstruction intelligente des détails."
+        "title": "Super Résolution AI",
+        "description": "Améliorez et agrandissez les images avec une reconstruction intelligente des détails par IA."
+      },
+      "detailEnhancement": {
+        "title": "Amélioration des Détails",
+        "description": "Rendez netttes les photos floues et restaurez les détails perdus des textures et des bords."
+      },
+      "oldPhotos": {
+        "title": "Restauration de Photos Anciennes",
+        "description": "Revitalisez les anciennes photos numériques des premiers appareils et smartphones."
       }
     },
     "howItWorks": {

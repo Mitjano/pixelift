@@ -8,13 +8,12 @@ import { FaTimes, FaInfoCircle } from "react-icons/fa";
 import { LoginPrompt, CreditCostBadge } from "./shared";
 import { CREDIT_COSTS } from '@/lib/credits-config';
 
-type TaskType = 'real_sr' | 'denoise' | 'jpeg_car';
+type TaskType = 'real_sr';
 
-const TASK_OPTIONS: { value: TaskType; label: string; description: string }[] = [
-  { value: 'real_sr', label: 'Super Resolution', description: 'General image enhancement & upscaling' },
-  { value: 'denoise', label: 'Denoise', description: 'Remove noise and grain from photos' },
-  { value: 'jpeg_car', label: 'JPEG Artifact Removal', description: 'Remove compression artifacts' },
-];
+// Only Super Resolution mode - denoise and jpeg_car removed as they didn't improve old photo quality
+const TASK_TYPE: TaskType = 'real_sr';
+const TASK_LABEL = 'Super Resolution';
+const TASK_DESCRIPTION = 'AI-powered image enhancement & restoration';
 
 export default function ImageDenoiser() {
   const { data: session } = useSession();
@@ -27,7 +26,7 @@ export default function ImageDenoiser() {
   const [progress, setProgress] = useState("");
   const [imageInfo, setImageInfo] = useState<{width: number, height: number, size: number} | null>(null);
   const [creditsRemaining, setCreditsRemaining] = useState<number | null>(null);
-  const [task, setTask] = useState<TaskType>('denoise');
+  const task: TaskType = TASK_TYPE;
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -99,8 +98,7 @@ export default function ImageDenoiser() {
       formData.append("file", selectedFile);
       formData.append("task", task);
 
-      const taskLabel = TASK_OPTIONS.find(t => t.value === task)?.label || 'Processing';
-      setProgress(`${taskLabel} with SwinIR AI...`);
+      setProgress(`${TASK_LABEL} with SwinIR AI...`);
 
       const response = await fetch("/api/denoise", {
         method: "POST",
@@ -171,27 +169,6 @@ export default function ImageDenoiser() {
     <div className="max-w-6xl mx-auto">
       {!previewUrl ? (
         <div>
-          {/* Task Selection */}
-          <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Select Restoration Type</h3>
-            <div className="grid md:grid-cols-3 gap-3">
-              {TASK_OPTIONS.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setTask(option.value)}
-                  className={`p-4 rounded-lg border-2 text-left transition ${
-                    task === option.value
-                      ? 'border-cyan-500 bg-cyan-500/10'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
-                  }`}
-                >
-                  <div className="font-semibold">{option.label}</div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">{option.description}</div>
-                </button>
-              ))}
-            </div>
-          </div>
-
           <div
             className={`relative border-2 border-dashed rounded-2xl p-12 transition-all ${
               dragActive ? "border-cyan-500 bg-cyan-500/10" : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
@@ -244,7 +221,7 @@ export default function ImageDenoiser() {
               <span>-</span>
               <span>{(imageInfo.size / 1024 / 1024).toFixed(2)} MB</span>
               <span>-</span>
-              <span className="text-cyan-400">{TASK_OPTIONS.find(t => t.value === task)?.label}</span>
+              <span className="text-cyan-400">{TASK_LABEL}</span>
               {creditsRemaining !== null && (
                 <>
                   <span>-</span>
@@ -254,35 +231,13 @@ export default function ImageDenoiser() {
             </div>
           )}
 
-          {/* Task Selection */}
-          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Restoration Type</h3>
-            <div className="grid md:grid-cols-3 gap-3">
-              {TASK_OPTIONS.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setTask(option.value)}
-                  disabled={processing}
-                  className={`p-3 rounded-lg border-2 text-left transition ${
-                    task === option.value
-                      ? 'border-cyan-500 bg-cyan-500/10'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
-                  } ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  <div className="font-semibold text-sm">{option.label}</div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">{option.description}</div>
-                </button>
-              ))}
-            </div>
-          </div>
-
           <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             {processedUrl && previewUrl ? (
               <ImageComparison
                 beforeImage={previewUrl}
                 afterImage={processedUrl}
                 beforeLabel="Original"
-                afterLabel={TASK_OPTIONS.find(t => t.value === task)?.label || 'Restored'}
+                afterLabel={TASK_LABEL}
               />
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
