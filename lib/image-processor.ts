@@ -590,10 +590,9 @@ export class ImageProcessor {
     const blob = new Blob([new Uint8Array(imageBuffer)], { type: 'image/png' })
     formData.append('imageFile', blob, 'image.png')
     formData.append('removeBackground', 'true')
-    formData.append('beautifier', 'ai.auto') // Professional packshot beautifier
     formData.append('background.color', backgroundColor)
     formData.append('shadow.mode', 'ai.soft') // Soft AI shadow
-    formData.append('padding', '0.1') // 10% padding
+    formData.append('padding', '0.15') // 15% padding for shadow visibility
     formData.append('outputSize', '2000x2000')
 
     const response = await fetch('https://image-api.photoroom.com/v2/edit', {
