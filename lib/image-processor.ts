@@ -591,7 +591,7 @@ export class ImageProcessor {
     formData.append('imageFile', blob, 'image.png')
     formData.append('removeBackground', 'true')
     formData.append('background.color', backgroundColor)
-    formData.append('shadow.mode', 'ai.soft') // Soft AI shadow
+    formData.append('shadow.mode', 'ai.hard') // Hard AI shadow - more visible
     formData.append('padding', '0.15') // 15% padding for shadow visibility
     formData.append('outputSize', '2000x2000')
 
