@@ -20,17 +20,6 @@ const BackgroundRemover = dynamic(
   }
 );
 
-const ProcessedImagesGallery = dynamic(
-  () => import('@/components/ProcessedImagesGallery').then((mod) => ({ default: mod.ProcessedImagesGallery })),
-  {
-    loading: () => (
-      <div className="flex items-center justify-center p-8">
-        <div className="animate-pulse text-gray-400">Loading gallery...</div>
-      </div>
-    ),
-    ssr: false,
-  }
-);
 
 export default function RemoveBackgroundPage() {
   const { data: session, status } = useSession();
@@ -144,23 +133,6 @@ export default function RemoveBackgroundPage() {
               <p className="text-gray-600 dark:text-gray-400">{t(feature.descKey)}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gray-900 dark:text-white">{t('gallery.titlePrefix')}</span>
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{t('gallery.title')}</span>
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            {t('gallery.subtitle')}
-          </p>
-        </div>
-
-        <div className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden p-6">
-          <ProcessedImagesGallery userRole={userRole} />
         </div>
       </section>
 
