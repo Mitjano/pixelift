@@ -56,6 +56,17 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 86400,
   },
+  // Redirects for renamed pages
+  async redirects() {
+    return [
+      // Old packshot-generator -> new ai-background-generator
+      {
+        source: '/:locale/tools/packshot-generator',
+        destination: '/:locale/tools/ai-background-generator',
+        permanent: true,
+      },
+    ];
+  },
   // Security headers
   async headers() {
     return [
