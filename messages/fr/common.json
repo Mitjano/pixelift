@@ -1002,16 +1002,46 @@
     "titleHighlight": "Suite d'Images IA",
     "subtitle": "Tout ce dont vous avez besoin pour améliorer, éditer et transformer vos images. Résultats professionnels en quelques secondes, sans compétences en design.",
     "tools": {
-      "upscaler": { "name": "Agrandisseur IA", "description": "Agrandissez les images jusqu'à 8x avec l'amélioration IA" },
-      "bgRemover": { "name": "Suppression de Fond", "description": "Supprimez les arrière-plans instantanément avec précision IA" },
-      "colorize": { "name": "Colorisateur de Photos", "description": "Donnez vie aux photos noir et blanc avec la couleur IA" },
-      "restore": { "name": "Restauration d'Image", "description": "Supprimez le bruit, les artefacts et la compression JPEG" },
-      "objectRemoval": { "name": "Suppression d'Objets", "description": "Effacez les objets, personnes et distractions indésirables" },
-      "bgGenerator": { "name": "Générateur de Fond", "description": "Générez des arrière-plans IA époustouflants à partir de descriptions" },
-      "compressor": { "name": "Compresseur d'Images", "description": "Réduisez la taille du fichier en conservant la qualité" },
-      "formatConverter": { "name": "Convertisseur de Format", "description": "Convertissez entre PNG, JPG, WebP, AVIF et GIF gratuitement" },
-      "packshot": { "name": "Générateur Packshot", "description": "Créez des photos de produits professionnelles instantanément" },
-      "expand": { "name": "Expansion d'Image", "description": "Étendez les bordures d'image avec l'outpainting IA" }
+      "upscaler": {
+        "name": "Agrandisseur IA",
+        "description": "Agrandissez les images jusqu'à 8x avec l'amélioration IA"
+      },
+      "bgRemover": {
+        "name": "Suppression de Fond",
+        "description": "Supprimez les arrière-plans instantanément avec précision IA"
+      },
+      "colorize": {
+        "name": "Colorisateur de Photos",
+        "description": "Donnez vie aux photos noir et blanc avec la couleur IA"
+      },
+      "restore": {
+        "name": "Restauration d'Image",
+        "description": "Supprimez le bruit, les artefacts et la compression JPEG"
+      },
+      "objectRemoval": {
+        "name": "Suppression d'Objets",
+        "description": "Effacez les objets, personnes et distractions indésirables"
+      },
+      "bgGenerator": {
+        "name": "Générateur de Fond",
+        "description": "Générez des arrière-plans IA époustouflants à partir de descriptions"
+      },
+      "compressor": {
+        "name": "Compresseur d'Images",
+        "description": "Réduisez la taille du fichier en conservant la qualité"
+      },
+      "formatConverter": {
+        "name": "Convertisseur de Format",
+        "description": "Convertissez entre PNG, JPG, WebP, AVIF et GIF gratuitement"
+      },
+      "packshot": {
+        "name": "Générateur Packshot",
+        "description": "Créez des photos de produits professionnelles instantanément"
+      },
+      "expand": {
+        "name": "Expansion d'Image",
+        "description": "Étendez les bordures d'image avec l'outpainting IA"
+      }
     },
     "credits": {
       "1": "1 crédit",
@@ -1032,12 +1062,30 @@
     "title": "Fait Confiance par",
     "titleHighlight": "des Professionnels du Monde Entier",
     "badges": {
-      "ssl": { "title": "SSL Sécurisé", "description": "Cryptage 256 bits" },
-      "gdpr": { "title": "Conforme RGPD", "description": "Protection des données UE" },
-      "privacy": { "title": "Auto-Suppression", "description": "Fichiers supprimés après 1h" },
-      "uptime": { "title": "99.9% Disponible", "description": "Fiabilité entreprise" },
-      "support": { "title": "Support 24/7", "description": "Toujours là pour aider" },
-      "noWatermark": { "title": "Sans Filigrane", "description": "Export qualité complète" }
+      "ssl": {
+        "title": "SSL Sécurisé",
+        "description": "Cryptage 256 bits"
+      },
+      "gdpr": {
+        "title": "Conforme RGPD",
+        "description": "Protection des données UE"
+      },
+      "privacy": {
+        "title": "Auto-Suppression",
+        "description": "Fichiers supprimés après 1h"
+      },
+      "uptime": {
+        "title": "99.9% Disponible",
+        "description": "Fiabilité entreprise"
+      },
+      "support": {
+        "title": "Support 24/7",
+        "description": "Toujours là pour aider"
+      },
+      "noWatermark": {
+        "title": "Sans Filigrane",
+        "description": "Export qualité complète"
+      }
     },
     "trustedBy": "Fait confiance par les grandes marques",
     "securityNote": "Vos images sont traitées de manière sécurisée et jamais partagées avec des tiers"
@@ -1401,12 +1449,30 @@
     "whyChoose": {
       "title": "Pourquoi Choisir Pixelift?",
       "features": {
-        "f1": { "title": "Préréglages IA Multiples:", "description": "Paramètres optimisés pour portraits, paysages, art et plus" },
-        "f2": { "title": "Agrandissement Jusqu'à 8x:", "description": "Augmentez la résolution jusqu'à 64x pixels au total" },
-        "f3": { "title": "Amélioration Faciale:", "description": "IA spécialisée pour améliorer les traits du visage" },
-        "f4": { "title": "Sans Filigrane:", "description": "Téléchargez les images améliorées sans aucune marque" },
-        "f5": { "title": "Traitement par Lots:", "description": "Capacités de transformation en masse de niveau entreprise" },
-        "f6": { "title": "Sécurisé & Privé:", "description": "Images supprimées après 24 heures, conforme RGPD" }
+        "f1": {
+          "title": "Préréglages IA Multiples:",
+          "description": "Paramètres optimisés pour portraits, paysages, art et plus"
+        },
+        "f2": {
+          "title": "Agrandissement Jusqu'à 8x:",
+          "description": "Augmentez la résolution jusqu'à 64x pixels au total"
+        },
+        "f3": {
+          "title": "Amélioration Faciale:",
+          "description": "IA spécialisée pour améliorer les traits du visage"
+        },
+        "f4": {
+          "title": "Sans Filigrane:",
+          "description": "Téléchargez les images améliorées sans aucune marque"
+        },
+        "f5": {
+          "title": "Traitement par Lots:",
+          "description": "Capacités de transformation en masse de niveau entreprise"
+        },
+        "f6": {
+          "title": "Sécurisé & Privé:",
+          "description": "Images supprimées après 24 heures, conforme RGPD"
+        }
       }
     },
     "useCases": {
@@ -1427,10 +1493,22 @@
     "howItWorks": {
       "title": "Comment Fonctionne Notre Agrandisseur IA?",
       "steps": {
-        "s1": { "title": "Téléchargez Votre Image:", "description": "Glissez-déposez ou sélectionnez un fichier image (PNG, JPG, WEBP, HEIC ou BMP)" },
-        "s2": { "title": "Choisissez un Préréglage IA:", "description": "Sélectionnez parmi Portrait, Paysage, Art & Illustration, Restauration Photo ou Qualité Maximum" },
-        "s3": { "title": "Traitement par l'IA:", "description": "Nos modèles Real-ESRGAN et GFPGAN analysent et améliorent votre image" },
-        "s4": { "title": "Téléchargez l'Image Améliorée:", "description": "Comparez avant/après avec notre curseur interactif, puis téléchargez en haute qualité" }
+        "s1": {
+          "title": "Téléchargez Votre Image:",
+          "description": "Glissez-déposez ou sélectionnez un fichier image (PNG, JPG, WEBP, HEIC ou BMP)"
+        },
+        "s2": {
+          "title": "Choisissez un Préréglage IA:",
+          "description": "Sélectionnez parmi Portrait, Paysage, Art & Illustration, Restauration Photo ou Qualité Maximum"
+        },
+        "s3": {
+          "title": "Traitement par l'IA:",
+          "description": "Nos modèles Real-ESRGAN et GFPGAN analysent et améliorent votre image"
+        },
+        "s4": {
+          "title": "Téléchargez l'Image Améliorée:",
+          "description": "Comparez avant/après avec notre curseur interactif, puis téléchargez en haute qualité"
+        }
       }
     },
     "cta": {
@@ -3264,6 +3342,18 @@
       "completelyFree": {
         "title": "Entièrement Gratuit",
         "description": "Aucun crédit requis, aucune limite. Convertissez autant d'images que vous le souhaitez, gratuit pour toujours."
+      },
+      "privacyFirst": {
+        "title": "Confidentialité d'Abord",
+        "description": "Vos images sont traitées de manière sécurisée et ne sont jamais stockées sur nos serveurs. Les fichiers sont automatiquement supprimés après conversion."
+      },
+      "noInstallation": {
+        "title": "Aucun Logiciel Requis",
+        "description": "Fonctionne directement dans votre navigateur sur n'importe quel appareil - Windows, Mac, Linux, iOS ou Android. Aucun téléchargement, aucune installation."
+      },
+      "largeFiles": {
+        "title": "Support des Gros Fichiers",
+        "description": "Téléchargez des images jusqu'à 20 Mo. Parfait pour les photos haute résolution et les graphiques professionnels."
       }
     },
     "useCases": {
@@ -3283,6 +3373,20 @@
         "appsDesc": "Convertissez AVIF/WebP en PNG pour les logiciels plus anciens",
         "print": "Impression:",
         "printDesc": "Convertissez en JPG ou PNG haute qualité pour l'impression"
+      },
+      "ecommerce": {
+        "title": "E-commerce et Vendeurs en Ligne",
+        "description": "Optimisez les images de produits pour les marketplaces. Convertissez les images fournisseurs au bon format pour Amazon, eBay, Shopify ou votre propre boutique.",
+        "feature1": "Respectez les exigences d'image des marketplaces",
+        "feature2": "Réduisez la taille des fichiers pour un chargement rapide",
+        "feature3": "Maintenez la qualité tout en optimisant pour le web"
+      },
+      "photographers": {
+        "title": "Photographes et Créateurs de Contenu",
+        "description": "Convertissez rapidement entre formats pour différents besoins. Envoyez des images prêtes pour le web aux clients ou préparez des fichiers pour diverses plateformes.",
+        "feature1": "Convertissez les exports RAW en formats web",
+        "feature2": "Préparez des images pour les réseaux sociaux",
+        "feature3": "Créez plusieurs versions de format à partir d'une source"
       }
     },
     "formatComparison": {
@@ -3303,13 +3407,159 @@
       "pngBest": "Graphiques, logos, captures d'écran",
       "webpBest": "Sites web modernes, applications",
       "avifBest": "Compression maximale, navigateurs modernes",
-      "gifBest": "Animations simples, mèmes"
+      "gifBest": "Animations simples, mèmes",
+      "description": "Choisissez le bon format pour vos besoins. Chaque format a des forces uniques pour différents cas d'usage."
     },
     "cta": {
       "title": "Besoin de Plus d'Outils IA?",
       "subtitle": "Explorez notre suite complète d'outils d'image alimentés par l'IA. Agrandissez, supprimez les arrière-plans, colorisez, et plus encore.",
       "exploreTools": "Explorer Tous les Outils",
       "viewPricing": "Voir les Tarifs"
+    },
+    "howItWorks": {
+      "title": "Comment Convertir le Format d'Image",
+      "step1": {
+        "title": "Téléchargez Votre Image",
+        "description": "Glissez-déposez votre image ou cliquez pour parcourir. Nous supportons JPG, PNG, WebP, AVIF et GIF jusqu'à 20 Mo."
+      },
+      "step2": {
+        "title": "Choisissez le Format de Sortie",
+        "description": "Sélectionnez le format souhaité. Ajustez les paramètres de qualité si nécessaire - qualité inférieure signifie fichier plus petit."
+      },
+      "step3": {
+        "title": "Téléchargez l'Image Convertie",
+        "description": "Cliquez sur convertir et téléchargez votre nouvelle image instantanément. Pas d'email requis, pas d'attente - c'est aussi simple."
+      }
+    },
+    "formatDetails": {
+      "title": "Comprendre les Formats d'Image",
+      "jpg": {
+        "title": "Format JPG (JPEG)",
+        "description": "Le format d'image le plus utilisé sur internet. JPG utilise une compression avec perte, ce qui signifie que certaines données sont supprimées pour obtenir des tailles plus petites. Idéal pour les photographies et images complexes avec beaucoup de couleurs.",
+        "pros": "Compatibilité universelle, fichiers petits, excellent pour les photos",
+        "cons": "Compression avec perte, pas de transparence, qualité se dégrade à chaque sauvegarde"
+      },
+      "png": {
+        "title": "Format PNG",
+        "description": "PNG utilise une compression sans perte, préservant toutes les données d'image. Supporte la transparence complète (canal alpha), parfait pour les logos, icônes et graphiques nécessitant une superposition.",
+        "pros": "Qualité sans perte, support de transparence, bords nets préservés",
+        "cons": "Fichiers plus volumineux, pas idéal pour les photographies"
+      },
+      "webp": {
+        "title": "Format WebP",
+        "description": "Développé par Google, WebP offre une compression supérieure pour les images web. Supporte la compression avec et sans perte, plus la transparence et l'animation. Les images WebP sont typiquement 25-35% plus petites que JPG.",
+        "pros": "Excellente compression, transparence, support d'animation, largement supporté",
+        "cons": "Non supporté par certains logiciels anciens"
+      },
+      "avif": {
+        "title": "Format AVIF",
+        "description": "AVIF est le format d'image le plus récent, offrant une meilleure compression que WebP. Basé sur le codec vidéo AV1, AVIF peut atteindre des fichiers 50% plus petits que JPG. Supporte HDR et transparence.",
+        "pros": "Meilleur ratio de compression, support HDR, excellente qualité",
+        "cons": "Encodage plus lent, support limité dans les navigateurs anciens"
+      },
+      "gif": {
+        "title": "Format GIF",
+        "description": "GIF est connu pour son support d'animation. Limité à 256 couleurs, ce qui le rend inadapté aux photographies mais parfait pour les graphiques simples, icônes et animations courtes.",
+        "pros": "Support d'animation, compatibilité universelle, transparence simple",
+        "cons": "Limité à 256 couleurs, fichiers volumineux pour les animations"
+      }
+    },
+    "conversionGuide": {
+      "title": "Conversions d'Image Populaires",
+      "description": "Conversions de format courantes et quand les utiliser:",
+      "pngToJpg": {
+        "title": "PNG vers JPG",
+        "description": "Réduisez la taille de fichier pour les photos exportées en PNG. Idéal quand vous n'avez pas besoin de transparence."
+      },
+      "jpgToPng": {
+        "title": "JPG vers PNG",
+        "description": "Convertissez les photos en format sans perte pour l'édition ou l'archivage. Utile pour préserver la qualité pour les futures modifications."
+      },
+      "pngToWebp": {
+        "title": "PNG vers WebP",
+        "description": "Optimisez les graphiques web. WebP maintient la transparence tout en réduisant dramatiquement la taille - parfait pour les performances web."
+      },
+      "jpgToWebp": {
+        "title": "JPG vers WebP",
+        "description": "La conversion d'optimisation web la plus courante. Réduisez la taille des photos de 25-35% sans perte de qualité visible."
+      },
+      "webpToJpg": {
+        "title": "WebP vers JPG",
+        "description": "Convertissez le format moderne en JPG universellement compatible. Essentiel pour partager sur des plateformes qui ne supportent pas WebP."
+      },
+      "webpToPng": {
+        "title": "WebP vers PNG",
+        "description": "Convertissez WebP avec transparence en PNG pour compatibilité logicielle. Utile pour éditer dans des applications graphiques anciennes."
+      },
+      "anyToAvif": {
+        "title": "Tout Format vers AVIF",
+        "description": "Compression maximale pour les sites web modernes. AVIF offre le meilleur ratio taille-qualité disponible aujourd'hui."
+      }
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Ce convertisseur d'images est-il vraiment gratuit?",
+        "answer": "Oui, 100% gratuit sans coûts cachés. Nous ne demandons pas d'inscription, n'ajoutons pas de filigranes, et ne limitons pas le nombre d'images que vous pouvez convertir."
+      },
+      "q2": {
+        "question": "Quelle est la taille maximale de fichier que je peux convertir?",
+        "answer": "Vous pouvez télécharger des images jusqu'à 20 Mo. C'est suffisant pour la plupart des photos et graphiques haute résolution."
+      },
+      "q3": {
+        "question": "Mes images sont-elles stockées sur vos serveurs?",
+        "answer": "Non. Vos images sont traitées en temps réel et immédiatement supprimées après conversion. Nous ne stockons pas, ne visualisons pas et ne partageons pas vos images."
+      },
+      "q4": {
+        "question": "Quel format dois-je choisir pour mon site web?",
+        "answer": "Pour la plupart des sites web en 2024, WebP est le meilleur choix - il offre une excellente compression avec un large support navigateur (97%+ globalement). Pour des performances de pointe, considérez AVIF."
+      },
+      "q5": {
+        "question": "La conversion de mon image réduira-t-elle sa qualité?",
+        "answer": "Cela dépend de la conversion. Convertir en PNG est sans perte. Convertir en JPG, WebP ou AVIF implique une compression - utilisez des paramètres de haute qualité (80-100%) pour minimiser la perte."
+      },
+      "q6": {
+        "question": "Puis-je convertir plusieurs images à la fois?",
+        "answer": "Actuellement, notre outil convertit une image à la fois pour un contrôle optimal de la qualité. Pour les conversions par lots, vous pouvez rapidement convertir plusieurs images séquentiellement."
+      },
+      "q7": {
+        "question": "Quelle est la différence entre WebP et AVIF?",
+        "answer": "Les deux sont des formats modernes avec une excellente compression. AVIF atteint typiquement des fichiers 20-30% plus petits que WebP à qualité égale, mais met plus de temps à encoder. Choisissez WebP pour la compatibilité, AVIF pour la compression maximale."
+      },
+      "q8": {
+        "question": "Pourquoi ne puis-je pas ouvrir mon fichier AVIF/WebP converti?",
+        "answer": "Certains logiciels anciens ne supportent pas les formats modernes. Si vous devez ouvrir AVIF ou WebP dans des applications anciennes, convertissez-les d'abord en PNG ou JPG."
+      }
+    },
+    "technicalSpecs": {
+      "title": "Spécifications Techniques",
+      "inputFormats": "Formats d'Entrée",
+      "inputFormatsValue": "JPG, JPEG, PNG, WebP, AVIF, GIF",
+      "outputFormats": "Formats de Sortie",
+      "outputFormatsValue": "JPG, PNG, WebP, AVIF, GIF",
+      "maxFileSize": "Taille Maximale de Fichier",
+      "maxFileSizeValue": "20 Mo",
+      "qualityRange": "Plage de Qualité",
+      "qualityRangeValue": "1-100% (ajustable)",
+      "processing": "Traitement",
+      "processingValue": "Côté serveur (bibliothèque Sharp)",
+      "colorSpace": "Espace Colorimétrique",
+      "colorSpaceValue": "sRGB préservé"
+    },
+    "relatedTools": {
+      "title": "Outils Connexes",
+      "compressor": {
+        "title": "Compresseur d'Images",
+        "description": "Réduisez la taille tout en maintenant la qualité"
+      },
+      "upscaler": {
+        "title": "Agrandisseur d'Images",
+        "description": "Agrandissez les images jusqu'à 8x avec l'IA"
+      },
+      "removeBackground": {
+        "title": "Suppresseur d'Arrière-plan",
+        "description": "Supprimez les arrière-plans instantanément avec l'IA"
+      }
     }
   },
   "refundPage": {
@@ -3643,31 +3893,88 @@
     "termsNotice": "En téléchargeant un fichier, vous acceptez nos Conditions et Politique de Confidentialité.",
     "presets": {
       "title": "Styles de Fond Prêts à l'Emploi",
-      "studio": { "icon": "📸", "name": "Studio", "description": "Éclairage studio professionnel avec cyclorama blanc" },
-      "marble": { "icon": "🪨", "name": "Marbre", "description": "Surface en marbre élégante avec éclairage naturel" },
-      "nature": { "icon": "🌿", "name": "Nature", "description": "Décor naturel en extérieur avec bokeh doux" },
-      "minimal": { "icon": "◻️", "name": "Minimal", "description": "Dégradé épuré, photographie produit moderne" },
-      "wood": { "icon": "🪵", "name": "Bois", "description": "Surface en bois rustique, tons chauds" },
-      "lifestyle": { "icon": "🏠", "name": "Lifestyle", "description": "Intérieur moderne, ambiance inspirante" }
+      "studio": {
+        "icon": "📸",
+        "name": "Studio",
+        "description": "Éclairage studio professionnel avec cyclorama blanc"
+      },
+      "marble": {
+        "icon": "🪨",
+        "name": "Marbre",
+        "description": "Surface en marbre élégante avec éclairage naturel"
+      },
+      "nature": {
+        "icon": "🌿",
+        "name": "Nature",
+        "description": "Décor naturel en extérieur avec bokeh doux"
+      },
+      "minimal": {
+        "icon": "◻️",
+        "name": "Minimal",
+        "description": "Dégradé épuré, photographie produit moderne"
+      },
+      "wood": {
+        "icon": "🪵",
+        "name": "Bois",
+        "description": "Surface en bois rustique, tons chauds"
+      },
+      "lifestyle": {
+        "icon": "🏠",
+        "name": "Lifestyle",
+        "description": "Intérieur moderne, ambiance inspirante"
+      }
     },
     "features": {
-      "aiGenerated": { "title": "Fonds Générés par IA", "description": "La technologie IA avancée crée des fonds réalistes et professionnels adaptés à votre produit. Chaque fond est unique." },
-      "customPrompts": { "title": "Prompts de Fond Personnalisés", "description": "Vous ne trouvez pas le preset parfait ? Décrivez le fond avec vos propres mots - l'IA générera exactement ce dont vous avez besoin." },
-      "ecommerce": { "title": "Prêt pour l'E-commerce", "description": "Optimisé pour Amazon, eBay, Etsy et autres plateformes. Des photos de produits professionnelles qui augmentent les ventes." }
+      "aiGenerated": {
+        "title": "Fonds Générés par IA",
+        "description": "La technologie IA avancée crée des fonds réalistes et professionnels adaptés à votre produit. Chaque fond est unique."
+      },
+      "customPrompts": {
+        "title": "Prompts de Fond Personnalisés",
+        "description": "Vous ne trouvez pas le preset parfait ? Décrivez le fond avec vos propres mots - l'IA générera exactement ce dont vous avez besoin."
+      },
+      "ecommerce": {
+        "title": "Prêt pour l'E-commerce",
+        "description": "Optimisé pour Amazon, eBay, Etsy et autres plateformes. Des photos de produits professionnelles qui augmentent les ventes."
+      }
     },
     "howItWorks": {
       "title": "Comment Fonctionne le Générateur de Fonds AI",
-      "step1": { "title": "1. Téléchargez la Photo", "description": "Téléchargez votre photo de produit au format JPG, PNG ou WEBP" },
-      "step2": { "title": "2. Choisissez le Fond", "description": "Sélectionnez un preset ou décrivez votre propre fond" },
-      "step3": { "title": "3. L'IA Génère", "description": "L'IA supprime le fond et en crée un nouveau en ~15 secondes" },
-      "step4": { "title": "4. Téléchargez", "description": "Téléchargez l'image finale en haute résolution" }
+      "step1": {
+        "title": "1. Téléchargez la Photo",
+        "description": "Téléchargez votre photo de produit au format JPG, PNG ou WEBP"
+      },
+      "step2": {
+        "title": "2. Choisissez le Fond",
+        "description": "Sélectionnez un preset ou décrivez votre propre fond"
+      },
+      "step3": {
+        "title": "3. L'IA Génère",
+        "description": "L'IA supprime le fond et en crée un nouveau en ~15 secondes"
+      },
+      "step4": {
+        "title": "4. Téléchargez",
+        "description": "Téléchargez l'image finale en haute résolution"
+      }
     },
     "useCases": {
       "title": "Parfait Pour",
-      "ecommerce": { "title": "Boutiques en Ligne", "description": "Créez des photos de produits cohérentes et professionnelles pour votre boutique. Augmentez les conversions avec des visuels attrayants." },
-      "socialMedia": { "title": "Réseaux Sociaux", "description": "Démarquez-vous sur Instagram et Facebook. Créez des publications de produits accrocheuses avec des fonds créatifs." },
-      "dropshipping": { "title": "Dropshipping", "description": "Transformez les photos des fournisseurs en visuels uniques. Différenciez-vous des concurrents vendant les mêmes produits." },
-      "marketing": { "title": "Supports Marketing", "description": "Créez des graphiques professionnels pour catalogues, flyers et publicités sans studio photo." }
+      "ecommerce": {
+        "title": "Boutiques en Ligne",
+        "description": "Créez des photos de produits cohérentes et professionnelles pour votre boutique. Augmentez les conversions avec des visuels attrayants."
+      },
+      "socialMedia": {
+        "title": "Réseaux Sociaux",
+        "description": "Démarquez-vous sur Instagram et Facebook. Créez des publications de produits accrocheuses avec des fonds créatifs."
+      },
+      "dropshipping": {
+        "title": "Dropshipping",
+        "description": "Transformez les photos des fournisseurs en visuels uniques. Différenciez-vous des concurrents vendant les mêmes produits."
+      },
+      "marketing": {
+        "title": "Supports Marketing",
+        "description": "Créez des graphiques professionnels pour catalogues, flyers et publicités sans studio photo."
+      }
     },
     "technology": {
       "title": "Technologie IA",
@@ -3687,11 +3994,26 @@
     },
     "faq": {
       "title": "Questions Fréquentes",
-      "q1": { "question": "Quels formats de fichier sont supportés ?", "answer": "JPG, JPEG, PNG et WEBP. Maximum 30 Mo. Pour de meilleurs résultats, utilisez des images d'au moins 1000x1000 pixels." },
-      "q2": { "question": "Combien ça coûte ?", "answer": "Chaque génération coûte 2 crédits. Les nouveaux utilisateurs reçoivent 3 crédits gratuits. Crédits supplémentaires disponibles en forfaits économiques." },
-      "q3": { "question": "Puis-je utiliser les images générées commercialement ?", "answer": "Oui ! Toutes les images sont entièrement commerciales. Utilisez-les dans vos boutiques, publicités, catalogues sans restrictions." },
-      "q4": { "question": "Comment écrire un bon prompt personnalisé ?", "answer": "Soyez précis : surface (marbre, bois), éclairage (studio, naturel), style (minimaliste, luxe). Exemple : 'Marbre noir élégant, éclairage studio doux, atmosphère de luxe'." },
-      "q5": { "question": "Que faire si le résultat n'est pas satisfaisant ?", "answer": "Générez un nouveau fond avec un preset ou prompt différent. Chaque tentative est indépendante. Commencez par les presets, puis expérimentez." }
+      "q1": {
+        "question": "Quels formats de fichier sont supportés ?",
+        "answer": "JPG, JPEG, PNG et WEBP. Maximum 30 Mo. Pour de meilleurs résultats, utilisez des images d'au moins 1000x1000 pixels."
+      },
+      "q2": {
+        "question": "Combien ça coûte ?",
+        "answer": "Chaque génération coûte 2 crédits. Les nouveaux utilisateurs reçoivent 3 crédits gratuits. Crédits supplémentaires disponibles en forfaits économiques."
+      },
+      "q3": {
+        "question": "Puis-je utiliser les images générées commercialement ?",
+        "answer": "Oui ! Toutes les images sont entièrement commerciales. Utilisez-les dans vos boutiques, publicités, catalogues sans restrictions."
+      },
+      "q4": {
+        "question": "Comment écrire un bon prompt personnalisé ?",
+        "answer": "Soyez précis : surface (marbre, bois), éclairage (studio, naturel), style (minimaliste, luxe). Exemple : 'Marbre noir élégant, éclairage studio doux, atmosphère de luxe'."
+      },
+      "q5": {
+        "question": "Que faire si le résultat n'est pas satisfaisant ?",
+        "answer": "Générez un nouveau fond avec un preset ou prompt différent. Chaque tentative est indépendante. Commencez par les presets, puis expérimentez."
+      }
     },
     "cta": {
       "title": "Prêt pour des Photos de Produits Professionnelles ?",
