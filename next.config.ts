@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Increase body size limit for large image uploads (default is 4MB)
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '25mb',
+    },
+  },
   // Remove console.log in production builds
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {

@@ -4,6 +4,17 @@ import sharp from 'sharp'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 
+// Increase body size limit to 25MB for large images
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
+// For App Router - set max duration and body size
+export const maxDuration = 60 // 60 seconds timeout
+export const dynamic = 'force-dynamic'
+
 // Format converter is FREE - no credits required
 const CREDIT_COST = 0
 
