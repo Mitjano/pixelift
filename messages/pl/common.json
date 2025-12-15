@@ -618,12 +618,28 @@
       },
       "uploadTerms": "Przesyłając plik akceptujesz nasze Warunki i Politykę Prywatności.",
       "features": {
-        "fast": { "title": "Błyskawicznie", "description": "Przetwarzaj obrazy w 10-20 sekund." },
-        "scale": { "title": "Do 8x Skali", "description": "Wybierz powiększenie 2x, 4x lub 8x." },
-        "face": { "title": "Ulepszanie Twarzy", "description": "Opcjonalny GFPGAN do portretów." }
+        "fast": {
+          "title": "Błyskawicznie",
+          "description": "Przetwarzaj obrazy w 10-20 sekund."
+        },
+        "scale": {
+          "title": "Do 8x Skali",
+          "description": "Wybierz powiększenie 2x, 4x lub 8x."
+        },
+        "face": {
+          "title": "Ulepszanie Twarzy",
+          "description": "Opcjonalny GFPGAN do portretów."
+        }
       },
-      "howItWorks": { "title": "Jak Działa", "titleHighlight": "Powiększanie AI" },
-      "cta": { "title": "Gotowy na Powiększenie?", "getStarted": "Zacznij Za Darmo", "startUpscaling": "Zacznij Powiększanie" }
+      "howItWorks": {
+        "title": "Jak Działa",
+        "titleHighlight": "Powiększanie AI"
+      },
+      "cta": {
+        "title": "Gotowy na Powiększenie?",
+        "getStarted": "Zacznij Za Darmo",
+        "startUpscaling": "Zacznij Powiększanie"
+      }
     },
     "uploader": {
       "modeToggle": {
@@ -907,21 +923,48 @@
     "titleHighlight": "Pakiet Narzędzi AI",
     "subtitle": "Wszystko, czego potrzebujesz do ulepszania, edycji i przekształcania obrazów. Profesjonalne wyniki w kilka sekund, bez umiejętności projektowych.",
     "tools": {
-      "upscaler": { "name": "Powiększacz AI", "description": "Powiększ obrazy do 8x z ulepszeniem AI" },
-      "bgRemover": { "name": "Usuwanie Tła", "description": "Usuń tła natychmiast z precyzją AI" },
-      "colorize": { "name": "Koloryzacja Zdjęć", "description": "Ożyw czarno-białe zdjęcia kolorem AI" },
-      "restore": { "name": "Przywracanie Obrazu", "description": "Usuń szumy, artefakty i kompresję JPEG" },
-      "objectRemoval": { "name": "Usuwanie Obiektów", "description": "Wymaż niechciane obiekty, osoby i rozpraszacze" },
-      "bgGenerator": { "name": "Generator Tła", "description": "Generuj oszałamiające tła AI z opisów" },
-      "compressor": { "name": "Kompresor Obrazów", "description": "Zmniejsz rozmiar pliku zachowując jakość" },
-      "packshot": { "name": "Generator Packshot", "description": "Twórz profesjonalne zdjęcia produktów natychmiast" },
-      "expand": { "name": "Rozszerzanie Obrazu", "description": "Rozszerz granice obrazu z AI outpainting" }
+      "upscaler": {
+        "name": "Powiększacz AI",
+        "description": "Powiększ obrazy do 8x z ulepszeniem AI"
+      },
+      "bgRemover": {
+        "name": "Usuwanie Tła",
+        "description": "Usuń tła natychmiast z precyzją AI"
+      },
+      "colorize": {
+        "name": "Koloryzacja Zdjęć",
+        "description": "Ożyw czarno-białe zdjęcia kolorem AI"
+      },
+      "restore": {
+        "name": "Przywracanie Obrazu",
+        "description": "Usuń szumy, artefakty i kompresję JPEG"
+      },
+      "objectRemoval": {
+        "name": "Usuwanie Obiektów",
+        "description": "Wymaż niechciane obiekty, osoby i rozpraszacze"
+      },
+      "bgGenerator": {
+        "name": "Generator Tła",
+        "description": "Generuj oszałamiające tła AI z opisów"
+      },
+      "compressor": {
+        "name": "Kompresor Obrazów",
+        "description": "Zmniejsz rozmiar pliku zachowując jakość"
+      },
+      "packshot": {
+        "name": "Generator Packshot",
+        "description": "Twórz profesjonalne zdjęcia produktów natychmiast"
+      },
+      "expand": {
+        "name": "Rozszerzanie Obrazu",
+        "description": "Rozszerz granice obrazu z AI outpainting"
+      }
     },
     "credits": {
       "1": "1 kredyt",
-      "13": "1-3 kredyty",
       "2": "2 kredyty",
       "3": "3 kredyty",
+      "13": "1-3 kredyty",
       "free": "Darmowy"
     },
     "tryNow": "Wypróbuj teraz",
@@ -936,12 +979,30 @@
     "title": "Zaufany przez",
     "titleHighlight": "Profesjonalistów na Świecie",
     "badges": {
-      "ssl": { "title": "Certyfikat SSL", "description": "256-bitowe szyfrowanie" },
-      "gdpr": { "title": "Zgodność z RODO", "description": "Ochrona danych UE" },
-      "privacy": { "title": "Auto-Usuwanie", "description": "Pliki usuwane po 1h" },
-      "uptime": { "title": "99.9% Dostępność", "description": "Niezawodność enterprise" },
-      "support": { "title": "Wsparcie 24/7", "description": "Zawsze gotowi pomóc" },
-      "noWatermark": { "title": "Bez Znaków Wodnych", "description": "Eksport pełnej jakości" }
+      "ssl": {
+        "title": "Certyfikat SSL",
+        "description": "256-bitowe szyfrowanie"
+      },
+      "gdpr": {
+        "title": "Zgodność z RODO",
+        "description": "Ochrona danych UE"
+      },
+      "privacy": {
+        "title": "Auto-Usuwanie",
+        "description": "Pliki usuwane po 1h"
+      },
+      "uptime": {
+        "title": "99.9% Dostępność",
+        "description": "Niezawodność enterprise"
+      },
+      "support": {
+        "title": "Wsparcie 24/7",
+        "description": "Zawsze gotowi pomóc"
+      },
+      "noWatermark": {
+        "title": "Bez Znaków Wodnych",
+        "description": "Eksport pełnej jakości"
+      }
     },
     "trustedBy": "Zaufany przez wiodące marki",
     "securityNote": "Twoje obrazy są przetwarzane bezpiecznie i nigdy nie są udostępniane stronom trzecim"
@@ -1305,12 +1366,30 @@
     "whyChoose": {
       "title": "Dlaczego Pixelift?",
       "features": {
-        "f1": { "title": "Wiele Presetów AI:", "description": "Zoptymalizowane ustawienia dla portretów, krajobrazów, grafiki i więcej" },
-        "f2": { "title": "Powiększanie do 8x:", "description": "Zwiększ rozdzielczość nawet 64-krotnie" },
-        "f3": { "title": "Ulepszanie Twarzy:", "description": "Specjalizowane AI do poprawy rysów twarzy" },
-        "f4": { "title": "Bez Znaków Wodnych:", "description": "Pobieraj ulepszone obrazy bez brandingu" },
-        "f5": { "title": "Przetwarzanie Wsadowe:", "description": "Możliwości transformacji zbiorczej klasy enterprise" },
-        "f6": { "title": "Bezpieczne i Prywatne:", "description": "Obrazy usuwane po 24h, zgodność z RODO" }
+        "f1": {
+          "title": "Wiele Presetów AI:",
+          "description": "Zoptymalizowane ustawienia dla portretów, krajobrazów, grafiki i więcej"
+        },
+        "f2": {
+          "title": "Powiększanie do 8x:",
+          "description": "Zwiększ rozdzielczość nawet 64-krotnie"
+        },
+        "f3": {
+          "title": "Ulepszanie Twarzy:",
+          "description": "Specjalizowane AI do poprawy rysów twarzy"
+        },
+        "f4": {
+          "title": "Bez Znaków Wodnych:",
+          "description": "Pobieraj ulepszone obrazy bez brandingu"
+        },
+        "f5": {
+          "title": "Przetwarzanie Wsadowe:",
+          "description": "Możliwości transformacji zbiorczej klasy enterprise"
+        },
+        "f6": {
+          "title": "Bezpieczne i Prywatne:",
+          "description": "Obrazy usuwane po 24h, zgodność z RODO"
+        }
       }
     },
     "useCases": {
@@ -1331,10 +1410,22 @@
     "howItWorks": {
       "title": "Jak Działa Nasz Powiększacz AI?",
       "steps": {
-        "s1": { "title": "Prześlij Obraz:", "description": "Przeciągnij i upuść lub wybierz plik obrazu (PNG, JPG, WEBP, HEIC lub BMP)" },
-        "s2": { "title": "Wybierz Preset AI:", "description": "Wybierz z Portret, Krajobraz, Grafika i Ilustracje, Przywracanie Zdjęć lub Maksymalna Jakość" },
-        "s3": { "title": "Przetwórz z AI:", "description": "Nasze modele Real-ESRGAN i GFPGAN analizują i ulepszają Twój obraz" },
-        "s4": { "title": "Pobierz Ulepszony Obraz:", "description": "Porównaj przed/po z naszym interaktywnym suwakiem, następnie pobierz w wysokiej jakości" }
+        "s1": {
+          "title": "Prześlij Obraz:",
+          "description": "Przeciągnij i upuść lub wybierz plik obrazu (PNG, JPG, WEBP, HEIC lub BMP)"
+        },
+        "s2": {
+          "title": "Wybierz Preset AI:",
+          "description": "Wybierz z Portret, Krajobraz, Grafika i Ilustracje, Przywracanie Zdjęć lub Maksymalna Jakość"
+        },
+        "s3": {
+          "title": "Przetwórz z AI:",
+          "description": "Nasze modele Real-ESRGAN i GFPGAN analizują i ulepszają Twój obraz"
+        },
+        "s4": {
+          "title": "Pobierz Ulepszony Obraz:",
+          "description": "Porównaj przed/po z naszym interaktywnym suwakiem, następnie pobierz w wysokiej jakości"
+        }
       }
     },
     "cta": {
@@ -1763,7 +1854,6 @@
     },
     "termsNotice": "Przesyłając plik, zgadzasz się na nasze Warunki Użytkowania i Politykę Prywatności.",
     "scaleOptions": {
-      "title": "Wybierz Skalę Powiększenia",
       "2": {
         "name": "Podwójna Rozdzielczość",
         "description": "Idealna do drobnych poprawek i obrazów internetowych. Szybkie przetwarzanie."
@@ -1775,7 +1865,8 @@
       "8": {
         "name": "Ośmiokrotna Rozdzielczość",
         "description": "Maksymalna jakość do druku wielkoformatowego i projektów profesjonalnych."
-      }
+      },
+      "title": "Wybierz Skalę Powiększenia"
     },
     "features": {
       "title": "Funkcje Real-ESRGAN",
@@ -3755,84 +3846,256 @@
     }
   },
   "formatConverterPage": {
-    "badge": "Darmowe narzędzie - bez kredytów",
-    "title": "Konwerter formatów obrazów",
-    "subtitle": "Konwertuj obrazy między formatami JPG, PNG, WebP, AVIF i GIF natychmiast. Całkowicie za darmo, bez limitów.",
+    "badge": "100% Darmowe - Bez rejestracji",
+    "title": "Darmowy konwerter formatów obrazów online",
+    "subtitle": "Konwertuj obrazy między formatami JPG, PNG, WebP, AVIF i GIF natychmiastowo. Bez rejestracji, bez znaków wodnych, bez limitów - całkowicie za darmo na zawsze.",
     "stats": {
       "formats": "5 formatów",
-      "formatsLabel": "Obsługiwane",
-      "processing": "Natychmiast",
+      "formatsLabel": "Obsługiwanych",
+      "processing": "Natychmiastowa",
       "processingLabel": "Konwersja",
-      "creditCost": "Darmowe",
-      "creditCostLabel": "Bez kredytów"
+      "creditCost": "100% Za darmo",
+      "creditCostLabel": "Na zawsze"
     },
     "termsNotice": "Korzystając z tego narzędzia, akceptujesz nasz Regulamin i Politykę Prywatności.",
     "supportedFormats": {
-      "title": "Obsługiwane formaty",
-      "jpg": "Najlepszy do zdjęć, mały rozmiar",
-      "png": "Bezstratny, obsługuje przezroczystość",
-      "webp": "Nowoczesny format, świetna kompresja",
-      "avif": "Nowa generacja, najmniejsze pliki",
-      "gif": "Obsługa animacji"
+      "title": "Obsługiwane formaty obrazów",
+      "jpg": "Najlepszy dla zdjęć, mały rozmiar",
+      "png": "Bezstratna jakość, przezroczystość",
+      "webp": "Nowoczesny format, 30% mniejszy od JPG",
+      "avif": "Nowej generacji, nawet 50% mniejszy od WebP",
+      "gif": "Obsługa animacji, grafiki webowe"
     },
     "features": {
       "instantConversion": {
-        "title": "Natychmiastowa konwersja",
-        "description": "Konwertuj obrazy w kilka sekund dzięki zoptymalizowanemu silnikowi. Bez czekania, bez kolejek."
+        "title": "Błyskawiczna konwersja",
+        "description": "Konwertuj obrazy w sekundy dzięki zoptymalizowanemu przetwarzaniu po stronie serwera. Bez kolejek, bez wolnego uploadowania - natychmiastowe wyniki za każdym razem."
       },
       "qualityControl": {
-        "title": "Kontrola jakości",
-        "description": "Dostosuj jakość wyjściową suwakiem. Zbalansuj rozmiar pliku i jakość obrazu."
+        "title": "Regulacja jakości",
+        "description": "Precyzyjnie dostosuj jakość wyjściową od 1-100% za pomocą intuicyjnego suwaka. Znajdź idealną równowagę między rozmiarem pliku a jakością obrazu."
       },
       "completelyFree": {
-        "title": "Całkowicie za darmo",
-        "description": "Bez kredytów, bez limitów. Konwertuj tyle obrazów, ile potrzebujesz, na zawsze za darmo."
+        "title": "100% Za darmo, bez haczyków",
+        "description": "Bez kredytów, bez rejestracji, bez dziennych limitów, bez znaków wodnych. Konwertuj nieograniczoną liczbę obrazów na zawsze. Wierzymy, że podstawowe narzędzia do obrazów powinny być dostępne dla wszystkich."
+      },
+      "privacyFirst": {
+        "title": "Prywatność przede wszystkim",
+        "description": "Twoje obrazy są przetwarzane bezpiecznie i nigdy nie są przechowywane na naszych serwerach. Pliki są automatycznie usuwane po konwersji. Twoje dane pozostają Twoje."
+      },
+      "noInstallation": {
+        "title": "Bez instalacji",
+        "description": "Działa bezpośrednio w przeglądarce na każdym urządzeniu - Windows, Mac, Linux, iOS lub Android. Bez pobierania, bez wtyczek, bez instalacji."
+      },
+      "largeFiles": {
+        "title": "Obsługa dużych plików",
+        "description": "Przesyłaj obrazy do 20MB. Idealne dla zdjęć wysokiej rozdzielczości, profesjonalnej grafiki i szczegółowych dzieł, które inne konwertery odrzucają."
+      }
+    },
+    "howItWorks": {
+      "title": "Jak konwertować format obrazu",
+      "step1": {
+        "title": "Prześlij swój obraz",
+        "description": "Przeciągnij i upuść obraz lub kliknij, aby przeglądać. Obsługujemy formaty JPG, PNG, WebP, AVIF i GIF do 20MB."
+      },
+      "step2": {
+        "title": "Wybierz format wyjściowy",
+        "description": "Wybierz żądany format wyjściowy. W razie potrzeby dostosuj ustawienia jakości - niższa jakość oznacza mniejszy rozmiar pliku."
+      },
+      "step3": {
+        "title": "Pobierz przekonwertowany obraz",
+        "description": "Kliknij konwertuj i pobierz nowy obraz natychmiast. Bez wymaganego e-maila, bez czekania - to takie proste."
       }
     },
     "useCases": {
-      "title": "Kiedy używać konwertera formatów",
+      "title": "Kto używa konwertera formatów obrazów?",
       "webOptimization": {
-        "title": "Optymalizacja dla sieci",
-        "description": "Optymalizuj obrazy pod kątem wydajności stron konwertując do nowoczesnych formatów jak WebP lub AVIF.",
-        "feature1": "Konwertuj PNG/JPG na WebP - 30% mniejsze pliki",
-        "feature2": "Używaj AVIF dla nowoczesnych przeglądarek",
-        "feature3": "Zachowaj jakość zmniejszając czas ładowania"
+        "title": "Web developerzy i projektanci",
+        "description": "Optymalizuj obrazy dla szybszego ładowania stron. Nowoczesne formaty jak WebP i AVIF mogą zmniejszyć rozmiar obrazów o 30-50% w porównaniu do tradycyjnego JPG, poprawiając Core Web Vitals i rankingi SEO.",
+        "feature1": "Konwertuj PNG/JPG do WebP dla 30% mniejszych plików",
+        "feature2": "Użyj AVIF dla najnowocześniejszej kompresji (Chrome, Firefox, Safari)",
+        "feature3": "Popraw szybkość ładowania strony i wyniki Google PageSpeed"
       },
       "compatibility": {
-        "title": "Kompatybilność formatów",
-        "socialMedia": "Media społecznościowe:",
-        "socialMediaDesc": "Konwertuj do JPG dla uniwersalnej kompatybilności",
-        "apps": "Aplikacje:",
-        "appsDesc": "Konwertuj AVIF/WebP do PNG dla starszego oprogramowania",
-        "print": "Druk:",
-        "printDesc": "Konwertuj do wysokiej jakości JPG lub PNG do druku"
+        "title": "Rozwiązania kompatybilności formatów",
+        "socialMedia": "Menedżerowie social media:",
+        "socialMediaDesc": "Konwertuj WebP/AVIF do JPG dla uniwersalnej kompatybilności na Facebook, Instagram, LinkedIn",
+        "apps": "Użytkownicy oprogramowania:",
+        "appsDesc": "Konwertuj nowoczesne formaty do PNG/JPG dla starszych aplikacji jak Photoshop CS6, starsze wersje Office",
+        "print": "Profesjonaliści druku:",
+        "printDesc": "Konwertuj obrazy webowe do wysokiej jakości JPG lub PNG dla profesjonalnego druku i publikacji"
+      },
+      "ecommerce": {
+        "title": "E-commerce i sprzedawcy online",
+        "description": "Optymalizuj zdjęcia produktów dla marketplace'ów. Konwertuj obrazy od dostawców do odpowiedniego formatu dla Amazon, eBay, Shopify lub własnego sklepu.",
+        "feature1": "Spełnij wymagania marketplace'ów dotyczące obrazów (format, rozmiar)",
+        "feature2": "Zmniejsz rozmiary plików obrazów dla szybszego ładowania sklepu",
+        "feature3": "Zachowaj jakość zdjęć produktów optymalizując dla web"
+      },
+      "photographers": {
+        "title": "Fotografowie i twórcy treści",
+        "description": "Szybko konwertuj między formatami dla różnych potrzeb dostawy. Wysyłaj klientom obrazy gotowe do web lub przygotowuj pliki dla różnych platform.",
+        "feature1": "Konwertuj eksporty RAW do formatów przyjaznych dla web",
+        "feature2": "Przygotowuj obrazy dla różnych platform social media",
+        "feature3": "Twórz wiele wersji formatów z jednego źródła"
       }
     },
     "formatComparison": {
-      "title": "Porównanie formatów",
+      "title": "Przewodnik porównania formatów obrazów",
+      "description": "Wybierz odpowiedni format dla swoich potrzeb. Każdy format ma unikalne zalety dla różnych zastosowań.",
       "format": "Format",
       "size": "Rozmiar pliku",
       "quality": "Jakość",
       "transparency": "Przezroczystość",
-      "bestFor": "Najlepszy do",
+      "bestFor": "Najlepszy dla",
       "small": "Mały",
       "smallest": "Najmniejszy",
       "medium": "Średni",
       "large": "Duży",
       "good": "Dobra",
       "excellent": "Doskonała",
-      "limited": "Ograniczona",
-      "jpgBest": "Zdjęcia, obrazy webowe",
-      "pngBest": "Grafiki, loga, zrzuty ekranu",
-      "webpBest": "Nowoczesne strony, aplikacje",
+      "limited": "256 kolorów",
+      "jpgBest": "Zdjęcia, obrazy webowe, social media",
+      "pngBest": "Loga, grafiki, zrzuty ekranu, przezroczystość",
+      "webpBest": "Nowoczesne strony, aplikacje webowe, blogi",
       "avifBest": "Maksymalna kompresja, nowoczesne przeglądarki",
-      "gifBest": "Proste animacje, memy"
+      "gifBest": "Proste animacje, memy, ikony"
+    },
+    "formatDetails": {
+      "title": "Zrozumienie formatów obrazów",
+      "jpg": {
+        "title": "Format JPG (JPEG)",
+        "description": "Najczęściej używany format obrazów w internecie. JPG używa kompresji stratnej, co oznacza, że niektóre dane obrazu są odrzucane dla osiągnięcia mniejszych rozmiarów plików. Najlepszy dla fotografii i złożonych obrazów z wieloma kolorami. Nie idealny dla grafik z ostrymi krawędziami, tekstu lub obrazów wymagających przezroczystości.",
+        "pros": "Uniwersalna kompatybilność, małe rozmiary plików, świetny dla zdjęć",
+        "cons": "Kompresja stratna, brak przezroczystości, jakość pogarsza się przy ponownym zapisie"
+      },
+      "png": {
+        "title": "Format PNG",
+        "description": "PNG (Portable Network Graphics) używa kompresji bezstratnej, zachowując wszystkie dane obrazu. Obsługuje pełną przezroczystość (kanał alfa), co czyni go idealnym dla log, ikon i grafik, które muszą nakładać się na inne treści. Większe rozmiary plików niż JPG, ale zachowuje idealną jakość.",
+        "pros": "Bezstratna jakość, obsługa przezroczystości, zachowane ostre krawędzie",
+        "cons": "Większe rozmiary plików, nie idealny dla fotografii"
+      },
+      "webp": {
+        "title": "Format WebP",
+        "description": "Opracowany przez Google, WebP zapewnia lepszą kompresję dla obrazów webowych. Obsługuje zarówno kompresję stratną, jak i bezstratną, plus przezroczystość i animację. Obrazy WebP są zwykle 25-35% mniejsze niż JPG przy równoważnej jakości. Obsługiwany przez wszystkie nowoczesne przeglądarki od 2020.",
+        "pros": "Doskonała kompresja, przezroczystość, obsługa animacji, szeroko wspierany",
+        "cons": "Nie obsługiwany przez niektóre starsze oprogramowanie i klientów email"
+      },
+      "avif": {
+        "title": "Format AVIF",
+        "description": "AVIF (AV1 Image Format) to najnowszy format obrazów, oferujący jeszcze lepszą kompresję niż WebP. Oparty na kodeku wideo AV1, AVIF może osiągnąć 50% mniejsze rozmiary plików niż JPG. Obsługuje HDR, szeroką gamę kolorów i przezroczystość. Obsługiwany w Chrome, Firefox i Safari.",
+        "pros": "Najlepszy współczynnik kompresji, obsługa HDR, doskonała jakość",
+        "cons": "Wolniejsze kodowanie, ograniczona obsługa w starszych przeglądarkach/oprogramowaniu"
+      },
+      "gif": {
+        "title": "Format GIF",
+        "description": "GIF (Graphics Interchange Format) jest najbardziej znany z obsługi animacji. Ograniczony do 256 kolorów, co czyni go nieodpowiednim dla fotografii, ale idealnym dla prostych grafik, ikon i krótkich animacji. Uniwersalna obsługa przeglądarek i szeroko używany do memów i reakcji.",
+        "pros": "Obsługa animacji, uniwersalna kompatybilność, prosta przezroczystość",
+        "cons": "Ograniczony do 256 kolorów, większe rozmiary plików dla animacji"
+      }
+    },
+    "conversionGuide": {
+      "title": "Popularne konwersje obrazów",
+      "description": "Częste konwersje formatów i kiedy ich używać:",
+      "pngToJpg": {
+        "title": "PNG do JPG",
+        "description": "Zmniejsz rozmiar pliku dla zdjęć eksportowanych jako PNG. Idealne gdy nie potrzebujesz przezroczystości i chcesz mniejsze pliki dla web lub email."
+      },
+      "jpgToPng": {
+        "title": "JPG do PNG",
+        "description": "Konwertuj zdjęcia do formatu bezstratnego dla edycji lub archiwizacji. Przydatne gdy musisz zachować jakość dla przyszłych edycji."
+      },
+      "pngToWebp": {
+        "title": "PNG do WebP",
+        "description": "Optymalizuj grafiki stron. WebP zachowuje przezroczystość dramatycznie zmniejszając rozmiar pliku - idealne dla wydajności web."
+      },
+      "jpgToWebp": {
+        "title": "JPG do WebP",
+        "description": "Najpopularniejsza konwersja optymalizacji web. Zmniejsz rozmiary plików zdjęć o 25-35% bez widocznej utraty jakości."
+      },
+      "webpToJpg": {
+        "title": "WebP do JPG",
+        "description": "Konwertuj nowoczesny format do uniwersalnie kompatybilnego JPG. Niezbędne do udostępniania obrazów na platformach, które nie obsługują WebP."
+      },
+      "webpToPng": {
+        "title": "WebP do PNG",
+        "description": "Konwertuj WebP z przezroczystością do PNG dla kompatybilności z oprogramowaniem. Przydatne do edycji w starszych aplikacjach graficznych."
+      },
+      "anyToAvif": {
+        "title": "Dowolny format do AVIF",
+        "description": "Maksymalna kompresja dla nowoczesnych stron. AVIF oferuje najlepszy stosunek rozmiaru do jakości dostępny obecnie."
+      }
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy ten konwerter obrazów jest naprawdę darmowy?",
+        "answer": "Tak, 100% darmowy bez ukrytych kosztów. W przeciwieństwie do innych narzędzi, nie wymagamy rejestracji, nie dodajemy znaków wodnych i nie ograniczamy ile obrazów możesz konwertować. To narzędzie jest oferowane za darmo jako część naszej misji udostępnienia podstawowych narzędzi do obrazów wszystkim."
+      },
+      "q2": {
+        "question": "Jaki jest maksymalny rozmiar pliku, który mogę konwertować?",
+        "answer": "Możesz przesyłać obrazy do 20MB. To wystarczy dla większości zdjęć wysokiej rozdzielczości i grafik. Dla większych plików, rozważ najpierw użycie naszego narzędzia Image Compressor, aby zmniejszyć rozmiar pliku."
+      },
+      "q3": {
+        "question": "Czy moje obrazy są przechowywane na waszych serwerach?",
+        "answer": "Nie. Twoje obrazy są przetwarzane w czasie rzeczywistym i natychmiast usuwane po konwersji. Nie przechowujemy, nie przeglądamy ani nie udostępniamy Twoich obrazów. Twoja prywatność jest w pełni chroniona."
+      },
+      "q4": {
+        "question": "Jaki format powinienem wybrać dla mojej strony?",
+        "answer": "Dla większości stron w 2024, WebP to najlepszy wybór - oferuje doskonałą kompresję z szeroką obsługą przeglądarek (97%+ globalnie). Dla najnowocześniejszej wydajności, rozważ AVIF, choć sprawdź najpierw obsługę przeglądarek Twojej grupy docelowej. Użyj JPG jako fallbacku dla maksymalnej kompatybilności."
+      },
+      "q5": {
+        "question": "Czy konwersja obrazu zmniejszy jego jakość?",
+        "answer": "To zależy od konwersji. Konwersja do PNG jest bezstratna (bez utraty jakości). Konwersja do JPG, WebP lub AVIF obejmuje kompresję - użyj wyższych ustawień jakości (80-100%) aby zminimalizować utratę jakości. Konwersja z formatu stratnego do innego stratnego może kumulować utratę jakości."
+      },
+      "q6": {
+        "question": "Czy mogę konwertować wiele obrazów naraz?",
+        "answer": "Obecnie nasze narzędzie konwertuje jeden obraz na raz dla optymalnej kontroli jakości. Dla konwersji wsadowych, możesz szybko konwertować wiele obrazów przesyłając je sekwencyjnie - nasze natychmiastowe przetwarzanie sprawia, że jest to szybkie i wydajne."
+      },
+      "q7": {
+        "question": "Jaka jest różnica między WebP a AVIF?",
+        "answer": "Oba są nowoczesnymi formatami z doskonałą kompresją. AVIF typowo osiąga 20-30% mniejsze pliki niż WebP przy tej samej jakości, ale kodowanie trwa dłużej. WebP ma szerszą obsługę oprogramowania, podczas gdy AVIF jest nowszy, ale obsługiwany we wszystkich głównych przeglądarkach. Wybierz WebP dla kompatybilności, AVIF dla maksymalnej kompresji."
+      },
+      "q8": {
+        "question": "Dlaczego nie mogę otworzyć przekonwertowanego pliku AVIF/WebP?",
+        "answer": "Niektóre starsze oprogramowanie nie obsługuje nowoczesnych formatów. Jeśli musisz otworzyć AVIF lub WebP w starszych aplikacjach, najpierw przekonwertuj je do PNG lub JPG. Większość oprogramowania wydanego po 2020 obsługuje WebP, a 2022+ generalnie obsługuje AVIF."
+      }
+    },
+    "technicalSpecs": {
+      "title": "Specyfikacja techniczna",
+      "inputFormats": "Formaty wejściowe",
+      "inputFormatsValue": "JPG, JPEG, PNG, WebP, AVIF, GIF",
+      "outputFormats": "Formaty wyjściowe",
+      "outputFormatsValue": "JPG, PNG, WebP, AVIF, GIF",
+      "maxFileSize": "Maksymalny rozmiar pliku",
+      "maxFileSizeValue": "20 MB",
+      "qualityRange": "Zakres jakości",
+      "qualityRangeValue": "1-100% (regulowany)",
+      "processing": "Przetwarzanie",
+      "processingValue": "Po stronie serwera (biblioteka Sharp)",
+      "colorSpace": "Przestrzeń kolorów",
+      "colorSpaceValue": "sRGB zachowany"
     },
     "cta": {
-      "title": "Potrzebujesz więcej narzędzi AI?",
-      "subtitle": "Odkryj nasz kompletny zestaw narzędzi AI do obrazów. Powiększaj, usuwaj tła, koloruj i więcej.",
-      "exploreTools": "Zobacz wszystkie narzędzia",
+      "title": "Potrzebujesz mocniejszych narzędzi do obrazów?",
+      "subtitle": "Odkryj nasz kompletny zestaw narzędzi AI do obrazów. Powiększaj obrazy do 8x, usuwaj tła natychmiast, koloruj czarno-białe zdjęcia, restauruj stare obrazy i wiele więcej.",
+      "exploreTools": "Odkryj wszystkie narzędzia",
       "viewPricing": "Zobacz cennik"
+    },
+    "relatedTools": {
+      "title": "Powiązane narzędzia",
+      "compressor": {
+        "title": "Kompresor obrazów",
+        "description": "Zmniejsz rozmiar pliku zachowując jakość"
+      },
+      "upscaler": {
+        "title": "Powiększanie obrazów",
+        "description": "Powiększ obrazy do 8x z AI"
+      },
+      "removeBackground": {
+        "title": "Usuwanie tła",
+        "description": "Usuń tła natychmiast z AI"
+      }
     }
   }
 }
