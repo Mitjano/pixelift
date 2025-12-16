@@ -360,7 +360,7 @@ export class ImageProcessor {
 
   /**
    * Premium upscale using Clarity Upscaler (best quality, $0.017/run)
-   * Best for: portraits, products, detailed images
+   * Best for: portraits, general images, detailed photos
    */
   static async upscaleWithClarity(
     dataUrl: string,
@@ -389,6 +389,105 @@ export class ImageProcessor {
     const resultUrl = typeof output === 'string' ? output : String(output)
     console.log('Image upscaled via Clarity Upscaler')
     return resultUrl
+  }
+
+  /**
+   * Product upscale using Recraft Crisp (best for e-commerce, $0.002/run)
+   * Best for: product photos, text/logos, e-commerce images
+   * Preserves text, labels, and fine details without distortion
+   */
+  static async upscaleWithRecraftCrisp(dataUrl: string): Promise<string> {
+    console.log('Starting Recraft Crisp upscale (best for products)...')
+
+    // Recraft accepts max 4MP input, 4096px max dimension
+    const resizedDataUrl = await this.resizeForUpscale(dataUrl, 4000000)
+
+    const output = await this.replicate.run(
+      "recraft-ai/recraft-crisp-upscale",
+      {
+        input: {
+          image: resizedDataUrl,
+        },
+      }
+    )
+
+    const resultUrl = typeof output === 'string' ? output : String(output)
+    console.log('Image upscaled via Recraft Crisp')
+    return resultUrl
+  }
+
+  /**
+   * Advanced upscale with intelligent model selection
+   * Automatically chooses the best model based on image type and scale
+   *
+   * @param dataUrl - Base64 data URL of the image
+   * @param scale - Upscale factor (2, 4, or 8)
+   * @param imageType - Type of image: 'product' | 'portrait' | 'general'
+   * @returns URL of the upscaled image
+   */
+  static async upscaleAdvanced(
+    dataUrl: string,
+    scale: 2 | 4 | 8,
+    imageType: 'product' | 'portrait' | 'general' = 'general'
+  ): Promise<string> {
+    console.log(`Starting advanced upscale: ${scale}x, type=${imageType}`)
+
+    try {
+      switch (imageType) {
+        case 'product':
+          // Product photos: Use Recraft Crisp (best for text/logos/details)
+          // Recraft does ~4x, so for 8x we chain: Recraft 4x -> Recraft 2x
+          if (scale === 8) {
+            console.log('Product 8x: Chaining Recraft Crisp 4x -> 2x')
+            const firstPass = await this.upscaleWithRecraftCrisp(dataUrl)
+            const firstPassDataUrl = await this.urlToDataUrl(firstPass)
+            return await this.upscaleWithRecraftCrisp(firstPassDataUrl)
+          } else {
+            // 2x and 4x: Single Recraft pass
+            return await this.upscaleWithRecraftCrisp(dataUrl)
+          }
+
+        case 'portrait':
+          // Portraits: Use CodeFormer for face enhancement + Clarity for upscale
+          console.log('Portrait: CodeFormer face restoration + Clarity upscale')
+          const faceRestored = await this.restoreFace(dataUrl, 0.7)
+          if (scale <= 2) {
+            return faceRestored // CodeFormer already does 2x
+          }
+          // For 4x/8x: Additional upscale with Clarity
+          const faceDataUrl = await this.urlToDataUrl(faceRestored)
+          const clarityScale = scale === 8 ? 4 : 2 // 2x from CodeFormer * 2/4 from Clarity
+          return await this.upscaleWithClarity(faceDataUrl, clarityScale, 0.25)
+
+        case 'general':
+        default:
+          // General images: Use Clarity for quality or Real-ESRGAN for speed
+          if (scale === 8) {
+            // 8x: Use Real-ESRGAN (native 8x support)
+            return await this.upscaleImage(dataUrl, 8, false)
+          } else {
+            // 2x/4x: Use Clarity for best quality
+            return await this.upscaleWithClarity(dataUrl, scale, 0.35)
+          }
+      }
+    } catch (error) {
+      console.error(`Advanced upscale failed for ${imageType}:`, error)
+      // Fallback to Real-ESRGAN
+      console.log('Falling back to Real-ESRGAN...')
+      return await this.upscaleImage(dataUrl, scale, false)
+    }
+  }
+
+  /**
+   * Convert image URL to data URL for chaining operations
+   */
+  private static async urlToDataUrl(url: string): Promise<string> {
+    const buffer = await this.downloadImage(url)
+    const base64 = buffer.toString('base64')
+    // Detect format from buffer magic bytes
+    const isPng = buffer[0] === 0x89 && buffer[1] === 0x50
+    const mimeType = isPng ? 'image/png' : 'image/jpeg'
+    return `data:${mimeType};base64,${base64}`
   }
 
   /**

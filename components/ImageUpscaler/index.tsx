@@ -17,16 +17,24 @@ import {
 import { useAnalytics } from '@/hooks/useAnalytics'
 
 type UpscaleScale = 2 | 4 | 8
+type ImageType = 'product' | 'portrait' | 'general'
 
 interface ProcessingResult {
   imageId: string
   imageUrl: string
   originalUrl: string
   scale: number
+  imageType: ImageType
   model: string
-  faceEnhance: boolean
   creditsUsed: number
   creditsRemaining: number
+}
+
+// Credit costs based on image type and scale
+const CREDIT_COSTS: Record<ImageType, Record<UpscaleScale, number>> = {
+  product: { 2: 1, 4: 1, 8: 2 },
+  portrait: { 2: 2, 4: 3, 8: 3 },
+  general: { 2: 2, 4: 2, 8: 1 },
 }
 
 interface ImageUpscalerProps {
@@ -46,8 +54,8 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
   // Settings
-  const [scale, setScale] = useState<UpscaleScale>(2)
-  const [faceEnhance, setFaceEnhance] = useState(false)
+  const [scale, setScale] = useState<UpscaleScale>(4)
+  const [imageType, setImageType] = useState<ImageType>('general')
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     if (acceptedFiles.length === 0) return
@@ -76,10 +84,15 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
       const formData = new FormData()
       formData.append('image', selectedFile)
       formData.append('scale', scale.toString())
-      formData.append('faceEnhance', faceEnhance.toString())
+      formData.append('imageType', imageType)
 
-      const modelName = faceEnhance ? 'GFPGAN (Face Enhancement)' : 'Real-ESRGAN'
-      toast.loading(`Upscaling ${scale}x with ${modelName}...`, { id: 'upscale' })
+      const modelNames: Record<ImageType, string> = {
+        product: 'Recraft Crisp',
+        portrait: 'CodeFormer + Clarity',
+        general: scale === 8 ? 'Real-ESRGAN' : 'Clarity Upscaler',
+      }
+
+      toast.loading(`${t('processing')} ${scale}x (${modelNames[imageType]})...`, { id: 'upscale' })
 
       const response = await fetch('/api/upscale', {
         method: 'POST',
@@ -98,14 +111,14 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
         imageUrl: data.imageUrl,
         originalUrl: data.originalUrl || previewUrl!,
         scale: data.scale,
+        imageType: data.imageType,
         model: data.model,
-        faceEnhance: data.faceEnhance,
         creditsUsed: data.creditsUsed,
         creditsRemaining: data.creditsRemaining,
       })
 
       trackImageUpscaled(data.scale, data.model)
-      toast.success('Image upscaled successfully!', { id: 'upscale' })
+      toast.success(t('success'), { id: 'upscale' })
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred'
       setError(errorMessage)
@@ -119,8 +132,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
     if (!result?.imageId) return
 
     try {
-      toast.loading('Preparing download...', { id: 'download' })
-      // Use the download endpoint with proper filename
+      toast.loading(t('preparingDownload'), { id: 'download' })
       const downloadUrl = `/api/processed-images/${result.imageId}/download?type=processed`
       const response = await fetch(downloadUrl)
 
@@ -138,10 +150,10 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
       window.URL.revokeObjectURL(url)
       document.body.removeChild(a)
       trackImageDownloaded('upscale')
-      toast.success('Download started!', { id: 'download' })
+      toast.success(t('downloadStarted'), { id: 'download' })
     } catch (err) {
       console.error('Download error:', err)
-      toast.error('Failed to download image', { id: 'download' })
+      toast.error(t('downloadFailed'), { id: 'download' })
     }
   }
 
@@ -168,17 +180,42 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
   if (!session) {
     return (
       <LoginPrompt
-        title="Upscale Your Images"
-        description="Sign in to upscale your images up to 8x with AI"
+        title={t('loginTitle')}
+        description={t('loginDescription')}
         callbackUrl="/tools/upscaler"
         accentColor="purple"
-        features={["3 Free Credits", "No Credit Card", "Up to 8x Upscale"]}
+        features={[t('freeCredits'), t('noCard'), t('maxUpscale')]}
       />
     )
   }
 
-  // Credit cost: 1 base + 1 for face enhancement
-  const creditCost = 1 + (faceEnhance ? 1 : 0)
+  // Credit cost based on current selection
+  const creditCost = CREDIT_COSTS[imageType][scale]
+
+  // Image type configurations
+  const imageTypes: { type: ImageType; icon: string; label: string; description: string; color: string }[] = [
+    {
+      type: 'product',
+      icon: '📦',
+      label: t('typeProduct'),
+      description: t('typeProductDesc'),
+      color: 'from-blue-500 to-cyan-500',
+    },
+    {
+      type: 'portrait',
+      icon: '👤',
+      label: t('typePortrait'),
+      description: t('typePortraitDesc'),
+      color: 'from-pink-500 to-rose-500',
+    },
+    {
+      type: 'general',
+      icon: '🖼️',
+      label: t('typeGeneral'),
+      description: t('typeGeneralDesc'),
+      color: 'from-purple-500 to-indigo-500',
+    },
+  ]
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8">
@@ -209,13 +246,13 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
 
             {/* Text */}
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {isDragActive ? 'Drop image here' : 'Drag & drop your image'}
+              {isDragActive ? t('dropHere') : t('dragDrop')}
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
-              or click to browse
+              {t('orClick')}
             </p>
             <div className="text-sm text-gray-500 dark:text-gray-500">
-              Supports JPG, PNG, WEBP - Max 10MB
+              {t('supportedFormats')}
             </div>
           </div>
         </div>
@@ -223,10 +260,9 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
 
       {/* Settings & Preview */}
       {previewUrl && !result && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Preview */}
           <div className="relative rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800">
-            {/* Using unoptimized for preview URLs from FileReader */}
             <Image
               src={previewUrl}
               alt="Preview"
@@ -245,62 +281,84 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
             </button>
           </div>
 
-          {/* Scale Selection */}
-          <div className="flex flex-col items-center gap-4">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Upscale Factor:</span>
-            <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-              {[2, 4, 8].map((s) => (
+          {/* Image Type Selection */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-center text-gray-900 dark:text-white">
+              {t('selectImageType')}
+            </h4>
+            <div className="grid md:grid-cols-3 gap-4">
+              {imageTypes.map((item) => (
                 <button
-                  key={s}
-                  onClick={() => setScale(s as UpscaleScale)}
+                  key={item.type}
+                  onClick={() => setImageType(item.type)}
                   disabled={processing}
-                  className={`px-6 py-2 rounded-md text-sm font-medium transition ${
-                    scale === s
-                      ? 'bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-400 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                  }`}
+                  className={`
+                    relative p-4 rounded-xl border-2 transition-all text-left
+                    ${imageType === item.type
+                      ? `border-purple-500 bg-gradient-to-br ${item.color} bg-opacity-10 dark:bg-opacity-20`
+                      : 'border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600'
+                    }
+                  `}
                 >
-                  {s}x
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">{item.icon}</span>
+                    <div>
+                      <div className={`font-semibold ${imageType === item.type ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>
+                        {item.label}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        {item.description}
+                      </div>
+                    </div>
+                  </div>
+                  {imageType === item.type && (
+                    <div className="absolute top-2 right-2 w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Face Enhancement Toggle */}
-          <div className="flex items-center justify-center gap-4">
-            <label className="flex items-center gap-3 cursor-pointer">
-              <div className="relative">
-                <input
-                  type="checkbox"
-                  checked={faceEnhance}
-                  onChange={(e) => setFaceEnhance(e.target.checked)}
+          {/* Scale Selection */}
+          <div className="flex flex-col items-center gap-4">
+            <span className="text-lg font-semibold text-gray-900 dark:text-white">{t('selectScale')}</span>
+            <div className="flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1.5 gap-1">
+              {([2, 4, 8] as UpscaleScale[]).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setScale(s)}
                   disabled={processing}
-                  className="sr-only"
-                />
-                <div className={`w-11 h-6 rounded-full transition-colors ${
-                  faceEnhance
-                    ? 'bg-purple-600'
-                    : 'bg-gray-300 dark:bg-gray-600'
-                }`}>
-                  <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${
-                    faceEnhance ? 'translate-x-5' : 'translate-x-0.5'
-                  } mt-0.5`} />
-                </div>
-              </div>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Face Enhancement (GFPGAN)
-              </span>
-              <span className="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full">
-                +1 credit
-              </span>
-            </label>
+                  className={`
+                    px-8 py-3 rounded-lg text-lg font-bold transition-all
+                    ${scale === s
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
+                    }
+                  `}
+                >
+                  {s}x
+                </button>
+              ))}
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {scale === 2 && t('scale2xDesc')}
+              {scale === 4 && t('scale4xDesc')}
+              {scale === 8 && t('scale8xDesc')}
+            </p>
           </div>
 
-          {/* Info */}
-          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            {faceEnhance
-              ? 'GFPGAN enhances faces and improves overall quality'
-              : 'Real-ESRGAN for fast, reliable upscaling'}
+          {/* Model Info */}
+          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 text-center">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="font-medium text-gray-900 dark:text-white">{t('modelUsed')}:</span>{' '}
+              {imageType === 'product' && (scale === 8 ? 'Recraft Crisp (2-pass)' : 'Recraft Crisp')}
+              {imageType === 'portrait' && (scale <= 2 ? 'CodeFormer' : 'CodeFormer + Clarity')}
+              {imageType === 'general' && (scale === 8 ? 'Real-ESRGAN' : 'Clarity Upscaler')}
+            </p>
           </div>
 
           {/* Upscale Button */}
@@ -309,10 +367,10 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
               onClick={handleUpscale}
               disabled={processing}
               className={`
-                px-8 py-4 rounded-xl font-semibold text-lg transition-all
+                px-10 py-4 rounded-xl font-bold text-lg transition-all
                 ${processing
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl'
+                  : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl hover:scale-105'
                 }
                 text-white
               `}
@@ -320,12 +378,12 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
               {processing ? (
                 <div className="flex items-center gap-3">
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                  <span>Upscaling...</span>
+                  <span>{t('upscaling')}</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <span>Upscale {scale}x</span>
-                  <span className="text-purple-200">({creditCost} credit{creditCost > 1 ? 's' : ''})</span>
+                  <span>{t('upscaleButton')} {scale}x</span>
+                  <span className="text-purple-200 text-base">({creditCost} {creditCost === 1 ? t('credit') : t('credits')})</span>
                 </div>
               )}
             </button>
@@ -343,14 +401,14 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
           <ImageComparison
             originalUrl={result.originalUrl}
             processedUrl={result.imageUrl}
-            originalLabel="Original"
-            processedLabel={`${result.scale}x Upscaled${result.faceEnhance ? ' + Enhanced' : ''}`}
+            originalLabel={t('original')}
+            processedLabel={`${result.scale}x ${t('upscaled')}`}
             accentColor="purple"
           />
 
           {/* Credits Info */}
           <CreditsInfo
-            message={`Image upscaled ${result.scale}x successfully!${result.faceEnhance ? ' Face enhancement applied.' : ''}`}
+            message={`${t('successMessage')} (${result.model})`}
             creditsRemaining={result.creditsRemaining}
             accentColor="purple"
           />
@@ -362,7 +420,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
               icon="download"
               accentColor="purple"
             >
-              Download Image
+              {t('downloadImage')}
             </ActionButton>
             <CopyLinkButton imageId={result.imageId} accentColor="purple" />
             <ActionButton
@@ -371,7 +429,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
               variant="secondary"
               accentColor="gray"
             >
-              Upscale Another
+              {t('upscaleAnother')}
             </ActionButton>
           </div>
         </div>

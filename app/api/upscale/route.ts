@@ -7,9 +7,28 @@ import { authenticateRequest } from "@/lib/api-auth";
 import { ImageProcessor } from "@/lib/image-processor";
 import { ProcessedImagesDB } from "@/lib/processed-images-db";
 
-// Credit cost for upscaling (Real-ESRGAN)
-const CREDITS_PER_UPSCALE = 1;
-const CREDITS_FOR_FACE_ENHANCE = 1;
+// Credit costs based on image type and scale
+const CREDIT_COSTS = {
+  product: { 2: 1, 4: 1, 8: 2 },    // Recraft Crisp (cheap, 8x = 2 passes)
+  portrait: { 2: 2, 4: 3, 8: 3 },   // CodeFormer + Clarity
+  general: { 2: 2, 4: 2, 8: 1 },    // Clarity for 2x/4x, Real-ESRGAN for 8x
+} as const;
+
+type ImageType = 'product' | 'portrait' | 'general';
+type Scale = 2 | 4 | 8;
+
+function getModelName(imageType: ImageType, scale: Scale): string {
+  switch (imageType) {
+    case 'product':
+      return scale === 8 ? 'Recraft Crisp (2-pass)' : 'Recraft Crisp';
+    case 'portrait':
+      return scale <= 2 ? 'CodeFormer' : 'CodeFormer + Clarity';
+    case 'general':
+      return scale === 8 ? 'Real-ESRGAN' : 'Clarity Upscaler';
+    default:
+      return 'AI Upscaler';
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,13 +62,17 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const image = formData.get("image") as File;
     const scaleParam = parseInt(formData.get("scale") as string) || 2;
-    const faceEnhance = formData.get("faceEnhance") === "true";
+    const imageType = (formData.get("imageType") as ImageType) || "general";
 
-    // Validate scale (2, 4, or 8 for Real-ESRGAN)
-    const scale = [2, 4, 8].includes(scaleParam) ? scaleParam as 2 | 4 | 8 : 2;
+    // Validate scale (2, 4, or 8)
+    const scale: Scale = [2, 4, 8].includes(scaleParam) ? scaleParam as Scale : 2;
 
-    // Calculate total credit cost
-    const totalCredits = CREDITS_PER_UPSCALE + (faceEnhance ? CREDITS_FOR_FACE_ENHANCE : 0);
+    // Validate image type
+    const validImageTypes: ImageType[] = ['product', 'portrait', 'general'];
+    const validatedImageType: ImageType = validImageTypes.includes(imageType) ? imageType : 'general';
+
+    // Calculate credit cost based on image type and scale
+    const totalCredits = CREDIT_COSTS[validatedImageType][scale];
 
     if (!image) {
       return NextResponse.json(
@@ -123,10 +146,12 @@ export async function POST(request: NextRequest) {
       isProcessed: false
     });
 
-    // Upscale using Real-ESRGAN with optional face enhancement
-    const modelName = faceEnhance ? 'Real-ESRGAN + GFPGAN' : 'Real-ESRGAN';
-    console.log(`Starting ${modelName}: scale=${scale}x, faceEnhance=${faceEnhance}`);
-    const resultUrl = await ImageProcessor.upscaleImage(dataUrl, scale, faceEnhance);
+    // Get model name for logging
+    const modelName = getModelName(validatedImageType, scale);
+    console.log(`Starting ${modelName}: scale=${scale}x, imageType=${validatedImageType}`);
+
+    // Use advanced upscale with intelligent model selection
+    const resultUrl = await ImageProcessor.upscaleAdvanced(dataUrl, scale, validatedImageType);
 
     // Download processed image from Replicate
     const processedBuffer = await ImageProcessor.downloadImage(resultUrl);
@@ -192,8 +217,8 @@ export async function POST(request: NextRequest) {
       imageUrl: `/api/processed-images/${imageRecord.id}/view?type=processed`,
       originalUrl: `/api/processed-images/${imageRecord.id}/view?type=original`,
       scale: scale,
+      imageType: validatedImageType,
       model: modelName,
-      faceEnhance: faceEnhance,
       creditsUsed: totalCredits,
       creditsRemaining: updatedUser?.credits || 0,
     };

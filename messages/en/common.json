@@ -161,6 +161,16 @@
       "name": "Format Converter",
       "description": "Convert between image formats",
       "badge": "FREE"
+    },
+    "portraitRelight": {
+      "name": "Portrait Relight",
+      "description": "Change portrait lighting with AI",
+      "badge": "NEW"
+    },
+    "watermarkRemover": {
+      "name": "Watermark Remover",
+      "description": "Remove watermarks from images",
+      "badge": "NEW"
     }
   },
   "home": {
@@ -342,6 +352,44 @@
         "luxury": "Luxury",
         "creative": "Creative"
       }
+    }
+    },
+    "imageUpscaler": {
+      "loginTitle": "Sign in to upscale images",
+      "loginDescription": "Create a free account to upscale images with AI. Get 3 free credits!",
+      "freeCredits": "3 free credits to start",
+      "noCard": "No credit card required",
+      "maxUpscale": "Upscale up to 8x",
+      "dragDrop": "Drag and drop your image here",
+      "dropHere": "Drop your image here...",
+      "orClick": "or click to select a file",
+      "supportedFormats": "Supported formats: JPG, PNG, WebP (max 10MB)",
+      "selectImageType": "Select image type",
+      "typeProduct": "Product Photo",
+      "typeProductDesc": "E-commerce, packshots, products with text/logos",
+      "typePortrait": "Portrait / Face",
+      "typePortraitDesc": "People photos, faces, selfies",
+      "typeGeneral": "General",
+      "typeGeneralDesc": "Landscapes, animals, art, other",
+      "selectScale": "Select upscale factor",
+      "scale2xDesc": "Ideal for small fixes and fast processing",
+      "scale4xDesc": "Best balance of quality and file size",
+      "scale8xDesc": "Maximum upscale for print and large formats",
+      "modelUsed": "AI model used",
+      "upscaleButton": "Upscale",
+      "credit": "credit",
+      "credits": "credits",
+      "upscaling": "Upscaling...",
+      "processing": "Processing",
+      "success": "Image upscaled successfully!",
+      "successMessage": "Image upscaled successfully",
+      "original": "Original",
+      "upscaled": "Upscaled",
+      "downloadImage": "Download image",
+      "upscaleAnother": "Upscale another",
+      "preparingDownload": "Preparing download...",
+      "downloadStarted": "Download started!",
+      "downloadFailed": "Download failed"
     }
   },
   "auth": {
@@ -607,7 +655,7 @@
       }
     },
     "upscaler": {
-      "badge": "Powered by Real-ESRGAN AI",
+      "badge": "3 AI Models - Smart Selection",
       "title": "AI",
       "titleHighlight": "Image Upscaler",
       "subtitle": "Enhance and enlarge your images up to 8x using Real-ESRGAN AI technology.",
@@ -1840,7 +1888,7 @@
     }
   },
   "upscalerPage": {
-    "badge": "Powered by Real-ESRGAN AI",
+    "badge": "3 AI Models - Smart Selection",
     "title": "Upscale Your Images to",
     "titleHighlight": "8x Resolution",
     "subtitle": "Professional AI image upscaling with Real-ESRGAN. Increase photo resolution without losing quality. Optional face enhancement with GFPGAN.",
@@ -4096,6 +4144,283 @@
         "title": "Background Remover",
         "description": "Remove backgrounds instantly with AI"
       }
+    }
+  },
+  "portraitRelight": {
+    "auth": {
+      "title": "Sign in to Relight Portraits",
+      "description": "Transform your portrait lighting with AI-powered relighting",
+      "feature1": "Studio Quality",
+      "feature2": "6 Lighting Presets",
+      "feature3": "Custom Prompts"
+    },
+    "upload": {
+      "title": "Upload Portrait",
+      "subtitle": "Drag and drop or click to upload a portrait photo",
+      "formats": "Supports JPG, PNG, WEBP • Max 20MB"
+    },
+    "preview": {
+      "title": "Selected Image"
+    },
+    "settings": {
+      "presets": "Lighting Style",
+      "customPrompt": "Custom Lighting (Optional)",
+      "customPromptPlaceholder": "Describe the lighting you want...",
+      "customPromptHint": "Leave empty to use the selected preset"
+    },
+    "presets": {
+      "studio": "Studio",
+      "golden": "Golden Hour",
+      "dramatic": "Dramatic",
+      "neon": "Neon",
+      "natural": "Natural",
+      "rembrandt": "Rembrandt"
+    },
+    "buttons": {
+      "relight": "Relight Portrait",
+      "processing": "Processing...",
+      "download": "Download",
+      "processAnother": "Process Another",
+      "changeImage": "Change Image"
+    },
+    "result": {
+      "before": "Original",
+      "after": "Relit",
+      "success": "Portrait relit successfully!"
+    },
+    "processing": "Relighting portrait...",
+    "success": "Portrait relit successfully!"
+  },
+  "portraitRelightPage": {
+    "badge": "AI-Powered Portrait Lighting",
+    "title": "AI Portrait Relight",
+    "subtitle": "Transform your portrait lighting with studio-quality AI relighting.",
+    "termsNotice": "By using this tool, you agree to our Terms of Service.",
+    "stats": {
+      "presets": "6",
+      "presetsLabel": "Lighting Presets",
+      "aiPowered": "ICLight V2",
+      "aiPoweredLabel": "AI Model",
+      "creditCost": "2 Credits",
+      "creditCostLabel": "Per Image"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Upload Portrait",
+        "description": "Upload any portrait photo"
+      },
+      "step2": {
+        "title": "Choose Lighting",
+        "description": "Select a preset or custom style"
+      },
+      "step3": {
+        "title": "Download Result",
+        "description": "Get your relit portrait"
+      }
+    },
+    "lightingPresets": {
+      "title": "Lighting Presets",
+      "studio": {
+        "title": "Studio",
+        "description": "Professional three-point lighting"
+      },
+      "golden": {
+        "title": "Golden Hour",
+        "description": "Warm sunset lighting"
+      },
+      "dramatic": {
+        "title": "Dramatic",
+        "description": "High contrast shadows"
+      },
+      "neon": {
+        "title": "Neon",
+        "description": "Cyberpunk colored lighting"
+      },
+      "natural": {
+        "title": "Natural",
+        "description": "Soft window light"
+      },
+      "rembrandt": {
+        "title": "Rembrandt",
+        "description": "Classic triangle lighting"
+      }
+    },
+    "features": {
+      "aiPowered": {
+        "title": "AI-Powered",
+        "description": "ICLight V2 for realistic relighting"
+      },
+      "customPrompts": {
+        "title": "Custom Prompts",
+        "description": "Describe any lighting scenario"
+      },
+      "fastProcessing": {
+        "title": "Fast Processing",
+        "description": "Results in seconds"
+      }
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "photographers": {
+        "title": "Photographers",
+        "description": "Fix lighting in post"
+      },
+      "contentCreators": {
+        "title": "Content Creators",
+        "description": "Consistent lighting"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Professional headshots"
+      },
+      "socialMedia": {
+        "title": "Social Media",
+        "description": "Enhanced selfies"
+      }
+    },
+    "relatedTools": {
+      "title": "Related Tools",
+      "packshot": {
+        "title": "Packshot Generator",
+        "description": "Product photography"
+      },
+      "removeBackground": {
+        "title": "Remove Background",
+        "description": "Transparent backgrounds"
+      },
+      "restore": {
+        "title": "Face Restore",
+        "description": "Enhance facial features"
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Portraits?",
+      "subtitle": "Start relighting your photos with AI today",
+      "exploreTools": "Explore All Tools",
+      "viewPricing": "View Pricing"
+    }
+  },
+  "watermarkRemover": {
+    "auth": {
+      "title": "Sign in to Remove Watermarks",
+      "description": "Remove watermarks, logos, and text from images with AI",
+      "feature1": "Auto Detection",
+      "feature2": "Manual Mask",
+      "feature3": "Seamless Results"
+    },
+    "upload": {
+      "title": "Upload Image with Watermark",
+      "subtitle": "Drag and drop or click to upload",
+      "formats": "Supports JPG, PNG, WEBP • Max 20MB"
+    },
+    "preview": {
+      "title": "Select Watermark Area"
+    },
+    "settings": {
+      "autoDetect": "Auto Detect",
+      "manualMask": "Manual Mask",
+      "brushSize": "Brush Size",
+      "clearMask": "Clear Mask",
+      "autoDescription": "AI will automatically detect and remove watermarks",
+      "manualDescription": "Paint over the watermark area to mark it for removal"
+    },
+    "buttons": {
+      "remove": "Remove Watermark",
+      "processing": "Processing...",
+      "download": "Download",
+      "processAnother": "Process Another",
+      "changeImage": "Change Image"
+    },
+    "result": {
+      "before": "Original",
+      "after": "Cleaned",
+      "success": "Watermark removed successfully!"
+    },
+    "processing": "Removing watermark...",
+    "success": "Watermark removed successfully!"
+  },
+  "watermarkRemoverPage": {
+    "badge": "AI-Powered Watermark Removal",
+    "title": "AI Watermark Remover",
+    "subtitle": "Remove watermarks, logos, and text overlays from images seamlessly with AI inpainting.",
+    "termsNotice": "By using this tool, you agree to our Terms of Service.",
+    "stats": {
+      "aiPowered": "LaMA",
+      "aiPoweredLabel": "AI Model",
+      "modes": "2",
+      "modesLabel": "Removal Modes",
+      "creditCost": "2 Credits",
+      "creditCostLabel": "Per Image"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Upload an image with watermark"
+      },
+      "step2": {
+        "title": "Select Mode",
+        "description": "Auto-detect or manually mark watermark"
+      },
+      "step3": {
+        "title": "Download Clean",
+        "description": "Get your watermark-free image"
+      }
+    },
+    "features": {
+      "autoDetect": {
+        "title": "Auto Detection",
+        "description": "AI automatically finds and removes watermarks"
+      },
+      "manualMask": {
+        "title": "Manual Masking",
+        "description": "Paint over specific areas to remove"
+      },
+      "seamless": {
+        "title": "Seamless Results",
+        "description": "AI fills in the background naturally"
+      }
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "stockPhotos": {
+        "title": "Stock Photos",
+        "description": "Remove preview watermarks from stock images"
+      },
+      "screenshots": {
+        "title": "Screenshots",
+        "description": "Clean up screenshots with unwanted overlays"
+      },
+      "oldPhotos": {
+        "title": "Old Photos",
+        "description": "Remove date stamps from old photos"
+      },
+      "documents": {
+        "title": "Documents",
+        "description": "Clean scanned documents"
+      }
+    },
+    "relatedTools": {
+      "title": "Related Tools",
+      "objectRemoval": {
+        "title": "Object Removal",
+        "description": "Remove any object from photos"
+      },
+      "inpainting": {
+        "title": "AI Inpainting",
+        "description": "Fill and extend images"
+      },
+      "removeBackground": {
+        "title": "Remove Background",
+        "description": "Transparent backgrounds"
+      }
+    },
+    "cta": {
+      "title": "Ready to Remove Watermarks?",
+      "subtitle": "Clean up your images with AI today",
+      "exploreTools": "Explore All Tools",
+      "viewPricing": "View Pricing"
     }
   }
 }

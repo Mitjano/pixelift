@@ -161,6 +161,16 @@
       "name": "Konwerter Formatów",
       "description": "Konwertuj między formatami obrazów",
       "badge": "DARMOWE"
+    },
+    "portraitRelight": {
+      "name": "Portrait Relight",
+      "description": "Zmień oświetlenie portretów z AI",
+      "badge": "NOWOŚĆ"
+    },
+    "watermarkRemover": {
+      "name": "Usuwanie Watermarków",
+      "description": "Usuń znaki wodne ze zdjęć",
+      "badge": "NOWOŚĆ"
     }
   },
   "home": {
@@ -342,6 +352,44 @@
         "luxury": "Luksus",
         "creative": "Kreatywne"
       }
+    }
+    },
+    "imageUpscaler": {
+      "loginTitle": "Zaloguj się aby powiększać obrazy",
+      "loginDescription": "Utwórz darmowe konto aby powiększać obrazy z AI. Otrzymaj 3 darmowe kredyty!",
+      "freeCredits": "3 darmowe kredyty na start",
+      "noCard": "Bez karty kredytowej",
+      "maxUpscale": "Powiększanie do 8x",
+      "dragDrop": "Przeciągnij i upuść obraz tutaj",
+      "dropHere": "Upuść obraz tutaj...",
+      "orClick": "lub kliknij aby wybrać plik",
+      "supportedFormats": "Obsługiwane formaty: JPG, PNG, WebP (max 10MB)",
+      "selectImageType": "Wybierz typ obrazu",
+      "typeProduct": "Zdjęcie produktowe",
+      "typeProductDesc": "E-commerce, packshoty, produkty z tekstem/logo",
+      "typePortrait": "Portret / Twarz",
+      "typePortraitDesc": "Zdjęcia osób, twarze, selfie",
+      "typeGeneral": "Ogólne",
+      "typeGeneralDesc": "Krajobrazy, zwierzęta, sztuka, inne",
+      "selectScale": "Wybierz skalę powiększenia",
+      "scale2xDesc": "Idealne dla małych poprawek i szybkiego przetwarzania",
+      "scale4xDesc": "Najlepszy balans jakości i rozmiaru pliku",
+      "scale8xDesc": "Maksymalne powiększenie dla druku i dużych formatów",
+      "modelUsed": "Użyty model AI",
+      "upscaleButton": "Powiększ",
+      "credit": "kredyt",
+      "credits": "kredyty",
+      "upscaling": "Powiększanie...",
+      "processing": "Przetwarzanie",
+      "success": "Obraz powiększony pomyślnie!",
+      "successMessage": "Obraz powiększony pomyślnie",
+      "original": "Oryginał",
+      "upscaled": "Powiększony",
+      "downloadImage": "Pobierz obraz",
+      "upscaleAnother": "Powiększ kolejny",
+      "preparingDownload": "Przygotowywanie pobierania...",
+      "downloadStarted": "Pobieranie rozpoczęte!",
+      "downloadFailed": "Pobieranie nie powiodło się"
     }
   },
   "auth": {
@@ -607,7 +655,7 @@
       }
     },
     "upscaler": {
-      "badge": "Napędzane przez Real-ESRGAN AI",
+      "badge": "3 Modele AI - Inteligentny Wybór",
       "title": "Powiększanie",
       "titleHighlight": "Obrazów AI",
       "subtitle": "Popraw i powiększ obrazy do 8x używając technologii Real-ESRGAN AI.",
@@ -1840,7 +1888,7 @@
     }
   },
   "upscalerPage": {
-    "badge": "Napędzane przez Real-ESRGAN AI",
+    "badge": "3 Modele AI - Inteligentny Wybór",
     "title": "Powiększ Swoje Obrazy do",
     "titleHighlight": "8x Rozdzielczości",
     "subtitle": "Profesjonalne powiększanie obrazów AI z Real-ESRGAN. Zwiększ rozdzielczość zdjęć bez utraty jakości. Opcjonalne ulepszenie twarzy z GFPGAN.",
@@ -4096,6 +4144,283 @@
         "title": "Usuwanie tła",
         "description": "Usuń tła natychmiast z AI"
       }
+    }
+  },
+  "portraitRelight": {
+    "auth": {
+      "title": "Zaloguj się, aby zmienić oświetlenie",
+      "description": "Przekształć oświetlenie portretów dzięki AI",
+      "feature1": "Jakość studyjna",
+      "feature2": "6 presetów",
+      "feature3": "Własne prompty"
+    },
+    "upload": {
+      "title": "Prześlij portret",
+      "subtitle": "Przeciągnij i upuść lub kliknij, aby przesłać zdjęcie",
+      "formats": "Obsługuje JPG, PNG, WEBP • Max 20MB"
+    },
+    "preview": {
+      "title": "Wybrane zdjęcie"
+    },
+    "settings": {
+      "presets": "Styl oświetlenia",
+      "customPrompt": "Własne oświetlenie (opcjonalne)",
+      "customPromptPlaceholder": "Opisz oświetlenie, np. miękkie światło z okna...",
+      "customPromptHint": "Pozostaw puste, aby użyć wybranego presetu"
+    },
+    "presets": {
+      "studio": "Studio",
+      "golden": "Złota godzina",
+      "dramatic": "Dramatyczne",
+      "neon": "Neon",
+      "natural": "Naturalne",
+      "rembrandt": "Rembrandt"
+    },
+    "buttons": {
+      "relight": "Zmień oświetlenie",
+      "processing": "Przetwarzanie...",
+      "download": "Pobierz",
+      "processAnother": "Przetwórz kolejny",
+      "changeImage": "Zmień zdjęcie"
+    },
+    "result": {
+      "before": "Oryginał",
+      "after": "Po zmianie",
+      "success": "Oświetlenie zmienione!"
+    },
+    "processing": "Zmiana oświetlenia...",
+    "success": "Oświetlenie zmienione!"
+  },
+  "portraitRelightPage": {
+    "badge": "Oświetlenie portretów AI",
+    "title": "AI Portrait Relight",
+    "subtitle": "Zmień oświetlenie portretów dzięki zaawansowanemu AI.",
+    "termsNotice": "Korzystając z tego narzędzia, akceptujesz Regulamin.",
+    "stats": {
+      "presets": "6",
+      "presetsLabel": "Presetów oświetlenia",
+      "aiPowered": "ICLight V2",
+      "aiPoweredLabel": "Model AI",
+      "creditCost": "2 Kredyty",
+      "creditCostLabel": "Za zdjęcie"
+    },
+    "howItWorks": {
+      "title": "Jak to działa",
+      "step1": {
+        "title": "Prześlij portret",
+        "description": "Prześlij dowolne zdjęcie portretowe"
+      },
+      "step2": {
+        "title": "Wybierz oświetlenie",
+        "description": "Wybierz preset lub własny styl"
+      },
+      "step3": {
+        "title": "Pobierz wynik",
+        "description": "Pobierz prześwietlony portret"
+      }
+    },
+    "lightingPresets": {
+      "title": "Presety oświetlenia",
+      "studio": {
+        "title": "Studio",
+        "description": "Profesjonalne oświetlenie studyjne"
+      },
+      "golden": {
+        "title": "Złota godzina",
+        "description": "Ciepłe światło zachodu słońca"
+      },
+      "dramatic": {
+        "title": "Dramatyczne",
+        "description": "Wysoki kontrast i cienie"
+      },
+      "neon": {
+        "title": "Neon",
+        "description": "Kolorowe światło cyberpunk"
+      },
+      "natural": {
+        "title": "Naturalne",
+        "description": "Miękkie światło z okna"
+      },
+      "rembrandt": {
+        "title": "Rembrandt",
+        "description": "Klasyczne oświetlenie trójkątne"
+      }
+    },
+    "features": {
+      "aiPowered": {
+        "title": "Zasilane AI",
+        "description": "ICLight V2 dla realistycznego efektu"
+      },
+      "customPrompts": {
+        "title": "Własne prompty",
+        "description": "Opisz dowolny scenariusz"
+      },
+      "fastProcessing": {
+        "title": "Szybkie przetwarzanie",
+        "description": "Wyniki w sekundach"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "photographers": {
+        "title": "Fotografowie",
+        "description": "Popraw oświetlenie w postprodukcji"
+      },
+      "contentCreators": {
+        "title": "Twórcy treści",
+        "description": "Spójne oświetlenie"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Profesjonalne headshoty"
+      },
+      "socialMedia": {
+        "title": "Social Media",
+        "description": "Ulepszone selfie"
+      }
+    },
+    "relatedTools": {
+      "title": "Powiązane narzędzia",
+      "packshot": {
+        "title": "Generator Packshot",
+        "description": "Fotografia produktowa"
+      },
+      "removeBackground": {
+        "title": "Usuń tło",
+        "description": "Przezroczyste tła"
+      },
+      "restore": {
+        "title": "Restauracja twarzy",
+        "description": "Ulepsz rysy twarzy"
+      }
+    },
+    "cta": {
+      "title": "Gotowy na transformację portretów?",
+      "subtitle": "Zacznij zmieniać oświetlenie zdjęć z AI",
+      "exploreTools": "Przeglądaj narzędzia",
+      "viewPricing": "Zobacz ceny"
+    }
+  },
+  "watermarkRemover": {
+    "auth": {
+      "title": "Zaloguj się, aby usunąć watermark",
+      "description": "Usuń znaki wodne, logo i napisy ze zdjęć za pomocą AI",
+      "feature1": "Auto wykrywanie",
+      "feature2": "Ręczna maska",
+      "feature3": "Bezszwowe wyniki"
+    },
+    "upload": {
+      "title": "Prześlij zdjęcie z watermarkiem",
+      "subtitle": "Przeciągnij i upuść lub kliknij",
+      "formats": "Obsługuje JPG, PNG, WEBP • Max 20MB"
+    },
+    "preview": {
+      "title": "Zaznacz obszar watermarku"
+    },
+    "settings": {
+      "autoDetect": "Auto wykrywanie",
+      "manualMask": "Ręczna maska",
+      "brushSize": "Rozmiar pędzla",
+      "clearMask": "Wyczyść maskę",
+      "autoDescription": "AI automatycznie wykryje i usunie watermark",
+      "manualDescription": "Zamaluj obszar watermarku, aby oznaczyć go do usunięcia"
+    },
+    "buttons": {
+      "remove": "Usuń Watermark",
+      "processing": "Przetwarzanie...",
+      "download": "Pobierz",
+      "processAnother": "Przetwórz kolejny",
+      "changeImage": "Zmień zdjęcie"
+    },
+    "result": {
+      "before": "Oryginał",
+      "after": "Oczyszczony",
+      "success": "Watermark usunięty!"
+    },
+    "processing": "Usuwanie watermarku...",
+    "success": "Watermark usunięty!"
+  },
+  "watermarkRemoverPage": {
+    "badge": "Usuwanie watermarków AI",
+    "title": "AI Watermark Remover",
+    "subtitle": "Usuń znaki wodne, logo i napisy ze zdjęć za pomocą AI.",
+    "termsNotice": "Korzystając z tego narzędzia, akceptujesz Regulamin.",
+    "stats": {
+      "aiPowered": "LaMA",
+      "aiPoweredLabel": "Model AI",
+      "modes": "2",
+      "modesLabel": "Tryby usuwania",
+      "creditCost": "2 Kredyty",
+      "creditCostLabel": "Za zdjęcie"
+    },
+    "howItWorks": {
+      "title": "Jak to działa",
+      "step1": {
+        "title": "Prześlij zdjęcie",
+        "description": "Prześlij zdjęcie z watermarkiem"
+      },
+      "step2": {
+        "title": "Wybierz tryb",
+        "description": "Auto-wykrywanie lub ręczne zaznaczenie"
+      },
+      "step3": {
+        "title": "Pobierz czyste",
+        "description": "Pobierz zdjęcie bez watermarku"
+      }
+    },
+    "features": {
+      "autoDetect": {
+        "title": "Auto wykrywanie",
+        "description": "AI automatycznie znajduje i usuwa watermarki"
+      },
+      "manualMask": {
+        "title": "Ręczna maska",
+        "description": "Zamaluj konkretne obszary do usunięcia"
+      },
+      "seamless": {
+        "title": "Bezszwowe wyniki",
+        "description": "AI naturalnie wypełnia tło"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "stockPhotos": {
+        "title": "Zdjęcia stockowe",
+        "description": "Usuń watermarki podglądu"
+      },
+      "screenshots": {
+        "title": "Screenshoty",
+        "description": "Oczyść zrzuty ekranu"
+      },
+      "oldPhotos": {
+        "title": "Stare zdjęcia",
+        "description": "Usuń datowniki"
+      },
+      "documents": {
+        "title": "Dokumenty",
+        "description": "Oczyść zeskanowane dokumenty"
+      }
+    },
+    "relatedTools": {
+      "title": "Powiązane narzędzia",
+      "objectRemoval": {
+        "title": "Usuwanie obiektów",
+        "description": "Usuń dowolny obiekt"
+      },
+      "inpainting": {
+        "title": "AI Inpainting",
+        "description": "Wypełnij i rozszerz obrazy"
+      },
+      "removeBackground": {
+        "title": "Usuń tło",
+        "description": "Przezroczyste tła"
+      }
+    },
+    "cta": {
+      "title": "Gotowy na usunięcie watermarków?",
+      "subtitle": "Oczyść swoje zdjęcia z AI",
+      "exploreTools": "Przeglądaj narzędzia",
+      "viewPricing": "Zobacz ceny"
     }
   }
 }
