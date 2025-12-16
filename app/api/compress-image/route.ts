@@ -5,6 +5,9 @@ import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 
+// For App Router - set max duration for large file processing
+export const maxDuration = 60 // 60 seconds timeout
+export const dynamic = 'force-dynamic'
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting
