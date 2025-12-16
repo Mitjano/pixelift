@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { NextRequest } from 'next/server';
 
 // Mock next-auth before importing security module
 vi.mock('@/lib/auth', () => ({
