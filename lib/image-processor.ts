@@ -343,7 +343,7 @@ export class ImageProcessor {
     console.log(`Starting Real-ESRGAN ${scale}x upscale (face_enhance=${faceEnhance})...`)
 
     const output = await this.replicate.run(
-      "nightmareai/real-esrgan:f121d640bd286e1fdc67f9799164c1d5be36ff74576ee11c803ae5b665dd46aa",
+      "nightmareai/real-esrgan:b3ef194191d13140337468c916c2c5b96dd0cb06dffc032a022a31807f6a5ea8",
       {
         input: {
           image: dataUrl,
