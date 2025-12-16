@@ -8,9 +8,16 @@ import { auth } from '@/lib/auth';
 import OpenAI from 'openai';
 import { scrapeSerpBasic } from '@/lib/seo/serp-scraper';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Lazy initialization to avoid build-time errors
+let openai: OpenAI | null = null;
+function getOpenAI(): OpenAI {
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return openai;
+}
 
 interface ArticleIdea {
   title: string;
@@ -131,7 +138,7 @@ export async function POST(request: NextRequest) {
     const competitorTitles = serpResults.results?.slice(0, 5).map(r => r.title) || [];
 
     // Generate ideas with AI
-    const aiResponse = await openai.chat.completions.create({
+    const aiResponse = await getOpenAI().chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: IDEA_GENERATION_PROMPT },
