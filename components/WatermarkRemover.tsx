@@ -40,7 +40,7 @@ export function WatermarkRemover({ userRole = 'user' }: WatermarkRemoverProps) {
   const [showDownloadModal, setShowDownloadModal] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [maskMode, setMaskMode] = useState<'auto' | 'manual'>('auto')
+  const [maskMode, setMaskMode] = useState<'auto' | 'manual'>('manual')
   const [maskDataUrl, setMaskDataUrl] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = useState(false)
@@ -52,10 +52,29 @@ export function WatermarkRemover({ userRole = 'user' }: WatermarkRemoverProps) {
     const file = acceptedFiles[0]
     trackImageUploaded(file.size, file.type)
     setUploadedFile(file)
-    setPreviewUrl(URL.createObjectURL(file))
+    const url = URL.createObjectURL(file)
+    setPreviewUrl(url)
     setError(null)
     setResult(null)
     setMaskDataUrl(null)
+
+    // Initialize canvas after image loads
+    setTimeout(() => {
+      if (canvasRef.current) {
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          const img = new Image()
+          img.onload = () => {
+            canvas.width = img.width
+            canvas.height = img.height
+            ctx.fillStyle = 'black'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+          }
+          img.src = url
+        }
+      }
+    }, 100)
   }, [trackImageUploaded])
 
   const initCanvas = useCallback(() => {
@@ -76,13 +95,12 @@ export function WatermarkRemover({ userRole = 'user' }: WatermarkRemoverProps) {
   }, [previewUrl])
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (maskMode !== 'manual') return
     setIsDrawing(true)
     draw(e)
   }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing || maskMode !== 'manual') return
+    if (!isDrawing) return
     draw(e)
   }
 
@@ -244,79 +262,54 @@ export function WatermarkRemover({ userRole = 'user' }: WatermarkRemoverProps) {
       {/* Settings Panel */}
       {uploadedFile && !result && (
         <div className="space-y-6">
-          {/* Preview with optional mask drawing */}
+          {/* Preview with mask drawing */}
           <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('preview.title')}</h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => { setMaskMode('auto'); setMaskDataUrl(null); }}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                    maskMode === 'auto'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  {t('settings.autoDetect')}
-                </button>
-                <button
-                  onClick={() => { setMaskMode('manual'); initCanvas(); }}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                    maskMode === 'manual'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  {t('settings.manualMask')}
-                </button>
-              </div>
+              <span className="text-sm text-orange-500 font-medium">Paint over the watermark</span>
             </div>
 
             <div className="relative flex justify-center">
               <img
                 src={previewUrl!}
                 alt="Preview"
-                className={`max-h-96 rounded-lg object-contain ${maskMode === 'manual' ? 'opacity-50' : ''}`}
+                className="max-h-96 rounded-lg object-contain opacity-50"
               />
-              {maskMode === 'manual' && (
-                <canvas
-                  ref={canvasRef}
-                  onMouseDown={handleMouseDown}
-                  onMouseMove={handleMouseMove}
-                  onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseUp}
-                  className="absolute top-0 left-0 w-full h-full cursor-crosshair opacity-50"
-                  style={{ maxHeight: '24rem', objectFit: 'contain' }}
-                />
-              )}
+              <canvas
+                ref={canvasRef}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                className="absolute top-0 left-0 w-full h-full cursor-crosshair opacity-50"
+                style={{ maxHeight: '24rem', objectFit: 'contain' }}
+              />
             </div>
 
-            {maskMode === 'manual' && (
-              <div className="mt-4 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <label className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('settings.brushSize')}: {brushSize}px
-                  </label>
-                  <input
-                    type="range"
-                    min="5"
-                    max="100"
-                    value={brushSize}
-                    onChange={(e) => setBrushSize(parseInt(e.target.value))}
-                    className="w-32"
-                  />
-                </div>
-                <button
-                  onClick={clearMask}
-                  className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-sm"
-                >
-                  {t('settings.clearMask')}
-                </button>
+            <div className="mt-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <label className="text-sm text-gray-600 dark:text-gray-400">
+                  {t('settings.brushSize')}: {brushSize}px
+                </label>
+                <input
+                  type="range"
+                  min="5"
+                  max="100"
+                  value={brushSize}
+                  onChange={(e) => setBrushSize(parseInt(e.target.value))}
+                  className="w-32"
+                />
               </div>
-            )}
+              <button
+                onClick={clearMask}
+                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300"
+              >
+                {t('settings.clearMask')}
+              </button>
+            </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              {maskMode === 'auto' ? t('settings.autoDescription') : t('settings.manualDescription')}
+              {t('settings.manualDescription')}
             </p>
           </div>
 

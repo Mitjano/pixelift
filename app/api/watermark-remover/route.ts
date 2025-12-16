@@ -95,20 +95,24 @@ export async function POST(request: NextRequest) {
       maskDataUrl = `data:${maskFile.type};base64,${maskBase64}`
     }
 
+    // 7. PROCESS WITH LAMA INPAINTING
+    // Mask is required for watermark removal
+    if (!maskDataUrl) {
+      return NextResponse.json(
+        { error: 'Please mark the watermark area to remove. Switch to "Manual Mask" mode and paint over the watermark.' },
+        { status: 400 }
+      )
+    }
+
     console.log('Processing watermark removal with LaMA...')
 
-    // 7. PROCESS WITH LAMA INPAINTING
-    // Using LaMA (Large Mask Inpainting) model for watermark removal
+    // Use LaMA model for clean inpainting
     const output = await replicate.run(
-      "andreasjansson/stable-diffusion-inpainting:e490d072a34a94a11e9711ed5a6ba621c3fab884eda1665d9d3a282d65a21571",
+      "zylim0702/remove-object:0e3a841c913f597c1e4c321560aa69e2bc1f15c65f8c366caafc379240efd8ba",
       {
         input: {
           image: imageDataUrl,
-          mask: maskDataUrl || imageDataUrl, // If no mask, use auto-detection
-          prompt: "clean background, no watermark, no text, seamless texture",
-          negative_prompt: "watermark, text, logo, signature, stamp",
-          num_inference_steps: 25,
-          guidance_scale: 7.5,
+          mask: maskDataUrl,
         },
       }
     )
