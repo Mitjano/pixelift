@@ -26,3 +26,6 @@ export type { CopyLinkButtonProps } from './CopyLinkButton';
 
 export { CreditCostBadge, CreditsRemaining, CreditCostInfo } from './CreditCostBadge';
 export type { CreditCostBadgeProps, CreditsRemainingProps, CreditCostInfoProps } from './CreditCostBadge';
+
+export { default as SocialShareButtons } from './SocialShareButtons';
+export type { SocialShareButtonsProps } from './SocialShareButtons';

@@ -20,6 +20,8 @@ export type ToolType =
   | 'style_transfer'
   | 'structure_control'
   | 'inpainting'
+  | 'portrait_relight'
+  | 'watermark_remover'
   // AI Video Tools
   | 'video_script'
   | 'voiceover'
@@ -145,6 +147,16 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     cost: 5,
     displayName: 'Inpainting',
     description: 'Zaawansowana edycja fragmentów obrazu',
+  },
+  portrait_relight: {
+    cost: 2,
+    displayName: 'Portrait Relight',
+    description: 'Zmień oświetlenie portretów za pomocą AI',
+  },
+  watermark_remover: {
+    cost: 2,
+    displayName: 'Watermark Remover',
+    description: 'Usuń znaki wodne ze zdjęć za pomocą AI',
   },
   // AI Video Script & Voiceover
   video_script: {
@@ -339,6 +351,10 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
   'structure-control': 'structure_control',
   'structureControl': 'structure_control',
   'inpainting': 'inpainting',
+  'portrait-relight': 'portrait_relight',
+  'portraitRelight': 'portrait_relight',
+  'watermark-remover': 'watermark_remover',
+  'watermarkRemover': 'watermark_remover',
   // AI Video Tools
   'video-script': 'video_script',
   'video_script': 'video_script',

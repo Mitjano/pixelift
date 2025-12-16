@@ -2,9 +2,31 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ProcessedImagesDB } from '@/lib/processed-images-db';
+import SharePageClient from './SharePageClient';
+import { validateSafePath } from '@/lib/security';
+import sharp from 'sharp';
+import { readFile } from 'fs/promises';
 
 interface SharePageProps {
   params: Promise<{ id: string; locale: string }>;
+}
+
+// Helper to get actual image dimensions from file
+async function getProcessedImageDimensions(imagePath: string): Promise<{ width: number; height: number } | null> {
+  try {
+    const relativePath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
+    const pathValidation = validateSafePath(relativePath);
+    if (!pathValidation.valid) return null;
+
+    const fileBuffer = await readFile(pathValidation.safePath);
+    const metadata = await sharp(fileBuffer, { limitInputPixels: false }).metadata();
+    return {
+      width: metadata.width || 0,
+      height: metadata.height || 0
+    };
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({ params }: SharePageProps): Promise<Metadata> {
@@ -16,6 +38,14 @@ export async function generateMetadata({ params }: SharePageProps): Promise<Meta
       title: 'Image Not Found | Pixelift',
     };
   }
+
+  // Get actual processed image dimensions for OpenGraph
+  const processedDimensions = image.processedPath
+    ? await getProcessedImageDimensions(image.processedPath)
+    : null;
+
+  const displayWidth = processedDimensions?.width || image.width;
+  const displayHeight = processedDimensions?.height || image.height;
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://pixelift.pl';
   const imageUrl = `${baseUrl}/api/processed-images/${id}/view?type=processed`;
@@ -31,8 +61,8 @@ export async function generateMetadata({ params }: SharePageProps): Promise<Meta
       images: [
         {
           url: imageUrl,
-          width: image.width,
-          height: image.height,
+          width: displayWidth,
+          height: displayHeight,
           alt: 'AI Processed Image',
         },
       ],
@@ -61,7 +91,20 @@ export default async function SharePage({ params }: SharePageProps) {
     notFound();
   }
 
+  // Get actual processed image dimensions (upscaled size)
+  const processedDimensions = image.processedPath
+    ? await getProcessedImageDimensions(image.processedPath)
+    : null;
+
+  // Use actual dimensions if available, otherwise fall back to stored values
+  const displayWidth = processedDimensions?.width || image.width;
+  const displayHeight = processedDimensions?.height || image.height;
+
   const processedUrl = `/api/processed-images/${id}/view?type=processed`;
+  const downloadUrl = `/api/processed-images/${id}/download?type=processed&resolution=original`;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://pixelift.pl';
+  const fullShareUrl = `${baseUrl}/${locale}/share/${id}`;
+  const fullImageUrl = `${baseUrl}/api/processed-images/${id}/view?type=processed`;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -95,14 +138,14 @@ export default async function SharePage({ params }: SharePageProps) {
             />
           </div>
 
-          {/* Image Info */}
+          {/* Image Info & Actions */}
           <div className="p-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                {image.width} x {image.height} px
+                {displayWidth} x {displayHeight} px
               </div>
               <a
-                href={processedUrl}
+                href={downloadUrl}
                 download={`pixelift_${id}.png`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition"
               >
@@ -111,6 +154,11 @@ export default async function SharePage({ params }: SharePageProps) {
                 </svg>
                 Download
               </a>
+            </div>
+
+            {/* Social Share Buttons */}
+            <div className="flex justify-center pt-4 border-t border-gray-100 dark:border-gray-700">
+              <SharePageClient shareUrl={fullShareUrl} imageUrl={fullImageUrl} />
             </div>
           </div>
         </div>

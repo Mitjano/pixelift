@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle } from "react-icons/fa";
-import { LoginPrompt, CreditCostBadge } from "./shared";
+import { LoginPrompt, CreditCostBadge, CopyLinkButton, ActionButton } from "./shared";
 import { CREDIT_COSTS } from '@/lib/credits-config';
 
 type TaskType = 'real_sr';
@@ -22,6 +22,7 @@ export default function ImageDenoiser() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [processedUrl, setProcessedUrl] = useState<string | null>(null);
+  const [imageId, setImageId] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
   const [progress, setProgress] = useState("");
   const [imageInfo, setImageInfo] = useState<{width: number, height: number, size: number} | null>(null);
@@ -115,6 +116,7 @@ export default function ImageDenoiser() {
       if (data.success && data.processedImage) {
         setProgress("Processing complete!");
         setProcessedUrl(data.processedImage);
+        setImageId(data.id);
         setCreditsRemaining(data.creditsRemaining);
       } else {
         throw new Error("No processed image in response");
@@ -149,6 +151,7 @@ export default function ImageDenoiser() {
     setSelectedFile(null);
     setPreviewUrl(null);
     setProcessedUrl(null);
+    setImageId(null);
     setProgress("");
     setImageInfo(null);
   };
@@ -273,31 +276,33 @@ export default function ImageDenoiser() {
               </button>
             ) : (
               <>
-                <button
+                <ActionButton
                   onClick={handleDownload}
-                  className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 rounded-lg font-semibold text-lg transition flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+                  icon="download"
+                  accentColor="blue"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
                   Download Restored Image
-                </button>
-                <button
+                </ActionButton>
+                {imageId && <CopyLinkButton imageId={imageId} accentColor="blue" />}
+                <ActionButton
                   onClick={handleProcess}
                   disabled={processing}
-                  className="px-6 py-4 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition"
+                  icon="lightning"
+                  accentColor="blue"
                 >
                   Process Again
-                </button>
+                </ActionButton>
               </>
             )}
-            <button
+            <ActionButton
               onClick={handleReset}
               disabled={processing}
-              className="px-6 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+              icon="upload"
+              variant="secondary"
+              accentColor="gray"
             >
               Upload New Image
-            </button>
+            </ActionButton>
           </div>
         </div>
       )}

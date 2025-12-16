@@ -8,6 +8,7 @@ import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '
 import { authenticateRequest } from '@/lib/api-auth'
 import { fetchWithTimeout } from '@/lib/fetch-with-timeout'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { ProcessedImagesDB } from '@/lib/processed-images-db'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -385,6 +386,19 @@ export async function POST(request: NextRequest) {
     const width = resultMetadata.width || 0
     const height = resultMetadata.height || 0
 
+    // 7.5 SAVE TO DATABASE FOR SHARE LINK
+    const originalDataUrl = `data:${mimeType};base64,${imageBase64}`
+    const imageRecord = await ProcessedImagesDB.create({
+      userId: user.email,
+      originalPath: originalDataUrl,
+      processedPath: dataUrl,
+      originalFilename: file.name,
+      fileSize: file.size,
+      width,
+      height,
+      isProcessed: true,
+    })
+
     // 8. DEDUCT CREDITS & LOG USAGE
     await createUsage({
       userId: user.id,
@@ -408,6 +422,7 @@ export async function POST(request: NextRequest) {
     // 10. RETURN SUCCESS
     return NextResponse.json({
       success: true,
+      id: imageRecord.id,
       expandedImage: dataUrl,
       expandMode: expandMode,
       dimensions: {

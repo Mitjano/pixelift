@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import ImageComparison from "./ImageComparison";
 import { FaTimes, FaInfoCircle, FaLayerGroup, FaRuler, FaBorderAll } from "react-icons/fa";
-import { CreditCostBadge } from './shared';
+import { CreditCostBadge, CopyLinkButton, ActionButton } from './shared';
 import { CREDIT_COSTS } from '@/lib/credits-config';
 
 const CONTROL_MODES = [
@@ -48,6 +48,7 @@ export default function StructureControl() {
   const [controlMode, setControlMode] = useState('depth');
   const [prompt, setPrompt] = useState("");
   const [strength, setStrength] = useState(0.8);
+  const [imageId, setImageId] = useState<string | null>(null);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -143,6 +144,9 @@ export default function StructureControl() {
         setProgress("Structure control complete!");
         setProcessedUrl(data.processedImage);
         setCreditsRemaining(data.creditsRemaining);
+        if (data.id) {
+          setImageId(data.id);
+        }
       } else {
         throw new Error("No processed image in response");
       }
@@ -180,6 +184,7 @@ export default function StructureControl() {
     setProgress("");
     setImageInfo(null);
     setPrompt("");
+    setImageId(null);
   };
 
   if (!session) {
@@ -395,22 +400,23 @@ export default function StructureControl() {
               </button>
             ) : (
               <>
-                <button
+                <ActionButton
                   onClick={handleDownload}
-                  className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 rounded-lg font-semibold text-lg transition flex items-center gap-2 shadow-lg"
+                  variant="primary"
+                  accentColor="purple"
+                  icon="download"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
                   Download Result
-                </button>
-                <button
+                </ActionButton>
+                {imageId && <CopyLinkButton imageId={imageId} />}
+                <ActionButton
                   onClick={() => setProcessedUrl(null)}
                   disabled={processing}
-                  className="px-6 py-4 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition"
+                  variant="secondary"
+                  accentColor="blue"
                 >
                   Try Different Prompt
-                </button>
+                </ActionButton>
               </>
             )}
             <button

@@ -97,6 +97,7 @@ const toolCategories = [
       { key: 'upscaler', href: '/tools/upscaler', color: 'from-purple-500 to-purple-600' },
       { key: 'restore', href: '/tools/restore', color: 'from-cyan-500 to-blue-600' },
       { key: 'colorize', href: '/tools/colorize', color: 'from-violet-500 to-purple-600' },
+      { key: 'portraitRelight', href: '/tools/portrait-relight', color: 'from-amber-500 to-orange-600' },
     ],
   },
   {
@@ -110,6 +111,7 @@ const toolCategories = [
     tools: [
       { key: 'removeBackground', href: '/tools/remove-background', color: 'from-blue-500 to-blue-600' },
       { key: 'objectRemoval', href: '/tools/object-removal', color: 'from-orange-500 to-red-600' },
+      { key: 'watermarkRemover', href: '/tools/watermark-remover', color: 'from-amber-500 to-orange-600' },
     ],
   },
   {

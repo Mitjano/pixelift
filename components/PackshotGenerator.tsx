@@ -6,10 +6,11 @@ import { useTranslations } from 'next-intl'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
-import { LoginPrompt } from './shared'
+import { LoginPrompt, CopyLinkButton, ActionButton, CreditsInfo } from './shared'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 
 interface AIBackgroundResult {
+  id: string
   result: string
   prompt: string
   preset: string
@@ -338,31 +339,29 @@ export function PackshotGenerator({ userRole = 'user' }: PackshotGeneratorProps)
             </div>
           </div>
 
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-            <p className="text-green-800 dark:text-green-300 text-sm">
-              ✨ AI background generated successfully! You have <strong>{result.creditsRemaining} credits</strong> remaining.
-            </p>
-          </div>
+          <CreditsInfo
+            message="AI background generated successfully!"
+            creditsRemaining={result.creditsRemaining}
+            accentColor="green"
+          />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
+            <ActionButton
               onClick={handleDownload}
-              className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl"
+              icon="download"
+              accentColor="green"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
               Download Image
-            </button>
-            <button
+            </ActionButton>
+            <CopyLinkButton imageId={result.id} accentColor="green" />
+            <ActionButton
               onClick={handleReset}
-              className="inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              icon="upload"
+              variant="secondary"
+              accentColor="gray"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
               Generate Another
-            </button>
+            </ActionButton>
           </div>
         </div>
       )}

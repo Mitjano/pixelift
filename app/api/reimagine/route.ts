@@ -6,6 +6,7 @@ import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 import { ImageProcessor } from '@/lib/image-processor'
+import { ProcessedImagesDB } from '@/lib/processed-images-db'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -139,6 +140,18 @@ export async function POST(request: NextRequest) {
       throw new Error('Failed to generate any variations')
     }
 
+    // 8.5 SAVE FIRST VARIATION TO DATABASE FOR SHARE LINK
+    const imageRecord = await ProcessedImagesDB.create({
+      userId: user.email,
+      originalPath: dataUrl,
+      processedPath: variations[0],
+      originalFilename: file.name,
+      fileSize: file.size,
+      width: 0,
+      height: 0,
+      isProcessed: true,
+    })
+
     // 9. DEDUCT CREDITS & LOG USAGE
     await createUsage({
       userId: user.id,
@@ -162,6 +175,7 @@ export async function POST(request: NextRequest) {
     // 11. RETURN SUCCESS
     return NextResponse.json({
       success: true,
+      id: imageRecord.id,
       variations: variations,
       variationCount: variations.length,
       prompt: prompt || 'Image variation',

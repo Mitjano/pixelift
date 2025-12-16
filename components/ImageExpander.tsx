@@ -12,11 +12,13 @@ import {
   ErrorMessage,
   ActionButton,
   CreditCostBadge,
+  CopyLinkButton,
 } from './shared'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 import { useAnalytics } from '@/hooks/useAnalytics'
 
 interface ExpandResult {
+  id: string
   expandedImage: string
   expandMode: string
   dimensions: {
@@ -384,6 +386,7 @@ export function ImageExpander({ userRole = 'user' }: ImageExpanderProps) {
             >
               Download
             </ActionButton>
+            <CopyLinkButton imageId={result.id} accentColor="purple" />
             <ActionButton
               onClick={() => {
                 setResult(null)

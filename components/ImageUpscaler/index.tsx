@@ -133,7 +133,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
 
     try {
       toast.loading(t('preparingDownload'), { id: 'download' })
-      const downloadUrl = `/api/processed-images/${result.imageId}/download?type=processed`
+      const downloadUrl = `/api/processed-images/${result.imageId}/download?type=processed&resolution=original`
       const response = await fetch(downloadUrl)
 
       if (!response.ok) {

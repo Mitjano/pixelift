@@ -12,16 +12,20 @@ fal.config({
   credentials: process.env.FAL_API_KEY,
 })
 
-const AI_BACKGROUND_CREDITS = CREDIT_COSTS.packshot.cost
+// For App Router - set max duration for processing
+export const maxDuration = 120 // 2 minutes timeout
+export const dynamic = 'force-dynamic'
 
-// Preset prompts for AI backgrounds
-const PRESET_PROMPTS: Record<string, string> = {
-  studio: 'Professional product photography studio setup, clean white cyclorama background, soft studio lighting with subtle gradient, commercial photography, high-end product shot',
-  marble: 'Elegant marble surface with soft natural lighting, luxury product photography, clean white marble texture, premium feel, high-end commercial shot',
-  nature: 'Natural outdoor setting with soft bokeh background, organic green leaves and plants, soft natural daylight, lifestyle product photography',
-  minimal: 'Minimalist clean background, soft neutral gradient, modern product photography, subtle shadows, contemporary design aesthetic',
-  wood: 'Rustic wooden table surface, warm natural tones, artisan product photography, cozy ambient lighting, handcrafted feel',
-  lifestyle: 'Modern lifestyle scene, contemporary interior setting, soft ambient lighting, aspirational product placement, premium home environment',
+const PORTRAIT_RELIGHT_CREDITS = CREDIT_COSTS.portrait_relight.cost
+
+// Preset lighting options
+const LIGHTING_PRESETS: Record<string, string> = {
+  studio: 'Professional studio lighting with soft key light from the left, fill light from the right, and subtle rim light, creating dimensional portrait lighting',
+  golden: 'Warm golden hour sunlight from the side, creating soft shadows and a warm glow on the skin',
+  dramatic: 'Dramatic single light source from above, creating strong shadows and moody atmosphere',
+  neon: 'Vibrant neon lighting with pink and blue colors, cyberpunk style portrait lighting',
+  natural: 'Soft natural window light from the side, creating gentle shadows and natural look',
+  rembrandt: 'Classic Rembrandt lighting with triangular highlight on the cheek, artistic portrait style',
 }
 
 export async function POST(request: NextRequest) {
@@ -58,14 +62,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 })
     }
 
-    // Determine the prompt to use
-    let backgroundPrompt: string
+    // Determine the lighting prompt
+    let lightingPrompt: string
     if (customPrompt && customPrompt.trim()) {
-      backgroundPrompt = customPrompt.trim()
-    } else if (preset && PRESET_PROMPTS[preset]) {
-      backgroundPrompt = PRESET_PROMPTS[preset]
+      lightingPrompt = customPrompt.trim()
+    } else if (preset && LIGHTING_PRESETS[preset]) {
+      lightingPrompt = LIGHTING_PRESETS[preset]
     } else {
-      backgroundPrompt = PRESET_PROMPTS.studio
+      lightingPrompt = LIGHTING_PRESETS.studio
     }
 
     // 4. VALIDATE FILE
@@ -77,16 +81,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const MAX_SIZE = 30 * 1024 * 1024
+    const MAX_SIZE = 20 * 1024 * 1024
     if (file.size > MAX_SIZE) {
       return NextResponse.json(
-        { error: 'File too large. Maximum size: 30MB' },
+        { error: 'File too large. Maximum size: 20MB' },
         { status: 400 }
       )
     }
 
     // 5. CHECK CREDITS
-    const creditsNeeded = AI_BACKGROUND_CREDITS
+    const creditsNeeded = PORTRAIT_RELIGHT_CREDITS
     if (user.credits < creditsNeeded) {
       if (user.credits === 0) {
         sendCreditsDepletedEmail({
@@ -107,22 +111,23 @@ export async function POST(request: NextRequest) {
       new Blob([new Uint8Array(arrayBuffer)], { type: file.type })
     )
 
-    console.log('Generating AI background with Bria...', { prompt: backgroundPrompt })
+    console.log('Processing portrait relight with ICLight V2...', { prompt: lightingPrompt })
 
-    // 7. GENERATE AI BACKGROUND (Bria handles bg removal + new bg generation)
-    const result = await fal.subscribe('fal-ai/bria/background/replace', {
+    // 7. PROCESS WITH ICLIGHT V2
+    const result = await fal.subscribe('fal-ai/iclight-v2', {
       input: {
         image_url: uploadedUrl,
-        prompt: backgroundPrompt,
-        refine_prompt: true,
-        fast: true,
-        num_images: 1,
+        prompt: lightingPrompt,
+        num_inference_steps: 35,
+        guidance_scale: 7,
+        enable_hr_fix: true,
+        output_format: 'png',
       },
     })
 
     const data = result.data as { images: Array<{ url: string }> }
     if (!data.images || data.images.length === 0) {
-      throw new Error('No image generated from Bria')
+      throw new Error('No image generated from ICLight V2')
     }
 
     const resultUrl = data.images[0].url
@@ -131,15 +136,17 @@ export async function POST(request: NextRequest) {
     const resultResponse = await fetch(resultUrl)
     const resultBuffer = Buffer.from(await resultResponse.arrayBuffer())
     const base64 = resultBuffer.toString('base64')
-    const dataUrl = `data:image/png;base64,${base64}`
+    const processedDataUrl = `data:image/png;base64,${base64}`
 
-    // 7.5 SAVE TO DATABASE FOR SHARE LINK
+    // Convert original to base64 for comparison
     const originalBase64 = Buffer.from(arrayBuffer).toString('base64')
     const originalDataUrl = `data:${file.type};base64,${originalBase64}`
+
+    // 8. SAVE TO DATABASE FOR SHARE LINK
     const imageRecord = await ProcessedImagesDB.create({
       userId: user.email,
       originalPath: originalDataUrl,
-      processedPath: dataUrl,
+      processedPath: processedDataUrl,
       originalFilename: file.name,
       fileSize: file.size,
       width: 0,
@@ -147,18 +154,18 @@ export async function POST(request: NextRequest) {
       isProcessed: true,
     })
 
-    // 8. DEDUCT CREDITS & LOG USAGE
+    // 9. DEDUCT CREDITS & LOG USAGE
     await createUsage({
       userId: user.id,
-      type: 'ai_background',
+      type: 'portrait_relight',
       creditsUsed: creditsNeeded,
       imageSize: `${file.size} bytes`,
-      model: 'bria-background-replace',
+      model: 'fal-ai/iclight-v2',
     })
 
     const newCredits = user.credits - creditsNeeded
 
-    // 9. SEND LOW CREDITS WARNING
+    // 10. SEND LOW CREDITS WARNING
     if (newCredits > 0 && newCredits <= 10) {
       sendCreditsLowEmail({
         userEmail: user.email,
@@ -167,19 +174,24 @@ export async function POST(request: NextRequest) {
       }).catch(err => console.error('Failed to send low credits email:', err))
     }
 
-    // 10. RETURN SUCCESS
+    // 11. RETURN SUCCESS
     return NextResponse.json({
       success: true,
-      id: imageRecord.id,
-      result: dataUrl,
-      prompt: backgroundPrompt,
+      image: {
+        id: imageRecord.id,
+        originalPath: originalDataUrl,
+        processedPath: processedDataUrl,
+        filename: file.name,
+        creditsRemaining: newCredits,
+      },
+      prompt: lightingPrompt,
       preset: preset || 'custom',
-      creditsRemaining: newCredits,
     })
-  } catch (error: any) {
-    console.error('[AI Background] Error:', error)
+  } catch (error: unknown) {
+    console.error('[Portrait Relight] Error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Failed to process portrait'
     return NextResponse.json(
-      { error: 'Failed to generate AI background', details: error.message },
+      { error: 'Failed to relight portrait', details: errorMessage },
       { status: 500 }
     )
   }
