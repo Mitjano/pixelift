@@ -77,14 +77,18 @@ export default function ImageCompressor() {
     setProgress('Compressing image...');
 
     try {
-      // Convert data URL back to file with proper MIME type
-      const response = await fetch(originalImage);
-      const originalBlob = await response.blob();
-
-      // Extract MIME type from data URL and create blob with correct type
-      const mimeMatch = originalImage.match(/^data:([^;]+);/);
+      // Convert data URL to blob without using fetch (CSP-safe)
+      const mimeMatch = originalImage.match(/^data:([^;]+);base64,/);
       const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
-      const blob = new Blob([originalBlob], { type: mimeType });
+
+      // Decode base64 to binary
+      const base64Data = originalImage.split(',')[1];
+      const binaryString = atob(base64Data);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const blob = new Blob([bytes], { type: mimeType });
 
       // Determine file extension from MIME type
       const extMap: Record<string, string> = {
