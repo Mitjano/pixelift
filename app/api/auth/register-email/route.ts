@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { registerWithEmail } from '@/lib/auth-credentials';
-import { sendVerificationEmail } from '@/lib/email-verification';
+import { createVerificationToken, sendVerificationEmail } from '@/lib/email-verification';
 
 // Rate limiting - simple in-memory store
 const registerAttempts = new Map<string, { count: number; resetAt: number }>();
@@ -94,7 +94,8 @@ export async function POST(request: NextRequest) {
     // Send verification email
     if (result.user) {
       try {
-        await sendVerificationEmail(result.user.id, email, name);
+        const token = await createVerificationToken(result.user.id, email);
+        await sendVerificationEmail(email, name || 'there', token);
       } catch (emailError) {
         console.error('[register-email] Failed to send verification email:', emailError);
         // Don't fail registration if email fails

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
 export function EmailSignUpForm() {
@@ -48,21 +47,8 @@ export function EmailSignUpForm() {
         return;
       }
 
-      // Show success message
+      // Show success message - user needs to verify email before signing in
       setSuccess(true);
-
-      // Auto sign in after registration
-      setTimeout(async () => {
-        const result = await signIn("credentials", {
-          email,
-          password,
-          redirect: false,
-        });
-
-        if (result?.ok) {
-          window.location.href = "/dashboard";
-        }
-      }, 1500);
 
     } catch (err) {
       setError("An unexpected error occurred");
@@ -76,12 +62,26 @@ export function EmailSignUpForm() {
       <div className="text-center py-8">
         <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
-        <h3 className="text-xl font-semibold text-white mb-2">Account Created!</h3>
-        <p className="text-gray-400 mb-4">Please check your email to verify your account.</p>
-        <p className="text-sm text-gray-500">Redirecting to dashboard...</p>
+        <h3 className="text-xl font-semibold text-white mb-2">Check your email!</h3>
+        <p className="text-gray-400 mb-4">
+          We've sent a verification link to <span className="text-white font-medium">{email}</span>
+        </p>
+        <p className="text-sm text-gray-500 mb-6">
+          Click the link in the email to activate your account. The link expires in 24 hours.
+        </p>
+        <div className="text-xs text-gray-600">
+          Didn't receive the email? Check your spam folder or{" "}
+          <button
+            type="button"
+            onClick={() => setSuccess(false)}
+            className="text-green-400 hover:text-green-300 underline"
+          >
+            try again
+          </button>
+        </div>
       </div>
     );
   }
