@@ -115,8 +115,11 @@ export async function POST(request: NextRequest) {
     const mimeType = file.type
     const dataUrl = `data:${mimeType};base64,${base64}`
 
-    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU (max ~2 million pixels)
-    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl)
+    // 6.5. RESIZE IF TOO LARGE FOR REPLICATE GPU
+    // SwinIR requires smaller input (~1 million pixels) because it does 4x super-resolution
+    // Output would be 4x larger, causing CUDA OOM errors on Replicate A100 GPU
+    const MAX_PIXELS_FOR_SWINIR = 1000000 // ~1000x1000 pixels max input
+    const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl, MAX_PIXELS_FOR_SWINIR)
 
     // 7. CALL APPROPRIATE MODEL
     let output: string
