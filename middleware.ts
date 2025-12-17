@@ -1,7 +1,11 @@
-import { auth } from "@/lib/auth";
+import NextAuth from "next-auth";
+import { authConfig } from "@/lib/auth.config";
 import { NextResponse } from "next/server";
 import createIntlMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from '@/i18n/config';
+
+// Use auth config without Node.js modules for Edge Runtime
+const { auth } = NextAuth(authConfig);
 
 // Allowed origins for CSRF protection
 const ALLOWED_ORIGINS = [

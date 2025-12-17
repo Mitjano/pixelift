@@ -212,6 +212,22 @@ export const analyticsLimiter = new RateLimiter('rl:analytics', 60 * 1000, 60); 
 export const apiKeyCreationLimiter = new RateLimiter('rl:apikey', 60 * 60 * 1000, 10); // 10 keys per hour
 
 /**
+ * Factory function to create custom rate limiters
+ */
+export function createRateLimiter(options: {
+  windowMs?: number;
+  maxRequests?: number;
+  prefix?: string;
+}): RateLimiter {
+  const {
+    windowMs = 15 * 60 * 1000,
+    maxRequests = 100,
+    prefix = 'rl:custom',
+  } = options;
+  return new RateLimiter(prefix, windowMs, maxRequests);
+}
+
+/**
  * Get client identifier from request
  */
 export function getClientIdentifier(request: Request): string {

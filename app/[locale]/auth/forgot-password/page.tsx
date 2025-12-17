@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Suspense } from "react";
-import VerifyEmailContent from "@/components/auth/VerifyEmailContent";
+import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 
-export default async function VerifyEmailPage() {
+export default async function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       <div className="container mx-auto px-4 py-8">
@@ -15,14 +14,7 @@ export default async function VerifyEmailPage() {
             </Link>
 
             <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl border border-gray-700/50 p-8 shadow-2xl">
-              <Suspense fallback={
-                <div className="text-center">
-                  <div className="animate-spin w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-                  <p className="text-gray-400">Loading...</p>
-                </div>
-              }>
-                <VerifyEmailContent />
-              </Suspense>
+              <ForgotPasswordForm />
             </div>
           </div>
         </div>

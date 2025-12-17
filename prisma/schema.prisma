@@ -33,6 +33,7 @@ model User {
   name          String?
   displayName   String?   // User-editable display name/nickname
   image         String?
+  password      String?   // Hashed password for email/password auth (bcrypt)
   role          UserRole  @default(user)
   status        UserStatus @default(active)
   credits       Int       @default(0)
@@ -150,6 +151,7 @@ model User {
   customFields      Json?     // Flexible custom data
 
   // Relations
+  accounts      Account[]     // OAuth accounts (Google, Facebook, etc.)
   transactions  Transaction[]
   usages        Usage[]
   apiKeys       ApiKey[]
@@ -2172,4 +2174,46 @@ model EmailVerificationToken {
   @@index([userId])
   @@index([token])
   @@index([expiresAt])
+}
+
+// ===================
+// Password Reset Tokens
+// ===================
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  email     String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  usedAt    DateTime? // When the token was used
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+}
+
+// ===================
+// OAuth Accounts (NextAuth compatible)
+// ===================
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String  // "oauth" | "credentials"
+  provider          String  // "google" | "facebook" | "credentials"
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
 }

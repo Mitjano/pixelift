@@ -58,6 +58,7 @@ export interface User {
   name?: string;
   displayName?: string;
   image?: string;
+  password?: string;        // Hashed password for email/password auth
   role: 'user' | 'premium' | 'admin';
   status: 'active' | 'banned' | 'suspended';
   credits: number;
@@ -66,6 +67,9 @@ export interface User {
   updatedAt: string;
   lastLoginAt?: string;
   firstUploadAt?: string;
+  emailVerified?: boolean;  // Whether email has been verified
+  emailVerifiedAt?: string; // When email was verified
+  authProvider?: string;    // Primary auth method (google, facebook, credentials)
 }
 
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
@@ -132,6 +136,7 @@ function prismaUserToUser(prismaUser: any): User {
     email: prismaUser.email,
     name: prismaUser.name ?? undefined,
     image: prismaUser.image ?? undefined,
+    password: prismaUser.password ?? undefined,
     role: prismaUser.role,
     status: prismaUser.status,
     credits: prismaUser.credits,
@@ -140,6 +145,9 @@ function prismaUserToUser(prismaUser: any): User {
     updatedAt: prismaUser.updatedAt instanceof Date ? prismaUser.updatedAt.toISOString() : prismaUser.updatedAt,
     lastLoginAt: prismaUser.lastLoginAt instanceof Date ? prismaUser.lastLoginAt.toISOString() : prismaUser.lastLoginAt ?? undefined,
     firstUploadAt: prismaUser.firstUploadAt instanceof Date ? prismaUser.firstUploadAt.toISOString() : prismaUser.firstUploadAt ?? undefined,
+    emailVerified: prismaUser.emailVerified ?? undefined,
+    emailVerifiedAt: prismaUser.emailVerifiedAt instanceof Date ? prismaUser.emailVerifiedAt.toISOString() : prismaUser.emailVerifiedAt ?? undefined,
+    authProvider: prismaUser.authProvider ?? undefined,
   };
 }
 

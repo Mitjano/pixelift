@@ -1,5 +1,9 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import { getUserByEmail } from "@/lib/db";
 
 // Admin emails from environment variable (comma-separated)
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim()).filter(Boolean);
@@ -15,6 +19,68 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           access_type: "offline",
           response_type: "code"
         }
+      }
+    }),
+    // Facebook OAuth Provider
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          scope: "email,public_profile"
+        }
+      }
+    }),
+    // Email/Password Credentials Provider
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Email and password are required");
+        }
+
+        const email = credentials.email as string;
+        const password = credentials.password as string;
+
+        // Get user from database
+        const user = await getUserByEmail(email);
+
+        if (!user) {
+          throw new Error("Invalid email or password");
+        }
+
+        // Check if user has a password (registered with email)
+        if (!user.password) {
+          throw new Error("Please sign in with Google or Facebook");
+        }
+
+        // Verify password
+        const isValidPassword = await bcrypt.compare(password, user.password);
+
+        if (!isValidPassword) {
+          throw new Error("Invalid email or password");
+        }
+
+        // Check if email is verified
+        if (!user.emailVerified) {
+          throw new Error("Please verify your email address first");
+        }
+
+        // Check if user is banned/suspended
+        if (user.status === "banned" || user.status === "suspended") {
+          throw new Error("Your account has been suspended");
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image,
+        };
       }
     }),
   ],

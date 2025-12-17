@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import VerifyEmailContent from "@/components/auth/VerifyEmailContent";
+import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 
-export default async function VerifyEmailPage() {
+function ResetPasswordContent() {
+  return <ResetPasswordForm />;
+}
+
+export default async function ResetPasswordPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       <div className="container mx-auto px-4 py-8">
@@ -21,7 +25,7 @@ export default async function VerifyEmailPage() {
                   <p className="text-gray-400">Loading...</p>
                 </div>
               }>
-                <VerifyEmailContent />
+                <ResetPasswordContent />
               </Suspense>
             </div>
           </div>
