@@ -50,7 +50,6 @@ export async function POST(request: NextRequest) {
     const file = formData.get('file') as File
     const mask = formData.get('mask') as File
     const prompt = formData.get('prompt') as string || 'seamless natural fill'
-    const mode = formData.get('mode') as string || 'inpaint' // 'inpaint' or 'outpaint'
 
     if (!file) {
       return NextResponse.json(
@@ -190,7 +189,6 @@ export async function POST(request: NextRequest) {
       success: true,
       id: imageRecord.id,
       processedImage: resultDataUrl,
-      mode: mode,
       prompt: prompt,
       creditsUsed: CREDITS_PER_INPAINT,
       creditsRemaining: newCredits,

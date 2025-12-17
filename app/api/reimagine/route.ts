@@ -49,7 +49,6 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData()
     const file = formData.get('file') as File
     const prompt = formData.get('prompt') as string || ''
-    const variationStrength = parseFloat(formData.get('strength') as string || '0.7')
     const numVariations = parseInt(formData.get('num_variations') as string || '1')
 
     if (!file) {
