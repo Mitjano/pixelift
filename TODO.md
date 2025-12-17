@@ -8,7 +8,7 @@
 | Pliki testowe | 8 |
 | Pokrycie testami | ~1.7% |
 | Zależności | 700+ |
-| Podatności | 2 HIGH |
+| Podatności | 0 ✅ |
 | Języki UI | 4 (en, pl, es, fr) |
 
 ---
@@ -17,21 +17,14 @@
 
 ### Bezpieczeństwo
 
-- [ ] **Naprawić podatności Next.js** (HIGH severity)
-  ```bash
-  npm audit fix
-  ```
+- [x] **Naprawić podatności Next.js** (HIGH severity) ✅ *Zrobione 17.12.2024*
   - Source Code Exposure (GHSA-w37m-7fhw-fmv9)
   - DoS with Server Components (GHSA-mwv6-3258-q52c)
 
-- [ ] **Zamienić bibliotekę xlsx na bezpieczną alternatywę**
+- [x] **Zamienić bibliotekę xlsx na bezpieczną alternatywę** ✅ *Zrobione 17.12.2024*
   - Problem: Prototype Pollution + ReDoS (brak poprawki)
-  - Rozwiązanie: Migracja do `exceljs` lub `sheetjs-ce`
-  ```bash
-  npm uninstall xlsx
-  npm install exceljs
-  ```
-  - Pliki do modyfikacji: sprawdzić użycie xlsx w projekcie
+  - Rozwiązanie: Migracja do `exceljs`
+  - Plik zmodyfikowany: `app/api/admin/users/export/route.ts`
 
 ### Brakujące Zależności
 
@@ -43,11 +36,7 @@
 
 ### Build & TypeScript
 
-- [ ] **Wyczyścić stary cache buildu**
-  ```bash
-  rm -rf .next
-  npm run build
-  ```
+- [x] **Wyczyścić stary cache buildu** ✅ *Zrobione 17.12.2024*
 
 - [ ] **Usunąć lub utworzyć brakujące ścieżki**
   - `app/[locale]/tools/packshot-generator/` - brak strony (usuń referencje lub utwórz)
@@ -60,15 +49,14 @@
 
 ### ESLint & Jakość Kodu
 
-- [ ] **Naprawić LoginPrompt.tsx** - użyć `<Link>` zamiast `<a>`
-  - Plik: `components/uploader/LoginPrompt.tsx:35,41`
-  - Problem: Używa `<a>` dla wewnętrznych linków
+- [x] **Naprawić LoginPrompt.tsx** - użyć `<Link>` zamiast `<a>` ✅ *Zrobione 17.12.2024*
+  - Plik: `components/uploader/LoginPrompt.tsx`
 
-- [ ] **Zamienić `<img>` na `<Image>`** w komponentach:
-  - `components/admin/AdminUserRow.tsx`
-  - `components/admin/AdminBlogRow.tsx`
-  - `components/SwaggerUI.tsx`
-  - Inne komponenty zgłoszone przez ESLint
+- [~] **Zamienić `<img>` na `<Image>`** w komponentach:
+  - [x] `components/Header.tsx` ✅ *Zrobione 17.12.2024*
+  - [ ] `components/admin/AdminUserRow.tsx`
+  - [ ] `components/admin/AdminBlogRow.tsx`
+  - [ ] `components/SwaggerUI.tsx`
 
 - [ ] **Dodać brakującą regułę ESLint**
   - Plik: `.eslintrc.json`
@@ -79,6 +67,13 @@
 - [ ] **Skonfigurować środowisko deweloperskie**
   - Upewnić się, że `.env.local` zawiera wszystkie wymagane zmienne
   - Zweryfikować `DATABASE_URL` dla lokalnego development
+
+### i18n - Tłumaczenia
+
+- [x] **Dodać brakujące tłumaczenia portraitRelight i watermarkRemover** ✅ *Zrobione 17.12.2024*
+  - Dodano do `messages/es/common.json`
+  - Dodano do `messages/fr/common.json`
+  - Naprawiono błędy MISSING_MESSAGE podczas buildu
 
 ---
 
@@ -116,9 +111,8 @@
 
 #### Kategoria: NARZĘDZIA (potrzeba 2 nowych)
 
-- [ ] **Format Converter** (DARMOWE - Sharp)
+- [x] **Format Converter** (DARMOWE - Sharp) ✅ *Już zaimplementowane*
   - Konwersja: HEIC, AVIF, WebP ↔ PNG, JPG, GIF
-  - Biblioteka już zainstalowana
 
 - [ ] **Image to Vector (SVG)**
   - Model: Vectorizer.AI API
@@ -126,7 +120,7 @@
 
 #### Kategoria: ULEPSZANIE
 
-- [ ] **Portrait Relight**
+- [x] **Portrait Relight** ✅ *Już zaimplementowane*
   - Model: fal.ai/ic-light-v2 (klucz już skonfigurowany)
   - Koszt: ~$0.05/obraz
 
@@ -136,7 +130,7 @@
 
 #### Kategoria: USUWANIE
 
-- [ ] **Watermark Remover**
+- [x] **Watermark Remover** ✅ *Już zaimplementowane*
   - Model: Replicate LaMA inpainting
   - Koszt: ~$0.02/obraz
 
@@ -199,7 +193,7 @@ Narzędzia wymagające integracji z CopyLinkButton:
 
 ## 🛡️ BEZPIECZEŃSTWO (Ciągłe)
 
-- [ ] Regularny `npm audit` (dodać do CI)
+- [x] Regularny `npm audit` - **0 vulnerabilities** ✅
 - [ ] Rotacja kluczy API co 90 dni
 - [ ] Przegląd logów Sentry co tydzień
 - [ ] Backup bazy danych (automatyczny, dzienny)
@@ -280,6 +274,7 @@ npx prisma migrate deploy
 |------|--------|-------|
 | 2024-11-23 | 1.0 | Pierwszy pełny audyt |
 | 2024-12-16 | 1.1 | Audyt przed zamknięciem fazy dev |
+| 2024-12-17 | 1.2 | Poprawki bezpieczeństwa (xlsx→exceljs, Next.js audit fix, i18n) |
 
 ---
 
@@ -292,4 +287,4 @@ npx prisma migrate deploy
 
 ---
 
-*Ostatnia aktualizacja: 16.12.2024*
+*Ostatnia aktualizacja: 17.12.2024*
