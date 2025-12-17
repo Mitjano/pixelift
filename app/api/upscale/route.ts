@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserByEmail, updateUser, createUsage } from "@/lib/db";
+
+// For App Router - set max duration for AI processing
+export const maxDuration = 120; // 2 minutes timeout
+export const dynamic = 'force-dynamic';
 import { sendCreditsLowEmail, sendCreditsDepletedEmail, sendFirstUploadEmail } from "@/lib/email";
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from "@/lib/rate-limit";
 import { validateFileSize, validateFileType, MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES } from "@/lib/validation";

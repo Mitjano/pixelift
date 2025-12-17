@@ -3,6 +3,10 @@ import Replicate from 'replicate'
 import { getUserByEmail, createUsage } from '@/lib/db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
+
+// For App Router - set max duration for AI processing
+export const maxDuration = 120 // 2 minutes timeout
+export const dynamic = 'force-dynamic'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 import { ImageProcessor } from '@/lib/image-processor'
@@ -67,6 +71,14 @@ export async function POST(request: NextRequest) {
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
         { error: 'Invalid image file type. Supported: JPG, PNG, WEBP' },
+        { status: 400 }
+      )
+    }
+
+    // Validate mask type
+    if (!allowedTypes.includes(mask.type)) {
+      return NextResponse.json(
+        { error: 'Invalid mask file type. Supported: JPG, PNG, WEBP' },
         { status: 400 }
       )
     }

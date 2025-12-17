@@ -22,6 +22,7 @@ export type ToolType =
   | 'inpainting'
   | 'portrait_relight'
   | 'watermark_remover'
+  | 'face_restore'
   // AI Video Tools
   | 'video_script'
   | 'voiceover'
@@ -157,6 +158,11 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     cost: 2,
     displayName: 'Watermark Remover',
     description: 'Usuń znaki wodne ze zdjęć za pomocą AI',
+  },
+  face_restore: {
+    cost: 2,
+    displayName: 'Face Restore',
+    description: 'Przywróć jakość i szczegóły twarzy za pomocą CodeFormer AI',
   },
   // AI Video Script & Voiceover
   video_script: {
@@ -356,6 +362,8 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
   'portraitRelight': 'portrait_relight',
   'watermark-remover': 'watermark_remover',
   'watermarkRemover': 'watermark_remover',
+  'face-restore': 'face_restore',
+  'faceRestore': 'face_restore',
   // AI Video Tools
   'video-script': 'video_script',
   'video_script': 'video_script',

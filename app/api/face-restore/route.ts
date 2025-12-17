@@ -4,8 +4,13 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { ImageProcessor } from '@/lib/image-processor'
+import { CREDIT_COSTS } from '@/lib/credits-config'
 
-const CREDITS_PER_RESTORE = 2 // CodeFormer is a premium feature
+// For App Router - set max duration for AI processing
+export const maxDuration = 120 // 2 minutes timeout
+export const dynamic = 'force-dynamic'
+
+const CREDITS_PER_RESTORE = CREDIT_COSTS.face_restore.cost
 
 export async function POST(request: NextRequest) {
   try {

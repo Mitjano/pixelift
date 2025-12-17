@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getUserByEmail, updateUser } from '@/lib/db'
+import { getUserByEmail, createUsage } from '@/lib/db'
 import { ImageProcessor } from '@/lib/image-processor'
 import { ProcessedImagesDB } from '@/lib/processed-images-db'
 import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+
+// For App Router - set max duration for AI processing
+export const maxDuration = 120 // 2 minutes timeout
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   try {
@@ -131,14 +135,16 @@ export async function POST(request: NextRequest) {
         processedAt: new Date().toISOString()
       })
 
-      // 11. Update user credits
-      const newCredits = user.credits - creditsNeeded
-      const newTotalUsage = (user.totalUsage || 0) + 1
-
-      await updateUser(user.email, {
-        credits: newCredits,
-        totalUsage: newTotalUsage
+      // 11. DEDUCT CREDITS & LOG USAGE (using createUsage for consistency)
+      await createUsage({
+        userId: user.id,
+        type: 'remove_background',
+        creditsUsed: creditsNeeded,
+        imageSize: `${file.size} bytes`,
+        model: 'bria-rmbg-2.0',
       })
+
+      const newCredits = user.credits - creditsNeeded
 
       // Send low credits warning if needed (10 credits remaining)
       if (newCredits > 0 && newCredits <= 10) {
