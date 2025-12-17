@@ -370,6 +370,9 @@
       "typePortraitDesc": "Zdjęcia osób, twarze, selfie",
       "typeGeneral": "Ogólne",
       "typeGeneralDesc": "Krajobrazy, zwierzęta, sztuka, inne",
+      "typeFaithful": "Wierne (bez AI)",
+      "typeFaithfulDesc": "Dokładne powiększenie bez AI. Idealne dla dokumentów, schematów, tekstu",
+      "faithfulInfo": "Dokładna reprodukcja pikseli bez interpretacji AI. Idealne dla części serwisowych, dokumentów i obrazów z tekstem. DARMOWE - 0 kredytów.",
       "selectScale": "Wybierz skalę powiększenia",
       "scale2xDesc": "Idealne dla małych poprawek i szybkiego przetwarzania",
       "scale4xDesc": "Najlepszy balans jakości i rozmiaru pliku",
@@ -712,7 +715,11 @@
         "upscaleTo": "Powiększ do",
         "qualityBoost": "Boost Jakości",
         "off": "Wył",
-        "on": "Wł"
+        "on": "Wł",
+        "faithful": "Wierne (bez AI)",
+        "faithfulFree": "DARMOWE",
+        "faithfulTitle": "Wierne Powiększanie (Sharp Lanczos)",
+        "faithfulDescription": "Dokładne odwzorowanie pikseli bez interpretacji AI. Idealne dla części serwisowych, wyświetlaczy, dokumentów i obrazów z tekstem."
       },
       "actions": {
         "processing": "Przetwarzanie...",

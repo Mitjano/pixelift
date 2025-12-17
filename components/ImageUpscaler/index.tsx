@@ -17,7 +17,7 @@ import {
 import { useAnalytics } from '@/hooks/useAnalytics'
 
 type UpscaleScale = 2 | 4 | 8
-type ImageType = 'product' | 'portrait' | 'general'
+type ImageType = 'product' | 'portrait' | 'general' | 'faithful'
 
 interface ProcessingResult {
   imageId: string
@@ -35,6 +35,7 @@ const CREDIT_COSTS: Record<ImageType, Record<UpscaleScale, number>> = {
   product: { 2: 1, 4: 1, 8: 2 },
   portrait: { 2: 2, 4: 3, 8: 3 },
   general: { 2: 2, 4: 2, 8: 1 },
+  faithful: { 2: 0, 4: 0, 8: 0 }, // Sharp Lanczos (FREE - local processing)
 }
 
 interface ImageUpscalerProps {
@@ -90,6 +91,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
         product: 'Recraft Crisp',
         portrait: 'CodeFormer + Clarity',
         general: scale === 8 ? 'Real-ESRGAN' : 'Clarity Upscaler',
+        faithful: 'Sharp Lanczos (No AI)',
       }
 
       toast.loading(`${t('processing')} ${scale}x (${modelNames[imageType]})...`, { id: 'upscale' })
@@ -193,7 +195,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
   const creditCost = CREDIT_COSTS[imageType][scale]
 
   // Image type configurations
-  const imageTypes: { type: ImageType; icon: string; label: string; description: string; color: string }[] = [
+  const imageTypes: { type: ImageType; icon: string; label: string; description: string; color: string; isFree?: boolean }[] = [
     {
       type: 'product',
       icon: '📦',
@@ -214,6 +216,14 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
       label: t('typeGeneral'),
       description: t('typeGeneralDesc'),
       color: 'from-purple-500 to-indigo-500',
+    },
+    {
+      type: 'faithful',
+      icon: '🔧',
+      label: t('typeFaithful'),
+      description: t('typeFaithfulDesc'),
+      color: 'from-emerald-500 to-teal-500',
+      isFree: true,
     },
   ]
 
@@ -286,7 +296,7 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
             <h4 className="text-lg font-semibold text-center text-gray-900 dark:text-white">
               {t('selectImageType')}
             </h4>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {imageTypes.map((item) => (
                 <button
                   key={item.type}
@@ -300,6 +310,12 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
                     }
                   `}
                 >
+                  {/* FREE badge for faithful mode */}
+                  {item.isFree && (
+                    <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-emerald-500 text-white text-xs font-bold rounded-full shadow-sm">
+                      FREE
+                    </div>
+                  )}
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">{item.icon}</span>
                     <div>
@@ -352,13 +368,19 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
           </div>
 
           {/* Model Info */}
-          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 text-center">
+          <div className={`rounded-xl p-4 text-center ${imageType === 'faithful' ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700' : 'bg-gray-50 dark:bg-gray-800/50'}`}>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               <span className="font-medium text-gray-900 dark:text-white">{t('modelUsed')}:</span>{' '}
               {imageType === 'product' && (scale === 8 ? 'Recraft Crisp (2-pass)' : 'Recraft Crisp')}
               {imageType === 'portrait' && (scale <= 2 ? 'CodeFormer' : 'CodeFormer + Clarity')}
               {imageType === 'general' && (scale === 8 ? 'Real-ESRGAN' : 'Clarity Upscaler')}
+              {imageType === 'faithful' && 'Sharp Lanczos (No AI)'}
             </p>
+            {imageType === 'faithful' && (
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2">
+                {t('faithfulInfo')}
+              </p>
+            )}
           </div>
 
           {/* Upscale Button */}
@@ -383,7 +405,11 @@ export function ImageUpscaler({ userRole = 'user' }: ImageUpscalerProps) {
               ) : (
                 <div className="flex items-center gap-2">
                   <span>{t('upscaleButton')} {scale}x</span>
-                  <span className="text-purple-200 text-base">({creditCost} {creditCost === 1 ? t('credit') : t('credits')})</span>
+                  {creditCost === 0 ? (
+                    <span className="text-emerald-300 text-base font-semibold">(FREE)</span>
+                  ) : (
+                    <span className="text-purple-200 text-base">({creditCost} {creditCost === 1 ? t('credit') : t('credits')})</span>
+                  )}
                 </div>
               )}
             </button>
