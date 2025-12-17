@@ -744,7 +744,11 @@
         "upscaleTo": "Agrandir à",
         "qualityBoost": "Boost de Qualité",
         "off": "Désactivé",
-        "on": "Activé"
+        "on": "Activé",
+        "faithful": "Fidèle (sans IA)",
+        "faithfulFree": "GRATUIT",
+        "faithfulTitle": "Agrandissement Fidèle (Sharp Lanczos)",
+        "faithfulDescription": "Reproduction exacte des pixels sans interprétation IA. Parfait pour les pièces de service, écrans, documents et images avec texte."
       },
       "actions": {
         "processing": "Traitement...",

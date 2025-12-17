@@ -79,10 +79,10 @@ const allTools = [
   { nameKey: 'compressor', href: '/tools/image-compressor', icon: '📦', color: 'text-teal-400', credits: 'free' },
   { nameKey: 'packshot', href: '/tools/ai-background-generator', icon: '📷', color: 'text-amber-400', credits: '2' },
   { nameKey: 'expand', href: '/tools/image-expand', icon: '↔️', color: 'text-indigo-400', credits: '2' },
-  { nameKey: 'inpainting', href: '/tools/inpainting', icon: '🖌️', color: 'text-cyan-400', credits: '2', badge: 'NEW' },
-  { nameKey: 'reimagine', href: '/tools/reimagine', icon: '🔮', color: 'text-violet-400', credits: '2', badge: 'NEW' },
-  { nameKey: 'styleTransfer', href: '/tools/style-transfer', icon: '🎭', color: 'text-pink-400', credits: '3', badge: 'NEW' },
-  { nameKey: 'structureControl', href: '/tools/structure-control', icon: '🏗️', color: 'text-amber-400', credits: '2', badge: 'NEW' },
+  { nameKey: 'inpainting', href: '/tools/inpainting', icon: '🖌️', color: 'text-cyan-400', credits: '5', badge: 'NEW' },
+  { nameKey: 'reimagine', href: '/tools/reimagine', icon: '🔮', color: 'text-violet-400', credits: '3', badge: 'NEW' },
+  { nameKey: 'styleTransfer', href: '/tools/style-transfer', icon: '🎭', color: 'text-pink-400', credits: '4', badge: 'NEW' },
+  { nameKey: 'structureControl', href: '/tools/structure-control', icon: '🏗️', color: 'text-amber-400', credits: '4', badge: 'NEW' },
 ];
 
 // Quick actions

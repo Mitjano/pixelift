@@ -727,6 +727,69 @@ export class ImageProcessor {
   }
 
   /**
+   * Faithful upscale using Sharp with Lanczos algorithm (no AI)
+   * Perfect for: service parts, technical diagrams, documents, images with text
+   * Preserves exact pixel detail without AI interpretation/hallucination
+   * FREE - 0 credits, runs locally
+   *
+   * @param buffer - Image buffer
+   * @param scale - Upscale factor (2, 4, or 8)
+   * @returns Upscaled image buffer
+   */
+  static async upscaleFaithful(
+    buffer: Buffer,
+    scale: 2 | 4 | 8
+  ): Promise<Buffer> {
+    console.log(`Starting faithful upscale ${scale}x using Sharp Lanczos...`)
+
+    try {
+      // Get original dimensions
+      const metadata = await sharp(buffer).metadata()
+      const originalWidth = metadata.width || 0
+      const originalHeight = metadata.height || 0
+
+      if (originalWidth === 0 || originalHeight === 0) {
+        throw new Error('Could not determine image dimensions')
+      }
+
+      // Calculate new dimensions
+      const newWidth = originalWidth * scale
+      const newHeight = originalHeight * scale
+
+      // Maximum output resolution (10000x10000 for free tier)
+      const maxDimension = 10000
+      let finalWidth = newWidth
+      let finalHeight = newHeight
+
+      // Cap to max resolution while maintaining aspect ratio
+      if (finalWidth > maxDimension || finalHeight > maxDimension) {
+        const ratio = Math.min(maxDimension / finalWidth, maxDimension / finalHeight)
+        finalWidth = Math.floor(finalWidth * ratio)
+        finalHeight = Math.floor(finalHeight * ratio)
+        console.log(`Capping output to ${finalWidth}x${finalHeight} (max ${maxDimension}px)`)
+      }
+
+      console.log(`Upscaling from ${originalWidth}x${originalHeight} to ${finalWidth}x${finalHeight}`)
+
+      // Upscale using Lanczos3 kernel (best quality for sharp edges and text)
+      const upscaledBuffer = await sharp(buffer)
+        .resize(finalWidth, finalHeight, {
+          kernel: sharp.kernel.lanczos3,
+          fit: 'fill',
+          withoutEnlargement: false,
+        })
+        .png({ quality: 100 }) // Lossless PNG output
+        .toBuffer()
+
+      console.log('Image upscaled via Sharp Lanczos (faithful, no AI)')
+      return upscaledBuffer
+    } catch (error) {
+      console.error('Faithful upscale failed:', error)
+      throw new Error(`Faithful upscale failed: ${error}`)
+    }
+  }
+
+  /**
    * Professional packshot with AI-generated background using Photoroom API
    * Creates studio-quality product photography with custom AI backgrounds
    */

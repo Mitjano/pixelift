@@ -675,7 +675,11 @@
         "upscaleTo": "Escalar a",
         "qualityBoost": "Mejora de Calidad",
         "off": "Desactivado",
-        "on": "Activado"
+        "on": "Activado",
+        "faithful": "Fiel (sin IA)",
+        "faithfulFree": "GRATIS",
+        "faithfulTitle": "Escalado Fiel (Sharp Lanczos)",
+        "faithfulDescription": "Reproducción exacta de píxeles sin interpretación de IA. Perfecto para piezas de servicio, pantallas, documentos e imágenes con texto."
       },
       "actions": {
         "processing": "Procesando...",

@@ -39,6 +39,7 @@ vi.mock('@/lib/image-processor', () => ({
     getImageDimensions: vi.fn(),
     saveFile: vi.fn(),
     upscaleAdvanced: vi.fn(),
+    upscaleFaithful: vi.fn(),
     downloadImage: vi.fn(),
   },
 }));
@@ -70,6 +71,7 @@ const mockAuthenticateRequest = authenticateRequest as ReturnType<typeof vi.fn>;
 const mockGetImageDimensions = ImageProcessor.getImageDimensions as ReturnType<typeof vi.fn>;
 const mockSaveFile = ImageProcessor.saveFile as ReturnType<typeof vi.fn>;
 const mockUpscaleAdvanced = ImageProcessor.upscaleAdvanced as ReturnType<typeof vi.fn>;
+const mockUpscaleFaithful = ImageProcessor.upscaleFaithful as ReturnType<typeof vi.fn>;
 const mockDownloadImage = ImageProcessor.downloadImage as ReturnType<typeof vi.fn>;
 const mockProcessedImagesDBCreate = ProcessedImagesDB.create as ReturnType<typeof vi.fn>;
 const mockProcessedImagesDBUpdate = ProcessedImagesDB.update as ReturnType<typeof vi.fn>;
@@ -328,6 +330,117 @@ describe('/api/upscale', () => {
       expect(response.status).toBe(500);
       expect(body.error).toBe('Failed to process image');
       expect(body.details).toBe('Processing failed');
+    });
+
+    describe('Faithful mode (no AI)', () => {
+      it('should process image with faithful mode (0 credits)', async () => {
+        mockAuthenticateRequest.mockResolvedValue({
+          success: true,
+          user: { email: 'test@example.com' },
+        });
+        mockGetUserByEmail
+          .mockResolvedValueOnce({
+            id: '1',
+            email: 'test@example.com',
+            credits: 0, // Even 0 credits should work for faithful mode
+            name: 'Test User',
+            firstUploadAt: new Date().toISOString(),
+          })
+          .mockResolvedValueOnce({
+            id: '1',
+            email: 'test@example.com',
+            credits: 0, // Still 0 after processing (free)
+          });
+
+        mockGetImageDimensions.mockResolvedValue({ width: 100, height: 100 });
+        mockSaveFile.mockResolvedValue('/uploads/original/test.jpg');
+        mockProcessedImagesDBCreate.mockResolvedValue({ id: 'img_faithful_123' });
+        mockUpscaleFaithful.mockResolvedValue(Buffer.from('faithful_processed'));
+        mockProcessedImagesDBUpdate.mockResolvedValue({});
+        mockCreateUsage.mockResolvedValue({});
+
+        const request = createFormDataRequest(createMockFile(), '2', 'faithful');
+        const response = await POST(request);
+        const body = await response.json();
+
+        expect(response.status).toBe(200);
+        expect(body.success).toBe(true);
+        expect(body.imageType).toBe('faithful');
+        expect(body.model).toBe('Sharp Lanczos (No AI)');
+        expect(body.creditsUsed).toBe(0);
+        expect(mockUpscaleFaithful).toHaveBeenCalled();
+        expect(mockUpscaleAdvanced).not.toHaveBeenCalled();
+        expect(mockDownloadImage).not.toHaveBeenCalled();
+      });
+
+      it('should use upscaleFaithful for faithful imageType', async () => {
+        mockAuthenticateRequest.mockResolvedValue({
+          success: true,
+          user: { email: 'test@example.com' },
+        });
+        mockGetUserByEmail
+          .mockResolvedValueOnce({
+            id: '1',
+            email: 'test@example.com',
+            credits: 10,
+            firstUploadAt: new Date().toISOString(),
+          })
+          .mockResolvedValueOnce({
+            id: '1',
+            credits: 10, // No change - faithful is free
+          });
+
+        mockGetImageDimensions.mockResolvedValue({ width: 200, height: 200 });
+        mockSaveFile.mockResolvedValue('/uploads/original/test.jpg');
+        mockProcessedImagesDBCreate.mockResolvedValue({ id: 'img_456' });
+        mockUpscaleFaithful.mockResolvedValue(Buffer.from('upscaled_content'));
+        mockProcessedImagesDBUpdate.mockResolvedValue({});
+        mockCreateUsage.mockResolvedValue({});
+
+        const request = createFormDataRequest(createMockFile(), '4', 'faithful');
+        const response = await POST(request);
+        const body = await response.json();
+
+        expect(response.status).toBe(200);
+        expect(body.scale).toBe(4);
+        expect(body.imageType).toBe('faithful');
+        expect(mockUpscaleFaithful).toHaveBeenCalled();
+      });
+
+      it('should NOT use upscaleFaithful for general imageType', async () => {
+        mockAuthenticateRequest.mockResolvedValue({
+          success: true,
+          user: { email: 'test@example.com' },
+        });
+        mockGetUserByEmail
+          .mockResolvedValueOnce({
+            id: '1',
+            email: 'test@example.com',
+            credits: 100,
+            firstUploadAt: new Date().toISOString(),
+          })
+          .mockResolvedValueOnce({
+            id: '1',
+            credits: 98,
+          });
+
+        mockGetImageDimensions.mockResolvedValue({ width: 100, height: 100 });
+        mockSaveFile.mockResolvedValue('/uploads/original/test.jpg');
+        mockProcessedImagesDBCreate.mockResolvedValue({ id: 'img_789' });
+        mockUpscaleAdvanced.mockResolvedValue('https://replicate.com/result.png');
+        mockDownloadImage.mockResolvedValue(Buffer.from('ai_processed'));
+        mockProcessedImagesDBUpdate.mockResolvedValue({});
+        mockCreateUsage.mockResolvedValue({});
+
+        const request = createFormDataRequest(createMockFile(), '2', 'general');
+        const response = await POST(request);
+        const body = await response.json();
+
+        expect(response.status).toBe(200);
+        expect(body.imageType).toBe('general');
+        expect(mockUpscaleAdvanced).toHaveBeenCalled();
+        expect(mockUpscaleFaithful).not.toHaveBeenCalled();
+      });
     });
   });
 });

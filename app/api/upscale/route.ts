@@ -12,9 +12,10 @@ const CREDIT_COSTS = {
   product: { 2: 1, 4: 1, 8: 2 },    // Recraft Crisp (cheap, 8x = 2 passes)
   portrait: { 2: 2, 4: 3, 8: 3 },   // CodeFormer + Clarity
   general: { 2: 2, 4: 2, 8: 1 },    // Clarity for 2x/4x, Real-ESRGAN for 8x
+  faithful: { 2: 0, 4: 0, 8: 0 },   // Sharp Lanczos (FREE - local processing)
 } as const;
 
-type ImageType = 'product' | 'portrait' | 'general';
+type ImageType = 'product' | 'portrait' | 'general' | 'faithful';
 type Scale = 2 | 4 | 8;
 
 function getModelName(imageType: ImageType, scale: Scale): string {
@@ -25,6 +26,8 @@ function getModelName(imageType: ImageType, scale: Scale): string {
       return scale <= 2 ? 'CodeFormer' : 'CodeFormer + Clarity';
     case 'general':
       return scale === 8 ? 'Real-ESRGAN' : 'Clarity Upscaler';
+    case 'faithful':
+      return 'Sharp Lanczos (No AI)';
     default:
       return 'AI Upscaler';
   }
@@ -68,7 +71,7 @@ export async function POST(request: NextRequest) {
     const scale: Scale = [2, 4, 8].includes(scaleParam) ? scaleParam as Scale : 2;
 
     // Validate image type
-    const validImageTypes: ImageType[] = ['product', 'portrait', 'general'];
+    const validImageTypes: ImageType[] = ['product', 'portrait', 'general', 'faithful'];
     const validatedImageType: ImageType = validImageTypes.includes(imageType) ? imageType : 'general';
 
     // Calculate credit cost based on image type and scale
@@ -150,11 +153,17 @@ export async function POST(request: NextRequest) {
     const modelName = getModelName(validatedImageType, scale);
     console.log(`Starting ${modelName}: scale=${scale}x, imageType=${validatedImageType}`);
 
-    // Use advanced upscale with intelligent model selection
-    const resultUrl = await ImageProcessor.upscaleAdvanced(dataUrl, scale, validatedImageType);
+    let processedBuffer: Buffer;
 
-    // Download processed image from Replicate
-    const processedBuffer = await ImageProcessor.downloadImage(resultUrl);
+    if (validatedImageType === 'faithful') {
+      // Faithful upscale using Sharp Lanczos (no AI, FREE)
+      processedBuffer = await ImageProcessor.upscaleFaithful(buffer, scale);
+    } else {
+      // Use advanced upscale with intelligent model selection (AI-based)
+      const resultUrl = await ImageProcessor.upscaleAdvanced(dataUrl, scale, validatedImageType as 'product' | 'portrait' | 'general');
+      // Download processed image from Replicate
+      processedBuffer = await ImageProcessor.downloadImage(resultUrl);
+    }
 
     // Save processed image as PNG
     const processedFilename = image.name.replace(/\.[^.]+$/, '_upscaled.png');

@@ -11,6 +11,7 @@ export default function ImageUploader() {
   const [progress, setProgress] = useState("");
   const [scale, setScale] = useState(2);
   const [enhanceFace, setEnhanceFace] = useState(true);
+  const [faithfulMode, setFaithfulMode] = useState(false);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -74,9 +75,13 @@ export default function ImageUploader() {
       const formData = new FormData();
       formData.append("image", selectedFile);
       formData.append("scale", scale.toString());
-      formData.append("enhanceFace", enhanceFace.toString());
+      formData.append("imageType", faithfulMode ? "faithful" : "general");
 
-      setProgress(enhanceFace ? "Enhancing with GFPGAN AI..." : "Upscaling with Real-ESRGAN AI...");
+      if (faithfulMode) {
+        setProgress("Upscaling with Sharp Lanczos (no AI)...");
+      } else {
+        setProgress(enhanceFace ? "Enhancing with GFPGAN AI..." : "Upscaling with Real-ESRGAN AI...");
+      }
 
       const response = await fetch("/api/upscale", {
         method: "POST",
@@ -193,7 +198,7 @@ export default function ImageUploader() {
               </div>
               <div>
                 <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
-                  AI Upscaled to {scale}x {upscaledUrl && `(${scale * 100}%)`}
+                  {faithfulMode ? "Faithful" : "AI"} Upscaled to {scale}x {upscaledUrl && `(${scale * 100}%)`}
                 </h3>
                 {upscaledUrl ? (
                   <img
@@ -234,20 +239,51 @@ export default function ImageUploader() {
             </div>
 
             <div className="flex items-center gap-2">
-              <label className="text-sm font-medium text-gray-900 dark:text-white">Enhance Face Quality</label>
+              <label className="text-sm font-medium text-gray-900 dark:text-white">Faithful (no AI)</label>
               <button
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                  enhanceFace
-                    ? "bg-green-500 text-white"
+                  faithfulMode
+                    ? "bg-blue-500 text-white"
                     : "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300"
                 }`}
-                onClick={() => setEnhanceFace(!enhanceFace)}
+                onClick={() => setFaithfulMode(!faithfulMode)}
                 disabled={processing}
+                title="Exact pixel upscaling without AI enhancement. Best for service parts, documents, and images with text. FREE (0 credits)"
               >
-                {enhanceFace ? "On" : "Off"}
+                {faithfulMode ? "On" : "Off"}
               </button>
+              {faithfulMode && (
+                <span className="text-xs text-green-500 font-medium">FREE</span>
+              )}
             </div>
+
+            {!faithfulMode && (
+              <div className="flex items-center gap-2">
+                <label className="text-sm font-medium text-gray-900 dark:text-white">Enhance Face Quality</label>
+                <button
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                    enhanceFace
+                      ? "bg-green-500 text-white"
+                      : "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300"
+                  }`}
+                  onClick={() => setEnhanceFace(!enhanceFace)}
+                  disabled={processing}
+                >
+                  {enhanceFace ? "On" : "Off"}
+                </button>
+              </div>
+            )}
           </div>
+
+          {/* Faithful mode info */}
+          {faithfulMode && (
+            <div className="text-center text-sm text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+              <p className="font-medium">Faithful Upscaling (Sharp Lanczos)</p>
+              <p className="text-xs mt-1 text-blue-500 dark:text-blue-300">
+                Exact pixel reproduction without AI interpretation. Perfect for service parts, displays, documents, and images with text.
+              </p>
+            </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex items-center justify-center gap-4 flex-wrap">
