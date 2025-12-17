@@ -122,7 +122,7 @@ const toolsData = [
     color: 'from-amber-500 to-orange-500',
     bgColor: 'from-amber-900/20 to-orange-900/20',
     borderColor: 'border-amber-700/30',
-    credits: '4 credits',
+    credits: '3 credits',
     aiModel: 'FLUX Redux',
   },
   {
@@ -134,7 +134,7 @@ const toolsData = [
     color: 'from-violet-500 to-purple-500',
     bgColor: 'from-violet-900/20 to-purple-900/20',
     borderColor: 'border-violet-700/30',
-    credits: '3 credits',
+    credits: '2 credits',
     aiModel: 'FLUX Redux',
   },
   {
@@ -146,7 +146,7 @@ const toolsData = [
     color: 'from-teal-500 to-cyan-500',
     bgColor: 'from-teal-900/20 to-cyan-900/20',
     borderColor: 'border-teal-700/30',
-    credits: '4 credits',
+    credits: '3 credits',
     aiModel: 'FLUX Depth',
   },
   {
@@ -158,7 +158,7 @@ const toolsData = [
     color: 'from-rose-500 to-pink-500',
     bgColor: 'from-rose-900/20 to-pink-900/20',
     borderColor: 'border-rose-700/30',
-    credits: '5 credits',
+    credits: '3 credits',
     aiModel: 'FLUX Fill',
   },
 ];

@@ -117,13 +117,13 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     description: 'Profesjonalne tła produktowe',
   },
   reimagine: {
-    cost: 3,
-    minCost: 3,
-    maxCost: 12,
+    cost: 2,
+    minCost: 2,
+    maxCost: 8,
     isDynamic: true,
     costDescription: {
-      en: '3 credits × number of variants (1-4)',
-      pl: '3 kredyty × liczba wariantów (1-4)',
+      en: '2 credits × number of variants (1-4)',
+      pl: '2 kredyty × liczba wariantów (1-4)',
     },
     displayName: 'Reimagine',
     description: 'Wygeneruj warianty obrazu',
@@ -134,17 +134,17 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     description: 'Wygeneruj nowe tło AI',
   },
   style_transfer: {
-    cost: 4,
+    cost: 3,
     displayName: 'Transfer stylu',
     description: 'Zastosuj styl artystyczny do zdjęcia',
   },
   structure_control: {
-    cost: 4,
+    cost: 3,
     displayName: 'Kontrola struktury',
     description: 'Zachowaj strukturę z nowym stylem',
   },
   inpainting: {
-    cost: 5,
+    cost: 3,
     displayName: 'Inpainting',
     description: 'Zaawansowana edycja fragmentów obrazu',
   },
@@ -289,10 +289,11 @@ export function calculateUpscaleCost(qualityBoost: boolean): number {
 
 /**
  * Oblicz koszt dla reimagine (zależny od liczby wariantów)
+ * 2 kredyty × liczba wariantów (1-4)
  */
 export function calculateReimagineCost(variants: number): number {
   const clampedVariants = Math.min(Math.max(variants, 1), 4);
-  return CREDIT_COSTS.reimagine.cost * clampedVariants;
+  return CREDIT_COSTS.reimagine.cost * clampedVariants; // 2 × variants
 }
 
 /**
