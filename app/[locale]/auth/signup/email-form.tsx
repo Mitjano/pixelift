@@ -65,21 +65,21 @@ export function EmailSignUpForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
-        <h3 className="text-xl font-semibold text-white mb-2">Check your email!</h3>
+        <h3 className="text-xl font-semibold text-white mb-2">{t('checkYourEmail')}</h3>
         <p className="text-gray-400 mb-4">
-          We've sent a verification link to <span className="text-white font-medium">{email}</span>
+          {t('verificationSentTo', { email: <span key="email" className="text-white font-medium">{email}</span> })}
         </p>
         <p className="text-sm text-gray-500 mb-6">
-          Click the link in the email to activate your account. The link expires in 24 hours.
+          {t('verificationEmailInfo')}
         </p>
         <div className="text-xs text-gray-600">
-          Didn't receive the email? Check your spam folder or{" "}
+          {t('didntReceiveEmail')}{" "}
           <button
             type="button"
             onClick={() => setSuccess(false)}
             className="text-green-400 hover:text-green-300 underline"
           >
-            try again
+            {t('tryAgain')}
           </button>
         </div>
       </div>
@@ -96,7 +96,7 @@ export function EmailSignUpForm() {
 
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-          Name (optional)
+          {t('name')} ({t('optional')})
         </label>
         <input
           id="name"
@@ -137,12 +137,12 @@ export function EmailSignUpForm() {
           minLength={8}
           className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
         />
-        <p className="mt-1 text-xs text-gray-500">Minimum 8 characters</p>
+        <p className="mt-1 text-xs text-gray-500">{t('min8Characters')}</p>
       </div>
 
       <div>
         <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">
-          Confirm Password
+          {t('confirmPassword')}
         </label>
         <input
           id="confirmPassword"
@@ -167,7 +167,7 @@ export function EmailSignUpForm() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            Creating account...
+            {t('creatingAccount')}
           </span>
         ) : (
           t('signUp')
