@@ -134,7 +134,6 @@ model User {
   linkedinId        String?   // LinkedIn OAuth ID
   githubId          String?   // GitHub OAuth ID
   authProvider      String?   // Primary auth method
-  password          String?   // Hashed password for email/password auth
   twoFactorEnabled  Boolean   @default(false)
 
   // ========== COMPANY/B2B DATA ==========
