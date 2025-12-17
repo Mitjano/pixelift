@@ -79,16 +79,16 @@
 
 ## 🟡 NISKIE (Ulepszenia)
 
-### Testy (315 testów ✅, pokrycie w trakcie zwiększania)
+### Testy (369 testów ✅, pokrycie znacząco zwiększone)
 
-- [~] **Testy API endpoints (priorytet)**
-  - [ ] `/api/auth/` - flow autentykacji
-  - [ ] `/api/upscale/` - upscaling obrazów
-  - [ ] `/api/stripe/` - webhook płatności
-  - [x] `/api/user/` - zarządzanie użytkownikami ✅ *28 testów (17.12.2024)*
+- [x] **Testy API endpoints (priorytet)** ✅ *Zrobione 17.12.2024*
+  - [x] `/api/upscale/` - 10 testów
+  - [x] `/api/stripe/checkout` - 13 testów
+  - [x] `/api/stripe/webhook` - 12 testów
+  - [x] `/api/user/` - 28 testów
 
-- [ ] **Testy komponentów**
-  - [ ] `ImageUploader` - główny komponent uploadu
+- [~] **Testy komponentów**
+  - [x] `ImageUploader` - 19 testów ✅ *17.12.2024*
   - [ ] `Dashboard` - panel użytkownika
   - [ ] `CopyLinkButton` - udostępnianie
 
