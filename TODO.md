@@ -5,8 +5,8 @@
 | Metryka | Wartość |
 |---------|---------|
 | Pliki źródłowe | 479 |
-| Pliki testowe | 8 |
-| Pokrycie testami | ~1.7% |
+| Pliki testowe | 23 |
+| Pokrycie testami | ~5% |
 | Zależności | 700+ |
 | Podatności | 0 ✅ |
 | Języki UI | 4 (en, pl, es, fr) |
@@ -87,21 +87,21 @@
   - [x] `/api/stripe/webhook` - 12 testów
   - [x] `/api/user/` - 28 testów
 
-- [~] **Testy komponentów**
+- [x] **Testy komponentów** ✅ *Zrobione 17.12.2024*
   - [x] `ImageUploader` - 19 testów ✅ *17.12.2024*
-  - [ ] `Dashboard` - panel użytkownika
-  - [ ] `CopyLinkButton` - udostępnianie
+  - [x] `Dashboard` - 25 testów ✅ *17.12.2024*
+  - [x] `CopyLinkButton` - 18 testów ✅ *17.12.2024*
 
-- [ ] **Testy integracyjne**
-  - [ ] Flow rejestracji użytkownika
-  - [ ] Flow płatności (Stripe)
-  - [ ] Flow przetwarzania obrazu
+- [x] **Testy integracyjne** ✅ *Zrobione 17.12.2024*
+  - [x] Flow rejestracji użytkownika - 24 testy
+  - [x] Flow płatności (Stripe) - 26 testów
+  - [x] Flow przetwarzania obrazu - 28 testów
 
 ### Dokumentacja
 
-- [ ] **Zaktualizować README.md** o informacje z audytu
-- [ ] **Dodać CONTRIBUTING.md** z wytycznymi dla deweloperów
-- [ ] **Dodać CHANGELOG.md** do śledzenia zmian
+- [x] **Zaktualizować README.md** o informacje z audytu ✅ *Zrobione 17.12.2024*
+- [x] **Dodać CONTRIBUTING.md** z wytycznymi dla deweloperów ✅ *Zrobione 17.12.2024*
+- [x] **Dodać CHANGELOG.md** do śledzenia zmian ✅ *Zrobione 17.12.2024*
 
 ---
 

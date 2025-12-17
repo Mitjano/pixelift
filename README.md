@@ -1,137 +1,195 @@
-# Upsizer - AI Image Upscaling Platform
+# Pixelift - AI Image Processing Platform
 
-Free AI-powered image upscaling platform using Real-ESRGAN and GFPGAN models.
+Professional AI-powered image processing platform with multiple tools for upscaling, background removal, restoration, and more.
 
-## Features Implemented
+## Features
 
-✅ **AI Image Upscaling** (Real-ESRGAN)
-- 2x, 4x, and 8x upscaling
-- High-quality image enhancement
+### AI Tools
 
-✅ **Face Enhancement** (GFPGAN)
-- Specialized AI for improving face quality
-- Can be toggled on/off
+- **Image Upscaler** - 2x, 4x, 8x upscaling with multiple modes:
+  - Product (Recraft Crisp) - optimized for product photos
+  - Portrait (CodeFormer) - face enhancement
+  - General (Clarity Upscaler) - general purpose
+  - Faithful (Sharp Lanczos) - no AI, preserves original
 
-✅ **Drag & Drop Upload**
-- Support for PNG, JPG, JPEG, WEBP, HEIC, BMP
-- File size limit: 10MB
+- **Background Remover** - AI-powered background removal
+- **Object Remover** - Remove unwanted objects with inpainting
+- **Image Colorizer** - Add color to B&W photos
+- **Image Restore** - Restore old/damaged photos
+- **Background Generator** - AI background generation
+- **Image Expander** - Expand image canvas with AI
+- **Portrait Relight** - Relight portraits with AI
+- **Watermark Remover** - Remove watermarks
+- **Style Transfer** - Apply artistic styles
+- **Inpainting Pro** - Advanced AI editing
+- **Image Compressor** - Lossless compression (FREE)
+- **Format Converter** - Convert between formats (FREE)
 
-✅ **Before/After Preview**
-- Side-by-side comparison
-- Real-time processing status
+### Platform Features
 
-✅ **Download Processed Images**
+- Google OAuth authentication
+- Credit-based system with Stripe payments
+- Subscription plans (Starter, Pro, Business)
+- One-time credit packages
+- Multi-language support (EN, PL, ES, FR)
+- Admin dashboard
+- API access with key authentication
+- Share processed images
+- Image history
+- Usage tracking
 
 ## Tech Stack
 
-- **Frontend/Backend**: Next.js 14 (App Router) + TypeScript
-- **Styling**: Tailwind CSS v3
-- **AI Processing**: Replicate API
-  - Real-ESRGAN (general upscaling)
-  - GFPGAN (face enhancement)
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: PostgreSQL (Prisma ORM)
+- **Cache**: Redis (Upstash)
+- **Auth**: NextAuth.js v5
+- **Payments**: Stripe
+- **Storage**: Firebase Storage
+- **AI Models**: Replicate, fal.ai, GoAPI
+- **Monitoring**: Sentry
+- **Testing**: Vitest + Testing Library
 
-## Setup Instructions
+## Quick Start
 
-### 1. Install Dependencies
+### Prerequisites
 
-```bash
-npm install
-```
+- Node.js 18+
+- PostgreSQL database
+- Redis instance
+- Stripe account
+- Google OAuth credentials
+- Replicate/fal.ai API keys
 
-### 2. Get Replicate API Key
-
-1. Go to [https://replicate.com/](https://replicate.com/)
-2. Sign up for a free account
-3. Go to [Account Settings → API Tokens](https://replicate.com/account/api-tokens)
-4. Create a new API token
-
-### 3. Configure Environment Variables
-
-Edit `.env.local` file and add your Replicate API key:
-
-```env
-REPLICATE_API_TOKEN=r8_your_api_key_here
-NEXT_PUBLIC_APP_URL=http://localhost:3001
-```
-
-### 4. Run Development Server
+### Installation
 
 ```bash
-npm run dev
-```
+# Clone repository
+git clone https://github.com/Mitjano/upsizer.git
+cd upsizer
 
-Open [http://localhost:3001](http://localhost:3001) in your browser.
-
-## How to Use
-
-1. **Upload an Image**
-   - Click "Upload Image" or drag & drop
-   - Supported formats: PNG, JPG, WEBP, HEIC, BMP
-
-2. **Configure Settings**
-   - **Upscale to**: Choose 2x, 4x, or 8x
-   - **Enhance Face Quality**: Toggle ON for portraits (uses GFPGAN)
-
-3. **Process**
-   - Click "Process Image"
-   - Wait 10-20 seconds for AI processing
-
-4. **Download**
-   - Click "Download Image" to save the upscaled result
-
-## AI Models Used
-
-### Real-ESRGAN
-- **Purpose**: General image upscaling
-- **Best for**: Photos, graphics, textures
-- **Performance**: ~10-15 seconds per image
-
-### GFPGAN
-- **Purpose**: Face restoration and enhancement
-- **Best for**: Portraits, selfies, old photos with faces
-- **Performance**: ~15-20 seconds per image
-
-## Cost
-
-Replicate API pricing:
-- **Real-ESRGAN**: ~$0.01-0.02 per image
-- **GFPGAN**: ~$0.02-0.05 per image
-
-## Next Steps (TODO)
-
-- [ ] Firebase Authentication (Google, Email)
-- [ ] Stripe Payment Integration
-- [ ] Credit System & Usage Tracking
-- [ ] Pricing Page (Free/Pro/Enterprise plans)
-- [ ] User Dashboard
-- [ ] Bulk Image Processing
-- [ ] Image History
-- [ ] Multi-language Support (i18n)
-- [ ] Deploy to Digital Ocean
-
-## Development
-
-```bash
 # Install dependencies
 npm install
 
-# Run dev server
+# Copy environment file
+cp .env.example .env.local
+
+# Configure environment variables (see .env.example)
+
+# Run database migrations
+npx prisma migrate deploy
+
+# Start development server
 npm run dev
-
-# Build for production
-npm build
-
-# Start production server
-npm start
 ```
+
+Open [http://localhost:3000](http://localhost:3000)
 
 ## Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `REPLICATE_API_TOKEN` | Replicate API key | Yes |
-| `NEXT_PUBLIC_APP_URL` | App URL (for production) | No |
+See `.env.example` for all required variables. Key ones:
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `REDIS_URL` | Redis connection string |
+| `NEXTAUTH_SECRET` | NextAuth secret key |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth secret |
+| `STRIPE_SECRET_KEY` | Stripe secret key |
+| `REPLICATE_API_TOKEN` | Replicate API token |
+| `FAL_KEY` | fal.ai API key |
+| `GOAPI_API_KEY` | GoAPI key |
+
+## Scripts
+
+```bash
+npm run dev          # Start dev server
+npm run build        # Production build
+npm run start        # Start production server
+npm run test         # Run tests (watch mode)
+npm run test:run     # Run tests once
+npm run lint         # ESLint
+npx prisma studio    # Database GUI
+```
+
+## Testing
+
+```bash
+# Run all tests
+npm run test:run
+
+# Run with coverage
+npm run test:run -- --coverage
+
+# Run specific test file
+npm run test:run -- __tests__/api/upscale.test.ts
+```
+
+Test coverage:
+- API endpoints: upscale, stripe, user
+- Components: Dashboard, CopyLinkButton, ImageUploader
+- Integration: registration flow, payment flow, image processing flow
+- Libraries: validation, rate-limit, cache, utils
+
+## Deployment
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+
+Quick deploy checklist:
+```bash
+npm run test:run     # Run tests
+npm run lint         # Linting
+npx tsc --noEmit     # Type check
+npm audit            # Security audit
+npm run build        # Build
+npx prisma migrate deploy  # Migrations
+```
+
+## API
+
+See [API_README.md](./API_README.md) for API documentation.
+
+Key endpoints:
+- `POST /api/upscale` - Upscale image
+- `POST /api/remove-background` - Remove background
+- `POST /api/stripe/checkout` - Create checkout session
+- `GET /api/user` - Get user info
+- `GET /api/user/credits` - Get credit balance
+
+## Project Structure
+
+```
+├── app/                    # Next.js App Router
+│   ├── [locale]/          # Localized pages
+│   ├── api/               # API routes
+│   └── ...
+├── components/            # React components
+├── lib/                   # Utility libraries
+├── prisma/               # Database schema
+├── messages/             # i18n translations
+├── __tests__/            # Test files
+└── docs/                 # Documentation
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ## License
 
-MIT
+MIT License - see [LICENSE](./LICENSE) for details.
+
+## Links
+
+- **Production**: https://pixelift.pl
+- **API Docs**: https://pixelift.pl/api-docs
+- **GitHub**: https://github.com/Mitjano/upsizer
