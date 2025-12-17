@@ -1,15 +1,26 @@
 import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import { signIn } from "@/lib/auth";
 import { getTranslations } from 'next-intl/server';
+import { EmailSignUpForm } from "./email-form";
 
 async function handleGoogleSignUp() {
   "use server";
   await signIn("google", { redirectTo: "/dashboard" });
 }
 
+async function handleFacebookSignUp() {
+  "use server";
+  await signIn("facebook", { redirectTo: "/dashboard" });
+}
+
 export default async function SignUpPage() {
   const t = await getTranslations('auth');
+
+  // Check if Facebook auth is configured
+  const hasFacebookAuth = !!(process.env.FACEBOOK_CLIENT_ID && process.env.FACEBOOK_CLIENT_SECRET);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       <div className="container mx-auto px-4 py-8">
@@ -96,25 +107,44 @@ export default async function SignUpPage() {
                   <p className="text-gray-400">{t('signup.startEnhancing')}</p>
                 </div>
 
-                {/* Google Sign Up Button */}
-                <form action={handleGoogleSignUp} className="space-y-4">
-                  <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-50 py-4 px-6 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                  >
-                    <FcGoogle className="text-2xl" />
-                    {t('google')}
-                  </button>
-                </form>
+                {/* Email/Password Form */}
+                <EmailSignUpForm />
 
                 <div className="my-6 flex items-center gap-4">
                   <div className="flex-1 h-px bg-gray-700"></div>
-                  <span className="text-sm text-gray-500">{t('signup.quickSecure')}</span>
+                  <span className="text-sm text-gray-500">{t('orContinueWith')}</span>
                   <div className="flex-1 h-px bg-gray-700"></div>
                 </div>
 
+                {/* Social Sign Up Buttons */}
+                <div className="space-y-3">
+                  {/* Google Sign Up Button */}
+                  <form action={handleGoogleSignUp}>
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-50 py-3 px-6 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    >
+                      <FcGoogle className="text-xl" />
+                      {t('google')}
+                    </button>
+                  </form>
+
+                  {/* Facebook Sign Up Button - only show if configured */}
+                  {hasFacebookAuth && (
+                    <form action={handleFacebookSignUp}>
+                      <button
+                        type="submit"
+                        className="w-full flex items-center justify-center gap-3 bg-[#1877F2] text-white hover:bg-[#166FE5] py-3 px-6 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                      >
+                        <FaFacebook className="text-xl" />
+                        Continue with Facebook
+                      </button>
+                    </form>
+                  )}
+                </div>
+
                 {/* Features List */}
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3 mt-6 pt-6 border-t border-gray-700">
                   <div className="flex items-center gap-2 text-sm text-gray-300">
                     <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -136,7 +166,7 @@ export default async function SignUpPage() {
                 </div>
 
                 {/* Sign In Link */}
-                <div className="pt-6 border-t border-gray-700">
+                <div className="pt-6 border-t border-gray-700 mt-6">
                   <p className="text-center text-sm text-gray-400">
                     {t('hasAccount')}{" "}
                     <Link href="/auth/signin" className="text-green-400 hover:text-green-300 font-semibold">

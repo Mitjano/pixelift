@@ -21,16 +21,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
       }
     }),
-    // Facebook OAuth Provider
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID!,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          scope: "email,public_profile"
+    // Facebook OAuth Provider - only include if credentials are configured
+    ...(process.env.FACEBOOK_CLIENT_ID && process.env.FACEBOOK_CLIENT_SECRET ? [
+      FacebookProvider({
+        clientId: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        authorization: {
+          params: {
+            scope: "email,public_profile"
+          }
         }
-      }
-    }),
+      }),
+    ] : []),
     // Email/Password Credentials Provider
     CredentialsProvider({
       name: "credentials",
@@ -95,11 +97,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-      // This callback runs AFTER Google OAuth but BEFORE creating session
-      // We register/update user in database here
-      if (user.email) {
+      // This callback runs AFTER OAuth/Credentials but BEFORE creating session
+      // For OAuth providers (Google, Facebook), we register/update user in database
+      // For credentials provider, user is already registered
+      if (user.email && account?.provider !== 'credentials') {
         try {
-          // Call internal registration endpoint
+          // Call internal registration endpoint for OAuth providers
           const baseUrl = process.env.AUTH_URL || process.env.NEXTAUTH_URL || 'http://localhost:3000';
           const response = await fetch(`${baseUrl}/api/auth/register-user-internal`, {
             method: 'POST',
@@ -108,6 +111,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
               email: user.email,
               name: user.name,
               image: user.image,
+              authProvider: account?.provider,
             }),
           });
 

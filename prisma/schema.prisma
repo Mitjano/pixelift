@@ -134,6 +134,7 @@ model User {
   linkedinId        String?   // LinkedIn OAuth ID
   githubId          String?   // GitHub OAuth ID
   authProvider      String?   // Primary auth method
+  password          String?   // Hashed password for email/password auth
   twoFactorEnabled  Boolean   @default(false)
 
   // ========== COMPANY/B2B DATA ==========
@@ -2186,8 +2187,8 @@ model PasswordResetToken {
   userId    String
   email     String
   expiresAt DateTime
-  createdAt DateTime @default(now())
   usedAt    DateTime? // When the token was used
+  createdAt DateTime @default(now())
 
   @@index([userId])
   @@index([token])

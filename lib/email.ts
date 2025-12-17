@@ -1324,3 +1324,97 @@ Thank you for using Pixelift.`;
     return false;
   }
 }
+
+// =============================================================================
+// PASSWORD RESET EMAIL
+// =============================================================================
+
+export interface PasswordResetEmailData {
+  userEmail: string;
+  userName?: string;
+  resetToken: string;
+}
+
+/**
+ * Send password reset email
+ */
+export async function sendPasswordResetEmail(email: string, token: string, name?: string): Promise<boolean> {
+  const resend = getResend();
+  if (!resend) {
+    console.warn('RESEND_API_KEY not configured - skipping password reset email');
+    console.log('[password-reset] Token for', email, ':', token);
+    return false;
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.AUTH_URL || 'https://pixelift.pl';
+  const resetUrl = `${baseUrl}/auth/reset-password?token=${token}`;
+
+  const html = emailWrapper(`
+    ${emailHeader()}
+    <tr>
+      <td class="mobile-padding" style="padding: 40px 30px; font-family: Arial, sans-serif;">
+        <h2 style="color: #1f2937; margin: 0 0 20px 0; font-size: 24px;">Reset Your Password</h2>
+
+        <p style="color: #4b5563; line-height: 1.6; font-size: 16px;">Hi${name ? ` ${escapeHtml(name)}` : ''},</p>
+        <p style="color: #4b5563; line-height: 1.6; font-size: 16px;">
+          We received a request to reset your password. Click the button below to create a new password:
+        </p>
+
+        ${ctaButton('Reset Password', resetUrl)}
+
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background: #fef3f2; border-left: 4px solid #f59e0b; border-radius: 4px; margin: 30px 0;">
+          <tr><td style="padding: 20px;">
+            <p style="color: #92400e; margin: 0; font-size: 14px;">
+              <strong>This link will expire in 1 hour.</strong>
+            </p>
+          </td></tr>
+        </table>
+
+        <p style="color: #6b7280; font-size: 14px; line-height: 1.6;">
+          If you didn't request this password reset, you can safely ignore this email. Your password will remain unchanged.
+        </p>
+
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+
+        <p style="color: #9ca3af; font-size: 12px; text-align: center;">
+          If the button doesn't work, copy and paste this link into your browser:<br>
+          <a href="${resetUrl}" style="color: #3b82f6; word-break: break-all;">${resetUrl}</a>
+        </p>
+      </td>
+    </tr>
+    ${emailFooter()}
+  `, 'Reset your Pixelift password');
+
+  const text = `Reset Your Password
+
+Hi${name ? ` ${name}` : ''},
+
+We received a request to reset your password. Click the link below to create a new password:
+
+${resetUrl}
+
+This link will expire in 1 hour.
+
+If you didn't request this password reset, you can safely ignore this email. Your password will remain unchanged.`;
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [email],
+      replyTo: SUPPORT_EMAIL,
+      subject: 'Reset your Pixelift password',
+      html,
+      text,
+      headers: {
+        'List-Unsubscribe': `<${UNSUBSCRIBE_URL}>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
+    });
+
+    console.log(`Password reset email sent to ${email}`);
+    return true;
+  } catch (error) {
+    console.error('Failed to send password reset email:', error);
+    return false;
+  }
+}

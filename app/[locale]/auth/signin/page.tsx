@@ -1,11 +1,30 @@
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import { signIn } from "@/lib/auth";
 import { getTranslations } from 'next-intl/server';
-import LoginForm from "@/components/auth/LoginForm";
+import { EmailSignInForm } from "./email-form";
 
-export default async function SignInPage({ searchParams }: { searchParams: Promise<{ callbackUrl?: string }> }) {
+async function handleGoogleSignIn(formData: FormData) {
+  "use server";
+  const callbackUrl = formData.get("callbackUrl") as string || "/dashboard";
+  await signIn("google", { redirectTo: callbackUrl });
+}
+
+async function handleFacebookSignIn(formData: FormData) {
+  "use server";
+  const callbackUrl = formData.get("callbackUrl") as string || "/dashboard";
+  await signIn("facebook", { redirectTo: callbackUrl });
+}
+
+export default async function SignInPage({ searchParams }: { searchParams: Promise<{ callbackUrl?: string; error?: string }> }) {
   const t = await getTranslations('auth');
   const params = await searchParams;
   const callbackUrl = params.callbackUrl || "/dashboard";
+  const error = params.error;
+
+  // Check if Facebook auth is configured
+  const hasFacebookAuth = !!(process.env.FACEBOOK_CLIENT_ID && process.env.FACEBOOK_CLIENT_SECRET);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
@@ -95,7 +114,64 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
                   <p className="text-gray-400">{t('signin.welcomeBackDetails')}</p>
                 </div>
 
-                <LoginForm callbackUrl={callbackUrl} />
+                {/* Error Message */}
+                {error && (
+                  <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm text-center">
+                    {error === 'CredentialsSignin'
+                      ? 'Invalid email or password'
+                      : error === 'OAuthAccountNotLinked'
+                      ? 'This email is already registered with a different method'
+                      : 'An error occurred. Please try again.'}
+                  </div>
+                )}
+
+                {/* Email/Password Form */}
+                <EmailSignInForm callbackUrl={callbackUrl} />
+
+                <div className="my-6 flex items-center gap-4">
+                  <div className="flex-1 h-px bg-gray-700"></div>
+                  <span className="text-sm text-gray-500">{t('orContinueWith')}</span>
+                  <div className="flex-1 h-px bg-gray-700"></div>
+                </div>
+
+                {/* Social Sign In Buttons */}
+                <div className="space-y-3">
+                  {/* Google Sign In Button */}
+                  <form action={handleGoogleSignIn}>
+                    <input type="hidden" name="callbackUrl" value={callbackUrl} />
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 hover:bg-gray-50 py-3 px-6 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    >
+                      <FcGoogle className="text-xl" />
+                      {t('google')}
+                    </button>
+                  </form>
+
+                  {/* Facebook Sign In Button - only show if configured */}
+                  {hasFacebookAuth && (
+                    <form action={handleFacebookSignIn}>
+                      <input type="hidden" name="callbackUrl" value={callbackUrl} />
+                      <button
+                        type="submit"
+                        className="w-full flex items-center justify-center gap-3 bg-[#1877F2] text-white hover:bg-[#166FE5] py-3 px-6 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                      >
+                        <FaFacebook className="text-xl" />
+                        Continue with Facebook
+                      </button>
+                    </form>
+                  )}
+                </div>
+
+                {/* Sign Up Link */}
+                <div className="pt-6 border-t border-gray-700 mt-6">
+                  <p className="text-center text-sm text-gray-400">
+                    {t('noAccount')}{" "}
+                    <Link href="/auth/signup" className="text-green-400 hover:text-green-300 font-semibold">
+                      {t('signin.signUpFree')} →
+                    </Link>
+                  </p>
+                </div>
               </div>
 
               {/* Terms */}
