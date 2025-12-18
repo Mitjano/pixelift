@@ -49,7 +49,7 @@
 
 ### 1.1 Crop Image (Kadrowanie)
 - **Rozwiązanie**: Sharp (lokalnie, bez API)
-- **Koszt kredytów**: FREE lub 1 kredt
+- **Koszt kredytów**: FREE (0 kredytów) - podstawowa edycja
 - **Funkcje**:
   - [ ] Swobodne kadrowanie
   - [ ] Predefiniowane proporcje (1:1, 4:3, 16:9, 9:16)
@@ -59,10 +59,17 @@
   - `app/api/crop-image/route.ts`
   - `components/ImageCropper.tsx`
   - `app/[locale]/tools/crop-image/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `crop_image`
+  - API keys: `'crop-image': 'crop_image'`, `'cropImage': 'crop_image'`
+- **Header.tsx**:
+  - key: `cropImage`
+  - href: `/tools/crop-image`
+  - kategoria: `edit` (nowa)
 
 ### 1.2 Resize Image (Zmiana rozmiaru)
 - **Rozwiązanie**: Sharp (lokalnie, bez API)
-- **Koszt kredytów**: FREE lub 1 kredt
+- **Koszt kredytów**: FREE (0 kredytów) - podstawowa edycja
 - **Funkcje**:
   - [ ] Resize by pixels
   - [ ] Resize by percentage
@@ -72,13 +79,20 @@
   - `app/api/resize-image/route.ts`
   - `components/ImageResizer.tsx`
   - `app/[locale]/tools/resize-image/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `resize_image`
+  - API keys: `'resize-image': 'resize_image'`, `'resizeImage': 'resize_image'`
+- **Header.tsx**:
+  - key: `resizeImage`
+  - href: `/tools/resize-image`
+  - kategoria: `edit`
 
 ### 1.3 Logo Maker (Generator Logo AI)
 - **Rozwiązanie**: Ideogram 3.0 via Replicate
 - **Dlaczego**: Najlepsza jakość tekstu/typografii w AI (lepszy niż FLUX)
 - **Model**: `ideogram-ai/ideogram-v2-turbo`
 - **Koszt API**: ~$0.02/generacja
-- **Koszt kredytów**: 3-5 kredytów
+- **Koszt kredytów**: 3 kredyty
 - **Funkcje**:
   - [ ] Text input dla nazwy firmy/marki
   - [ ] Wybór stylu (minimalist, vintage, modern, etc.)
@@ -89,12 +103,19 @@
   - `app/api/logo-maker/route.ts`
   - `components/LogoMaker.tsx`
   - `app/[locale]/tools/logo-maker/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `logo_maker`
+  - API keys: `'logo-maker': 'logo_maker'`, `'logoMaker': 'logo_maker'`
+- **Header.tsx**:
+  - key: `logoMaker`
+  - href: `/tools/logo-maker`
+  - kategoria: `generate`
 
 ### 1.4 QR Code Generator (Artystyczne kody QR)
 - **Rozwiązanie**: Illusion model via Replicate
 - **Model**: `catacolabs/illusion`
 - **Koszt API**: ~$0.02/generacja
-- **Koszt kredytów**: 2-3 kredyty
+- **Koszt kredytów**: 2 kredyty
 - **Funkcje**:
   - [ ] URL/Text input
   - [ ] Prompt dla stylu wizualnego
@@ -104,6 +125,13 @@
   - `app/api/qr-generator/route.ts`
   - `components/QRGenerator.tsx`
   - `app/[locale]/tools/qr-generator/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `qr_generator`
+  - API keys: `'qr-generator': 'qr_generator'`, `'qrGenerator': 'qr_generator'`
+- **Header.tsx**:
+  - key: `qrGenerator`
+  - href: `/tools/qr-generator`
+  - kategoria: `generate`
 
 ---
 
@@ -115,7 +143,7 @@
   - https://vectorizer.ai/api
 - **Rozwiązanie OPCJA B**: Recraft V3 (free tier dostępny)
   - Model: `recraft-ai/recraft-v3-svg`
-- **Koszt kredytów**: 2-3 kredyty
+- **Koszt kredytów**: 2 kredyty
 - **Funkcje**:
   - [ ] Upload raster image
   - [ ] Preview SVG
@@ -125,10 +153,17 @@
   - `app/api/vectorize/route.ts`
   - `components/ImageVectorizer.tsx`
   - `app/[locale]/tools/convert-to-svg/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `vectorize`
+  - API keys: `'vectorize': 'vectorize'`, `'convert-to-svg': 'vectorize'`
+- **Header.tsx**:
+  - key: `vectorize`
+  - href: `/tools/convert-to-svg`
+  - kategoria: `transform`
 
 ### 2.2 Collage Maker
 - **Rozwiązanie**: Sharp + własna logika (bez API zewnętrznego)
-- **Koszt kredytów**: FREE lub 1 kredt
+- **Koszt kredytów**: FREE (0 kredytów) - podstawowa edycja
 - **Funkcje**:
   - [ ] Wybór layoutu (2x2, 3x3, 1+2, etc.)
   - [ ] Upload wielu zdjęć
@@ -139,12 +174,19 @@
   - `app/api/collage/route.ts`
   - `components/CollageMaker.tsx`
   - `app/[locale]/tools/collage-maker/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `collage`
+  - API keys: `'collage': 'collage'`, `'collage-maker': 'collage'`
+- **Header.tsx**:
+  - key: `collageMaker`
+  - href: `/tools/collage-maker`
+  - kategoria: `edit`
 
 ### 2.3 Text Effects (Efekty tekstowe AI)
 - **Rozwiązanie**: Ideogram 3.0 lub Recraft V3
 - **Model**: `ideogram-ai/ideogram-v2-turbo`
 - **Koszt API**: ~$0.02/generacja
-- **Koszt kredytów**: 3-5 kredytów
+- **Koszt kredytów**: 3 kredyty
 - **Funkcje**:
   - [ ] Text input
   - [ ] Style presets (3D, neon, graffiti, fire, ice, etc.)
@@ -154,10 +196,17 @@
   - `app/api/text-effects/route.ts`
   - `components/TextEffects.tsx`
   - `app/[locale]/tools/text-effects/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `text_effects`
+  - API keys: `'text-effects': 'text_effects'`, `'textEffects': 'text_effects'`
+- **Header.tsx**:
+  - key: `textEffects`
+  - href: `/tools/text-effects`
+  - kategoria: `generate`
 
 ### 2.4 Filters & Effects (Filtry obrazu)
 - **Rozwiązanie**: Sharp + custom LUTs (bez API zewnętrznego)
-- **Koszt kredytów**: FREE lub 1 kredt
+- **Koszt kredytów**: FREE (0 kredytów) - podstawowa edycja
 - **Funkcje**:
   - [ ] Basic adjustments (brightness, contrast, saturation)
   - [ ] Preset filters (Vintage, B&W, Sepia, Cool, Warm)
@@ -167,6 +216,13 @@
   - `app/api/image-filters/route.ts`
   - `components/ImageFilters.tsx`
   - `app/[locale]/tools/image-filters/page.tsx`
+- **Konfiguracja credits-config.ts**:
+  - ToolType: `image_filters`
+  - API keys: `'image-filters': 'image_filters'`, `'imageFilters': 'image_filters'`
+- **Header.tsx**:
+  - key: `imageFilters`
+  - href: `/tools/image-filters`
+  - kategoria: `edit`
 
 ---
 
@@ -351,9 +407,20 @@ components/[ToolName].tsx
 app/[locale]/tools/[tool-name]/page.tsx
 ```
 
-### 4. Menu
-```
-components/Header.tsx (toolCategories)
+### 4. Menu - Header.tsx
+```typescript
+// 1. Dodać ikonę SVG do obiektu toolIcons (linia ~14)
+const toolIcons = {
+  newTool: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="..." />
+    </svg>
+  ),
+  // ...
+};
+
+// 2. Dodać narzędzie do odpowiedniej kategorii w toolCategories (linia ~88)
+{ key: 'newTool', href: '/tools/new-tool', color: 'from-blue-500 to-blue-600' },
 ```
 
 ### 5. Translations (4 języki)
@@ -364,9 +431,23 @@ messages/es/common.json
 messages/fr/common.json
 ```
 
-### 6. Credits
-```
-lib/credits-config.ts
+### 6. Credits - lib/credits-config.ts
+```typescript
+// 1. Dodać do typu ToolType (linia ~8)
+export type ToolType =
+  | 'new_tool'
+  // ...
+
+// 2. Dodać konfigurację w CREDIT_COSTS (linia ~67)
+new_tool: {
+  cost: 1,
+  displayName: 'New Tool',
+  description: 'Tool description',
+},
+
+// 3. Dodać mapowanie w TOOL_API_KEYS (linia ~338)
+'new-tool': 'new_tool',
+'newTool': 'new_tool',
 ```
 
 ---
@@ -437,6 +518,47 @@ lib/credits-config.ts
 |-------|----|----|----|----|
 | `tools.imageFilters.name` | Filters & Effects | Filtry i Efekty | Filtros y Efectos | Filtres et Effets |
 | `tools.imageFilters.description` | Apply filters and adjustments | Zastosuj filtry i korekty | Aplica filtros y ajustes | Appliquez des filtres et des ajustements |
+
+---
+
+## ⚠️ CHECKLIST KOMPATYBILNOŚCI (weryfikacja 18.12.2024)
+
+### Zgodność nazewnictwa z projektem
+
+| Element | Wzorzec projektu | Status |
+|---------|------------------|--------|
+| URL path | kebab-case (`/tools/remove-background`) | ✅ Zgodne |
+| API route | kebab-case (`app/api/remove-background/`) | ✅ Zgodne |
+| ToolType | snake_case (`remove_background`) | ✅ Zgodne |
+| Translation key | camelCase (`tools.removeBackground`) | ✅ Zgodne |
+| Header key | camelCase (`key: 'removeBackground'`) | ✅ Zgodne |
+| Component name | PascalCase (`BackgroundRemover.tsx`) | ✅ Zgodne |
+
+### Pliki wymagające modyfikacji dla KAŻDEGO nowego narzędzia
+
+1. **`lib/credits-config.ts`**
+   - [ ] Dodać do `ToolType` union type (linia ~8)
+   - [ ] Dodać konfigurację w `CREDIT_COSTS` (linia ~67)
+   - [ ] Dodać mapowanie w `TOOL_API_KEYS` (linia ~338)
+
+2. **`components/Header.tsx`**
+   - [ ] Dodać ikonę SVG w `toolIcons` (linia ~14)
+   - [ ] Dodać narzędzie do odpowiedniej kategorii w `toolCategories` (linia ~88)
+   - [ ] Dla nowej kategorii "Edit" - utworzyć nowy obiekt kategorii
+
+3. **`messages/*/common.json`** (4 pliki)
+   - [ ] Dodać `tools.[toolKey].name`
+   - [ ] Dodać `tools.[toolKey].description`
+   - [ ] Dodać `tools.[toolKey].badge` (opcjonalnie)
+   - [ ] Dodać `toolCategories.edit` (tylko raz, dla nowej kategorii)
+
+### Potencjalne problemy do sprawdzenia
+
+- [ ] **Limit kategorii w menu**: Obecnie 5 kategorii. Dodanie "Edit" = 6. Sprawdzić czy mega menu się zmieści.
+- [ ] **Narzędzia FREE (0 kredytów)**: Upewnić się że system obsługuje `cost: 0` w `credits-config.ts`
+- [ ] **Ideogram 3.0 na Replicate**: Zweryfikować dostępność modelu `ideogram-ai/ideogram-v2-turbo`
+- [ ] **Vectorizer.AI**: Wymaga osobnego klucza API (nie Replicate)
+- [ ] **Illusion QR**: Zweryfikować model `catacolabs/illusion` na Replicate
 
 ---
 
