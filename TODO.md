@@ -91,8 +91,8 @@
 - **Rozwiązanie**: Ideogram 3.0 via Replicate
 - **Dlaczego**: Najlepsza jakość tekstu/typografii w AI (lepszy niż FLUX)
 - **Model**: `ideogram-ai/ideogram-v2-turbo`
-- **Koszt API**: ~$0.02/generacja
-- **Koszt kredytów**: 3 kredyty
+- **Koszt API**: ~$0.05/generacja (zweryfikowane 18.12.2024)
+- **Koszt kredytów**: 5 kredytów (dostosowane do kosztu API)
 - **Funkcje**:
   - [ ] Text input dla nazwy firmy/marki
   - [ ] Wybór stylu (minimalist, vintage, modern, etc.)
@@ -185,8 +185,8 @@
 ### 2.3 Text Effects (Efekty tekstowe AI)
 - **Rozwiązanie**: Ideogram 3.0 lub Recraft V3
 - **Model**: `ideogram-ai/ideogram-v2-turbo`
-- **Koszt API**: ~$0.02/generacja
-- **Koszt kredytów**: 3 kredyty
+- **Koszt API**: ~$0.05/generacja (zweryfikowane 18.12.2024)
+- **Koszt kredytów**: 5 kredytów
 - **Funkcje**:
   - [ ] Text input
   - [ ] Style presets (3D, neon, graffiti, fire, ice, etc.)
@@ -552,13 +552,28 @@ new_tool: {
    - [ ] Dodać `tools.[toolKey].badge` (opcjonalnie)
    - [ ] Dodać `toolCategories.edit` (tylko raz, dla nowej kategorii)
 
-### Potencjalne problemy do sprawdzenia
+### Potencjalne problemy do sprawdzenia (ZWERYFIKOWANE 18.12.2024)
 
-- [ ] **Limit kategorii w menu**: Obecnie 5 kategorii. Dodanie "Edit" = 6. Sprawdzić czy mega menu się zmieści.
-- [ ] **Narzędzia FREE (0 kredytów)**: Upewnić się że system obsługuje `cost: 0` w `credits-config.ts`
-- [ ] **Ideogram 3.0 na Replicate**: Zweryfikować dostępność modelu `ideogram-ai/ideogram-v2-turbo`
-- [ ] **Vectorizer.AI**: Wymaga osobnego klucza API (nie Replicate)
-- [ ] **Illusion QR**: Zweryfikować model `catacolabs/illusion` na Replicate
+- [x] **Limit kategorii w menu**: ✅ OK - Menu używa `flex-wrap` i `overflow-x-auto`, więc 6 kategorii się zmieści
+- [x] **Narzędzia FREE (0 kredytów)**: ✅ OK - System używa `Math.max(0, credits - creditsUsed)`, więc `cost: 0` zadziała
+- [x] **Ideogram 3.0 na Replicate**: ✅ DOSTĘPNY - Model `ideogram-ai/ideogram-v2-turbo` jest ONLINE, koszt ~$0.05/obraz
+- [x] **Vectorizer.AI**: ⚠️ WYMAGA KLUCZA - Osobny klucz API, ceny od $0.20/obraz (plan 50 kredytów za $9.99/mies)
+
+- [x] **QR Code Generator**: ❌ PROBLEM - Wszystkie modele QR na Replicate są OFFLINE:
+  - `catacolabs/illusion` - nie istnieje
+  - `andreasjansson/illusion` - OFFLINE
+  - `lucataco/illusion-diffusion-hq` - OFFLINE
+  - `zylim0702/qr_code_controlnet` - OFFLINE
+  - `qr2ai/qr_code_ai_art_generator` - OFFLINE
+
+  **ALTERNATYWY DLA QR CODE** (zweryfikowane):
+  1. **Samodzielny hosting** - Modele są open-source, można hostować na własnym GPU (wymaga A100)
+  2. ~~**fal.ai**~~ - ❌ Brak modeli QR code
+  3. **QRBTF.com API** - Komercyjne API do AI QR codes (do sprawdzenia)
+  4. **Standardowy QR + stylowanie** - Użyć biblioteki `qrcode` + gradient/logo overlay
+  5. **Hugging Face Spaces** - Wywołać API z HF Spaces (qr-code-ai-art-generator)
+
+  **REKOMENDACJA**: Zacząć od prostego QR z logo/stylowaniem (FREE), dodać AI QR później gdy modele wrócą online
 
 ---
 
