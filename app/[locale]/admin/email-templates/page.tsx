@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { getAllEmailTemplates } from "@/lib/db";
 import EmailTemplatesClient from "./EmailTemplatesClient";
+import EmailLogs from "@/components/admin/EmailLogs";
 
 export const dynamic = 'force-dynamic';
 
@@ -27,5 +28,12 @@ export default async function EmailTemplatesPage() {
     totalUsage: templates.reduce((sum, t) => sum + t.usageCount, 0),
   };
 
-  return <EmailTemplatesClient templates={templates} stats={stats} />;
+  return (
+    <div className="space-y-12">
+      <EmailTemplatesClient templates={templates} stats={stats} />
+      <div className="border-t border-gray-700 pt-12">
+        <EmailLogs />
+      </div>
+    </div>
+  );
 }

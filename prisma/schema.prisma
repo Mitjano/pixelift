@@ -2137,6 +2137,72 @@ model MusicFolder {
 }
 
 // ===================
+// API Platform Balances (for monitoring prepaid accounts)
+// ===================
+
+model ApiPlatformBalance {
+  id              String   @id @default(cuid())
+  platform        String   @unique // replicate, fal, piapi, runway, openai, anthropic
+  displayName     String   // Replicate, Fal.ai, PiAPI, Runway, OpenAI, Anthropic
+
+  // Balance info (manually updated or via API if available)
+  currentBalance  Float    @default(0)  // Current balance in USD
+  currency        String   @default("USD")
+  lastTopUp       Float?   // Last top-up amount
+  lastTopUpAt     DateTime?
+
+  // Alerts
+  alertThreshold  Float    @default(50) // Alert when balance < this amount
+  criticalThreshold Float  @default(20) // Critical alert threshold
+  autoReloadEnabled Boolean @default(false)
+  autoReloadAmount Float?  // Amount to auto-reload
+  autoReloadThreshold Float? // When to trigger auto-reload
+
+  // Usage tracking
+  estimatedDailyCost Float @default(0) // Estimated daily spend
+  estimatedMonthlyCost Float @default(0) // Estimated monthly spend
+  daysUntilDepleted Int?   // Calculated days until balance runs out
+
+  // Status
+  isActive        Boolean  @default(true)
+  lastChecked     DateTime @default(now())
+  lastUpdatedBy   String?  // Admin who last updated
+  notes           String?  // Admin notes
+
+  // API connection (if available)
+  apiKeyConfigured Boolean @default(false)
+  apiEndpoint     String?  // For platforms that expose balance API
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  history         ApiPlatformBalanceHistory[]
+
+  @@index([platform])
+  @@index([isActive])
+}
+
+model ApiPlatformBalanceHistory {
+  id              String   @id @default(cuid())
+  platformId      String
+
+  balance         Float
+  change          Float?   // Positive for top-up, negative for usage
+  changeType      String   // topup, usage, adjustment, initial
+  description     String?
+
+  recordedAt      DateTime @default(now())
+  recordedBy      String?  // Admin ID or "system"
+
+  platform        ApiPlatformBalance @relation(fields: [platformId], references: [id], onDelete: Cascade)
+
+  @@index([platformId])
+  @@index([recordedAt])
+}
+
+
+// ===================
 // Admin Audit Logging
 // ===================
 
@@ -2216,4 +2282,70 @@ model Account {
 
   @@unique([provider, providerAccountId])
   @@index([userId])
+}
+
+// ===================
+// Email Logs (Sent Emails Tracking)
+// ===================
+
+enum EmailLogStatus {
+  sent
+  failed
+  bounced
+  delivered
+  opened
+  clicked
+}
+
+model EmailLog {
+  id              String         @id @default(cuid())
+
+  // Recipient info
+  recipientEmail  String
+  recipientName   String?
+  recipientUserId String?        // If recipient is a user
+
+  // Email content
+  templateSlug    String?        // Reference to EmailTemplate if used
+  subject         String
+  category        String         // transactional, marketing, system, support
+  emailType       String         // welcome, purchase_confirmation, ticket_reply, etc.
+
+  // Sending details
+  fromEmail       String
+  replyTo         String?
+
+  // Status tracking
+  status          EmailLogStatus @default(sent)
+  statusMessage   String?        // Error message if failed
+
+  // Provider info
+  provider        String         @default("resend") // resend, sendgrid, ses, etc.
+  providerMessageId String?      // ID from email provider
+
+  // Engagement tracking (updated via webhooks)
+  deliveredAt     DateTime?
+  openedAt        DateTime?
+  clickedAt       DateTime?
+  bouncedAt       DateTime?
+  bounceReason    String?
+
+  // Open/click counts
+  openCount       Int            @default(0)
+  clickCount      Int            @default(0)
+
+  // Metadata
+  metadata        Json?          // Additional data (ticket ID, transaction ID, etc.)
+  ipAddress       String?        // IP that triggered the email
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  @@index([recipientEmail])
+  @@index([recipientUserId])
+  @@index([templateSlug])
+  @@index([emailType])
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
 }

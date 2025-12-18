@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { prisma } from './prisma';
 
 // Lazy initialization - only create Resend instance when needed
 let resendInstance: Resend | null = null;
@@ -20,6 +21,54 @@ function getResend(): Resend | null {
 const FROM_EMAIL = 'Pixelift <noreply@pixelift.pl>';
 const SUPPORT_EMAIL = 'support@pixelift.pl';
 const UNSUBSCRIBE_URL = 'https://pixelift.pl/settings/notifications';
+
+// =============================================================================
+// EMAIL LOGGING
+// =============================================================================
+
+interface EmailLogData {
+  recipientEmail: string;
+  recipientName?: string;
+  recipientUserId?: string;
+  subject: string;
+  category: 'transactional' | 'marketing' | 'system' | 'support';
+  emailType: string;
+  templateSlug?: string;
+  replyTo?: string;
+  metadata?: Record<string, unknown>;
+  providerMessageId?: string;
+  status?: 'sent' | 'failed';
+  statusMessage?: string;
+}
+
+/**
+ * Log email to database for tracking
+ */
+async function logEmail(data: EmailLogData): Promise<void> {
+  try {
+    await prisma.emailLog.create({
+      data: {
+        recipientEmail: data.recipientEmail,
+        recipientName: data.recipientName,
+        recipientUserId: data.recipientUserId,
+        subject: data.subject,
+        category: data.category,
+        emailType: data.emailType,
+        templateSlug: data.templateSlug,
+        fromEmail: FROM_EMAIL,
+        replyTo: data.replyTo || SUPPORT_EMAIL,
+        status: data.status || 'sent',
+        statusMessage: data.statusMessage,
+        provider: 'resend',
+        providerMessageId: data.providerMessageId,
+        metadata: data.metadata as Record<string, unknown>,
+      },
+    });
+  } catch (error) {
+    // Don't fail email sending if logging fails
+    console.error('Failed to log email:', error);
+  }
+}
 
 // =============================================================================
 // HELPER FUNCTIONS
@@ -317,11 +366,13 @@ ${data.description}
 
 View in Admin Panel: https://pixelift.pl/admin/tickets`;
 
+  const emailSubject = `New Support Ticket: ${data.subject}`;
+
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: [SUPPORT_EMAIL],
-      subject: `New Support Ticket: ${data.subject}`,
+      subject: emailSubject,
       html,
       text,
       headers: {
@@ -330,9 +381,32 @@ View in Admin Panel: https://pixelift.pl/admin/tickets`;
       },
     });
 
+    // Log successful email
+    await logEmail({
+      recipientEmail: SUPPORT_EMAIL,
+      recipientName: 'Support Team',
+      subject: emailSubject,
+      category: 'support',
+      emailType: 'ticket_created',
+      providerMessageId: result.data?.id,
+      metadata: { ticketId: data.ticketId, userEmail: data.userEmail },
+    });
+
     console.log(`Ticket created email sent for ticket ${data.ticketId}`);
     return true;
   } catch (error) {
+    // Log failed email
+    await logEmail({
+      recipientEmail: SUPPORT_EMAIL,
+      recipientName: 'Support Team',
+      subject: emailSubject,
+      category: 'support',
+      emailType: 'ticket_created',
+      status: 'failed',
+      statusMessage: error instanceof Error ? error.message : 'Unknown error',
+      metadata: { ticketId: data.ticketId },
+    });
+
     console.error('Failed to send ticket created email:', error);
     return false;
   }
@@ -393,12 +467,14 @@ ${data.replyMessage}
 
 You can reply directly to this email to continue the conversation.`;
 
+  const emailSubject = `Re: ${data.subject} [Ticket #${data.ticketId}]`;
+
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: [data.userEmail],
       replyTo: SUPPORT_EMAIL,
-      subject: `Re: ${data.subject} [Ticket #${data.ticketId}]`,
+      subject: emailSubject,
       html,
       text,
       headers: {
@@ -407,9 +483,32 @@ You can reply directly to this email to continue the conversation.`;
       },
     });
 
+    // Log successful email
+    await logEmail({
+      recipientEmail: data.userEmail,
+      recipientName: data.userName,
+      subject: emailSubject,
+      category: 'support',
+      emailType: 'ticket_reply',
+      providerMessageId: result.data?.id,
+      metadata: { ticketId: data.ticketId, replyAuthor: data.replyAuthor },
+    });
+
     console.log(`Ticket reply email sent to ${data.userEmail} for ticket ${data.ticketId}`);
     return true;
   } catch (error) {
+    // Log failed email
+    await logEmail({
+      recipientEmail: data.userEmail,
+      recipientName: data.userName,
+      subject: emailSubject,
+      category: 'support',
+      emailType: 'ticket_reply',
+      status: 'failed',
+      statusMessage: error instanceof Error ? error.message : 'Unknown error',
+      metadata: { ticketId: data.ticketId },
+    });
+
     console.error('Failed to send ticket reply email:', error);
     return false;
   }
@@ -498,12 +597,14 @@ What you can do with Pixelift:
 
 Need help? Reply to this email or visit https://pixelift.pl/support`;
 
+  const emailSubject = `Welcome to Pixelift - Your ${data.freeCredits} free credits are waiting!`;
+
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: [data.userEmail],
       replyTo: SUPPORT_EMAIL,
-      subject: `Welcome to Pixelift - Your ${data.freeCredits} free credits are waiting! 🎉`,
+      subject: emailSubject,
       html,
       text,
       headers: {
@@ -512,9 +613,31 @@ Need help? Reply to this email or visit https://pixelift.pl/support`;
       },
     });
 
+    // Log successful email
+    await logEmail({
+      recipientEmail: data.userEmail,
+      recipientName: data.userName,
+      subject: emailSubject,
+      category: 'transactional',
+      emailType: 'welcome',
+      providerMessageId: result.data?.id,
+      metadata: { freeCredits: data.freeCredits },
+    });
+
     console.log(`Welcome email sent to ${data.userEmail}`);
     return true;
   } catch (error) {
+    // Log failed email
+    await logEmail({
+      recipientEmail: data.userEmail,
+      recipientName: data.userName,
+      subject: emailSubject,
+      category: 'transactional',
+      emailType: 'welcome',
+      status: 'failed',
+      statusMessage: error instanceof Error ? error.message : 'Unknown error',
+    });
+
     console.error('Failed to send welcome email:', error);
     return false;
   }

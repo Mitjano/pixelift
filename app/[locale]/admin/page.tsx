@@ -131,15 +131,6 @@ export default async function AdminDashboard() {
           </Link>
 
           <Link
-            href="/admin/marketing"
-            className="bg-gradient-to-br from-pink-500/20 to-pink-600/10 border border-pink-500/40 hover:border-pink-500 rounded-xl p-6 transition-all group hover:scale-105"
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition">🎯</div>
-            <h3 className="text-lg font-bold mb-1">Marketing</h3>
-            <p className="text-gray-400 text-sm">Manage ad campaigns</p>
-          </Link>
-
-          <Link
             href="/admin/finance"
             className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/10 border border-yellow-500/40 hover:border-yellow-500 rounded-xl p-6 transition-all group hover:scale-105"
           >
@@ -254,15 +245,6 @@ export default async function AdminDashboard() {
             <div className="text-4xl mb-3 group-hover:scale-110 transition">🧪</div>
             <h3 className="text-lg font-bold mb-1">A/B Testing</h3>
             <p className="text-gray-400 text-sm">Optimize conversions</p>
-          </Link>
-
-          <Link
-            href="/admin/moderation"
-            className="bg-gradient-to-br from-red-500/20 to-red-600/10 border border-red-500/40 hover:border-red-500 rounded-xl p-6 transition-all group hover:scale-105"
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition">🛡️</div>
-            <h3 className="text-lg font-bold mb-1">Content Moderation</h3>
-            <p className="text-gray-400 text-sm">AI-powered filtering</p>
           </Link>
 
           <Link

@@ -89,6 +89,7 @@ const allTools = [
 const quickActions = [
   { nameKey: 'imageHistory', href: '/dashboard/images', icon: '🖼️' },
   { nameKey: 'billing', href: '/dashboard/billing', icon: '💳' },
+  { nameKey: 'referrals', href: '/dashboard/referrals', icon: '🎁' },
   { nameKey: 'apiKeys', href: '/dashboard/api', icon: '🔑' },
   { nameKey: 'settings', href: '/dashboard/settings', icon: '⚙️' },
 ];
