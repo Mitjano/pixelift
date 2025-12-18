@@ -61,7 +61,7 @@ async function logEmail(data: EmailLogData): Promise<void> {
         statusMessage: data.statusMessage,
         provider: 'resend',
         providerMessageId: data.providerMessageId,
-        metadata: data.metadata as Record<string, unknown>,
+        metadata: data.metadata ?? undefined,
       },
     });
   } catch (error) {
