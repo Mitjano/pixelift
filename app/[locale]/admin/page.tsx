@@ -44,7 +44,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid md:grid-cols-5 gap-6 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 mb-8">
         <div className="bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/30 rounded-xl p-6 hover:border-green-500/50 transition">
           <div className="flex items-center justify-between mb-4">
             <div className="text-4xl">📝</div>
@@ -102,7 +102,7 @@ export default async function AdminDashboard() {
           <span>⚡</span>
           <span>Quick Actions</span>
         </h2>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <Link
             href="/admin/analytics"
             className="bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/40 hover:border-green-500 rounded-xl p-6 transition-all group hover:scale-105"

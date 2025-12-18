@@ -96,25 +96,25 @@ export default function ApiKeysClient({ apiKeys, stats, users }: ApiKeysClientPr
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-blue-400 font-semibold mb-2">Total Keys</div>
-          <div className="text-4xl font-bold text-white">{stats.total}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.total}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-green-400 font-semibold mb-2">Active</div>
-          <div className="text-4xl font-bold text-white">{stats.active}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.active}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-red-400 font-semibold mb-2">Revoked</div>
-          <div className="text-4xl font-bold text-white">{stats.revoked}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.revoked}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-purple-400 font-semibold mb-2">Total Usage</div>
-          <div className="text-4xl font-bold text-white">{stats.totalUsage.toLocaleString()}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.totalUsage.toLocaleString()}</div>
         </div>
       </div>
 

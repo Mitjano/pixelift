@@ -319,7 +319,7 @@ export default function CompetitorsPage() {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
           <div className="text-sm text-gray-400 mb-1">Competitors</div>
           <div className="text-2xl font-bold text-white">{competitors.length}</div>

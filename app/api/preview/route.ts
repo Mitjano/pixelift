@@ -1,7 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
+import { previewLimiter, getClientIdentifier, rateLimitResponse } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - strict for preview (10 per minute per IP)
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = previewLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
+    // Require authentication (session only, no API key - this is a UI feature)
+    const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json(
+        { error: "Authentication required for preview" },
+        { status: 401 }
+      );
+    }
+
     const formData = await request.formData();
     const image = formData.get("image") as File;
     const scale = parseInt(formData.get("scale") as string) || 2;

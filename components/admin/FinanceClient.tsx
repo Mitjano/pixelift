@@ -215,7 +215,7 @@ export default function FinanceClient() {
       )}
 
       {/* Main Metrics Cards */}
-      <div className="grid md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {/* Credits in System */}
         <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/30 rounded-xl p-6">
           <div className="flex items-center justify-between mb-2">
@@ -278,7 +278,7 @@ export default function FinanceClient() {
         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
           <span>🔮</span> 30-Day Forecast & API Budget Planning
         </h2>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gray-900/50 rounded-lg p-4">
             <p className="text-gray-400 text-sm">Daily Avg Credits Used</p>
             <p className="text-2xl font-bold text-white">{data.forecast.dailyAvgCreditsUsed.toFixed(1)}</p>
@@ -494,7 +494,7 @@ export default function FinanceClient() {
       {/* User Distribution */}
       <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
         <h2 className="text-xl font-bold mb-4">User Statistics</h2>
-        <div className="grid md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           <div className="text-center p-4 bg-gray-900/50 rounded-lg">
             <p className="text-3xl font-bold text-white">{data.users.total}</p>
             <p className="text-gray-400 text-sm">Total Users</p>

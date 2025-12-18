@@ -25,7 +25,9 @@ export default async function AdminLayout({
 
       {/* Main Content */}
       <div className="flex-1 lg:ml-64">
-        <div className="container mx-auto px-4 py-8">
+        {/* Spacer for mobile menu button */}
+        <div className="h-16 lg:hidden" />
+        <div className="container mx-auto px-4 py-4 lg:py-8">
           {children}
         </div>
       </div>

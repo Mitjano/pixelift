@@ -232,30 +232,30 @@ export default function ABTestsClient({ tests, stats }: ABTestsClientProps) {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-5 gap-6">
-        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-blue-400 font-semibold mb-2">Total Tests</div>
-          <div className="text-4xl font-bold text-white">{stats.total}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.total}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-green-400 font-semibold mb-2">Running</div>
-          <div className="text-4xl font-bold text-white">{stats.running}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.running}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-purple-400 font-semibold mb-2">Completed</div>
-          <div className="text-4xl font-bold text-white">{stats.completed}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.completed}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-yellow-400 font-semibold mb-2">Draft</div>
-          <div className="text-4xl font-bold text-white">{stats.draft}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.draft}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-500/20 to-gray-600/20 border border-gray-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-gray-500/20 to-gray-600/20 border border-gray-500/30 rounded-xl p-4 lg:p-6 col-span-2 md:col-span-1">
           <div className="text-sm text-gray-400 font-semibold mb-2">Paused</div>
-          <div className="text-4xl font-bold text-white">{stats.paused}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.paused}</div>
         </div>
       </div>
 

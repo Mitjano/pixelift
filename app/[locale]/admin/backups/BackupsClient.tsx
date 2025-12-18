@@ -160,25 +160,25 @@ export default function BackupsClient({ backups, stats }: BackupsClientProps) {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-blue-400 font-semibold mb-2">Total Backups</div>
-          <div className="text-4xl font-bold text-white">{stats.total}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.total}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-green-400 font-semibold mb-2">Manual</div>
-          <div className="text-4xl font-bold text-white">{stats.manual}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.manual}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-purple-400 font-semibold mb-2">Automatic</div>
-          <div className="text-4xl font-bold text-white">{stats.automatic}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{stats.automatic}</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-orange-400 font-semibold mb-2">Total Size</div>
-          <div className="text-4xl font-bold text-white">{formatSize(stats.totalSize)}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white">{formatSize(stats.totalSize)}</div>
         </div>
       </div>
 

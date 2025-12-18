@@ -222,7 +222,7 @@ export default function ModerationClient({ rules, queue, stats }: ModerationClie
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
           <div className="text-sm text-blue-400 font-semibold mb-2">Active Rules</div>
           <div className="text-4xl font-bold text-white">{stats.activeRules}</div>

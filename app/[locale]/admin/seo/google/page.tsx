@@ -232,7 +232,7 @@ export default function GoogleIntegrationPage() {
       )}
 
       {/* Status Cards */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         <div className={`bg-gray-800/50 border rounded-xl p-6 ${
           status?.searchConsole?.verified
             ? "border-green-500/30"
@@ -388,7 +388,7 @@ export default function GoogleIntegrationPage() {
             </ol>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-400 mb-2">
                 Service Account Email

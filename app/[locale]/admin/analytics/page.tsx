@@ -207,17 +207,17 @@ export default function AnalyticsPage() {
               </h2>
               <span className="text-sm text-gray-400">Last 5 minutes</span>
             </div>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-gray-800/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-green-400">{realtime?.activeVisitors || 0}</div>
+                <div className="text-2xl lg:text-3xl font-bold text-green-400">{realtime?.activeVisitors || 0}</div>
                 <div className="text-sm text-gray-400 mt-1">Active Visitors</div>
               </div>
               <div className="bg-gray-800/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-blue-400">{realtime?.recentPageViews || 0}</div>
+                <div className="text-2xl lg:text-3xl font-bold text-blue-400">{realtime?.recentPageViews || 0}</div>
                 <div className="text-sm text-gray-400 mt-1">Page Views</div>
               </div>
               <div className="bg-gray-800/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-purple-400">{realtime?.recentEvents || 0}</div>
+                <div className="text-2xl lg:text-3xl font-bold text-purple-400">{realtime?.recentEvents || 0}</div>
                 <div className="text-sm text-gray-400 mt-1">Events</div>
               </div>
               <div className="bg-gray-800/50 rounded-lg p-4">
@@ -232,28 +232,28 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Main Stats */}
-          <div className="grid grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-green-400 font-semibold mb-2">Total Visitors</div>
-          <div className="text-4xl font-bold text-white mb-1">{data.totalVisitors.toLocaleString()}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white mb-1">{data.totalVisitors.toLocaleString()}</div>
           <div className="text-xs text-gray-400">Last {timeRange} days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-blue-400 font-semibold mb-2">Page Views</div>
-          <div className="text-4xl font-bold text-white mb-1">{data.totalPageViews.toLocaleString()}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white mb-1">{data.totalPageViews.toLocaleString()}</div>
           <div className="text-xs text-gray-400">Last {timeRange} days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-purple-400 font-semibold mb-2">Total Events</div>
-          <div className="text-4xl font-bold text-white mb-1">{data.totalEvents.toLocaleString()}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white mb-1">{data.totalEvents.toLocaleString()}</div>
           <div className="text-xs text-gray-400">Last {timeRange} days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-4 lg:p-6">
           <div className="text-sm text-yellow-400 font-semibold mb-2">Avg. Pages/Visit</div>
-          <div className="text-4xl font-bold text-white mb-1">{data.averagePageViewsPerVisitor}</div>
+          <div className="text-2xl lg:text-4xl font-bold text-white mb-1">{data.averagePageViewsPerVisitor}</div>
           <div className="text-xs text-gray-400">Engagement metric</div>
         </div>
       </div>
@@ -374,36 +374,36 @@ export default function AnalyticsPage() {
       {activeTab === 'tools' && toolData && (
         <>
           {/* Tools Summary Stats */}
-          <div className="grid grid-cols-5 gap-4">
-            <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-4 lg:p-6">
               <div className="text-sm text-green-400 font-semibold mb-2">Total Operations</div>
-              <div className="text-3xl font-bold text-white">{toolData.summary.totalOperations.toLocaleString()}</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{toolData.summary.totalOperations.toLocaleString()}</div>
               <div className="text-xs text-gray-400">Last {timeRange} days</div>
             </div>
-            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4 lg:p-6">
               <div className="text-sm text-blue-400 font-semibold mb-2">Credits Used</div>
-              <div className="text-3xl font-bold text-white">{toolData.summary.totalCredits.toLocaleString()}</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{toolData.summary.totalCredits.toLocaleString()}</div>
               <div className="text-xs text-gray-400">Total credits consumed</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-4 lg:p-6">
               <div className="text-sm text-purple-400 font-semibold mb-2">Avg Credits/Op</div>
-              <div className="text-3xl font-bold text-white">{toolData.summary.avgCreditsPerOperation}</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{toolData.summary.avgCreditsPerOperation}</div>
               <div className="text-xs text-gray-400">Per operation</div>
             </div>
-            <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-4 lg:p-6">
               <div className="text-sm text-yellow-400 font-semibold mb-2">Active Users</div>
-              <div className="text-3xl font-bold text-white">{toolData.summary.activeUsers}</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{toolData.summary.activeUsers}</div>
               <div className="text-xs text-gray-400">Used AI tools</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-500/20 to-pink-600/20 border border-pink-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-pink-500/20 to-pink-600/20 border border-pink-500/30 rounded-xl p-4 lg:p-6 col-span-2 md:col-span-1">
               <div className="text-sm text-pink-400 font-semibold mb-2">Tools Used</div>
-              <div className="text-3xl font-bold text-white">{toolData.summary.uniqueTools}</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{toolData.summary.uniqueTools}</div>
               <div className="text-xs text-gray-400">Different tools</div>
             </div>
           </div>
 
           {/* Tool Usage Chart */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Operations by Tool */}
             <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
               <h2 className="text-2xl font-bold mb-6">Operations by Tool</h2>
