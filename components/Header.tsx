@@ -229,7 +229,7 @@ export default function Header() {
         if (link) link.click();
       } else {
         // Sign out
-        window.location.href = "/api/auth/signout";
+        signOut({ callbackUrl: "/" });
       }
     },
     onEscape: () => {
@@ -511,7 +511,7 @@ export default function Header() {
                   <button
                     role="menuitem"
                     data-user-index={userMenuItems.length}
-                    onClick={() => window.location.href = "/api/auth/signout"}
+                    onClick={() => signOut({ callbackUrl: "/" })}
                     className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-red-500 dark:text-red-400 ${
                       userNavigation.activeIndex === userMenuItems.length ? 'bg-gray-100 dark:bg-gray-700' : ''
                     }`}
