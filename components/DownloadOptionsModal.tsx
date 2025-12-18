@@ -14,19 +14,19 @@ interface DownloadOptionsModalProps {
 }
 
 const resolutionOptions = [
-  { value: 'low' as Resolution, label: 'Low (512px)', premium: false },
-  { value: 'medium' as Resolution, label: 'Medium (1024px)', premium: true },
-  { value: 'high' as Resolution, label: 'High (2048px)', premium: true },
-  { value: 'original' as Resolution, label: 'Original', premium: true },
+  { value: 'low' as Resolution, label: 'Low (512px)' },
+  { value: 'medium' as Resolution, label: 'Medium (1024px)' },
+  { value: 'high' as Resolution, label: 'High (2048px)' },
+  { value: 'original' as Resolution, label: 'Original' },
 ]
 
 const formatOptions = [
-  { value: 'png' as Format, label: 'PNG (Transparent)', premium: false },
-  { value: 'jpg' as Format, label: 'JPG (Smaller)', premium: true },
+  { value: 'png' as Format, label: 'PNG (Transparent)' },
+  { value: 'jpg' as Format, label: 'JPG (Smaller)' },
 ]
 
-export function DownloadOptionsModal({ imageId, originalFilename, userRole, onClose }: DownloadOptionsModalProps) {
-  const [selectedResolution, setSelectedResolution] = useState<Resolution>('low')
+export function DownloadOptionsModal({ imageId, originalFilename, onClose }: Omit<DownloadOptionsModalProps, 'userRole'> & { userRole?: string }) {
+  const [selectedResolution, setSelectedResolution] = useState<Resolution>('original')
   const [selectedFormat, setSelectedFormat] = useState<Format>('png')
   const [downloading, setDownloading] = useState(false)
 
@@ -35,18 +35,9 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
     onEscape: onClose,
   })
 
-  const isFreeUser = userRole === 'user'
-  const isPremiumOrAdmin = userRole === 'premium' || userRole === 'admin'
-
   const handleDownload = async () => {
     try {
       setDownloading(true)
-
-      // Check if free user is trying to access premium features
-      if (isFreeUser && (selectedResolution !== 'low' || selectedFormat !== 'png')) {
-        alert('This option is only available for Premium users. Please upgrade your account.')
-        return
-      }
 
       // Build download URL with options
       const params = new URLSearchParams({
@@ -132,19 +123,6 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
 
         {/* Content */}
         <div className="p-4">
-          {/* Free User Notice */}
-          {isFreeUser && (
-            <div
-              id="download-modal-description"
-              className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mb-4"
-              role="alert"
-            >
-              <p className="text-xs text-blue-800 dark:text-blue-300">
-                <strong>Free Account:</strong> Low resolution PNG only. <a href="/pricing" className="underline">Upgrade to Premium</a> for more options.
-              </p>
-            </div>
-          )}
-
           {/* Selects in horizontal layout */}
           <div className="grid grid-cols-2 gap-3 mb-4">
             {/* Resolution Select */}
@@ -155,20 +133,12 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
               <select
                 id="resolution-select"
                 value={selectedResolution}
-                onChange={(e) => {
-                  const newValue = e.target.value as Resolution
-                  const option = resolutionOptions.find(o => o.value === newValue)
-                  if (isFreeUser && option?.premium) {
-                    alert('This option is only available for Premium users. Please upgrade your account.')
-                    return
-                  }
-                  setSelectedResolution(newValue)
-                }}
+                onChange={(e) => setSelectedResolution(e.target.value as Resolution)}
                 className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
               >
                 {resolutionOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.label} {isFreeUser && option.premium ? '(Premium)' : ''}
+                    {option.label}
                   </option>
                 ))}
               </select>
@@ -182,20 +152,12 @@ export function DownloadOptionsModal({ imageId, originalFilename, userRole, onCl
               <select
                 id="format-select"
                 value={selectedFormat}
-                onChange={(e) => {
-                  const newValue = e.target.value as Format
-                  const option = formatOptions.find(o => o.value === newValue)
-                  if (isFreeUser && option?.premium) {
-                    alert('This option is only available for Premium users. Please upgrade your account.')
-                    return
-                  }
-                  setSelectedFormat(newValue)
-                }}
+                onChange={(e) => setSelectedFormat(e.target.value as Format)}
                 className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
               >
                 {formatOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.label} {isFreeUser && option.premium ? '(Premium)' : ''}
+                    {option.label}
                   </option>
                 ))}
               </select>
