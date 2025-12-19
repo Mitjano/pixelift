@@ -104,20 +104,37 @@ export async function POST(request: NextRequest) {
     console.log('[Logo Maker] Generating logo with prompt:', prompt)
 
     // 6. CALL REPLICATE - Ideogram V2 Turbo model
-    const output = await replicate.run(
-      "ideogram-ai/ideogram-v2-turbo",
-      {
-        input: {
-          prompt: prompt,
-          negative_prompt: negativePrompt,
-          aspect_ratio: "1:1",
-          magic_prompt_option: "Auto",
-          seed: Math.floor(Math.random() * 1000000),
-          output_format: "png",
-        }
+    // Use predictions API for more reliable output handling
+    const prediction = await replicate.predictions.create({
+      model: "ideogram-ai/ideogram-v2-turbo",
+      input: {
+        prompt: prompt,
+        negative_prompt: negativePrompt,
+        aspect_ratio: "1:1",
+        magic_prompt_option: "Auto",
+        seed: Math.floor(Math.random() * 1000000),
+        output_format: "png",
       }
-    )
+    })
 
+    console.log('[Logo Maker] Prediction created:', prediction.id)
+
+    // Wait for the prediction to complete
+    let completedPrediction = await replicate.predictions.get(prediction.id)
+
+    // Poll until completed
+    while (completedPrediction.status !== 'succeeded' && completedPrediction.status !== 'failed') {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      completedPrediction = await replicate.predictions.get(prediction.id)
+      console.log('[Logo Maker] Prediction status:', completedPrediction.status)
+    }
+
+    if (completedPrediction.status === 'failed') {
+      console.error('[Logo Maker] Prediction failed:', completedPrediction.error)
+      throw new Error(completedPrediction.error || 'Prediction failed')
+    }
+
+    const output = completedPrediction.output
     console.log('[Logo Maker] Raw output:', JSON.stringify(output))
 
     // Handle different output formats from Replicate

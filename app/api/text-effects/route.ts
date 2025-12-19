@@ -130,27 +130,58 @@ export async function POST(request: NextRequest) {
 
     console.log('[Text Effects] Generating text effect with prompt:', prompt)
 
-    // 6. CALL REPLICATE - Ideogram V3 model (better for text)
-    const output = await replicate.run(
-      "ideogram-ai/ideogram-v2-turbo",
-      {
-        input: {
-          prompt: prompt,
-          negative_prompt: negativePrompt,
-          aspect_ratio: "16:9",
-          magic_prompt_option: "Auto",
-          seed: Math.floor(Math.random() * 1000000),
-          output_format: "png",
-        }
+    // 6. CALL REPLICATE - Ideogram V2 Turbo model (better for text)
+    // Use predictions API for more reliable output handling
+    const prediction = await replicate.predictions.create({
+      model: "ideogram-ai/ideogram-v2-turbo",
+      input: {
+        prompt: prompt,
+        negative_prompt: negativePrompt,
+        aspect_ratio: "16:9",
+        magic_prompt_option: "Auto",
+        seed: Math.floor(Math.random() * 1000000),
+        output_format: "png",
       }
-    ) as unknown as string[]
+    })
 
-    // Ideogram returns an array of URLs
-    if (!output || !Array.isArray(output) || output.length === 0) {
-      throw new Error('No output received from Ideogram API')
+    console.log('[Text Effects] Prediction created:', prediction.id)
+
+    // Wait for the prediction to complete
+    let completedPrediction = await replicate.predictions.get(prediction.id)
+
+    // Poll until completed
+    while (completedPrediction.status !== 'succeeded' && completedPrediction.status !== 'failed') {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      completedPrediction = await replicate.predictions.get(prediction.id)
+      console.log('[Text Effects] Prediction status:', completedPrediction.status)
     }
 
-    const textEffectUrl = output[0]
+    if (completedPrediction.status === 'failed') {
+      console.error('[Text Effects] Prediction failed:', completedPrediction.error)
+      throw new Error(completedPrediction.error || 'Prediction failed')
+    }
+
+    const output = completedPrediction.output
+    console.log('[Text Effects] Raw output:', JSON.stringify(output))
+
+    // Handle different output formats from Replicate
+    let textEffectUrl: string | null = null
+
+    if (typeof output === 'string') {
+      textEffectUrl = output
+    } else if (Array.isArray(output) && output.length > 0) {
+      textEffectUrl = output[0]
+    } else if (output && typeof output === 'object') {
+      const outputObj = output as Record<string, unknown>
+      if (outputObj.url && typeof outputObj.url === 'string') {
+        textEffectUrl = outputObj.url
+      }
+    }
+
+    if (!textEffectUrl) {
+      console.error('[Text Effects] Could not extract URL from output:', output)
+      throw new Error('No output received from Ideogram API')
+    }
 
     // 7. DOWNLOAD RESULT AND CONVERT TO BASE64
     const resultResponse = await fetch(textEffectUrl)
