@@ -158,7 +158,10 @@ export async function POST(request: NextRequest) {
 
     if (completedPrediction.status === 'failed') {
       console.error('[Text Effects] Prediction failed:', completedPrediction.error)
-      throw new Error(completedPrediction.error || 'Prediction failed')
+      const errorMsg = typeof completedPrediction.error === 'string'
+        ? completedPrediction.error
+        : JSON.stringify(completedPrediction.error) || 'Prediction failed'
+      throw new Error(errorMsg)
     }
 
     const output = completedPrediction.output
