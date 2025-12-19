@@ -35,11 +35,11 @@
 |-----------|-----------|-----------------|-------|
 | Crop Image | 🔴 Wysoki | Sharp (lokalnie) | FREE |
 | Resize Image | 🔴 Wysoki | Sharp (lokalnie) | FREE |
-| Logo Maker | 🔴 Wysoki | Ideogram 3.0 (Replicate) | ~$0.02/obraz |
-| QR Code Generator | 🔴 Wysoki | Illusion (Replicate) | ~$0.02/obraz |
-| Convert to SVG | 🟠 Średni | Vectorizer.AI API | ~$0.01/obraz |
+| Logo Maker | 🔴 Wysoki | Ideogram 3.0 (Replicate) | ~$0.05/obraz |
+| QR Code Generator | 🔴 Wysoki | qrcode lib + Sharp (lokalnie) | FREE |
+| Convert to SVG | 🟠 Średni | Vectorizer.AI API | ~$0.20/obraz |
 | Collage Maker | 🟠 Średni | Sharp + własna logika | FREE |
-| Text Effects | 🟠 Średni | Ideogram 3.0 / Recraft V3 | ~$0.02/obraz |
+| Text Effects | 🟠 Średni | Ideogram 3.0 (Replicate) | ~$0.05/obraz |
 | Filters & Effects | 🟡 Niski | Sharp + LUTs | FREE |
 | Templates Gallery | 🟡 Niski | Własna implementacja | FREE |
 
@@ -111,27 +111,36 @@
   - href: `/tools/logo-maker`
   - kategoria: `generate`
 
-### 1.4 QR Code Generator (Artystyczne kody QR)
-- **Rozwiązanie**: Illusion model via Replicate
-- **Model**: `catacolabs/illusion`
-- **Koszt API**: ~$0.02/generacja
-- **Koszt kredytów**: 2 kredyty
+### 1.4 QR Code Generator (Stylizowane kody QR)
+- **Rozwiązanie**: Biblioteka `qrcode` + Sharp (lokalne przetwarzanie)
+- **Biblioteka**: `qrcode` (npm) - generowanie QR + Sharp dla overlay
+- **Koszt API**: FREE (brak zewnętrznego API)
+- **Koszt kredytów**: FREE (0 kredytów) - podstawowa funkcja
+- **Uwaga**: Modele AI QR na Replicate są OFFLINE (18.12.2024). Planujemy dodać AI QR gdy modele wrócą online.
 - **Funkcje**:
-  - [ ] URL/Text input
-  - [ ] Prompt dla stylu wizualnego
-  - [ ] Wybór predefiniowanych stylów
-  - [ ] Walidacja skanowania
+  - [ ] URL/Text/vCard/WiFi input
+  - [ ] Wybór kolorów (foreground/background)
+  - [ ] Logo/obrazek w centrum QR
+  - [ ] Zaokrąglone rogi modułów
+  - [ ] Gradient tła
+  - [ ] Predefiniowane style (klasyczny, gradient, branded)
+  - [ ] Eksport PNG/SVG
+  - [ ] Walidacja skanowania przed pobraniem
 - **Pliki do utworzenia**:
   - `app/api/qr-generator/route.ts`
   - `components/QRGenerator.tsx`
   - `app/[locale]/tools/qr-generator/page.tsx`
+- **Zależności do dodania**:
+  - `npm install qrcode @types/qrcode`
 - **Konfiguracja credits-config.ts**:
   - ToolType: `qr_generator`
+  - cost: 0 (FREE)
   - API keys: `'qr-generator': 'qr_generator'`, `'qrGenerator': 'qr_generator'`
 - **Header.tsx**:
   - key: `qrGenerator`
   - href: `/tools/qr-generator`
-  - kategoria: `generate`
+  - kategoria: `utilities` (zamiast generate - bo nie używa AI)
+- **Przyszłe rozszerzenie (AI QR)**: Gdy modele wrócą online, dodać opcję AI Art QR za 3 kredyty
 
 ---
 
@@ -228,7 +237,52 @@
 
 ## 🟡 PRIORYTET 3: Ulepszenia Istniejących
 
-### 3.1 Połączenie Email Templates z systemem wysyłania
+### 3.1 Tool Status Dashboard (Admin Panel)
+- **Problem**: Zewnętrzne API (Replicate, fal.ai, OpenAI) mogą być okresowo niedostępne
+- **Rozwiązanie**: Nowa zakładka w panelu admina do monitorowania statusu narzędzi
+- **Istniejąca infrastruktura do wykorzystania**:
+  - `ApiPlatformBalances.tsx` - już śledzi salda API
+  - `/api/health/route.ts` - podstawowy health check
+  - `/admin/system/` - wzorzec monitoringu
+- **Funkcje**:
+  - [ ] Status każdego narzędzia: Online/Offline/Degraded (kolor: zielony/czerwony/żółty)
+  - [ ] Automatyczne health checks co 5-15 minut (cron job lub Vercel cron)
+  - [ ] Ręczny przycisk "Test Connection" dla każdego serwisu
+  - [ ] Latencja/czas odpowiedzi każdego API
+  - [ ] Historia statusów (wykres dostępności 24h/7d)
+  - [ ] Alerty email gdy serwis jest offline >5 minut
+  - [ ] Integracja z istniejącym `ApiPlatformBalance` (saldo + status)
+- **Serwisy do monitorowania**:
+  - Replicate (12+ modeli): ping `replicate.models.get()`
+  - Fal.ai (6+ endpointów): ping health endpoint
+  - OpenAI: ping `openai.models.list()`
+  - Vectorizer.AI (planowany): ping API status
+  - Stripe: ping `stripe.balance.retrieve()`
+  - Resend: ping account info
+- **Pliki do utworzenia**:
+  - `app/[locale]/admin/tool-status/page.tsx`
+  - `app/[locale]/admin/tool-status/ToolStatusClient.tsx`
+  - `app/api/admin/tool-status/route.ts`
+  - `app/api/cron/health-check/route.ts` (Vercel cron)
+- **Model bazy danych** (rozszerzenie istniejącego):
+  ```prisma
+  model ServiceStatus {
+    id            String   @id @default(cuid())
+    serviceName   String   @unique // replicate, fal, openai, etc.
+    status        String   // online, offline, degraded
+    latency       Int?     // ms
+    lastCheck     DateTime
+    lastOnline    DateTime?
+    lastError     String?
+    checkCount24h Int      @default(0)
+    errorCount24h Int      @default(0)
+  }
+  ```
+- **Konfiguracja credits-config.ts**: Nie wymaga zmian
+- **Header.tsx**: Nie wymaga zmian (tylko admin panel)
+- **Sidebar admina**: Dodać link "Tool Status" z ikoną 🔧 lub ⚡
+
+### 3.2 Połączenie Email Templates z systemem wysyłania
 - **Problem**: Admin panel Email Templates nie jest połączony z `lib/email.ts`
 - **Rozwiązanie**:
   - [ ] Przenieść szablony z hardcoded do bazy danych
@@ -279,7 +333,6 @@ TOOLS (dropdown)
 │   ├── Image Expand ✅
 │   ├── Inpainting ✅
 │   ├── Logo Maker 🆕
-│   ├── QR Code Generator 🆕
 │   └── Text Effects 🆕
 ├── Transform
 │   ├── Style Transfer ✅
@@ -293,7 +346,8 @@ TOOLS (dropdown)
 │   └── Collage Maker 🆕
 └── Utilities
     ├── Image Compressor ✅
-    └── Format Converter ✅
+    ├── Format Converter ✅
+    └── QR Code Generator 🆕 (FREE)
 
 AI IMAGE ✅
 AI VIDEO ✅
@@ -316,7 +370,7 @@ AI VIDEO ✅
 | Image Processing | **Sharp** | Lokalne, bezpłatne, bardzo szybkie |
 | Logo/Text AI | **Ideogram 3.0** | Najlepsza jakość tekstu w obrazach |
 | Vectorization | **Vectorizer.AI** | Najlepsza jakość SVG |
-| QR Codes | **Illusion (Replicate)** | Artystyczne QR z AI |
+| QR Codes | **qrcode (npm)** | Lokalne, FREE, z opcją logo/stylowania |
 
 ### Dlaczego Replicate?
 1. ✅ 1000+ modeli do wyboru
@@ -347,10 +401,11 @@ AI VIDEO ✅
 8. [ ] Filters & Effects
 
 ### Faza 3
-9. [ ] Email Templates integration
-10. [ ] Text to Image improvements
-11. [ ] Video Tools (merge, trim, speed)
-12. [ ] Templates Gallery
+9. [ ] Tool Status Dashboard (admin monitoring)
+10. [ ] Email Templates integration
+11. [ ] Text to Image improvements
+12. [ ] Video Tools (merge, trim, speed)
+13. [ ] Templates Gallery
 
 ---
 
@@ -487,8 +542,8 @@ new_tool: {
 | Klucz | EN | PL | ES | FR |
 |-------|----|----|----|----|
 | `tools.qrGenerator.name` | QR Code Generator | Generator Kodów QR | Generador de Códigos QR | Générateur de QR Code |
-| `tools.qrGenerator.description` | Create artistic QR codes | Twórz artystyczne kody QR | Crea códigos QR artísticos | Créez des QR codes artistiques |
-| `tools.qrGenerator.badge` | AI | AI | IA | IA |
+| `tools.qrGenerator.description` | Create stylized QR codes with logo | Twórz stylizowane kody QR z logo | Crea códigos QR estilizados con logo | Créez des QR codes stylisés avec logo |
+| `tools.qrGenerator.badge` | FREE | FREE | GRATIS | GRATUIT |
 
 ### Convert to SVG
 
@@ -588,7 +643,7 @@ new_tool: {
 - **Replicate:** https://replicate.com/docs
 - **Ideogram:** https://replicate.com/ideogram-ai/ideogram-v2-turbo
 - **Vectorizer.AI:** https://vectorizer.ai/api
-- **Illusion QR:** https://replicate.com/catacolabs/illusion
+- **QRCode (npm):** https://www.npmjs.com/package/qrcode
 
 ---
 
