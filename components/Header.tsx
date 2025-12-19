@@ -387,11 +387,13 @@ export default function Header() {
               aria-label="Tools menu"
               onKeyDown={toolsNavigation.handleKeyDown}
               tabIndex={toolsDropdownOpen ? 0 : -1}
-              className={`fixed left-1/2 -translate-x-1/2 top-[70px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top z-[9999] max-h-[calc(100vh-100px)] overflow-y-auto max-w-[calc(100vw-32px)] ${
+              className={`fixed left-1/2 -translate-x-1/2 top-[70px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top z-[9999] max-h-[calc(100vh-100px)] overflow-y-auto ${
                 toolsDropdownOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'
               }`}
+              style={{ width: 'min(1100px, calc(100vw - 32px))' }}
             >
-              <div className="flex flex-wrap xl:flex-nowrap overflow-x-auto">
+              {/* 3x2 Grid Layout for Categories */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-0">
                 {categories.map((category, catIndex) => {
                   // Calculate tool index offset for keyboard navigation
                   const toolIndexOffset = categories
@@ -401,20 +403,32 @@ export default function Header() {
                   return (
                     <div
                       key={category.id}
-                      className={`py-4 px-3 min-w-[160px] flex-shrink-0 ${
-                        catIndex !== categories.length - 1 ? 'xl:border-r border-gray-100 dark:border-gray-800' : ''
+                      className={`p-4 ${
+                        // Add right border for all except last in row
+                        (catIndex + 1) % 3 !== 0 ? 'md:border-r border-gray-100 dark:border-gray-800' : ''
+                      } ${
+                        // Add bottom border for first row
+                        catIndex < 3 ? 'border-b border-gray-100 dark:border-gray-800' : ''
+                      } ${
+                        // Mobile: right border for odd columns
+                        catIndex % 2 === 0 ? 'border-r md:border-r-0 border-gray-100 dark:border-gray-800' : ''
+                      } ${
+                        // Re-add md border-r where needed
+                        (catIndex + 1) % 3 !== 0 ? 'md:border-r' : ''
                       }`}
                     >
                       {/* Category Header */}
-                      <div className="flex items-center gap-2 px-2 mb-3">
-                        <span className="text-gray-400 dark:text-gray-500">{category.icon}</span>
-                        <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                          {category.icon}
+                        </div>
+                        <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                           {category.label}
                         </span>
                       </div>
 
                       {/* Category Tools */}
-                      <div className="space-y-0.5">
+                      <div className="space-y-1">
                         {category.tools.map((tool, toolIndex) => {
                           const globalIndex = toolIndexOffset + toolIndex;
                           return (
@@ -424,22 +438,24 @@ export default function Header() {
                               role="menuitem"
                               data-tool-index={globalIndex}
                               onClick={() => setToolsDropdownOpen(false)}
-                              className={`flex items-center gap-2.5 px-2 py-2 rounded-lg transition-all duration-150 group ${
+                              className={`flex items-center gap-3 px-2 py-2 rounded-lg transition-all duration-150 group ${
                                 pathname?.includes(tool.href)
                                   ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
                                   : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
                               } ${toolsNavigation.activeIndex === globalIndex ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
                             >
-                              <div className={`p-1.5 rounded-md bg-gradient-to-br ${tool.color} text-white shrink-0 transition-transform group-hover:scale-110`}>
+                              <div className={`p-1.5 rounded-lg bg-gradient-to-br ${tool.color} text-white shrink-0 transition-transform group-hover:scale-110`}>
                                 <div className="w-4 h-4">{tool.icon}</div>
                               </div>
-                              <div className="flex items-center gap-1.5 min-w-0">
-                                <span className="text-sm font-medium truncate">{tool.name}</span>
-                                {tool.badge && (
-                                  <span className="px-1.5 py-0.5 text-[9px] bg-green-500 text-white rounded font-semibold shrink-0">
-                                    {tool.badge}
-                                  </span>
-                                )}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-medium">{tool.name}</span>
+                                  {tool.badge && (
+                                    <span className="px-1.5 py-0.5 text-[9px] bg-green-500 text-white rounded font-semibold">
+                                      {tool.badge}
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </Link>
                           );
@@ -451,7 +467,7 @@ export default function Header() {
               </div>
 
               {/* Footer - All Tools Link */}
-              <div className="bg-gray-50 dark:bg-gray-800/50 px-4 py-2.5 border-t border-gray-100 dark:border-gray-800">
+              <div className="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-t border-gray-100 dark:border-gray-800">
                 <Link
                   href="/tools"
                   onClick={() => setToolsDropdownOpen(false)}
