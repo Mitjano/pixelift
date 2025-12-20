@@ -16,6 +16,27 @@ interface ServiceStatus {
   uptime24h: number;
 }
 
+interface ApiBalance {
+  id: string;
+  platform: string;
+  displayName: string;
+  currentBalance: number;
+  alertThreshold: number;
+  criticalThreshold: number;
+  isActive: boolean;
+  lastChecked: string;
+  daysUntilDepleted: number | null;
+  notes: string | null;
+}
+
+interface BalanceSummary {
+  totalPlatforms: number;
+  activePlatforms: number;
+  totalBalance: number;
+  platformsNeedingAttention: number;
+  criticalAlerts: number;
+}
+
 interface ServiceConfig {
   serviceName: string;
   displayName: string;
@@ -41,10 +62,26 @@ const STATUS_COLORS = {
 
 export default function ToolStatusClient() {
   const [services, setServices] = useState<ServiceStatus[]>([]);
+  const [balances, setBalances] = useState<ApiBalance[]>([]);
+  const [balanceSummary, setBalanceSummary] = useState<BalanceSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [testing, setTesting] = useState<string | null>(null);
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
   const [autoRefresh, setAutoRefresh] = useState(true);
+  const [activeTab, setActiveTab] = useState<"status" | "balances">("status");
+
+  const fetchBalances = async () => {
+    try {
+      const response = await fetch("/api/admin/api-balances");
+      if (response.ok) {
+        const data = await response.json();
+        setBalances(data.balances || []);
+        setBalanceSummary(data.summary || null);
+      }
+    } catch (err) {
+      console.error("Failed to fetch balances:", err);
+    }
+  };
 
   const fetchStatus = async () => {
     try {
@@ -99,11 +136,15 @@ export default function ToolStatusClient() {
 
   useEffect(() => {
     fetchStatus();
+    fetchBalances();
   }, []);
 
   useEffect(() => {
     if (!autoRefresh) return;
-    const interval = setInterval(fetchStatus, 60000); // Refresh every minute
+    const interval = setInterval(() => {
+      fetchStatus();
+      fetchBalances();
+    }, 60000); // Refresh every minute
     return () => clearInterval(interval);
   }, [autoRefresh]);
 
@@ -185,34 +226,65 @@ export default function ToolStatusClient() {
         </div>
       </div>
 
-      {/* Stats Overview */}
-      <div className="grid grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
-          <div className="text-sm text-blue-400 font-semibold mb-2">Total Services</div>
-          <div className="text-4xl font-bold text-white">{stats.total}</div>
-          <div className="text-xs text-gray-400 mt-2">Monitored APIs</div>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
-          <div className="text-sm text-green-400 font-semibold mb-2">Online</div>
-          <div className="text-4xl font-bold text-white">{stats.online}</div>
-          <div className="text-xs text-gray-400 mt-2">Operational</div>
-        </div>
-
-        <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-xl p-6">
-          <div className="text-sm text-red-400 font-semibold mb-2">Offline</div>
-          <div className="text-4xl font-bold text-white">{stats.offline}</div>
-          <div className="text-xs text-gray-400 mt-2">{stats.degraded} degraded</div>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
-          <div className="text-sm text-purple-400 font-semibold mb-2">Avg Uptime (24h)</div>
-          <div className="text-4xl font-bold text-white">{stats.avgUptime.toFixed(1)}%</div>
-          <div className="text-xs text-gray-400 mt-2">Last 24 hours</div>
-        </div>
+      {/* Tabs */}
+      <div className="flex border-b border-gray-700">
+        <button
+          onClick={() => setActiveTab("status")}
+          className={`px-6 py-3 font-medium transition ${
+            activeTab === "status"
+              ? "text-white border-b-2 border-blue-500"
+              : "text-gray-400 hover:text-white"
+          }`}
+        >
+          🔧 Service Status
+        </button>
+        <button
+          onClick={() => setActiveTab("balances")}
+          className={`px-6 py-3 font-medium transition flex items-center gap-2 ${
+            activeTab === "balances"
+              ? "text-white border-b-2 border-green-500"
+              : "text-gray-400 hover:text-white"
+          }`}
+        >
+          💰 API Balances
+          {balanceSummary && balanceSummary.criticalAlerts > 0 && (
+            <span className="px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">
+              {balanceSummary.criticalAlerts}
+            </span>
+          )}
+        </button>
       </div>
 
-      {/* Services Grid */}
+      {activeTab === "status" && (
+        <>
+          {/* Stats Overview */}
+          <div className="grid grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+              <div className="text-sm text-blue-400 font-semibold mb-2">Total Services</div>
+              <div className="text-4xl font-bold text-white">{stats.total}</div>
+              <div className="text-xs text-gray-400 mt-2">Monitored APIs</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+              <div className="text-sm text-green-400 font-semibold mb-2">Online</div>
+              <div className="text-4xl font-bold text-white">{stats.online}</div>
+              <div className="text-xs text-gray-400 mt-2">Operational</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-xl p-6">
+              <div className="text-sm text-red-400 font-semibold mb-2">Offline</div>
+              <div className="text-4xl font-bold text-white">{stats.offline}</div>
+              <div className="text-xs text-gray-400 mt-2">{stats.degraded} degraded</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-6">
+              <div className="text-sm text-purple-400 font-semibold mb-2">Avg Uptime (24h)</div>
+              <div className="text-4xl font-bold text-white">{stats.avgUptime.toFixed(1)}%</div>
+              <div className="text-xs text-gray-400 mt-2">Last 24 hours</div>
+            </div>
+          </div>
+
+          {/* Services Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {SERVICES.map((config) => {
           const status = getServiceStatus(config.serviceName);
@@ -352,6 +424,179 @@ export default function ToolStatusClient() {
           </div>
         </div>
       </div>
+        </>
+      )}
+
+      {activeTab === "balances" && (
+        <>
+          {/* Balance Stats */}
+          <div className="grid grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-6">
+              <div className="text-sm text-green-400 font-semibold mb-2">Total Balance</div>
+              <div className="text-4xl font-bold text-white">
+                ${balanceSummary?.totalBalance.toFixed(2) || "0.00"}
+              </div>
+              <div className="text-xs text-gray-400 mt-2">Across all platforms</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-6">
+              <div className="text-sm text-blue-400 font-semibold mb-2">Active Platforms</div>
+              <div className="text-4xl font-bold text-white">{balanceSummary?.activePlatforms || 0}</div>
+              <div className="text-xs text-gray-400 mt-2">of {balanceSummary?.totalPlatforms || 0} total</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-6">
+              <div className="text-sm text-yellow-400 font-semibold mb-2">Need Attention</div>
+              <div className="text-4xl font-bold text-white">{balanceSummary?.platformsNeedingAttention || 0}</div>
+              <div className="text-xs text-gray-400 mt-2">Below threshold</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-xl p-6">
+              <div className="text-sm text-red-400 font-semibold mb-2">Critical</div>
+              <div className="text-4xl font-bold text-white">{balanceSummary?.criticalAlerts || 0}</div>
+              <div className="text-xs text-gray-400 mt-2">Immediate action needed</div>
+            </div>
+          </div>
+
+          {/* Balances Grid */}
+          {balances.length === 0 ? (
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-12 text-center">
+              <div className="text-6xl mb-4">💰</div>
+              <p className="text-gray-400 text-lg mb-4">No API balances configured yet</p>
+              <p className="text-gray-500 text-sm">
+                Go to Admin → System to add your API platform balances for monitoring.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {balances.map((balance) => {
+                const percentage = balance.alertThreshold > 0
+                  ? (balance.currentBalance / balance.alertThreshold) * 100
+                  : 100;
+                const isCritical = balance.currentBalance < balance.criticalThreshold;
+                const isWarning = balance.currentBalance < balance.alertThreshold;
+
+                return (
+                  <div
+                    key={balance.id}
+                    className={`rounded-xl p-6 transition-all ${
+                      isCritical
+                        ? "bg-red-500/20 border border-red-500/50"
+                        : isWarning
+                        ? "bg-yellow-500/20 border border-yellow-500/50"
+                        : "bg-gray-800/50 border border-gray-700"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-white">{balance.displayName}</h3>
+                        <p className="text-sm text-gray-400">{balance.platform}</p>
+                      </div>
+                      {isCritical && (
+                        <span className="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded">
+                          CRITICAL
+                        </span>
+                      )}
+                      {!isCritical && isWarning && (
+                        <span className="px-2 py-1 bg-yellow-500 text-black text-xs font-bold rounded">
+                          LOW
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="mb-4">
+                      <div className="text-3xl font-bold text-white mb-1">
+                        ${balance.currentBalance.toFixed(2)}
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        Alert at ${balance.alertThreshold.toFixed(2)} • Critical at ${balance.criticalThreshold.toFixed(2)}
+                      </div>
+                    </div>
+
+                    {/* Progress bar */}
+                    <div className="mb-4">
+                      <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all ${
+                            isCritical
+                              ? "bg-red-500"
+                              : isWarning
+                              ? "bg-yellow-500"
+                              : "bg-green-500"
+                          }`}
+                          style={{ width: `${Math.min(percentage, 100)}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-400">
+                        {balance.daysUntilDepleted !== null
+                          ? `~${balance.daysUntilDepleted} days remaining`
+                          : "Usage not tracked"}
+                      </span>
+                      <span className="text-gray-500">
+                        {new Date(balance.lastChecked).toLocaleDateString()}
+                      </span>
+                    </div>
+
+                    {balance.notes && (
+                      <div className="mt-3 p-2 bg-gray-900/50 rounded text-xs text-gray-400">
+                        {balance.notes}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Quick Links */}
+          <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+            <h3 className="text-lg font-bold mb-4">Quick Actions</h3>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://replicate.com/account/billing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition"
+              >
+                🔄 Replicate Billing →
+              </a>
+              <a
+                href="https://fal.ai/dashboard/billing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition"
+              >
+                ⚡ Fal.ai Billing →
+              </a>
+              <a
+                href="https://platform.openai.com/account/billing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition"
+              >
+                🤖 OpenAI Billing →
+              </a>
+              <a
+                href="https://console.anthropic.com/settings/billing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition"
+              >
+                🧠 Anthropic Billing →
+              </a>
+              <a
+                href="/admin/system"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm transition"
+              >
+                ⚙️ Manage Balances
+              </a>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
