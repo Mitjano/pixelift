@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -298,12 +299,7 @@ export default function FormatConverterPage() {
 
         {/* Related Tools */}
         <section className="px-6 mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center">{t('relatedTools.title')}</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link href="/tools/image-compressor" className="block bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-emerald-500 transition"><h3 className="font-semibold mb-2">{t('relatedTools.compressor.title')}</h3><p className="text-sm text-gray-600 dark:text-gray-400">{t('relatedTools.compressor.description')}</p></Link>
-            <Link href="/tools/upscaler" className="block bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-emerald-500 transition"><h3 className="font-semibold mb-2">{t('relatedTools.upscaler.title')}</h3><p className="text-sm text-gray-600 dark:text-gray-400">{t('relatedTools.upscaler.description')}</p></Link>
-            <Link href="/tools/remove-background" className="block bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-emerald-500 transition"><h3 className="font-semibold mb-2">{t('relatedTools.removeBackground.title')}</h3><p className="text-sm text-gray-600 dark:text-gray-400">{t('relatedTools.removeBackground.description')}</p></Link>
-          </div>
+          <RelatedTools currentSlug="format-converter" />
         </section>
 
         {/* CTA Section */}

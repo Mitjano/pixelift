@@ -27,11 +27,11 @@ export default function HreflangTags() {
           href={getUrlForLocale(locale)}
         />
       ))}
-      {/* x-default points to the default locale (pl) */}
+      {/* x-default points to English as the international default */}
       <link
         rel="alternate"
         hrefLang="x-default"
-        href={`${baseUrl}/pl${pathWithoutLocale}`}
+        href={`${baseUrl}/en${pathWithoutLocale}`}
       />
     </>
   );

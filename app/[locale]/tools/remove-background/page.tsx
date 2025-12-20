@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 
 // Lazy load heavy components
 const BackgroundRemover = dynamic(
@@ -318,6 +319,9 @@ export default function RemoveBackgroundPage() {
           </div>
         </div>
       </section>
+
+      {/* Related Tools */}
+      <RelatedTools currentSlug="remove-background" />
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">

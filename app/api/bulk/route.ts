@@ -15,6 +15,7 @@ import {
   type BulkJobStatus,
 } from '@/lib/bulk-processor';
 import { getUserByEmail, updateUser } from '@/lib/db';
+import { apiLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 // Maximum images per bulk job
 const MAX_IMAGES_PER_JOB = 100;
@@ -26,6 +27,13 @@ const ALLOWED_TYPES: ProcessingType[] = ['upscale', 'enhance', 'restore', 'backg
  */
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const clientId = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(clientId);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {
@@ -153,6 +161,13 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
+    // Rate limiting
+    const clientId = getClientIdentifier(request);
+    const { allowed, resetAt } = apiLimiter.check(clientId);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

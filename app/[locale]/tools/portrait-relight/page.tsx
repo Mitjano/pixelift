@@ -2,11 +2,13 @@
 
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
-import ToolsLayout from '@/components/ToolsLayout';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
+import { BreadcrumbSchema, getToolBreadcrumbs } from '@/components/BreadcrumbSchema';
 
-// Lazy load heavy component
 const PortraitRelight = dynamic(
   () => import('@/components/PortraitRelight').then(mod => ({ default: mod.PortraitRelight })),
   {
@@ -22,200 +24,308 @@ const PortraitRelight = dynamic(
 export default function PortraitRelightPage() {
   const { data: session } = useSession();
   const t = useTranslations('portraitRelightPage');
+  const tTools = useTranslations('tools.portraitRelight');
+  const locale = useLocale();
 
   return (
     <ToolsLayout>
-      <div className="max-w-6xl mx-auto">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden px-6 pt-8 pb-12">
-          {/* Background Effects */}
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-100/50 dark:from-amber-900/20 via-transparent to-transparent" />
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl" />
-          <div className="absolute top-20 right-1/4 w-64 h-64 bg-orange-600/10 rounded-full blur-3xl" />
+      <BreadcrumbSchema items={getToolBreadcrumbs(tTools('name'), 'portrait-relight', locale)} />
 
-          <div className="relative text-center">
-            {/* Badge */}
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-100/50 dark:from-amber-900/20 via-transparent to-transparent" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-300/30 dark:bg-amber-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-80 h-80 bg-yellow-300/20 dark:bg-yellow-600/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+
+        <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20">
+          <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 dark:bg-amber-600/20 border border-amber-300 dark:border-amber-500/30 rounded-full text-sm mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
               <span className="text-amber-600 dark:text-amber-300">{t('badge')}</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-                {t('title')}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-gray-900 dark:text-white">{t('title')} </span>
+              <span className="bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 dark:from-amber-400 dark:via-yellow-400 dark:to-orange-400 bg-clip-text text-transparent">
+                {t('titleHighlight')}
               </span>
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto mb-8">
+
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
               {t('subtitle')}
             </p>
 
-            {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-8 mb-8">
+            <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">{t('stats.presets')}</div>
-                <div className="text-sm text-gray-500">{t('stats.presetsLabel')}</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">{t('stats.aiPowered')}</div>
-                <div className="text-sm text-gray-500">{t('stats.aiPoweredLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.credits')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.creditsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">{t('stats.creditCost')}</div>
-                <div className="text-sm text-gray-500">{t('stats.creditCostLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.presets')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.presetsLabel')}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Tool Section */}
-        <section className="px-6 mb-12">
-          <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <PortraitRelight userRole='user' />
-            <p className="text-sm text-gray-500 mt-4 text-center">
-              {t('termsNotice')}
-            </p>
-          </div>
-        </section>
+      {/* Tool Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+          <PortraitRelight userRole='user' />
+          <p className="text-sm text-gray-500 mt-4 text-center">
+            {t('termsNotice')}
+          </p>
+        </div>
+      </section>
 
-        {/* How It Works */}
-        <section className="px-6 mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">{t('howItWorks.title')}</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 text-center">
-              <div className="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
-              <h3 className="text-lg font-semibold mb-2">{t('howItWorks.step1.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('howItWorks.step1.description')}</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 text-center">
-              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
-              <h3 className="text-lg font-semibold mb-2">{t('howItWorks.step2.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('howItWorks.step2.description')}</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 text-center">
-              <div className="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
-              <h3 className="text-lg font-semibold mb-2">{t('howItWorks.step3.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('howItWorks.step3.description')}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Lighting Presets */}
-        <section className="px-6 mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">{t('lightingPresets.title')}</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-amber-100 dark:from-amber-900/20 to-yellow-100 dark:to-yellow-900/20 rounded-xl border border-gray-200 dark:border-amber-700/30 p-6">
-              <div className="text-3xl mb-3">💡</div>
-              <h3 className="text-lg font-semibold mb-2">{t('lightingPresets.studio.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('lightingPresets.studio.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-orange-100 dark:from-orange-900/20 to-amber-100 dark:to-amber-900/20 rounded-xl border border-gray-200 dark:border-orange-700/30 p-6">
-              <div className="text-3xl mb-3">🌅</div>
-              <h3 className="text-lg font-semibold mb-2">{t('lightingPresets.golden.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('lightingPresets.golden.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-gray-100 dark:from-gray-800/50 to-slate-100 dark:to-slate-900/20 rounded-xl border border-gray-200 dark:border-gray-700/30 p-6">
-              <div className="text-3xl mb-3">🎭</div>
-              <h3 className="text-lg font-semibold mb-2">{t('lightingPresets.dramatic.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('lightingPresets.dramatic.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-pink-100 dark:from-pink-900/20 to-purple-100 dark:to-purple-900/20 rounded-xl border border-gray-200 dark:border-pink-700/30 p-6">
-              <div className="text-3xl mb-3">🌈</div>
-              <h3 className="text-lg font-semibold mb-2">{t('lightingPresets.neon.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('lightingPresets.neon.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-blue-100 dark:from-blue-900/20 to-cyan-100 dark:to-cyan-900/20 rounded-xl border border-gray-200 dark:border-blue-700/30 p-6">
-              <div className="text-3xl mb-3">🪟</div>
-              <h3 className="text-lg font-semibold mb-2">{t('lightingPresets.natural.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('lightingPresets.natural.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-yellow-100 dark:from-yellow-900/20 to-orange-100 dark:to-orange-900/20 rounded-xl border border-gray-200 dark:border-yellow-700/30 p-6">
-              <div className="text-3xl mb-3">🎨</div>
-              <h3 className="text-lg font-semibold mb-2">{t('lightingPresets.rembrandt.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('lightingPresets.rembrandt.description')}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Features */}
-        <section className="px-6 mb-16">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-amber-100 dark:from-amber-900/20 to-orange-100 dark:to-orange-900/20 rounded-xl border border-gray-200 dark:border-amber-700/30 p-6">
-              <div className="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-4"><span className="text-2xl">🎯</span></div>
-              <h3 className="text-lg font-semibold mb-2">{t('features.aiPowered.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('features.aiPowered.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-orange-100 dark:from-orange-900/20 to-amber-100 dark:to-amber-900/20 rounded-xl border border-gray-200 dark:border-orange-700/30 p-6">
-              <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4"><span className="text-2xl">✨</span></div>
-              <h3 className="text-lg font-semibold mb-2">{t('features.customPrompts.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('features.customPrompts.description')}</p>
-            </div>
-            <div className="bg-gradient-to-br from-yellow-100 dark:from-yellow-900/20 to-amber-100 dark:to-amber-900/20 rounded-xl border border-gray-200 dark:border-yellow-700/30 p-6">
-              <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4"><span className="text-2xl">⚡</span></div>
-              <h3 className="text-lg font-semibold mb-2">{t('features.fastProcessing.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('features.fastProcessing.description')}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Use Cases */}
-        <section className="px-6 mb-16">
-          <div className="bg-gray-50 dark:bg-gray-800/30 rounded-2xl border border-gray-200 dark:border-gray-700 p-8">
-            <h2 className="text-2xl font-bold mb-8 text-center">{t('useCases.title')}</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-amber-600 dark:text-amber-400">{t('useCases.photographers.title')}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{t('useCases.photographers.description')}</p>
+      {/* Options Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          {t('options.title')}
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { key: 'studio', gradient: 'from-amber-100 dark:from-amber-500/20 to-yellow-100 dark:to-yellow-500/20' },
+            { key: 'natural', gradient: 'from-yellow-100 dark:from-yellow-500/20 to-orange-100 dark:to-orange-500/20' },
+            { key: 'dramatic', gradient: 'from-orange-100 dark:from-orange-500/20 to-amber-100 dark:to-amber-500/20' },
+          ].map((option) => (
+            <div
+              key={option.key}
+              className={`bg-gradient-to-br ${option.gradient} backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center`}
+            >
+              <div className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+                {t(`options.${option.key}.name`)}
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-orange-600 dark:text-orange-400">{t('useCases.contentCreators.title')}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{t('useCases.contentCreators.description')}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {t(`options.${option.key}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          {t('features.title')}
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { icon: '💡', key: 'lightingPresets', gradient: 'from-amber-100 dark:from-amber-500/20 to-yellow-100 dark:to-yellow-500/20' },
+            { icon: '🎯', key: 'aiDetection', gradient: 'from-yellow-100 dark:from-yellow-500/20 to-orange-100 dark:to-orange-500/20' },
+            { icon: '✨', key: 'customPrompts', gradient: 'from-orange-100 dark:from-orange-500/20 to-amber-100 dark:to-amber-500/20' },
+          ].map((feature) => (
+            <div
+              key={feature.key}
+              className={`bg-gradient-to-br ${feature.gradient} backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:hover:border-gray-600 transition`}
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {t(`features.${feature.key}.title`)}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {t(`features.${feature.key}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="bg-gray-100/50 dark:bg-gray-900/50 border-y border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900 dark:text-white">{t('howItWorks.title')} </span>
+              <span className="bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-400 dark:to-yellow-400 bg-clip-text text-transparent">
+                {t('howItWorks.titleHighlight')}
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {['step1', 'step2', 'step3', 'step4'].map((step, idx) => (
+              <div key={step} className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                  {idx + 1}
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  {t(`howItWorks.${step}.title`)}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {t(`howItWorks.${step}.description`)}
+                </p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-yellow-600 dark:text-yellow-400">{t('useCases.ecommerce.title')}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{t('useCases.ecommerce.description')}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            {t('useCases.title')}
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {['photographers', 'headshots', 'social', 'ecommerce'].map((useCase) => (
+            <div
+              key={useCase}
+              className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-amber-500/50 transition"
+            >
+              <div className="text-3xl mb-3">{t(`useCases.${useCase}.icon`)}</div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+                {t(`useCases.${useCase}.title`)}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {t(`useCases.${useCase}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Technology Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-2xl border border-amber-300 dark:border-amber-700/50 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+            {t('technology.title')}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            {t('technology.description')}
+          </p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {['feature1', 'feature2', 'feature3', 'feature4'].map((feature) => (
+              <div key={feature} className="flex items-start gap-3">
+                <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
+                <span className="text-gray-700 dark:text-gray-300">{t(`technology.${feature}`)}</span>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-red-600 dark:text-red-400">{t('useCases.socialMedia.title')}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{t('useCases.socialMedia.description')}</p>
-              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Limitations Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-gray-50 dark:bg-gray-800/30 rounded-2xl border border-gray-200 dark:border-gray-700 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+            {t('limitations.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-green-600 dark:text-green-400">
+                {t('limitations.worksWell.title')}
+              </h3>
+              <ul className="space-y-2">
+                {['item1', 'item2', 'item3'].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                    <span className="text-green-500 mt-0.5">•</span>
+                    {t(`limitations.worksWell.${item}`)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-orange-600 dark:text-orange-400">
+                {t('limitations.limitations.title')}
+              </h3>
+              <ul className="space-y-2">
+                {['item1', 'item2', 'item3'].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                    <span className="text-orange-500 mt-0.5">•</span>
+                    {t(`limitations.limitations.${item}`)}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Related Tools */}
-        <section className="px-6 mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center">{t('relatedTools.title')}</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link href="/tools/packshot-generator" className="block bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-amber-500 transition">
-              <h3 className="font-semibold mb-2">{t('relatedTools.packshot.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('relatedTools.packshot.description')}</p>
+      {/* Tips Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-gray-100 dark:bg-gray-800/20 rounded-xl border border-gray-200 dark:border-gray-700 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">{t('tips.title')}</h2>
+          <div className="grid md:grid-cols-2 gap-6 text-gray-600 dark:text-gray-400">
+            <div>
+              <ul className="space-y-2 text-sm">
+                <li>• {t('tips.tip1')}</li>
+                <li>• {t('tips.tip2')}</li>
+                <li>• {t('tips.tip3')}</li>
+              </ul>
+            </div>
+            <div>
+              <ul className="space-y-2 text-sm">
+                <li>• {t('tips.tip4')}</li>
+                <li>• {t('tips.tip5')}</li>
+                <li>• {t('tips.tip6')}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+          {t('faq.title')}
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-6">
+          {['q1', 'q2', 'q3', 'q4', 'q5'].map((q) => (
+            <div key={q} className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                {t(`faq.${q}.question`)}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {t(`faq.${q}.answer`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Related Tools */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <RelatedTools currentSlug="portrait-relight" />
+      </section>
+
+      {/* CTA Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-900/50 dark:to-yellow-900/50 border border-amber-300 dark:border-amber-500/30 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            {t('cta.title')}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+            {t('cta.subtitle')}
+          </p>
+          {!session ? (
+            <Link
+              href="/auth/signin"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white rounded-xl font-semibold text-lg transition shadow-lg shadow-amber-500/25"
+            >
+              {t('cta.getStarted')}
             </Link>
-            <Link href="/tools/remove-background" className="block bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-amber-500 transition">
-              <h3 className="font-semibold mb-2">{t('relatedTools.removeBackground.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('relatedTools.removeBackground.description')}</p>
-            </Link>
-            <Link href="/tools/restore" className="block bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-amber-500 transition">
-              <h3 className="font-semibold mb-2">{t('relatedTools.restore.title')}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t('relatedTools.restore.description')}</p>
-            </Link>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="px-6 pb-12">
-          <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 rounded-2xl border border-amber-300 dark:border-amber-700/30 p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">{t('cta.title')}</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">{t('cta.subtitle')}</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/tools" className="px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white rounded-lg font-semibold transition">{t('cta.exploreTools')}</Link>
-              <Link href="/pricing" className="px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-semibold transition">{t('cta.viewPricing')}</Link>
-            </div>
-          </div>
-        </section>
-      </div>
+          ) : (
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="px-8 py-4 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white rounded-xl font-semibold text-lg transition shadow-lg shadow-amber-500/25"
+            >
+              {t('cta.startAction')}
+            </button>
+          )}
+        </div>
+      </section>
     </ToolsLayout>
   );
 }

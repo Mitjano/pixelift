@@ -1,9 +1,11 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import ToolsLayout from '@/components/ToolsLayout';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 
 const TextEffects = dynamic(
   () => import('@/components/TextEffects'),
@@ -18,108 +20,306 @@ const TextEffects = dynamic(
 );
 
 export default function TextEffectsPage() {
-  const t = useTranslations('tools.textEffects');
+  const { data: session } = useSession();
+  const t = useTranslations('textEffectsPage');
 
   return (
     <ToolsLayout>
-      <div className="max-w-6xl mx-auto">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden px-6 pt-8 pb-12">
-          <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-100/50 dark:from-fuchsia-900/20 via-transparent to-transparent" />
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full blur-3xl" />
-          <div className="absolute top-20 right-1/4 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl" />
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-100/50 dark:from-fuchsia-900/20 via-transparent to-transparent" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-fuchsia-300/30 dark:bg-fuchsia-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-80 h-80 bg-purple-300/20 dark:bg-purple-600/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-fuchsia-500/50 to-transparent" />
 
-          <div className="relative text-center">
+        <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20">
+          <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-fuchsia-100 dark:bg-fuchsia-600/20 border border-fuchsia-300 dark:border-fuchsia-500/30 rounded-full text-sm mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-fuchsia-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-fuchsia-600 dark:text-fuchsia-300">AI-Powered</span>
+              <span className="text-fuchsia-600 dark:text-fuchsia-300">{t('badge')}</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
-                {t('name')}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-gray-900 dark:text-white">{t('title')} </span>
+              <span className="bg-gradient-to-r from-fuchsia-500 via-purple-500 to-pink-500 dark:from-fuchsia-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                {t('titleHighlight')}
               </span>
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto mb-8">
-              {t('description')}
+
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
+              {t('subtitle')}
             </p>
 
-            <div className="flex flex-wrap justify-center gap-8 mb-8">
+            <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">5 Credits</div>
-                <div className="text-sm text-gray-500">Per generation</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.credits')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.creditsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">10 Styles</div>
-                <div className="text-sm text-gray-500">Text effects</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.styles')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.stylesLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">AI</div>
-                <div className="text-sm text-gray-500">Ideogram V2</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.generation')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.generationLabel')}</div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Tool Section */}
-        <section className="px-6 mb-12">
-          <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <TextEffects />
-          </div>
-        </section>
+      {/* Tool Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+          <TextEffects />
+          <p className="text-sm text-gray-500 mt-4 text-center">
+            {t('termsNotice')}
+          </p>
+        </div>
+      </section>
 
-        {/* Features */}
-        <section className="px-6 mb-16">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-fuchsia-100 dark:from-fuchsia-900/20 to-purple-100 dark:to-purple-900/20 rounded-xl border border-gray-200 dark:border-fuchsia-700/30 p-6">
-              <div className="w-12 h-12 bg-fuchsia-500/20 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">✨</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">10 Effect Styles</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                3D, neon, graffiti, fire, ice, gold, chrome, cartoon, retro, and glitch.
-              </p>
-            </div>
-            <div className="bg-gradient-to-br from-purple-100 dark:from-purple-900/20 to-fuchsia-100 dark:to-fuchsia-900/20 rounded-xl border border-gray-200 dark:border-purple-700/30 p-6">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">🖼️</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Background Options</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Transparent, solid color, or gradient backgrounds for your text.
-              </p>
-            </div>
-            <div className="bg-gradient-to-br from-fuchsia-100 dark:from-fuchsia-900/20 to-purple-100 dark:to-purple-900/20 rounded-xl border border-gray-200 dark:border-fuchsia-700/30 p-6">
-              <div className="w-12 h-12 bg-fuchsia-500/20 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">🤖</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">AI-Generated</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Powered by Ideogram V2 for stunning, professional text effects.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="px-6 pb-12">
-          <div className="bg-gradient-to-r from-fuchsia-100 to-purple-100 dark:from-fuchsia-900/30 dark:to-purple-900/30 rounded-2xl border border-fuchsia-300 dark:border-fuchsia-700/30 p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Explore More AI Tools</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-              Try our other AI-powered tools - logo maker, background removal, upscaling, and more.
-            </p>
-            <Link
-              href="/tools"
-              className="px-6 py-3 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white rounded-lg font-semibold transition inline-block"
+      {/* Options Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          {t('options.title')}
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { key: 'neon', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20' },
+            { key: '3d', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
+            { key: 'fire', gradient: 'from-orange-100 dark:from-orange-500/20 to-red-100 dark:to-red-500/20' },
+          ].map((option) => (
+            <div
+              key={option.key}
+              className={`bg-gradient-to-br ${option.gradient} backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center`}
             >
-              View All Tools
-            </Link>
+              <div className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+                {t(`options.${option.key}.name`)}
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {t(`options.${option.key}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          {t('features.title')}
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { icon: '✨', key: 'effects', gradient: 'from-fuchsia-100 dark:from-fuchsia-500/20 to-purple-100 dark:to-purple-500/20' },
+            { icon: '🖼️', key: 'backgrounds', gradient: 'from-purple-100 dark:from-purple-500/20 to-pink-100 dark:to-pink-500/20' },
+            { icon: '🤖', key: 'aiPowered', gradient: 'from-pink-100 dark:from-pink-500/20 to-fuchsia-100 dark:to-fuchsia-500/20' },
+          ].map((feature) => (
+            <div
+              key={feature.key}
+              className={`bg-gradient-to-br ${feature.gradient} backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:hover:border-gray-600 transition`}
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {t(`features.${feature.key}.title`)}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {t(`features.${feature.key}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="bg-gray-100/50 dark:bg-gray-900/50 border-y border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900 dark:text-white">{t('howItWorks.title')} </span>
+              <span className="bg-gradient-to-r from-fuchsia-500 to-purple-500 dark:from-fuchsia-400 dark:to-purple-400 bg-clip-text text-transparent">
+                {t('howItWorks.titleHighlight')}
+              </span>
+            </h2>
           </div>
-        </section>
-      </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {['step1', 'step2', 'step3', 'step4'].map((step, idx) => (
+              <div key={step} className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                  {idx + 1}
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  {t(`howItWorks.${step}.title`)}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {t(`howItWorks.${step}.description`)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            {t('useCases.title')}
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {['social', 'youtube', 'gaming', 'marketing'].map((useCase) => (
+            <div
+              key={useCase}
+              className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-fuchsia-500/50 transition"
+            >
+              <div className="text-3xl mb-3">{t(`useCases.${useCase}.icon`)}</div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+                {t(`useCases.${useCase}.title`)}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {t(`useCases.${useCase}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Technology Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-gradient-to-br from-fuchsia-100 to-purple-100 dark:from-fuchsia-900/30 dark:to-purple-900/30 rounded-2xl border border-fuchsia-300 dark:border-fuchsia-700/50 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+            {t('technology.title')}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            {t('technology.description')}
+          </p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {['feature1', 'feature2', 'feature3', 'feature4'].map((feature) => (
+              <div key={feature} className="flex items-start gap-3">
+                <span className="text-green-500 dark:text-green-400 mt-1">✓</span>
+                <span className="text-gray-700 dark:text-gray-300">{t(`technology.${feature}`)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Limitations Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-gray-50 dark:bg-gray-800/30 rounded-2xl border border-gray-200 dark:border-gray-700 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+            {t('limitations.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-green-600 dark:text-green-400">
+                {t('limitations.worksWell.title')}
+              </h3>
+              <ul className="space-y-2">
+                {['item1', 'item2', 'item3'].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                    <span className="text-green-500 mt-0.5">•</span>
+                    {t(`limitations.worksWell.${item}`)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-orange-600 dark:text-orange-400">
+                {t('limitations.limitations.title')}
+              </h3>
+              <ul className="space-y-2">
+                {['item1', 'item2', 'item3'].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                    <span className="text-orange-500 mt-0.5">•</span>
+                    {t(`limitations.limitations.${item}`)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tips Section */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="bg-gray-100 dark:bg-gray-800/20 rounded-xl border border-gray-200 dark:border-gray-700 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">{t('tips.title')}</h2>
+          <div className="grid md:grid-cols-2 gap-6 text-gray-600 dark:text-gray-400">
+            <div>
+              <ul className="space-y-2 text-sm">
+                <li>• {t('tips.tip1')}</li>
+                <li>• {t('tips.tip2')}</li>
+                <li>• {t('tips.tip3')}</li>
+              </ul>
+            </div>
+            <div>
+              <ul className="space-y-2 text-sm">
+                <li>• {t('tips.tip4')}</li>
+                <li>• {t('tips.tip5')}</li>
+                <li>• {t('tips.tip6')}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+          {t('faq.title')}
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-6">
+          {['q1', 'q2', 'q3', 'q4', 'q5'].map((q) => (
+            <div key={q} className="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                {t(`faq.${q}.question`)}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {t(`faq.${q}.answer`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Related Tools */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <RelatedTools currentSlug="text-effects" />
+      </section>
+
+      {/* CTA Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="bg-gradient-to-r from-fuchsia-100 to-purple-100 dark:from-fuchsia-900/50 dark:to-purple-900/50 border border-fuchsia-300 dark:border-fuchsia-500/30 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            {t('cta.title')}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+            {t('cta.subtitle')}
+          </p>
+          {!session ? (
+            <Link
+              href="/auth/signin"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition shadow-lg shadow-fuchsia-500/25"
+            >
+              {t('cta.getStarted')}
+            </Link>
+          ) : (
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition shadow-lg shadow-fuchsia-500/25"
+            >
+              {t('cta.startAction')}
+            </button>
+          )}
+        </div>
+      </section>
     </ToolsLayout>
   );
 }

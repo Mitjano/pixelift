@@ -7,9 +7,17 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyEmailToken } from '@/lib/email-verification';
+import { strictLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - strict to prevent brute-force token guessing
+    const clientId = getClientIdentifier(request);
+    const { allowed, resetAt } = strictLimiter.check(clientId);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const body = await request.json();
     const { token } = body;
 

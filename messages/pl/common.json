@@ -141,7 +141,58 @@
     "styleTransfer": {
       "name": "Transfer Stylu",
       "description": "Przekształć zdjęcia w style artystyczne",
-      "badge": "NOWE"
+      "badge": "NOWE",
+      "page": {
+        "badge": "Napędzane przez InstantID + IPAdapter - Twarz Zachowana",
+        "stats": {
+          "identity": "100%",
+          "identityLabel": "Tożsamość zachowana",
+          "scenes": "Nieograniczone",
+          "scenesLabel": "Dostępne sceny",
+          "credits": "3",
+          "creditsLabel": "Kredyty za obraz"
+        },
+        "features": {
+          "identityPreserved": {
+            "title": "100% Zachowana Tożsamość",
+            "description": "Twoja twarz w każdej scenie - technologia InstantID + IPAdapter zachowuje Twoje podobieństwo."
+          },
+          "anyScene": {
+            "title": "Dowolna Scena lub Środowisko",
+            "description": "Cyberpunkowe miasto, tropikalna plaża, świat fantasy - opisz dowolną scenę i bądź tam."
+          },
+          "customPrompts": {
+            "title": "Własne Prompty",
+            "description": "Użyj predefiniowanych stylów lub napisz własny prompt dla unikalnych rezultatów."
+          }
+        },
+        "perfectFor": {
+          "title": "Idealne Dla",
+          "items": {
+            "headshots": {
+              "title": "Profesjonalne Zdjęcia",
+              "description": "Twórz dopracowane zdjęcia na LinkedIn, CV i profile biznesowe."
+            },
+            "socialMedia": {
+              "title": "Media Społecznościowe",
+              "description": "Generuj przyciągające uwagę zdjęcia profilowe i treści."
+            },
+            "avatars": {
+              "title": "Awatary Gamingowe",
+              "description": "Projektuj unikalne awatary do gier i wirtualne tożsamości."
+            },
+            "creative": {
+              "title": "Projekty Kreatywne",
+              "description": "Eksploruj artystyczne transformacje i eksperymentalną fotografię."
+            }
+          }
+        },
+        "cta": {
+          "title": "Umieść Się Gdziekolwiek",
+          "subtitle": "Twoja twarz, nieskończone możliwości. Prześlij zdjęcie i opisz gdzie chcesz być.",
+          "button": "Zobacz Wszystkie Narzędzia"
+        }
+      }
     },
     "inpainting": {
       "name": "AI Inpainting",
@@ -151,7 +202,59 @@
     "reimagine": {
       "name": "Reimaginacja Obrazu",
       "description": "Generuj wariacje obrazów",
-      "badge": "NOWE"
+      "badge": "NOWE",
+      "page": {
+        "badge": "Napędzane przez FLUX Redux AI",
+        "subtitle": "Generuj kreatywne wariacje dowolnego obrazu z AI. Twórz unikalne interpretacje zachowując esencję oryginału.",
+        "stats": {
+          "variations": "1-4",
+          "variationsLabel": "Wariacje",
+          "perVariation": "2",
+          "perVariationLabel": "Za wariację",
+          "credits": "2-8",
+          "creditsLabel": "Kredytów każda"
+        },
+        "features": {
+          "multipleVariations": {
+            "title": "Wiele Wariacji",
+            "description": "Generuj 1-4 unikalne wariacje naraz dla więcej opcji kreatywnych."
+          },
+          "adjustableStrength": {
+            "title": "Regulowana Siła",
+            "description": "Kontroluj jak bardzo wariacje różnią się od oryginału."
+          },
+          "guidingPrompts": {
+            "title": "Prompty Kierujące",
+            "description": "Dodaj opcjonalne prompty, aby kierować AI w określonych kierunkach."
+          }
+        },
+        "perfectFor": {
+          "title": "Idealne Dla",
+          "items": {
+            "artists": {
+              "title": "Artystów i Projektantów",
+              "description": "Eksploruj wariacje swoich prac dla inspiracji."
+            },
+            "marketing": {
+              "title": "Zespołów Marketingowych",
+              "description": "Twórz wiele wersji wizualizacji kampanii."
+            },
+            "social": {
+              "title": "Twórców Treści",
+              "description": "Generuj świeże interpretacje istniejących treści."
+            },
+            "photography": {
+              "title": "Fotografów",
+              "description": "Odkrywaj nowe interpretacje swoich zdjęć."
+            }
+          }
+        },
+        "cta": {
+          "title": "Odblokuj Nieskończone Możliwości Kreatywne",
+          "subtitle": "Przekształć jeden obraz w wiele unikalnych wariacji. Idealne do eksploracji kierunków kreatywnych.",
+          "button": "Zobacz Wszystkie Narzędzia"
+        }
+      }
     },
     "structureControl": {
       "name": "Kontrola Struktury",
@@ -186,7 +289,37 @@
     "imageFilters": {
       "name": "Filtry i Efekty",
       "description": "Zastosuj filtry i korekty",
-      "badge": "FREE"
+      "badge": "FREE",
+      "page": {
+        "freeTool": "DARMOWE Narzędzie",
+        "stats": {
+          "free": "DARMOWE",
+          "freeLabel": "Bez kredytów",
+          "presets": "7 Presetów",
+          "presetsLabel": "Style filtrów",
+          "sliders": "5 Suwaków",
+          "slidersLabel": "Precyzyjna kontrola"
+        },
+        "features": {
+          "filterPresets": {
+            "title": "Presety Filtrów",
+            "description": "Odcienie szarości, sepia, vintage, zimne, ciepłe i dramatyczne presety."
+          },
+          "fineAdjustments": {
+            "title": "Precyzyjne Korekty",
+            "description": "Kontroluj jasność, kontrast, nasycenie, rozmycie i ostrość."
+          },
+          "livePreview": {
+            "title": "Podgląd Na Żywo",
+            "description": "Zobacz zmiany w czasie rzeczywistym podczas dostosowywania ustawień."
+          }
+        },
+        "cta": {
+          "title": "Odkryj Więcej Darmowych Narzędzi",
+          "subtitle": "Wypróbuj inne darmowe narzędzia - przycinanie, zmiana rozmiaru, kolaż i więcej.",
+          "button": "Zobacz Wszystkie Narzędzia"
+        }
+      }
     },
     "collageMaker": {
       "name": "Kreator Kolaży",
@@ -196,7 +329,37 @@
     "logoMaker": {
       "name": "Generator Logo",
       "description": "Twórz logo z pomocą AI",
-      "badge": "AI"
+      "badge": "AI",
+      "page": {
+        "aiPowered": "Napędzane AI",
+        "stats": {
+          "credits": "5 Kredytów",
+          "creditsLabel": "Za generację",
+          "styles": "6 Stylów",
+          "stylesLabel": "Do wyboru",
+          "model": "AI",
+          "modelLabel": "Ideogram V2"
+        },
+        "features": {
+          "multipleStyles": {
+            "title": "Wiele Stylów",
+            "description": "Minimalistyczny, vintage, nowoczesny, zabawny, profesjonalny i tech."
+          },
+          "aiGenerated": {
+            "title": "Generowane przez AI",
+            "description": "Napędzane przez Ideogram V2 Turbo dla profesjonalnej jakości logo."
+          },
+          "customColors": {
+            "title": "Własne Kolory",
+            "description": "Opcjonalny wybór kolorów pasujących do Twojej marki."
+          }
+        },
+        "cta": {
+          "title": "Odkryj Więcej Narzędzi AI",
+          "subtitle": "Wypróbuj nasze inne narzędzia AI - usuwanie tła, powiększanie, efekty tekstowe i więcej.",
+          "button": "Zobacz Wszystkie Narzędzia"
+        }
+      }
     },
     "textEffects": {
       "name": "Efekty Tekstowe",
@@ -206,12 +369,45 @@
     "qrGenerator": {
       "name": "Generator QR",
       "description": "Twórz kody QR z logo",
-      "badge": "FREE"
+      "badge": "FREE",
+      "page": {
+        "freeTool": "DARMOWE Narzędzie",
+        "stats": {
+          "free": "DARMOWE",
+          "freeLabel": "Bez kredytów",
+          "custom": "Własne",
+          "customLabel": "Kolory i logo",
+          "instant": "Natychmiast",
+          "instantLabel": "Generowanie"
+        },
+        "features": {
+          "customColors": {
+            "title": "Własne Kolory",
+            "description": "Wybierz własne ciemne i jasne kolory dla swojego kodu QR."
+          },
+          "logoSupport": {
+            "title": "Wsparcie Logo",
+            "description": "Dodaj własne logo na środek kodu QR dla brandingu."
+          },
+          "configurable": {
+            "title": "Konfigurowalny",
+            "description": "Dostosuj rozmiar, poziom korekcji błędów i margines."
+          }
+        },
+        "cta": {
+          "title": "Odkryj Więcej Darmowych Narzędzi",
+          "subtitle": "Wypróbuj inne darmowe narzędzia - przycinanie, zmiana rozmiaru, filtry i więcej.",
+          "button": "Zobacz Wszystkie Narzędzia"
+        }
+      }
     },
     "vectorize": {
       "name": "Konwertuj do SVG",
       "description": "Wektoryzuj obrazy do SVG",
       "badge": "AI"
+    },
+    "relatedTools": {
+      "title": "Powiązane narzędzia, które mogą Ci się spodobać"
     }
   },
   "home": {
@@ -4542,6 +4738,1794 @@
       "subtitle": "Oczyść swoje zdjęcia z AI",
       "exploreTools": "Przeglądaj narzędzia",
       "viewPricing": "Zobacz ceny"
+    }
+  },
+  "logoMakerPage": {
+    "badge": "Generator Logo AI",
+    "title": "Kreator",
+    "titleHighlight": "Logo AI",
+    "subtitle": "Twórz profesjonalne, unikalne logo w kilka sekund z wykorzystaniem AI. Idealny dla startupów, małych firm i projektów osobistych. Szybki, prosty i niedrogi sposób na stworzenie marki.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami. Generowane logo są wyjątkowe, ale sprawdź potencjalne podobieństwa do istniejących znaków towarowych.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Kredyty/logo",
+      "styles": "10+",
+      "stylesLabel": "Style",
+      "generation": "~30s",
+      "generationLabel": "Czas generowania"
+    },
+    "options": {
+      "title": "Style Logo",
+      "minimalist": {
+        "name": "Minimalistyczny",
+        "description": "Czyste, proste projekty z dużą ilością przestrzeni"
+      },
+      "vintage": {
+        "name": "Vintage",
+        "description": "Klasyczna estetyka z retro charakterem"
+      },
+      "modern": {
+        "name": "Nowoczesny",
+        "description": "Współczesne projekty z odważnymi elementami"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "multipleStyles": {
+        "title": "Wiele stylów",
+        "description": "Wybierz spośród 10+ unikalnych stylów pasujących do Twojej marki"
+      },
+      "aiPowered": {
+        "title": "Zaawansowane AI",
+        "description": "Generowane przez najnowocześniejsze modele AI"
+      },
+      "customization": {
+        "title": "Personalizacja",
+        "description": "Dostosuj kolory, styl i elementy do swoich potrzeb"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Opisz markę",
+        "description": "Wprowadź nazwę marki i krótki opis"
+      },
+      "step2": {
+        "title": "Wybierz styl",
+        "description": "Wybierz spośród dostępnych stylów logo"
+      },
+      "step3": {
+        "title": "Generuj",
+        "description": "AI tworzy unikalne logo w kilka sekund"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Pobierz logo w wysokiej rozdzielczości"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "startup": {
+        "icon": "🚀",
+        "title": "Startupy",
+        "description": "Szybko stwórz profesjonalną tożsamość marki"
+      },
+      "smallBusiness": {
+        "icon": "🏪",
+        "title": "Małe firmy",
+        "description": "Przystępne logo dla lokalnych biznesów"
+      },
+      "content": {
+        "icon": "📱",
+        "title": "Twórcy treści",
+        "description": "Unikalne logo dla kanałów i marek osobistych"
+      },
+      "projects": {
+        "icon": "💡",
+        "title": "Projekty",
+        "description": "Logo dla aplikacji, gier i projektów side-project"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasz generator logo wykorzystuje zaawansowane modele AI do tworzenia unikalnych, profesjonalnych projektów.",
+      "feature1": "Generatywne AI dla unikalnych projektów",
+      "feature2": "Wiele stylów artystycznych",
+      "feature3": "Wysoka rozdzielczość wyjściowa",
+      "feature4": "Szybkie generowanie"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Prostymi nazwami marek",
+        "item2": "Jasnymi opisami stylu",
+        "item3": "Standardowymi branżami"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Złożone ilustracje wymagają dopracowania",
+        "item2": "Tekst może wymagać korekty",
+        "item3": "Sprawdź podobieństwa do znaków towarowych"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Bądź konkretny w opisie marki",
+      "tip2": "Wypróbuj różne style dla porównania",
+      "tip3": "Dodaj słowa kluczowe branżowe",
+      "tip4": "Generuj kilka wariantów",
+      "tip5": "Sprawdź czytelność w małym rozmiarze",
+      "tip6": "Pamiętaj o spójności z identyfikacją wizualną"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy mogę użyć logo komercyjnie?",
+        "answer": "Tak, wszystkie wygenerowane logo możesz używać komercyjnie. Zalecamy jednak sprawdzenie potencjalnych podobieństw do istniejących znaków towarowych."
+      },
+      "q2": {
+        "question": "W jakim formacie otrzymam logo?",
+        "answer": "Logo jest generowane w formacie PNG z wysoką rozdzielczością, odpowiednim do użycia online i druku."
+      },
+      "q3": {
+        "question": "Czy mogę edytować wygenerowane logo?",
+        "answer": "Pobierasz plik PNG, który możesz dalej edytować w dowolnym programie graficznym."
+      },
+      "q4": {
+        "question": "Ile trwa generowanie logo?",
+        "answer": "Generowanie zajmuje około 30 sekund, w zależności od złożoności i obciążenia serwera."
+      },
+      "q5": {
+        "question": "Co jeśli nie spodoba mi się wynik?",
+        "answer": "Możesz wygenerować nowe logo z różnymi opisami i stylami. Każda generacja kosztuje 3 kredyty."
+      }
+    },
+    "cta": {
+      "title": "Gotowy na stworzenie logo?",
+      "subtitle": "Rozpocznij za darmo i stwórz profesjonalne logo w kilka minut.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Stwórz logo"
+    }
+  },
+  "textEffectsPage": {
+    "badge": "Efekty Tekstowe AI",
+    "title": "Efekty",
+    "titleHighlight": "Tekstowe AI",
+    "subtitle": "Przekształć zwykły tekst w oszałamiające wizualne arcydzieła. Twórz efekty ognia, lodu, neonu, chromu i wiele innych. Idealne do mediów społecznościowych, grafiki marketingowej i projektów kreatywnych.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Kredyty/obraz",
+      "effects": "15+",
+      "effectsLabel": "Efektów",
+      "generation": "~20s",
+      "generationLabel": "Czas generowania"
+    },
+    "options": {
+      "title": "Popularne efekty",
+      "fire": {
+        "name": "Ogień",
+        "description": "Płonące, dynamiczne litery z płomieniami"
+      },
+      "neon": {
+        "name": "Neon",
+        "description": "Świecące efekty w stylu neonowym"
+      },
+      "chrome": {
+        "name": "Chrom",
+        "description": "Metaliczny, błyszczący efekt lustrzany"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "manyEffects": {
+        "title": "Wiele efektów",
+        "description": "Wybierz spośród 15+ profesjonalnych efektów tekstowych"
+      },
+      "customFont": {
+        "title": "Własne czcionki",
+        "description": "Dopasuj styl tekstu do swoich potrzeb"
+      },
+      "highRes": {
+        "title": "Wysoka jakość",
+        "description": "Eksportuj w wysokiej rozdzielczości do druku i sieci"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Wprowadź tekst",
+        "description": "Wpisz tekst, który chcesz przekształcić"
+      },
+      "step2": {
+        "title": "Wybierz efekt",
+        "description": "Wybierz spośród dostępnych efektów"
+      },
+      "step3": {
+        "title": "Generuj",
+        "description": "AI tworzy efektowny obraz tekstowy"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz obraz w wysokiej rozdzielczości"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "social": {
+        "icon": "📱",
+        "title": "Media społecznościowe",
+        "description": "Przyciągające uwagę grafiki do postów"
+      },
+      "marketing": {
+        "icon": "📢",
+        "title": "Marketing",
+        "description": "Profesjonalne nagłówki reklamowe"
+      },
+      "youtube": {
+        "icon": "🎬",
+        "title": "YouTube",
+        "description": "Efektowne miniatury wideo"
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Gaming",
+        "description": "Logo i grafiki dla graczy"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Zaawansowane AI tworzy realistyczne efekty tekstowe z uwzględnieniem oświetlenia, tekstur i materiałów.",
+      "feature1": "Realistyczne materiały i tekstury",
+      "feature2": "Dynamiczne efekty świetlne",
+      "feature3": "Wiele stylów artystycznych",
+      "feature4": "Wysoka rozdzielczość wyjściowa"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Krótkimi tekstami (1-3 słowa)",
+        "item2": "Prostymi czcionkami",
+        "item3": "Kontrastowymi kolorami"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Długi tekst może być mniej czytelny",
+        "item2": "Niektóre efekty lepsze dla konkretnych stylów",
+        "item3": "Złożone znaki specjalne mogą być problematyczne"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj krótkich tekstów dla najlepszych efektów",
+      "tip2": "Wypróbuj różne efekty dla porównania",
+      "tip3": "Wielkość liter wpływa na ostateczny wygląd",
+      "tip4": "Proste czcionki działają lepiej",
+      "tip5": "Sprawdź czytelność na różnych tłach",
+      "tip6": "Generuj kilka wariantów"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Jakie efekty są dostępne?",
+        "answer": "Oferujemy ponad 15 efektów: ogień, lód, neon, chrom, złoto, cukierki, drewno, kamień i wiele innych."
+      },
+      "q2": {
+        "question": "Jaki format otrzymam?",
+        "answer": "Obrazy są generowane w formacie PNG z przezroczystym tłem, gotowe do użycia."
+      },
+      "q3": {
+        "question": "Czy mogę używać własnych czcionek?",
+        "answer": "Obecnie oferujemy wybór predefiniowanych stylów, które działają najlepiej z każdym efektem."
+      },
+      "q4": {
+        "question": "Jak długo trwa generowanie?",
+        "answer": "Generowanie zajmuje około 20 sekund, w zależności od złożoności efektu."
+      },
+      "q5": {
+        "question": "Do czego mogę użyć efektów?",
+        "answer": "Do mediów społecznościowych, marketingu, miniatur YouTube, grafiki do gier, prezentacji i więcej."
+      }
+    },
+    "cta": {
+      "title": "Stwórz efektowny tekst",
+      "subtitle": "Przekształć tekst w wizualne arcydzieło już dziś.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Stwórz efekt"
+    }
+  },
+  "vectorizePage": {
+    "badge": "Wektoryzator AI",
+    "title": "Wektoryzacja",
+    "titleHighlight": "Obrazów AI",
+    "subtitle": "Przekształć obrazy rastrowe w skalowalne grafiki wektorowe SVG. Idealne do logo, ikon, ilustracji i wszystkiego, co wymaga nieskończonej skalowalności bez utraty jakości.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Kredyty/obraz",
+      "output": "SVG",
+      "outputLabel": "Format wyjściowy",
+      "generation": "~15s",
+      "generationLabel": "Czas konwersji"
+    },
+    "options": {
+      "title": "Tryby wektoryzacji",
+      "detailed": {
+        "name": "Szczegółowy",
+        "description": "Zachowuje maksimum detali i tekstur"
+      },
+      "simplified": {
+        "name": "Uproszczony",
+        "description": "Czyste, minimalistyczne ścieżki"
+      },
+      "outline": {
+        "name": "Kontur",
+        "description": "Tylko kontury i linie"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "scalable": {
+        "title": "Nieskończona skalowalność",
+        "description": "Skaluj do dowolnego rozmiaru bez utraty jakości"
+      },
+      "editable": {
+        "title": "Edytowalne",
+        "description": "Pełna edycja w programach wektorowych"
+      },
+      "clean": {
+        "title": "Czyste ścieżki",
+        "description": "Optymalizowane ścieżki wektorowe"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij obraz",
+        "description": "Prześlij PNG, JPG lub inny obraz rastrowy"
+      },
+      "step2": {
+        "title": "Wybierz tryb",
+        "description": "Szczegółowy, uproszczony lub konturowy"
+      },
+      "step3": {
+        "title": "Konwertuj",
+        "description": "AI przekształca obraz w wektor"
+      },
+      "step4": {
+        "title": "Pobierz SVG",
+        "description": "Pobierz plik wektorowy SVG"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "logos": {
+        "icon": "🎯",
+        "title": "Logo",
+        "description": "Skalowalne logo dla wszystkich zastosowań"
+      },
+      "icons": {
+        "icon": "✨",
+        "title": "Ikony",
+        "description": "Ostre ikony w każdym rozmiarze"
+      },
+      "illustrations": {
+        "icon": "🎨",
+        "title": "Ilustracje",
+        "description": "Wektoryzuj ilustracje i grafiki"
+      },
+      "print": {
+        "icon": "🖨️",
+        "title": "Druk",
+        "description": "Grafiki gotowe do druku wielkoformatowego"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Zaawansowane algorytmy AI analizują obrazy i tworzą optymalne ścieżki wektorowe.",
+      "feature1": "Inteligentna detekcja krawędzi",
+      "feature2": "Automatyczna optymalizacja ścieżek",
+      "feature3": "Zachowanie kolorów i gradientów",
+      "feature4": "Eksport do standardowego SVG"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Logo i ikonami",
+        "item2": "Ilustracjami z wyraźnymi krawędziami",
+        "item3": "Grafikami z płaskimi kolorami"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Zdjęcia dają skomplikowane wektory",
+        "item2": "Gradienty mogą być uproszczone",
+        "item3": "Drobne szczegóły mogą być utracone"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj obrazów z wyraźnymi krawędziami",
+      "tip2": "Wyższy kontrast daje lepsze wyniki",
+      "tip3": "Uproszczone obrazy konwertują się lepiej",
+      "tip4": "Wybierz odpowiedni tryb do zastosowania",
+      "tip5": "Sprawdź wynik w różnych rozmiarach",
+      "tip6": "Edytuj SVG w programie wektorowym"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Co to jest wektoryzacja?",
+        "answer": "Wektoryzacja to proces przekształcania obrazów rastrowych (piksele) w grafiki wektorowe (ścieżki matematyczne), które można skalować bez utraty jakości."
+      },
+      "q2": {
+        "question": "Jakie formaty obrazów mogę przesłać?",
+        "answer": "Obsługujemy PNG, JPG, GIF, WebP i inne popularne formaty rastrowe."
+      },
+      "q3": {
+        "question": "Czy mogę edytować wygenerowany SVG?",
+        "answer": "Tak, plik SVG można edytować w dowolnym programie wektorowym jak Illustrator, Inkscape czy Figma."
+      },
+      "q4": {
+        "question": "Czy wektoryzacja nadaje się do zdjęć?",
+        "answer": "Wektoryzacja najlepiej działa z grafikami, logo i ilustracjami. Zdjęcia mogą dać bardzo skomplikowane pliki."
+      },
+      "q5": {
+        "question": "Jak długo trwa konwersja?",
+        "answer": "Konwersja trwa około 15 sekund, w zależności od złożoności obrazu."
+      }
+    },
+    "cta": {
+      "title": "Zwektoryzuj swój obraz",
+      "subtitle": "Stwórz skalowalne grafiki wektorowe już dziś.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Wektoryzuj obraz"
+    }
+  },
+  "qrGeneratorPage": {
+    "badge": "Generator Kodów QR AI",
+    "title": "Artystyczne",
+    "titleHighlight": "Kody QR",
+    "subtitle": "Twórz unikalne, artystyczne kody QR z AI. Niestandardowe projekty, które działają i wyglądają niesamowicie. Idealne do marketingu, wizytówek i materiałów brandingowych.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami. Upewnij się, że kod QR skanuje poprawnie przed publikacją.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Kredyty/kod",
+      "styles": "20+",
+      "stylesLabel": "Stylów",
+      "generation": "~25s",
+      "generationLabel": "Czas generowania"
+    },
+    "options": {
+      "title": "Style kodów QR",
+      "artistic": {
+        "name": "Artystyczny",
+        "description": "Unikalne projekty AI zachowujące funkcjonalność"
+      },
+      "branded": {
+        "name": "Brandowany",
+        "description": "Dopasuj do identyfikacji wizualnej marki"
+      },
+      "minimal": {
+        "name": "Minimalny",
+        "description": "Czyste, proste projekty kodów"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "customDesign": {
+        "title": "Unikalny design",
+        "description": "AI tworzy kody QR z niestandardowymi stylami"
+      },
+      "functional": {
+        "title": "Działające kody",
+        "description": "Każdy kod skanuje poprawnie"
+      },
+      "highRes": {
+        "title": "Wysoka jakość",
+        "description": "Gotowe do druku w każdym rozmiarze"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Wprowadź URL",
+        "description": "Podaj link, który ma zakodować kod QR"
+      },
+      "step2": {
+        "title": "Opisz styl",
+        "description": "Opisz jak ma wyglądać Twój kod QR"
+      },
+      "step3": {
+        "title": "Generuj",
+        "description": "AI tworzy artystyczny, działający kod"
+      },
+      "step4": {
+        "title": "Testuj i pobierz",
+        "description": "Zeskanuj, aby sprawdzić, i pobierz"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "marketing": {
+        "icon": "📢",
+        "title": "Marketing",
+        "description": "Przyciągające wzrok kody na materiałach"
+      },
+      "business": {
+        "icon": "💼",
+        "title": "Biznes",
+        "description": "Eleganckie kody na wizytówkach"
+      },
+      "events": {
+        "icon": "🎉",
+        "title": "Eventy",
+        "description": "Unikalne kody na zaproszeniach i biletach"
+      },
+      "packaging": {
+        "icon": "📦",
+        "title": "Opakowania",
+        "description": "Brandowane kody na produktach"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "AI łączy artystyczne generowanie z precyzyjnym kodowaniem QR, zapewniając funkcjonalność i estetykę.",
+      "feature1": "Walidacja korekcji błędów",
+      "feature2": "Artystyczne style AI",
+      "feature3": "Zachowanie skanowalności",
+      "feature4": "Wysoka rozdzielczość wyjściowa"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Krótkimi URL-ami",
+        "item2": "Prostymi stylami artystycznymi",
+        "item3": "Kontrastowymi kolorami"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Bardzo skomplikowane style mogą wpływać na skanowanie",
+        "item2": "Długie dane zmniejszają pole na artyzm",
+        "item3": "Zawsze testuj przed drukiem"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj krótkich URL-ów lub link skracaczy",
+      "tip2": "Zachowaj wystarczający kontrast",
+      "tip3": "Testuj skanowanie na różnych urządzeniach",
+      "tip4": "Proste style są bardziej niezawodne",
+      "tip5": "Dodaj margines wokół kodu",
+      "tip6": "Drukuj z odpowiednią rozdzielczością"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy artystyczne kody QR naprawdę skanują?",
+        "answer": "Tak, nasze AI zapewnia, że każdy wygenerowany kod skanuje poprawnie przy zachowaniu artystycznego wyglądu."
+      },
+      "q2": {
+        "question": "Do czego mogę użyć kodu QR?",
+        "answer": "Do linkowania do stron internetowych, profili social media, wizytówek vCard, WiFi, tekstu i więcej."
+      },
+      "q3": {
+        "question": "Jaki format otrzymam?",
+        "answer": "Kody są generowane w formacie PNG w wysokiej rozdzielczości, gotowe do druku i użycia cyfrowego."
+      },
+      "q4": {
+        "question": "Jak sprawdzić, czy kod działa?",
+        "answer": "Zeskanuj wygenerowany kod telefonem przed pobraniem i użyciem."
+      },
+      "q5": {
+        "question": "Czy mogę dostosować kolory?",
+        "answer": "Tak, możesz opisać preferowane kolory i styl w prompcie."
+      }
+    },
+    "cta": {
+      "title": "Stwórz artystyczny kod QR",
+      "subtitle": "Wyróżnij się unikalnymi kodami QR.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Generuj kod QR"
+    }
+  },
+  "imageFiltersPage": {
+    "badge": "Filtry Obrazów AI",
+    "title": "Artystyczne",
+    "titleHighlight": "Filtry AI",
+    "subtitle": "Przekształć swoje zdjęcia w dzieła sztuki z profesjonalnymi filtrami AI. Od vintage po cyberpunk, od malarstwa olejnego po anime - stwórz unikalne wizualizacje w kilka sekund.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Kredyty/obraz",
+      "filters": "25+",
+      "filtersLabel": "Filtrów",
+      "processing": "~15s",
+      "processingLabel": "Czas przetwarzania"
+    },
+    "options": {
+      "title": "Popularne filtry",
+      "vintage": {
+        "name": "Vintage",
+        "description": "Klasyczny retro look z ciepłymi tonami"
+      },
+      "oil": {
+        "name": "Malarstwo olejne",
+        "description": "Realistyczny efekt malowania olejnego"
+      },
+      "anime": {
+        "name": "Anime",
+        "description": "Stylizacja w stylu anime i manga"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "manyFilters": {
+        "title": "25+ filtrów",
+        "description": "Ogromny wybór stylów artystycznych do wyboru"
+      },
+      "aiPowered": {
+        "title": "AI-powered",
+        "description": "Inteligentne algorytmy dla najlepszych wyników"
+      },
+      "highQuality": {
+        "title": "Wysoka jakość",
+        "description": "Zachowanie detali przy transformacji"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij zdjęcie",
+        "description": "Wybierz zdjęcie do przekształcenia"
+      },
+      "step2": {
+        "title": "Wybierz filtr",
+        "description": "Przeglądaj i wybierz styl"
+      },
+      "step3": {
+        "title": "Przetwarzaj",
+        "description": "AI stosuje wybrany filtr"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz przekształcony obraz"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "social": {
+        "icon": "📱",
+        "title": "Media społecznościowe",
+        "description": "Wyróżnij posty unikalnymi stylami"
+      },
+      "art": {
+        "icon": "🎨",
+        "title": "Sztuka cyfrowa",
+        "description": "Twórz dzieła sztuki z fotek"
+      },
+      "prints": {
+        "icon": "🖼️",
+        "title": "Druki artystyczne",
+        "description": "Zdjęcia jako obrazy do powieszenia"
+      },
+      "gifts": {
+        "icon": "🎁",
+        "title": "Personalizowane prezenty",
+        "description": "Unikalne prezenty ze zdjęć"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasze filtry wykorzystują zaawansowane sieci neuronowe do analizy i transformacji obrazów z zachowaniem jakości.",
+      "feature1": "Sieci neuronowe do transferu stylu",
+      "feature2": "Zachowanie struktury obrazu",
+      "feature3": "Inteligentna korekta kolorów",
+      "feature4": "Optymalizacja dla różnych stylów"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zdjęciami o dobrej jakości",
+        "item2": "Portretami i krajobrazami",
+        "item3": "Obrazami z wyraźnym głównym obiektem"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Bardzo ciemne zdjęcia mogą tracić szczegóły",
+        "item2": "Niektóre filtry lepiej pasują do konkretnych tematów",
+        "item3": "Rozdzielczość wyjściowa zależy od wejściowej"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj zdjęć wysokiej jakości",
+      "tip2": "Wypróbuj różne filtry na tym samym zdjęciu",
+      "tip3": "Portrety świetnie wyglądają z filtrami malowania",
+      "tip4": "Krajobrazy pasują do stylu impresjonistycznego",
+      "tip5": "Sprawdź wyniki w pełnej rozdzielczości",
+      "tip6": "Eksportuj w najwyższej jakości do druku"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Jakie filtry są dostępne?",
+        "answer": "Oferujemy 25+ filtrów: vintage, olejny, akwarela, anime, cyberpunk, pop-art, szkic i wiele innych."
+      },
+      "q2": {
+        "question": "Czy zachowam oryginalną rozdzielczość?",
+        "answer": "Tak, wynikowy obraz zachowuje rozdzielczość oryginału, do maksymalnie 4K."
+      },
+      "q3": {
+        "question": "Czy mogę zastosować kilka filtrów?",
+        "answer": "Każdy filtr wymaga osobnego przetwarzania, ale możesz eksperymentować z różnymi."
+      },
+      "q4": {
+        "question": "Jak długo trwa przetwarzanie?",
+        "answer": "Zazwyczaj około 15 sekund, zależnie od rozmiaru obrazu i wybranego filtru."
+      },
+      "q5": {
+        "question": "Do czego najlepiej użyć filtrów?",
+        "answer": "Do mediów społecznościowych, druku artystycznego, prezentów i tworzenia unikalnej sztuki ze zdjęć."
+      }
+    },
+    "cta": {
+      "title": "Przekształć zdjęcia w sztukę",
+      "subtitle": "Wypróbuj filtry AI i stwórz coś wyjątkowego.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Zastosuj filtr"
+    }
+  },
+  "collageMakerPage": {
+    "badge": "Kreator Kolaży AI",
+    "title": "Kreator",
+    "titleHighlight": "Kolaży AI",
+    "subtitle": "Twórz oszałamiające kolaże zdjęć z wieloma układami i stylami. Idealne do mediów społecznościowych, albumów rodzinnych, portfolio i wspomnień z wydarzeń.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "1",
+      "creditsLabel": "Kredyt/kolaż",
+      "layouts": "15+",
+      "layoutsLabel": "Układów",
+      "processing": "~10s",
+      "processingLabel": "Czas tworzenia"
+    },
+    "options": {
+      "title": "Style kolaży",
+      "grid": {
+        "name": "Siatka",
+        "description": "Klasyczny układ z równymi komórkami"
+      },
+      "freeform": {
+        "name": "Swobodny",
+        "description": "Kreatywne, nakładające się układy"
+      },
+      "polaroid": {
+        "name": "Polaroid",
+        "description": "Retro styl z ramkami Polaroid"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "manyLayouts": {
+        "title": "15+ układów",
+        "description": "Szeroki wybór gotowych szablonów kolaży"
+      },
+      "dragDrop": {
+        "title": "Przeciągnij i upuść",
+        "description": "Intuicyjne rozmieszczanie zdjęć"
+      },
+      "customization": {
+        "title": "Personalizacja",
+        "description": "Dostosuj odstępy, tło i zaokrąglenia"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij zdjęcia",
+        "description": "Wybierz od 2 do 12 zdjęć"
+      },
+      "step2": {
+        "title": "Wybierz układ",
+        "description": "Przeglądaj i wybierz szablon"
+      },
+      "step3": {
+        "title": "Dostosuj",
+        "description": "Rozmieść zdjęcia i ustaw opcje"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz gotowy kolaż"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "social": {
+        "icon": "📱",
+        "title": "Media społecznościowe",
+        "description": "Przyciągające wzrok posty z wieloma zdjęciami"
+      },
+      "memories": {
+        "icon": "📸",
+        "title": "Wspomnienia",
+        "description": "Podsumuj wakacje lub wydarzenia"
+      },
+      "portfolio": {
+        "icon": "💼",
+        "title": "Portfolio",
+        "description": "Pokaż wiele prac naraz"
+      },
+      "prints": {
+        "icon": "🖨️",
+        "title": "Druki",
+        "description": "Kolaże do wydruku i oprawienia"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasz kreator kolaży automatycznie optymalizuje rozmieszczenie i proporcje zdjęć dla najlepszego efektu.",
+      "feature1": "Inteligentne kadrowanie",
+      "feature2": "Automatyczne dopasowanie kolorów",
+      "feature3": "Eksport w wysokiej rozdzielczości",
+      "feature4": "Predefiniowane proporcje dla social media"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zdjęciami o podobnej tematyce",
+        "item2": "Obrazami w zbliżonej kolorystyce",
+        "item3": "Od 2 do 12 zdjęć na kolaż"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Maksymalnie 12 zdjęć na kolaż",
+        "item2": "Bardzo różne proporcje mogą wymagać kadrowania",
+        "item3": "Każde zdjęcie ma minimalny rozmiar wyświetlania"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Wybieraj zdjęcia o podobnej kolorystyce",
+      "tip2": "Używaj nieparzystych liczb zdjęć dla ciekawszych układów",
+      "tip3": "Zadbaj o jedno zdjęcie główne, większe",
+      "tip4": "Testuj różne układy z tymi samymi zdjęciami",
+      "tip5": "Dodaj obramowanie dla czystszego wyglądu",
+      "tip6": "Eksportuj w rozdzielczości odpowiedniej do platformy"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Ile zdjęć mogę użyć?",
+        "answer": "Od 2 do 12 zdjęć, w zależności od wybranego układu."
+      },
+      "q2": {
+        "question": "Czy mogę zmienić kolejność zdjęć?",
+        "answer": "Tak, możesz przeciągać zdjęcia między pozycjami w wybranym układzie."
+      },
+      "q3": {
+        "question": "Jakie formaty są obsługiwane?",
+        "answer": "PNG, JPG i WebP. Eksport domyślnie w PNG dla najlepszej jakości."
+      },
+      "q4": {
+        "question": "Czy mogę dodać tekst?",
+        "answer": "Obecnie koncentrujemy się na układach zdjęć. Tekst można dodać w edytorze graficznym."
+      },
+      "q5": {
+        "question": "Jaka jest maksymalna rozdzielczość?",
+        "answer": "Eksportujemy w rozdzielczości do 4K, idealnej do druku i wyświetlania."
+      }
+    },
+    "cta": {
+      "title": "Stwórz swój kolaż",
+      "subtitle": "Połącz wspomnienia w jednym, pięknym obrazie.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Twórz kolaż"
+    }
+  },
+  "cropImagePage": {
+    "badge": "Inteligentne Kadrowanie AI",
+    "title": "Inteligentne",
+    "titleHighlight": "Kadrowanie AI",
+    "subtitle": "Kadruj zdjęcia z precyzją AI. Automatyczne wykrywanie głównego obiektu, predefiniowane proporcje dla social media i inteligentne sugestie kadrowania dla najlepszych rezultatów.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "Darmowe",
+      "creditsLabel": "Podstawowe kadrowanie",
+      "ratios": "15+",
+      "ratiosLabel": "Predefiniowanych proporcji",
+      "processing": "Natychmiast",
+      "processingLabel": "Przetwarzanie"
+    },
+    "options": {
+      "title": "Tryby kadrowania",
+      "smart": {
+        "name": "Inteligentne",
+        "description": "AI wykrywa i centruje główny obiekt"
+      },
+      "manual": {
+        "name": "Ręczne",
+        "description": "Pełna kontrola nad obszarem kadrowania"
+      },
+      "presets": {
+        "name": "Presety",
+        "description": "Gotowe proporcje dla social media"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "smartCrop": {
+        "title": "Inteligentne kadrowanie",
+        "description": "AI automatycznie wykrywa główny obiekt zdjęcia"
+      },
+      "presets": {
+        "title": "Presety proporcji",
+        "description": "Instagram, Facebook, Twitter i więcej"
+      },
+      "instant": {
+        "title": "Natychmiastowe",
+        "description": "Podgląd w czasie rzeczywistym"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij obraz",
+        "description": "Wybierz zdjęcie do kadrowania"
+      },
+      "step2": {
+        "title": "Wybierz tryb",
+        "description": "Inteligentne, ręczne lub preset"
+      },
+      "step3": {
+        "title": "Dostosuj",
+        "description": "Doprecyzuj obszar kadrowania"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz wykadrowany obraz"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "social": {
+        "icon": "📱",
+        "title": "Media społecznościowe",
+        "description": "Idealne proporcje dla każdej platformy"
+      },
+      "portraits": {
+        "icon": "👤",
+        "title": "Portrety",
+        "description": "Centrowanie twarzy i kadrowanie"
+      },
+      "products": {
+        "icon": "📦",
+        "title": "Produkty",
+        "description": "Spójne kadrowanie dla e-commerce"
+      },
+      "thumbnails": {
+        "icon": "🎬",
+        "title": "Miniatury",
+        "description": "Idealne kadry na miniatury wideo"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasze inteligentne kadrowanie wykorzystuje AI do wykrywania głównych obiektów i sugerowania optymalnych kadrów.",
+      "feature1": "Wykrywanie obiektów i twarzy",
+      "feature2": "Reguła trójpodziału",
+      "feature3": "Zachowanie jakości oryginału",
+      "feature4": "Presety dla platform social media"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zdjęciami z wyraźnym głównym obiektem",
+        "item2": "Portretami i zdjęciami produktów",
+        "item3": "Obrazami do social media"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Bardzo złożone sceny mogą wymagać ręcznej korekty",
+        "item2": "Kadrowanie zmniejsza rozdzielczość",
+        "item3": "AI może nie rozpoznać wszystkich obiektów"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Sprawdź sugestie AI przed zaakceptowaniem",
+      "tip2": "Używaj presetów dla spójności na social media",
+      "tip3": "Zachowaj margines wokół głównego obiektu",
+      "tip4": "Dla portretów zachowaj przestrzeń nad głową",
+      "tip5": "Testuj różne proporcje",
+      "tip6": "Eksportuj w najwyższej dostępnej jakości"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy kadrowanie jest darmowe?",
+        "answer": "Tak, podstawowe kadrowanie jest darmowe. Inteligentne AI wymaga 1 kredytu."
+      },
+      "q2": {
+        "question": "Jakie proporcje są dostępne?",
+        "answer": "1:1 (Instagram), 16:9 (YouTube), 9:16 (Stories), 4:5, 3:2, niestandardowe i więcej."
+      },
+      "q3": {
+        "question": "Czy mogę kadrować dowolnie?",
+        "answer": "Tak, tryb ręczny pozwala na dowolne proporcje i rozmieszczenie."
+      },
+      "q4": {
+        "question": "Co to jest inteligentne kadrowanie?",
+        "answer": "AI analizuje obraz i automatycznie wykrywa główny obiekt, sugerując optymalny kadr."
+      },
+      "q5": {
+        "question": "Czy tracę na jakości?",
+        "answer": "Kadrowanie usuwa piksele, więc wynikowy obraz będzie mniejszy, ale bez kompresji."
+      }
+    },
+    "cta": {
+      "title": "Wykadruj idealnie",
+      "subtitle": "Inteligentne kadrowanie dla perfekcyjnych zdjęć.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Kadruj zdjęcie"
+    }
+  },
+  "resizeImagePage": {
+    "badge": "Zmiana Rozmiaru AI",
+    "title": "Inteligentna",
+    "titleHighlight": "Zmiana Rozmiaru",
+    "subtitle": "Zmień rozmiar obrazów z zachowaniem jakości. Zmniejszaj lub powiększaj z AI upscalingiem. Predefiniowane rozmiary dla social media, web i druku.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "Darmowe",
+      "creditsLabel": "Podstawowe skalowanie",
+      "sizes": "20+",
+      "sizesLabel": "Predefiniowanych rozmiarów",
+      "processing": "Natychmiast",
+      "processingLabel": "Przetwarzanie"
+    },
+    "options": {
+      "title": "Tryby skalowania",
+      "percentage": {
+        "name": "Procentowo",
+        "description": "Skaluj o procent oryginału"
+      },
+      "dimensions": {
+        "name": "Wymiary",
+        "description": "Ustaw dokładną szerokość i wysokość"
+      },
+      "presets": {
+        "name": "Presety",
+        "description": "Gotowe rozmiary dla platform"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "keepAspect": {
+        "title": "Zachowanie proporcji",
+        "description": "Automatyczne zachowanie oryginalnych proporcji"
+      },
+      "presets": {
+        "title": "Presety rozmiarów",
+        "description": "Instagram, Facebook, LinkedIn i więcej"
+      },
+      "aiUpscale": {
+        "title": "AI Upscaling",
+        "description": "Powiększ z zachowaniem szczegółów"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij obraz",
+        "description": "Wybierz obraz do zmiany rozmiaru"
+      },
+      "step2": {
+        "title": "Wybierz rozmiar",
+        "description": "Procent, wymiary lub preset"
+      },
+      "step3": {
+        "title": "Ustaw opcje",
+        "description": "Proporcje, jakość, format"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz przeskalowany obraz"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "web": {
+        "icon": "🌐",
+        "title": "Web",
+        "description": "Optymalizacja obrazów na stronę"
+      },
+      "social": {
+        "icon": "📱",
+        "title": "Social Media",
+        "description": "Idealne rozmiary dla platform"
+      },
+      "email": {
+        "icon": "📧",
+        "title": "Email",
+        "description": "Lekkie obrazy do newsletterów"
+      },
+      "print": {
+        "icon": "🖨️",
+        "title": "Druk",
+        "description": "Przygotowanie do druku"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasze narzędzie używa zaawansowanych algorytmów do skalowania z minimalną utratą jakości.",
+      "feature1": "Bicubic interpolation dla zmniejszania",
+      "feature2": "AI upscaling dla powiększania",
+      "feature3": "Automatyczna optymalizacja ostrości",
+      "feature4": "Zachowanie metadanych EXIF"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zmniejszaniem obrazów",
+        "item2": "Umiarkowanym powiększaniem (do 2x)",
+        "item3": "Obrazami o wysokiej jakości wejściowej"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Duże powiększenia mogą powodować rozmycie",
+        "item2": "Bardzo małe obrazy trudno powiększyć",
+        "item3": "Dla większych powiększeń użyj Upscalera AI"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Dla web zmniejszaj obrazy do potrzebnego rozmiaru",
+      "tip2": "Zachowuj proporcje dla naturalnego wyglądu",
+      "tip3": "Używaj presetów dla spójności na platformach",
+      "tip4": "Dla dużych powiększeń użyj naszego Upscalera",
+      "tip5": "Sprawdź jakość przed zapisaniem",
+      "tip6": "Optymalizuj format dla szybszego ładowania"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy zmiana rozmiaru jest darmowa?",
+        "answer": "Tak, podstawowa zmiana rozmiaru jest darmowa. AI upscaling wymaga kredytów."
+      },
+      "q2": {
+        "question": "Jakie presety są dostępne?",
+        "answer": "Instagram (1080x1080), Facebook Cover (820x312), LinkedIn Banner, YouTube thumbnail i więcej."
+      },
+      "q3": {
+        "question": "Czy mogę powiększyć obraz?",
+        "answer": "Tak, do 2x za darmo. Dla większych powiększeń polecamy AI Upscaler z zachowaniem jakości."
+      },
+      "q4": {
+        "question": "Czy zachowam jakość?",
+        "answer": "Przy zmniejszaniu tak. Przy powiększaniu jakość może się pogorszyć - wtedy użyj AI Upscalera."
+      },
+      "q5": {
+        "question": "Jakie formaty są obsługiwane?",
+        "answer": "PNG, JPG, WebP na wejściu i wyjściu. Możesz też konwertować między formatami."
+      }
+    },
+    "cta": {
+      "title": "Zmień rozmiar obrazu",
+      "subtitle": "Szybko i łatwo dostosuj rozmiar do swoich potrzeb.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Zmień rozmiar"
+    }
+  },
+  "reimaginePage": {
+    "badge": "Reimagine AI",
+    "title": "Reimagine",
+    "titleHighlight": "z AI",
+    "subtitle": "Twórz unikalne wariacje swoich obrazów z AI. Zachowaj strukturę i kompozycję, zmieniając styl, kolory i nastrój. Idealne do eksploracji kreatywnych możliwości i A/B testowania.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "4",
+      "creditsLabel": "Kredyty/wariację",
+      "variations": "∞",
+      "variationsLabel": "Możliwych wariacji",
+      "processing": "~30s",
+      "processingLabel": "Czas generowania"
+    },
+    "options": {
+      "title": "Tryby reimagine",
+      "creative": {
+        "name": "Kreatywny",
+        "description": "Maksymalna kreatywność, duże zmiany"
+      },
+      "subtle": {
+        "name": "Subtelny",
+        "description": "Delikatne modyfikacje, zachowany styl"
+      },
+      "dramatic": {
+        "name": "Dramatyczny",
+        "description": "Znaczące zmiany atmosfery i nastroju"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "variations": {
+        "title": "Nieskończone wariacje",
+        "description": "Każde generowanie daje unikalne wyniki"
+      },
+      "preservation": {
+        "title": "Zachowanie struktury",
+        "description": "Kompozycja pozostaje, zmienia się styl"
+      },
+      "customization": {
+        "title": "Kontrola siły",
+        "description": "Dostosuj jak bardzo zmienia się obraz"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij obraz",
+        "description": "Wybierz obraz do reimagine"
+      },
+      "step2": {
+        "title": "Ustaw siłę",
+        "description": "Od subtelnych do dramatycznych zmian"
+      },
+      "step3": {
+        "title": "Dodaj prompt (opcjonalnie)",
+        "description": "Opisz pożądane zmiany"
+      },
+      "step4": {
+        "title": "Generuj wariacje",
+        "description": "AI tworzy unikalne wersje"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "creative": {
+        "icon": "🎨",
+        "title": "Eksploracja kreatywna",
+        "description": "Odkryj nowe wersje swojego dzieła"
+      },
+      "marketing": {
+        "icon": "📊",
+        "title": "A/B Testing",
+        "description": "Testuj różne wersje grafik"
+      },
+      "social": {
+        "icon": "📱",
+        "title": "Social Media",
+        "description": "Wiele wersji jednego zdjęcia"
+      },
+      "design": {
+        "icon": "✏️",
+        "title": "Projektowanie",
+        "description": "Szybkie iteracje konceptów"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Reimagine wykorzystuje zaawansowane modele dyfuzyjne do tworzenia wariacji zachowujących strukturę oryginału.",
+      "feature1": "Modele dyfuzyjne img2img",
+      "feature2": "Kontrola siły przekształcenia",
+      "feature3": "Zachowanie kompozycji",
+      "feature4": "Opcjonalne prompty tekstowe"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zdjęciami i ilustracjami",
+        "item2": "Obrazami z wyraźną kompozycją",
+        "item3": "Krajobrazami i scenami"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Twarze mogą się zmieniać przy wysokiej sile",
+        "item2": "Tekst na obrazie może być zniekształcony",
+        "item3": "Wyniki są nieprzewidywalne z założenia"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Zacznij od niskiej siły i zwiększaj",
+      "tip2": "Generuj kilka wariacji do porównania",
+      "tip3": "Używaj promptów dla kierunkowych zmian",
+      "tip4": "Dla portretów zachowaj niską siłę",
+      "tip5": "Eksportuj ulubione wersje natychmiast",
+      "tip6": "Eksperymentuj z różnymi stylami"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czym różni się od filtrów?",
+        "answer": "Reimagine tworzy całkiem nowe obrazy oparte na strukturze oryginału, nie tylko zmienia kolory czy kontrast."
+      },
+      "q2": {
+        "question": "Czy mogę kontrolować zmiany?",
+        "answer": "Tak, suwak siły kontroluje jak bardzo wynik różni się od oryginału. Możesz też dodać prompt tekstowy."
+      },
+      "q3": {
+        "question": "Czy zachowam twarze osób?",
+        "answer": "Przy niskiej sile twarze są rozpoznawalne. Przy wysokiej mogą się znacznie zmienić."
+      },
+      "q4": {
+        "question": "Ile wariacji mogę stworzyć?",
+        "answer": "Nieskończenie wiele - każde generowanie daje unikalne wyniki, nawet z tymi samymi ustawieniami."
+      },
+      "q5": {
+        "question": "Do czego najlepiej używać Reimagine?",
+        "answer": "Do eksploracji kreatywnej, A/B testowania, tworzenia wariacji do social media i szybkich iteracji projektowych."
+      }
+    },
+    "cta": {
+      "title": "Reimagine swój obraz",
+      "subtitle": "Odkryj nieskończone kreatywne możliwości.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Reimagine"
+    }
+  },
+  "styleTransferPage": {
+    "badge": "Transfer Stylu AI",
+    "title": "Transfer",
+    "titleHighlight": "Stylu AI",
+    "subtitle": "Przenieś swoje zdjęcie do nowej sceny lub stylu, zachowując swoją tożsamość. Twórz profesjonalne portrety, avatary fantastyczne i unikalne zdjęcia profilowe.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "4",
+      "creditsLabel": "Kredyty/obraz",
+      "scenes": "50+",
+      "scenesLabel": "Scen i stylów",
+      "processing": "~40s",
+      "processingLabel": "Czas generowania"
+    },
+    "options": {
+      "title": "Kategorie stylów",
+      "professional": {
+        "name": "Profesjonalne",
+        "description": "Portrety biznesowe i korporacyjne"
+      },
+      "fantasy": {
+        "name": "Fantasy",
+        "description": "Avatary fantasy, sci-fi i anime"
+      },
+      "artistic": {
+        "name": "Artystyczne",
+        "description": "Style malarskie i ilustracyjne"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "identity": {
+        "title": "Zachowanie tożsamości",
+        "description": "Twoja twarz pozostaje rozpoznawalna"
+      },
+      "scenes": {
+        "title": "50+ scen",
+        "description": "Bogata biblioteka stylów i teł"
+      },
+      "customPrompts": {
+        "title": "Własne prompty",
+        "description": "Opisz własną wizję sceny"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij portret",
+        "description": "Zdjęcie twarzy przodem"
+      },
+      "step2": {
+        "title": "Wybierz styl",
+        "description": "Z biblioteki lub własny prompt"
+      },
+      "step3": {
+        "title": "Generuj",
+        "description": "AI przenosi Cię do nowej sceny"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz swój nowy portret"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "headshots": {
+        "icon": "💼",
+        "title": "Profesjonalne zdjęcia",
+        "description": "Portrety do LinkedIn i CV"
+      },
+      "social": {
+        "icon": "📱",
+        "title": "Avatary social",
+        "description": "Unikalne zdjęcia profilowe"
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Avatary gamingowe",
+        "description": "Postacie fantasy i sci-fi"
+      },
+      "creative": {
+        "icon": "🎨",
+        "title": "Projekty kreatywne",
+        "description": "Artystyczne portrety i ilustracje"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasz model IP-Adapter zachowuje Twoją tożsamość podczas przenoszenia do nowych scen i stylów.",
+      "feature1": "Analiza i zachowanie twarzy",
+      "feature2": "Konsystentna tożsamość",
+      "feature3": "50+ gotowych scen",
+      "feature4": "Wsparcie dla własnych promptów"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zdjęciami twarzy przodem",
+        "item2": "Dobrym oświetleniem",
+        "item3": "Neutralnym wyrazem twarzy"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Zdjęcia z profilu dają gorsze wyniki",
+        "item2": "Ciemne zdjęcia mogą tracić detale",
+        "item3": "Niektóre style lepiej pasują do konkretnych twarzy"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj zdjęć z dobrym oświetleniem twarzy",
+      "tip2": "Patrzenie prosto w kamerę daje najlepsze wyniki",
+      "tip3": "Unikaj okularów słonecznych i zasłoniętych twarzy",
+      "tip4": "Próbuj różnych stylów z tym samym zdjęciem",
+      "tip5": "Dla profesjonalnych headshot wybierz neutralne tło",
+      "tip6": "Generuj kilka wersji do porównania"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy moja twarz będzie rozpoznawalna?",
+        "answer": "Tak, nasz model specjalnie zachowuje cechy twarzy, aby pozostać rozpoznawalnym w nowej scenie."
+      },
+      "q2": {
+        "question": "Jakie zdjęcie powinienem przesłać?",
+        "answer": "Najlepiej działa z wyraźnym zdjęciem twarzy od przodu, z dobrym oświetleniem i neutralnym tłem."
+      },
+      "q3": {
+        "question": "Czy mogę utworzyć własny styl?",
+        "answer": "Tak, oprócz gotowych scen możesz opisać własną wizję w polu prompt."
+      },
+      "q4": {
+        "question": "Czy to działa ze zdjęciami grupowymi?",
+        "answer": "Najlepiej działa z pojedynczymi portretami. Dla grup zalecamy pojedyncze zdjęcia."
+      },
+      "q5": {
+        "question": "Jak długo trwa generowanie?",
+        "answer": "Około 40 sekund, w zależności od złożoności wybranego stylu."
+      }
+    },
+    "cta": {
+      "title": "Przenieś się do nowej sceny",
+      "subtitle": "Stwórz profesjonalne portrety i unikalne avatary.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Transferuj styl"
+    }
+  },
+  "structureControlPage": {
+    "badge": "Kontrola Struktury AI",
+    "title": "Kontrola",
+    "titleHighlight": "Struktury AI",
+    "subtitle": "Generuj nowe obrazy zachowując strukturę i kompozycję referencji. Wykorzystaj głębokość lub krawędzie do tworzenia wariantów z kontrolą nad rezultatem.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "4",
+      "creditsLabel": "Kredyty/obraz",
+      "modes": "2",
+      "modesLabel": "Tryby kontroli",
+      "processing": "~40s",
+      "processingLabel": "Czas generowania"
+    },
+    "options": {
+      "title": "Tryby kontroli",
+      "depth": {
+        "name": "Głębokość",
+        "description": "Zachowuje strukturę 3D i perspektywę"
+      },
+      "edge": {
+        "name": "Krawędzie",
+        "description": "Zachowuje kontury i kształty"
+      },
+      "combined": {
+        "name": "Kombinowany",
+        "description": "Łączy oba tryby dla precyzji"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "depthPreservation": {
+        "title": "Zachowanie głębokości",
+        "description": "Utrzymuje perspektywę i relacje przestrzenne"
+      },
+      "edgeDetection": {
+        "title": "Detekcja krawędzi",
+        "description": "Zachowuje kontury i kształty obiektów"
+      },
+      "creativeControl": {
+        "title": "Kontrola kreatywna",
+        "description": "Generuj z pełną kontrolą nad strukturą"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij referencję",
+        "description": "Obraz z pożądaną strukturą"
+      },
+      "step2": {
+        "title": "Wybierz tryb",
+        "description": "Głębokość, krawędzie lub kombinowany"
+      },
+      "step3": {
+        "title": "Opisz wizję",
+        "description": "Co chcesz wygenerować"
+      },
+      "step4": {
+        "title": "Generuj",
+        "description": "AI tworzy obraz z zachowaną strukturą"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "interior": {
+        "icon": "🏠",
+        "title": "Wizualizacje wnętrz",
+        "description": "Różne style na tej samej przestrzeni"
+      },
+      "product": {
+        "icon": "📦",
+        "title": "Mockupy produktów",
+        "description": "Warianty produktów z zachowaniem formy"
+      },
+      "architecture": {
+        "icon": "🏛️",
+        "title": "Architektura",
+        "description": "Różne style budynków"
+      },
+      "concept": {
+        "icon": "💡",
+        "title": "Concept art",
+        "description": "Szybkie iteracje konceptów"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Wykorzystujemy FLUX Depth i Canny Pro do ekstrakcji struktury i generowania z kontrolą.",
+      "feature1": "Ekstrakcja mapy głębokości",
+      "feature2": "Detekcja krawędzi Canny",
+      "feature3": "Zaawansowane modele FLUX",
+      "feature4": "Kontrola nad siłą referencji"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Zdjęciami wnętrz i architektury",
+        "item2": "Produktami i obiektami",
+        "item3": "Scenami z wyraźną głębokością"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Płaskie obrazy mogą mieć słabą mapę głębokości",
+        "item2": "Bardzo złożone sceny wymagają dopracowania promptu",
+        "item3": "Twarze mogą wymagać dodatkowej kontroli"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Głębokość działa najlepiej dla wnętrz i krajobrazów",
+      "tip2": "Krawędzie lepsze dla logo i kształtów",
+      "tip3": "Opisuj szczegółowo pożądany styl",
+      "tip4": "Testuj oba tryby dla porównania",
+      "tip5": "Używaj wysokiej jakości referencji",
+      "tip6": "Eksperymentuj z siłą kontroli"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Jaka jest różnica między głębokością a krawędziami?",
+        "answer": "Głębokość zachowuje relacje przestrzenne i perspektywę. Krawędzie zachowują kontury i kształty obiektów."
+      },
+      "q2": {
+        "question": "Kiedy użyć którego trybu?",
+        "answer": "Głębokość dla wnętrz, krajobrazów, architekury. Krawędzie dla logo, ikon, ilustracji z wyraźnymi konturami."
+      },
+      "q3": {
+        "question": "Czy mogę użyć własnego promptu?",
+        "answer": "Tak, prompt tekstowy jest kluczowy do opisania co chcesz wygenerować na bazie struktury."
+      },
+      "q4": {
+        "question": "Jak silna jest kontrola?",
+        "answer": "Możesz dostosować siłę referencji od subtelnej inspiracji do ścisłego odwzorowania struktury."
+      },
+      "q5": {
+        "question": "Do czego najlepiej używać?",
+        "answer": "Do wizualizacji wnętrz, mockupów produktów, concept artu i tworzenia wariantów z kontrolą nad kompozycją."
+      }
+    },
+    "cta": {
+      "title": "Generuj z kontrolą struktury",
+      "subtitle": "Twórz z precyzją zachowując kompozycję.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Generuj z kontrolą"
+    }
+  },
+  "portraitRelightPage": {
+    "badge": "Portrait Relight AI",
+    "title": "Portrait",
+    "titleHighlight": "Relight AI",
+    "subtitle": "Zmień oświetlenie portretów z AI. Studjyne światło, złota godzina, dramatyczny cień - przekształć zwykłe zdjęcie w profesjonalny portret.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Kredyty/obraz",
+      "presets": "12+",
+      "presetsLabel": "Presetów światła",
+      "processing": "~25s",
+      "processingLabel": "Czas przetwarzania"
+    },
+    "options": {
+      "title": "Presety oświetlenia",
+      "studio": {
+        "name": "Studyjne",
+        "description": "Profesjonalne, równomierne oświetlenie"
+      },
+      "natural": {
+        "name": "Naturalne",
+        "description": "Miękkie światło dzienne przez okno"
+      },
+      "dramatic": {
+        "name": "Dramatyczne",
+        "description": "Kontrastowe, filmowe oświetlenie"
+      }
+    },
+    "features": {
+      "title": "Funkcje",
+      "lightingPresets": {
+        "title": "12+ presetów",
+        "description": "Gotowe schematy oświetlenia do wyboru"
+      },
+      "aiDetection": {
+        "title": "Detekcja twarzy",
+        "description": "AI automatycznie wykrywa i oświetla twarz"
+      },
+      "customPrompts": {
+        "title": "Własne ustawienia",
+        "description": "Opisz własne oświetlenie promptem"
+      }
+    },
+    "howItWorks": {
+      "title": "Jak to",
+      "titleHighlight": "działa",
+      "step1": {
+        "title": "Prześlij portret",
+        "description": "Zdjęcie z widoczną twarzą"
+      },
+      "step2": {
+        "title": "Wybierz oświetlenie",
+        "description": "Preset lub własny opis"
+      },
+      "step3": {
+        "title": "Przetwarzaj",
+        "description": "AI zmienia oświetlenie portretu"
+      },
+      "step4": {
+        "title": "Pobierz",
+        "description": "Zapisz prześwietlony portret"
+      }
+    },
+    "useCases": {
+      "title": "Zastosowania",
+      "photographers": {
+        "icon": "📷",
+        "title": "Fotografowie",
+        "description": "Popraw oświetlenie w post-produkcji"
+      },
+      "headshots": {
+        "icon": "💼",
+        "title": "Headshots",
+        "description": "Profesjonalne portrety biznesowe"
+      },
+      "social": {
+        "icon": "📱",
+        "title": "Social Media",
+        "description": "Lepiej oświetlone zdjęcia profilowe"
+      },
+      "ecommerce": {
+        "icon": "🛒",
+        "title": "E-commerce",
+        "description": "Profesjonalne zdjęcia produktów z modelem"
+      }
+    },
+    "technology": {
+      "title": "Technologia",
+      "description": "Nasz model IC-Light analizuje geometrię twarzy i realistycznie symuluje nowe źródła światła.",
+      "feature1": "Analiza geometrii 3D twarzy",
+      "feature2": "Symulacja fizyki światła",
+      "feature3": "Zachowanie tekstury skóry",
+      "feature4": "Naturalne cienie i refleksy"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa dobrze z",
+        "item1": "Portretami z widoczną twarzą",
+        "item2": "Zdjęciami dobrej jakości",
+        "item3": "Portretami z neutralnym tłem"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Profile i pół-profile są trudniejsze",
+        "item2": "Bardzo ciemne zdjęcia mogą tracić detale",
+        "item3": "Złożone tła mogą być zmienione"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj zdjęć z widoczną całą twarzą",
+      "tip2": "Lepsze wyniki z neutralnym tłem",
+      "tip3": "Unikaj bardzo ciemnych zdjęć",
+      "tip4": "Testuj różne presety na tym samym zdjęciu",
+      "tip5": "Dla biznesowych headshots wybierz 'Studyjne'",
+      "tip6": "Dla artystycznych portretów wypróbuj 'Dramatyczne'"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czy zmieni to moją twarz?",
+        "answer": "Nie, Relight zmienia tylko oświetlenie. Twarz, cechy i wyraz pozostają bez zmian."
+      },
+      "q2": {
+        "question": "Jakie presety są dostępne?",
+        "answer": "Studyjne, naturalne, złota godzina, neon, dramatyczne, Rembrandt, split light i więcej."
+      },
+      "q3": {
+        "question": "Czy działa ze zdjęciami grupowymi?",
+        "answer": "Najlepiej działa z pojedynczymi portretami. Dla grup każda twarz może wymagać osobnej korekty."
+      },
+      "q4": {
+        "question": "Jak uzyskać najlepsze wyniki?",
+        "answer": "Używaj wyraźnych zdjęć z twarzą widoczną od przodu, dobrą jakością i neutralnym tłem."
+      },
+      "q5": {
+        "question": "Czy mogę opisać własne oświetlenie?",
+        "answer": "Tak, oprócz presetów możesz opisać pożądane oświetlenie w polu prompt."
+      }
+    },
+    "cta": {
+      "title": "Zmień oświetlenie portretu",
+      "subtitle": "Profesjonalne światło jednym kliknięciem.",
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Oświetl portret"
     }
   }
 }

@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 import Link from 'next/link';
 
 // Lazy load heavy component
@@ -251,6 +252,11 @@ export default function ObjectRemovalPage() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Related Tools */}
+        <section className="px-6 mb-16">
+          <RelatedTools currentSlug="object-removal" />
         </section>
 
         {/* CTA Section */}

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 
 // Lazy load heavy component
 const ImageUpscaler = dynamic(
@@ -269,6 +270,9 @@ export default function UpscalerPage() {
           ))}
         </div>
       </section>
+
+      {/* Related Tools */}
+      <RelatedTools currentSlug="upscaler" />
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">

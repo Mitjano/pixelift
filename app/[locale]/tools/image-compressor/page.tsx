@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -267,6 +268,11 @@ export default function ImageCompressorPage() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Related Tools */}
+        <section className="px-6 mb-16">
+          <RelatedTools currentSlug="image-compressor" />
         </section>
 
         {/* CTA Section */}

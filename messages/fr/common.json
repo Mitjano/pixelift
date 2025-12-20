@@ -145,7 +145,58 @@
     "styleTransfer": {
       "name": "Transfert de Style",
       "description": "Transformez les photos en styles artistiques",
-      "badge": "NOUVEAU"
+      "badge": "NOUVEAU",
+      "page": {
+        "badge": "Propulsé par InstantID + IPAdapter - Visage Préservé",
+        "stats": {
+          "identity": "100%",
+          "identityLabel": "Identité préservée",
+          "scenes": "Illimitées",
+          "scenesLabel": "Scènes disponibles",
+          "credits": "3",
+          "creditsLabel": "Crédits par image"
+        },
+        "features": {
+          "identityPreserved": {
+            "title": "100% Identité Préservée",
+            "description": "Votre visage exact dans n'importe quelle scène - InstantID + IPAdapter garde votre ressemblance parfaite."
+          },
+          "anyScene": {
+            "title": "N'importe Quelle Scène",
+            "description": "Ville cyberpunk, plage tropicale, monde fantastique - décrivez n'importe quelle scène et soyez-y."
+          },
+          "customPrompts": {
+            "title": "Prompts Personnalisés",
+            "description": "Utilisez des styles prédéfinis ou écrivez votre propre prompt pour des résultats uniques."
+          }
+        },
+        "perfectFor": {
+          "title": "Parfait Pour",
+          "items": {
+            "headshots": {
+              "title": "Photos Professionnelles",
+              "description": "Créez des photos soignées pour LinkedIn, CV et profils d'entreprise."
+            },
+            "socialMedia": {
+              "title": "Réseaux Sociaux",
+              "description": "Générez des photos de profil accrocheuses et du contenu pour toute plateforme."
+            },
+            "avatars": {
+              "title": "Avatars Gaming",
+              "description": "Concevez des avatars uniques pour les jeux et identités virtuelles."
+            },
+            "creative": {
+              "title": "Projets Créatifs",
+              "description": "Explorez les transformations artistiques et la photographie expérimentale."
+            }
+          }
+        },
+        "cta": {
+          "title": "Placez-vous N'importe Où",
+          "subtitle": "Votre visage, des possibilités infinies. Téléchargez une photo et décrivez où vous voulez être.",
+          "button": "Voir Tous les Outils"
+        }
+      }
     },
     "inpainting": {
       "name": "Inpainting IA",
@@ -155,7 +206,59 @@
     "reimagine": {
       "name": "Réimaginer l'Image",
       "description": "Générez des variations d'images",
-      "badge": "NOUVEAU"
+      "badge": "NOUVEAU",
+      "page": {
+        "badge": "Propulsé par FLUX Redux AI",
+        "subtitle": "Générez des variations créatives de n'importe quelle image avec l'IA. Créez des interprétations uniques en préservant l'essence.",
+        "stats": {
+          "variations": "1-4",
+          "variationsLabel": "Variations",
+          "perVariation": "2",
+          "perVariationLabel": "Par variation",
+          "credits": "2-8",
+          "creditsLabel": "Crédits chacune"
+        },
+        "features": {
+          "multipleVariations": {
+            "title": "Variations Multiples",
+            "description": "Générez 1-4 variations uniques à la fois pour plus d'options créatives."
+          },
+          "adjustableStrength": {
+            "title": "Force Ajustable",
+            "description": "Contrôlez à quel point les variations diffèrent de l'original."
+          },
+          "guidingPrompts": {
+            "title": "Prompts de Guidage",
+            "description": "Ajoutez des prompts optionnels pour guider l'IA dans des directions spécifiques."
+          }
+        },
+        "perfectFor": {
+          "title": "Parfait Pour",
+          "items": {
+            "artists": {
+              "title": "Artistes et Designers",
+              "description": "Explorez des variations de votre travail pour l'inspiration."
+            },
+            "marketing": {
+              "title": "Équipes Marketing",
+              "description": "Créez plusieurs versions de visuels de campagne."
+            },
+            "social": {
+              "title": "Créateurs de Contenu",
+              "description": "Générez de nouvelles interprétations de votre contenu existant."
+            },
+            "photography": {
+              "title": "Photographes",
+              "description": "Découvrez de nouvelles interprétations de vos photos."
+            }
+          }
+        },
+        "cta": {
+          "title": "Débloquez des Possibilités Créatives Infinies",
+          "subtitle": "Transformez une image en plusieurs variations uniques. Parfait pour explorer des directions créatives.",
+          "button": "Voir Tous les Outils"
+        }
+      }
     },
     "structureControl": {
       "name": "Contrôle de Structure",
@@ -185,7 +288,37 @@
     "imageFilters": {
       "name": "Filtres et Effets",
       "description": "Appliquez des filtres",
-      "badge": "GRATUIT"
+      "badge": "GRATUIT",
+      "page": {
+        "freeTool": "Outil GRATUIT",
+        "stats": {
+          "free": "GRATUIT",
+          "freeLabel": "Sans crédits",
+          "presets": "7 Presets",
+          "presetsLabel": "Styles de filtres",
+          "sliders": "5 Curseurs",
+          "slidersLabel": "Contrôle fin"
+        },
+        "features": {
+          "filterPresets": {
+            "title": "Presets de Filtres",
+            "description": "Niveaux de gris, sépia, vintage, froid, chaud et presets dramatiques."
+          },
+          "fineAdjustments": {
+            "title": "Ajustements Fins",
+            "description": "Contrôlez luminosité, contraste, saturation, flou et netteté."
+          },
+          "livePreview": {
+            "title": "Aperçu en Direct",
+            "description": "Voyez les changements en temps réel pendant que vous ajustez les paramètres."
+          }
+        },
+        "cta": {
+          "title": "Explorez Plus d'Outils Gratuits",
+          "subtitle": "Essayez d'autres outils gratuits - recadrage, redimensionnement, collage et plus.",
+          "button": "Voir Tous les Outils"
+        }
+      }
     },
     "collageMaker": {
       "name": "Créateur de Collage",
@@ -195,7 +328,37 @@
     "logoMaker": {
       "name": "Créateur de Logo",
       "description": "Créez des logos avec l'IA",
-      "badge": "IA"
+      "badge": "IA",
+      "page": {
+        "aiPowered": "Propulsé par l'IA",
+        "stats": {
+          "credits": "5 Crédits",
+          "creditsLabel": "Par génération",
+          "styles": "6 Styles",
+          "stylesLabel": "Au choix",
+          "model": "IA",
+          "modelLabel": "Ideogram V2"
+        },
+        "features": {
+          "multipleStyles": {
+            "title": "Styles Multiples",
+            "description": "Minimaliste, vintage, moderne, ludique, professionnel et tech."
+          },
+          "aiGenerated": {
+            "title": "Généré par l'IA",
+            "description": "Propulsé par Ideogram V2 Turbo pour des logos de qualité professionnelle."
+          },
+          "customColors": {
+            "title": "Couleurs Personnalisées",
+            "description": "Palette de couleurs optionnelle pour correspondre à votre marque."
+          }
+        },
+        "cta": {
+          "title": "Explorez Plus d'Outils IA",
+          "subtitle": "Essayez nos autres outils IA - suppression d'arrière-plan, agrandissement, effets de texte et plus.",
+          "button": "Voir Tous les Outils"
+        }
+      }
     },
     "textEffects": {
       "name": "Effets de Texte",
@@ -205,12 +368,45 @@
     "qrGenerator": {
       "name": "Générateur de QR",
       "description": "Créez des QR codes avec logo",
-      "badge": "GRATUIT"
+      "badge": "GRATUIT",
+      "page": {
+        "freeTool": "Outil GRATUIT",
+        "stats": {
+          "free": "GRATUIT",
+          "freeLabel": "Sans crédits",
+          "custom": "Personnalisé",
+          "customLabel": "Couleurs et logos",
+          "instant": "Instantané",
+          "instantLabel": "Génération"
+        },
+        "features": {
+          "customColors": {
+            "title": "Couleurs Personnalisées",
+            "description": "Choisissez des couleurs sombres et claires pour votre design de code QR."
+          },
+          "logoSupport": {
+            "title": "Support de Logo",
+            "description": "Ajoutez votre propre logo au centre du code QR pour votre marque."
+          },
+          "configurable": {
+            "title": "Configurable",
+            "description": "Ajustez la taille, le niveau de correction d'erreur et la marge."
+          }
+        },
+        "cta": {
+          "title": "Explorez Plus d'Outils Gratuits",
+          "subtitle": "Essayez d'autres outils gratuits - recadrage, redimensionnement, filtres et plus.",
+          "button": "Voir Tous les Outils"
+        }
+      }
     },
     "vectorize": {
       "name": "Convertir en SVG",
       "description": "Vectorisez les images en SVG",
       "badge": "IA"
+    },
+    "relatedTools": {
+      "title": "Outils connexes qui pourraient vous plaire"
     }
   },
   "home": {
@@ -4298,6 +4494,1943 @@
       "subtitle": "La même technologie utilisée par les éditeurs photo professionnels - maintenant accessible à tous.",
       "getStarted": "Commencer Gratuitement",
       "startInpainting": "Démarrer l'Inpainting"
+    }
+  },
+  "logoMakerPage": {
+    "badge": "Générateur de Logos IA",
+    "title": "Créez des Logos Professionnels",
+    "titleHighlight": "avec l'IA",
+    "subtitle": "Générez des logos uniques et impressionnants pour votre marque en quelques secondes. Propulsé par une technologie IA avancée, notre créateur de logos conçoit des designs professionnels adaptés à l'identité de votre entreprise. Aucune compétence en design requise - décrivez simplement votre vision.",
+    "stats": {
+      "credits": "5",
+      "creditsLabel": "Crédits/Logo",
+      "styles": "6+",
+      "stylesLabel": "Styles de Logo",
+      "generation": "10s",
+      "generationLabel": "Temps de Génération"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Choisissez Votre Style de Logo",
+      "minimalist": {
+        "name": "Minimaliste",
+        "description": "Designs épurés et simples avec une esthétique moderne. Parfait pour les startups tech et les marques contemporaines."
+      },
+      "vintage": {
+        "name": "Vintage",
+        "description": "Designs classiques et intemporels avec un charme rétro. Idéal pour les marques artisanales, cafés et entreprises traditionnelles."
+      },
+      "modern": {
+        "name": "Moderne",
+        "description": "Designs audacieux et contemporains avec un attrait avant-gardiste. Excellent pour les entreprises innovantes et services numériques."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités du Créateur de Logos IA",
+      "multipleStyles": {
+        "title": "6 Styles Professionnels",
+        "description": "Choisissez parmi les styles minimaliste, vintage, moderne, ludique, professionnel ou tech. Chaque style est optimisé pour différentes personnalités de marque et industries."
+      },
+      "aiPowered": {
+        "title": "Moteur IA Ideogram V2",
+        "description": "Propulsé par le modèle Ideogram V2 Turbo de pointe, spécifiquement entraîné pour la génération de logos avec une typographie et création de symboles exceptionnelles."
+      },
+      "customization": {
+        "title": "Personnalisation de Marque",
+        "description": "Entrez le nom de votre marque, industrie et palette de couleurs préférée. L'IA adapte chaque design pour correspondre à l'identité unique de votre marque."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne la",
+      "titleHighlight": "Génération de Logos IA",
+      "step1": {
+        "title": "Entrez les Détails de Votre Marque",
+        "description": "Fournissez le nom de votre marque, industrie et slogan ou description optionnel."
+      },
+      "step2": {
+        "title": "Choisissez le Style",
+        "description": "Sélectionnez parmi 6 styles de logo professionnels qui correspondent à la personnalité de votre marque."
+      },
+      "step3": {
+        "title": "Configurez les Couleurs (Optionnel)",
+        "description": "Spécifiez les couleurs préférées ou laissez l'IA choisir une palette harmonieuse pour vous."
+      },
+      "step4": {
+        "title": "Téléchargez le Logo",
+        "description": "Obtenez votre logo haute résolution prêt pour le web, l'impression et les réseaux sociaux."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour Chaque Entreprise",
+      "startup": {
+        "icon": "🚀",
+        "title": "Startups et Entrepreneurs",
+        "description": "Lancez votre marque avec un logo professionnel sans frais de designer coûteux. Parfait pour les MVPs et l'itération rapide."
+      },
+      "smallBusiness": {
+        "icon": "🏪",
+        "title": "Petites Entreprises",
+        "description": "Créez une identité de marque cohérente pour votre entreprise locale, restaurant ou société de services à une fraction des coûts traditionnels."
+      },
+      "content": {
+        "icon": "📱",
+        "title": "Créateurs de Contenu",
+        "description": "Concevez des logos uniques pour chaînes YouTube, podcasts, streams Twitch et profils de réseaux sociaux."
+      },
+      "projects": {
+        "icon": "💼",
+        "title": "Projets et Événements",
+        "description": "Générez des logos pour hackathons, conférences, projets communautaires ou campagnes temporaires."
+      }
+    },
+    "technology": {
+      "title": "🤖 Propulsé par Ideogram V2",
+      "description": "Notre créateur de logos IA utilise Ideogram V2 Turbo, l'un des modèles texte-vers-image les plus avancés, spécifiquement optimisé pour la typographie et le design de logos. Contrairement aux générateurs d'images génériques, Ideogram excelle dans la création de texte lisible et stylisé et de symboles de marque professionnels.",
+      "feature1": "Rendu typographique avancé avec des formes de lettres précises",
+      "feature2": "Génération de symboles et icônes cohérente en style",
+      "feature3": "Optimisation de palette de couleurs de marque",
+      "feature4": "Sortie haute résolution adaptée à l'impression et au web"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Noms de marque simples et mémorables (1-3 mots)",
+        "item2": "Préférences de style claires (minimaliste, moderne, etc.)",
+        "item3": "Catégories d'entreprise et industries standards"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les slogans complexes de plusieurs mots peuvent avoir des problèmes de texte",
+        "item2": "Les demandes d'icônes très spécifiques peuvent nécessiter des itérations",
+        "item3": "Les éléments de marque déposée ne peuvent pas être répliqués"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils pour de Meilleurs Résultats de Logos",
+      "tip1": "Gardez le nom de votre marque court et clair (1-3 mots fonctionnent mieux)",
+      "tip2": "Soyez précis sur votre industrie pour des designs plus pertinents",
+      "tip3": "Essayez plusieurs styles pour trouver la combinaison parfaite",
+      "tip4": "Spécifiez 2-3 couleurs si vous avez des directives de marque",
+      "tip5": "Générez plusieurs variations et choisissez votre préférée",
+      "tip6": "Utilisez le résultat comme point de départ pour un raffinement ultérieur"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Puis-je utiliser les logos générés commercialement?",
+        "answer": "Oui! Tous les logos générés avec Pixelift sont les vôtres pour un usage commercial. Vous recevez tous les droits pour utiliser, modifier et déposer votre logo à des fins commerciales."
+      },
+      "q2": {
+        "question": "Quels formats de fichier recevrai-je?",
+        "answer": "Les logos sont livrés en format PNG haute résolution avec fond transparent. Cela fonctionne pour le web, l'impression et la plupart des applications de design."
+      },
+      "q3": {
+        "question": "Combien de crédits coûte la génération de logos?",
+        "answer": "Chaque génération de logo coûte 5 crédits. Nous recommandons de générer 2-3 variations pour trouver le design parfait pour votre marque."
+      },
+      "q4": {
+        "question": "Puis-je demander des révisions?",
+        "answer": "Chaque génération crée un logo nouveau et unique. Pour obtenir des variations, ajustez simplement vos entrées (style, couleurs, description) et générez à nouveau."
+      },
+      "q5": {
+        "question": "Que faire si les résultats ne me plaisent pas?",
+        "answer": "Essayez différentes options de style ou fournissez des détails plus spécifiques sur l'industrie/les couleurs. L'IA répond bien aux entrées claires et descriptives."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Créer Votre Logo de Marque?",
+      "subtitle": "Logos professionnels générés par IA en quelques secondes. Aucune compétence en design requise. Commencez avec 3 crédits gratuits.",
+      "getStarted": "Créer un Logo Maintenant",
+      "startAction": "Générer Logo"
+    }
+  },
+  "textEffectsPage": {
+    "badge": "Générateur de Typographie IA",
+    "title": "Créez des Effets de",
+    "titleHighlight": "Texte Époustouflants",
+    "subtitle": "Transformez du texte simple en art visuel accrocheur avec l'IA. Générez du texte 3D, des enseignes néon, des effets de feu et plus encore. Parfait pour les graphiques de réseaux sociaux, miniatures et projets créatifs.",
+    "stats": {
+      "credits": "5",
+      "creditsLabel": "Crédits/Image",
+      "styles": "10+",
+      "stylesLabel": "Styles d'Effets",
+      "generation": "15s",
+      "generationLabel": "Temps de Traitement"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Styles d'Effets de Texte Populaires",
+      "neon": {
+        "name": "Lueur Néon",
+        "description": "Enseignes néon vibrantes avec des effets de lueur réalistes. Parfait pour les designs nocturnes et l'esthétique rétro."
+      },
+      "3d": {
+        "name": "3D Métallique",
+        "description": "Texte tridimensionnel audacieux avec un éclat métallique. Excellent pour les en-têtes et titres accrocheurs."
+      },
+      "fire": {
+        "name": "Feu et Flammes",
+        "description": "Effets de texte ardent dynamiques avec un feu réaliste. Idéal pour le gaming, la musique et les thèmes intenses."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités des Effets de Texte IA",
+      "effects": {
+        "title": "10+ Styles d'Effets",
+        "description": "Effets 3D, néon, graffiti, feu, glace, or, chrome, cartoon, rétro et glitch. Chaque style crée une typographie unique de qualité professionnelle."
+      },
+      "backgrounds": {
+        "title": "Options de Fond",
+        "description": "Choisissez des fonds transparents pour une superposition facile, des couleurs unies pour le contraste, ou des fonds dégradés pour des designs complets."
+      },
+      "aiPowered": {
+        "title": "Moteur Ideogram V2",
+        "description": "Propulsé par Ideogram V2, le modèle IA leader pour la génération de typographie avec une qualité exceptionnelle de rendu de texte."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionnent les",
+      "titleHighlight": "Effets de Texte IA",
+      "step1": {
+        "title": "Entrez Votre Texte",
+        "description": "Tapez le texte que vous voulez styliser (fonctionne mieux avec 1-5 mots)."
+      },
+      "step2": {
+        "title": "Choisissez le Style d'Effet",
+        "description": "Sélectionnez parmi 10+ styles d'effets: néon, 3D, feu, glace, or et plus."
+      },
+      "step3": {
+        "title": "Configurez le Fond",
+        "description": "Choisissez un fond transparent, couleur unie ou dégradé pour votre texte."
+      },
+      "step4": {
+        "title": "Téléchargez l'Image",
+        "description": "Obtenez votre texte stylisé comme image haute résolution prête à l'emploi."
+      }
+    },
+    "useCases": {
+      "title": "Créez une Typographie Incroyable Pour",
+      "social": {
+        "icon": "📱",
+        "title": "Graphiques de Réseaux Sociaux",
+        "description": "Créez des publications Instagram accrocheuses, des miniatures TikTok et des couvertures Facebook qui arrêtent le défilement."
+      },
+      "youtube": {
+        "icon": "🎬",
+        "title": "Miniatures YouTube",
+        "description": "Générez des titres attrayants pour vos miniatures vidéo qui augmentent les taux de clics."
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Contenu Gaming",
+        "description": "Concevez des titres épiques pour les overlays Twitch, montages gaming et branding d'équipes esports."
+      },
+      "marketing": {
+        "icon": "📣",
+        "title": "Matériaux Marketing",
+        "description": "Créez des titres audacieux pour les publicités, bannières, présentations et contenu promotionnel."
+      }
+    },
+    "technology": {
+      "title": "🎨 IA Typographique Ideogram V2",
+      "description": "Notre outil d'effets de texte utilise Ideogram V2, conçu spécifiquement pour une génération de typographie exceptionnelle. Contrairement aux autres générateurs d'images IA qui ont des difficultés avec le texte, Ideogram produit des lettres propres, lisibles et magnifiquement stylisées.",
+      "feature1": "Rendu de texte précis avec espacement de lettres correct",
+      "feature2": "Application de style cohérente sur tous les caractères",
+      "feature3": "Sortie haute résolution pour l'impression et le numérique",
+      "feature4": "Support de fond transparent pour une composition facile"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Texte court (1-5 mots) comme titres et en-têtes",
+        "item2": "Lettres et chiffres anglais courants",
+        "item3": "Styles d'effets audacieux et stylisés"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les phrases longues peuvent avoir des incohérences de lettres",
+        "item2": "Les caractères spéciaux et symboles peuvent ne pas s'afficher",
+        "item3": "Certains styles d'effets fonctionnent mieux que d'autres"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils pour de Meilleurs Effets de Texte",
+      "tip1": "Gardez le texte court: 1-5 mots fonctionnent mieux",
+      "tip2": "Utilisez les MAJUSCULES pour des résultats plus percutants",
+      "tip3": "Essayez plusieurs styles d'effets pour trouver la meilleure combinaison",
+      "tip4": "Utilisez un fond transparent pour la superposition",
+      "tip5": "Les fonds dégradés créent des graphiques complets prêts à l'emploi",
+      "tip6": "Générez des variations et choisissez la meilleure"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Quelles longueurs de texte fonctionnent le mieux?",
+        "answer": "Le texte court (1-5 mots) produit les meilleurs résultats. Le texte plus long peut avoir des incohérences dans le rendu des lettres. Pour les phrases plus longues, envisagez de générer chaque mot séparément."
+      },
+      "q2": {
+        "question": "Puis-je utiliser ces images commercialement?",
+        "answer": "Oui! Toutes les images générées sont les vôtres pour un usage commercial dans le marketing, les réseaux sociaux, les produits et plus encore."
+      },
+      "q3": {
+        "question": "Quelle est la résolution des images de sortie?",
+        "answer": "Les images sont générées en haute résolution adaptée à l'utilisation web et impression. La taille exacte dépend du ratio d'aspect sélectionné."
+      },
+      "q4": {
+        "question": "Pourquoi mon texte ne ressemble-t-il pas exactement à ce que j'ai tapé?",
+        "answer": "La génération de texte IA peut parfois modifier les formes des lettres pour un effet stylistique. Si le texte n'est pas parfait, essayez de régénérer ou d'ajuster le style d'effet."
+      },
+      "q5": {
+        "question": "Combien de crédits coûtent les effets de texte?",
+        "answer": "Chaque génération d'effets de texte coûte 5 crédits. Nous recommandons de générer quelques variations pour trouver le résultat parfait."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Créer des Effets de Texte Incroyables?",
+      "subtitle": "Transformez votre texte en art visuel époustouflant en quelques secondes. Aucune compétence en design requise.",
+      "getStarted": "Créer des Effets de Texte",
+      "startAction": "Générer Maintenant"
+    }
+  },
+  "vectorizePage": {
+    "badge": "Conversion Vectorielle IA",
+    "title": "Convertissez les Images en",
+    "titleHighlight": "Vecteurs Évolutifs",
+    "subtitle": "Transformez les images raster en graphiques vectoriels SVG propres et évolutifs avec l'IA. Parfait pour les logos, icônes et illustrations qui doivent s'adapter à l'infini sans perte de qualité. Idéal pour les flux de travail d'impression, web et design.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Crédits/Image",
+      "modes": "3",
+      "modesLabel": "Modes de Couleur",
+      "format": "SVG",
+      "formatLabel": "Sortie Vectorielle"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Modes de Couleur de Vectorisation",
+      "fullColor": {
+        "name": "Pleine Couleur",
+        "description": "Préserve toutes les couleurs avec jusqu'à 256 couleurs dans la palette. Meilleur pour les illustrations et l'art complexe."
+      },
+      "grayscale": {
+        "name": "Niveaux de Gris",
+        "description": "Convertit en nuances de gris. Parfait pour les documents professionnels et les designs monochromes."
+      },
+      "blackWhite": {
+        "name": "Noir et Blanc",
+        "description": "Conversion pure à deux tons. Idéal pour les logos, tampons et graphiques à fort contraste."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Vectorisation IA",
+      "scalable": {
+        "title": "Évolutivité Infinie",
+        "description": "Les vecteurs SVG s'adaptent à n'importe quelle taille sans perdre en qualité. Du favicon au panneau d'affichage, vos graphiques restent nets et clairs."
+      },
+      "colorModes": {
+        "title": "Modes de Couleur Flexibles",
+        "description": "Choisissez pleine couleur pour les illustrations, niveaux de gris pour les documents, ou noir et blanc pour les logos et icônes."
+      },
+      "cleanOutput": {
+        "title": "SVG Propre et Éditable",
+        "description": "Les fichiers de sortie sont optimisés pour l'édition dans Illustrator, Figma et autres outils de design."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne la",
+      "titleHighlight": "Vectorisation IA",
+      "step1": {
+        "title": "Téléchargez l'Image",
+        "description": "Téléchargez n'importe quelle image PNG, JPG ou WEBP que vous souhaitez convertir en vecteur."
+      },
+      "step2": {
+        "title": "Choisissez le Mode de Couleur",
+        "description": "Sélectionnez pleine couleur, niveaux de gris ou noir et blanc selon vos besoins."
+      },
+      "step3": {
+        "title": "Traitement IA",
+        "description": "Notre IA analyse les bords et formes pour créer des tracés vectoriels propres."
+      },
+      "step4": {
+        "title": "Téléchargez le SVG",
+        "description": "Obtenez votre fichier vectoriel évolutif prêt pour n'importe quelle application."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour la Conversion Vectorielle",
+      "logos": {
+        "icon": "🎨",
+        "title": "Vectorisation de Logos",
+        "description": "Convertissez les logos raster en SVG évolutifs pour cartes de visite, signalétique et merchandising."
+      },
+      "illustrations": {
+        "icon": "🖼️",
+        "title": "Art et Illustrations",
+        "description": "Transformez l'art dessiné à la main ou les illustrations numériques en formats vectoriels éditables."
+      },
+      "icons": {
+        "icon": "⭐",
+        "title": "Icônes et Éléments UI",
+        "description": "Créez des icônes évolutives pour apps, sites web et systèmes de design."
+      },
+      "printing": {
+        "icon": "🖨️",
+        "title": "Impression et Merchandising",
+        "description": "Préparez les graphiques pour l'impression grand format, t-shirts et matériaux promotionnels."
+      }
+    },
+    "technology": {
+      "title": "🔬 IA de Vectorisation Avancée",
+      "description": "Notre moteur de vectorisation utilise des algorithmes avancés de détection des bords et d'optimisation des tracés pour créer des fichiers SVG propres et efficaces. Contrairement aux outils simples d'auto-trace, notre IA comprend le contenu de l'image et crée des tracés vectoriels sémantiquement significatifs.",
+      "feature1": "Détection intelligente des bords pour des courbes douces",
+      "feature2": "Optimisation et réduction de palette de couleurs",
+      "feature3": "Simplification des tracés pour des fichiers plus petits",
+      "feature4": "Préserve les détails importants tout en supprimant le bruit"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Graphiques simples avec des bords clairs (logos, icônes)",
+        "item2": "Images avec des couleurs unies et des formes définies",
+        "item3": "Art linéaire et illustrations"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les photographies produisent des interprétations vectorielles abstraites",
+        "item2": "Les images très détaillées peuvent perdre des détails fins",
+        "item3": "Les dégradés sont convertis en étapes de couleur discrètes"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils pour une Meilleure Vectorisation",
+      "tip1": "Utilisez des images à fort contraste avec des bords clairs",
+      "tip2": "Les graphiques simples avec moins de couleurs se vectorisent mieux",
+      "tip3": "Le mode noir et blanc est meilleur pour les logos et tampons",
+      "tip4": "Nettoyez votre image source avant de vectoriser",
+      "tip5": "Les sources de plus haute résolution produisent des vecteurs plus propres",
+      "tip6": "Utilisez le mode pleine couleur pour les illustrations avec dégradés"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Quelle est la différence entre raster et vecteur?",
+        "answer": "Les images raster (PNG, JPG) sont composées de pixels et deviennent floues en agrandissement. Les graphiques vectoriels (SVG) utilisent des tracés mathématiques et s'adaptent à l'infini sans perte de qualité."
+      },
+      "q2": {
+        "question": "Puis-je éditer la sortie SVG?",
+        "answer": "Oui! Les fichiers SVG peuvent être ouverts et édités dans Adobe Illustrator, Figma, Inkscape et autres logiciels d'édition vectorielle."
+      },
+      "q3": {
+        "question": "Les photos se convertiront-elles bien en vecteur?",
+        "answer": "Les photographies produisent des interprétations vectorielles stylisées et abstraites. La vectorisation fonctionne mieux avec les logos, icônes et graphiques avec des formes claires."
+      },
+      "q4": {
+        "question": "Combien de couleurs la sortie peut-elle avoir?",
+        "answer": "Le mode pleine couleur prend en charge jusqu'à 256 couleurs. Vous pouvez également limiter les couleurs pour des sorties plus simples ou choisir les modes niveaux de gris/noir et blanc."
+      },
+      "q5": {
+        "question": "Quels formats de fichier sont pris en charge?",
+        "answer": "Entrée: PNG, JPG, JPEG, WEBP. La sortie est toujours SVG (Scalable Vector Graphics), le standard de l'industrie pour les graphiques vectoriels."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Vectoriser Vos Images?",
+      "subtitle": "Convertissez les images raster en vecteurs SVG évolutifs en quelques secondes. Parfait pour logos, icônes et illustrations.",
+      "getStarted": "Vectoriser Maintenant",
+      "startAction": "Convertir en SVG"
+    }
+  },
+  "qrGeneratorPage": {
+    "badge": "Outil de Codes QR Gratuit",
+    "title": "Créez des Codes QR",
+    "titleHighlight": "Personnalisés",
+    "subtitle": "Générez des codes QR professionnels gratuitement avec des couleurs personnalisées et votre logo. Parfait pour cartes de visite, matériaux marketing, menus et campagnes numériques. Aucun compte requis.",
+    "stats": {
+      "cost": "GRATUIT",
+      "costLabel": "Sans Crédits",
+      "custom": "100%",
+      "customLabel": "Personnalisable",
+      "instant": "<1s",
+      "instantLabel": "Génération"
+    },
+    "termsNotice": "Les codes QR sont générés localement dans votre navigateur.",
+    "options": {
+      "title": "Personnalisation des Codes QR",
+      "colors": {
+        "name": "Couleurs Personnalisées",
+        "description": "Définissez n'importe quelle couleur de premier plan et d'arrière-plan pour correspondre à votre identité de marque."
+      },
+      "logo": {
+        "name": "Intégration de Logo",
+        "description": "Ajoutez votre logo ou icône au centre du code QR pour la reconnaissance de marque."
+      },
+      "sizing": {
+        "name": "Taille et Correction d'Erreur",
+        "description": "Ajustez la taille du QR et le niveau de correction d'erreur pour différents cas d'utilisation."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités du Générateur de Codes QR",
+      "customColors": {
+        "title": "Couleurs de Marque",
+        "description": "Choisissez des couleurs sombres et claires personnalisées qui correspondent aux directives de votre marque. Créez des matériaux marketing cohésifs."
+      },
+      "logoSupport": {
+        "title": "Intégration de Logo",
+        "description": "Téléchargez votre logo ou icône à afficher au centre. La correction d'erreur garantit que le QR reste scannable."
+      },
+      "configuration": {
+        "title": "Options Avancées",
+        "description": "Contrôlez la taille du QR (100-1000px), le niveau de correction d'erreur (L/M/Q/H), et la marge pour différentes applications."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment",
+      "titleHighlight": "Créer des Codes QR",
+      "step1": {
+        "title": "Entrez le Contenu",
+        "description": "Collez URL, texte, numéro de téléphone ou toute donnée à encoder."
+      },
+      "step2": {
+        "title": "Personnalisez le Design",
+        "description": "Définissez les couleurs, téléchargez un logo et ajustez la taille pour correspondre à votre marque."
+      },
+      "step3": {
+        "title": "Prévisualisez le Code",
+        "description": "Voyez un aperçu en temps réel pendant que vous ajustez les paramètres."
+      },
+      "step4": {
+        "title": "Téléchargez PNG",
+        "description": "Obtenez votre code QR comme image PNG haute résolution."
+      }
+    },
+    "useCases": {
+      "title": "Codes QR Pour Chaque Objectif",
+      "marketing": {
+        "icon": "📣",
+        "title": "Campagnes Marketing",
+        "description": "Liez vers des pages d'atterrissage, promotions et contenu numérique depuis les matériaux imprimés."
+      },
+      "business": {
+        "icon": "💼",
+        "title": "Cartes de Visite",
+        "description": "Partagez les informations de contact, profil LinkedIn ou site web avec un simple scan."
+      },
+      "restaurants": {
+        "icon": "🍽️",
+        "title": "Restaurants et Menus",
+        "description": "Créez des menus numériques sans contact pour que les clients les consultent sur leurs téléphones."
+      },
+      "events": {
+        "icon": "🎫",
+        "title": "Événements et Billets",
+        "description": "Liez vers les détails d'événements, formulaires d'inscription ou billets numériques."
+      }
+    },
+    "technology": {
+      "title": "🔲 Technologie des Codes QR",
+      "description": "Les codes QR (Quick Response) sont des codes-barres 2D qui stockent des données dans un motif de grille. Notre générateur crée des codes scannables de haute qualité utilisant un encodage standard de l'industrie avec correction d'erreur intégrée.",
+      "feature1": "Encodage QR standard compatible avec tous les scanners",
+      "feature2": "Niveaux de correction d'erreur jusqu'à 30% de récupération de données",
+      "feature3": "Sortie haute résolution pour l'impression et le numérique",
+      "feature4": "Placement de logo avec dimensionnement automatique"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "URLs, texte et types de données standards",
+        "item2": "Logos simples qui n'obscurcissent pas trop",
+        "item3": "Combinaisons de couleurs à fort contraste"
+      },
+      "limitations": {
+        "title": "✗ À Garder en Tête",
+        "item1": "Les URLs très longues créent des codes QR plus denses",
+        "item2": "Les couleurs à faible contraste peuvent réduire la scannabilité",
+        "item3": "Les grands logos peuvent interférer avec le scan"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour des Codes QR Efficaces",
+      "tip1": "Utilisez des raccourcisseurs d'URL pour des motifs QR plus propres et simples",
+      "tip2": "Testez le scan avant d'imprimer en grandes quantités",
+      "tip3": "Maintenez un fort contraste entre les couleurs pour la fiabilité",
+      "tip4": "Gardez la taille du logo en dessous de 30% de la zone du QR",
+      "tip5": "Utilisez une correction d'erreur plus élevée (Q ou H) lors de l'ajout de logos",
+      "tip6": "Imprimez à minimum 2cm x 2cm pour un scan fiable"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Le générateur de QR est-il vraiment gratuit?",
+        "answer": "Oui! La génération de codes QR est 100% gratuite sans limites. Aucun compte ni crédit requis. Les codes sont générés directement dans votre navigateur."
+      },
+      "q2": {
+        "question": "Les codes QR fonctionneront-ils avec mon logo?",
+        "answer": "Oui, grâce à la correction d'erreur. Nous recommandons d'utiliser des niveaux de correction d'erreur plus élevés (Q ou H) lors de l'ajout de logos, et de garder une taille de logo raisonnable."
+      },
+      "q3": {
+        "question": "Quel contenu puis-je encoder?",
+        "answer": "URLs, texte brut, numéros de téléphone, adresses email, identifiants WiFi et plus. La plupart des scanners détectent automatiquement le type de contenu."
+      },
+      "q4": {
+        "question": "À quelle taille dois-je imprimer les codes QR?",
+        "answer": "Minimum 2cm x 2cm pour un scan fiable. Pour le scan à distance, augmentez la taille proportionnellement (ex., 10cm pour 1 mètre de distance)."
+      },
+      "q5": {
+        "question": "Les codes QR expirent-ils?",
+        "answer": "Non! Les codes QR sont des données statiques et n'expirent jamais. Cependant, si vous encodez une URL qui change ou devient inaccessible, le QR ne mènera nulle part d'utile."
+      }
+    },
+    "cta": {
+      "title": "Créez Votre Code QR Maintenant",
+      "subtitle": "Gratuit, instantané, personnalisable. Pas d'inscription requise. Générez des codes QR illimités.",
+      "getStarted": "Créer un Code QR",
+      "startAction": "Générer Gratuitement"
+    }
+  },
+  "imageFiltersPage": {
+    "badge": "Filtres Photo Gratuits",
+    "title": "Appliquez des Filtres",
+    "titleHighlight": "Photo Professionnels",
+    "subtitle": "Transformez vos photos avec des filtres de qualité professionnelle directement dans votre navigateur. Ajustez luminosité, contraste, saturation et appliquez des effets créatifs. Outil d'édition photo gratuit, sans téléchargement - tout le traitement se fait localement.",
+    "stats": {
+      "cost": "GRATUIT",
+      "costLabel": "Sans Crédits",
+      "filters": "15+",
+      "filtersLabel": "Options de Filtres",
+      "processing": "Local",
+      "processingLabel": "Dans Votre Navigateur"
+    },
+    "termsNotice": "Les images sont traitées localement dans votre navigateur et ne sont jamais téléchargées.",
+    "options": {
+      "title": "Effets de Filtre Populaires",
+      "brightness": {
+        "name": "Luminosité et Contraste",
+        "description": "Ajustez l'exposition et le contraste pour corriger les photos mal éclairées ou ajouter des effets dramatiques."
+      },
+      "saturation": {
+        "name": "Saturation des Couleurs",
+        "description": "Améliorez ou réduisez la vivacité des couleurs. Créez des looks vibrants ou des effets monochromes élégants."
+      },
+      "effects": {
+        "name": "Effets Créatifs",
+        "description": "Appliquez des effets de flou, netteté, sépia, niveaux de gris et vignette pour des finitions uniques."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités des Filtres d'Image",
+      "adjustments": {
+        "title": "Ajustements Complets",
+        "description": "Contrôle précis sur la luminosité, le contraste, la saturation, la teinte, l'opacité et plus. Chaque curseur offre une édition de qualité professionnelle."
+      },
+      "effects": {
+        "title": "Effets Créatifs",
+        "description": "Flou et netteté pour la profondeur, sépia et niveaux de gris pour des looks classiques, vignette pour la mise au point, et inversion pour des effets artistiques."
+      },
+      "privacy": {
+        "title": "Confidentialité Totale",
+        "description": "Tout le traitement se fait dans votre navigateur. Vos photos ne quittent jamais votre appareil - pas de téléchargement, pas de stockage serveur."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment",
+      "titleHighlight": "Éditer Vos Photos",
+      "step1": {
+        "title": "Téléchargez l'Image",
+        "description": "Sélectionnez n'importe quelle photo de votre appareil à éditer."
+      },
+      "step2": {
+        "title": "Ajustez les Filtres",
+        "description": "Utilisez les curseurs pour modifier la luminosité, le contraste, la saturation et plus."
+      },
+      "step3": {
+        "title": "Appliquez les Effets",
+        "description": "Ajoutez des effets créatifs comme flou, netteté, sépia ou vignette."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Sauvegardez votre image éditée en format PNG haute qualité."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour l'Édition Photo",
+      "social": {
+        "icon": "📱",
+        "title": "Publications Réseaux Sociaux",
+        "description": "Améliorez rapidement les photos pour Instagram, Facebook et Twitter avec des filtres de niveau professionnel."
+      },
+      "photography": {
+        "icon": "📷",
+        "title": "Correction Photo",
+        "description": "Corrigez l'exposition, la couleur et le contraste des photos mal éclairées ou décolorées."
+      },
+      "creative": {
+        "icon": "🎨",
+        "title": "Projets Créatifs",
+        "description": "Créez des looks uniques pour portfolios, blogs et projets de design avec des effets créatifs."
+      },
+      "quick": {
+        "icon": "⚡",
+        "title": "Éditions Rapides",
+        "description": "Faites des ajustements rapides sans installer de logiciel lourd ni créer de comptes."
+      }
+    },
+    "technology": {
+      "title": "🖼️ Traitement d'Image dans le Navigateur",
+      "description": "Notre éditeur de filtres utilise l'API Canvas HTML5 et les technologies web modernes pour traiter les images directement dans votre navigateur. Cela garantit une confidentialité totale et des résultats instantanés sans besoin de serveur.",
+      "feature1": "Traitement d'image natif du navigateur en temps réel",
+      "feature2": "Fonctionne hors ligne - pas de connexion internet requise",
+      "feature3": "Pas de limites de taille de fichier ni de restrictions de téléchargement",
+      "feature4": "Fonctionne sur tous les appareils - bureau, tablette, mobile"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Ajustements rapides de photos et améliorations",
+        "item2": "Application d'effets basiques et créatifs",
+        "item3": "Édition soucieuse de la confidentialité (pas de téléchargement)"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Pas de filtres alimentés par IA (traitement traditionnel uniquement)",
+        "item2": "Pas de traitement par lots (une image à la fois)",
+        "item3": "Pas de calques ni d'édition avancée"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils pour de Meilleurs Résultats de Filtres",
+      "tip1": "Commencez par les ajustements de luminosité et contraste avant les autres effets",
+      "tip2": "Utilisez la saturation avec modération - les changements subtils semblent souvent plus naturels",
+      "tip3": "Combinez plusieurs petits filtres pour de meilleurs résultats qu'un effet extrême",
+      "tip4": "La vignette aide à concentrer l'attention sur le centre de votre photo",
+      "tip5": "Utilisez niveaux de gris + fort contraste pour des looks noir et blanc dramatiques",
+      "tip6": "Sauvegardez votre original avant d'expérimenter avec les filtres"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "L'éditeur de filtres est-il vraiment gratuit?",
+        "answer": "Oui! 100% gratuit sans frais cachés. Aucun compte ni crédit requis. Éditez autant de photos que vous voulez."
+      },
+      "q2": {
+        "question": "Mes photos sont-elles téléchargées quelque part?",
+        "answer": "Non. Tout le traitement se fait localement dans votre navigateur. Vos photos ne quittent jamais votre appareil, garantissant une confidentialité totale."
+      },
+      "q3": {
+        "question": "Quels formats d'image sont pris en charge?",
+        "answer": "Prend en charge JPG, PNG, GIF et WEBP. Les images de sortie sont sauvegardées en PNG haute qualité."
+      },
+      "q4": {
+        "question": "Puis-je annuler mes modifications?",
+        "answer": "Vous pouvez réinitialiser tous les filtres à leurs valeurs par défaut. Nous recommandons de sauvegarder votre image originale avant d'éditer."
+      },
+      "q5": {
+        "question": "Pourquoi choisir ceci plutôt que des apps d'édition photo?",
+        "answer": "Pas d'installation, pas d'inscription, confidentialité totale. Parfait pour des éditions rapides quand vous n'avez pas besoin d'un logiciel d'édition complet."
+      }
+    },
+    "cta": {
+      "title": "Commencez à Éditer Vos Photos",
+      "subtitle": "Gratuit, privé, instantané. Pas de téléchargement, pas de comptes, pas de limites.",
+      "getStarted": "Ouvrir l'Éditeur de Filtres",
+      "startAction": "Éditer une Photo"
+    }
+  },
+  "collageMakerPage": {
+    "badge": "Créateur de Collages Gratuit",
+    "title": "Créez des Collages Photo",
+    "titleHighlight": "Époustouflants",
+    "subtitle": "Combinez plusieurs photos en de beaux collages avec des modèles de grille personnalisables. Outil de création de collages gratuit avec traitement local - vos photos ne quittent jamais votre appareil.",
+    "stats": {
+      "cost": "GRATUIT",
+      "costLabel": "Sans Crédits",
+      "layouts": "10+",
+      "layoutsLabel": "Modèles de Grille",
+      "processing": "Local",
+      "processingLabel": "Dans Votre Navigateur"
+    },
+    "termsNotice": "Les images sont traitées localement dans votre navigateur et ne sont jamais téléchargées.",
+    "options": {
+      "title": "Options de Mise en Page de Collage",
+      "grid": {
+        "name": "Grille Classique",
+        "description": "Grilles symétriques 2x2, 3x3 et 4x4 parfaites pour des séries de photos uniformes."
+      },
+      "masonry": {
+        "name": "Disposition Maçonnerie",
+        "description": "Style Pinterest avec des hauteurs variables pour des collages créatifs et dynamiques."
+      },
+      "freeform": {
+        "name": "Mise en Page Personnalisée",
+        "description": "Glissez et redimensionnez les photos librement pour créer des compositions uniques."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités du Créateur de Collages",
+      "templates": {
+        "title": "Modèles Professionnels",
+        "description": "Choisissez parmi plus de 10 modèles de grille conçus pour les réseaux sociaux, l'impression et la présentation."
+      },
+      "customization": {
+        "title": "Personnalisation Complète",
+        "description": "Ajustez l'espacement entre les photos, les couleurs de bordure, les coins arrondis et la couleur de fond pour correspondre à votre style."
+      },
+      "privacy": {
+        "title": "Confidentialité d'Abord",
+        "description": "Toute la création de collages se fait dans votre navigateur. Vos photos restent privées - pas de téléchargement, pas de stockage."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment",
+      "titleHighlight": "Créer des Collages",
+      "step1": {
+        "title": "Téléchargez les Photos",
+        "description": "Sélectionnez plusieurs photos de votre appareil à inclure dans le collage."
+      },
+      "step2": {
+        "title": "Choisissez la Mise en Page",
+        "description": "Sélectionnez un modèle de grille qui correspond au nombre de vos photos."
+      },
+      "step3": {
+        "title": "Personnalisez le Design",
+        "description": "Ajustez l'espacement, les bordures et les couleurs de fond à votre préférence."
+      },
+      "step4": {
+        "title": "Téléchargez le Collage",
+        "description": "Sauvegardez votre collage terminé comme image haute qualité."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour la Création de Collages",
+      "social": {
+        "icon": "📱",
+        "title": "Publications Réseaux Sociaux",
+        "description": "Créez des carrousels Instagram, photos de couverture Facebook et collages photo Twitter."
+      },
+      "memories": {
+        "icon": "📸",
+        "title": "Compilations de Souvenirs",
+        "description": "Combinez des photos de vacances, événements ou moments spéciaux en souvenirs partageables."
+      },
+      "products": {
+        "icon": "🛍️",
+        "title": "Vitrine de Produits",
+        "description": "Montrez plusieurs vues ou variantes de produits dans une seule image attrayante."
+      },
+      "comparison": {
+        "icon": "🔄",
+        "title": "Comparaisons Avant/Après",
+        "description": "Créez des comparaisons côte à côte pour les transformations et résultats de progression."
+      }
+    },
+    "technology": {
+      "title": "🎨 Création de Collages dans le Navigateur",
+      "description": "Notre créateur de collages utilise l'API Canvas HTML5 pour combiner et arranger les images directement dans votre navigateur. Pas de traitement côté serveur signifie des résultats instantanés et une confidentialité totale.",
+      "feature1": "Combinaison et mise en page d'images en temps réel",
+      "feature2": "Fonctionne hors ligne après le chargement initial",
+      "feature3": "Sortie haute résolution adaptée à l'impression",
+      "feature4": "Pas de limites de taille de fichier ni de restrictions de téléchargement"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Collages de 2-9 photos avec mises en page en grille",
+        "item2": "Images carrées ou d'orientation similaire",
+        "item3": "Création rapide de collages pour réseaux sociaux"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Pas de formes personnalisées ni de recadrages avancés",
+        "item2": "Pas de capacités de superposition de texte",
+        "item3": "Nombre de photos limité par le modèle"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour de Meilleurs Collages",
+      "tip1": "Utilisez des photos avec des couleurs ou thèmes similaires pour des collages cohésifs",
+      "tip2": "Recadrez les photos à des proportions similaires avant de créer le collage",
+      "tip3": "Un espacement cohérent crée des designs plus professionnels",
+      "tip4": "Utilisez des couleurs de bordure qui complètent vos photos",
+      "tip5": "Moins de photos créent souvent des collages plus percutants",
+      "tip6": "Considérez l'objectif (impression vs web) lors du choix de la taille de sortie"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Combien de photos puis-je inclure dans un collage?",
+        "answer": "Selon le modèle, vous pouvez inclure 2-9 photos dans un seul collage. Différents modèles accueillent différents nombres de photos."
+      },
+      "q2": {
+        "question": "Puis-je réorganiser les photos après le téléchargement?",
+        "answer": "Oui, vous pouvez glisser-déposer les photos pour les réorganiser dans la grille du collage avant de télécharger."
+      },
+      "q3": {
+        "question": "Quelle est la résolution de sortie?",
+        "answer": "Les collages sont exportés en haute résolution adaptée à la visualisation web et à l'impression. La taille exacte dépend de votre sélection de modèle."
+      },
+      "q4": {
+        "question": "Mes photos sont-elles stockées quelque part?",
+        "answer": "Non. Tout le traitement se fait localement dans votre navigateur. Vos photos ne quittent jamais votre appareil."
+      },
+      "q5": {
+        "question": "Puis-je ajouter du texte à mon collage?",
+        "answer": "Actuellement, le créateur de collages se concentre sur la composition de photos. Pour les superpositions de texte, nous recommandons d'utiliser notre outil d'effets de texte ou un éditeur d'images."
+      }
+    },
+    "cta": {
+      "title": "Créez Votre Collage Photo",
+      "subtitle": "Gratuit, privé, facile. Combinez vos photos préférées en de beaux collages.",
+      "getStarted": "Créer un Collage",
+      "startAction": "Commencer"
+    }
+  },
+  "cropImagePage": {
+    "badge": "Outil de Recadrage Gratuit",
+    "title": "Recadrez et Redimensionnez",
+    "titleHighlight": "les Images Facilement",
+    "subtitle": "Recadrez vos photos aux proportions parfaites pour les réseaux sociaux, l'impression et le web. Outil de recadrage gratuit avec préréglages populaires pour Instagram, Facebook, YouTube et plus. Traitement local - vos images restent privées.",
+    "stats": {
+      "cost": "GRATUIT",
+      "costLabel": "Sans Crédits",
+      "presets": "12+",
+      "presetsLabel": "Ratios d'Aspect",
+      "processing": "Local",
+      "processingLabel": "Dans Votre Navigateur"
+    },
+    "termsNotice": "Les images sont traitées localement dans votre navigateur et ne sont jamais téléchargées.",
+    "options": {
+      "title": "Préréglages de Recadrage Populaires",
+      "square": {
+        "name": "Carré 1:1",
+        "description": "Parfait pour les publications Instagram, photos de profil et affichage de produits."
+      },
+      "landscape": {
+        "name": "Paysage 16:9",
+        "description": "Idéal pour les miniatures YouTube, photos de couverture et fonds d'écran."
+      },
+      "portrait": {
+        "name": "Portrait 4:5",
+        "description": "Optimisé pour les publications portrait Instagram, Pinterest et affichage mobile."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de l'Outil de Recadrage",
+      "presets": {
+        "title": "Préréglages Réseaux Sociaux",
+        "description": "Un clic pour des proportions de recadrage parfaites pour Instagram, Facebook, Twitter, YouTube, LinkedIn et plus."
+      },
+      "custom": {
+        "title": "Ratio Personnalisé",
+        "description": "Définissez n'importe quel ratio d'aspect personnalisé ou recadrez librement pour les dimensions exactes dont vous avez besoin."
+      },
+      "privacy": {
+        "title": "Confidentialité Totale",
+        "description": "Toutes les images sont traitées localement dans votre navigateur. Rien n'est téléchargé sur des serveurs."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment",
+      "titleHighlight": "Recadrer Vos Images",
+      "step1": {
+        "title": "Téléchargez l'Image",
+        "description": "Sélectionnez n'importe quelle image de votre appareil à recadrer."
+      },
+      "step2": {
+        "title": "Choisissez le Ratio d'Aspect",
+        "description": "Sélectionnez un préréglage ou entrez des proportions personnalisées."
+      },
+      "step3": {
+        "title": "Ajustez la Zone de Recadrage",
+        "description": "Glissez et redimensionnez la boîte de recadrage pour sélectionner votre zone désirée."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Sauvegardez votre image recadrée en format haute qualité."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour le Recadrage d'Images",
+      "social": {
+        "icon": "📱",
+        "title": "Contenu Réseaux Sociaux",
+        "description": "Recadrez les photos aux proportions parfaites pour les publications Instagram, couvertures Facebook et bannières Twitter."
+      },
+      "profile": {
+        "icon": "👤",
+        "title": "Photos de Profil",
+        "description": "Créez des photos de profil carrées parfaites pour n'importe quelle plateforme ou application."
+      },
+      "ecommerce": {
+        "icon": "🛒",
+        "title": "Photos de Produits",
+        "description": "Standardisez les images de produits à des ratios d'aspect cohérents pour les boutiques en ligne."
+      },
+      "print": {
+        "icon": "🖨️",
+        "title": "Préparation pour l'Impression",
+        "description": "Recadrez les images aux ratios d'impression standards comme 4x6, 5x7 ou 8x10."
+      }
+    },
+    "technology": {
+      "title": "🖼️ Recadrage d'Image dans le Navigateur",
+      "description": "Notre outil de recadrage utilise l'API Canvas HTML5 pour la manipulation d'images en temps réel directement dans votre navigateur. Le traitement côté client assure la confidentialité et une opération instantanée.",
+      "feature1": "Sélection de zone de recadrage interactive en temps réel",
+      "feature2": "Pas de compression d'image ni de perte de qualité",
+      "feature3": "Fonctionne hors ligne après le chargement de la page",
+      "feature4": "Prend en charge les images haute résolution sans limites de taille"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Recadrage précis d'une seule zone d'image",
+        "item2": "Dimensions de réseaux sociaux et photos de profil",
+        "item3": "Standardisation des proportions d'image"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Pas de traitement par lots de plusieurs images",
+        "item2": "Pas de recadrage de forme (rectangulaire uniquement)",
+        "item3": "Pas de mise à l'échelle - recadrage uniquement à la taille originale"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour un Meilleur Recadrage",
+      "tip1": "Utilisez la règle des tiers pour des compositions visuellement attrayantes",
+      "tip2": "Laissez de l'espace autour des sujets pour un recadrage ultérieur",
+      "tip3": "Les recadrages carrés fonctionnent mieux pour la plupart des photos de profil",
+      "tip4": "Prévisualisez comment votre recadrage apparaîtra à sa destination prévue",
+      "tip5": "Pour les réseaux sociaux, vérifiez les exigences actuelles de la plateforme",
+      "tip6": "Gardez les sujets importants éloignés des bords de la zone de recadrage"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Le recadrage réduit-il la qualité de l'image?",
+        "answer": "Le recadrage ne réduit pas la qualité - il sélectionne simplement une portion de l'image originale. Cependant, recadrer de manière extensive une petite zone résultera en une image plus petite."
+      },
+      "q2": {
+        "question": "Quels ratios d'aspect sont disponibles?",
+        "answer": "Nous offrons des préréglages pour toutes les principales tailles de réseaux sociaux (1:1, 4:5, 9:16, 16:9), tailles d'impression (4x6, 5x7, 8x10), et ratios personnalisés."
+      },
+      "q3": {
+        "question": "Puis-je recadrer la même image plusieurs fois?",
+        "answer": "Oui, vous pouvez créer plusieurs recadrages de la même image pour différents usages avant de télécharger."
+      },
+      "q4": {
+        "question": "Dans quel format l'image recadrée est-elle sauvegardée?",
+        "answer": "Les images recadrées sont sauvegardées en format PNG haute qualité, préservant la qualité originale."
+      },
+      "q5": {
+        "question": "Y a-t-il une limite de taille de fichier?",
+        "answer": "Pas de limites strictes car tout le traitement se fait localement. Les très grandes images peuvent traiter plus lentement selon les capacités de votre appareil."
+      }
+    },
+    "cta": {
+      "title": "Recadrez Vos Images Maintenant",
+      "subtitle": "Gratuit, privé, instantané. Proportions parfaites pour n'importe quelle plateforme.",
+      "getStarted": "Ouvrir l'Outil de Recadrage",
+      "startAction": "Recadrer une Image"
+    }
+  },
+  "resizeImagePage": {
+    "badge": "Outil de Redimensionnement Gratuit",
+    "title": "Redimensionnez les Images à",
+    "titleHighlight": "N'importe Quelle Taille",
+    "subtitle": "Redimensionnez les images aux dimensions exactes pour le web, les réseaux sociaux et l'impression. Outil de redimensionnement gratuit avec préréglages pour les tailles d'image courantes. Le traitement local garantit que vos photos restent privées.",
+    "stats": {
+      "cost": "GRATUIT",
+      "costLabel": "Sans Crédits",
+      "presets": "20+",
+      "presetsLabel": "Préréglages de Taille",
+      "processing": "Local",
+      "processingLabel": "Dans Votre Navigateur"
+    },
+    "termsNotice": "Les images sont traitées localement dans votre navigateur et ne sont jamais téléchargées.",
+    "options": {
+      "title": "Options de Redimensionnement",
+      "exact": {
+        "name": "Dimensions Exactes",
+        "description": "Définissez une largeur et hauteur précises en pixels pour votre image redimensionnée."
+      },
+      "percentage": {
+        "name": "Échelle en Pourcentage",
+        "description": "Mettez à l'échelle les images vers le haut ou le bas par pourcentage tout en maintenant le ratio d'aspect."
+      },
+      "presets": {
+        "name": "Préréglages Courants",
+        "description": "Un clic pour redimensionner aux tailles de réseaux sociaux et d'image standards."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Redimensionnement d'Image",
+      "presets": {
+        "title": "Préréglages de Taille Intelligents",
+        "description": "Préréglages intégrés pour les tailles de réseaux sociaux, résolutions web courantes et dimensions d'impression standards."
+      },
+      "aspectRatio": {
+        "title": "Verrouillage du Ratio d'Aspect",
+        "description": "Maintenez le ratio d'aspect original lors du redimensionnement, ou définissez de nouvelles dimensions indépendamment."
+      },
+      "quality": {
+        "title": "Préservation de la Qualité",
+        "description": "Algorithmes de redimensionnement avancés qui maintiennent la netteté de l'image et réduisent les artefacts."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment",
+      "titleHighlight": "Redimensionner les Images",
+      "step1": {
+        "title": "Téléchargez l'Image",
+        "description": "Sélectionnez n'importe quelle image de votre appareil à redimensionner."
+      },
+      "step2": {
+        "title": "Choisissez la Taille",
+        "description": "Sélectionnez un préréglage ou entrez des dimensions personnalisées en pixels."
+      },
+      "step3": {
+        "title": "Configurez les Options",
+        "description": "Activez le verrouillage du ratio d'aspect et ajustez les paramètres de qualité."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Sauvegardez votre image redimensionnée en format haute qualité."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour le Redimensionnement d'Images",
+      "web": {
+        "icon": "🌐",
+        "title": "Optimisation Web",
+        "description": "Redimensionnez les images pour un chargement plus rapide des sites web sans sacrifier la qualité visuelle."
+      },
+      "social": {
+        "icon": "📱",
+        "title": "Réseaux Sociaux",
+        "description": "Images de taille parfaite pour les publications, stories, couvertures et profils Instagram, Facebook, Twitter."
+      },
+      "email": {
+        "icon": "📧",
+        "title": "Marketing par Email",
+        "description": "Redimensionnez les images pour les campagnes email avec des tailles de fichier optimales pour la livraison."
+      },
+      "print": {
+        "icon": "🖨️",
+        "title": "Préparation pour l'Impression",
+        "description": "Mettez à l'échelle les images aux dimensions d'impression standards avec une résolution appropriée."
+      }
+    },
+    "technology": {
+      "title": "🔧 Redimensionnement d'Image Avancé",
+      "description": "Notre outil de redimensionnement utilise l'API Canvas HTML5 avec interpolation haute qualité pour un redimensionnement d'image fluide. Tout le traitement se fait localement pour des performances instantanées et une confidentialité totale.",
+      "feature1": "Algorithme d'interpolation haute qualité pour des résultats fluides",
+      "feature2": "Modes de mise à l'échelle vers le haut et vers le bas pris en charge",
+      "feature3": "Traitement par lots pour plusieurs images",
+      "feature4": "Préservation des métadonnées quand possible"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Réduire les grandes images pour l'utilisation web",
+        "item2": "Standardiser les dimensions d'image pour les collections",
+        "item3": "Préparer les images pour des tailles de plateforme spécifiques"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "La mise à l'échelle vers le haut peut introduire du flou",
+        "item2": "Pas de mise à l'échelle alimentée par IA (traditionnelle uniquement)",
+        "item3": "Les très petites images peuvent perdre en qualité lors de l'agrandissement"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour un Meilleur Redimensionnement",
+      "tip1": "Commencez toujours avec l'image de plus haute résolution disponible",
+      "tip2": "Réduire préserve toujours mieux la qualité que d'agrandir",
+      "tip3": "Utilisez le verrouillage du ratio d'aspect pour éviter la distorsion",
+      "tip4": "Considérez l'utilisation finale (web vs impression) lors du choix des dimensions",
+      "tip5": "Pour l'utilisation web, visez 72-150 DPI; pour l'impression, 300 DPI",
+      "tip6": "Testez différentes méthodes d'interpolation si les résultats sont flous"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Le redimensionnement réduit-il la qualité de l'image?",
+        "answer": "Réduire préserve généralement bien la qualité. Agrandir peut introduire du flou ou de la pixellisation car l'algorithme doit créer de nouvelles données de pixels."
+      },
+      "q2": {
+        "question": "Quelle est la taille d'image maximale que je peux redimensionner?",
+        "answer": "Pas de limite stricte car le traitement se fait localement. Les très grandes images peuvent traiter plus lentement selon la mémoire de votre appareil."
+      },
+      "q3": {
+        "question": "Puis-je redimensionner plusieurs images à la fois?",
+        "answer": "Actuellement, notre outil traite une image à la fois pour un contrôle optimal sur les paramètres de chaque image."
+      },
+      "q4": {
+        "question": "Quelles dimensions dois-je utiliser pour Instagram?",
+        "answer": "Publication carrée Instagram: 1080x1080px. Portrait: 1080x1350px. Story/Reel: 1080x1920px. Ces préréglages sont disponibles en un clic."
+      },
+      "q5": {
+        "question": "Mes images sont-elles téléchargées quelque part?",
+        "answer": "Non. Tout le traitement se fait localement dans votre navigateur. Vos images ne quittent jamais votre appareil."
+      }
+    },
+    "cta": {
+      "title": "Redimensionnez Vos Images",
+      "subtitle": "Gratuit, privé, instantané. Dimensions parfaites pour n'importe quel usage.",
+      "getStarted": "Ouvrir l'Outil de Redimensionnement",
+      "startAction": "Redimensionner une Image"
+    }
+  },
+  "reimaginePage": {
+    "badge": "Transformation d'Image par IA",
+    "title": "Réimaginez Vos",
+    "titleHighlight": "Images avec l'IA",
+    "subtitle": "Transformez vos images en styles et compositions entièrement nouveaux en utilisant l'intelligence artificielle avancée. Gardez l'essence tout en créant des variations artistiques uniques. Parfait pour l'inspiration créative et l'exploration de design.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Crédits/Image",
+      "styles": "Infinis",
+      "stylesLabel": "Possibilités Créatives",
+      "generation": "15s",
+      "generationLabel": "Temps de Génération"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Options de Transformation",
+      "style": {
+        "name": "Transformation de Style",
+        "description": "Transformez les images en différents styles artistiques comme peinture à l'huile, aquarelle, art numérique et plus."
+      },
+      "variation": {
+        "name": "Génération de Variations",
+        "description": "Créez des variations uniques tout en gardant le concept central et la composition de votre image."
+      },
+      "creative": {
+        "name": "Réinterprétation Créative",
+        "description": "Laissez l'IA réimaginer votre image avec une liberté créative pour des résultats surprenants."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Réimagination IA",
+      "aiPowered": {
+        "title": "Modèle Flux AI Avancé",
+        "description": "Propulsé par le modèle Flux Schnell de pointe qui comprend le contexte, la composition et le style pour des transformations intelligentes."
+      },
+      "preservation": {
+        "title": "Préservation de l'Essence",
+        "description": "Maintient les éléments centraux et le sens de votre image originale tout en appliquant des transformations créatives."
+      },
+      "customPrompts": {
+        "title": "Prompts Personnalisés",
+        "description": "Guidez la transformation avec des instructions textuelles décrivant le résultat désiré, le style et l'atmosphère."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne",
+      "titleHighlight": "Réimaginer avec l'IA",
+      "step1": {
+        "title": "Téléchargez Votre Image",
+        "description": "Commencez avec n'importe quelle photo ou image que vous souhaitez transformer."
+      },
+      "step2": {
+        "title": "Décrivez Votre Vision",
+        "description": "Écrivez un prompt décrivant comment vous voulez que l'IA réimagine votre image."
+      },
+      "step3": {
+        "title": "Traitement IA",
+        "description": "Notre IA analyse votre image et prompt pour créer une transformation unique."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Obtenez votre image réimaginée en haute résolution prête à l'emploi."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour la Transformation Créative",
+      "artists": {
+        "icon": "🎨",
+        "title": "Artistes et Designers",
+        "description": "Explorez les variations de votre travail, trouvez de nouvelles inspirations et créez rapidement des références de concept."
+      },
+      "marketing": {
+        "icon": "📣",
+        "title": "Marketing Créatif",
+        "description": "Générez des variations créatives de photos de produits pour les campagnes et réseaux sociaux."
+      },
+      "personal": {
+        "icon": "📸",
+        "title": "Photos Personnelles",
+        "description": "Transformez vos photos en art unique, portraits avec différents styles ou variations créatives."
+      },
+      "concepts": {
+        "icon": "💡",
+        "title": "Développement de Concepts",
+        "description": "Itérez rapidement sur les idées visuelles pour les présentations, pitch decks et brainstorming créatif."
+      }
+    },
+    "technology": {
+      "title": "🧠 Propulsé par Flux AI",
+      "description": "Notre outil de réimagination utilise Flux Schnell, un modèle image-vers-image de pointe qui comprend le contenu sémantique, le style artistique et la composition. Contrairement aux filtres simples, Flux génère des variations véritablement nouvelles tout en préservant l'essence de votre image originale.",
+      "feature1": "Compréhension sémantique profonde du contenu de l'image",
+      "feature2": "Transfert de style avec cohérence artistique",
+      "feature3": "Préservation intelligente des éléments clés",
+      "feature4": "Sortie haute résolution avec détails fins"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Transformer les photos en styles artistiques",
+        "item2": "Créer des variations de concepts de design",
+        "item3": "Exploration artistique et génération d'inspiration"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Ne peut pas répliquer exactement votre image originale",
+        "item2": "Les détails spécifiques peuvent changer lors de la transformation",
+        "item3": "Les résultats varient - générez plusieurs pour avoir des options"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour de Meilleurs Résultats",
+      "tip1": "Utilisez des prompts descriptifs avec des noms de styles artistiques spécifiques",
+      "tip2": "Mentionnez les couleurs, l'éclairage et l'atmosphère désirés dans votre prompt",
+      "tip3": "Les images plus simples produisent souvent des transformations plus claires",
+      "tip4": "Générez plusieurs variations pour trouver votre préférée",
+      "tip5": "Combinez les références de style (ex. 'impressionniste au coucher du soleil')",
+      "tip6": "Expérimentez avec différents niveaux d'intensité de transformation"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "En quoi est-ce différent des filtres photo?",
+        "answer": "Contrairement aux filtres qui appliquent des effets prédéfinis, Réimaginer utilise l'IA pour comprendre et régénérer votre image avec une intelligence créative authentique, produisant des variations uniques impossibles avec des filtres."
+      },
+      "q2": {
+        "question": "Puis-je contrôler à quel point mon image change?",
+        "answer": "Oui, votre prompt guide la transformation. Les prompts spécifiques et détaillés donnent plus de contrôle, tandis que les prompts vagues donnent à l'IA plus de liberté créative."
+      },
+      "q3": {
+        "question": "Les images réimaginées sont-elles uniques?",
+        "answer": "Oui, chaque génération crée une image unique basée sur votre entrée et prompt. Même le même prompt produira des résultats différents."
+      },
+      "q4": {
+        "question": "Puis-je utiliser les images réimaginées commercialement?",
+        "answer": "Oui, vous pouvez utiliser les images générées à des fins commerciales. Cependant, assurez-vous d'avoir les droits sur l'image d'entrée originale."
+      },
+      "q5": {
+        "question": "Quelle taille d'images puis-je réimaginer?",
+        "answer": "Nous prenons en charge les images jusqu'à 20Mo. Les images de sortie sont générées en haute résolution adaptée à la plupart des applications."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Réimaginer Vos Images?",
+      "subtitle": "Transformez vos photos en art unique avec la transformation créative alimentée par IA.",
+      "getStarted": "Commencer à Réimaginer",
+      "startAction": "Transformer l'Image"
+    }
+  },
+  "styleTransferPage": {
+    "badge": "Transfert de Style Artistique IA",
+    "title": "Transférez des Styles",
+    "titleHighlight": "Artistiques avec l'IA",
+    "subtitle": "Appliquez le style d'une image à une autre avec le transfert de style artistique alimenté par IA. Transformez les photos en peintures, appliquez des styles artistiques ou créez des fusions visuelles uniques. Parfait pour la création de contenu artistique et la stylisation créative.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Crédits/Image",
+      "quality": "HD",
+      "qualityLabel": "Sortie Haute Qualité",
+      "generation": "15s",
+      "generationLabel": "Temps de Traitement"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Options de Transfert de Style",
+      "artwork": {
+        "name": "Styles d'Art Célèbre",
+        "description": "Appliquez des styles de peintures et artistes célèbres comme Van Gogh, Monet, Picasso et plus."
+      },
+      "photo": {
+        "name": "Photo vers Photo",
+        "description": "Transférez le style visuel, la palette de couleurs et la texture d'une photo à une autre."
+      },
+      "custom": {
+        "name": "Style Personnalisé",
+        "description": "Téléchargez votre propre image de référence de style pour un transfert de style personnalisé."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Transfert de Style",
+      "aiPowered": {
+        "title": "Modèle Flux AI",
+        "description": "Utilise la dernière technologie Flux Redux pour un transfert de style précis qui préserve le contenu tout en transformant l'esthétique."
+      },
+      "preservation": {
+        "title": "Préservation du Contenu",
+        "description": "Maintient la structure et les éléments de votre image originale tout en appliquant complètement le nouveau style visuel."
+      },
+      "flexibility": {
+        "title": "Fusion de Style Flexible",
+        "description": "Contrôlez la force d'application du style, des touches subtiles aux transformations dramatiques."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne le",
+      "titleHighlight": "Transfert de Style",
+      "step1": {
+        "title": "Téléchargez Votre Image",
+        "description": "Sélectionnez la photo ou image à laquelle vous voulez appliquer un nouveau style."
+      },
+      "step2": {
+        "title": "Choisissez la Référence de Style",
+        "description": "Sélectionnez un style artistique ou téléchargez votre propre image de référence de style."
+      },
+      "step3": {
+        "title": "Traitement IA",
+        "description": "L'IA analyse les deux images et fusionne le style dans votre contenu."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Obtenez votre image stylisée en haute résolution."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour le Transfert de Style",
+      "artists": {
+        "icon": "🎨",
+        "title": "Artistes Numériques",
+        "description": "Expérimentez avec les styles artistiques, créez de l'art de référence et explorez de nouvelles directions visuelles."
+      },
+      "photographers": {
+        "icon": "📷",
+        "title": "Photographes",
+        "description": "Transformez les photos en art, créez des looks uniques et développez des styles signature."
+      },
+      "content": {
+        "icon": "📱",
+        "title": "Créateurs de Contenu",
+        "description": "Générez des graphiques de réseaux sociaux uniques, miniatures et visuels avec des styles artistiques."
+      },
+      "design": {
+        "icon": "✨",
+        "title": "Designers",
+        "description": "Créez des moodboards, développez des concepts visuels et explorez des directions esthétiques."
+      }
+    },
+    "technology": {
+      "title": "🎨 Propulsé par Flux Redux",
+      "description": "Notre transfert de style utilise Flux Redux, un modèle de transfert de style de pointe qui comprend à la fois le contenu et le style. Il extrait intelligemment les caractéristiques artistiques et les applique tout en préservant les éléments structurels de votre image.",
+      "feature1": "Extraction profonde des caractéristiques de style artistique",
+      "feature2": "Préservation de la structure du contenu",
+      "feature3": "Intensité de style configurable",
+      "feature4": "Sortie haute résolution avec détails fins"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Appliquer des styles de peinture aux photos",
+        "item2": "Transférer des schémas de couleurs et textures",
+        "item3": "Créer des interprétations artistiques de photos"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les styles très abstraits peuvent obscurcir le contenu",
+        "item2": "Les images détaillées peuvent perdre certains détails fins",
+        "item3": "Les résultats varient avec différentes combinaisons de style"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour un Meilleur Transfert de Style",
+      "tip1": "Utilisez des images de style avec des motifs artistiques clairs et distinctifs",
+      "tip2": "Les images à fort contraste fonctionnent mieux comme base de contenu",
+      "tip3": "Expérimentez avec différentes intensités de style",
+      "tip4": "Les références de style plus simples produisent des résultats plus clairs",
+      "tip5": "Essayez plusieurs combinaisons pour trouver la fusion parfaite",
+      "tip6": "Considérez les couleurs complémentaires entre contenu et style"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Quels types d'images fonctionnent le mieux comme références de style?",
+        "answer": "Les peintures, œuvres d'art avec des styles distinctifs et photos avec de fortes caractéristiques visuelles fonctionnent le mieux. Évitez les images de style très complexes ou bruitées."
+      },
+      "q2": {
+        "question": "Mon image originale sera-t-elle préservée?",
+        "answer": "La structure et le contenu de votre image sont préservés tandis que le style visuel est transformé. Les éléments importants resteront reconnaissables."
+      },
+      "q3": {
+        "question": "Puis-je utiliser n'importe quelle image comme référence de style?",
+        "answer": "Oui, vous pouvez utiliser n'importe quelle image comme référence de style. Pour de meilleurs résultats, utilisez des images avec des styles artistiques clairs et cohérents."
+      },
+      "q4": {
+        "question": "Combien de crédits coûte chaque transfert?",
+        "answer": "Chaque transfert de style coûte 3 crédits. Nous recommandons d'expérimenter avec différentes combinaisons de style."
+      },
+      "q5": {
+        "question": "Puis-je utiliser les images stylisées commercialement?",
+        "answer": "Oui, les images de sortie sont les vôtres pour un usage commercial. Assurez-vous d'avoir les droits sur les images d'entrée que vous utilisez."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Transformer Votre Art?",
+      "subtitle": "Appliquez des styles artistiques à vos photos avec le transfert de style alimenté par IA.",
+      "getStarted": "Commencer le Transfert de Style",
+      "startAction": "Styliser l'Image"
+    }
+  },
+  "structureControlPage": {
+    "badge": "Génération Structurée par IA",
+    "title": "Génération d'Image avec",
+    "titleHighlight": "Contrôle de Structure",
+    "subtitle": "Générez de nouvelles images tout en maintenant la structure et la composition de votre image originale. Utilisez la détection des bords, les cartes de profondeur ou l'extraction de pose pour guider la génération IA. Parfait pour le design de personnages, les concepts architecturaux et les poses contrôlées.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Crédits/Image",
+      "modes": "3",
+      "modesLabel": "Modes de Contrôle",
+      "generation": "15s",
+      "generationLabel": "Temps de Génération"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Modes de Contrôle de Structure",
+      "canny": {
+        "name": "Détection des Bords (Canny)",
+        "description": "Extrait les bords et contours pour maintenir la forme tout en générant un nouveau contenu avec différents styles."
+      },
+      "depth": {
+        "name": "Carte de Profondeur",
+        "description": "Préserve les relations spatiales et la profondeur pour des scènes 3D réalistes et des compositions architecturales."
+      },
+      "pose": {
+        "name": "Estimation de Pose",
+        "description": "Détecte et maintient les poses humaines tout en générant différents personnages, vêtements ou arrière-plans."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Contrôle de Structure",
+      "precision": {
+        "title": "Contrôle Précis",
+        "description": "Maintenez les structures exactes de votre image de référence tout en générant un contenu entièrement nouveau."
+      },
+      "modes": {
+        "title": "Modes de Contrôle Multiples",
+        "description": "Choisissez entre la détection des bords, les cartes de profondeur ou l'estimation de pose selon vos besoins."
+      },
+      "creative": {
+        "title": "Liberté Créative",
+        "description": "Générez un contenu illimité tout en gardant la structure - changez les styles, personnages ou environnements."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne le",
+      "titleHighlight": "Contrôle de Structure",
+      "step1": {
+        "title": "Téléchargez l'Image de Référence",
+        "description": "Fournissez une image avec la structure/pose/composition que vous voulez maintenir."
+      },
+      "step2": {
+        "title": "Choisissez le Mode de Contrôle",
+        "description": "Sélectionnez la détection des bords, la carte de profondeur ou l'estimation de pose."
+      },
+      "step3": {
+        "title": "Décrivez le Résultat",
+        "description": "Écrivez un prompt décrivant ce que vous voulez générer avec la structure donnée."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Obtenez votre image générée qui correspond à la structure originale."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour la Génération Contrôlée",
+      "character": {
+        "icon": "👤",
+        "title": "Design de Personnages",
+        "description": "Gardez les poses de personnages tout en générant différents designs de personnages, vêtements ou styles."
+      },
+      "architecture": {
+        "icon": "🏛️",
+        "title": "Visualisation Architecturale",
+        "description": "Préservez la perspective du bâtiment tout en générant différents styles ou environnements architecturaux."
+      },
+      "fashion": {
+        "icon": "👗",
+        "title": "Design de Mode",
+        "description": "Gardez la pose du modèle tout en générant différents designs de vêtements et accessoires."
+      },
+      "concept": {
+        "icon": "💡",
+        "title": "Art Conceptuel",
+        "description": "Utilisez les compositions existantes comme base pour créer rapidement plusieurs variations de concept."
+      }
+    },
+    "technology": {
+      "title": "🎯 Technologie de Contrôle de Structure",
+      "description": "Le contrôle de structure utilise des modèles spécialisés de vision par ordinateur pour extraire les informations structurelles de vos images. Cette structure guide le modèle IA Flux pour générer un nouveau contenu tout en respectant les contraintes spatiales et de composition.",
+      "feature1": "Détection des bords Canny pour des contours précis",
+      "feature2": "Estimation de carte de profondeur pour la composition 3D",
+      "feature3": "Estimation de pose OpenPose pour les poses humaines",
+      "feature4": "Intégration Flux Controlnet pour la génération guidée"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Structures claires et bien définies (poses, bâtiments)",
+        "item2": "Images avec des bords et contours distincts",
+        "item3": "Scènes avec des relations spatiales claires"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les structures complexes ou encombrées peuvent ne pas bien se détecter",
+        "item2": "Les scènes très détaillées peuvent perdre certains détails structurels",
+        "item3": "L'estimation de pose fonctionne mieux avec les poses humaines standards"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour de Meilleurs Résultats",
+      "tip1": "Utilisez des images avec des structures claires et bien définies",
+      "tip2": "La détection des bords fonctionne mieux avec un fort contraste entre sujet et fond",
+      "tip3": "Les cartes de profondeur sont idéales pour les scènes architecturales et intérieures",
+      "tip4": "L'estimation de pose fonctionne mieux avec des corps complets visibles",
+      "tip5": "Écrivez des prompts détaillés qui décrivent le style et l'environnement désirés",
+      "tip6": "Expérimentez avec différents modes pour trouver le meilleur pour votre cas d'utilisation"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Quel mode de contrôle dois-je utiliser?",
+        "answer": "Utilisez la détection des bords pour les formes et silhouettes, les cartes de profondeur pour les scènes 3D et la perspective, et l'estimation de pose pour les poses humaines et le langage corporel."
+      },
+      "q2": {
+        "question": "Puis-je utiliser ma propre image comme référence structurelle?",
+        "answer": "Oui, n'importe quelle image peut être utilisée comme référence. L'IA extraira les informations structurelles pertinentes basées sur le mode que vous sélectionnez."
+      },
+      "q3": {
+        "question": "Quelle est la précision de la préservation de structure?",
+        "answer": "La structure est très bien préservée pour les cas d'utilisation standards. Les structures complexes ou inhabituelles peuvent avoir quelques variations mineures."
+      },
+      "q4": {
+        "question": "Puis-je combiner plusieurs modes de contrôle?",
+        "answer": "Actuellement, nous prenons en charge un mode de contrôle par génération. Pour un contrôle complexe, générez plusieurs fois avec différents modes."
+      },
+      "q5": {
+        "question": "Quelle résolution d'image fonctionne le mieux?",
+        "answer": "Les images de résolution moyenne à haute fonctionnent le mieux. Les très petites images peuvent ne pas fournir assez de détails structurels."
+      }
+    },
+    "cta": {
+      "title": "Prêt Pour le Contrôle Créatif?",
+      "subtitle": "Générez des images uniques tout en maintenant la structure de votre référence.",
+      "getStarted": "Commencer avec le Contrôle de Structure",
+      "startAction": "Générer avec Contrôle"
+    }
+  },
+  "watermarkRemoverPage": {
+    "badge": "Suppression de Filigrane par IA",
+    "title": "Supprimez les Filigranes",
+    "titleHighlight": "avec l'IA",
+    "subtitle": "Supprimez les filigranes, logos et superpositions de texte des images de manière transparente avec l'inpainting IA. Nettoyez les images de stock, supprimez les tampons de date et restaurez les photos à leur état original. Rapide, précis et facile à utiliser.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Crédits/Image",
+      "modes": "2",
+      "modesLabel": "Modes de Suppression",
+      "aiModel": "LaMA",
+      "aiModelLabel": "Moteur d'Inpainting"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Modes de Suppression de Filigrane",
+      "auto": {
+        "name": "Détection Automatique",
+        "description": "L'IA détecte et supprime automatiquement les filigranes courants, logos et texte superposé."
+      },
+      "manual": {
+        "name": "Masque Manuel",
+        "description": "Peignez sur les zones spécifiques que vous voulez supprimer pour un contrôle précis."
+      },
+      "batch": {
+        "name": "Traitement par Lots",
+        "description": "Traitez plusieurs images avec des filigranes similaires efficacement."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Suppression de Filigrane",
+      "aiPowered": {
+        "title": "Inpainting LaMA",
+        "description": "Utilise le modèle d'inpainting LaMA de pointe qui remplit intelligemment les zones supprimées avec un contenu contextuellement approprié."
+      },
+      "autoDetect": {
+        "title": "Détection Automatique",
+        "description": "Détecte automatiquement les filigranes, logos, tampons de date et texte superposé courants pour une suppression en un clic."
+      },
+      "seamless": {
+        "title": "Résultats Parfaits",
+        "description": "Remplit la zone du filigrane avec une texture, des couleurs et un éclairage correspondants pour une intégration invisible."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne la",
+      "titleHighlight": "Suppression de Filigrane",
+      "step1": {
+        "title": "Téléchargez Votre Image",
+        "description": "Téléchargez n'importe quelle image avec un filigrane que vous voulez supprimer."
+      },
+      "step2": {
+        "title": "Sélectionnez le Mode de Suppression",
+        "description": "Choisissez la détection automatique ou marquez manuellement la zone du filigrane."
+      },
+      "step3": {
+        "title": "Traitement IA",
+        "description": "L'IA analyse et remplit intelligemment la zone du filigrane."
+      },
+      "step4": {
+        "title": "Téléchargez l'Image Propre",
+        "description": "Obtenez votre image sans filigrane en haute résolution."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour la Suppression de Filigrane",
+      "stock": {
+        "icon": "📷",
+        "title": "Photos de Stock",
+        "description": "Supprimez les filigranes d'aperçu des images de stock que vous avez achetées mais reçues avec filigrane."
+      },
+      "oldPhotos": {
+        "icon": "📅",
+        "title": "Anciennes Photos",
+        "description": "Supprimez les tampons de date, marques de caméra et logos de studio des anciennes photos de famille."
+      },
+      "screenshots": {
+        "icon": "🖥️",
+        "title": "Captures d'Écran",
+        "description": "Nettoyez les captures d'écran en supprimant le texte superposé, les bannières et éléments UI indésirables."
+      },
+      "documents": {
+        "icon": "📄",
+        "title": "Documents",
+        "description": "Supprimez les tampons de brouillon, filigranes d'exemple et superpositions des documents numérisés."
+      }
+    },
+    "technology": {
+      "title": "🧹 Technologie d'Inpainting LaMA",
+      "description": "Notre suppression de filigrane utilise le modèle LaMA (Large Mask Inpainting), spécifiquement conçu pour remplir les régions manquantes avec un contenu réaliste. Contrairement aux outils simples de clonage, LaMA comprend le contexte de l'image et génère des remplissages appropriés.",
+      "feature1": "Inpainting conscient du contexte pour un remplissage réaliste",
+      "feature2": "Prise en charge des grandes et petites régions également",
+      "feature3": "Correspondance de texture avec le contenu environnant",
+      "feature4": "Préservation des bords et transitions naturelles"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Filigranes sur des zones simples ou texturées (ciel, murs, fonds)",
+        "item2": "Logos et texte de petite à moyenne taille",
+        "item3": "Filigranes semi-transparents et superpositions"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les filigranes sur des détails complexes peuvent laisser des artefacts",
+        "item2": "Les très grands filigranes peuvent ne pas se reconstruire parfaitement",
+        "item3": "Les motifs répétitifs derrière les filigranes peuvent ne pas correspondre exactement"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour une Meilleure Suppression de Filigrane",
+      "tip1": "Pour de meilleurs résultats, utilisez le mode manuel pour marquer précisément la zone du filigrane",
+      "tip2": "Les filigranes sur des fonds simples se suppriment plus proprement",
+      "tip3": "Essayez d'abord la détection automatique - elle fonctionne souvent pour les filigranes standards",
+      "tip4": "Pour les filigranes semi-transparents, marquez une zone légèrement plus grande",
+      "tip5": "Traitez les zones en plusieurs passes si la première n'est pas parfaite",
+      "tip6": "Vérifiez le résultat de près avant de télécharger"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Cela peut-il supprimer n'importe quel filigrane?",
+        "answer": "Fonctionne mieux avec les filigranes standards sur des fonds simples ou texturés. Les filigranes complexes sur des détails intriqués peuvent ne pas se supprimer parfaitement."
+      },
+      "q2": {
+        "question": "Est-ce légal de supprimer les filigranes?",
+        "answer": "Supprimer les filigranes de contenu protégé par le droit d'auteur que vous ne possédez pas peut violer le droit d'auteur. Utilisez cet outil uniquement pour les images que vous avez la permission de modifier."
+      },
+      "q3": {
+        "question": "Quelle est la différence entre les modes auto et manuel?",
+        "answer": "Auto détecte et supprime les filigranes courants automatiquement. Manuel vous permet de peindre sur des zones spécifiques pour un contrôle précis sur ce qui est supprimé."
+      },
+      "q4": {
+        "question": "Puis-je supprimer plusieurs filigranes d'une image?",
+        "answer": "Oui, utilisez le mode manuel pour marquer toutes les zones de filigrane, ou traitez l'image plusieurs fois si nécessaire."
+      },
+      "q5": {
+        "question": "Pourquoi le filigrane supprimé laisse-t-il parfois une zone floue?",
+        "answer": "Le modèle IA génère de nouveaux pixels pour remplacer le filigrane. Les zones complexes derrière le filigrane peuvent être difficiles à reconstruire avec précision."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Supprimer les Filigranes?",
+      "subtitle": "Nettoyez vos images avec la suppression de filigrane alimentée par IA.",
+      "getStarted": "Supprimer le Filigrane",
+      "startAction": "Nettoyer l'Image"
+    }
+  },
+  "portraitRelightPage": {
+    "badge": "Éclairage de Portrait par IA",
+    "title": "Rééclairez Vos",
+    "titleHighlight": "Portraits avec l'IA",
+    "subtitle": "Transformez l'éclairage de vos photos portrait avec le rééclairage alimenté par IA. Appliquez un éclairage de studio professionnel, des effets d'heure dorée, un éclairage dramatique et plus encore. Corrigez les photos mal éclairées ou créez des looks cinématographiques uniques.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Crédits/Image",
+      "presets": "6",
+      "presetsLabel": "Préréglages d'Éclairage",
+      "aiModel": "ICLight V2",
+      "aiModelLabel": "Moteur de Rééclairage"
+    },
+    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
+    "options": {
+      "title": "Préréglages d'Éclairage",
+      "studio": {
+        "name": "Studio Professionnel",
+        "description": "Éclairage classique à trois points pour des portraits professionnels avec un look propre et poli."
+      },
+      "golden": {
+        "name": "Heure Dorée",
+        "description": "Éclairage chaud de coucher de soleil avec des tons dorés doux et des ombres allongées."
+      },
+      "dramatic": {
+        "name": "Lumière Dramatique",
+        "description": "Fort contraste avec des ombres profondes pour des looks artistiques et cinématographiques."
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de Rééclairage de Portrait",
+      "aiPowered": {
+        "title": "Moteur ICLight V2",
+        "description": "Utilise le modèle ICLight V2 de pointe qui comprend la structure faciale et applique un éclairage photoréaliste."
+      },
+      "presets": {
+        "title": "6 Préréglages Professionnels",
+        "description": "Studio, heure dorée, dramatique, néon, naturel et Rembrandt - chacun optimisé pour différents styles de portrait."
+      },
+      "customPrompts": {
+        "title": "Éclairage Personnalisé",
+        "description": "Décrivez n'importe quel scénario d'éclairage avec des prompts textuels pour des effets entièrement personnalisés."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Fonctionne le",
+      "titleHighlight": "Rééclairage de Portrait",
+      "step1": {
+        "title": "Téléchargez Votre Portrait",
+        "description": "Téléchargez n'importe quelle photo portrait que vous voulez rééclairer."
+      },
+      "step2": {
+        "title": "Choisissez l'Éclairage",
+        "description": "Sélectionnez un préréglage d'éclairage ou décrivez votre éclairage personnalisé."
+      },
+      "step3": {
+        "title": "Traitement IA",
+        "description": "L'IA analyse le visage et applique un éclairage photoréaliste."
+      },
+      "step4": {
+        "title": "Téléchargez le Résultat",
+        "description": "Obtenez votre portrait rééclairé en haute résolution."
+      }
+    },
+    "useCases": {
+      "title": "Parfait Pour le Rééclairage de Portrait",
+      "photographers": {
+        "icon": "📷",
+        "title": "Photographes",
+        "description": "Corrigez l'éclairage en post-production, sauvez les prises mal éclairées, ou expérimentez avec des looks de studio."
+      },
+      "creators": {
+        "icon": "📱",
+        "title": "Créateurs de Contenu",
+        "description": "Obtenez un éclairage cohérent et professionnel pour tous vos portraits et selfies."
+      },
+      "business": {
+        "icon": "💼",
+        "title": "Usage Professionnel",
+        "description": "Créez des photos de profil professionnelles et des portraits d'entreprise avec un éclairage de studio."
+      },
+      "artistic": {
+        "icon": "🎨",
+        "title": "Projets Artistiques",
+        "description": "Expérimentez avec un éclairage dramatique, néon ou cinématographique pour des travaux créatifs."
+      }
+    },
+    "technology": {
+      "title": "💡 Technologie ICLight V2",
+      "description": "Le rééclairage de portrait utilise ICLight V2, un modèle de rééclairage de pointe entraîné spécifiquement sur les visages humains. Il comprend l'anatomie faciale, la physique de la lumière et les relations d'ombres pour produire des résultats photoréalistes.",
+      "feature1": "Compréhension de l'anatomie faciale pour un éclairage réaliste",
+      "feature2": "Rendu physiquement correct de la lumière et des ombres",
+      "feature3": "Préservation du teint et des détails du visage",
+      "feature4": "Prise en charge de plusieurs scénarios et directions d'éclairage"
+    },
+    "limitations": {
+      "title": "À Quoi S'Attendre",
+      "worksWell": {
+        "title": "✓ Fonctionne Mieux Pour",
+        "item1": "Portraits de face et 3/4 avec des visages clairement visibles",
+        "item2": "Photos bien exposées (pas trop sombres/claires)",
+        "item3": "Fonds simples qui ne rivalisent pas avec le sujet"
+      },
+      "limitations": {
+        "title": "✗ Limitations Actuelles",
+        "item1": "Les profils extrêmes et visages partiellement cachés peuvent avoir des problèmes",
+        "item2": "Les photos avec des ombres existantes très fortes peuvent paraître non naturelles",
+        "item3": "Les photos de groupe fonctionnent mieux avec un sujet dominant"
+      }
+    },
+    "tips": {
+      "title": "💡 Conseils Pour un Meilleur Rééclairage",
+      "tip1": "Utilisez des photos où le visage est clairement visible et bien exposé",
+      "tip2": "Les fonds simples produisent de meilleurs résultats que les scènes chargées",
+      "tip3": "Expérimentez avec différents préréglages pour trouver le look parfait",
+      "tip4": "Les prompts personnalisés peuvent créer des effets d'éclairage uniques",
+      "tip5": "Pour des résultats plus naturels, choisissez des préréglages qui correspondent à l'ambiance originale",
+      "tip6": "Combinez plusieurs passes pour des effets d'éclairage complexes"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Quels types de photos fonctionnent le mieux?",
+        "answer": "Les portraits de face et 3/4 avec des visages clairement visibles et bien exposés fonctionnent le mieux. Les fonds simples produisent de meilleurs résultats."
+      },
+      "q2": {
+        "question": "Puis-je utiliser des prompts d'éclairage personnalisés?",
+        "answer": "Oui, en plus des 6 préréglages, vous pouvez décrire n'importe quel scénario d'éclairage en utilisant un prompt textuel pour des effets entièrement personnalisés."
+      },
+      "q3": {
+        "question": "Cela fonctionne-t-il avec les photos de groupe?",
+        "answer": "Fonctionne mieux avec les portraits d'un seul sujet. Les photos de groupe peuvent fonctionner s'il y a un sujet dominant, mais les résultats peuvent être moins cohérents."
+      },
+      "q4": {
+        "question": "Combien de crédits coûte chaque rééclairage?",
+        "answer": "Chaque rééclairage de portrait coûte 2 crédits. Nous recommandons d'essayer différents préréglages pour trouver votre préféré."
+      },
+      "q5": {
+        "question": "L'IA change-t-elle les traits du visage?",
+        "answer": "Non, l'IA ne change que l'éclairage tout en préservant les traits du visage, le teint et l'expression de votre photo originale."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Rééclairer Vos Portraits?",
+      "subtitle": "Transformez l'éclairage de vos portraits avec une IA de niveau professionnel.",
+      "getStarted": "Rééclairer un Portrait",
+      "startAction": "Transformer l'Éclairage"
     }
   },
   "portraitRelight": {

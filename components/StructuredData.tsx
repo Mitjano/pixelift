@@ -127,90 +127,54 @@ export default function StructuredData() {
     ]
   };
 
-  // Service Schema for each tool
+  // Service Schema for each tool - all 24 tools
+  const allTools = [
+    { name: "AI Image Upscaler", slug: "upscaler", description: "Enhance and enlarge images up to 8x resolution using Real-ESRGAN and GFPGAN AI models", serviceType: "Image Enhancement" },
+    { name: "Background Remover", slug: "remove-background", description: "Remove backgrounds from images instantly with BRIA RMBG 2.0 AI technology", serviceType: "Background Removal" },
+    { name: "Photo Colorizer", slug: "colorize", description: "Automatically colorize black and white photos using AI technology", serviceType: "Photo Colorization" },
+    { name: "Image Restore", slug: "restore", description: "Remove noise, artifacts and restore old or damaged photos with AI", serviceType: "Image Restoration" },
+    { name: "Object Removal", slug: "object-removal", description: "Remove unwanted objects, people, or blemishes from images using AI inpainting", serviceType: "Object Removal" },
+    { name: "AI Background Generator", slug: "background-generator", description: "Generate professional AI backgrounds for product photos and portraits", serviceType: "Background Generation" },
+    { name: "Image Compressor", slug: "image-compressor", description: "Reduce file size while maintaining quality using smart compression algorithms", serviceType: "Image Compression" },
+    { name: "Image Expand", slug: "image-expand", description: "Extend your images with AI-generated content using FLUX outpainting technology", serviceType: "Image Expansion" },
+    { name: "Style Transfer", slug: "style-transfer", description: "Transform yourself into any scene while preserving your face identity with InstantID", serviceType: "Style Transfer" },
+    { name: "AI Inpainting", slug: "inpainting", description: "Fill and extend images with AI-generated content seamlessly", serviceType: "AI Inpainting" },
+    { name: "Image Reimagine", slug: "reimagine", description: "Generate creative variations of your images with FLUX Redux AI", serviceType: "Image Variation" },
+    { name: "Structure Control", slug: "structure-control", description: "Generate images with precise depth and edge control using ControlNet", serviceType: "Controlled Generation" },
+    { name: "Format Converter", slug: "format-converter", description: "Convert images between formats: JPG, PNG, WebP, GIF, BMP, TIFF", serviceType: "Format Conversion" },
+    { name: "Portrait Relight", slug: "portrait-relight", description: "Change portrait lighting direction and intensity with AI", serviceType: "Portrait Lighting" },
+    { name: "Watermark Remover", slug: "watermark-remover", description: "Remove watermarks and text overlays from images using AI", serviceType: "Watermark Removal" },
+    { name: "Crop Image", slug: "crop-image", description: "Crop and frame your images with precision controls", serviceType: "Image Cropping" },
+    { name: "Resize Image", slug: "resize-image", description: "Change image dimensions while maintaining aspect ratio", serviceType: "Image Resizing" },
+    { name: "Image Filters", slug: "image-filters", description: "Apply professional filters, adjust brightness, contrast, and saturation", serviceType: "Image Filters" },
+    { name: "Collage Maker", slug: "collage", description: "Create beautiful photo collages with customizable layouts", serviceType: "Collage Creation" },
+    { name: "AI Logo Maker", slug: "logo-maker", description: "Create professional logos in seconds with AI-powered generation", serviceType: "Logo Design" },
+    { name: "Text Effects", slug: "text-effects", description: "Create stunning stylized text art with AI effects", serviceType: "Text Effects" },
+    { name: "QR Code Generator", slug: "qr-generator", description: "Create customizable QR codes with your logo and brand colors", serviceType: "QR Code Generation" },
+    { name: "Image Vectorizer", slug: "vectorize", description: "Convert raster images to scalable SVG vector format", serviceType: "Vectorization" },
+  ];
+
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Pixelift AI Tools",
     "description": "Professional AI-powered image processing tools",
-    "numberOfItems": 5,
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "Service",
-          "name": "AI Image Upscaler",
-          "description": "Enhance and enlarge images up to 8x resolution using Real-ESRGAN and GFPGAN AI models",
-          "url": "https://pixelift.pl/tools/upscaler",
-          "provider": {
-            "@type": "Organization",
-            "name": "Pixelift"
-          },
-          "serviceType": "Image Enhancement"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@type": "Service",
-          "name": "Background Remover",
-          "description": "Remove backgrounds from images instantly with BRIA RMBG 2.0 AI technology",
-          "url": "https://pixelift.pl/tools/remove-background",
-          "provider": {
-            "@type": "Organization",
-            "name": "Pixelift"
-          },
-          "serviceType": "Background Removal"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@type": "Service",
-          "name": "Packshot Generator",
-          "description": "Create professional product photos with AI-generated backgrounds",
-          "url": "https://pixelift.pl/tools/ai-background-generator",
-          "provider": {
-            "@type": "Organization",
-            "name": "Pixelift"
-          },
-          "serviceType": "Product Photography"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "item": {
-          "@type": "Service",
-          "name": "Image Expand",
-          "description": "Extend your images with AI-generated content using FLUX outpainting technology",
-          "url": "https://pixelift.pl/tools/image-expand",
-          "provider": {
-            "@type": "Organization",
-            "name": "Pixelift"
-          },
-          "serviceType": "Image Expansion"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 5,
-        "item": {
-          "@type": "Service",
-          "name": "Image Compressor",
-          "description": "Reduce file size while maintaining quality using smart compression algorithms",
-          "url": "https://pixelift.pl/tools/image-compressor",
-          "provider": {
-            "@type": "Organization",
-            "name": "Pixelift"
-          },
-          "serviceType": "Image Compression"
-        }
+    "numberOfItems": allTools.length,
+    "itemListElement": allTools.map((tool, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Service",
+        "name": tool.name,
+        "description": tool.description,
+        "url": `https://pixelift.pl/tools/${tool.slug}`,
+        "provider": {
+          "@type": "Organization",
+          "name": "Pixelift"
+        },
+        "serviceType": tool.serviceType
       }
-    ]
+    }))
   };
 
   // Pricing Schema

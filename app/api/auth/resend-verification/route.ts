@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { resendVerificationEmail } from '@/lib/email-verification';
-import { apiLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+import { authLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 /**
  * POST /api/auth/resend-verification - Resend verification email to current user
  */
 export async function POST(request: Request) {
   try {
-    // Rate limiting - strict limit for this endpoint
+    // Rate limiting - auth limiter (5 req per 15 min) to prevent email spam
     const clientId = getClientIdentifier(request);
-    const { allowed, resetAt } = apiLimiter.check(clientId);
+    const { allowed, resetAt } = authLimiter.check(clientId);
     if (!allowed) {
       return rateLimitResponse(resetAt);
     }

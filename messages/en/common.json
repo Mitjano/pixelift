@@ -141,7 +141,58 @@
     "styleTransfer": {
       "name": "Style Transfer",
       "description": "Transform photos into art styles",
-      "badge": "NEW"
+      "badge": "NEW",
+      "page": {
+        "badge": "Powered by InstantID + IPAdapter - Face Preserved",
+        "stats": {
+          "identity": "100%",
+          "identityLabel": "Identity Preserved",
+          "scenes": "Unlimited",
+          "scenesLabel": "Scenes available",
+          "credits": "3",
+          "creditsLabel": "Credits per image"
+        },
+        "features": {
+          "identityPreserved": {
+            "title": "100% Identity Preserved",
+            "description": "Your exact face in any scene - InstantID + IPAdapter technology keeps your likeness perfect."
+          },
+          "anyScene": {
+            "title": "Any Scene or Environment",
+            "description": "Cyberpunk city, tropical beach, fantasy world - describe any scene and be there."
+          },
+          "customPrompts": {
+            "title": "Custom Prompts",
+            "description": "Use preset styles or write your own custom prompt for unique results."
+          }
+        },
+        "perfectFor": {
+          "title": "Perfect For",
+          "items": {
+            "headshots": {
+              "title": "Professional Headshots",
+              "description": "Create polished photos for LinkedIn, resumes, and business profiles."
+            },
+            "socialMedia": {
+              "title": "Social Media",
+              "description": "Generate eye-catching profile pictures and content for any platform."
+            },
+            "avatars": {
+              "title": "Gaming Avatars",
+              "description": "Design unique gaming avatars and virtual identities."
+            },
+            "creative": {
+              "title": "Creative Projects",
+              "description": "Explore artistic transformations and experimental photography."
+            }
+          }
+        },
+        "cta": {
+          "title": "Place Yourself Anywhere",
+          "subtitle": "Your face, infinite possibilities. Upload a photo and describe where you want to be.",
+          "button": "View All Tools"
+        }
+      }
     },
     "inpainting": {
       "name": "AI Inpainting",
@@ -151,7 +202,59 @@
     "reimagine": {
       "name": "Image Reimagine",
       "description": "Generate variations of images",
-      "badge": "NEW"
+      "badge": "NEW",
+      "page": {
+        "badge": "Powered by FLUX Redux AI",
+        "subtitle": "Generate creative variations of any image with AI. Create unique interpretations while preserving the essence of your original.",
+        "stats": {
+          "variations": "1-4",
+          "variationsLabel": "Variations",
+          "perVariation": "2",
+          "perVariationLabel": "Per Variation",
+          "credits": "2-8",
+          "creditsLabel": "Credits Each"
+        },
+        "features": {
+          "multipleVariations": {
+            "title": "Multiple Variations",
+            "description": "Generate 1-4 unique variations at once for more creative options."
+          },
+          "adjustableStrength": {
+            "title": "Adjustable Strength",
+            "description": "Control how different the variations are from your original image."
+          },
+          "guidingPrompts": {
+            "title": "Guiding Prompts",
+            "description": "Add optional prompts to guide the AI in specific creative directions."
+          }
+        },
+        "perfectFor": {
+          "title": "Perfect For",
+          "items": {
+            "artists": {
+              "title": "Artists & Designers",
+              "description": "Explore variations of your artwork for inspiration."
+            },
+            "marketing": {
+              "title": "Marketing Teams",
+              "description": "Create multiple versions of campaign visuals."
+            },
+            "social": {
+              "title": "Content Creators",
+              "description": "Generate fresh takes on your existing content."
+            },
+            "photography": {
+              "title": "Photographers",
+              "description": "Discover new interpretations of your photos."
+            }
+          }
+        },
+        "cta": {
+          "title": "Unlock Infinite Creative Possibilities",
+          "subtitle": "Transform one image into multiple unique variations. Perfect for exploring creative directions.",
+          "button": "View All Tools"
+        }
+      }
     },
     "structureControl": {
       "name": "Structure Control",
@@ -186,7 +289,37 @@
     "imageFilters": {
       "name": "Filters & Effects",
       "description": "Apply filters and adjustments",
-      "badge": "FREE"
+      "badge": "FREE",
+      "page": {
+        "freeTool": "FREE Tool",
+        "stats": {
+          "free": "FREE",
+          "freeLabel": "No credits needed",
+          "presets": "7 Presets",
+          "presetsLabel": "Filter styles",
+          "sliders": "5 Sliders",
+          "slidersLabel": "Fine control"
+        },
+        "features": {
+          "filterPresets": {
+            "title": "Filter Presets",
+            "description": "Grayscale, sepia, vintage, cool, warm, and dramatic presets."
+          },
+          "fineAdjustments": {
+            "title": "Fine Adjustments",
+            "description": "Control brightness, contrast, saturation, blur, and sharpness."
+          },
+          "livePreview": {
+            "title": "Live Preview",
+            "description": "See changes in real-time as you adjust the settings."
+          }
+        },
+        "cta": {
+          "title": "Explore More Free Tools",
+          "subtitle": "Try our other free image editing tools - crop, resize, collage, and more.",
+          "button": "View All Tools"
+        }
+      }
     },
     "collageMaker": {
       "name": "Collage Maker",
@@ -196,7 +329,37 @@
     "logoMaker": {
       "name": "Logo Maker",
       "description": "Create AI-powered logos",
-      "badge": "AI"
+      "badge": "AI",
+      "page": {
+        "aiPowered": "AI-Powered",
+        "stats": {
+          "credits": "5 Credits",
+          "creditsLabel": "Per generation",
+          "styles": "6 Styles",
+          "stylesLabel": "To choose from",
+          "model": "AI",
+          "modelLabel": "Ideogram V2"
+        },
+        "features": {
+          "multipleStyles": {
+            "title": "Multiple Styles",
+            "description": "Minimalist, vintage, modern, playful, professional, and tech styles."
+          },
+          "aiGenerated": {
+            "title": "AI-Generated",
+            "description": "Powered by Ideogram V2 Turbo for professional quality logos."
+          },
+          "customColors": {
+            "title": "Custom Colors",
+            "description": "Optional color scheme input to match your brand identity."
+          }
+        },
+        "cta": {
+          "title": "Explore More AI Tools",
+          "subtitle": "Try our other AI-powered tools - background removal, upscaling, text effects, and more.",
+          "button": "View All Tools"
+        }
+      }
     },
     "textEffects": {
       "name": "Text Effects",
@@ -206,12 +369,45 @@
     "qrGenerator": {
       "name": "QR Code Generator",
       "description": "Create QR codes with logo",
-      "badge": "FREE"
+      "badge": "FREE",
+      "page": {
+        "freeTool": "FREE Tool",
+        "stats": {
+          "free": "FREE",
+          "freeLabel": "No credits needed",
+          "custom": "Custom",
+          "customLabel": "Colors & logos",
+          "instant": "Instant",
+          "instantLabel": "Generation"
+        },
+        "features": {
+          "customColors": {
+            "title": "Custom Colors",
+            "description": "Choose custom dark and light colors for your QR code design."
+          },
+          "logoSupport": {
+            "title": "Logo Support",
+            "description": "Add your own logo to the center of the QR code for branding."
+          },
+          "configurable": {
+            "title": "Configurable",
+            "description": "Adjust size, error correction level, and margin for your needs."
+          }
+        },
+        "cta": {
+          "title": "Explore More Free Tools",
+          "subtitle": "Try our other free image editing tools - crop, resize, filters, and more.",
+          "button": "View All Tools"
+        }
+      }
     },
     "vectorize": {
       "name": "Convert to SVG",
       "description": "Vectorize images to SVG",
       "badge": "AI"
+    },
+    "relatedTools": {
+      "title": "Related Tools You May Like"
     }
   },
   "home": {
@@ -2481,6 +2677,1198 @@
       "exploreTools": "Explore All Tools"
     }
   },
+  "logoMakerPage": {
+    "badge": "AI-Powered Logo Generator",
+    "title": "Create Professional",
+    "titleHighlight": "AI Logos",
+    "subtitle": "Generate stunning, unique logos for your brand in seconds. Powered by advanced AI technology, our logo maker creates professional designs tailored to your business identity. No design skills required - just describe your vision.",
+    "stats": {
+      "credits": "5",
+      "creditsLabel": "Credits/Logo",
+      "styles": "6+",
+      "stylesLabel": "Logo Styles",
+      "generation": "10s",
+      "generationLabel": "Generation Time"
+    },
+    "termsNotice": "By using this tool you agree to our Terms of Use and Privacy Policy.",
+    "options": {
+      "title": "Choose Your Logo Style",
+      "minimalist": {
+        "name": "Minimalist",
+        "description": "Clean, simple designs with modern aesthetics. Perfect for tech startups and contemporary brands."
+      },
+      "vintage": {
+        "name": "Vintage",
+        "description": "Classic, timeless designs with retro charm. Ideal for artisan brands, cafes, and heritage businesses."
+      },
+      "modern": {
+        "name": "Modern",
+        "description": "Bold, contemporary designs with cutting-edge appeal. Great for innovative companies and digital services."
+      }
+    },
+    "features": {
+      "title": "AI Logo Maker Features",
+      "multipleStyles": {
+        "title": "6 Professional Styles",
+        "description": "Choose from minimalist, vintage, modern, playful, professional, or tech styles. Each style is optimized for different brand personalities and industries."
+      },
+      "aiPowered": {
+        "title": "Ideogram V2 AI Engine",
+        "description": "Powered by state-of-the-art Ideogram V2 Turbo model, specifically trained for logo generation with exceptional typography and symbol creation."
+      },
+      "customization": {
+        "title": "Brand Customization",
+        "description": "Input your brand name, industry, and preferred color scheme. The AI tailors every design to match your unique brand identity."
+      }
+    },
+    "howItWorks": {
+      "title": "How AI",
+      "titleHighlight": "Logo Generation Works",
+      "step1": {
+        "title": "Enter Brand Details",
+        "description": "Provide your brand name, industry, and optional tagline or description."
+      },
+      "step2": {
+        "title": "Choose Style",
+        "description": "Select from 6 professional logo styles that match your brand personality."
+      },
+      "step3": {
+        "title": "Set Colors (Optional)",
+        "description": "Specify preferred colors or let AI choose a harmonious palette for you."
+      },
+      "step4": {
+        "title": "Download Logo",
+        "description": "Get your high-resolution logo ready for web, print, and social media."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Every Business",
+      "startup": {
+        "icon": "🚀",
+        "title": "Startups & Entrepreneurs",
+        "description": "Launch your brand with a professional logo without expensive designer fees. Perfect for MVPs and rapid iteration."
+      },
+      "smallBusiness": {
+        "icon": "🏪",
+        "title": "Small Businesses",
+        "description": "Create consistent brand identity for your local business, restaurant, or service company at a fraction of traditional costs."
+      },
+      "content": {
+        "icon": "📱",
+        "title": "Content Creators",
+        "description": "Design unique logos for YouTube channels, podcasts, Twitch streams, and social media profiles."
+      },
+      "projects": {
+        "icon": "💼",
+        "title": "Projects & Events",
+        "description": "Generate logos for hackathons, conferences, community projects, or temporary campaigns."
+      }
+    },
+    "technology": {
+      "title": "🤖 Powered by Ideogram V2",
+      "description": "Our AI logo maker uses Ideogram V2 Turbo, one of the most advanced text-to-image models specifically optimized for typography and logo design. Unlike generic image generators, Ideogram excels at creating readable, stylized text and professional brand symbols.",
+      "feature1": "Advanced typography rendering with accurate letter forms",
+      "feature2": "Style-consistent symbol and icon generation",
+      "feature3": "Brand color palette optimization",
+      "feature4": "High-resolution output suitable for print and web"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "Simple, memorable brand names (1-3 words)",
+        "item2": "Clear style preferences (minimalist, modern, etc.)",
+        "item3": "Standard business categories and industries"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "Complex multi-word taglines may have text issues",
+        "item2": "Very specific icon requests may need iteration",
+        "item3": "Trademarked elements cannot be replicated"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Best Logo Results",
+      "tip1": "Keep your brand name short and clear (1-3 words work best)",
+      "tip2": "Be specific about your industry for more relevant designs",
+      "tip3": "Try multiple styles to find the perfect match",
+      "tip4": "Specify 2-3 colors if you have brand guidelines",
+      "tip5": "Generate several variations and pick your favorite",
+      "tip6": "Use the output as a starting point for further refinement"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Can I use the generated logos commercially?",
+        "answer": "Yes! All logos generated with Pixelift are yours to use commercially. You receive full rights to use, modify, and trademark your logo for business purposes."
+      },
+      "q2": {
+        "question": "What file formats do I get?",
+        "answer": "Logos are delivered in high-resolution PNG format with transparent background. This works for web, print, and most design applications."
+      },
+      "q3": {
+        "question": "How many credits does logo generation cost?",
+        "answer": "Each logo generation costs 5 credits. We recommend generating 2-3 variations to find the perfect design for your brand."
+      },
+      "q4": {
+        "question": "Can I request revisions?",
+        "answer": "Each generation creates a new, unique logo. To get variations, simply adjust your inputs (style, colors, description) and generate again."
+      },
+      "q5": {
+        "question": "What if I don't like the results?",
+        "answer": "Try different style options or provide more specific industry/color details. The AI responds well to clear, descriptive inputs."
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Your Brand Logo?",
+      "subtitle": "Professional AI-generated logos in seconds. No design skills required. Start with 3 free credits.",
+      "getStarted": "Create Logo Now",
+      "startAction": "Generate Logo"
+    }
+  },
+  "textEffectsPage": {
+    "badge": "AI Typography Generator",
+    "title": "Create Stunning",
+    "titleHighlight": "Text Effects",
+    "subtitle": "Transform plain text into eye-catching visual art with AI. Generate 3D text, neon signs, fire effects, and more. Perfect for social media graphics, thumbnails, and creative projects.",
+    "stats": {
+      "credits": "5",
+      "creditsLabel": "Credits/Image",
+      "styles": "10+",
+      "stylesLabel": "Effect Styles",
+      "generation": "15s",
+      "generationLabel": "Processing Time"
+    },
+    "termsNotice": "By using this tool you agree to our Terms of Use and Privacy Policy.",
+    "options": {
+      "title": "Popular Text Effect Styles",
+      "neon": {
+        "name": "Neon Glow",
+        "description": "Vibrant neon signs with realistic glow effects. Perfect for night-themed designs and retro aesthetics."
+      },
+      "3d": {
+        "name": "3D Metallic",
+        "description": "Bold three-dimensional text with metallic shine. Great for headers and attention-grabbing titles."
+      },
+      "fire": {
+        "name": "Fire & Flames",
+        "description": "Dynamic burning text effects with realistic fire. Ideal for gaming, music, and intense themes."
+      }
+    },
+    "features": {
+      "title": "AI Text Effects Features",
+      "effects": {
+        "title": "10+ Effect Styles",
+        "description": "3D, neon, graffiti, fire, ice, gold, chrome, cartoon, retro, and glitch effects. Each style creates unique, professional-quality typography."
+      },
+      "backgrounds": {
+        "title": "Background Options",
+        "description": "Choose transparent backgrounds for easy overlay, solid colors for contrast, or gradient backgrounds for complete designs."
+      },
+      "aiPowered": {
+        "title": "Ideogram V2 Engine",
+        "description": "Powered by Ideogram V2, the leading AI model for typography generation with exceptional text rendering quality."
+      }
+    },
+    "howItWorks": {
+      "title": "How AI",
+      "titleHighlight": "Text Effects Work",
+      "step1": {
+        "title": "Enter Your Text",
+        "description": "Type the text you want to stylize (works best with 1-5 words)."
+      },
+      "step2": {
+        "title": "Choose Effect Style",
+        "description": "Select from 10+ effect styles: neon, 3D, fire, ice, gold, and more."
+      },
+      "step3": {
+        "title": "Set Background",
+        "description": "Pick transparent, solid color, or gradient background for your text."
+      },
+      "step4": {
+        "title": "Download Image",
+        "description": "Get your stylized text as a high-resolution image ready for use."
+      }
+    },
+    "useCases": {
+      "title": "Create Amazing Typography For",
+      "social": {
+        "icon": "📱",
+        "title": "Social Media Graphics",
+        "description": "Create eye-catching Instagram posts, TikTok thumbnails, and Facebook covers that stop the scroll."
+      },
+      "youtube": {
+        "icon": "🎬",
+        "title": "YouTube Thumbnails",
+        "description": "Generate attention-grabbing titles for your video thumbnails that increase click-through rates."
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Gaming Content",
+        "description": "Design epic titles for Twitch overlays, gaming montages, and esports team branding."
+      },
+      "marketing": {
+        "icon": "📣",
+        "title": "Marketing Materials",
+        "description": "Create bold headlines for ads, banners, presentations, and promotional content."
+      }
+    },
+    "technology": {
+      "title": "🎨 Ideogram V2 Typography AI",
+      "description": "Our text effects tool uses Ideogram V2, specifically designed for exceptional typography generation. Unlike other AI image generators that struggle with text, Ideogram produces clean, readable, and beautifully stylized lettering.",
+      "feature1": "Accurate text rendering with proper letter spacing",
+      "feature2": "Consistent style application across all characters",
+      "feature3": "High-resolution output for print and digital use",
+      "feature4": "Transparent background support for easy compositing"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "Short text (1-5 words) like titles and headers",
+        "item2": "Common English letters and numbers",
+        "item3": "Bold, stylized effect styles"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "Long sentences may have letter inconsistencies",
+        "item2": "Special characters and symbols may not render",
+        "item3": "Some effect styles work better than others"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Best Text Effects",
+      "tip1": "Keep text short: 1-5 words work best",
+      "tip2": "Use ALL CAPS for more impactful results",
+      "tip3": "Try multiple effect styles to find the best match",
+      "tip4": "Use transparent background for overlay purposes",
+      "tip5": "Gradient backgrounds create complete, ready-to-use graphics",
+      "tip6": "Generate variations and pick the best one"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "What text lengths work best?",
+        "answer": "Short text (1-5 words) produces the best results. Longer text may have inconsistencies in letter rendering. For longer phrases, consider generating each word separately."
+      },
+      "q2": {
+        "question": "Can I use these images commercially?",
+        "answer": "Yes! All generated images are yours to use commercially for marketing, social media, products, and more."
+      },
+      "q3": {
+        "question": "What resolution are the output images?",
+        "answer": "Images are generated at high resolution suitable for both web and print use. The exact size depends on the aspect ratio selected."
+      },
+      "q4": {
+        "question": "Why doesn't my text look exactly as typed?",
+        "answer": "AI text generation can sometimes alter letter forms for stylistic effect. If text isn't perfect, try regenerating or adjusting the effect style."
+      },
+      "q5": {
+        "question": "How many credits does text effects cost?",
+        "answer": "Each text effect generation costs 5 credits. We recommend generating a few variations to find the perfect result."
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Amazing Text Effects?",
+      "subtitle": "Transform your text into stunning visual art in seconds. No design skills required.",
+      "getStarted": "Create Text Effects",
+      "startAction": "Generate Now"
+    }
+  },
+  "vectorizePage": {
+    "badge": "AI Vector Conversion",
+    "title": "Convert Images to",
+    "titleHighlight": "Scalable Vectors",
+    "subtitle": "Transform raster images into clean, scalable SVG vector graphics with AI. Perfect for logos, icons, and illustrations that need to scale infinitely without quality loss. Ideal for print, web, and design workflows.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Credits/Image",
+      "modes": "3",
+      "modesLabel": "Color Modes",
+      "format": "SVG",
+      "formatLabel": "Vector Output"
+    },
+    "termsNotice": "By using this tool you agree to our Terms of Use and Privacy Policy.",
+    "options": {
+      "title": "Vectorization Color Modes",
+      "fullColor": {
+        "name": "Full Color",
+        "description": "Preserve all colors with up to 256 color palette. Best for illustrations and complex artwork."
+      },
+      "grayscale": {
+        "name": "Grayscale",
+        "description": "Convert to shades of gray. Perfect for professional documents and monochrome designs."
+      },
+      "blackWhite": {
+        "name": "Black & White",
+        "description": "Pure two-tone conversion. Ideal for logos, stamps, and high-contrast graphics."
+      }
+    },
+    "features": {
+      "title": "AI Vectorization Features",
+      "scalable": {
+        "title": "Infinite Scalability",
+        "description": "SVG vectors scale to any size without losing quality. From favicon to billboard, your graphics stay crisp and sharp."
+      },
+      "colorModes": {
+        "title": "Flexible Color Modes",
+        "description": "Choose full color for illustrations, grayscale for documents, or black & white for logos and icons."
+      },
+      "cleanOutput": {
+        "title": "Clean, Editable SVG",
+        "description": "Output files are optimized for editing in Illustrator, Figma, and other design tools."
+      }
+    },
+    "howItWorks": {
+      "title": "How AI",
+      "titleHighlight": "Vectorization Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Upload any PNG, JPG, or WEBP image you want to convert to vector."
+      },
+      "step2": {
+        "title": "Choose Color Mode",
+        "description": "Select full color, grayscale, or black & white based on your needs."
+      },
+      "step3": {
+        "title": "AI Processing",
+        "description": "Our AI analyzes edges and shapes to create clean vector paths."
+      },
+      "step4": {
+        "title": "Download SVG",
+        "description": "Get your scalable vector file ready for any application."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Vector Conversion",
+      "logos": {
+        "icon": "🎨",
+        "title": "Logo Vectorization",
+        "description": "Convert raster logos to scalable SVG for business cards, signage, and merchandise."
+      },
+      "illustrations": {
+        "icon": "🖼️",
+        "title": "Artwork & Illustrations",
+        "description": "Transform hand-drawn art or digital illustrations into editable vector formats."
+      },
+      "icons": {
+        "icon": "⭐",
+        "title": "Icons & UI Elements",
+        "description": "Create scalable icons for apps, websites, and design systems."
+      },
+      "printing": {
+        "icon": "🖨️",
+        "title": "Print & Merchandise",
+        "description": "Prepare graphics for large-format printing, t-shirts, and promotional materials."
+      }
+    },
+    "technology": {
+      "title": "🔬 Advanced Vectorization AI",
+      "description": "Our vectorization engine uses advanced edge detection and path optimization algorithms to create clean, efficient SVG files. Unlike simple auto-trace tools, our AI understands image content and creates semantically meaningful vector paths.",
+      "feature1": "Intelligent edge detection for smooth curves",
+      "feature2": "Color palette optimization and reduction",
+      "feature3": "Path simplification for smaller file sizes",
+      "feature4": "Preserves important details while removing noise"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "Simple graphics with clear edges (logos, icons)",
+        "item2": "Images with solid colors and defined shapes",
+        "item3": "Line art and illustrations"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "Photographs produce abstract vector interpretations",
+        "item2": "Highly detailed images may lose fine details",
+        "item3": "Gradients are converted to discrete color steps"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Best Vectorization",
+      "tip1": "Use high-contrast images with clear edges",
+      "tip2": "Simple graphics with fewer colors vectorize better",
+      "tip3": "Black & white mode is best for logos and stamps",
+      "tip4": "Clean up your source image before vectorizing",
+      "tip5": "Higher resolution sources produce cleaner vectors",
+      "tip6": "Use full color mode for illustrations with gradients"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "What's the difference between raster and vector?",
+        "answer": "Raster images (PNG, JPG) are made of pixels and become blurry when scaled up. Vector graphics (SVG) use mathematical paths and scale infinitely without quality loss."
+      },
+      "q2": {
+        "question": "Can I edit the SVG output?",
+        "answer": "Yes! SVG files can be opened and edited in Adobe Illustrator, Figma, Inkscape, and other vector editing software."
+      },
+      "q3": {
+        "question": "Will photos convert well to vector?",
+        "answer": "Photographs produce stylized, abstract vector interpretations. Vectorization works best with logos, icons, and graphics with clear shapes."
+      },
+      "q4": {
+        "question": "How many colors can the output have?",
+        "answer": "Full color mode supports up to 256 colors. You can also limit colors for simpler outputs or choose grayscale/black & white modes."
+      },
+      "q5": {
+        "question": "What file formats are supported?",
+        "answer": "Input: PNG, JPG, JPEG, WEBP. Output is always SVG (Scalable Vector Graphics), the industry standard for vector graphics."
+      }
+    },
+    "cta": {
+      "title": "Ready to Vectorize Your Images?",
+      "subtitle": "Convert raster images to scalable SVG vectors in seconds. Perfect for logos, icons, and illustrations.",
+      "getStarted": "Vectorize Now",
+      "startAction": "Convert to SVG"
+    }
+  },
+  "qrGeneratorPage": {
+    "badge": "Free QR Code Tool",
+    "title": "Create Custom",
+    "titleHighlight": "QR Codes",
+    "subtitle": "Generate professional QR codes for free with custom colors and your logo. Perfect for business cards, marketing materials, menus, and digital campaigns. No account required.",
+    "stats": {
+      "cost": "FREE",
+      "costLabel": "No Credits",
+      "custom": "100%",
+      "customLabel": "Customizable",
+      "instant": "<1s",
+      "instantLabel": "Generation"
+    },
+    "termsNotice": "QR codes are generated locally in your browser.",
+    "options": {
+      "title": "QR Code Customization",
+      "colors": {
+        "name": "Custom Colors",
+        "description": "Set any foreground and background colors to match your brand identity."
+      },
+      "logo": {
+        "name": "Logo Embedding",
+        "description": "Add your logo or icon to the center of the QR code for brand recognition."
+      },
+      "sizing": {
+        "name": "Size & Error Correction",
+        "description": "Adjust QR size and error correction level for different use cases."
+      }
+    },
+    "features": {
+      "title": "QR Code Generator Features",
+      "customColors": {
+        "title": "Brand Colors",
+        "description": "Choose custom dark and light colors that match your brand guidelines. Create cohesive marketing materials."
+      },
+      "logoSupport": {
+        "title": "Logo Integration",
+        "description": "Upload your logo or icon to display in the center. Error correction ensures QR remains scannable."
+      },
+      "configuration": {
+        "title": "Advanced Options",
+        "description": "Control QR size (100-1000px), error correction level (L/M/Q/H), and margin for different applications."
+      }
+    },
+    "howItWorks": {
+      "title": "How to",
+      "titleHighlight": "Create QR Codes",
+      "step1": {
+        "title": "Enter Content",
+        "description": "Paste URL, text, phone number, or any data to encode."
+      },
+      "step2": {
+        "title": "Customize Design",
+        "description": "Set colors, upload logo, and adjust size to match your brand."
+      },
+      "step3": {
+        "title": "Preview Code",
+        "description": "See real-time preview as you adjust settings."
+      },
+      "step4": {
+        "title": "Download PNG",
+        "description": "Get your QR code as high-resolution PNG image."
+      }
+    },
+    "useCases": {
+      "title": "QR Codes for Every Purpose",
+      "marketing": {
+        "icon": "📣",
+        "title": "Marketing Campaigns",
+        "description": "Link to landing pages, promotions, and digital content from print materials."
+      },
+      "business": {
+        "icon": "💼",
+        "title": "Business Cards",
+        "description": "Share contact information, LinkedIn profile, or website with a simple scan."
+      },
+      "restaurants": {
+        "icon": "🍽️",
+        "title": "Restaurants & Menus",
+        "description": "Create touchless digital menus for customers to view on their phones."
+      },
+      "events": {
+        "icon": "🎫",
+        "title": "Events & Tickets",
+        "description": "Link to event details, registration forms, or digital tickets."
+      }
+    },
+    "technology": {
+      "title": "🔲 QR Code Technology",
+      "description": "QR (Quick Response) codes are 2D barcodes that store data in a grid pattern. Our generator creates high-quality, scannable codes using industry-standard encoding with built-in error correction.",
+      "feature1": "Standard QR encoding compatible with all scanners",
+      "feature2": "Error correction levels up to 30% data recovery",
+      "feature3": "High-resolution output for print and digital",
+      "feature4": "Logo placement with automatic sizing"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "URLs, text, and standard data types",
+        "item2": "Simple logos that don't obscure too much",
+        "item3": "High contrast color combinations"
+      },
+      "limitations": {
+        "title": "✗ Keep in Mind",
+        "item1": "Very long URLs create denser QR codes",
+        "item2": "Low contrast colors may reduce scannability",
+        "item3": "Large logos may interfere with scanning"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Effective QR Codes",
+      "tip1": "Use URL shorteners for cleaner, simpler QR patterns",
+      "tip2": "Test scanning before printing in large quantities",
+      "tip3": "Maintain high contrast between colors for reliability",
+      "tip4": "Keep logo size under 30% of QR area",
+      "tip5": "Use higher error correction (Q or H) when adding logos",
+      "tip6": "Print at minimum 2cm x 2cm for reliable scanning"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Is the QR generator really free?",
+        "answer": "Yes! QR code generation is 100% free with no limits. No account or credits required. Codes are generated directly in your browser."
+      },
+      "q2": {
+        "question": "Will QR codes work with my logo?",
+        "answer": "Yes, thanks to error correction. We recommend using higher error correction levels (Q or H) when adding logos, and keeping logo size reasonable."
+      },
+      "q3": {
+        "question": "What content can I encode?",
+        "answer": "URLs, plain text, phone numbers, email addresses, WiFi credentials, and more. Most scanners auto-detect content type."
+      },
+      "q4": {
+        "question": "What size should I print QR codes?",
+        "answer": "Minimum 2cm x 2cm for reliable scanning. For scanning from distance, increase size proportionally (e.g., 10cm for 1 meter distance)."
+      },
+      "q5": {
+        "question": "Do QR codes expire?",
+        "answer": "No! QR codes are static data and never expire. However, if you encode a URL that changes or goes offline, the QR won't lead anywhere useful."
+      }
+    },
+    "cta": {
+      "title": "Create Your QR Code Now",
+      "subtitle": "Free, instant, customizable. No signup required. Generate unlimited QR codes.",
+      "getStarted": "Create QR Code",
+      "startAction": "Generate Free"
+    }
+  },
+  "imageFiltersPage": {
+    "badge": "Free Photo Filters",
+    "title": "Apply Professional",
+    "titleHighlight": "Photo Filters",
+    "subtitle": "Enhance your photos with professional filters and adjustments. Apply Instagram-style presets or fine-tune brightness, contrast, saturation, and more. All processing happens in your browser - completely free.",
+    "stats": {
+      "cost": "FREE",
+      "costLabel": "No Credits",
+      "presets": "6+",
+      "presetsLabel": "Filter Presets",
+      "sliders": "5",
+      "slidersLabel": "Adjustments"
+    },
+    "termsNotice": "Images are processed locally in your browser.",
+    "options": {
+      "title": "Popular Filter Presets",
+      "vintage": {
+        "name": "Vintage",
+        "description": "Warm, nostalgic tones with faded blacks. Perfect for retro aesthetics."
+      },
+      "dramatic": {
+        "name": "Dramatic",
+        "description": "High contrast with deep shadows. Creates bold, cinematic looks."
+      },
+      "cool": {
+        "name": "Cool Tones",
+        "description": "Blue-shifted colors for a crisp, modern feel."
+      }
+    },
+    "features": {
+      "title": "Photo Filter Features",
+      "presets": {
+        "title": "One-Click Presets",
+        "description": "Apply professional filters instantly: Grayscale, Sepia, Vintage, Cool, Warm, and Dramatic presets."
+      },
+      "adjustments": {
+        "title": "Fine-Tune Controls",
+        "description": "Precise sliders for brightness, contrast, saturation, blur, and sharpness adjustments."
+      },
+      "preview": {
+        "title": "Real-Time Preview",
+        "description": "See changes instantly as you adjust settings. No waiting, no processing delays."
+      }
+    },
+    "howItWorks": {
+      "title": "How Photo",
+      "titleHighlight": "Filters Work",
+      "step1": {
+        "title": "Upload Photo",
+        "description": "Select any image from your device - JPG, PNG, or WEBP."
+      },
+      "step2": {
+        "title": "Choose Preset",
+        "description": "Apply a one-click filter preset or start with manual adjustments."
+      },
+      "step3": {
+        "title": "Fine-Tune",
+        "description": "Use sliders to perfect brightness, contrast, and other settings."
+      },
+      "step4": {
+        "title": "Download",
+        "description": "Save your enhanced photo in high quality."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Photo Enhancement",
+      "social": {
+        "icon": "📱",
+        "title": "Social Media Posts",
+        "description": "Create cohesive, professional-looking feeds with consistent filter styles."
+      },
+      "photography": {
+        "icon": "📸",
+        "title": "Photography",
+        "description": "Quick batch editing and style application for photo collections."
+      },
+      "products": {
+        "icon": "🛍️",
+        "title": "Product Photos",
+        "description": "Enhance product images with brightness and contrast adjustments."
+      },
+      "memories": {
+        "icon": "🎞️",
+        "title": "Personal Photos",
+        "description": "Improve old or poorly lit photos with quick adjustments."
+      }
+    },
+    "technology": {
+      "title": "🎨 Browser-Based Processing",
+      "description": "Our filter tool uses Canvas API and CSS filters to process images entirely in your browser. This means instant results, complete privacy, and no upload limits - your images never leave your device.",
+      "feature1": "Real-time preview with no server processing",
+      "feature2": "Complete privacy - images stay on your device",
+      "feature3": "No size limits or watermarks",
+      "feature4": "Works offline once page is loaded"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "Quick photo enhancements and color correction",
+        "item2": "Applying consistent styles to multiple photos",
+        "item3": "Basic brightness, contrast, and saturation fixes"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "Cannot selectively edit parts of images",
+        "item2": "No advanced features like layers or masks",
+        "item3": "Limited to provided presets and basic adjustments"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Better Photo Filters",
+      "tip1": "Start with a preset, then fine-tune with sliders",
+      "tip2": "Subtle adjustments often look more professional",
+      "tip3": "Watch for clipping in highlights and shadows",
+      "tip4": "Increase contrast slightly for more punch",
+      "tip5": "Warm tones work well for portraits",
+      "tip6": "Cool tones suit landscapes and architecture"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Are photo filters really free?",
+        "answer": "Yes! Photo filters are 100% free with no limits. Images are processed in your browser, so there's no server cost to us."
+      },
+      "q2": {
+        "question": "Are my images uploaded anywhere?",
+        "answer": "No. All processing happens locally in your browser. Your images never leave your device, ensuring complete privacy."
+      },
+      "q3": {
+        "question": "What's the maximum file size?",
+        "answer": "Since processing is local, there's no strict limit. However, very large images may slow down your browser."
+      },
+      "q4": {
+        "question": "Can I undo changes?",
+        "answer": "You can reset to original at any time. We recommend keeping your original file and saving filtered versions separately."
+      },
+      "q5": {
+        "question": "What file formats are supported?",
+        "answer": "We support JPG, PNG, and WEBP for input. Output is saved in the same format as your input image."
+      }
+    },
+    "cta": {
+      "title": "Start Enhancing Your Photos",
+      "subtitle": "Free, instant, private. Apply professional filters with no signup required.",
+      "getStarted": "Apply Filters",
+      "startAction": "Enhance Photo"
+    }
+  },
+  "collageMakerPage": {
+    "badge": "Free Photo Collage Tool",
+    "title": "Create Beautiful",
+    "titleHighlight": "Photo Collages",
+    "subtitle": "Combine multiple photos into stunning collages with our free online tool. Choose from various layouts, customize spacing and backgrounds, and download high-quality results. Perfect for social media, memories, and projects.",
+    "stats": {
+      "cost": "FREE",
+      "costLabel": "No Credits",
+      "images": "2-9",
+      "imagesLabel": "Photos",
+      "layouts": "6+",
+      "layoutsLabel": "Templates"
+    },
+    "termsNotice": "Images are processed locally in your browser.",
+    "options": {
+      "title": "Collage Layout Options",
+      "grid": {
+        "name": "Grid Layouts",
+        "description": "Classic 2x2, 3x3, and 4x4 grids for organized, balanced compositions."
+      },
+      "asymmetric": {
+        "name": "Asymmetric",
+        "description": "Feature one main image with smaller supporting photos."
+      },
+      "horizontal": {
+        "name": "Horizontal Strip",
+        "description": "Side-by-side layouts perfect for before/after comparisons."
+      }
+    },
+    "features": {
+      "title": "Collage Maker Features",
+      "layouts": {
+        "title": "Multiple Layouts",
+        "description": "Choose from 2x1, 1x2, 2x2, 3x3, 4x4, and asymmetric layouts for any number of photos."
+      },
+      "customization": {
+        "title": "Full Customization",
+        "description": "Adjust gap size, background color, corner radius, and output dimensions to match your needs."
+      },
+      "quality": {
+        "title": "High Quality Output",
+        "description": "Export at custom resolutions up to 4K. Perfect for printing and large displays."
+      }
+    },
+    "howItWorks": {
+      "title": "How to",
+      "titleHighlight": "Create Collages",
+      "step1": {
+        "title": "Upload Photos",
+        "description": "Select 2-9 photos from your device."
+      },
+      "step2": {
+        "title": "Choose Layout",
+        "description": "Pick from grid, asymmetric, or strip layouts."
+      },
+      "step3": {
+        "title": "Customize",
+        "description": "Adjust spacing, background color, and dimensions."
+      },
+      "step4": {
+        "title": "Download",
+        "description": "Save your collage as a high-quality image."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Photo Collages",
+      "memories": {
+        "icon": "📸",
+        "title": "Photo Memories",
+        "description": "Combine vacation photos, family events, or special moments into single memorable images."
+      },
+      "social": {
+        "icon": "📱",
+        "title": "Social Media",
+        "description": "Create engaging multi-photo posts for Instagram, Facebook, and other platforms."
+      },
+      "comparison": {
+        "icon": "⚖️",
+        "title": "Before & After",
+        "description": "Perfect side-by-side layouts for showcasing transformations and progress."
+      },
+      "portfolios": {
+        "icon": "💼",
+        "title": "Portfolios",
+        "description": "Display multiple works in a single, professional presentation."
+      }
+    },
+    "technology": {
+      "title": "🖼️ Browser-Based Collage Creation",
+      "description": "Our collage maker uses HTML5 Canvas to combine your photos entirely in your browser. This ensures privacy (no uploads), instant results, and no quality loss during processing.",
+      "feature1": "Local processing - photos never leave your device",
+      "feature2": "High-resolution output up to 4K",
+      "feature3": "Smart image fitting and cropping",
+      "feature4": "Instant preview as you adjust settings"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "2-9 photos of similar orientation",
+        "item2": "Grid-based and simple layouts",
+        "item3": "Quick social media and memory collages"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "No drag-and-drop repositioning within cells",
+        "item2": "Limited to preset layout templates",
+        "item3": "Cannot add text or stickers to collages"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Better Collages",
+      "tip1": "Use photos with similar color tones for cohesive look",
+      "tip2": "Match photo orientations to your chosen layout",
+      "tip3": "Add gap space for cleaner, more modern appearance",
+      "tip4": "Use white or neutral backgrounds for professional look",
+      "tip5": "Square layouts work best for Instagram",
+      "tip6": "Try asymmetric layouts to highlight key photos"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Is the collage maker free?",
+        "answer": "Yes! The collage maker is 100% free with no limits. No account or credits required."
+      },
+      "q2": {
+        "question": "How many photos can I combine?",
+        "answer": "You can combine 2-9 photos per collage. The available layouts adapt to the number of photos you upload."
+      },
+      "q3": {
+        "question": "What output sizes are available?",
+        "answer": "You can set custom dimensions up to 4K resolution. Common presets include 1080x1080 for Instagram and 1920x1080 for widescreen."
+      },
+      "q4": {
+        "question": "Are my photos uploaded to a server?",
+        "answer": "No. All processing happens in your browser. Your photos never leave your device, ensuring complete privacy."
+      },
+      "q5": {
+        "question": "Can I save in different formats?",
+        "answer": "Collages are saved as PNG for best quality, which works great for all uses including print and web."
+      }
+    },
+    "cta": {
+      "title": "Create Your Photo Collage Now",
+      "subtitle": "Free, instant, private. Combine your photos into beautiful collages.",
+      "getStarted": "Make Collage",
+      "startAction": "Create Now"
+    }
+  },
+  "cropImagePage": {
+    "badge": "Free Image Cropping Tool",
+    "title": "Crop Images with",
+    "titleHighlight": "Precision",
+    "subtitle": "Crop and resize your images with pixel-perfect accuracy. Choose from preset aspect ratios or define custom dimensions. Free, fast, and works entirely in your browser with no uploads required.",
+    "stats": {
+      "cost": "FREE",
+      "costLabel": "No Credits",
+      "ratios": "8+",
+      "ratiosLabel": "Preset Ratios",
+      "processing": "Instant",
+      "processingLabel": "Results"
+    },
+    "termsNotice": "Images are processed locally in your browser.",
+    "options": {
+      "title": "Crop Aspect Ratios",
+      "square": {
+        "name": "1:1 Square",
+        "description": "Perfect for Instagram posts and profile pictures."
+      },
+      "landscape": {
+        "name": "16:9 Widescreen",
+        "description": "Ideal for YouTube thumbnails and desktop wallpapers."
+      },
+      "portrait": {
+        "name": "4:5 Portrait",
+        "description": "Optimized for Instagram portraits and Pinterest."
+      }
+    },
+    "features": {
+      "title": "Image Cropping Features",
+      "ratios": {
+        "title": "Preset Aspect Ratios",
+        "description": "Quick presets for 1:1, 4:3, 16:9, 3:2, 4:5, and more. Perfect for social media and common formats."
+      },
+      "precision": {
+        "title": "Pixel-Perfect Control",
+        "description": "Enter exact X, Y, width, and height values for precise cropping when you need exact dimensions."
+      },
+      "preview": {
+        "title": "Live Preview",
+        "description": "See your crop area in real-time with draggable handles for intuitive adjustments."
+      }
+    },
+    "howItWorks": {
+      "title": "How Image",
+      "titleHighlight": "Cropping Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Select any JPG, PNG, or WEBP image from your device."
+      },
+      "step2": {
+        "title": "Select Area",
+        "description": "Use preset ratios or draw a custom crop area."
+      },
+      "step3": {
+        "title": "Adjust Position",
+        "description": "Drag and resize the crop box to frame your shot."
+      },
+      "step4": {
+        "title": "Download",
+        "description": "Save your cropped image in high quality."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Image Cropping",
+      "social": {
+        "icon": "📱",
+        "title": "Social Media",
+        "description": "Crop to exact dimensions for Instagram, Facebook, Twitter, and LinkedIn posts."
+      },
+      "ecommerce": {
+        "icon": "🛍️",
+        "title": "Product Photos",
+        "description": "Create consistent product image dimensions for online stores."
+      },
+      "documents": {
+        "icon": "📄",
+        "title": "Documents & ID",
+        "description": "Crop photos for passports, visas, and official documents."
+      },
+      "design": {
+        "icon": "🎨",
+        "title": "Design Projects",
+        "description": "Prepare images for specific layout requirements and compositions."
+      }
+    },
+    "technology": {
+      "title": "✂️ Browser-Based Cropping",
+      "description": "Our crop tool uses HTML5 Canvas for precise, instant image cropping directly in your browser. No server processing means complete privacy and zero wait times.",
+      "feature1": "Instant preview with no upload required",
+      "feature2": "Precise pixel-level cropping control",
+      "feature3": "Maintains original image quality",
+      "feature4": "Works offline once page is loaded"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "Quick social media image preparation",
+        "item2": "Precise dimensional adjustments",
+        "item3": "Batch preparation with consistent ratios"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "Cannot rotate images (use separate tool)",
+        "item2": "No content-aware fill for extended areas",
+        "item3": "Maximum output is original image resolution"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Better Cropping",
+      "tip1": "Use rule of thirds - position subjects at intersection points",
+      "tip2": "Leave some breathing room around subjects",
+      "tip3": "Check preset ratios for your target platform",
+      "tip4": "Use pixel input for exact dimensional requirements",
+      "tip5": "Crop to focus attention on key elements",
+      "tip6": "Consider final use when choosing aspect ratio"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Is the crop tool free?",
+        "answer": "Yes! Image cropping is 100% free with no limits. No account or credits required."
+      },
+      "q2": {
+        "question": "What aspect ratios are available?",
+        "answer": "Presets include 1:1, 4:3, 3:2, 16:9, 4:5, 2:3, 9:16, and free-form cropping for custom dimensions."
+      },
+      "q3": {
+        "question": "Is my image uploaded anywhere?",
+        "answer": "No. All processing happens in your browser. Your images never leave your device."
+      },
+      "q4": {
+        "question": "What's the maximum file size?",
+        "answer": "There's no strict limit for local processing, but very large images may slow your browser. Images up to 20MB work smoothly."
+      },
+      "q5": {
+        "question": "Can I upscale while cropping?",
+        "answer": "Cropping only cuts from the original. For upscaling, use our AI Upscaler tool after cropping."
+      }
+    },
+    "cta": {
+      "title": "Start Cropping Your Images",
+      "subtitle": "Free, instant, precise. Perfect crops with no signup required.",
+      "getStarted": "Crop Image",
+      "startAction": "Start Cropping"
+    }
+  },
+  "resizeImagePage": {
+    "badge": "Free Image Resizer",
+    "title": "Resize Images to",
+    "titleHighlight": "Any Dimension",
+    "subtitle": "Quickly resize your images to exact dimensions. Use popular presets for social media, web, and print, or enter custom pixel sizes. Fast, free, and processed entirely in your browser.",
+    "stats": {
+      "cost": "FREE",
+      "costLabel": "No Credits",
+      "presets": "10+",
+      "presetsLabel": "Size Presets",
+      "processing": "Instant",
+      "processingLabel": "Results"
+    },
+    "termsNotice": "Images are processed locally in your browser.",
+    "options": {
+      "title": "Popular Size Presets",
+      "instagram": {
+        "name": "Instagram Post",
+        "description": "1080x1080 square format, optimized for Instagram feed posts."
+      },
+      "youtube": {
+        "name": "YouTube Thumbnail",
+        "description": "1280x720 widescreen format for eye-catching video thumbnails."
+      },
+      "linkedin": {
+        "name": "LinkedIn Banner",
+        "description": "1584x396 format for professional profile banners."
+      }
+    },
+    "features": {
+      "title": "Image Resize Features",
+      "presets": {
+        "title": "Smart Presets",
+        "description": "One-click presets for Instagram, YouTube, LinkedIn, Twitter, Facebook, and common web dimensions."
+      },
+      "custom": {
+        "title": "Custom Dimensions",
+        "description": "Enter exact width and height in pixels. Lock aspect ratio for proportional scaling."
+      },
+      "fitModes": {
+        "title": "Fit Mode Options",
+        "description": "Choose cover (crop to fill), contain (fit inside), or stretch for different scaling needs."
+      }
+    },
+    "howItWorks": {
+      "title": "How Image",
+      "titleHighlight": "Resizing Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Select any JPG, PNG, or WEBP image from your device."
+      },
+      "step2": {
+        "title": "Choose Size",
+        "description": "Select a preset or enter custom dimensions."
+      },
+      "step3": {
+        "title": "Select Fit Mode",
+        "description": "Pick how the image should scale: cover, contain, or stretch."
+      },
+      "step4": {
+        "title": "Download",
+        "description": "Save your resized image in high quality."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Image Resizing",
+      "social": {
+        "icon": "📱",
+        "title": "Social Media",
+        "description": "Resize for Instagram, Facebook, Twitter, LinkedIn with perfect dimensions every time."
+      },
+      "web": {
+        "icon": "🌐",
+        "title": "Web & Email",
+        "description": "Optimize images for faster website loading and email compatibility."
+      },
+      "print": {
+        "icon": "🖨️",
+        "title": "Print Preparation",
+        "description": "Scale images to exact print dimensions with DPI awareness."
+      },
+      "thumbnails": {
+        "icon": "🎬",
+        "title": "Thumbnails",
+        "description": "Create consistent thumbnail sizes for video, blog, and product listings."
+      }
+    },
+    "technology": {
+      "title": "📐 Browser-Based Resizing",
+      "description": "Our resize tool uses HTML5 Canvas with bicubic interpolation for smooth scaling. Processing happens entirely in your browser for privacy and speed.",
+      "feature1": "High-quality bicubic scaling algorithm",
+      "feature2": "Aspect ratio preservation options",
+      "feature3": "No quality loss for downscaling",
+      "feature4": "Instant results with no uploads"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "✓ Works Best For",
+        "item1": "Downscaling images to smaller sizes",
+        "item2": "Meeting specific platform requirements",
+        "item3": "Quick batch resizing with consistent sizes"
+      },
+      "limitations": {
+        "title": "✗ Current Limitations",
+        "item1": "Upscaling reduces quality (use AI Upscaler instead)",
+        "item2": "Cannot maintain sharp text when shrinking significantly",
+        "item3": "Very large upscaling will produce blurry results"
+      }
+    },
+    "tips": {
+      "title": "💡 Tips for Better Resizing",
+      "tip1": "Use 'contain' mode to preserve entire image content",
+      "tip2": "Use 'cover' mode for thumbnails that fill the frame",
+      "tip3": "Lock aspect ratio to prevent distortion",
+      "tip4": "For upscaling, use our AI Upscaler for better quality",
+      "tip5": "Check platform guidelines for exact size requirements",
+      "tip6": "Downscale from highest quality source for best results"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Is the resize tool free?",
+        "answer": "Yes! Image resizing is 100% free with no limits. No account or credits required."
+      },
+      "q2": {
+        "question": "What's the difference between cover, contain, and stretch?",
+        "answer": "Cover fills the target size (may crop edges). Contain fits the whole image (may add padding). Stretch distorts to exact dimensions."
+      },
+      "q3": {
+        "question": "Can I upscale images?",
+        "answer": "Basic upscaling is possible but reduces quality. For best results upscaling, use our AI Upscaler which adds detail intelligently."
+      },
+      "q4": {
+        "question": "Are my images uploaded anywhere?",
+        "answer": "No. All processing happens locally in your browser. Your images never leave your device."
+      },
+      "q5": {
+        "question": "What file formats are supported?",
+        "answer": "We support JPG, PNG, and WEBP for input. Output preserves the original format for best compatibility."
+      }
+    },
+    "cta": {
+      "title": "Resize Your Images Now",
+      "subtitle": "Free, instant, easy. Perfect sizes for any platform.",
+      "getStarted": "Resize Image",
+      "startAction": "Start Resizing"
+    }
+  },
   "faqPage": {
     "title": "Frequently Asked Questions",
     "subtitle": "Find answers to common questions about Pixelift AI tools",
@@ -4463,85 +5851,747 @@
   },
   "watermarkRemoverPage": {
     "badge": "AI-Powered Watermark Removal",
-    "title": "AI Watermark Remover",
-    "subtitle": "Remove watermarks, logos, and text overlays from images seamlessly with AI inpainting.",
+    "title": "Remove Watermarks with",
+    "titleHighlight": "AI Precision",
+    "subtitle": "Remove watermarks, logos, date stamps, and text overlays from images seamlessly with advanced AI inpainting. Perfect for cleaning up photos, removing stock photo watermarks, and restoring images to their original beauty.",
     "termsNotice": "By using this tool, you agree to our Terms of Service.",
     "stats": {
-      "aiPowered": "LaMA",
-      "aiPoweredLabel": "AI Model",
+      "credits": "2",
+      "creditsLabel": "Credits",
       "modes": "2",
       "modesLabel": "Removal Modes",
-      "creditCost": "2 Credits",
-      "creditCostLabel": "Per Image"
+      "accuracy": "95%+",
+      "accuracyLabel": "Accuracy"
     },
-    "howItWorks": {
-      "title": "How It Works",
-      "step1": {
-        "title": "Upload Image",
-        "description": "Upload an image with watermark"
+    "options": {
+      "title": "Removal Modes",
+      "autoDetect": {
+        "name": "Auto Detect",
+        "description": "AI automatically finds and removes watermarks, logos, and text overlays without manual selection."
       },
-      "step2": {
-        "title": "Select Mode",
-        "description": "Auto-detect or manually mark watermark"
+      "manualMask": {
+        "name": "Manual Mask",
+        "description": "Paint over specific areas you want to remove for precise control over the removal process."
       },
-      "step3": {
-        "title": "Download Clean",
-        "description": "Get your watermark-free image"
+      "combined": {
+        "name": "Combined Mode",
+        "description": "Use auto-detection as a starting point, then refine with manual masking for best results."
       }
     },
     "features": {
+      "title": "Why Choose Our Watermark Remover",
       "autoDetect": {
-        "title": "Auto Detection",
-        "description": "AI automatically finds and removes watermarks"
+        "title": "Automatic Detection",
+        "description": "AI-powered detection automatically finds watermarks, logos, and text overlays across your entire image."
       },
       "manualMask": {
         "title": "Manual Masking",
-        "description": "Paint over specific areas to remove"
+        "description": "Precise brush tool to mark exactly what you want to remove - perfect for complex or subtle watermarks."
       },
       "seamless": {
         "title": "Seamless Results",
-        "description": "AI fills in the background naturally"
+        "description": "Advanced inpainting fills removed areas with realistic content that matches the surrounding image."
+      }
+    },
+    "howItWorks": {
+      "title": "How It",
+      "titleHighlight": "Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Upload any image with watermarks, logos, or text overlays you want to remove."
+      },
+      "step2": {
+        "title": "Choose Mode",
+        "description": "Use automatic detection or manually paint over the areas to remove."
+      },
+      "step3": {
+        "title": "Process Image",
+        "description": "AI analyzes and intelligently removes marked areas, filling with realistic content."
+      },
+      "step4": {
+        "title": "Download Clean",
+        "description": "Download your clean, watermark-free image in high quality."
       }
     },
     "useCases": {
-      "title": "Use Cases",
+      "title": "Perfect For Every Use Case",
       "stockPhotos": {
+        "icon": "📸",
         "title": "Stock Photos",
-        "description": "Remove preview watermarks from stock images"
-      },
-      "screenshots": {
-        "title": "Screenshots",
-        "description": "Clean up screenshots with unwanted overlays"
+        "description": "Remove preview watermarks from stock images to evaluate before purchasing."
       },
       "oldPhotos": {
+        "icon": "📅",
         "title": "Old Photos",
-        "description": "Remove date stamps from old photos"
+        "description": "Remove date stamps and camera watermarks from old digital photos."
+      },
+      "screenshots": {
+        "icon": "🖥️",
+        "title": "Screenshots",
+        "description": "Clean up screenshots by removing unwanted text overlays and UI elements."
       },
       "documents": {
-        "title": "Documents",
-        "description": "Clean scanned documents"
+        "icon": "📄",
+        "title": "Scanned Documents",
+        "description": "Remove stamps, signatures, or unwanted marks from scanned documents."
       }
     },
-    "relatedTools": {
-      "title": "Related Tools",
-      "objectRemoval": {
-        "title": "Object Removal",
-        "description": "Remove any object from photos"
+    "technology": {
+      "title": "Powered by Advanced AI Inpainting",
+      "description": "Our watermark remover uses the LaMA (Large Mask Inpainting) AI model, trained on millions of images to understand context and seamlessly fill removed areas with realistic content that matches the surrounding image.",
+      "feature1": "LaMA AI model for context-aware inpainting",
+      "feature2": "Understands image context and textures",
+      "feature3": "Handles large and small watermarks equally well",
+      "feature4": "Preserves image quality during removal"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "Works Great For",
+        "item1": "Text watermarks and logos on simple backgrounds",
+        "item2": "Semi-transparent overlays and date stamps",
+        "item3": "Watermarks that don't cover critical image details"
       },
-      "inpainting": {
-        "title": "AI Inpainting",
-        "description": "Fill and extend images"
+      "limitations": {
+        "title": "Considerations",
+        "item1": "Complex patterns under watermarks may need manual refinement",
+        "item2": "Large watermarks covering faces may affect results",
+        "item3": "Respect copyright - only use on images you have rights to"
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "tip1": "Use auto-detect first, then refine with manual masking if needed.",
+      "tip2": "For transparent watermarks, try increasing brush size to cover the full area.",
+      "tip3": "Process multiple times with smaller areas for complex watermarks.",
+      "tip4": "Higher resolution images generally produce better results.",
+      "tip5": "Watermarks on busy backgrounds are easier to remove than on faces.",
+      "tip6": "Always respect copyright - use responsibly on your own images."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Can I remove watermarks from stock photos?",
+        "answer": "Our tool can remove watermarks for preview purposes, but please respect copyright. Always purchase proper licenses for commercial use."
       },
-      "removeBackground": {
-        "title": "Remove Background",
-        "description": "Transparent backgrounds"
+      "q2": {
+        "question": "Will the removal be invisible?",
+        "answer": "In most cases, yes. AI fills the removed area with content matching the surroundings. Complex backgrounds may need multiple attempts."
+      },
+      "q3": {
+        "question": "Can I remove large watermarks?",
+        "answer": "Yes, but results depend on what's underneath. Small watermarks on simple backgrounds work best. Large watermarks on faces may be challenging."
+      },
+      "q4": {
+        "question": "Is this legal?",
+        "answer": "Removing watermarks from images you own or have permission to edit is fine. Removing watermarks to avoid paying for licensed content is not."
+      },
+      "q5": {
+        "question": "What's the difference between auto and manual mode?",
+        "answer": "Auto mode uses AI to detect watermarks. Manual mode lets you paint over specific areas. Use manual for precise control or when auto misses parts."
       }
     },
     "cta": {
       "title": "Ready to Remove Watermarks?",
-      "subtitle": "Clean up your images with AI today",
-      "exploreTools": "Explore All Tools",
-      "viewPricing": "View Pricing"
+      "subtitle": "Clean up your images with AI-powered watermark removal. Professional results in seconds.",
+      "getStarted": "Get Started Free",
+      "startAction": "Remove Watermark Now"
+    }
+  },
+  "reimaginePage": {
+    "badge": "AI-Powered Image Transformation",
+    "title": "Reimagine Your Images with",
+    "titleHighlight": "AI Magic",
+    "subtitle": "Transform any image into a new creative version while preserving its core structure. Reimagine photos as paintings, illustrations, anime, or completely new styles using the power of AI.",
+    "termsNotice": "By using this tool, you agree to our Terms of Service.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Credits",
+      "styles": "10+",
+      "stylesLabel": "Style Options",
+      "quality": "HD",
+      "qualityLabel": "Output Quality"
+    },
+    "options": {
+      "title": "Transformation Styles",
+      "artistic": {
+        "name": "Artistic",
+        "description": "Transform photos into paintings, watercolors, oil paintings, and other artistic styles."
+      },
+      "illustration": {
+        "name": "Illustration",
+        "description": "Convert images to digital illustrations, vector art, or comic book styles."
+      },
+      "fantasy": {
+        "name": "Fantasy",
+        "description": "Reimagine scenes with magical, sci-fi, or otherworldly elements."
+      }
+    },
+    "features": {
+      "title": "Why Choose Reimagine",
+      "structurePreserving": {
+        "title": "Structure Preserving",
+        "description": "Maintains the core composition and layout of your original image while applying creative transformations."
+      },
+      "styleVariety": {
+        "title": "Endless Styles",
+        "description": "From photorealistic to abstract, cartoon to cinematic - choose from dozens of transformation styles."
+      },
+      "customPrompts": {
+        "title": "Custom Prompts",
+        "description": "Describe exactly how you want your image transformed for precise creative control."
+      }
+    },
+    "howItWorks": {
+      "title": "How It",
+      "titleHighlight": "Works",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Upload any photo or image you want to reimagine."
+      },
+      "step2": {
+        "title": "Choose Style",
+        "description": "Select a preset style or write a custom prompt."
+      },
+      "step3": {
+        "title": "AI Transform",
+        "description": "Our AI analyzes and recreates your image in the new style."
+      },
+      "step4": {
+        "title": "Download Art",
+        "description": "Download your reimagined artwork in high resolution."
+      }
+    },
+    "useCases": {
+      "title": "Creative Possibilities",
+      "artists": {
+        "icon": "🎨",
+        "title": "Digital Artists",
+        "description": "Turn photos into artistic references or create unique digital art pieces."
+      },
+      "content": {
+        "icon": "📱",
+        "title": "Content Creators",
+        "description": "Create eye-catching, unique visuals for social media and marketing."
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Game Development",
+        "description": "Transform real photos into game-ready assets and concept art."
+      },
+      "personal": {
+        "icon": "🖼️",
+        "title": "Personal Projects",
+        "description": "Turn family photos into artwork, illustrations, or fantasy scenes."
+      }
+    },
+    "technology": {
+      "title": "Powered by Stable Diffusion",
+      "description": "Reimagine uses advanced Stable Diffusion models with image-to-image generation. The AI understands your original image structure and reinterprets it in the requested style, creating entirely new artwork while preserving composition.",
+      "feature1": "State-of-the-art Stable Diffusion models",
+      "feature2": "ControlNet for precise structure preservation",
+      "feature3": "High-resolution output up to 1024x1024",
+      "feature4": "Fast processing on dedicated GPU servers"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "Works Great For",
+        "item1": "Clear, well-lit photos with defined subjects",
+        "item2": "Landscapes, portraits, and objects",
+        "item3": "Creative transformations with custom prompts"
+      },
+      "limitations": {
+        "title": "Considerations",
+        "item1": "Very dark or blurry images may produce unexpected results",
+        "item2": "Complex scenes with many elements may lose some details",
+        "item3": "Results are creative interpretations, not exact transformations"
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "tip1": "Use clear, well-lit photos for best transformations.",
+      "tip2": "Be specific in custom prompts - describe style, colors, and mood.",
+      "tip3": "Try multiple styles to find the perfect look for your image.",
+      "tip4": "Simple compositions often produce more striking results.",
+      "tip5": "Combine style presets with custom prompt modifiers.",
+      "tip6": "Higher resolution inputs generally yield better outputs."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "What is image reimagining?",
+        "answer": "It's AI-powered transformation that recreates your image in a new style while keeping the original composition and structure."
+      },
+      "q2": {
+        "question": "Will my original image be preserved?",
+        "answer": "Yes, we only create new variations. Your original image remains unchanged and is processed securely."
+      },
+      "q3": {
+        "question": "Can I use custom style descriptions?",
+        "answer": "Absolutely! Write detailed prompts describing exactly how you want your image transformed."
+      },
+      "q4": {
+        "question": "What resolution are the outputs?",
+        "answer": "Outputs are generated at up to 1024x1024 pixels, suitable for social media, printing, and digital use."
+      },
+      "q5": {
+        "question": "How is this different from filters?",
+        "answer": "Unlike filters that adjust colors, reimagining uses AI to completely recreate the image in a new artistic style."
+      }
+    },
+    "cta": {
+      "title": "Ready to Reimagine Your Images?",
+      "subtitle": "Transform your photos into stunning artwork with AI. Unlimited creative possibilities await.",
+      "getStarted": "Get Started Free",
+      "startAction": "Reimagine Now"
+    }
+  },
+  "styleTransferPage": {
+    "badge": "AI-Powered Style Transfer",
+    "title": "Transfer Any Style to",
+    "titleHighlight": "Your Images",
+    "subtitle": "Apply the artistic style of any reference image to your photos. Transform ordinary images into works of art using famous painting styles, unique textures, or any visual aesthetic you can imagine.",
+    "termsNotice": "By using this tool, you agree to our Terms of Service.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Credits",
+      "references": "Any",
+      "referencesLabel": "Style Source",
+      "speed": "Fast",
+      "speedLabel": "Processing"
+    },
+    "options": {
+      "title": "Style Transfer Modes",
+      "artistic": {
+        "name": "Artistic Transfer",
+        "description": "Apply painting styles from famous artworks like Van Gogh, Monet, or any art reference."
+      },
+      "texture": {
+        "name": "Texture Transfer",
+        "description": "Transfer textures, patterns, and material appearances from reference images."
+      },
+      "color": {
+        "name": "Color Grading",
+        "description": "Match the color palette and mood of any reference photo or artwork."
+      }
+    },
+    "features": {
+      "title": "Why Choose Style Transfer",
+      "anyReference": {
+        "title": "Any Reference Image",
+        "description": "Use any image as your style reference - paintings, photos, textures, or abstract art."
+      },
+      "contentPreserving": {
+        "title": "Content Preserving",
+        "description": "Your original image content remains recognizable while adopting the new style."
+      },
+      "adjustableStrength": {
+        "title": "Adjustable Strength",
+        "description": "Control how strongly the style is applied - from subtle hints to full artistic transformation."
+      }
+    },
+    "howItWorks": {
+      "title": "How It",
+      "titleHighlight": "Works",
+      "step1": {
+        "title": "Upload Content",
+        "description": "Upload the image you want to transform."
+      },
+      "step2": {
+        "title": "Add Style Reference",
+        "description": "Upload or select the style image to transfer from."
+      },
+      "step3": {
+        "title": "Adjust Strength",
+        "description": "Set how strongly the style should be applied."
+      },
+      "step4": {
+        "title": "Download Result",
+        "description": "Get your stylized image in high quality."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Every Creative Need",
+      "artists": {
+        "icon": "🎨",
+        "title": "Artists & Designers",
+        "description": "Apply consistent artistic styles across multiple images for cohesive projects."
+      },
+      "photography": {
+        "icon": "📷",
+        "title": "Photographers",
+        "description": "Add unique artistic flair to photos with painterly or vintage styles."
+      },
+      "marketing": {
+        "icon": "📢",
+        "title": "Marketing Teams",
+        "description": "Create brand-consistent visuals with unified style across all imagery."
+      },
+      "education": {
+        "icon": "📚",
+        "title": "Education",
+        "description": "Teach art history by demonstrating how different styles transform images."
+      }
+    },
+    "technology": {
+      "title": "Neural Style Transfer Technology",
+      "description": "Style transfer uses deep neural networks to separate content from style in images. The AI extracts the stylistic elements from your reference and applies them to your content image, creating a beautiful fusion that preserves what you want while adopting a new look.",
+      "feature1": "Advanced neural network architecture",
+      "feature2": "Separate content and style understanding",
+      "feature3": "Multiple style strengths supported",
+      "feature4": "High-resolution output support"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "Works Great For",
+        "item1": "Clear photos with distinct subjects",
+        "item2": "Reference images with strong, recognizable styles",
+        "item3": "Artistic and creative transformations"
+      },
+      "limitations": {
+        "title": "Considerations",
+        "item1": "Very detailed photos may lose some fine details",
+        "item2": "Subtle styles may require higher strength settings",
+        "item3": "Abstract reference images may produce unexpected results"
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "tip1": "Choose style references with clear, distinct visual characteristics.",
+      "tip2": "Start with medium strength and adjust based on results.",
+      "tip3": "Simple content images often produce more dramatic style effects.",
+      "tip4": "Try famous paintings for recognized, pleasing style transfers.",
+      "tip5": "Experiment with unexpected style combinations for unique results.",
+      "tip6": "Higher resolution inputs yield better quality outputs."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "What can I use as a style reference?",
+        "answer": "Any image! Famous paintings, photos, textures, patterns - upload whatever style you want to transfer."
+      },
+      "q2": {
+        "question": "Will my content image be recognizable?",
+        "answer": "Yes, style transfer preserves the content and structure of your image while changing its visual style."
+      },
+      "q3": {
+        "question": "What's the difference between style transfer and reimagine?",
+        "answer": "Style transfer uses a specific reference image for the style. Reimagine uses AI prompts to generate new interpretations."
+      },
+      "q4": {
+        "question": "Can I control how strong the effect is?",
+        "answer": "Yes, you can adjust the style strength from subtle hints to full artistic transformation."
+      },
+      "q5": {
+        "question": "What resolution are the outputs?",
+        "answer": "Outputs match your input resolution up to our maximum supported size, ensuring high-quality results."
+      }
+    },
+    "cta": {
+      "title": "Ready to Transfer Styles?",
+      "subtitle": "Transform your images with any artistic style. From Van Gogh to modern design - make it yours.",
+      "getStarted": "Get Started Free",
+      "startAction": "Transfer Style Now"
+    }
+  },
+  "structureControlPage": {
+    "badge": "AI-Powered Image Generation",
+    "title": "Generate Images with",
+    "titleHighlight": "Structure Control",
+    "subtitle": "Create AI-generated images that follow the structure and composition of your reference image. Control depth, edges, poses, and layouts while generating completely new content with Stable Diffusion.",
+    "termsNotice": "By using this tool, you agree to our Terms of Service.",
+    "stats": {
+      "credits": "3",
+      "creditsLabel": "Credits",
+      "controls": "5",
+      "controlsLabel": "Control Types",
+      "quality": "HD",
+      "qualityLabel": "Output"
+    },
+    "options": {
+      "title": "Control Types",
+      "depth": {
+        "name": "Depth Control",
+        "description": "Preserve the 3D depth structure of your reference for realistic spatial relationships."
+      },
+      "edge": {
+        "name": "Edge/Canny Control",
+        "description": "Follow the edges and outlines of your reference for precise shape matching."
+      },
+      "pose": {
+        "name": "Pose Control",
+        "description": "Maintain body poses and positions from reference images for character generation."
+      }
+    },
+    "features": {
+      "title": "Why Choose Structure Control",
+      "preciseControl": {
+        "title": "Precise Control",
+        "description": "Guide AI generation with exact structural constraints from your reference images."
+      },
+      "creativeFreedo": {
+        "title": "Creative Freedom",
+        "description": "Generate entirely new content while respecting the composition you want."
+      },
+      "multipleTypes": {
+        "title": "Multiple Control Types",
+        "description": "Choose from depth, edge, pose, segmentation, and more control methods."
+      }
+    },
+    "howItWorks": {
+      "title": "How It",
+      "titleHighlight": "Works",
+      "step1": {
+        "title": "Upload Reference",
+        "description": "Upload an image with the structure you want to preserve."
+      },
+      "step2": {
+        "title": "Choose Control Type",
+        "description": "Select depth, edge, pose, or other control method."
+      },
+      "step3": {
+        "title": "Describe Output",
+        "description": "Write a prompt describing what you want to generate."
+      },
+      "step4": {
+        "title": "Generate & Download",
+        "description": "AI creates your image following the structure."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Creative Professionals",
+      "conceptArt": {
+        "icon": "🎨",
+        "title": "Concept Artists",
+        "description": "Use rough sketches or photos as structure guides for polished concept art."
+      },
+      "productDesign": {
+        "icon": "📦",
+        "title": "Product Design",
+        "description": "Generate product variations while maintaining consistent shapes and layouts."
+      },
+      "architecture": {
+        "icon": "🏗️",
+        "title": "Architecture",
+        "description": "Visualize buildings in different styles while preserving structural layouts."
+      },
+      "fashion": {
+        "icon": "👗",
+        "title": "Fashion Design",
+        "description": "Generate outfit variations on the same pose for design exploration."
+      }
+    },
+    "technology": {
+      "title": "Powered by ControlNet Technology",
+      "description": "Structure Control uses ControlNet with Stable Diffusion to add precise structural conditioning to AI image generation. Different control types extract different structural information - depth for 3D space, edges for outlines, poses for body positions.",
+      "feature1": "ControlNet for precise structural guidance",
+      "feature2": "Stable Diffusion XL for high-quality generation",
+      "feature3": "Multiple control type processors",
+      "feature4": "Adjustable control strength"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "Works Great For",
+        "item1": "Clear reference images with defined structures",
+        "item2": "Architectural and product imagery",
+        "item3": "Pose-based character generation"
+      },
+      "limitations": {
+        "title": "Considerations",
+        "item1": "Very complex scenes may not transfer perfectly",
+        "item2": "Prompt quality significantly affects output",
+        "item3": "Some control types work better for certain subjects"
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "tip1": "Use depth control for scenes with clear foreground/background separation.",
+      "tip2": "Edge control works best with images that have clear outlines.",
+      "tip3": "Pose control is ideal for character and figure generation.",
+      "tip4": "Write detailed prompts that match your structural reference.",
+      "tip5": "Adjust control strength to balance structure and creativity.",
+      "tip6": "Experiment with different control types for the same reference."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "What is structure control?",
+        "answer": "It's a way to guide AI image generation using structural information (depth, edges, poses) from a reference image."
+      },
+      "q2": {
+        "question": "Which control type should I use?",
+        "answer": "Depth for 3D scenes, edge for shapes and outlines, pose for characters. Experiment to find what works best."
+      },
+      "q3": {
+        "question": "Can I use any image as a reference?",
+        "answer": "Yes, any image can be analyzed for its structure. Clearer images with defined elements work best."
+      },
+      "q4": {
+        "question": "How is this different from style transfer?",
+        "answer": "Style transfer changes appearance while keeping content. Structure control generates new content while keeping structure."
+      },
+      "q5": {
+        "question": "What resolution are outputs?",
+        "answer": "Outputs are generated at up to 1024x1024 or matching aspect ratio for high-quality results."
+      }
+    },
+    "cta": {
+      "title": "Ready to Control AI Generation?",
+      "subtitle": "Generate images that follow your structural vision. Precise control meets creative AI.",
+      "getStarted": "Get Started Free",
+      "startAction": "Generate Now"
+    }
+  },
+  "portraitRelightPage": {
+    "badge": "AI-Powered Portrait Lighting",
+    "title": "Professional Portrait",
+    "titleHighlight": "Relighting",
+    "subtitle": "Transform your portrait lighting with studio-quality AI relighting. Change any portrait from harsh outdoor lighting to soft studio setups, golden hour glow, or dramatic cinematic looks with one click.",
+    "termsNotice": "By using this tool, you agree to our Terms of Service.",
+    "stats": {
+      "credits": "2",
+      "creditsLabel": "Credits",
+      "presets": "6",
+      "presetsLabel": "Lighting Presets",
+      "quality": "HD",
+      "qualityLabel": "Output"
+    },
+    "options": {
+      "title": "Lighting Presets",
+      "studio": {
+        "name": "Studio Light",
+        "description": "Professional three-point lighting setup with soft, even illumination."
+      },
+      "golden": {
+        "name": "Golden Hour",
+        "description": "Warm, romantic sunset lighting with soft shadows and golden tones."
+      },
+      "dramatic": {
+        "name": "Dramatic",
+        "description": "High-contrast lighting with deep shadows for cinematic portraits."
+      }
+    },
+    "features": {
+      "title": "Why Choose Portrait Relight",
+      "aiPowered": {
+        "title": "AI-Powered",
+        "description": "ICLight V2 model understands facial features and applies realistic lighting transformations."
+      },
+      "customPrompts": {
+        "title": "Custom Lighting",
+        "description": "Use presets or describe any lighting scenario with custom prompts."
+      },
+      "fastProcessing": {
+        "title": "Fast Processing",
+        "description": "Get professionally relit portraits in seconds, not hours of manual editing."
+      }
+    },
+    "howItWorks": {
+      "title": "How It",
+      "titleHighlight": "Works",
+      "step1": {
+        "title": "Upload Portrait",
+        "description": "Upload any portrait photo with a clear face visible."
+      },
+      "step2": {
+        "title": "Choose Lighting",
+        "description": "Select a preset or describe custom lighting with a prompt."
+      },
+      "step3": {
+        "title": "AI Relight",
+        "description": "Our AI analyzes and applies the new lighting realistically."
+      },
+      "step4": {
+        "title": "Download Result",
+        "description": "Download your professionally relit portrait."
+      }
+    },
+    "useCases": {
+      "title": "Perfect For Every Photographer",
+      "photographers": {
+        "icon": "📸",
+        "title": "Photographers",
+        "description": "Fix bad lighting in post-production or offer relighting as an additional service."
+      },
+      "contentCreators": {
+        "icon": "📱",
+        "title": "Content Creators",
+        "description": "Achieve consistent, professional lighting across all your content."
+      },
+      "ecommerce": {
+        "icon": "💼",
+        "title": "Business Headshots",
+        "description": "Transform casual photos into professional headshots with studio lighting."
+      },
+      "socialMedia": {
+        "icon": "✨",
+        "title": "Social Media",
+        "description": "Enhance selfies and portraits with cinematic or golden hour lighting."
+      }
+    },
+    "technology": {
+      "title": "Powered by ICLight V2",
+      "description": "Portrait Relight uses ICLight V2, an advanced AI model specifically trained for portrait relighting. It understands 3D facial structure, skin tones, and lighting physics to apply new lighting that looks natural and professional.",
+      "feature1": "ICLight V2 specialized portrait model",
+      "feature2": "Understands 3D facial structure",
+      "feature3": "Natural skin tone preservation",
+      "feature4": "Realistic shadow and highlight generation"
+    },
+    "limitations": {
+      "title": "What to Expect",
+      "worksWell": {
+        "title": "Works Great For",
+        "item1": "Clear portraits with visible faces",
+        "item2": "Headshots and upper body portraits",
+        "item3": "Both indoor and outdoor lighting fixes"
+      },
+      "limitations": {
+        "title": "Considerations",
+        "item1": "Multiple faces may produce varied results",
+        "item2": "Extreme angles or occlusions may affect quality",
+        "item3": "Very dark or overexposed photos may need enhancement first"
+      }
+    },
+    "tips": {
+      "title": "Tips for Best Results",
+      "tip1": "Use portraits with clear, unobstructed faces for best results.",
+      "tip2": "Start with preset lighting before trying custom prompts.",
+      "tip3": "For outdoor photos, try studio or golden hour presets.",
+      "tip4": "Dramatic lighting works best on images with some existing contrast.",
+      "tip5": "Combine with our face restoration tool for maximum impact.",
+      "tip6": "Higher resolution portraits produce more detailed relighting."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "What is portrait relighting?",
+        "answer": "It's AI-powered technology that changes the lighting in portrait photos, making it look like they were taken under different lighting conditions."
+      },
+      "q2": {
+        "question": "Will it look natural?",
+        "answer": "Yes, our AI understands facial structure and applies lighting physically correctly. Results look professionally lit."
+      },
+      "q3": {
+        "question": "Can I use custom lighting descriptions?",
+        "answer": "Absolutely! Beyond presets, you can describe any lighting scenario like 'neon cyberpunk lighting' or 'soft candlelight'."
+      },
+      "q4": {
+        "question": "Does it work on group photos?",
+        "answer": "Best results are with single subjects. Group photos may have inconsistent results across different faces."
+      },
+      "q5": {
+        "question": "What portrait types work best?",
+        "answer": "Headshots and upper body portraits with clear, front-facing or 3/4 view faces produce the best results."
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Portraits?",
+      "subtitle": "Professional studio lighting is just one click away. Transform any portrait with AI.",
+      "getStarted": "Get Started Free",
+      "startAction": "Relight Portrait Now"
     }
   }
 }

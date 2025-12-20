@@ -15,9 +15,21 @@ import {
 import { applyStyleToPrompt, getStyleById, getStyleNegativePrompt } from '@/lib/ai-image/styles';
 import { nanoid } from 'nanoid';
 import { trackApiCost } from '@/lib/api-cost-tracker';
+import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
+
+// For App Router - set max duration for AI processing
+export const maxDuration = 120; // 2 minutes timeout
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting to prevent API abuse
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = imageProcessingLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

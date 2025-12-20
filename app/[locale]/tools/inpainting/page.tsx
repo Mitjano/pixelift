@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import ToolsLayout from '@/components/ToolsLayout';
+import { RelatedTools } from '@/components/RelatedTools';
 
 const InpaintingPro = dynamic(
   () => import('@/components/InpaintingPro'),
@@ -254,6 +255,11 @@ export default function InpaintingPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Related Tools */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <RelatedTools currentSlug="inpainting" />
       </section>
 
       {/* CTA */}
