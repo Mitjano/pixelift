@@ -6,6 +6,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { trackApiCost } from '@/lib/api-cost-tracker'
 
 // For App Router - set max duration for AI processing
 export const maxDuration = 120 // 2 minutes timeout
@@ -143,6 +144,12 @@ export async function POST(request: NextRequest) {
         imageSize: `${file.size} bytes`,
         model: 'bria-rmbg-2.0',
       })
+
+      // Track API cost for balance monitoring
+      trackApiCost({
+        operation: 'remove_background',
+        model: 'bria-rmbg-2.0',
+      }).catch(err => console.error('[remove-background] Cost tracking failed:', err))
 
       const newCredits = user.credits - creditsNeeded
 

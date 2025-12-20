@@ -11,6 +11,7 @@ import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 import { ImageProcessor } from '@/lib/image-processor'
 import { ProcessedImagesDB } from '@/lib/processed-images-db'
+import { trackApiCost } from '@/lib/api-cost-tracker'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -162,6 +163,12 @@ export async function POST(request: NextRequest) {
       imageSize: `${file.size} bytes`,
       model: 'bria-eraser',
     })
+
+    // Track API cost for balance monitoring
+    trackApiCost({
+      operation: 'object_removal',
+      model: 'bria-eraser',
+    }).catch(err => console.error('[object-removal] Cost tracking failed:', err))
 
     const newCredits = user.credits - CREDITS_PER_REMOVAL
 

@@ -11,6 +11,7 @@ import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
 import { ImageProcessor } from '@/lib/image-processor'
 import { ProcessedImagesDB } from '@/lib/processed-images-db'
+import { trackApiCost } from '@/lib/api-cost-tracker'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -229,6 +230,12 @@ export async function POST(request: NextRequest) {
       imageSize: `${file.size} bytes`,
       model: 'instant-id-ipadapter-plus-face',
     })
+
+    // Track API cost for balance monitoring
+    trackApiCost({
+      operation: 'style_transfer',
+      model: 'instant-id-ipadapter-plus-face',
+    }).catch(err => console.error('[style-transfer] Cost tracking failed:', err))
 
     const newCredits = user.credits - CREDITS_PER_TRANSFER
 

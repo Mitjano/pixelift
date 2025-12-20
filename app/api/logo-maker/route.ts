@@ -5,6 +5,7 @@ import { sendCreditsLowEmail, sendCreditsDepletedEmail } from '@/lib/email'
 import { imageProcessingLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 import { authenticateRequest } from '@/lib/api-auth'
 import { CREDIT_COSTS } from '@/lib/credits-config'
+import { trackApiCost } from '@/lib/api-cost-tracker'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -183,6 +184,12 @@ export async function POST(request: NextRequest) {
       imageSize: `${resultBuffer.length} bytes`,
       model: 'ideogram-v2-turbo',
     })
+
+    // Track API cost for balance monitoring
+    trackApiCost({
+      operation: 'logo_maker',
+      model: 'ideogram-v2-turbo',
+    }).catch(err => console.error('[logo-maker] Cost tracking failed:', err))
 
     const newCredits = user.credits - CREDITS_PER_GENERATION
 

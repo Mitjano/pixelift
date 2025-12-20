@@ -10,6 +10,7 @@ import { validateFileSize, validateFileType, MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES
 import { authenticateRequest } from "@/lib/api-auth";
 import { ImageProcessor } from "@/lib/image-processor";
 import { ProcessedImagesDB } from "@/lib/processed-images-db";
+import { trackApiCost } from "@/lib/api-cost-tracker";
 
 // Credit costs based on image type and scale
 const CREDIT_COSTS = {
@@ -201,6 +202,14 @@ export async function POST(request: NextRequest) {
       imageSize: `${image.size} bytes`,
       model: modelName,
     });
+
+    // Track API cost for balance monitoring (only for AI-based upscaling)
+    if (validatedImageType !== 'faithful') {
+      trackApiCost({
+        operation: `upscale_${validatedImageType}`,
+        model: modelName,
+      }).catch(err => console.error('[upscale] Cost tracking failed:', err));
+    }
 
     // Credits are already deducted by createUsage function
     // Get updated user data

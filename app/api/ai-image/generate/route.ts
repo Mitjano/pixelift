@@ -8,11 +8,13 @@ import {
   getModelById,
   getAspectRatioById,
   calculateCredits,
+  calculateCostUSD,
   IMAGE_COUNT_OPTIONS,
   type ImageCount,
 } from '@/lib/ai-image/models';
 import { applyStyleToPrompt, getStyleById, getStyleNegativePrompt } from '@/lib/ai-image/styles';
 import { nanoid } from 'nanoid';
+import { trackApiCost } from '@/lib/api-cost-tracker';
 
 export async function POST(request: NextRequest) {
   try {
@@ -188,6 +190,15 @@ export async function POST(request: NextRequest) {
       creditsUsed: actualCreditsUsed,
       model: modelId,
     });
+
+    // Track API cost for balance monitoring
+    const costUSD = calculateCostUSD(modelId, successfulResults.length);
+    trackApiCost({
+      operation: 'ai_image_generation',
+      model: modelId,
+      costUSD,
+      metadata: { numImages: successfulResults.length },
+    }).catch(err => console.error('[ai-image] Cost tracking failed:', err));
 
     // Save generated images to database
     const savedImages = [];
