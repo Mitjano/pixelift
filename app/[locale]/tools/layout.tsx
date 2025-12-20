@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-tools.jpg',
+        url: 'https://pixelift.pl/api/og?tool=tools',
         width: 1200,
         height: 630,
         alt: 'Pixelift AI Photo Editing Tools',

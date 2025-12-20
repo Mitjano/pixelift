@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-resize-image.jpg',
+        url: 'https://pixelift.pl/api/og?tool=resize-image',
         width: 1200,
         height: 630,
         alt: 'Pixelift Image Resizer',

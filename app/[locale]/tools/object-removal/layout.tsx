@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-object-removal.jpg',
+        url: 'https://pixelift.pl/api/og?tool=object-removal',
         width: 1200,
         height: 630,
         alt: 'Pixelift AI Object Remover',

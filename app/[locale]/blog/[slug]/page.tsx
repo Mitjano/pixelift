@@ -31,9 +31,45 @@ export async function generateMetadata({ params }: PageProps) {
     };
   }
 
+  const ogImage = post.featuredImage || `https://pixelift.pl/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent('Pixelift Blog')}`;
+
   return {
     title: `${post.title} - Pixelift Blog`,
     description: post.excerpt,
+    keywords: post.tags || [],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt || '',
+      type: 'article',
+      url: `https://pixelift.pl/${locale}/blog/${slug}`,
+      publishedTime: post.publishedAt?.toISOString(),
+      modifiedTime: post.updatedAt?.toISOString(),
+      authors: post.author?.name ? [post.author.name] : [],
+      tags: post.tags || [],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || '',
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: `https://pixelift.pl/${locale}/blog/${slug}`,
+      languages: {
+        en: `https://pixelift.pl/en/blog/${slug}`,
+        pl: `https://pixelift.pl/pl/blog/${slug}`,
+        es: `https://pixelift.pl/es/blog/${slug}`,
+        fr: `https://pixelift.pl/fr/blog/${slug}`,
+      },
+    },
   };
 }
 

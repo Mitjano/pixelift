@@ -177,7 +177,7 @@ export default function UsersClient({ users: initialUsers }: UsersClientProps) {
                     <td className="py-4 px-6" onClick={() => navigateToUser(user.id)}>
                       <div className="flex items-center gap-3">
                         {user.image ? (
-                          <img src={user.image} alt="" className="w-10 h-10 rounded-full" />
+                          <img src={user.image} alt={user.name || user.email || 'User avatar'} className="w-10 h-10 rounded-full" />
                         ) : (
                           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center text-white font-bold">
                             {user.email[0].toUpperCase()}

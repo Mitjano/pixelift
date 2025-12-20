@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-image-expand.jpg',
+        url: 'https://pixelift.pl/api/og?tool=image-expand',
         width: 1200,
         height: 630,
         alt: 'Pixelift AI Image Expand'

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-compressor.jpg',
+        url: 'https://pixelift.pl/api/og?tool=compressor',
         width: 1200,
         height: 630,
         alt: 'Pixelift Image Compressor'

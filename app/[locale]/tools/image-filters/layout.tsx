@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-image-filters.jpg',
+        url: 'https://pixelift.pl/api/og?tool=image-filters',
         width: 1200,
         height: 630,
         alt: 'Pixelift Photo Filters',

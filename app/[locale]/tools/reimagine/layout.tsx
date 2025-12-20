@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-reimagine.jpg',
+        url: 'https://pixelift.pl/api/og?tool=reimagine',
         width: 1200,
         height: 630,
         alt: 'Pixelift AI Reimagine',

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-background-remover.jpg',
+        url: 'https://pixelift.pl/api/og?tool=background-remover',
         width: 1200,
         height: 630,
         alt: 'Pixelift AI Background Remover'

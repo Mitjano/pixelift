@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-qr-generator.jpg',
+        url: 'https://pixelift.pl/api/og?tool=qr-generator',
         width: 1200,
         height: 630,
         alt: 'Pixelift QR Code Generator',

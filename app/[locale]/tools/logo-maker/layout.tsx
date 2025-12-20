@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-logo-maker.jpg',
+        url: 'https://pixelift.pl/api/og?tool=logo-maker',
         width: 1200,
         height: 630,
         alt: 'Pixelift AI Logo Maker',

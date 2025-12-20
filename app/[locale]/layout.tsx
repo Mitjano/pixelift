@@ -98,6 +98,16 @@ export async function generateMetadata({
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       // yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
     },
+    alternates: {
+      canonical: `https://pixelift.pl/${locale}`,
+      languages: {
+        en: 'https://pixelift.pl/en',
+        pl: 'https://pixelift.pl/pl',
+        es: 'https://pixelift.pl/es',
+        fr: 'https://pixelift.pl/fr',
+        'x-default': 'https://pixelift.pl/en',
+      },
+    },
   };
 }
 

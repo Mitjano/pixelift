@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://pixelift.pl/og-format-converter.jpg',
+        url: 'https://pixelift.pl/api/og?tool=format-converter',
         width: 1200,
         height: 630,
         alt: 'Pixelift Image Format Converter',
