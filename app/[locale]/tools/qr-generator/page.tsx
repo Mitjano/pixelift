@@ -61,8 +61,8 @@ export default function QRGeneratorPage() {
 
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.free')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.freeLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.cost')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.costLabel')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.custom')}</div>
@@ -94,9 +94,9 @@ export default function QRGeneratorPage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { key: 'url', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
-            { key: 'text', gradient: 'from-slate-100 dark:from-slate-500/20 to-gray-100 dark:to-gray-500/20' },
-            { key: 'contact', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
+            { key: 'colors', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
+            { key: 'logo', gradient: 'from-slate-100 dark:from-slate-500/20 to-gray-100 dark:to-gray-500/20' },
+            { key: 'sizing', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
           ].map((option) => (
             <div
               key={option.key}
@@ -122,7 +122,7 @@ export default function QRGeneratorPage() {
           {[
             { icon: '🎨', key: 'customColors', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
             { icon: '🖼️', key: 'logoSupport', gradient: 'from-slate-100 dark:from-slate-500/20 to-gray-100 dark:to-gray-500/20' },
-            { icon: '📏', key: 'configurable', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
+            { icon: '📏', key: 'configuration', gradient: 'from-gray-100 dark:from-gray-500/20 to-slate-100 dark:to-slate-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function QRGeneratorPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['marketing', 'business', 'events', 'personal'].map((useCase) => (
+          {['marketing', 'business', 'restaurants', 'events'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-gray-500/50 transition"

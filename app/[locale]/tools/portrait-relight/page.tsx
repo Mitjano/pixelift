@@ -69,8 +69,8 @@ export default function PortraitRelightPage() {
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.presetsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.quality')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.qualityLabel')}</div>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function PortraitRelightPage() {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             { key: 'studio', gradient: 'from-amber-100 dark:from-amber-500/20 to-yellow-100 dark:to-yellow-500/20' },
-            { key: 'natural', gradient: 'from-yellow-100 dark:from-yellow-500/20 to-orange-100 dark:to-orange-500/20' },
+            { key: 'golden', gradient: 'from-yellow-100 dark:from-yellow-500/20 to-orange-100 dark:to-orange-500/20' },
             { key: 'dramatic', gradient: 'from-orange-100 dark:from-orange-500/20 to-amber-100 dark:to-amber-500/20' },
           ].map((option) => (
             <div
@@ -120,9 +120,9 @@ export default function PortraitRelightPage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '💡', key: 'lightingPresets', gradient: 'from-amber-100 dark:from-amber-500/20 to-yellow-100 dark:to-yellow-500/20' },
-            { icon: '🎯', key: 'aiDetection', gradient: 'from-yellow-100 dark:from-yellow-500/20 to-orange-100 dark:to-orange-500/20' },
-            { icon: '✨', key: 'customPrompts', gradient: 'from-orange-100 dark:from-orange-500/20 to-amber-100 dark:to-amber-500/20' },
+            { icon: '💡', key: 'aiPowered', gradient: 'from-amber-100 dark:from-amber-500/20 to-yellow-100 dark:to-yellow-500/20' },
+            { icon: '🎯', key: 'customPrompts', gradient: 'from-yellow-100 dark:from-yellow-500/20 to-orange-100 dark:to-orange-500/20' },
+            { icon: '✨', key: 'fastProcessing', gradient: 'from-orange-100 dark:from-orange-500/20 to-amber-100 dark:to-amber-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function PortraitRelightPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['photographers', 'headshots', 'social', 'ecommerce'].map((useCase) => (
+          {['photographers', 'contentCreators', 'ecommerce', 'socialMedia'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-amber-500/50 transition"

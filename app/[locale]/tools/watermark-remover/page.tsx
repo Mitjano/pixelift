@@ -69,8 +69,8 @@ export default function WatermarkRemoverPage() {
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.modesLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.accuracy')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.accuracyLabel')}</div>
               </div>
             </div>
           </div>
@@ -94,9 +94,9 @@ export default function WatermarkRemoverPage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { key: 'auto', gradient: 'from-orange-100 dark:from-orange-500/20 to-red-100 dark:to-red-500/20' },
-            { key: 'manual', gradient: 'from-red-100 dark:from-red-500/20 to-rose-100 dark:to-rose-500/20' },
-            { key: 'precision', gradient: 'from-rose-100 dark:from-rose-500/20 to-orange-100 dark:to-orange-500/20' },
+            { key: 'autoDetect', gradient: 'from-orange-100 dark:from-orange-500/20 to-red-100 dark:to-red-500/20' },
+            { key: 'manualMask', gradient: 'from-red-100 dark:from-red-500/20 to-rose-100 dark:to-rose-500/20' },
+            { key: 'combined', gradient: 'from-rose-100 dark:from-rose-500/20 to-orange-100 dark:to-orange-500/20' },
           ].map((option) => (
             <div
               key={option.key}

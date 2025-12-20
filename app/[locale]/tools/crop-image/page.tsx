@@ -61,16 +61,16 @@ export default function CropImagePage() {
 
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.free')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.freeLabel')}</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.instant')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.instantLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.cost')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.costLabel')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.ratios')}</div>
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.ratiosLabel')}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
               </div>
             </div>
           </div>
@@ -94,9 +94,9 @@ export default function CropImagePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { key: 'freeform', gradient: 'from-green-100 dark:from-green-500/20 to-emerald-100 dark:to-emerald-500/20' },
-            { key: 'preset', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-teal-100 dark:to-teal-500/20' },
-            { key: 'custom', gradient: 'from-teal-100 dark:from-teal-500/20 to-green-100 dark:to-green-500/20' },
+            { key: 'square', gradient: 'from-green-100 dark:from-green-500/20 to-emerald-100 dark:to-emerald-500/20' },
+            { key: 'landscape', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-teal-100 dark:to-teal-500/20' },
+            { key: 'portrait', gradient: 'from-teal-100 dark:from-teal-500/20 to-green-100 dark:to-green-500/20' },
           ].map((option) => (
             <div
               key={option.key}
@@ -120,9 +120,9 @@ export default function CropImagePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '✂️', key: 'presetRatios', gradient: 'from-green-100 dark:from-green-500/20 to-emerald-100 dark:to-emerald-500/20' },
-            { icon: '📐', key: 'preciseControl', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-green-100 dark:to-green-500/20' },
-            { icon: '⚡', key: 'instantProcessing', gradient: 'from-green-100 dark:from-green-500/20 to-emerald-100 dark:to-emerald-500/20' },
+            { icon: '✂️', key: 'ratios', gradient: 'from-green-100 dark:from-green-500/20 to-emerald-100 dark:to-emerald-500/20' },
+            { icon: '📐', key: 'precision', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-green-100 dark:to-green-500/20' },
+            { icon: '⚡', key: 'preview', gradient: 'from-green-100 dark:from-green-500/20 to-emerald-100 dark:to-emerald-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function CropImagePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['socialMedia', 'profilePics', 'productPhotos', 'documents'].map((useCase) => (
+          {['social', 'ecommerce', 'documents', 'design'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-green-500/50 transition"

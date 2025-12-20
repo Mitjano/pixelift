@@ -61,16 +61,16 @@ export default function ResizeImagePage() {
 
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.free')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.freeLabel')}</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.instant')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.instantLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.cost')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.costLabel')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.presets')}</div>
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.presetsLabel')}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
               </div>
             </div>
           </div>
@@ -94,9 +94,9 @@ export default function ResizeImagePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { key: 'cover', gradient: 'from-blue-100 dark:from-blue-500/20 to-cyan-100 dark:to-cyan-500/20' },
-            { key: 'contain', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20' },
-            { key: 'fill', gradient: 'from-blue-100 dark:from-blue-500/20 to-sky-100 dark:to-sky-500/20' },
+            { key: 'instagram', gradient: 'from-blue-100 dark:from-blue-500/20 to-cyan-100 dark:to-cyan-500/20' },
+            { key: 'youtube', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20' },
+            { key: 'linkedin', gradient: 'from-blue-100 dark:from-blue-500/20 to-sky-100 dark:to-sky-500/20' },
           ].map((option) => (
             <div
               key={option.key}
@@ -120,8 +120,8 @@ export default function ResizeImagePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '📐', key: 'presetSizes', gradient: 'from-blue-100 dark:from-blue-500/20 to-cyan-100 dark:to-cyan-500/20' },
-            { icon: '🎯', key: 'customDimensions', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20' },
+            { icon: '📐', key: 'presets', gradient: 'from-blue-100 dark:from-blue-500/20 to-cyan-100 dark:to-cyan-500/20' },
+            { icon: '🎯', key: 'custom', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-blue-100 dark:to-blue-500/20' },
             { icon: '🔄', key: 'fitModes', gradient: 'from-blue-100 dark:from-blue-500/20 to-cyan-100 dark:to-cyan-500/20' },
           ].map((feature) => (
             <div
@@ -179,7 +179,7 @@ export default function ResizeImagePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['socialMedia', 'webOptimization', 'email', 'thumbnails'].map((useCase) => (
+          {['social', 'web', 'print', 'thumbnails'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-blue-500/50 transition"

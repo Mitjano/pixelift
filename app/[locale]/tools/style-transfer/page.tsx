@@ -65,12 +65,12 @@ export default function StyleTransferPage() {
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.creditsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.scenes')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.scenesLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.references')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.referencesLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.speed')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.speedLabel')}</div>
               </div>
             </div>
           </div>
@@ -94,9 +94,9 @@ export default function StyleTransferPage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { key: 'professional', gradient: 'from-pink-100 dark:from-pink-500/20 to-rose-100 dark:to-rose-500/20' },
-            { key: 'fantasy', gradient: 'from-purple-100 dark:from-purple-500/20 to-violet-100 dark:to-violet-500/20' },
-            { key: 'artistic', gradient: 'from-violet-100 dark:from-violet-500/20 to-pink-100 dark:to-pink-500/20' },
+            { key: 'artistic', gradient: 'from-pink-100 dark:from-pink-500/20 to-rose-100 dark:to-rose-500/20' },
+            { key: 'texture', gradient: 'from-purple-100 dark:from-purple-500/20 to-violet-100 dark:to-violet-500/20' },
+            { key: 'color', gradient: 'from-violet-100 dark:from-violet-500/20 to-pink-100 dark:to-pink-500/20' },
           ].map((option) => (
             <div
               key={option.key}
@@ -120,9 +120,9 @@ export default function StyleTransferPage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '🎭', key: 'identity', gradient: 'from-pink-100 dark:from-pink-500/20 to-purple-100 dark:to-purple-500/20' },
-            { icon: '🌍', key: 'scenes', gradient: 'from-purple-100 dark:from-purple-500/20 to-violet-100 dark:to-violet-500/20' },
-            { icon: '✨', key: 'customPrompts', gradient: 'from-violet-100 dark:from-violet-500/20 to-pink-100 dark:to-pink-500/20' },
+            { icon: '🎭', key: 'anyReference', gradient: 'from-pink-100 dark:from-pink-500/20 to-purple-100 dark:to-purple-500/20' },
+            { icon: '🌍', key: 'contentPreserving', gradient: 'from-purple-100 dark:from-purple-500/20 to-violet-100 dark:to-violet-500/20' },
+            { icon: '✨', key: 'adjustableStrength', gradient: 'from-violet-100 dark:from-violet-500/20 to-pink-100 dark:to-pink-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function StyleTransferPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['headshots', 'social', 'gaming', 'creative'].map((useCase) => (
+          {['artists', 'photography', 'marketing', 'education'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-pink-500/50 transition"

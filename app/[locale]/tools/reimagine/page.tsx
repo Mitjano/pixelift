@@ -65,12 +65,12 @@ export default function ReimaginePage() {
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.creditsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.variations')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.variationsLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.styles')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.stylesLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.quality')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.qualityLabel')}</div>
               </div>
             </div>
           </div>
@@ -94,9 +94,9 @@ export default function ReimaginePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { key: 'creative', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-teal-100 dark:to-teal-500/20' },
-            { key: 'subtle', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
-            { key: 'dramatic', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-emerald-100 dark:to-emerald-500/20' },
+            { key: 'artistic', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-teal-100 dark:to-teal-500/20' },
+            { key: 'illustration', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
+            { key: 'fantasy', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-emerald-100 dark:to-emerald-500/20' },
           ].map((option) => (
             <div
               key={option.key}
@@ -120,9 +120,9 @@ export default function ReimaginePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '✨', key: 'variations', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-teal-100 dark:to-teal-500/20' },
-            { icon: '🎯', key: 'preservation', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
-            { icon: '🎨', key: 'customization', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-emerald-100 dark:to-emerald-500/20' },
+            { icon: '✨', key: 'structurePreserving', gradient: 'from-emerald-100 dark:from-emerald-500/20 to-teal-100 dark:to-teal-500/20' },
+            { icon: '🎯', key: 'styleVariety', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
+            { icon: '🎨', key: 'customPrompts', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-emerald-100 dark:to-emerald-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function ReimaginePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['creative', 'marketing', 'social', 'design'].map((useCase) => (
+          {['artists', 'content', 'gaming', 'personal'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-emerald-500/50 transition"

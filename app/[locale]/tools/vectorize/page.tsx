@@ -69,8 +69,8 @@ export default function VectorizePage() {
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.modesLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.output')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.outputLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.format')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.formatLabel')}</div>
               </div>
             </div>
           </div>
@@ -120,9 +120,9 @@ export default function VectorizePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '🎨', key: 'colorModes', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
-            { icon: '📐', key: 'scalable', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-teal-100 dark:to-teal-500/20' },
-            { icon: '⚙️', key: 'colorControl', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
+            { icon: '📐', key: 'scalable', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
+            { icon: '🎨', key: 'colorModes', gradient: 'from-cyan-100 dark:from-cyan-500/20 to-teal-100 dark:to-teal-500/20' },
+            { icon: '⚙️', key: 'cleanOutput', gradient: 'from-teal-100 dark:from-teal-500/20 to-cyan-100 dark:to-cyan-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function VectorizePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['logos', 'illustrations', 'printing', 'webDesign'].map((useCase) => (
+          {['logos', 'illustrations', 'icons', 'printing'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-teal-500/50 transition"

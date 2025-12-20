@@ -65,12 +65,12 @@ export default function StructureControlPage() {
                 <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.creditsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.modes')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.modesLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.controls')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.controlsLabel')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.processing')}</div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.processingLabel')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{t('stats.quality')}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{t('stats.qualityLabel')}</div>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function StructureControlPage() {
           {[
             { key: 'depth', gradient: 'from-amber-100 dark:from-amber-500/20 to-orange-100 dark:to-orange-500/20' },
             { key: 'edge', gradient: 'from-orange-100 dark:from-orange-500/20 to-red-100 dark:to-red-500/20' },
-            { key: 'combined', gradient: 'from-red-100 dark:from-red-500/20 to-amber-100 dark:to-amber-500/20' },
+            { key: 'pose', gradient: 'from-red-100 dark:from-red-500/20 to-amber-100 dark:to-amber-500/20' },
           ].map((option) => (
             <div
               key={option.key}
@@ -120,9 +120,9 @@ export default function StructureControlPage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: '🔲', key: 'depthPreservation', gradient: 'from-amber-100 dark:from-amber-500/20 to-orange-100 dark:to-orange-500/20' },
-            { icon: '📐', key: 'edgeDetection', gradient: 'from-orange-100 dark:from-orange-500/20 to-red-100 dark:to-red-500/20' },
-            { icon: '✨', key: 'creativeControl', gradient: 'from-red-100 dark:from-red-500/20 to-amber-100 dark:to-amber-500/20' },
+            { icon: '🔲', key: 'preciseControl', gradient: 'from-amber-100 dark:from-amber-500/20 to-orange-100 dark:to-orange-500/20' },
+            { icon: '📐', key: 'creativeFreedo', gradient: 'from-orange-100 dark:from-orange-500/20 to-red-100 dark:to-red-500/20' },
+            { icon: '✨', key: 'multipleTypes', gradient: 'from-red-100 dark:from-red-500/20 to-amber-100 dark:to-amber-500/20' },
           ].map((feature) => (
             <div
               key={feature.key}
@@ -179,7 +179,7 @@ export default function StructureControlPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['interior', 'product', 'architecture', 'concept'].map((useCase) => (
+          {['conceptArt', 'productDesign', 'architecture', 'fashion'].map((useCase) => (
             <div
               key={useCase}
               className="bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:border-amber-500/50 transition"
