@@ -5696,10 +5696,10 @@
     "stats": {
       "credits": "3",
       "creditsLabel": "Crédits/Image",
-      "styles": "Infinis",
-      "stylesLabel": "Possibilités Créatives",
-      "generation": "15s",
-      "generationLabel": "Temps de Génération"
+      "styles": "10+",
+      "stylesLabel": "Options de Style",
+      "quality": "HD",
+      "qualityLabel": "Qualité de Sortie"
     },
     "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
     "options": {

@@ -6007,10 +6007,10 @@
     "stats": {
       "credits": "4",
       "creditsLabel": "Kredyty/wariację",
-      "variations": "∞",
-      "variationsLabel": "Możliwych wariacji",
-      "processing": "~30s",
-      "processingLabel": "Czas generowania"
+      "styles": "10+",
+      "stylesLabel": "Dostępnych stylów",
+      "quality": "HD",
+      "qualityLabel": "Jakość wyjściowa"
     },
     "options": {
       "title": "Tryby reimagine",
