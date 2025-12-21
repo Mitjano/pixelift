@@ -5037,450 +5037,450 @@
     }
   },
   "textEffectsPage": {
-    "badge": "Efekty Tekstowe AI",
-    "title": "Efekty",
-    "titleHighlight": "Tekstowe AI",
-    "subtitle": "Przekształć zwykły tekst w oszałamiające wizualne arcydzieła. Twórz efekty ognia, lodu, neonu, chromu i wiele innych. Idealne do mediów społecznościowych, grafiki marketingowej i projektów kreatywnych.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "badge": "Generator Typografii AI",
+    "title": "Twórz Oszałamiające",
+    "titleHighlight": "Efekty Tekstowe",
+    "subtitle": "Przekształć zwykły tekst w przyciągającą wzrok sztukę wizualną za pomocą AI. Generuj tekst 3D, neony, efekty ognia i więcej. Idealne do grafik w mediach społecznościowych, miniatur i projektów kreatywnych.",
     "stats": {
-      "credits": "2",
-      "creditsLabel": "Kredyty/obraz",
-      "effects": "15+",
-      "effectsLabel": "Efektów",
-      "generation": "~20s",
-      "generationLabel": "Czas generowania"
+      "credits": "5",
+      "creditsLabel": "Kredyty/Obraz",
+      "styles": "10+",
+      "stylesLabel": "Stylów Efektów",
+      "generation": "15s",
+      "generationLabel": "Czas Przetwarzania"
     },
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi Warunkami Użytkowania i Polityką Prywatności.",
     "options": {
-      "title": "Popularne efekty",
-      "fire": {
-        "name": "Ogień",
-        "description": "Płonące, dynamiczne litery z płomieniami"
-      },
+      "title": "Popularne Style Efektów Tekstowych",
       "neon": {
-        "name": "Neon",
-        "description": "Świecące efekty w stylu neonowym"
+        "name": "Blask Neonu",
+        "description": "Żywe neony z realistycznym efektem świecenia. Idealne do projektów nocnych i estetyki retro."
       },
-      "chrome": {
-        "name": "Chrom",
-        "description": "Metaliczny, błyszczący efekt lustrzany"
+      "3d": {
+        "name": "3D Metaliczny",
+        "description": "Odważny trójwymiarowy tekst z metalicznym połyskiem. Świetny do nagłówków i przyciągających uwagę tytułów."
+      },
+      "fire": {
+        "name": "Ogień i Płomienie",
+        "description": "Dynamiczne efekty płonącego tekstu z realistycznym ogniem. Idealny do gier, muzyki i intensywnych motywów."
       }
     },
     "features": {
-      "title": "Funkcje",
-      "manyEffects": {
-        "title": "Wiele efektów",
-        "description": "Wybierz spośród 15+ profesjonalnych efektów tekstowych"
+      "title": "Funkcje Efektów Tekstowych AI",
+      "effects": {
+        "title": "10+ Stylów Efektów",
+        "description": "3D, neon, graffiti, ogień, lód, złoto, chrom, kreskówka, retro i glitch. Każdy styl tworzy unikalną typografię o profesjonalnej jakości."
       },
-      "customFont": {
-        "title": "Własne czcionki",
-        "description": "Dopasuj styl tekstu do swoich potrzeb"
+      "backgrounds": {
+        "title": "Opcje Tła",
+        "description": "Wybierz przezroczyste tło do łatwego nakładania, jednolite kolory dla kontrastu lub gradientowe tła dla kompletnych projektów."
       },
-      "highRes": {
-        "title": "Wysoka jakość",
-        "description": "Eksportuj w wysokiej rozdzielczości do druku i sieci"
+      "aiPowered": {
+        "title": "Silnik Ideogram V2",
+        "description": "Napędzane przez Ideogram V2, wiodący model AI do generowania typografii z wyjątkową jakością renderowania tekstu."
       }
     },
     "howItWorks": {
-      "title": "Jak to",
-      "titleHighlight": "działa",
+      "title": "Jak Działają",
+      "titleHighlight": "Efekty Tekstowe AI",
       "step1": {
         "title": "Wprowadź tekst",
-        "description": "Wpisz tekst, który chcesz przekształcić"
+        "description": "Wpisz tekst, który chcesz stylizować (najlepiej działa z 1-5 słowami)."
       },
       "step2": {
-        "title": "Wybierz efekt",
-        "description": "Wybierz spośród dostępnych efektów"
+        "title": "Wybierz styl efektu",
+        "description": "Wybierz spośród 10+ stylów efektów: neon, 3D, ogień, lód, złoto i więcej."
       },
       "step3": {
-        "title": "Generuj",
-        "description": "AI tworzy efektowny obraz tekstowy"
+        "title": "Ustaw tło",
+        "description": "Wybierz przezroczyste, jednolity kolor lub gradientowe tło dla tekstu."
       },
       "step4": {
-        "title": "Pobierz",
-        "description": "Zapisz obraz w wysokiej rozdzielczości"
+        "title": "Pobierz obraz",
+        "description": "Otrzymaj stylizowany tekst jako obraz w wysokiej rozdzielczości gotowy do użycia."
       }
     },
     "useCases": {
-      "title": "Zastosowania",
+      "title": "Twórz Niesamowitą Typografię Do",
       "social": {
         "icon": "📱",
-        "title": "Media społecznościowe",
-        "description": "Przyciągające uwagę grafiki do postów"
-      },
-      "marketing": {
-        "icon": "📢",
-        "title": "Marketing",
-        "description": "Profesjonalne nagłówki reklamowe"
+        "title": "Grafiki w Mediach Społecznościowych",
+        "description": "Twórz przyciągające wzrok posty na Instagram, miniatury TikTok i okładki Facebook, które zatrzymują przewijanie."
       },
       "youtube": {
         "icon": "🎬",
-        "title": "YouTube",
-        "description": "Efektowne miniatury wideo"
+        "title": "Miniatury YouTube",
+        "description": "Generuj przyciągające uwagę tytuły dla miniatur wideo, które zwiększają współczynnik klikalności."
       },
       "gaming": {
         "icon": "🎮",
-        "title": "Gaming",
-        "description": "Logo i grafiki dla graczy"
+        "title": "Treści Gamingowe",
+        "description": "Projektuj epickie tytuły dla nakładek Twitch, montaży gamingowych i brandingu drużyn e-sportowych."
+      },
+      "marketing": {
+        "icon": "📣",
+        "title": "Materiały Marketingowe",
+        "description": "Twórz odważne nagłówki do reklam, banerów, prezentacji i treści promocyjnych."
       }
     },
     "technology": {
-      "title": "Technologia",
-      "description": "Zaawansowane AI tworzy realistyczne efekty tekstowe z uwzględnieniem oświetlenia, tekstur i materiałów.",
-      "feature1": "Realistyczne materiały i tekstury",
-      "feature2": "Dynamiczne efekty świetlne",
-      "feature3": "Wiele stylów artystycznych",
-      "feature4": "Wysoka rozdzielczość wyjściowa"
+      "title": "🎨 Typografia AI Ideogram V2",
+      "description": "Nasze narzędzie do efektów tekstowych wykorzystuje Ideogram V2, specjalnie zaprojektowany do wyjątkowego generowania typografii. W przeciwieństwie do innych generatorów obrazów AI, które mają problemy z tekstem, Ideogram produkuje czyste, czytelne i pięknie stylizowane napisy.",
+      "feature1": "Dokładne renderowanie tekstu z odpowiednimi odstępami liter",
+      "feature2": "Spójne stosowanie stylu na wszystkich znakach",
+      "feature3": "Wyjście w wysokiej rozdzielczości do druku i użytku cyfrowego",
+      "feature4": "Obsługa przezroczystego tła dla łatwego komponowania"
     },
     "limitations": {
-      "title": "Co warto wiedzieć",
+      "title": "Czego Się Spodziewać",
       "worksWell": {
-        "title": "Działa dobrze z",
-        "item1": "Krótkimi tekstami (1-3 słowa)",
-        "item2": "Prostymi czcionkami",
-        "item3": "Kontrastowymi kolorami"
+        "title": "✓ Działa Najlepiej Dla",
+        "item1": "Krótkiego tekstu (1-5 słów) jak tytuły i nagłówki",
+        "item2": "Typowych angielskich liter i cyfr",
+        "item3": "Odważnych, stylizowanych efektów"
       },
       "limitations": {
-        "title": "Ograniczenia",
-        "item1": "Długi tekst może być mniej czytelny",
-        "item2": "Niektóre efekty lepsze dla konkretnych stylów",
-        "item3": "Złożone znaki specjalne mogą być problematyczne"
+        "title": "✗ Aktualne Ograniczenia",
+        "item1": "Długie zdania mogą mieć niespójności liter",
+        "item2": "Znaki specjalne i symbole mogą nie renderować",
+        "item3": "Niektóre style efektów działają lepiej niż inne"
       }
     },
     "tips": {
-      "title": "Wskazówki",
-      "tip1": "Używaj krótkich tekstów dla najlepszych efektów",
-      "tip2": "Wypróbuj różne efekty dla porównania",
-      "tip3": "Wielkość liter wpływa na ostateczny wygląd",
-      "tip4": "Proste czcionki działają lepiej",
-      "tip5": "Sprawdź czytelność na różnych tłach",
-      "tip6": "Generuj kilka wariantów"
+      "title": "💡 Wskazówki dla Najlepszych Efektów Tekstowych",
+      "tip1": "Utrzymuj krótki tekst: 1-5 słów działa najlepiej",
+      "tip2": "Używaj WIELKICH LITER dla bardziej efektownych rezultatów",
+      "tip3": "Wypróbuj wiele stylów efektów, aby znaleźć najlepsze dopasowanie",
+      "tip4": "Użyj przezroczystego tła do nakładania",
+      "tip5": "Gradientowe tła tworzą kompletne, gotowe do użycia grafiki",
+      "tip6": "Generuj warianty i wybierz najlepszy"
     },
     "faq": {
-      "title": "Często zadawane pytania",
+      "title": "Często Zadawane Pytania",
       "q1": {
-        "question": "Jakie efekty są dostępne?",
-        "answer": "Oferujemy ponad 15 efektów: ogień, lód, neon, chrom, złoto, cukierki, drewno, kamień i wiele innych."
+        "question": "Jakie długości tekstu działają najlepiej?",
+        "answer": "Krótki tekst (1-5 słów) daje najlepsze rezultaty. Dłuższy tekst może mieć niespójności w renderowaniu liter. Dla dłuższych fraz rozważ generowanie każdego słowa osobno."
       },
       "q2": {
-        "question": "Jaki format otrzymam?",
-        "answer": "Obrazy są generowane w formacie PNG z przezroczystym tłem, gotowe do użycia."
+        "question": "Czy mogę używać tych obrazów komercyjnie?",
+        "answer": "Tak! Wszystkie wygenerowane obrazy są Twoje do komercyjnego użytku w marketingu, mediach społecznościowych, produktach i więcej."
       },
       "q3": {
-        "question": "Czy mogę używać własnych czcionek?",
-        "answer": "Obecnie oferujemy wybór predefiniowanych stylów, które działają najlepiej z każdym efektem."
+        "question": "Jaka jest rozdzielczość obrazów wyjściowych?",
+        "answer": "Obrazy są generowane w wysokiej rozdzielczości odpowiedniej zarówno do użytku webowego jak i druku. Dokładny rozmiar zależy od wybranego współczynnika proporcji."
       },
       "q4": {
-        "question": "Jak długo trwa generowanie?",
-        "answer": "Generowanie zajmuje około 20 sekund, w zależności od złożoności efektu."
+        "question": "Dlaczego mój tekst nie wygląda dokładnie tak jak wpisany?",
+        "answer": "Generowanie tekstu AI może czasami zmieniać formy liter dla efektu stylistycznego. Jeśli tekst nie jest idealny, spróbuj wygenerować ponownie lub dostosować styl efektu."
       },
       "q5": {
-        "question": "Do czego mogę użyć efektów?",
-        "answer": "Do mediów społecznościowych, marketingu, miniatur YouTube, grafiki do gier, prezentacji i więcej."
+        "question": "Ile kredytów kosztują efekty tekstowe?",
+        "answer": "Każde generowanie efektu tekstowego kosztuje 5 kredytów. Zalecamy generowanie kilku wariantów, aby znaleźć idealny rezultat."
       }
     },
     "cta": {
-      "title": "Stwórz efektowny tekst",
-      "subtitle": "Przekształć tekst w wizualne arcydzieło już dziś.",
-      "getStarted": "Rozpocznij za darmo",
-      "startAction": "Stwórz efekt"
+      "title": "Gotowy na Niesamowite Efekty Tekstowe?",
+      "subtitle": "Przekształć swój tekst w oszałamiającą sztukę wizualną w sekundy. Nie wymagane umiejętności projektowe.",
+      "getStarted": "Stwórz Efekty Tekstowe",
+      "startAction": "Generuj Teraz"
     }
   },
   "vectorizePage": {
-    "badge": "Wektoryzator AI",
-    "title": "Wektoryzacja",
-    "titleHighlight": "Obrazów AI",
-    "subtitle": "Przekształć obrazy rastrowe w skalowalne grafiki wektorowe SVG. Idealne do logo, ikon, ilustracji i wszystkiego, co wymaga nieskończonej skalowalności bez utraty jakości.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "badge": "Konwersja Wektorowa AI",
+    "title": "Konwertuj Obrazy na",
+    "titleHighlight": "Skalowalne Wektory",
+    "subtitle": "Przekształć obrazy rastrowe w czyste, skalowalne grafiki wektorowe SVG za pomocą AI. Idealne do logo, ikon i ilustracji, które muszą skalować się nieskończenie bez utraty jakości. Doskonałe do druku, sieci i przepływów pracy projektowych.",
     "stats": {
-      "credits": "2",
-      "creditsLabel": "Kredyty/obraz",
-      "output": "SVG",
-      "outputLabel": "Format wyjściowy",
-      "generation": "~15s",
-      "generationLabel": "Czas konwersji"
+      "credits": "3",
+      "creditsLabel": "Kredyty/Obraz",
+      "modes": "3",
+      "modesLabel": "Tryby Kolorów",
+      "format": "SVG",
+      "formatLabel": "Wyjście Wektorowe"
     },
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi Warunkami Użytkowania i Polityką Prywatności.",
     "options": {
-      "title": "Tryby wektoryzacji",
-      "detailed": {
-        "name": "Szczegółowy",
-        "description": "Zachowuje maksimum detali i tekstur"
+      "title": "Tryby Kolorów Wektoryzacji",
+      "fullColor": {
+        "name": "Pełne Kolory",
+        "description": "Zachowaj wszystkie kolory z paletą do 256 kolorów. Najlepsze do ilustracji i złożonych dzieł sztuki."
       },
-      "simplified": {
-        "name": "Uproszczony",
-        "description": "Czyste, minimalistyczne ścieżki"
+      "grayscale": {
+        "name": "Skala Szarości",
+        "description": "Konwersja na odcienie szarości. Idealne do profesjonalnych dokumentów i monochromatycznych projektów."
       },
-      "outline": {
-        "name": "Kontur",
-        "description": "Tylko kontury i linie"
+      "blackWhite": {
+        "name": "Czarno-Biały",
+        "description": "Czysta konwersja dwutonowa. Idealna do logo, pieczątek i grafik o wysokim kontraście."
       }
     },
     "features": {
-      "title": "Funkcje",
+      "title": "Funkcje Wektoryzacji AI",
       "scalable": {
-        "title": "Nieskończona skalowalność",
-        "description": "Skaluj do dowolnego rozmiaru bez utraty jakości"
+        "title": "Nieskończona Skalowalność",
+        "description": "Wektory SVG skalują się do dowolnego rozmiaru bez utraty jakości. Od faviconu po billboard, Twoje grafiki pozostają ostre i wyraźne."
       },
-      "editable": {
-        "title": "Edytowalne",
-        "description": "Pełna edycja w programach wektorowych"
+      "colorModes": {
+        "title": "Elastyczne Tryby Kolorów",
+        "description": "Wybierz pełne kolory do ilustracji, skalę szarości do dokumentów lub czarno-biały do logo i ikon."
       },
-      "clean": {
-        "title": "Czyste ścieżki",
-        "description": "Optymalizowane ścieżki wektorowe"
+      "cleanOutput": {
+        "title": "Czysty, Edytowalny SVG",
+        "description": "Pliki wyjściowe są zoptymalizowane do edycji w Illustratorze, Figmie i innych narzędziach projektowych."
       }
     },
     "howItWorks": {
-      "title": "Jak to",
-      "titleHighlight": "działa",
+      "title": "Jak Działa",
+      "titleHighlight": "Wektoryzacja AI",
       "step1": {
-        "title": "Prześlij obraz",
-        "description": "Prześlij PNG, JPG lub inny obraz rastrowy"
+        "title": "Prześlij Obraz",
+        "description": "Prześlij dowolny obraz PNG, JPG lub WEBP, który chcesz przekonwertować na wektor."
       },
       "step2": {
-        "title": "Wybierz tryb",
-        "description": "Szczegółowy, uproszczony lub konturowy"
+        "title": "Wybierz Tryb Kolorów",
+        "description": "Wybierz pełne kolory, skalę szarości lub czarno-biały w zależności od potrzeb."
       },
       "step3": {
-        "title": "Konwertuj",
-        "description": "AI przekształca obraz w wektor"
+        "title": "Przetwarzanie AI",
+        "description": "Nasze AI analizuje krawędzie i kształty, aby utworzyć czyste ścieżki wektorowe."
       },
       "step4": {
         "title": "Pobierz SVG",
-        "description": "Pobierz plik wektorowy SVG"
+        "description": "Otrzymaj skalowalny plik wektorowy gotowy do dowolnego zastosowania."
       }
     },
     "useCases": {
-      "title": "Zastosowania",
+      "title": "Idealne do Konwersji Wektorowej",
       "logos": {
-        "icon": "🎯",
-        "title": "Logo",
-        "description": "Skalowalne logo dla wszystkich zastosowań"
-      },
-      "icons": {
-        "icon": "✨",
-        "title": "Ikony",
-        "description": "Ostre ikony w każdym rozmiarze"
+        "icon": "🎨",
+        "title": "Wektoryzacja Logo",
+        "description": "Konwertuj rastrowe logo na skalowalne SVG do wizytówek, oznaczeń i gadżetów."
       },
       "illustrations": {
-        "icon": "🎨",
-        "title": "Ilustracje",
-        "description": "Wektoryzuj ilustracje i grafiki"
+        "icon": "🖼️",
+        "title": "Grafiki i Ilustracje",
+        "description": "Przekształć ręcznie rysowane prace lub cyfrowe ilustracje w edytowalne formaty wektorowe."
       },
-      "print": {
+      "icons": {
+        "icon": "⭐",
+        "title": "Ikony i Elementy UI",
+        "description": "Twórz skalowalne ikony do aplikacji, stron internetowych i systemów projektowych."
+      },
+      "printing": {
         "icon": "🖨️",
-        "title": "Druk",
-        "description": "Grafiki gotowe do druku wielkoformatowego"
+        "title": "Grafiki do Druku",
+        "description": "Przygotuj grafiki do druku wielkoformatowego z zachowaniem ostrości w każdym rozmiarze."
       }
     },
     "technology": {
-      "title": "Technologia",
-      "description": "Zaawansowane algorytmy AI analizują obrazy i tworzą optymalne ścieżki wektorowe.",
-      "feature1": "Inteligentna detekcja krawędzi",
-      "feature2": "Automatyczna optymalizacja ścieżek",
-      "feature3": "Zachowanie kolorów i gradientów",
-      "feature4": "Eksport do standardowego SVG"
+      "title": "🔧 Technologia Wektoryzacji AI",
+      "description": "Nasze narzędzie do wektoryzacji wykorzystuje zaawansowane algorytmy AI do analizy krawędzi, kształtów i kolorów. Inteligentna optymalizacja ścieżek tworzy czyste, edytowalne pliki SVG optymalne do dalszej pracy.",
+      "feature1": "Inteligentna detekcja krawędzi i konturów",
+      "feature2": "Automatyczna optymalizacja ścieżek wektorowych",
+      "feature3": "Zachowanie struktury kolorów i gradientów",
+      "feature4": "Eksport do standardowego formatu SVG"
     },
     "limitations": {
-      "title": "Co warto wiedzieć",
+      "title": "Czego Się Spodziewać",
       "worksWell": {
-        "title": "Działa dobrze z",
-        "item1": "Logo i ikonami",
-        "item2": "Ilustracjami z wyraźnymi krawędziami",
-        "item3": "Grafikami z płaskimi kolorami"
+        "title": "✓ Działa Najlepiej Dla",
+        "item1": "Logo, ikon i prostych grafik",
+        "item2": "Ilustracji z wyraźnymi krawędziami",
+        "item3": "Obrazów z jednolitymi, płaskimi kolorami"
       },
       "limitations": {
-        "title": "Ograniczenia",
-        "item1": "Zdjęcia dają skomplikowane wektory",
-        "item2": "Gradienty mogą być uproszczone",
-        "item3": "Drobne szczegóły mogą być utracone"
+        "title": "✗ Aktualne Ograniczenia",
+        "item1": "Zdjęcia dają bardzo złożone pliki wektorowe",
+        "item2": "Subtelne gradienty mogą być uproszczone",
+        "item3": "Bardzo drobne szczegóły mogą być utracone"
       }
     },
     "tips": {
-      "title": "Wskazówki",
-      "tip1": "Używaj obrazów z wyraźnymi krawędziami",
-      "tip2": "Wyższy kontrast daje lepsze wyniki",
-      "tip3": "Uproszczone obrazy konwertują się lepiej",
-      "tip4": "Wybierz odpowiedni tryb do zastosowania",
-      "tip5": "Sprawdź wynik w różnych rozmiarach",
-      "tip6": "Edytuj SVG w programie wektorowym"
+      "title": "💡 Wskazówki dla Lepszej Wektoryzacji",
+      "tip1": "Używaj obrazów z wyraźnymi, kontrastowymi krawędziami",
+      "tip2": "Wyższy kontrast między elementami daje lepsze wyniki",
+      "tip3": "Proste, płaskie kolory konwertują się najlepiej",
+      "tip4": "Wybierz odpowiedni tryb kolorów do zamierzonego użycia",
+      "tip5": "Przetestuj wynikowy SVG w różnych rozmiarach",
+      "tip6": "Dopracuj szczegóły w programie do edycji wektorów"
     },
     "faq": {
-      "title": "Często zadawane pytania",
+      "title": "Często Zadawane Pytania",
       "q1": {
-        "question": "Co to jest wektoryzacja?",
-        "answer": "Wektoryzacja to proces przekształcania obrazów rastrowych (piksele) w grafiki wektorowe (ścieżki matematyczne), które można skalować bez utraty jakości."
+        "question": "Czym jest wektoryzacja?",
+        "answer": "Wektoryzacja to proces przekształcania obrazów rastrowych (piksele) w grafiki wektorowe (ścieżki matematyczne), które można skalować do dowolnego rozmiaru bez utraty jakości."
       },
       "q2": {
         "question": "Jakie formaty obrazów mogę przesłać?",
-        "answer": "Obsługujemy PNG, JPG, GIF, WebP i inne popularne formaty rastrowe."
+        "answer": "Obsługujemy PNG, JPG, WEBP, GIF i inne popularne formaty rastrowe do konwersji na SVG."
       },
       "q3": {
         "question": "Czy mogę edytować wygenerowany SVG?",
-        "answer": "Tak, plik SVG można edytować w dowolnym programie wektorowym jak Illustrator, Inkscape czy Figma."
+        "answer": "Tak! Pliki SVG można edytować w dowolnym programie wektorowym jak Adobe Illustrator, Inkscape, Figma czy CorelDRAW."
       },
       "q4": {
         "question": "Czy wektoryzacja nadaje się do zdjęć?",
-        "answer": "Wektoryzacja najlepiej działa z grafikami, logo i ilustracjami. Zdjęcia mogą dać bardzo skomplikowane pliki."
+        "answer": "Wektoryzacja najlepiej działa z grafikami, logo i ilustracjami. Zdjęcia dają bardzo skomplikowane pliki wektorowe, które trudno edytować."
       },
       "q5": {
-        "question": "Jak długo trwa konwersja?",
-        "answer": "Konwersja trwa około 15 sekund, w zależności od złożoności obrazu."
+        "question": "Jaki tryb kolorów wybrać?",
+        "answer": "Użyj pełnych kolorów do ilustracji, skali szarości do dokumentów i materiałów biurowych, a czarno-białego do logo, pieczątek i ikon."
       }
     },
     "cta": {
-      "title": "Zwektoryzuj swój obraz",
-      "subtitle": "Stwórz skalowalne grafiki wektorowe już dziś.",
-      "getStarted": "Rozpocznij za darmo",
-      "startAction": "Wektoryzuj obraz"
+      "title": "Przekonwertuj Swój Obraz na Wektor",
+      "subtitle": "Stwórz skalowalne grafiki wektorowe, które wyglądają ostro w każdym rozmiarze.",
+      "getStarted": "Rozpocznij Wektoryzację",
+      "startAction": "Wektoryzuj Teraz"
     }
   },
   "qrGeneratorPage": {
-    "badge": "Generator Kodów QR AI",
-    "title": "Artystyczne",
+    "badge": "Darmowy Generator Kodów QR",
+    "title": "Twórz Własne",
     "titleHighlight": "Kody QR",
-    "subtitle": "Twórz unikalne, artystyczne kody QR z AI. Niestandardowe projekty, które działają i wyglądają niesamowicie. Idealne do marketingu, wizytówek i materiałów brandingowych.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami. Upewnij się, że kod QR skanuje poprawnie przed publikacją.",
+    "subtitle": "Generuj profesjonalne kody QR za darmo z niestandardowymi kolorami i Twoim logo. Idealne do wizytówek, materiałów marketingowych, menu i kampanii cyfrowych. Bez konieczności rejestracji.",
     "stats": {
-      "credits": "2",
-      "creditsLabel": "Kredyty/kod",
-      "styles": "20+",
-      "stylesLabel": "Stylów",
-      "generation": "~25s",
-      "generationLabel": "Czas generowania"
+      "cost": "DARMOWE",
+      "costLabel": "Bez kredytów",
+      "custom": "100%",
+      "customLabel": "Personalizacja",
+      "instant": "<1s",
+      "instantLabel": "Generowanie"
     },
+    "termsNotice": "Kody QR są generowane lokalnie w Twojej przeglądarce.",
     "options": {
-      "title": "Style kodów QR",
-      "artistic": {
-        "name": "Artystyczny",
-        "description": "Unikalne projekty AI zachowujące funkcjonalność"
+      "title": "Personalizacja kodu QR",
+      "colors": {
+        "name": "Własne kolory",
+        "description": "Ustaw dowolne kolory pierwszego planu i tła, aby pasowały do Twojej marki."
       },
-      "branded": {
-        "name": "Brandowany",
-        "description": "Dopasuj do identyfikacji wizualnej marki"
+      "logo": {
+        "name": "Osadzanie logo",
+        "description": "Dodaj swoje logo lub ikonę na środek kodu QR dla rozpoznawalności marki."
       },
-      "minimal": {
-        "name": "Minimalny",
-        "description": "Czyste, proste projekty kodów"
+      "sizing": {
+        "name": "Rozmiar i korekcja błędów",
+        "description": "Dostosuj rozmiar QR i poziom korekcji błędów do różnych zastosowań."
       }
     },
     "features": {
-      "title": "Funkcje",
-      "customDesign": {
-        "title": "Unikalny design",
-        "description": "AI tworzy kody QR z niestandardowymi stylami"
+      "title": "Funkcje generatora kodów QR",
+      "customColors": {
+        "title": "Kolory marki",
+        "description": "Wybierz własne ciemne i jasne kolory zgodne z wytycznymi Twojej marki. Twórz spójne materiały marketingowe."
       },
-      "functional": {
-        "title": "Działające kody",
-        "description": "Każdy kod skanuje poprawnie"
+      "logoSupport": {
+        "title": "Integracja logo",
+        "description": "Prześlij swoje logo lub ikonę do wyświetlenia na środku. Korekcja błędów zapewnia skanowalność kodu QR."
       },
-      "highRes": {
-        "title": "Wysoka jakość",
-        "description": "Gotowe do druku w każdym rozmiarze"
+      "configuration": {
+        "title": "Zaawansowane opcje",
+        "description": "Kontroluj rozmiar QR (100-1000px), poziom korekcji błędów (L/M/Q/H) i margines dla różnych zastosowań."
       }
     },
     "howItWorks": {
-      "title": "Jak to",
-      "titleHighlight": "działa",
+      "title": "Jak",
+      "titleHighlight": "tworzyć kody QR",
       "step1": {
-        "title": "Wprowadź URL",
-        "description": "Podaj link, który ma zakodować kod QR"
+        "title": "Wprowadź treść",
+        "description": "Wklej URL, tekst, numer telefonu lub inne dane do zakodowania."
       },
       "step2": {
-        "title": "Opisz styl",
-        "description": "Opisz jak ma wyglądać Twój kod QR"
+        "title": "Dostosuj wygląd",
+        "description": "Ustaw kolory, prześlij logo i dostosuj rozmiar do swojej marki."
       },
       "step3": {
-        "title": "Generuj",
-        "description": "AI tworzy artystyczny, działający kod"
+        "title": "Podgląd kodu",
+        "description": "Zobacz podgląd w czasie rzeczywistym podczas zmiany ustawień."
       },
       "step4": {
-        "title": "Testuj i pobierz",
-        "description": "Zeskanuj, aby sprawdzić, i pobierz"
+        "title": "Pobierz PNG",
+        "description": "Otrzymaj kod QR jako obraz PNG w wysokiej rozdzielczości."
       }
     },
     "useCases": {
-      "title": "Zastosowania",
+      "title": "Kody QR do każdego celu",
       "marketing": {
-        "icon": "📢",
-        "title": "Marketing",
-        "description": "Przyciągające wzrok kody na materiałach"
+        "icon": "📣",
+        "title": "Kampanie marketingowe",
+        "description": "Linkuj do stron docelowych, promocji i treści cyfrowych z materiałów drukowanych."
       },
       "business": {
         "icon": "💼",
-        "title": "Biznes",
-        "description": "Eleganckie kody na wizytówkach"
+        "title": "Wizytówki",
+        "description": "Udostępniaj dane kontaktowe, profil LinkedIn lub stronę internetową jednym skanem."
+      },
+      "restaurants": {
+        "icon": "🍽️",
+        "title": "Restauracje i menu",
+        "description": "Twórz bezdotykowe menu cyfrowe dla klientów do przeglądania na telefonach."
       },
       "events": {
-        "icon": "🎉",
-        "title": "Eventy",
-        "description": "Unikalne kody na zaproszeniach i biletach"
-      },
-      "packaging": {
-        "icon": "📦",
-        "title": "Opakowania",
-        "description": "Brandowane kody na produktach"
+        "icon": "🎫",
+        "title": "Wydarzenia i bilety",
+        "description": "Linkuj do szczegółów wydarzenia, formularzy rejestracji lub biletów cyfrowych."
       }
     },
     "technology": {
-      "title": "Technologia",
-      "description": "AI łączy artystyczne generowanie z precyzyjnym kodowaniem QR, zapewniając funkcjonalność i estetykę.",
-      "feature1": "Walidacja korekcji błędów",
-      "feature2": "Artystyczne style AI",
-      "feature3": "Zachowanie skanowalności",
-      "feature4": "Wysoka rozdzielczość wyjściowa"
+      "title": "🔲 Technologia kodów QR",
+      "description": "Kody QR (Quick Response) to dwuwymiarowe kody kreskowe przechowujące dane w siatce wzorców. Nasz generator tworzy wysokiej jakości, skanowalne kody z użyciem standardowego kodowania z wbudowaną korekcją błędów.",
+      "feature1": "Standardowe kodowanie QR kompatybilne ze wszystkimi skanerami",
+      "feature2": "Poziomy korekcji błędów do 30% odzyskiwania danych",
+      "feature3": "Wyjście w wysokiej rozdzielczości do druku i użytku cyfrowego",
+      "feature4": "Automatyczne pozycjonowanie logo"
     },
     "limitations": {
-      "title": "Co warto wiedzieć",
+      "title": "Czego się spodziewać",
       "worksWell": {
-        "title": "Działa dobrze z",
-        "item1": "Krótkimi URL-ami",
-        "item2": "Prostymi stylami artystycznymi",
-        "item3": "Kontrastowymi kolorami"
+        "title": "✓ Działa najlepiej dla",
+        "item1": "URL-i, tekstu i standardowych typów danych",
+        "item2": "Prostych logo, które nie zasłaniają zbyt wiele",
+        "item3": "Kombinacji kolorów o wysokim kontraście"
       },
       "limitations": {
-        "title": "Ograniczenia",
-        "item1": "Bardzo skomplikowane style mogą wpływać na skanowanie",
-        "item2": "Długie dane zmniejszają pole na artyzm",
-        "item3": "Zawsze testuj przed drukiem"
+        "title": "✗ Pamiętaj",
+        "item1": "Bardzo długie URL-e tworzą gęstsze kody QR",
+        "item2": "Kolory o niskim kontraście mogą zmniejszyć skanowalność",
+        "item3": "Duże logo mogą zakłócać skanowanie"
       }
     },
     "tips": {
-      "title": "Wskazówki",
-      "tip1": "Używaj krótkich URL-ów lub link skracaczy",
-      "tip2": "Zachowaj wystarczający kontrast",
-      "tip3": "Testuj skanowanie na różnych urządzeniach",
-      "tip4": "Proste style są bardziej niezawodne",
-      "tip5": "Dodaj margines wokół kodu",
-      "tip6": "Drukuj z odpowiednią rozdzielczością"
+      "title": "💡 Wskazówki dla skutecznych kodów QR",
+      "tip1": "Używaj skracaczy URL dla czystszych, prostszych wzorów QR",
+      "tip2": "Testuj skanowanie przed drukiem w dużych ilościach",
+      "tip3": "Zachowuj wysoki kontrast między kolorami dla niezawodności",
+      "tip4": "Utrzymuj rozmiar logo poniżej 30% obszaru QR",
+      "tip5": "Używaj wyższej korekcji błędów (Q lub H) przy dodawaniu logo",
+      "tip6": "Drukuj w rozmiarze minimum 2cm x 2cm dla niezawodnego skanowania"
     },
     "faq": {
       "title": "Często zadawane pytania",
       "q1": {
-        "question": "Czy artystyczne kody QR naprawdę skanują?",
-        "answer": "Tak, nasze AI zapewnia, że każdy wygenerowany kod skanuje poprawnie przy zachowaniu artystycznego wyglądu."
+        "question": "Czy generator QR jest naprawdę darmowy?",
+        "answer": "Tak! Generowanie kodów QR jest w 100% darmowe bez limitów. Nie wymagane konto ani kredyty. Kody są generowane bezpośrednio w Twojej przeglądarce."
       },
       "q2": {
-        "question": "Do czego mogę użyć kodu QR?",
-        "answer": "Do linkowania do stron internetowych, profili social media, wizytówek vCard, WiFi, tekstu i więcej."
+        "question": "Czy kody QR będą działać z moim logo?",
+        "answer": "Tak, dzięki korekcji błędów. Zalecamy używanie wyższych poziomów korekcji błędów (Q lub H) przy dodawaniu logo i utrzymanie rozsądnego rozmiaru logo."
       },
       "q3": {
-        "question": "Jaki format otrzymam?",
-        "answer": "Kody są generowane w formacie PNG w wysokiej rozdzielczości, gotowe do druku i użycia cyfrowego."
+        "question": "Jaką treść mogę zakodować?",
+        "answer": "URL-e, zwykły tekst, numery telefonów, adresy e-mail, dane WiFi i więcej. Większość skanerów automatycznie wykrywa typ treści."
       },
       "q4": {
-        "question": "Jak sprawdzić, czy kod działa?",
-        "answer": "Zeskanuj wygenerowany kod telefonem przed pobraniem i użyciem."
+        "question": "W jakim rozmiarze drukować kody QR?",
+        "answer": "Minimum 2cm x 2cm dla niezawodnego skanowania. Do skanowania z dystansu zwiększ rozmiar proporcjonalnie (np. 10cm dla 1 metra odległości)."
       },
       "q5": {
-        "question": "Czy mogę dostosować kolory?",
-        "answer": "Tak, możesz opisać preferowane kolory i styl w prompcie."
+        "question": "Czy kody QR wygasają?",
+        "answer": "Nie! Kody QR to statyczne dane i nigdy nie wygasają. Jednak jeśli zakodujesz URL, który się zmieni lub zostanie usunięty, kod QR nie będzie prowadził do niczego użytecznego."
       }
     },
     "cta": {
-      "title": "Stwórz artystyczny kod QR",
-      "subtitle": "Wyróżnij się unikalnymi kodami QR.",
-      "getStarted": "Rozpocznij za darmo",
-      "startAction": "Generuj kod QR"
+      "title": "Stwórz swój kod QR teraz",
+      "subtitle": "Darmowy, natychmiastowy, personalizowalny. Bez rejestracji. Generuj nieograniczone kody QR.",
+      "getStarted": "Stwórz kod QR",
+      "startAction": "Generuj za darmo"
     }
   },
   "imageFiltersPage": {
@@ -6230,300 +6230,300 @@
   },
   "styleTransferPage": {
     "badge": "Transfer Stylu AI",
-    "title": "Transfer",
-    "titleHighlight": "Stylu AI",
-    "subtitle": "Przenieś swoje zdjęcie do nowej sceny lub stylu, zachowując swoją tożsamość. Twórz profesjonalne portrety, avatary fantastyczne i unikalne zdjęcia profilowe.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "title": "Przenieś Dowolny Styl na",
+    "titleHighlight": "Twoje Obrazy",
+    "subtitle": "Zastosuj artystyczny styl dowolnego obrazu referencyjnego na swoje zdjęcia. Przekształć zwykłe obrazy w dzieła sztuki używając stylów słynnych obrazów, unikalnych tekstur lub dowolnej wizualnej estetyki, jaką możesz sobie wyobrazić.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi Warunkami Usługi.",
     "stats": {
-      "credits": "4",
-      "creditsLabel": "Kredyty/obraz",
-      "scenes": "50+",
-      "scenesLabel": "Scen i stylów",
-      "processing": "~40s",
-      "processingLabel": "Czas generowania"
+      "credits": "2",
+      "creditsLabel": "Kredyty",
+      "references": "Dowolne",
+      "referencesLabel": "Źródło Stylu",
+      "speed": "Szybkie",
+      "speedLabel": "Przetwarzanie"
     },
     "options": {
-      "title": "Kategorie stylów",
-      "professional": {
-        "name": "Profesjonalne",
-        "description": "Portrety biznesowe i korporacyjne"
-      },
-      "fantasy": {
-        "name": "Fantasy",
-        "description": "Avatary fantasy, sci-fi i anime"
-      },
+      "title": "Tryby Transferu Stylu",
       "artistic": {
-        "name": "Artystyczne",
-        "description": "Style malarskie i ilustracyjne"
+        "name": "Transfer Artystyczny",
+        "description": "Zastosuj style malarskie z dzieł Van Gogha, Moneta lub dowolnej artystycznej referencji."
+      },
+      "texture": {
+        "name": "Transfer Tekstury",
+        "description": "Przenieś tekstury, wzory i wygląd materiałów z obrazów referencyjnych."
+      },
+      "color": {
+        "name": "Gradacja Kolorów",
+        "description": "Dopasuj paletę kolorów i nastrój dowolnego zdjęcia referencyjnego lub dzieła sztuki."
       }
     },
     "features": {
-      "title": "Funkcje",
-      "identity": {
-        "title": "Zachowanie tożsamości",
-        "description": "Twoja twarz pozostaje rozpoznawalna"
+      "title": "Dlaczego Wybrać Transfer Stylu",
+      "anyReference": {
+        "title": "Dowolny Obraz Referencyjny",
+        "description": "Użyj dowolnego obrazu jako referencji stylu - obrazów, zdjęć, tekstur lub sztuki abstrakcyjnej."
       },
-      "scenes": {
-        "title": "50+ scen",
-        "description": "Bogata biblioteka stylów i teł"
+      "contentPreserving": {
+        "title": "Zachowanie Treści",
+        "description": "Treść Twojego oryginalnego obrazu pozostaje rozpoznawalna podczas przyjmowania nowego stylu."
       },
-      "customPrompts": {
-        "title": "Własne prompty",
-        "description": "Opisz własną wizję sceny"
+      "adjustableStrength": {
+        "title": "Regulowana Siła",
+        "description": "Kontroluj jak mocno styl jest stosowany - od subtelnych akcentów po pełną transformację artystyczną."
       }
     },
     "howItWorks": {
-      "title": "Jak to",
-      "titleHighlight": "działa",
+      "title": "Jak To",
+      "titleHighlight": "Działa",
       "step1": {
-        "title": "Prześlij portret",
-        "description": "Zdjęcie twarzy przodem"
+        "title": "Prześlij Treść",
+        "description": "Prześlij obraz, który chcesz przekształcić."
       },
       "step2": {
-        "title": "Wybierz styl",
-        "description": "Z biblioteki lub własny prompt"
+        "title": "Dodaj Referencję Stylu",
+        "description": "Prześlij lub wybierz obraz stylu do przeniesienia."
       },
       "step3": {
-        "title": "Generuj",
-        "description": "AI przenosi Cię do nowej sceny"
+        "title": "Dostosuj Siłę",
+        "description": "Ustaw jak mocno styl ma być zastosowany."
       },
       "step4": {
-        "title": "Pobierz",
-        "description": "Zapisz swój nowy portret"
+        "title": "Pobierz Wynik",
+        "description": "Otrzymaj stylizowany obraz w wysokiej jakości."
       }
     },
     "useCases": {
-      "title": "Zastosowania",
-      "headshots": {
-        "icon": "💼",
-        "title": "Profesjonalne zdjęcia",
-        "description": "Portrety do LinkedIn i CV"
-      },
-      "social": {
-        "icon": "📱",
-        "title": "Avatary social",
-        "description": "Unikalne zdjęcia profilowe"
-      },
-      "gaming": {
-        "icon": "🎮",
-        "title": "Avatary gamingowe",
-        "description": "Postacie fantasy i sci-fi"
-      },
-      "creative": {
+      "title": "Idealne dla Każdej Potrzeby Kreatywnej",
+      "artists": {
         "icon": "🎨",
-        "title": "Projekty kreatywne",
-        "description": "Artystyczne portrety i ilustracje"
+        "title": "Artyści i Projektanci",
+        "description": "Zastosuj spójne style artystyczne na wielu obrazach dla jednolitych projektów."
+      },
+      "photography": {
+        "icon": "📷",
+        "title": "Fotografowie",
+        "description": "Dodaj unikalny artystyczny charakter do zdjęć ze stylami malarskimi lub vintage."
+      },
+      "marketing": {
+        "icon": "📢",
+        "title": "Zespoły Marketingowe",
+        "description": "Twórz wizualizacje zgodne z marką z jednolitym stylem na wszystkich obrazach."
+      },
+      "personal": {
+        "icon": "👤",
+        "title": "Projekty Osobiste",
+        "description": "Przekształć zdjęcia rodzinne i wspomnienia w unikalne dzieła sztuki."
       }
     },
     "technology": {
-      "title": "Technologia",
-      "description": "Nasz model IP-Adapter zachowuje Twoją tożsamość podczas przenoszenia do nowych scen i stylów.",
-      "feature1": "Analiza i zachowanie twarzy",
-      "feature2": "Konsystentna tożsamość",
-      "feature3": "50+ gotowych scen",
-      "feature4": "Wsparcie dla własnych promptów"
+      "title": "🎨 Technologia Transferu Stylu",
+      "description": "Nasze narzędzie używa zaawansowanych sieci neuronowych do ekstrakcji cech stylistycznych z obrazów referencyjnych i stosowania ich na Twoich zdjęciach przy zachowaniu oryginalnej treści.",
+      "feature1": "Ekstrakcja cech stylistycznych z dowolnego obrazu",
+      "feature2": "Zachowanie struktury i treści oryginalnego obrazu",
+      "feature3": "Konfigurowalna siła wpływu stylu",
+      "feature4": "Wyjście w wysokiej rozdzielczości"
     },
     "limitations": {
-      "title": "Co warto wiedzieć",
+      "title": "Czego Się Spodziewać",
       "worksWell": {
-        "title": "Działa dobrze z",
-        "item1": "Zdjęciami twarzy przodem",
-        "item2": "Dobrym oświetleniem",
-        "item3": "Neutralnym wyrazem twarzy"
+        "title": "✓ Działa Najlepiej Dla",
+        "item1": "Obrazów referencyjnych z wyraźnym stylem artystycznym",
+        "item2": "Zdjęć z wyraźną treścią i kompozycją",
+        "item3": "Stylów z charakterystycznymi cechami wizualnymi"
       },
       "limitations": {
-        "title": "Ograniczenia",
-        "item1": "Zdjęcia z profilu dają gorsze wyniki",
-        "item2": "Ciemne zdjęcia mogą tracić detale",
-        "item3": "Niektóre style lepiej pasują do konkretnych twarzy"
+        "title": "✗ Aktualne Ograniczenia",
+        "item1": "Bardzo subtelne style mogą być trudne do przeniesienia",
+        "item2": "Złożone sceny mogą tracić niektóre detale",
+        "item3": "Wyniki mogą się różnić w zależności od kompatybilności stylu i treści"
       }
     },
     "tips": {
-      "title": "Wskazówki",
-      "tip1": "Używaj zdjęć z dobrym oświetleniem twarzy",
-      "tip2": "Patrzenie prosto w kamerę daje najlepsze wyniki",
-      "tip3": "Unikaj okularów słonecznych i zasłoniętych twarzy",
-      "tip4": "Próbuj różnych stylów z tym samym zdjęciem",
-      "tip5": "Dla profesjonalnych headshot wybierz neutralne tło",
-      "tip6": "Generuj kilka wersji do porównania"
+      "title": "💡 Wskazówki dla Najlepszego Transferu Stylu",
+      "tip1": "Wybierz obrazy referencyjne z wyraźnym, charakterystycznym stylem",
+      "tip2": "Obrazy o podobnej kompozycji dają lepsze wyniki",
+      "tip3": "Eksperymentuj z różnymi poziomami siły stylu",
+      "tip4": "Słynne obrazy (Van Gogh, Monet, itp.) działają szczególnie dobrze",
+      "tip5": "Dla subtelnych efektów użyj niższej siły transferu",
+      "tip6": "Spróbuj kilku różnych referencji dla tego samego obrazu"
     },
     "faq": {
-      "title": "Często zadawane pytania",
+      "title": "Często Zadawane Pytania",
       "q1": {
-        "question": "Czy moja twarz będzie rozpoznawalna?",
-        "answer": "Tak, nasz model specjalnie zachowuje cechy twarzy, aby pozostać rozpoznawalnym w nowej scenie."
+        "question": "Czy mogę użyć dowolnego obrazu jako referencji stylu?",
+        "answer": "Tak! Możesz użyć obrazów, fotografii, tekstur lub dowolnego obrazu z wyraźnym stylem wizualnym jako referencji."
       },
       "q2": {
-        "question": "Jakie zdjęcie powinienem przesłać?",
-        "answer": "Najlepiej działa z wyraźnym zdjęciem twarzy od przodu, z dobrym oświetleniem i neutralnym tłem."
+        "question": "Czy mój oryginalny obraz zostanie zachowany?",
+        "answer": "Tak, treść i główne elementy Twojego obrazu pozostają rozpoznawalne, zmienia się tylko styl wizualny."
       },
       "q3": {
-        "question": "Czy mogę utworzyć własny styl?",
-        "answer": "Tak, oprócz gotowych scen możesz opisać własną wizję w polu prompt."
+        "question": "Jak kontrolować intensywność transferu?",
+        "answer": "Możesz dostosować siłę transferu od subtelnych akcentów stylu po pełną transformację artystyczną."
       },
       "q4": {
-        "question": "Czy to działa ze zdjęciami grupowymi?",
-        "answer": "Najlepiej działa z pojedynczymi portretami. Dla grup zalecamy pojedyncze zdjęcia."
+        "question": "Jakie style działają najlepiej?",
+        "answer": "Style z wyraźnymi cechami wizualnymi - impresjonizm, ekspresjonizm, pop-art, czy charakterystyczne tekstury dają najlepsze wyniki."
       },
       "q5": {
-        "question": "Jak długo trwa generowanie?",
-        "answer": "Około 40 sekund, w zależności od złożoności wybranego stylu."
+        "question": "Ile kredytów kosztuje transfer stylu?",
+        "answer": "Każdy transfer stylu kosztuje 2 kredyty. Zalecamy eksperymentowanie z różnymi referencjami i siłami transferu."
       }
     },
     "cta": {
-      "title": "Przenieś się do nowej sceny",
-      "subtitle": "Stwórz profesjonalne portrety i unikalne avatary.",
-      "getStarted": "Rozpocznij za darmo",
-      "startAction": "Transferuj styl"
+      "title": "Przenieś Dowolny Styl na Swoje Obrazy",
+      "subtitle": "Przekształć zdjęcia w unikalne dzieła sztuki z dowolnym stylem referencyjnym.",
+      "getStarted": "Rozpocznij Transfer",
+      "startAction": "Transferuj Styl"
     }
   },
   "structureControlPage": {
-    "badge": "Kontrola Struktury AI",
-    "title": "Kontrola",
-    "titleHighlight": "Struktury AI",
-    "subtitle": "Generuj nowe obrazy zachowując strukturę i kompozycję referencji. Wykorzystaj głębokość lub krawędzie do tworzenia wariantów z kontrolą nad rezultatem.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "badge": "Generowanie Obrazów z AI",
+    "title": "Generuj Obrazy z",
+    "titleHighlight": "Kontrolą Struktury",
+    "subtitle": "Twórz obrazy generowane przez AI, które podążają za strukturą i kompozycją Twojego obrazu referencyjnego. Kontroluj głębokość, krawędzie, pozy i układy, jednocześnie generując całkowicie nową treść za pomocą Stable Diffusion.",
+    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi Warunkami Usługi.",
     "stats": {
-      "credits": "4",
-      "creditsLabel": "Kredyty/obraz",
-      "modes": "2",
-      "modesLabel": "Tryby kontroli",
-      "processing": "~40s",
-      "processingLabel": "Czas generowania"
+      "credits": "3",
+      "creditsLabel": "Kredyty",
+      "controls": "5",
+      "controlsLabel": "Typy Kontroli",
+      "quality": "HD",
+      "qualityLabel": "Wyjście"
     },
     "options": {
-      "title": "Tryby kontroli",
+      "title": "Typy Kontroli",
       "depth": {
-        "name": "Głębokość",
-        "description": "Zachowuje strukturę 3D i perspektywę"
+        "name": "Kontrola Głębokości",
+        "description": "Zachowaj strukturę głębokości 3D referencji dla realistycznych relacji przestrzennych."
       },
       "edge": {
-        "name": "Krawędzie",
-        "description": "Zachowuje kontury i kształty"
+        "name": "Kontrola Krawędzi/Canny",
+        "description": "Podążaj za krawędziami i konturami referencji dla precyzyjnego dopasowania kształtów."
       },
-      "combined": {
-        "name": "Kombinowany",
-        "description": "Łączy oba tryby dla precyzji"
+      "pose": {
+        "name": "Kontrola Pozy",
+        "description": "Zachowaj pozy ciała i pozycje z obrazów referencyjnych do generowania postaci."
       }
     },
     "features": {
-      "title": "Funkcje",
-      "depthPreservation": {
-        "title": "Zachowanie głębokości",
-        "description": "Utrzymuje perspektywę i relacje przestrzenne"
+      "title": "Dlaczego Wybrać Kontrolę Struktury",
+      "preciseControl": {
+        "title": "Precyzyjna Kontrola",
+        "description": "Kieruj generowaniem AI z dokładnymi ograniczeniami strukturalnymi z obrazów referencyjnych."
       },
-      "edgeDetection": {
-        "title": "Detekcja krawędzi",
-        "description": "Zachowuje kontury i kształty obiektów"
+      "creativeFreedo": {
+        "title": "Swoboda Kreatywna",
+        "description": "Generuj całkowicie nową treść, szanując kompozycję, której chcesz."
       },
-      "creativeControl": {
-        "title": "Kontrola kreatywna",
-        "description": "Generuj z pełną kontrolą nad strukturą"
+      "multipleTypes": {
+        "title": "Wiele Typów Kontroli",
+        "description": "Wybierz spośród głębokości, krawędzi, pozy, segmentacji i innych metod kontroli."
       }
     },
     "howItWorks": {
-      "title": "Jak to",
-      "titleHighlight": "działa",
+      "title": "Jak To",
+      "titleHighlight": "Działa",
       "step1": {
-        "title": "Prześlij referencję",
-        "description": "Obraz z pożądaną strukturą"
+        "title": "Prześlij Referencję",
+        "description": "Prześlij obraz ze strukturą, którą chcesz zachować."
       },
       "step2": {
-        "title": "Wybierz tryb",
-        "description": "Głębokość, krawędzie lub kombinowany"
+        "title": "Wybierz Typ Kontroli",
+        "description": "Wybierz głębokość, krawędź, pozę lub inną metodę kontroli."
       },
       "step3": {
-        "title": "Opisz wizję",
-        "description": "Co chcesz wygenerować"
+        "title": "Opisz Wyjście",
+        "description": "Napisz prompt opisujący co chcesz wygenerować."
       },
       "step4": {
-        "title": "Generuj",
-        "description": "AI tworzy obraz z zachowaną strukturą"
+        "title": "Generuj i Pobierz",
+        "description": "AI tworzy Twój obraz podążając za strukturą."
       }
     },
     "useCases": {
-      "title": "Zastosowania",
-      "interior": {
-        "icon": "🏠",
-        "title": "Wizualizacje wnętrz",
-        "description": "Różne style na tej samej przestrzeni"
+      "title": "Idealne dla Profesjonalistów Kreatywnych",
+      "conceptArt": {
+        "icon": "🎨",
+        "title": "Concept Artyści",
+        "description": "Używaj szkiców lub zdjęć jako przewodników struktury do dopracowanego concept artu."
       },
-      "product": {
+      "productDesign": {
         "icon": "📦",
-        "title": "Mockupy produktów",
-        "description": "Warianty produktów z zachowaniem formy"
+        "title": "Projektowanie Produktów",
+        "description": "Generuj warianty produktów zachowując spójne kształty i układy."
       },
       "architecture": {
-        "icon": "🏛️",
+        "icon": "🏗️",
         "title": "Architektura",
-        "description": "Różne style budynków"
+        "description": "Wizualizuj budynki w różnych stylach zachowując układy strukturalne."
       },
-      "concept": {
-        "icon": "💡",
-        "title": "Concept art",
-        "description": "Szybkie iteracje konceptów"
+      "fashion": {
+        "icon": "👗",
+        "title": "Moda i Ubrania",
+        "description": "Twórz projekty ubrań na modelach z kontrolą pozy dla spójnych prezentacji."
       }
     },
     "technology": {
-      "title": "Technologia",
-      "description": "Wykorzystujemy FLUX Depth i Canny Pro do ekstrakcji struktury i generowania z kontrolą.",
-      "feature1": "Ekstrakcja mapy głębokości",
-      "feature2": "Detekcja krawędzi Canny",
-      "feature3": "Zaawansowane modele FLUX",
-      "feature4": "Kontrola nad siłą referencji"
+      "title": "🔧 Technologia Kontroli Struktury",
+      "description": "Wykorzystujemy modele ControlNet i Stable Diffusion do ekstrakcji i stosowania informacji strukturalnych. Mapy głębokości, detekcja krawędzi Canny i estymacja pozy pozwalają na precyzyjną kontrolę nad generowanymi obrazami.",
+      "feature1": "Ekstrakcja mapy głębokości z obrazów referencyjnych",
+      "feature2": "Detekcja krawędzi algorytmem Canny",
+      "feature3": "Estymacja pozy dla postaci ludzkich",
+      "feature4": "Konfigurowalna siła wpływu referencji"
     },
     "limitations": {
-      "title": "Co warto wiedzieć",
+      "title": "Czego Się Spodziewać",
       "worksWell": {
-        "title": "Działa dobrze z",
-        "item1": "Zdjęciami wnętrz i architektury",
-        "item2": "Produktami i obiektami",
-        "item3": "Scenami z wyraźną głębokością"
+        "title": "✓ Działa Najlepiej Dla",
+        "item1": "Obrazów z wyraźną strukturą i głębokością",
+        "item2": "Scen architektonicznych i wnętrz",
+        "item3": "Postaci z czytelnymi pozami"
       },
       "limitations": {
-        "title": "Ograniczenia",
-        "item1": "Płaskie obrazy mogą mieć słabą mapę głębokości",
+        "title": "✗ Aktualne Ograniczenia",
+        "item1": "Płaskie obrazy mogą dawać słabe mapy głębokości",
         "item2": "Bardzo złożone sceny wymagają dopracowania promptu",
-        "item3": "Twarze mogą wymagać dodatkowej kontroli"
+        "item3": "Niektóre metody kontroli działają lepiej dla konkretnych typów treści"
       }
     },
     "tips": {
-      "title": "Wskazówki",
-      "tip1": "Głębokość działa najlepiej dla wnętrz i krajobrazów",
-      "tip2": "Krawędzie lepsze dla logo i kształtów",
-      "tip3": "Opisuj szczegółowo pożądany styl",
-      "tip4": "Testuj oba tryby dla porównania",
-      "tip5": "Używaj wysokiej jakości referencji",
-      "tip6": "Eksperymentuj z siłą kontroli"
+      "title": "💡 Wskazówki dla Najlepszych Wyników",
+      "tip1": "Użyj kontroli głębokości dla scen architektonicznych i wnętrz",
+      "tip2": "Kontrola krawędzi działa najlepiej dla logo i grafik z wyraźnymi konturami",
+      "tip3": "Kontrola pozy jest idealna do generowania postaci w konkretnych pozycjach",
+      "tip4": "Napisz szczegółowy prompt opisujący pożądany styl wyjścia",
+      "tip5": "Eksperymentuj z siłą kontroli dla różnych poziomów wierności",
+      "tip6": "Używaj obrazów referencyjnych wysokiej jakości dla najlepszych wyników"
     },
     "faq": {
-      "title": "Często zadawane pytania",
+      "title": "Często Zadawane Pytania",
       "q1": {
-        "question": "Jaka jest różnica między głębokością a krawędziami?",
-        "answer": "Głębokość zachowuje relacje przestrzenne i perspektywę. Krawędzie zachowują kontury i kształty obiektów."
+        "question": "Jaka jest różnica między typami kontroli?",
+        "answer": "Głębokość zachowuje relacje przestrzenne 3D, krawędzie zachowują kontury i kształty, a poza zachowuje pozycje ciała. Każdy typ jest optymalny do innych zastosowań."
       },
       "q2": {
-        "question": "Kiedy użyć którego trybu?",
-        "answer": "Głębokość dla wnętrz, krajobrazów, architekury. Krawędzie dla logo, ikon, ilustracji z wyraźnymi konturami."
+        "question": "Który typ kontroli wybrać?",
+        "answer": "Głębokość dla wnętrz i architektury, krawędzie dla grafik i logo, pozę dla postaci i modelek."
       },
       "q3": {
-        "question": "Czy mogę użyć własnego promptu?",
-        "answer": "Tak, prompt tekstowy jest kluczowy do opisania co chcesz wygenerować na bazie struktury."
+        "question": "Czy zachowana jest dokładna treść obrazu referencyjnego?",
+        "answer": "Nie, zachowana jest tylko struktura (głębokość, krawędzie, poza). Treść jest całkowicie nowa, wygenerowana na podstawie Twojego promptu."
       },
       "q4": {
-        "question": "Jak silna jest kontrola?",
-        "answer": "Możesz dostosować siłę referencji od subtelnej inspiracji do ścisłego odwzorowania struktury."
+        "question": "Jak kontrolować siłę wpływu referencji?",
+        "answer": "Możesz dostosować siłę kontroli od subtelnej inspiracji do ścisłego odwzorowania struktury za pomocą suwaka."
       },
       "q5": {
-        "question": "Do czego najlepiej używać?",
-        "answer": "Do wizualizacji wnętrz, mockupów produktów, concept artu i tworzenia wariantów z kontrolą nad kompozycją."
+        "question": "Ile kredytów kosztuje generowanie?",
+        "answer": "Każde generowanie z kontrolą struktury kosztuje 3 kredyty. Zalecamy eksperymentowanie z różnymi typami kontroli."
       }
     },
     "cta": {
-      "title": "Generuj z kontrolą struktury",
-      "subtitle": "Twórz z precyzją zachowując kompozycję.",
-      "getStarted": "Rozpocznij za darmo",
-      "startAction": "Generuj z kontrolą"
+      "title": "Zacznij Generować z Kontrolą Struktury",
+      "subtitle": "Twórz obrazy AI z precyzyjną kontrolą nad kompozycją i układem.",
+      "getStarted": "Rozpocznij Teraz",
+      "startAction": "Generuj z Kontrolą"
     }
   }
 }
