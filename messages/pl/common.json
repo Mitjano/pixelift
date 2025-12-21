@@ -6309,10 +6309,10 @@
         "title": "Zespoły Marketingowe",
         "description": "Twórz wizualizacje zgodne z marką z jednolitym stylem na wszystkich obrazach."
       },
-      "personal": {
-        "icon": "👤",
-        "title": "Projekty Osobiste",
-        "description": "Przekształć zdjęcia rodzinne i wspomnienia w unikalne dzieła sztuki."
+      "education": {
+        "icon": "📚",
+        "title": "Edukacja",
+        "description": "Ucz historii sztuki pokazując jak różne style przekształcają obrazy."
       }
     },
     "technology": {

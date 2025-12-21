@@ -5554,33 +5554,33 @@
     },
     "termsNotice": "Les images sont traitées localement dans votre navigateur et ne sont jamais téléchargées.",
     "options": {
-      "title": "Options de Redimensionnement",
-      "exact": {
-        "name": "Dimensions Exactes",
-        "description": "Définissez une largeur et hauteur précises en pixels pour votre image redimensionnée."
+      "title": "Préréglages de Taille Populaires",
+      "instagram": {
+        "name": "Post Instagram",
+        "description": "Format carré 1080x1080, optimisé pour les publications du fil Instagram."
       },
-      "percentage": {
-        "name": "Échelle en Pourcentage",
-        "description": "Mettez à l'échelle les images vers le haut ou le bas par pourcentage tout en maintenant le ratio d'aspect."
+      "youtube": {
+        "name": "Miniature YouTube",
+        "description": "Format écran large 1280x720 pour des miniatures vidéo accrocheuses."
       },
-      "presets": {
-        "name": "Préréglages Courants",
-        "description": "Un clic pour redimensionner aux tailles de réseaux sociaux et d'image standards."
+      "linkedin": {
+        "name": "Bannière LinkedIn",
+        "description": "Format 1584x396 pour les bannières de profil professionnelles."
       }
     },
     "features": {
       "title": "Fonctionnalités de Redimensionnement d'Image",
       "presets": {
-        "title": "Préréglages de Taille Intelligents",
-        "description": "Préréglages intégrés pour les tailles de réseaux sociaux, résolutions web courantes et dimensions d'impression standards."
+        "title": "Préréglages Intelligents",
+        "description": "Préréglages en un clic pour Instagram, YouTube, LinkedIn, Twitter, Facebook et les dimensions web courantes."
       },
-      "aspectRatio": {
-        "title": "Verrouillage du Ratio d'Aspect",
-        "description": "Maintenez le ratio d'aspect original lors du redimensionnement, ou définissez de nouvelles dimensions indépendamment."
+      "custom": {
+        "title": "Dimensions Personnalisées",
+        "description": "Entrez la largeur et la hauteur exactes en pixels. Verrouillez le ratio d'aspect pour une mise à l'échelle proportionnelle."
       },
-      "quality": {
-        "title": "Préservation de la Qualité",
-        "description": "Algorithmes de redimensionnement avancés qui maintiennent la netteté de l'image et réduisent les artefacts."
+      "fitModes": {
+        "title": "Options de Mode d'Ajustement",
+        "description": "Choisissez couverture (recadrer pour remplir), contenir (ajuster à l'intérieur), ou étirer selon vos besoins."
       }
     },
     "howItWorks": {
@@ -5605,25 +5605,25 @@
     },
     "useCases": {
       "title": "Parfait Pour le Redimensionnement d'Images",
-      "web": {
-        "icon": "🌐",
-        "title": "Optimisation Web",
-        "description": "Redimensionnez les images pour un chargement plus rapide des sites web sans sacrifier la qualité visuelle."
-      },
       "social": {
         "icon": "📱",
         "title": "Réseaux Sociaux",
-        "description": "Images de taille parfaite pour les publications, stories, couvertures et profils Instagram, Facebook, Twitter."
+        "description": "Redimensionnez pour Instagram, Facebook, Twitter, LinkedIn avec des dimensions parfaites à chaque fois."
       },
-      "email": {
-        "icon": "📧",
-        "title": "Marketing par Email",
-        "description": "Redimensionnez les images pour les campagnes email avec des tailles de fichier optimales pour la livraison."
+      "web": {
+        "icon": "🌐",
+        "title": "Web & Email",
+        "description": "Optimisez les images pour un chargement plus rapide des sites web et la compatibilité email."
       },
       "print": {
         "icon": "🖨️",
         "title": "Préparation pour l'Impression",
-        "description": "Mettez à l'échelle les images aux dimensions d'impression standards avec une résolution appropriée."
+        "description": "Mettez à l'échelle les images aux dimensions d'impression exactes avec conscience du DPI."
+      },
+      "thumbnails": {
+        "icon": "🎬",
+        "title": "Miniatures",
+        "description": "Créez des tailles de miniatures cohérentes pour vidéo, blog et listes de produits."
       }
     },
     "technology": {
@@ -5843,42 +5843,42 @@
     "titleHighlight": "Artistiques avec l'IA",
     "subtitle": "Appliquez le style d'une image à une autre avec le transfert de style artistique alimenté par IA. Transformez les photos en peintures, appliquez des styles artistiques ou créez des fusions visuelles uniques. Parfait pour la création de contenu artistique et la stylisation créative.",
     "stats": {
-      "credits": "3",
-      "creditsLabel": "Crédits/Image",
-      "quality": "HD",
-      "qualityLabel": "Sortie Haute Qualité",
-      "generation": "15s",
-      "generationLabel": "Temps de Traitement"
+      "credits": "2",
+      "creditsLabel": "Crédits",
+      "references": "Toute",
+      "referencesLabel": "Source de Style",
+      "speed": "Rapide",
+      "speedLabel": "Traitement"
     },
     "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
     "options": {
-      "title": "Options de Transfert de Style",
-      "artwork": {
-        "name": "Styles d'Art Célèbre",
-        "description": "Appliquez des styles de peintures et artistes célèbres comme Van Gogh, Monet, Picasso et plus."
+      "title": "Modes de Transfert de Style",
+      "artistic": {
+        "name": "Transfert Artistique",
+        "description": "Appliquez des styles de peinture d'œuvres célèbres comme Van Gogh, Monet, ou toute référence artistique."
       },
-      "photo": {
-        "name": "Photo vers Photo",
-        "description": "Transférez le style visuel, la palette de couleurs et la texture d'une photo à une autre."
+      "texture": {
+        "name": "Transfert de Texture",
+        "description": "Transférez des textures, motifs et apparences de matériaux depuis des images de référence."
       },
-      "custom": {
-        "name": "Style Personnalisé",
-        "description": "Téléchargez votre propre image de référence de style pour un transfert de style personnalisé."
+      "color": {
+        "name": "Étalonnage des Couleurs",
+        "description": "Correspondez la palette de couleurs et l'ambiance de n'importe quelle photo ou œuvre d'art de référence."
       }
     },
     "features": {
-      "title": "Fonctionnalités de Transfert de Style",
-      "aiPowered": {
-        "title": "Modèle Flux AI",
-        "description": "Utilise la dernière technologie Flux Redux pour un transfert de style précis qui préserve le contenu tout en transformant l'esthétique."
+      "title": "Pourquoi Choisir le Transfert de Style",
+      "anyReference": {
+        "title": "Toute Image de Référence",
+        "description": "Utilisez n'importe quelle image comme référence de style - peintures, photos, textures ou art abstrait."
       },
-      "preservation": {
+      "contentPreserving": {
         "title": "Préservation du Contenu",
-        "description": "Maintient la structure et les éléments de votre image originale tout en appliquant complètement le nouveau style visuel."
+        "description": "Le contenu de votre image originale reste reconnaissable tout en adoptant le nouveau style."
       },
-      "flexibility": {
-        "title": "Fusion de Style Flexible",
-        "description": "Contrôlez la force d'application du style, des touches subtiles aux transformations dramatiques."
+      "adjustableStrength": {
+        "title": "Intensité Ajustable",
+        "description": "Contrôlez la force d'application du style - des touches subtiles à la transformation artistique complète."
       }
     },
     "howItWorks": {
@@ -5902,26 +5902,26 @@
       }
     },
     "useCases": {
-      "title": "Parfait Pour le Transfert de Style",
+      "title": "Parfait Pour Chaque Besoin Créatif",
       "artists": {
         "icon": "🎨",
-        "title": "Artistes Numériques",
-        "description": "Expérimentez avec les styles artistiques, créez de l'art de référence et explorez de nouvelles directions visuelles."
+        "title": "Artistes et Designers",
+        "description": "Appliquez des styles artistiques cohérents sur plusieurs images pour des projets cohésifs."
       },
-      "photographers": {
+      "photography": {
         "icon": "📷",
         "title": "Photographes",
-        "description": "Transformez les photos en art, créez des looks uniques et développez des styles signature."
+        "description": "Ajoutez une touche artistique unique aux photos avec des styles picturaux ou vintage."
       },
-      "content": {
-        "icon": "📱",
-        "title": "Créateurs de Contenu",
-        "description": "Générez des graphiques de réseaux sociaux uniques, miniatures et visuels avec des styles artistiques."
+      "marketing": {
+        "icon": "📢",
+        "title": "Équipes Marketing",
+        "description": "Créez des visuels cohérents avec la marque avec un style unifié sur toute l'imagerie."
       },
-      "design": {
-        "icon": "✨",
-        "title": "Designers",
-        "description": "Créez des moodboards, développez des concepts visuels et explorez des directions esthétiques."
+      "education": {
+        "icon": "📚",
+        "title": "Éducation",
+        "description": "Enseignez l'histoire de l'art en démontrant comment différents styles transforment les images."
       }
     },
     "technology": {
@@ -5993,41 +5993,41 @@
     "subtitle": "Générez de nouvelles images tout en maintenant la structure et la composition de votre image originale. Utilisez la détection des bords, les cartes de profondeur ou l'extraction de pose pour guider la génération IA. Parfait pour le design de personnages, les concepts architecturaux et les poses contrôlées.",
     "stats": {
       "credits": "3",
-      "creditsLabel": "Crédits/Image",
-      "modes": "3",
-      "modesLabel": "Modes de Contrôle",
-      "generation": "15s",
-      "generationLabel": "Temps de Génération"
+      "creditsLabel": "Crédits",
+      "controls": "5",
+      "controlsLabel": "Types de Contrôle",
+      "quality": "HD",
+      "qualityLabel": "Sortie"
     },
     "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
     "options": {
-      "title": "Modes de Contrôle de Structure",
-      "canny": {
-        "name": "Détection des Bords (Canny)",
-        "description": "Extrait les bords et contours pour maintenir la forme tout en générant un nouveau contenu avec différents styles."
-      },
+      "title": "Types de Contrôle",
       "depth": {
-        "name": "Carte de Profondeur",
-        "description": "Préserve les relations spatiales et la profondeur pour des scènes 3D réalistes et des compositions architecturales."
+        "name": "Contrôle de Profondeur",
+        "description": "Préservez la structure de profondeur 3D de votre référence pour des relations spatiales réalistes."
+      },
+      "edge": {
+        "name": "Contrôle des Bords/Canny",
+        "description": "Suivez les bords et contours de votre référence pour une correspondance précise des formes."
       },
       "pose": {
-        "name": "Estimation de Pose",
-        "description": "Détecte et maintient les poses humaines tout en générant différents personnages, vêtements ou arrière-plans."
+        "name": "Contrôle de Pose",
+        "description": "Maintenez les poses et positions corporelles des images de référence pour la génération de personnages."
       }
     },
     "features": {
-      "title": "Fonctionnalités de Contrôle de Structure",
-      "precision": {
+      "title": "Pourquoi Choisir le Contrôle de Structure",
+      "preciseControl": {
         "title": "Contrôle Précis",
-        "description": "Maintenez les structures exactes de votre image de référence tout en générant un contenu entièrement nouveau."
+        "description": "Guidez la génération IA avec des contraintes structurelles exactes de vos images de référence."
       },
-      "modes": {
-        "title": "Modes de Contrôle Multiples",
-        "description": "Choisissez entre la détection des bords, les cartes de profondeur ou l'estimation de pose selon vos besoins."
-      },
-      "creative": {
+      "creativeFreedo": {
         "title": "Liberté Créative",
-        "description": "Générez un contenu illimité tout en gardant la structure - changez les styles, personnages ou environnements."
+        "description": "Générez un contenu entièrement nouveau tout en respectant la composition souhaitée."
+      },
+      "multipleTypes": {
+        "title": "Types de Contrôle Multiples",
+        "description": "Choisissez parmi profondeur, bords, pose, segmentation et autres méthodes de contrôle."
       }
     },
     "howItWorks": {
@@ -6051,26 +6051,26 @@
       }
     },
     "useCases": {
-      "title": "Parfait Pour la Génération Contrôlée",
-      "character": {
-        "icon": "👤",
-        "title": "Design de Personnages",
-        "description": "Gardez les poses de personnages tout en générant différents designs de personnages, vêtements ou styles."
+      "title": "Parfait Pour les Professionnels Créatifs",
+      "conceptArt": {
+        "icon": "🎨",
+        "title": "Artistes Conceptuels",
+        "description": "Utilisez des croquis ou photos comme guides structurels pour de l'art conceptuel peaufiné."
+      },
+      "productDesign": {
+        "icon": "📦",
+        "title": "Design Produit",
+        "description": "Générez des variations de produits tout en maintenant des formes et dispositions cohérentes."
       },
       "architecture": {
-        "icon": "🏛️",
-        "title": "Visualisation Architecturale",
-        "description": "Préservez la perspective du bâtiment tout en générant différents styles ou environnements architecturaux."
+        "icon": "🏗️",
+        "title": "Architecture",
+        "description": "Visualisez des bâtiments dans différents styles tout en préservant les dispositions structurelles."
       },
       "fashion": {
         "icon": "👗",
         "title": "Design de Mode",
-        "description": "Gardez la pose du modèle tout en générant différents designs de vêtements et accessoires."
-      },
-      "concept": {
-        "icon": "💡",
-        "title": "Art Conceptuel",
-        "description": "Utilisez les compositions existantes comme base pour créer rapidement plusieurs variations de concept."
+        "description": "Générez des variations de tenues sur la même pose pour l'exploration du design."
       }
     },
     "technology": {
@@ -6314,18 +6314,17 @@
       }
     },
     "features": {
-      "title": "Fonctionnalités de Rééclairage de Portrait",
       "aiPowered": {
-        "title": "Moteur ICLight V2",
-        "description": "Utilise le modèle ICLight V2 de pointe qui comprend la structure faciale et applique un éclairage photoréaliste."
-      },
-      "presets": {
-        "title": "6 Préréglages Professionnels",
-        "description": "Studio, heure dorée, dramatique, néon, naturel et Rembrandt - chacun optimisé pour différents styles de portrait."
+        "title": "Alimenté par IA",
+        "description": "ICLight V2 pour un rééclairage réaliste"
       },
       "customPrompts": {
-        "title": "Éclairage Personnalisé",
-        "description": "Décrivez n'importe quel scénario d'éclairage avec des prompts textuels pour des effets entièrement personnalisés."
+        "title": "Prompts Personnalisés",
+        "description": "Décrivez n'importe quel scénario d'éclairage"
+      },
+      "fastProcessing": {
+        "title": "Traitement Rapide",
+        "description": "Résultats en quelques secondes"
       }
     },
     "howItWorks": {
@@ -6349,26 +6348,22 @@
       }
     },
     "useCases": {
-      "title": "Parfait Pour le Rééclairage de Portrait",
+      "title": "Cas d'Utilisation",
       "photographers": {
-        "icon": "📷",
         "title": "Photographes",
-        "description": "Corrigez l'éclairage en post-production, sauvez les prises mal éclairées, ou expérimentez avec des looks de studio."
+        "description": "Corrigez l'éclairage en post"
       },
-      "creators": {
-        "icon": "📱",
+      "contentCreators": {
         "title": "Créateurs de Contenu",
-        "description": "Obtenez un éclairage cohérent et professionnel pour tous vos portraits et selfies."
+        "description": "Éclairage cohérent"
       },
-      "business": {
-        "icon": "💼",
-        "title": "Usage Professionnel",
-        "description": "Créez des photos de profil professionnelles et des portraits d'entreprise avec un éclairage de studio."
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Photos de profil professionnelles"
       },
-      "artistic": {
-        "icon": "🎨",
-        "title": "Projets Artistiques",
-        "description": "Expérimentez avec un éclairage dramatique, néon ou cinématographique pour des travaux créatifs."
+      "socialMedia": {
+        "title": "Réseaux Sociaux",
+        "description": "Selfies améliorés"
       }
     },
     "technology": {

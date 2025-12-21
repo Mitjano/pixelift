@@ -5453,152 +5453,152 @@
     }
   },
   "resizeImagePage": {
-    "badge": "Herramienta de Redimensionado Gratuita",
+    "badge": "Redimensionador de Imágenes Gratis",
     "title": "Redimensiona Imágenes a",
-    "titleHighlight": "Cualquier Tamaño",
-    "subtitle": "Redimensiona imágenes a dimensiones exactas para web, redes sociales e impresión. Herramienta de redimensionado gratuita con presets para tamaños de imagen comunes. Procesamiento local asegura que tus fotos permanezcan privadas.",
+    "titleHighlight": "Cualquier Dimensión",
+    "subtitle": "Redimensiona rápidamente tus imágenes a dimensiones exactas. Usa presets populares para redes sociales, web e impresión, o introduce tamaños personalizados en píxeles. Rápido, gratis y procesado completamente en tu navegador.",
     "stats": {
       "cost": "GRATIS",
       "costLabel": "Sin Créditos",
-      "presets": "20+",
+      "presets": "10+",
       "presetsLabel": "Presets de Tamaño",
-      "processing": "Local",
-      "processingLabel": "En Tu Navegador"
+      "processing": "Instantáneo",
+      "processingLabel": "Resultados"
     },
-    "termsNotice": "Las imágenes se procesan localmente en tu navegador y nunca se suben.",
+    "termsNotice": "Las imágenes se procesan localmente en tu navegador.",
     "options": {
-      "title": "Opciones de Redimensionado",
-      "exact": {
-        "name": "Dimensiones Exactas",
-        "description": "Establece ancho y alto precisos en píxeles para tu imagen redimensionada."
+      "title": "Presets de Tamaño Populares",
+      "instagram": {
+        "name": "Post de Instagram",
+        "description": "Formato cuadrado 1080x1080, optimizado para publicaciones en el feed de Instagram."
       },
-      "percentage": {
-        "name": "Escala Porcentual",
-        "description": "Escala imágenes arriba o abajo por porcentaje manteniendo la proporción de aspecto."
+      "youtube": {
+        "name": "Miniatura de YouTube",
+        "description": "Formato panorámico 1280x720 para miniaturas de video llamativas."
       },
-      "presets": {
-        "name": "Presets Comunes",
-        "description": "Un clic para redimensionar a tamaños de redes sociales e imagen estándar."
+      "linkedin": {
+        "name": "Banner de LinkedIn",
+        "description": "Formato 1584x396 para banners de perfil profesionales."
       }
     },
     "features": {
-      "title": "Características de Redimensionado de Imagen",
+      "title": "Características de Redimensionado",
       "presets": {
-        "title": "Presets de Tamaño Inteligentes",
-        "description": "Presets integrados para tamaños de redes sociales, resoluciones web comunes y dimensiones de impresión estándar."
+        "title": "Presets Inteligentes",
+        "description": "Presets de un clic para Instagram, YouTube, LinkedIn, Twitter, Facebook y dimensiones web comunes."
       },
-      "aspectRatio": {
-        "title": "Bloqueo de Proporción de Aspecto",
-        "description": "Mantén la proporción de aspecto original mientras redimensionas, o configura nuevas dimensiones de forma independiente."
+      "custom": {
+        "title": "Dimensiones Personalizadas",
+        "description": "Introduce ancho y alto exactos en píxeles. Bloquea la proporción de aspecto para escalado proporcional."
       },
-      "quality": {
-        "title": "Preservación de Calidad",
-        "description": "Algoritmos de redimensionado avanzados que mantienen la nitidez de imagen y reducen artefactos."
+      "fitModes": {
+        "title": "Modos de Ajuste",
+        "description": "Elige cover (recortar para llenar), contain (ajustar dentro) o stretch para diferentes necesidades de escalado."
       }
     },
     "howItWorks": {
-      "title": "Cómo",
-      "titleHighlight": "Redimensionar Imágenes",
+      "title": "Cómo Funciona el",
+      "titleHighlight": "Redimensionado",
       "step1": {
         "title": "Sube la Imagen",
-        "description": "Selecciona cualquier imagen de tu dispositivo para redimensionar."
+        "description": "Selecciona cualquier imagen JPG, PNG o WEBP de tu dispositivo."
       },
       "step2": {
-        "title": "Elige Tamaño",
-        "description": "Selecciona un preset o introduce dimensiones personalizadas en píxeles."
+        "title": "Elige el Tamaño",
+        "description": "Selecciona un preset o introduce dimensiones personalizadas."
       },
       "step3": {
-        "title": "Configura Opciones",
-        "description": "Activa el bloqueo de proporción de aspecto y ajusta configuraciones de calidad."
+        "title": "Selecciona el Modo de Ajuste",
+        "description": "Elige cómo debe escalar la imagen: cover, contain o stretch."
       },
       "step4": {
-        "title": "Descarga el Resultado",
-        "description": "Guarda tu imagen redimensionada en formato de alta calidad."
+        "title": "Descarga",
+        "description": "Guarda tu imagen redimensionada en alta calidad."
       }
     },
     "useCases": {
-      "title": "Perfecto Para Redimensionado de Imágenes",
-      "web": {
-        "icon": "🌐",
-        "title": "Optimización Web",
-        "description": "Redimensiona imágenes para carga más rápida de sitios web sin sacrificar calidad visual."
-      },
+      "title": "Perfecto para Redimensionar Imágenes",
       "social": {
         "icon": "📱",
         "title": "Redes Sociales",
-        "description": "Imágenes de tamaño perfecto para publicaciones, historias, portadas y perfiles de Instagram, Facebook, Twitter."
+        "description": "Redimensiona para Instagram, Facebook, Twitter, LinkedIn con dimensiones perfectas cada vez."
       },
-      "email": {
-        "icon": "📧",
-        "title": "Marketing por Email",
-        "description": "Redimensiona imágenes para campañas de email con tamaños de archivo óptimos para entrega."
+      "web": {
+        "icon": "🌐",
+        "title": "Web y Email",
+        "description": "Optimiza imágenes para carga más rápida de sitios web y compatibilidad con email."
       },
       "print": {
         "icon": "🖨️",
         "title": "Preparación para Impresión",
-        "description": "Escala imágenes a dimensiones de impresión estándar con resolución apropiada."
+        "description": "Escala imágenes a dimensiones de impresión exactas con conocimiento de DPI."
+      },
+      "thumbnails": {
+        "icon": "🎬",
+        "title": "Miniaturas",
+        "description": "Crea tamaños de miniatura consistentes para video, blog y listados de productos."
       }
     },
     "technology": {
-      "title": "🔧 Redimensionado Avanzado de Imagen",
-      "description": "Nuestra herramienta de redimensionado usa la API Canvas de HTML5 con interpolación de alta calidad para redimensionado de imagen suave. Todo el procesamiento ocurre localmente para rendimiento instantáneo y privacidad total.",
-      "feature1": "Algoritmo de interpolación de alta calidad para resultados suaves",
-      "feature2": "Modos de escalado ascendente y descendente soportados",
-      "feature3": "Procesamiento por lotes para múltiples imágenes",
-      "feature4": "Preservación de metadatos cuando es posible"
+      "title": "📐 Redimensionado en el Navegador",
+      "description": "Nuestra herramienta usa HTML5 Canvas con interpolación bicúbica para un escalado suave. El procesamiento ocurre completamente en tu navegador para privacidad y velocidad.",
+      "feature1": "Algoritmo de escalado bicúbico de alta calidad",
+      "feature2": "Opciones de preservación de proporción de aspecto",
+      "feature3": "Sin pérdida de calidad al reducir",
+      "feature4": "Resultados instantáneos sin subidas"
     },
     "limitations": {
       "title": "Qué Esperar",
       "worksWell": {
         "title": "✓ Funciona Mejor Para",
-        "item1": "Reducir imágenes grandes para uso web",
-        "item2": "Estandarizar dimensiones de imagen para colecciones",
-        "item3": "Preparar imágenes para tamaños específicos de plataforma"
+        "item1": "Reducir imágenes a tamaños más pequeños",
+        "item2": "Cumplir requisitos de plataformas específicas",
+        "item3": "Redimensionado rápido por lotes con tamaños consistentes"
       },
       "limitations": {
         "title": "✗ Limitaciones Actuales",
-        "item1": "Escalar hacia arriba puede introducir suavizado",
-        "item2": "Sin escalado potenciado por IA (solo tradicional)",
-        "item3": "Imágenes muy pequeñas pueden perder calidad al agrandar"
+        "item1": "Ampliar reduce la calidad (usa AI Upscaler en su lugar)",
+        "item2": "No puede mantener texto nítido al reducir significativamente",
+        "item3": "Ampliaciones muy grandes producirán resultados borrosos"
       }
     },
     "tips": {
-      "title": "💡 Consejos Para Mejor Redimensionado",
-      "tip1": "Siempre comienza con la imagen de mayor resolución disponible",
-      "tip2": "Reducir siempre preserva mejor la calidad que aumentar",
-      "tip3": "Usa bloqueo de proporción de aspecto para prevenir distorsión",
-      "tip4": "Considera el uso final (web vs impresión) al elegir dimensiones",
-      "tip5": "Para uso web, apunta a 72-150 DPI; para impresión, 300 DPI",
-      "tip6": "Prueba diferentes métodos de interpolación si los resultados son borrosos"
+      "title": "💡 Consejos para Mejor Redimensionado",
+      "tip1": "Usa modo 'contain' para preservar todo el contenido de la imagen",
+      "tip2": "Usa modo 'cover' para miniaturas que llenen el marco",
+      "tip3": "Bloquea la proporción de aspecto para prevenir distorsión",
+      "tip4": "Para ampliar, usa nuestro AI Upscaler para mejor calidad",
+      "tip5": "Revisa las guías de la plataforma para requisitos exactos de tamaño",
+      "tip6": "Reduce desde la fuente de mayor calidad para mejores resultados"
     },
     "faq": {
       "title": "Preguntas Frecuentes",
       "q1": {
-        "question": "¿Redimensionar reduce la calidad de imagen?",
-        "answer": "Reducir típicamente preserva la calidad bien. Ampliar puede introducir suavizado o pixelación porque el algoritmo debe crear nuevos datos de píxeles."
+        "question": "¿La herramienta de redimensionado es gratis?",
+        "answer": "¡Sí! El redimensionado de imágenes es 100% gratis sin límites. No se requiere cuenta ni créditos."
       },
       "q2": {
-        "question": "¿Cuál es el tamaño máximo de imagen que puedo redimensionar?",
-        "answer": "No hay límite estricto ya que el procesamiento ocurre localmente. Imágenes muy grandes pueden procesar más lento dependiendo de la memoria de tu dispositivo."
+        "question": "¿Cuál es la diferencia entre cover, contain y stretch?",
+        "answer": "Cover llena el tamaño objetivo (puede recortar bordes). Contain ajusta toda la imagen (puede añadir relleno). Stretch distorsiona a las dimensiones exactas."
       },
       "q3": {
-        "question": "¿Puedo redimensionar múltiples imágenes a la vez?",
-        "answer": "Actualmente, nuestra herramienta procesa una imagen a la vez para control óptimo sobre la configuración de cada imagen."
+        "question": "¿Puedo ampliar imágenes?",
+        "answer": "La ampliación básica es posible pero reduce la calidad. Para mejores resultados ampliando, usa nuestro AI Upscaler que añade detalles inteligentemente."
       },
       "q4": {
-        "question": "¿Qué dimensiones debo usar para Instagram?",
-        "answer": "Publicación cuadrada de Instagram: 1080x1080px. Retrato: 1080x1350px. Historia/Reel: 1080x1920px. Estos presets están disponibles en un clic."
-      },
-      "q5": {
         "question": "¿Mis imágenes se suben a algún lugar?",
         "answer": "No. Todo el procesamiento ocurre localmente en tu navegador. Tus imágenes nunca salen de tu dispositivo."
+      },
+      "q5": {
+        "question": "¿Qué formatos de archivo son compatibles?",
+        "answer": "Soportamos JPG, PNG y WEBP para entrada. La salida preserva el formato original para mejor compatibilidad."
       }
     },
     "cta": {
-      "title": "Redimensiona Tus Imágenes",
-      "subtitle": "Gratis, privado, instantáneo. Dimensiones perfectas para cualquier propósito.",
-      "getStarted": "Abrir Herramienta de Redimensionado",
-      "startAction": "Redimensionar Imagen"
+      "title": "Redimensiona Tus Imágenes Ahora",
+      "subtitle": "Gratis, instantáneo, fácil. Tamaños perfectos para cualquier plataforma.",
+      "getStarted": "Redimensionar Imagen",
+      "startAction": "Comenzar a Redimensionar"
     }
   },
   "reimaginePage": {
@@ -5756,42 +5756,42 @@
     "titleHighlight": "Artísticos con IA",
     "subtitle": "Aplica el estilo de una imagen a otra con transferencia de estilo artístico impulsada por IA. Transforma fotos en pinturas, aplica estilos artísticos o crea fusiones visuales únicas. Perfecto para creación de contenido artístico y estilización creativa.",
     "stats": {
-      "credits": "3",
-      "creditsLabel": "Créditos/Imagen",
-      "quality": "HD",
-      "qualityLabel": "Salida de Alta Calidad",
-      "generation": "15s",
-      "generationLabel": "Tiempo de Procesamiento"
+      "credits": "2",
+      "creditsLabel": "Créditos",
+      "references": "Cualquier",
+      "referencesLabel": "Fuente de Estilo",
+      "speed": "Rápido",
+      "speedLabel": "Procesamiento"
     },
     "termsNotice": "Al usar esta herramienta aceptas nuestros Términos de Uso y Política de Privacidad.",
     "options": {
-      "title": "Opciones de Transferencia de Estilo",
-      "artwork": {
-        "name": "Estilos de Arte Famoso",
-        "description": "Aplica estilos de pinturas y artistas famosos como Van Gogh, Monet, Picasso y más."
+      "title": "Modos de Transferencia de Estilo",
+      "artistic": {
+        "name": "Transferencia Artística",
+        "description": "Aplica estilos de pinturas de obras famosas como Van Gogh, Monet, o cualquier referencia artística."
       },
-      "photo": {
-        "name": "De Foto a Foto",
-        "description": "Transfiere el estilo visual, paleta de colores y textura de una foto a otra."
+      "texture": {
+        "name": "Transferencia de Textura",
+        "description": "Transfiere texturas, patrones y apariencias de materiales desde imágenes de referencia."
       },
-      "custom": {
-        "name": "Estilo Personalizado",
-        "description": "Sube tu propia imagen de referencia de estilo para transferencia de estilo personalizado."
+      "color": {
+        "name": "Gradación de Color",
+        "description": "Iguala la paleta de colores y el ambiente de cualquier foto o obra de arte de referencia."
       }
     },
     "features": {
-      "title": "Características de Transferencia de Estilo",
-      "aiPowered": {
-        "title": "Modelo Flux AI",
-        "description": "Usa la última tecnología Flux Redux para transferencia de estilo precisa que preserva el contenido mientras transforma la estética."
+      "title": "Por Qué Elegir Transferencia de Estilo",
+      "anyReference": {
+        "title": "Cualquier Imagen de Referencia",
+        "description": "Usa cualquier imagen como referencia de estilo - pinturas, fotos, texturas o arte abstracto."
       },
-      "preservation": {
-        "title": "Preservación de Contenido",
-        "description": "Mantiene la estructura y elementos de tu imagen original mientras aplica completamente el nuevo estilo visual."
+      "contentPreserving": {
+        "title": "Preservación del Contenido",
+        "description": "El contenido de tu imagen original permanece reconocible mientras adopta el nuevo estilo."
       },
-      "flexibility": {
-        "title": "Fusión de Estilo Flexible",
-        "description": "Controla qué tan fuertemente se aplica el estilo, desde toques sutiles hasta transformaciones dramáticas."
+      "adjustableStrength": {
+        "title": "Intensidad Ajustable",
+        "description": "Controla qué tan fuerte se aplica el estilo - desde toques sutiles hasta transformación artística completa."
       }
     },
     "howItWorks": {
@@ -5815,26 +5815,26 @@
       }
     },
     "useCases": {
-      "title": "Perfecto Para Transferencia de Estilo",
+      "title": "Perfecto Para Cada Necesidad Creativa",
       "artists": {
         "icon": "🎨",
-        "title": "Artistas Digitales",
-        "description": "Experimenta con estilos artísticos, crea arte de referencia y explora nuevas direcciones visuales."
+        "title": "Artistas y Diseñadores",
+        "description": "Aplica estilos artísticos consistentes en múltiples imágenes para proyectos cohesivos."
       },
-      "photographers": {
+      "photography": {
         "icon": "📷",
         "title": "Fotógrafos",
-        "description": "Transforma fotos en arte, crea looks únicos y desarrolla estilos de firma."
+        "description": "Añade un toque artístico único a las fotos con estilos pictóricos o vintage."
       },
-      "content": {
-        "icon": "📱",
-        "title": "Creadores de Contenido",
-        "description": "Genera gráficos de redes sociales únicos, miniaturas y visuales con estilos artísticos."
+      "marketing": {
+        "icon": "📢",
+        "title": "Equipos de Marketing",
+        "description": "Crea visuales consistentes con la marca con estilo unificado en toda la imagen."
       },
-      "design": {
-        "icon": "✨",
-        "title": "Diseñadores",
-        "description": "Crea moodboards, desarrolla conceptos visuales y explora direcciones estéticas."
+      "education": {
+        "icon": "📚",
+        "title": "Educación",
+        "description": "Enseña historia del arte demostrando cómo diferentes estilos transforman las imágenes."
       }
     },
     "technology": {
@@ -5906,41 +5906,41 @@
     "subtitle": "Genera nuevas imágenes mientras mantienes la estructura y composición de tu imagen original. Usa detección de bordes, mapas de profundidad o extracción de pose para guiar la generación de IA. Perfecto para diseño de personajes, conceptos arquitectónicos y poses controladas.",
     "stats": {
       "credits": "3",
-      "creditsLabel": "Créditos/Imagen",
-      "modes": "3",
-      "modesLabel": "Modos de Control",
-      "generation": "15s",
-      "generationLabel": "Tiempo de Generación"
+      "creditsLabel": "Créditos",
+      "controls": "5",
+      "controlsLabel": "Tipos de Control",
+      "quality": "HD",
+      "qualityLabel": "Salida"
     },
     "termsNotice": "Al usar esta herramienta aceptas nuestros Términos de Uso y Política de Privacidad.",
     "options": {
-      "title": "Modos de Control de Estructura",
-      "canny": {
-        "name": "Detección de Bordes (Canny)",
-        "description": "Extrae bordes y contornos para mantener la forma mientras genera nuevo contenido con diferentes estilos."
-      },
+      "title": "Tipos de Control",
       "depth": {
-        "name": "Mapa de Profundidad",
-        "description": "Preserva relaciones espaciales y profundidad para escenas 3D realistas y composiciones arquitectónicas."
+        "name": "Control de Profundidad",
+        "description": "Preserva la estructura de profundidad 3D de tu referencia para relaciones espaciales realistas."
+      },
+      "edge": {
+        "name": "Control de Bordes/Canny",
+        "description": "Sigue los bordes y contornos de tu referencia para coincidencia precisa de formas."
       },
       "pose": {
-        "name": "Estimación de Pose",
-        "description": "Detecta y mantiene poses humanas mientras genera diferentes personajes, ropa o fondos."
+        "name": "Control de Pose",
+        "description": "Mantén poses y posiciones corporales de imágenes de referencia para generación de personajes."
       }
     },
     "features": {
-      "title": "Características de Control de Estructura",
-      "precision": {
+      "title": "Por Qué Elegir Control de Estructura",
+      "preciseControl": {
         "title": "Control Preciso",
-        "description": "Mantén estructuras exactas de tu imagen de referencia mientras generas contenido completamente nuevo."
+        "description": "Guía la generación de IA con restricciones estructurales exactas de tus imágenes de referencia."
       },
-      "modes": {
-        "title": "Múltiples Modos de Control",
-        "description": "Elige entre detección de bordes, mapas de profundidad o estimación de pose según tus necesidades."
-      },
-      "creative": {
+      "creativeFreedo": {
         "title": "Libertad Creativa",
-        "description": "Genera contenido ilimitado mientras mantenes la estructura - cambia estilos, personajes, o ambientes."
+        "description": "Genera contenido completamente nuevo mientras respetas la composición que deseas."
+      },
+      "multipleTypes": {
+        "title": "Múltiples Tipos de Control",
+        "description": "Elige entre profundidad, bordes, pose, segmentación y más métodos de control."
       }
     },
     "howItWorks": {
@@ -5964,26 +5964,26 @@
       }
     },
     "useCases": {
-      "title": "Perfecto Para Generación Controlada",
-      "character": {
-        "icon": "👤",
-        "title": "Diseño de Personajes",
-        "description": "Mantén poses de personajes mientras generas diferentes diseños de personajes, ropa o estilos."
+      "title": "Perfecto Para Profesionales Creativos",
+      "conceptArt": {
+        "icon": "🎨",
+        "title": "Artistas Conceptuales",
+        "description": "Usa bocetos o fotos como guías estructurales para arte conceptual pulido."
+      },
+      "productDesign": {
+        "icon": "📦",
+        "title": "Diseño de Producto",
+        "description": "Genera variaciones de producto mientras mantienes formas y diseños consistentes."
       },
       "architecture": {
-        "icon": "🏛️",
-        "title": "Visualización Arquitectónica",
-        "description": "Preserva perspectiva del edificio mientras generas diferentes estilos o ambientes arquitectónicos."
+        "icon": "🏗️",
+        "title": "Arquitectura",
+        "description": "Visualiza edificios en diferentes estilos mientras preservas los diseños estructurales."
       },
       "fashion": {
         "icon": "👗",
         "title": "Diseño de Moda",
-        "description": "Mantén pose de modelo mientras generas diferentes diseños de ropa y accesorios."
-      },
-      "concept": {
-        "icon": "💡",
-        "title": "Arte Conceptual",
-        "description": "Usa composiciones existentes como base para crear rápidamente múltiples variaciones de concepto."
+        "description": "Genera variaciones de atuendos en la misma pose para exploración de diseño."
       }
     },
     "technology": {
@@ -6227,18 +6227,17 @@
       }
     },
     "features": {
-      "title": "Características de Reiluminación de Retratos",
       "aiPowered": {
-        "title": "ICLight V2 Engine",
-        "description": "Usa el modelo ICLight V2 de última generación que entiende la estructura facial y aplica iluminación fotorrealista."
-      },
-      "presets": {
-        "title": "6 Presets Profesionales",
-        "description": "Estudio, hora dorada, dramático, neón, natural y Rembrandt - cada uno optimizado para diferentes estilos de retrato."
+        "title": "Impulsado por IA",
+        "description": "ICLight V2 para reiluminación realista"
       },
       "customPrompts": {
-        "title": "Iluminación Personalizada",
-        "description": "Describe cualquier escenario de iluminación con prompts de texto para efectos completamente personalizados."
+        "title": "Prompts Personalizados",
+        "description": "Describe cualquier escenario de iluminación"
+      },
+      "fastProcessing": {
+        "title": "Procesamiento Rápido",
+        "description": "Resultados en segundos"
       }
     },
     "howItWorks": {
@@ -6262,26 +6261,22 @@
       }
     },
     "useCases": {
-      "title": "Perfecto Para Reiluminación de Retratos",
+      "title": "Casos de Uso",
       "photographers": {
-        "icon": "📷",
         "title": "Fotógrafos",
-        "description": "Arregla iluminación en postproducción, salva tomas con mala iluminación, o experimenta con looks de estudio."
+        "description": "Arregla iluminación en post"
       },
-      "creators": {
-        "icon": "📱",
+      "contentCreators": {
         "title": "Creadores de Contenido",
-        "description": "Logra iluminación consistente y profesional para todos tus retratos y selfies."
+        "description": "Iluminación consistente"
       },
-      "business": {
-        "icon": "💼",
-        "title": "Uso Profesional",
-        "description": "Crea fotos de cabecera profesionales y retratos corporativos con iluminación de estudio."
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Fotos de cabecera profesionales"
       },
-      "artistic": {
-        "icon": "🎨",
-        "title": "Proyectos Artísticos",
-        "description": "Experimenta con iluminación dramática, neón o cinematográfica para trabajos creativos."
+      "socialMedia": {
+        "title": "Redes Sociales",
+        "description": "Selfies mejorados"
       }
     },
     "technology": {
