@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPublicGalleryImages, TimeFilter, SortBy } from '@/lib/ai-image/db';
 import { prisma } from '@/lib/prisma';
+import { galleryLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 // Unified gallery item type
 interface GalleryItem {
@@ -26,6 +27,13 @@ interface GalleryItem {
 
 export async function GET(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = galleryLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1', 10);
     const limit = parseInt(searchParams.get('limit') || '20', 10);

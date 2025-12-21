@@ -1,9 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { getUserByEmail, getUsageByUserId } from '@/lib/db';
+import { userEndpointLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = userEndpointLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

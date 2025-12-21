@@ -2,13 +2,21 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getUserByEmail } from '@/lib/db'
 import { prisma } from '@/lib/prisma'
+import { userEndpointLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit'
 
 /**
  * GET /api/user
  * Get current user data including role and credits
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = userEndpointLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const session = await auth()
 
     if (!session?.user?.email) {

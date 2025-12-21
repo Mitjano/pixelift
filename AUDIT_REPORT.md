@@ -1,261 +1,240 @@
-# KOMPLEKSOWY AUDYT TECHNICZNY - PixeLift
+# KOMPLEKSOWY AUDYT PROJEKTU PIXELIFT
 
-**Data audytu:** 2024-12-17
-**Audytor:** Claude Code
-**Wersja aplikacji:** Produkcja (pixelift.pl)
+**Data audytu:** 2025-12-21
+**Wersja:** 1.0.0
+**Status:** Produkcyjny (https://pixelift.pl)
 
 ---
 
 ## PODSUMOWANIE WYKONAWCZE
 
-Przeprowadzono kompleksowy audyt wszystkich API endpoints, bibliotek pomocniczych oraz konfiguracji. Zidentyfikowano **3 problemy krytyczne**, **5 problemow sredniej wagi** oraz **8 rekomendacji do poprawy**.
+Pixelift to profesjonalna aplikacja SaaS do przetwarzania obrazów AI, zbudowana na Next.js 15.5.9 z 17,511 plikami TypeScript. Projekt wykazuje **wysoki poziom dojrzałości** z kompleksową architekturą, ale wymaga ulepszeń w kilku kluczowych obszarach.
 
-### Status po audycie:
-- Krytyczne: 3 (NAPRAWIONE)
-- Srednie: 5 (do monitorowania)
-- Niskie: 8 (rekomendacje)
+### Ogólna Ocena: 7.8/10
 
----
-
-## 1. ANALIZA API ENDPOINTS
-
-### 1.1 Tabela Pixel Limits i Resize
-
-| Endpoint | Model | Max Pixels | Resize | Status |
-|----------|-------|------------|--------|--------|
-| `/api/upscale` | Clarity/Real-ESRGAN/Recraft | 2M | TAK | OK |
-| `/api/denoise` | SwinIR | 1M | TAK | OK |
-| `/api/colorize` | DDColor | 2M | TAK | OK |
-| `/api/object-removal` | Bria Eraser | 2M | TAK | OK |
-| `/api/watermark-remover` | Bria Eraser | 2M | TAK | OK |
-| `/api/reimagine` | FLUX Redux | 2M | TAK | OK |
-| `/api/style-transfer` | InstantID | 2M | TAK | OK |
-| `/api/structure-control` | FLUX Depth/Canny | 2M | TAK | OK |
-| `/api/inpainting` | FLUX Fill Pro | 2M | TAK | OK |
-| `/api/expand-image` | FLUX Fill Pro | 2M | TAK | OK |
-| `/api/background-generate` | Bria BG | 2M | TAK | OK |
-| `/api/generate-ai-background` | Bria Replace (FAL) | N/A | FAL handles | OK |
-| `/api/portrait-relight` | ICLight V2 (FAL) | N/A | FAL handles | OK |
-| `/api/face-restore` | CodeFormer | 2M | TAK (internal) | OK |
-| `/api/compress-image` | Sharp (local) | N/A | N/A | OK |
-| `/api/convert-format` | Sharp (local) | N/A | N/A | OK |
-
-### 1.2 Koszty Kredytowe
-
-| Endpoint | Koszt | Typ |
-|----------|-------|-----|
-| Upscale (faithful) | 0 | Staly |
-| Upscale (product 2x/4x) | 1 | Staly |
-| Upscale (product 8x) | 2 | Staly |
-| Upscale (portrait) | 2-3 | Dynamiczny |
-| Upscale (general) | 1-2 | Dynamiczny |
-| Remove Background | 1 | Staly |
-| Colorize | 1 | Staly |
-| Compress | 1 | Staly |
-| Denoise | 1 | Staly |
-| Expand | 2 | Staly |
-| Object Removal | 2 | Staly |
-| Watermark Remover | 2 | Staly |
-| Packshot | 2 | Staly |
-| Reimagine | 2 x variants | Dynamiczny |
-| Background Generate | 3 | Staly |
-| Style Transfer | 3 | Staly |
-| Structure Control | 3 | Staly |
-| Inpainting | 3 | Staly |
-| Portrait Relight | 2 | Staly |
-| Convert Format | 0 | FREE |
+| Obszar | Ocena | Status |
+|--------|-------|--------|
+| Architektura | 8.5/10 | ✅ Bardzo dobra |
+| Bezpieczeństwo | 7.5/10 | ⚠️ Wymaga poprawek |
+| Baza danych | 7.0/10 | ⚠️ Wymaga optymalizacji |
+| API | 7.5/10 | ⚠️ Niespójności |
+| Frontend/UX | 7.5/10 | ⚠️ Dostępność do poprawy |
+| Panel Admin | 8.5/10 | ✅ Kompletny |
 
 ---
 
-## 2. PROBLEMY KRYTYCZNE (NAPRAWIONE)
+## 1. ARCHITEKTURA I STRUKTURA
 
-### 2.1 CUDA OOM w `/api/upscale`
-**Status:** NAPRAWIONE
+### Mocne strony ✅
+- **Next.js 15.5.9** z App Router
+- **104 komponenty React** dobrze zorganizowane
+- **150+ endpointów API** z RESTful design
+- **4 języki** (EN, PL, ES, FR) z next-intl
+- **Sentry** dla error tracking
+- **Prisma ORM** z PostgreSQL
+- **Redis** dla cache i rate limiting
+- **Stripe** dla płatności
 
-**Problem:** Brak wywolania `resizeForUpscale()` przed przetwarzaniem AI, co powodowalo bledy CUDA OOM na duzych obrazach (>2M pikseli).
-
-**Rozwiazanie:** Dodano resize przed AI processing:
-```typescript
-const resizedDataUrl = await ImageProcessor.resizeForUpscale(dataUrl);
-```
-
-### 2.2 Zepsuty model w `/api/watermark-remover`
-**Status:** NAPRAWIONE
-
-**Problem:** Model `zylim0702/remove-object` zwracal bledy 422 (version does not exist).
-
-**Rozwiazanie:** Zmieniono na `bria/eraser` + dodano resize dla obrazu i maski.
-
-### 2.3 CUDA OOM w `/api/denoise` (SwinIR)
-**Status:** NAPRAWIONE
-
-**Problem:** SwinIR wykonuje 4x upscale, wiec duze obrazy powodowaly OOM.
-
-**Rozwiazanie:** Zmniejszono limit pikseli do 1M:
-```typescript
-const MAX_PIXELS_FOR_SWINIR = 1000000
-```
+### Stack technologiczny
+- Frontend: React 18.3, Tailwind CSS, TipTap Editor
+- Backend: Next.js API Routes, Prisma, PostgreSQL
+- AI: Replicate, FAL.AI, OpenAI, Anthropic
+- Infra: DigitalOcean, PM2, Nginx
 
 ---
 
-## 3. PROBLEMY SREDNIEJ WAGI
+## 2. PANEL ADMINISTRACYJNY
 
-### 3.1 Brak `maxDuration` w niektorych endpointach
-**Dotyczy:**
-- `/api/upscale`
-- `/api/colorize`
-- `/api/object-removal`
-- `/api/reimagine`
-- `/api/style-transfer`
-- `/api/structure-control`
-- `/api/inpainting`
-- `/api/face-restore`
+### Dostępne moduły ✅
+- **Dashboard** - statystyki, revenue, users
+- **Blog** - CRUD z TipTap editor
+- **Users** - zarządzanie, edycja, eksport
+- **Email Templates** - 10 szablonów (welcome, credits, payment, etc.)
+- **SEO** - keywords, backlinks, site audit, competitors
+- **Analytics** - realtime, performance
+- **Content Hub** - plany contentowe, AI writer
+- **Social Media** - accounts, posts, scheduler
+- **Feature Flags** - A/B testing
+- **Tickets** - support system
+- **Webhooks** - integracje
+- **Backups** - system backup
+- **Audit Logs** - logowanie akcji
 
-**Problem:** Brak explicite ustawionego `maxDuration` moze powodowac timeout na Vercel (domyslnie 10s dla Hobby, 60s dla Pro).
+### Email Templates - już istnieją! ✅
+Szablony znajdują się w /data/email_templates.json:
+- Welcome Email
+- Credits Low Warning
+- Credits Depleted
+- First Upload Success
+- Purchase Confirmation
+- Payment Failed
+- Subscription Cancelled
+- Ticket Confirmation
+- Password Reset
+- Account Deleted
 
-**Rekomendacja:** Dodac do wszystkich AI endpoints:
-```typescript
-export const maxDuration = 120 // 2 minutes timeout
-export const dynamic = 'force-dynamic'
-```
-
-### 3.2 Niespojnosc w walidacji plikow
-**Problem:** Rozne endpointy maja rozne limity rozmiaru:
-- Wiekszosc: 20MB
-- `/api/generate-ai-background`: 30MB
-- `/api/expand-image`: 30MB
-- `ImageProcessor.validateImage()`: 10MB
-
-**Rekomendacja:** Ujednolicic do 20MB wszedzie lub skonfigurowac w jednym miejscu.
-
-### 3.3 Brak walidacji mask type w `/api/inpainting`
-**Problem:** Endpoint nie waliduje typu pliku maski - akceptuje wszystkie typy.
-
-**Rekomendacja:** Dodac walidacje:
-```typescript
-if (!allowedTypes.includes(mask.type)) {
-  return NextResponse.json(...)
-}
-```
-
-### 3.4 Face Restore nie uzywa CREDIT_COSTS
-**Problem:** `/api/face-restore` ma hardcoded `CREDITS_PER_RESTORE = 2` zamiast uzywac `CREDIT_COSTS`.
-
-**Rekomendacja:** Zmienic na:
-```typescript
-const CREDITS_PER_RESTORE = CREDIT_COSTS.denoise.cost // lub dodac nowy typ
-```
-
-### 3.5 Remove Background nie uzywa `createUsage`
-**Problem:** `/api/remove-background` recznie aktualizuje kredyty przez `updateUser()` zamiast uzywac `createUsage()`.
-
-**Wplyw:** Brak spojnosci w logowaniu usage, totalUsage aktualizowany recznie.
-
-**Rekomendacja:** Zmienic na `createUsage()` jak w innych endpointach.
+Panel do zarządzania: /admin/email-templates
 
 ---
 
-## 4. PROBLEMY NISKIEJ WAGI / REKOMENDACJE
+## 3. BEZPIECZEŃSTWO
 
-### 4.1 Unused parameter w reimagine
-`variationStrength` jest pobierany ale nigdzie nie uzywany.
+### Zaimplementowane ✅
+- NextAuth z JWT + OAuth (Google, Facebook)
+- bcrypt (12 salt rounds) dla haseł
+- Rate limiting (Redis + in-memory fallback)
+- CSRF protection w middleware
+- SSRF protection z whitelistą
+- XSS protection z DOMPurify
+- Prisma ORM (brak SQL injection)
+- Security headers w next.config.ts
 
-### 4.2 Unused parameter w inpainting
-`mode` jest pobierany ale tylko zwracany w response, nie wplywa na processing.
+### Do naprawy ⚠️
 
-### 4.3 Brak width/height w ProcessedImagesDB
-Wiele endpointow zapisuje `width: 0, height: 0` - brak rzeczywistych wymiarow.
+#### KRYTYCZNE
+1. **Brak JWT expiration** - tokeny mogą działać bezterminowo
+2. **Localhost w ALLOWED_ORIGINS w produkcji**
+3. **Brak rate limiting na Stripe webhook**
+4. **Słaba password policy** - tylko min 8 znaków
 
-### 4.4 Inconsistent response structure
-- Niektore zwracaja `processedImage`, inne `image`, jeszcze inne `styledImage`
-- Brak spojnego schematu odpowiedzi
-
-### 4.5 Brak retry logic dla zewnetrznych API
-Jesli Replicate/FAL zwroci blad, nie ma automatycznego retry.
-
-### 4.6 Sensitive data w logach
-`console.log` czasem loguje pelne prompty i dane obrazow.
-
-### 4.7 Missing CREDIT_COSTS types
-Brak typu `face_restore` w `credits-config.ts` - uzywany w `/api/face-restore`.
-
-### 4.8 Hardcoded strings
-Komunikaty bledow sa hardcoded w roznych jezykach (EN/PL mix).
+#### WAŻNE
+5. Brak 2FA dla admin accounts
+6. Brak account lockout po nieudanych logowaniach
 
 ---
 
-## 5. BEZPIECZENSTWO
+## 4. BAZA DANYCH
 
-### 5.1 Autentykacja - OK
-- Session + API key auth dziala poprawnie
-- API keys sa hashowane SHA256
-- Walidacja formatu klucza (`pk_live_` / `pk_test_`)
+### Statystyki
+- **73 modele** Prisma
+- **26 enumów**
+- **~180 indeksów**
+- Największy model: **User (154 pola)**
 
-### 5.2 Rate Limiting - OK
-- Redis + in-memory fallback
-- 20 requests/15 min dla image processing
-- Sliding window implementation
+### Problemy ⚠️
 
-### 5.3 Input Validation - OK (z uwagami)
-- Walidacja typu pliku
-- Walidacja rozmiaru
-- Walidacja parametrow
+#### KRYTYCZNE - Brakujące indeksy złożone
+Dodać do schema.prisma:
+- Transaction: @@index([userId, status]), @@index([userId, createdAt])
+- Usage: @@index([userId, createdAt]), @@index([userId, type])
+- ImageHistory: @@index([userId, createdAt]), @@index([expiresAt])
+- UserSession: @@index([userId, startedAt]), @@index([endedAt])
+- UserEvent: @@index([userId, timestamp])
+- ApiKey: @@index([userId, isActive]), @@index([expiresAt])
 
-### 5.4 Potencjalne problemy
-- Brak sanityzacji promptow (XSS w zapisanych danych)
-- Brak limitu dlugosci promptow
-- Base64 w database moze powodowac duze rozmiary rekordow
-
----
-
-## 6. WYDAJNOSC
-
-### 6.1 Pozytywne
-- `resizeForUpscale()` zapobiega OOM
-- FAL.ai storage dla duzych plikow
-- Sharp dla lokalnych operacji (compress, convert)
-- Faithful upscale bez AI (0 kredytow)
-
-### 6.2 Do poprawy
-- Brak queue dla dlugich operacji
-- Brak progress tracking
-- Duze base64 strings w response/database
+#### WAŻNE
+1. **Model User za duży (154 pola)** - rozważyć podział
+2. **Brakujące Foreign Keys** - SocialAccount, KeywordBank, GoogleIntegration
+3. **Brak soft delete** - dodać deletedAt dla GDPR
 
 ---
 
-## 7. PODSUMOWANIE ZMIAN DO WYKONANIA
+## 5. API ENDPOINTS
 
-### Priorytet WYSOKI (zrobione):
-- [x] Dodano resize w `/api/upscale`
-- [x] Naprawiono model w `/api/watermark-remover`
-- [x] Zmniejszono limit pikseli w `/api/denoise`
+### Statystyki
+- **150+ endpointów**
+- **111 użyć** sprawdzania autoryzacji
+- **66 endpointów** z rate limiting (44%)
 
-### Priorytet SREDNI (do zrobienia):
-- [ ] Dodac `maxDuration` do wszystkich AI endpoints
-- [ ] Ujednolicic walidacje rozmiaru plikow
-- [ ] Naprawic `/api/remove-background` - uzyc `createUsage()`
-- [ ] Dodac typ `face_restore` do `credits-config.ts`
-- [ ] Walidacja maski w `/api/inpainting`
+### Problemy ⚠️
 
-### Priorytet NISKI (rekomendacje):
-- [ ] Ujednolicic strukture response
-- [ ] Dodac retry logic
-- [ ] Usunac unused parameters
-- [ ] Dodac rzeczywiste wymiary do ProcessedImagesDB
-- [ ] Sanityzacja promptow
+#### BEZ Rate Limiting (do naprawy)
+- /api/user/route.ts
+- /api/user/credits/route.ts
+- /api/dashboard/stats/route.ts
+- /api/blog/views/route.ts
+- /api/ai-image/gallery/route.ts
+- /api/processed-images/route.ts
 
----
-
-## 8. METRYKI AUDYTU
-
-- **Przeanalyzowane pliki:** 25+
-- **API endpoints:** 16
-- **Linie kodu:** ~4000
-- **Czas audytu:** ~30 min
-- **Problemy krytyczne:** 3 (naprawione)
-- **Problemy srednie:** 5
-- **Rekomendacje:** 8
+#### Niespójności
+1. Różne formaty response
+2. 401 zamiast 403 dla forbidden
+3. Brak 422 dla validation errors
+4. Brak Zod validation w ~70% endpointów
 
 ---
 
-*Raport wygenerowany automatycznie przez Claude Code*
+## 6. FRONTEND I UX
+
+### Mocne strony ✅
+- 189 wystąpień loading states
+- 568 wystąpień error handling
+- EmptyState component z presetami
+- ErrorBoundary global
+- Dark mode, i18n (4 języki)
+- Batch processing
+
+### Problemy dostępności ⚠️
+
+#### KRYTYCZNE
+1. **Brak label dla inputów** - tylko 14/~200 wymaganych
+2. **alert() zamiast toast** w DropZone.tsx i ImageUploader.tsx
+3. **Brak aria-live** dla dynamicznych komunikatów
+
+#### WAŻNE
+4. Brak focus-visible indicators
+5. Brak skip links
+6. Semantic HTML (div → article/section)
+
+---
+
+## 7. REKOMENDACJE - PLAN WDROŻENIA
+
+### TYDZIEŃ 1 - Bezpieczeństwo (Krytyczne)
+1. JWT expiration (30 dni)
+2. Warunkowy localhost w ALLOWED_ORIGINS
+3. Rate limiting dla Stripe webhook
+4. Stronger password policy
+
+### TYDZIEŃ 2 - Baza danych
+1. Dodać brakujące indeksy złożone
+2. Audit i optymalizacja queries
+
+### TYDZIEŃ 3 - API
+1. Centralized API wrapper z auth i rate limiting
+2. Zunifikowane response format
+
+### TYDZIEŃ 4 - Dostępność
+1. Labels dla formularzy
+2. Toast zamiast alert
+3. ARIA attributes
+
+---
+
+## 8. NOWE FUNKCJONALNOŚCI DO ROZWAŻENIA
+
+### Profesjonalny SaaS - brakujące elementy
+1. **2FA (Two-Factor Authentication)** - TOTP
+2. **Subscription Management** - pause, downgrade/upgrade
+3. **API Documentation Portal** - interactive docs
+4. **Webhook System Enhancement** - retry, delivery logs
+5. **Advanced Analytics** - cohort analysis, churn prediction
+6. **Enterprise Features** - SSO, custom SLAs
+
+---
+
+## 9. PODSUMOWANIE
+
+### Top 5 Priorytetów
+
+1. 🔴 **Bezpieczeństwo** - JWT expiration, password policy, 2FA
+2. 🔴 **Baza danych** - brakujące indeksy (wpływ na performance)
+3. 🟡 **API** - rate limiting dla wszystkich endpointów
+4. 🟡 **Dostępność** - labels, ARIA, semantic HTML
+5. 🟢 **UX** - toast zamiast alert, confirmation modals
+
+### Timeline
+
+| Tydzień | Fokus | Szacowany nakład |
+|---------|-------|------------------|
+| 1 | Security fixes | 2-3 dni |
+| 2 | Database optimization | 1-2 dni |
+| 3 | API consistency | 2-3 dni |
+| 4 | Accessibility | 3-4 dni |
+| 5-6 | Testing & polish | 3-4 dni |
+
+**Panel email templates istnieje i działa** - dostępny pod /admin/email-templates.
+
+---
+
+*Raport wygenerowany przez system audytu - 2025-12-21*

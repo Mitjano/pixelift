@@ -211,6 +211,9 @@ export const imageProcessingLimiter = new RateLimiter('rl:image', 15 * 60 * 1000
 export const analyticsLimiter = new RateLimiter('rl:analytics', 60 * 1000, 60); // 60 per minute
 export const apiKeyCreationLimiter = new RateLimiter('rl:apikey', 60 * 60 * 1000, 10); // 10 keys per hour
 export const previewLimiter = new RateLimiter('rl:preview', 60 * 1000, 10); // 10 previews per minute (strict)
+export const userEndpointLimiter = new RateLimiter('rl:user', 60 * 1000, 30); // 30 req per minute for user endpoints
+export const galleryLimiter = new RateLimiter('rl:gallery', 60 * 1000, 60); // 60 req per minute for gallery
+export const blogViewsLimiter = new RateLimiter('rl:blogviews', 60 * 1000, 30); // 30 req per minute for blog views
 
 /**
  * Factory function to create custom rate limiters

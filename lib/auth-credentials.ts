@@ -105,9 +105,13 @@ export async function registerWithEmail(
     return { success: false, error: 'Invalid email format' };
   }
 
-  // Validate password strength
-  if (password.length < 8) {
-    return { success: false, error: 'Password must be at least 8 characters' };
+  // Validate password strength (min 10 chars, uppercase, lowercase, digit, special char)
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,#^()_+=\-\[\]{}|\\:";'<>\/])[A-Za-z\d@$!%*?&.,#^()_+=\-\[\]{}|\\:";'<>\/]{10,}$/;
+  if (!passwordRegex.test(password)) {
+    return {
+      success: false,
+      error: 'Password must be at least 10 characters and include uppercase, lowercase, number, and special character'
+    };
   }
 
   const normalizedEmail = email.toLowerCase().trim();
@@ -401,8 +405,13 @@ export async function resetPasswordWithToken(
   token: string,
   newPassword: string
 ): Promise<{ success: boolean; error?: string }> {
-  if (newPassword.length < 8) {
-    return { success: false, error: 'Password must be at least 8 characters' };
+  // Validate password strength (min 10 chars, uppercase, lowercase, digit, special char)
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,#^()_+=\-\[\]{}|\\:";'<>\/])[A-Za-z\d@$!%*?&.,#^()_+=\-\[\]{}|\\:";'<>\/]{10,}$/;
+  if (!passwordRegex.test(newPassword)) {
+    return {
+      success: false,
+      error: 'Password must be at least 10 characters and include uppercase, lowercase, number, and special character'
+    };
   }
 
   const hashedPassword = await hashPassword(newPassword);

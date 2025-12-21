@@ -212,6 +212,8 @@ model Transaction {
   @@index([status])
   @@index([createdAt])
   @@index([stripeId])
+  @@index([userId, status])
+  @@index([userId, createdAt])
 }
 
 // ===================
@@ -233,6 +235,8 @@ model Usage {
   @@index([userId])
   @@index([type])
   @@index([createdAt])
+  @@index([userId, createdAt])
+  @@index([userId, type])
 }
 
 // ===================
@@ -296,6 +300,9 @@ model ImageHistory {
   @@index([status])
   @@index([type])
   @@index([createdAt])
+  @@index([userId, createdAt])
+  @@index([userId, type])
+  @@index([expiresAt])
 }
 
 // ===================
@@ -392,6 +399,8 @@ model ApiKey {
   @@index([userId])
   @@index([keyHash])
   @@index([isActive])
+  @@index([userId, isActive])
+  @@index([expiresAt])
 }
 
 // ===================
@@ -875,6 +884,8 @@ model UserSession {
   @@index([country])
   @@index([utmSource])
   @@index([converted])
+  @@index([userId, startedAt])
+  @@index([endedAt])
 }
 
 // ===================
@@ -955,6 +966,8 @@ model UserEvent {
   @@index([timestamp])
   @@index([toolType])
   @@index([country])
+  @@index([userId, timestamp])
+  @@index([userId, eventCategory])
 }
 
 // ===================
@@ -1032,6 +1045,8 @@ model PageView {
   @@index([pageType])
   @@index([enteredAt])
   @@index([country])
+  @@index([userId, enteredAt])
+  @@index([sessionId, enteredAt])
 }
 
 // ===================

@@ -3,7 +3,7 @@ import { auth } from '@/lib/auth';
 import { getAnalyticsStats, getRealTimeStats } from '@/lib/analytics';
 import { apiLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 import { handleApiError } from '@/lib/api-utils';
-import { getAllUsage, getAllUsers } from '@/lib/db';
+import { getAllUsage, getAllUsers, getAllTransactions } from '@/lib/db';
 
 // Tool labels for display
 const TOOL_LABELS: Record<string, string> = {
@@ -130,6 +130,163 @@ export async function GET(request: NextRequest) {
           byCredits: topByCredits,
           byUsers: topByUsers,
         },
+      });
+    }
+
+    if (type === 'advanced') {
+      // Advanced analytics with cohort analysis, retention, revenue
+      const [users, transactions, usage] = await Promise.all([
+        getAllUsers(),
+        getAllTransactions(),
+        getAllUsage(),
+      ]);
+
+      const now = new Date();
+      const periodStart = new Date();
+      periodStart.setDate(now.getDate() - days);
+
+      // Filter by period
+      const periodUsers = users.filter(u => new Date(u.createdAt) >= periodStart);
+      const periodTransactions = transactions.filter(t => new Date(t.createdAt) >= periodStart);
+      const completedTransactions = periodTransactions.filter(t => t.status === 'completed');
+
+      // ===== USER METRICS =====
+      const totalUsers = users.length;
+      const newUsers = periodUsers.length;
+      const activeUsers = new Set(usage.filter(u => new Date(u.createdAt) >= periodStart).map(u => u.userId)).size;
+      const verifiedUsers = users.filter(u => u.emailVerified).length;
+      const premiumUsers = users.filter(u => u.role === 'premium').length;
+
+      // User growth by day
+      const userGrowth: Record<string, number> = {};
+      for (let i = 0; i < days; i++) {
+        const date = new Date();
+        date.setDate(date.getDate() - (days - 1 - i));
+        const dateStr = date.toISOString().split('T')[0];
+        userGrowth[dateStr] = 0;
+      }
+      periodUsers.forEach(u => {
+        const dateStr = u.createdAt.split('T')[0];
+        if (userGrowth[dateStr] !== undefined) {
+          userGrowth[dateStr]++;
+        }
+      });
+      const dailyUserGrowth = Object.entries(userGrowth).map(([date, count]) => ({ date, users: count }));
+
+      // ===== REVENUE METRICS =====
+      const totalRevenue = completedTransactions.reduce((sum, t) => sum + (t.amount || 0), 0);
+      const avgTransactionValue = completedTransactions.length > 0
+        ? totalRevenue / completedTransactions.length
+        : 0;
+
+      // Revenue by day
+      const revenueByDay: Record<string, number> = {};
+      for (let i = 0; i < days; i++) {
+        const date = new Date();
+        date.setDate(date.getDate() - (days - 1 - i));
+        const dateStr = date.toISOString().split('T')[0];
+        revenueByDay[dateStr] = 0;
+      }
+      completedTransactions.forEach(t => {
+        const dateStr = t.createdAt.split('T')[0];
+        if (revenueByDay[dateStr] !== undefined) {
+          revenueByDay[dateStr] += t.amount || 0;
+        }
+      });
+      const dailyRevenue = Object.entries(revenueByDay).map(([date, amount]) => ({ date, revenue: amount }));
+
+      // Revenue by plan
+      const revenueByPlan: Record<string, number> = {};
+      completedTransactions.forEach(t => {
+        const plan = t.plan || 'Unknown';
+        revenueByPlan[plan] = (revenueByPlan[plan] || 0) + (t.amount || 0);
+      });
+      const planRevenue = Object.entries(revenueByPlan).map(([plan, amount]) => ({
+        plan,
+        amount,
+        count: completedTransactions.filter(t => (t.plan || 'Unknown') === plan).length
+      })).sort((a, b) => b.amount - a.amount);
+
+      // ===== GEOGRAPHIC DISTRIBUTION =====
+      // Geographic data comes from session tracking - aggregate by auth provider location
+      // For now, provide empty array as this requires session data
+      const topCountries: Array<{ country: string; count: number }> = [];
+
+      // ===== COHORT ANALYSIS (simplified) =====
+      // Users who signed up and made a purchase
+      const usersWithPurchases = new Set(completedTransactions.map(t => t.userId));
+      const conversionRate = newUsers > 0
+        ? (periodUsers.filter(u => usersWithPurchases.has(u.id)).length / newUsers * 100)
+        : 0;
+
+      // Weekly cohorts
+      const weeklyCohorts: Array<{ week: string; users: number; active: number; converted: number }> = [];
+      for (let w = 0; w < Math.ceil(days / 7); w++) {
+        const weekStart = new Date();
+        weekStart.setDate(weekStart.getDate() - (w + 1) * 7);
+        const weekEnd = new Date();
+        weekEnd.setDate(weekEnd.getDate() - w * 7);
+
+        const cohortUsers = users.filter(u => {
+          const created = new Date(u.createdAt);
+          return created >= weekStart && created < weekEnd;
+        });
+
+        const cohortActive = cohortUsers.filter(u =>
+          usage.some(usg => usg.userId === u.id && new Date(usg.createdAt) >= weekStart)
+        ).length;
+
+        const cohortConverted = cohortUsers.filter(u => usersWithPurchases.has(u.id)).length;
+
+        weeklyCohorts.push({
+          week: `Week ${w + 1}`,
+          users: cohortUsers.length,
+          active: cohortActive,
+          converted: cohortConverted,
+        });
+      }
+
+      // ===== AUTH PROVIDER DISTRIBUTION =====
+      const authProviders: Record<string, number> = {};
+      users.forEach(u => {
+        const provider = u.authProvider || 'email';
+        authProviders[provider] = (authProviders[provider] || 0) + 1;
+      });
+      const authProviderStats = Object.entries(authProviders).map(([provider, count]) => ({
+        provider,
+        count,
+        percentage: (count / totalUsers * 100).toFixed(1),
+      }));
+
+      return NextResponse.json({
+        period: days,
+        users: {
+          total: totalUsers,
+          new: newUsers,
+          active: activeUsers,
+          verified: verifiedUsers,
+          premium: premiumUsers,
+          verificationRate: (verifiedUsers / totalUsers * 100).toFixed(1),
+          premiumRate: (premiumUsers / totalUsers * 100).toFixed(1),
+        },
+        revenue: {
+          total: totalRevenue.toFixed(2),
+          average: avgTransactionValue.toFixed(2),
+          transactions: completedTransactions.length,
+          currency: 'PLN',
+        },
+        growth: {
+          dailyUsers: dailyUserGrowth,
+          dailyRevenue,
+        },
+        plans: planRevenue,
+        geographic: topCountries,
+        cohorts: weeklyCohorts.reverse(),
+        conversion: {
+          rate: conversionRate.toFixed(1),
+          total: periodUsers.filter(u => usersWithPurchases.has(u.id)).length,
+        },
+        authProviders: authProviderStats,
       });
     }
 

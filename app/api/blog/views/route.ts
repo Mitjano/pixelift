@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { incrementViews, getAllViews } from "@/lib/blog-views";
+import { blogViewsLimiter, getClientIdentifier, rateLimitResponse } from "@/lib/rate-limit";
 
 // GET - get all views (for admin)
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = blogViewsLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const views = await getAllViews();
     return NextResponse.json(views);
   } catch (error) {
@@ -15,6 +23,13 @@ export async function GET() {
 // POST - increment view count
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = blogViewsLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const { slug } = await request.json();
 
     if (!slug) {

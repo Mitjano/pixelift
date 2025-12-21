@@ -54,6 +54,37 @@ interface ToolUsageData {
   };
 }
 
+interface AdvancedAnalyticsData {
+  period: number;
+  users: {
+    total: number;
+    new: number;
+    active: number;
+    verified: number;
+    premium: number;
+    verificationRate: string;
+    premiumRate: string;
+  };
+  revenue: {
+    total: string;
+    average: string;
+    transactions: number;
+    currency: string;
+  };
+  growth: {
+    dailyUsers: Array<{ date: string; users: number }>;
+    dailyRevenue: Array<{ date: string; revenue: number }>;
+  };
+  plans: Array<{ plan: string; amount: number; count: number }>;
+  geographic: Array<{ country: string; count: number }>;
+  cohorts: Array<{ week: string; users: number; active: number; converted: number }>;
+  conversion: {
+    rate: string;
+    total: number;
+  };
+  authProviders: Array<{ provider: string; count: number; percentage: string }>;
+}
+
 const TOOL_COLORS: Record<string, string> = {
   upscale: '#10B981',
   enhance: '#3B82F6',
@@ -76,16 +107,18 @@ export default function AnalyticsPage() {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [realtime, setRealtime] = useState<RealTimeData | null>(null);
   const [toolData, setToolData] = useState<ToolUsageData | null>(null);
+  const [advancedData, setAdvancedData] = useState<AdvancedAnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState(30);
-  const [activeTab, setActiveTab] = useState<'traffic' | 'tools'>('traffic');
+  const [activeTab, setActiveTab] = useState<'traffic' | 'tools' | 'advanced'>('traffic');
 
   const fetchData = async () => {
     try {
-      const [statsRes, realtimeRes, toolsRes] = await Promise.all([
+      const [statsRes, realtimeRes, toolsRes, advancedRes] = await Promise.all([
         fetch(`/api/admin/analytics?days=${timeRange}`),
         fetch('/api/admin/analytics?type=realtime'),
         fetch(`/api/admin/analytics?type=tools&days=${timeRange}`),
+        fetch(`/api/admin/analytics?type=advanced&days=${timeRange}`),
       ]);
 
       if (statsRes.ok && realtimeRes.ok) {
@@ -98,6 +131,11 @@ export default function AnalyticsPage() {
       if (toolsRes.ok) {
         const tools = await toolsRes.json();
         setToolData(tools);
+      }
+
+      if (advancedRes.ok) {
+        const advanced = await advancedRes.json();
+        setAdvancedData(advanced);
       }
     } catch (error) {
       console.error('Failed to fetch analytics:', error);
@@ -170,6 +208,16 @@ export default function AnalyticsPage() {
               }`}
             >
               AI Tools
+            </button>
+            <button
+              onClick={() => setActiveTab('advanced')}
+              className={`px-4 py-2 rounded-lg font-medium transition ${
+                activeTab === 'advanced'
+                  ? 'bg-purple-500 text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Advanced
             </button>
           </div>
 
@@ -529,6 +577,224 @@ export default function AnalyticsPage() {
       {activeTab === 'tools' && !toolData && (
         <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-12 text-center">
           <p className="text-gray-400 text-lg">No tool usage data available</p>
+        </div>
+      )}
+
+      {/* ADVANCED TAB */}
+      {activeTab === 'advanced' && advancedData && (
+        <>
+          {/* User & Revenue Summary */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4">
+              <div className="text-sm text-blue-400 font-semibold mb-2">Total Users</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{advancedData.users.total.toLocaleString()}</div>
+              <div className="text-xs text-gray-400">All time</div>
+            </div>
+            <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-xl p-4">
+              <div className="text-sm text-green-400 font-semibold mb-2">New Users</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{advancedData.users.new}</div>
+              <div className="text-xs text-gray-400">Last {timeRange} days</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30 rounded-xl p-4">
+              <div className="text-sm text-purple-400 font-semibold mb-2">Active Users</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{advancedData.users.active}</div>
+              <div className="text-xs text-gray-400">Used AI tools</div>
+            </div>
+            <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-4">
+              <div className="text-sm text-yellow-400 font-semibold mb-2">Premium Users</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{advancedData.users.premium}</div>
+              <div className="text-xs text-gray-400">{advancedData.users.premiumRate}% of total</div>
+            </div>
+            <div className="bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 border border-emerald-500/30 rounded-xl p-4">
+              <div className="text-sm text-emerald-400 font-semibold mb-2">Revenue</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{parseFloat(advancedData.revenue.total).toLocaleString()} {advancedData.revenue.currency}</div>
+              <div className="text-xs text-gray-400">Last {timeRange} days</div>
+            </div>
+            <div className="bg-gradient-to-br from-pink-500/20 to-pink-600/20 border border-pink-500/30 rounded-xl p-4">
+              <div className="text-sm text-pink-400 font-semibold mb-2">Conversion Rate</div>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{advancedData.conversion.rate}%</div>
+              <div className="text-xs text-gray-400">{advancedData.conversion.total} converted</div>
+            </div>
+          </div>
+
+          {/* Growth Charts */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* User Growth */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+              <h2 className="text-2xl font-bold mb-6">User Growth</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <AreaChart data={advancedData.growth.dailyUsers}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis dataKey="date" stroke="#9CA3AF" tickFormatter={(v) => v.slice(5)} />
+                  <YAxis stroke="#9CA3AF" />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
+                  />
+                  <Area type="monotone" dataKey="users" stroke="#10B981" fill="#10B981" fillOpacity={0.2} name="New Users" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Revenue Trend */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Revenue Trend</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <AreaChart data={advancedData.growth.dailyRevenue}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis dataKey="date" stroke="#9CA3AF" tickFormatter={(v) => v.slice(5)} />
+                  <YAxis stroke="#9CA3AF" />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
+                    formatter={(value: number) => [`${value.toFixed(2)} ${advancedData.revenue.currency}`, 'Revenue']}
+                  />
+                  <Area type="monotone" dataKey="revenue" stroke="#8B5CF6" fill="#8B5CF6" fillOpacity={0.2} name="Revenue" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Revenue by Plan & Auth Providers */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Revenue by Plan */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Revenue by Plan</h2>
+              {advancedData.plans.length > 0 ? (
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={advancedData.plans}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="plan" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
+                      formatter={(value: number) => [`${value.toFixed(2)} ${advancedData.revenue.currency}`, 'Revenue']}
+                    />
+                    <Bar dataKey="amount" fill="#10B981" name="Revenue" />
+                  </BarChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex items-center justify-center h-64 text-gray-400">No plan data available</div>
+              )}
+            </div>
+
+            {/* Auth Provider Distribution */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Authentication Methods</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={advancedData.authProviders.map((p, i) => ({
+                      name: p.provider,
+                      count: p.count,
+                      percentage: p.percentage,
+                      color: ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EC4899'][i % 5]
+                    }))}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={100}
+                    paddingAngle={2}
+                    dataKey="count"
+                    label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
+                  >
+                    {advancedData.authProviders.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EC4899'][index % 5]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Cohort Analysis & Geographic */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Weekly Cohorts */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Weekly Cohort Analysis</h2>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-700">
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-gray-400">Cohort</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-400">Users</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-400">Active</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-400">Converted</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-400">Conv. Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {advancedData.cohorts.map((cohort) => (
+                      <tr key={cohort.week} className="border-b border-gray-800 hover:bg-gray-700/30">
+                        <td className="py-3 px-4 font-medium">{cohort.week}</td>
+                        <td className="py-3 px-4 text-right">{cohort.users}</td>
+                        <td className="py-3 px-4 text-right text-green-400">{cohort.active}</td>
+                        <td className="py-3 px-4 text-right text-purple-400">{cohort.converted}</td>
+                        <td className="py-3 px-4 text-right text-yellow-400">
+                          {cohort.users > 0 ? ((cohort.converted / cohort.users) * 100).toFixed(1) : '0'}%
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Geographic Distribution */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Top Countries</h2>
+              {advancedData.geographic.length > 0 ? (
+                <div className="space-y-3">
+                  {advancedData.geographic.map((country, i) => (
+                    <div key={country.country} className="flex items-center gap-3">
+                      <span className="text-gray-400 w-6">{i + 1}.</span>
+                      <span className="font-medium flex-1">{country.country}</span>
+                      <span className="text-green-400 font-semibold">{country.count.toLocaleString()}</span>
+                      <div className="w-24 bg-gray-700 rounded-full h-2">
+                        <div
+                          className="bg-green-500 rounded-full h-2"
+                          style={{ width: `${(country.count / advancedData.geographic[0].count) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center h-64 text-gray-400">No geographic data available</div>
+              )}
+            </div>
+          </div>
+
+          {/* Key Metrics Table */}
+          <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+            <h2 className="text-2xl font-bold mb-6">Key Performance Indicators</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center p-4 bg-gray-900/50 rounded-lg">
+                <div className="text-3xl font-bold text-blue-400">{advancedData.users.verificationRate}%</div>
+                <div className="text-sm text-gray-400 mt-1">Email Verification Rate</div>
+              </div>
+              <div className="text-center p-4 bg-gray-900/50 rounded-lg">
+                <div className="text-3xl font-bold text-green-400">{parseFloat(advancedData.revenue.average).toFixed(2)}</div>
+                <div className="text-sm text-gray-400 mt-1">Avg Transaction ({advancedData.revenue.currency})</div>
+              </div>
+              <div className="text-center p-4 bg-gray-900/50 rounded-lg">
+                <div className="text-3xl font-bold text-purple-400">{advancedData.revenue.transactions}</div>
+                <div className="text-sm text-gray-400 mt-1">Transactions</div>
+              </div>
+              <div className="text-center p-4 bg-gray-900/50 rounded-lg">
+                <div className="text-3xl font-bold text-yellow-400">{advancedData.users.verified}</div>
+                <div className="text-sm text-gray-400 mt-1">Verified Users</div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* No Advanced Data */}
+      {activeTab === 'advanced' && !advancedData && (
+        <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-12 text-center">
+          <p className="text-gray-400 text-lg">No advanced analytics data available</p>
         </div>
       )}
     </div>

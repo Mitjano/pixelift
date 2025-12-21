@@ -90,6 +90,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   basePath: "/api/auth",
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  jwt: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   pages: {
     signIn: "/auth/signin",

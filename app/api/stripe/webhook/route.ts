@@ -24,12 +24,20 @@ import {
   sendPaymentFailedEmail,
   sendSubscriptionCancelledEmail,
 } from '@/lib/email';
+import { strictLimiter, getClientIdentifier, rateLimitResponse } from '@/lib/rate-limit';
 
 // Disable body parsing - we need the raw body for signature verification
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting to prevent webhook abuse
+    const identifier = getClientIdentifier(request);
+    const { allowed, resetAt } = strictLimiter.check(identifier);
+    if (!allowed) {
+      return rateLimitResponse(resetAt);
+    }
+
     const body = await request.text();
     const headersList = await headers();
     const signature = headersList.get('stripe-signature');

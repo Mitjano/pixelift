@@ -19,6 +19,12 @@ vi.mock('@/lib/prisma', () => ({
   },
 }));
 
+vi.mock('@/lib/rate-limit', () => ({
+  userEndpointLimiter: { check: vi.fn(() => ({ allowed: true, remaining: 10, resetAt: Date.now() + 60000 })) },
+  getClientIdentifier: vi.fn(() => 'test-ip'),
+  rateLimitResponse: vi.fn(),
+}));
+
 import { auth } from '@/lib/auth';
 import { getUserByEmail } from '@/lib/db';
 import { prisma } from '@/lib/prisma';
@@ -26,6 +32,13 @@ import { prisma } from '@/lib/prisma';
 const mockAuth = auth as ReturnType<typeof vi.fn>;
 const mockGetUserByEmail = getUserByEmail as ReturnType<typeof vi.fn>;
 const mockPrismaUserUpdate = prisma.user.update as ReturnType<typeof vi.fn>;
+
+// Helper to create mock GET request
+function createMockRequest(): NextRequest {
+  return new NextRequest('http://localhost/api/user', {
+    headers: { 'x-forwarded-for': '127.0.0.1' }
+  });
+}
 
 describe('/api/user', () => {
   beforeEach(() => {
@@ -37,7 +50,7 @@ describe('/api/user', () => {
     it('should return 401 when not authenticated', async () => {
       mockAuth.mockResolvedValue(null);
 
-      const response = await GET();
+      const response = await GET(createMockRequest());
       const body = await response.json();
 
       expect(response.status).toBe(401);
@@ -47,7 +60,7 @@ describe('/api/user', () => {
     it('should return 401 when session has no email', async () => {
       mockAuth.mockResolvedValue({ user: {} });
 
-      const response = await GET();
+      const response = await GET(createMockRequest());
       const body = await response.json();
 
       expect(response.status).toBe(401);
@@ -58,7 +71,7 @@ describe('/api/user', () => {
       mockAuth.mockResolvedValue({ user: { email: 'test@example.com' } });
       mockGetUserByEmail.mockResolvedValue(null);
 
-      const response = await GET();
+      const response = await GET(createMockRequest());
       const body = await response.json();
 
       expect(response.status).toBe(404);
@@ -77,7 +90,7 @@ describe('/api/user', () => {
       mockAuth.mockResolvedValue({ user: { email: 'test@example.com' } });
       mockGetUserByEmail.mockResolvedValue(mockUser);
 
-      const response = await GET();
+      const response = await GET(createMockRequest());
       const body = await response.json();
 
       expect(response.status).toBe(200);
@@ -100,7 +113,7 @@ describe('/api/user', () => {
       mockAuth.mockResolvedValue({ user: { email: 'test@example.com' } });
       mockGetUserByEmail.mockResolvedValue(mockUser);
 
-      const response = await GET();
+      const response = await GET(createMockRequest());
       const body = await response.json();
 
       expect(body.displayName).toBe('Test User');
@@ -110,7 +123,7 @@ describe('/api/user', () => {
       mockAuth.mockResolvedValue({ user: { email: 'test@example.com' } });
       mockGetUserByEmail.mockRejectedValue(new Error('Database error'));
 
-      const response = await GET();
+      const response = await GET(createMockRequest());
       const body = await response.json();
 
       expect(response.status).toBe(500);

@@ -7,12 +7,14 @@ import { locales, defaultLocale } from '@/i18n/config';
 // Use auth config without Node.js modules for Edge Runtime
 const { auth } = NextAuth(authConfig);
 
-// Allowed origins for CSRF protection
+// Allowed origins for CSRF protection (localhost only in development)
 const ALLOWED_ORIGINS = [
   'https://pixelift.pl',
   'https://www.pixelift.pl',
-  'http://localhost:3000',
-  'http://127.0.0.1:3000',
+  ...(process.env.NODE_ENV === 'development' ? [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+  ] : []),
 ];
 
 // Create the intl middleware
