@@ -5046,6 +5046,13 @@
     "persistentIssue": "If this issue persists,",
     "contactSupport": "contact our support team"
   },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go to homepage",
+    "browseTools": "Browse tools",
+    "popularTools": "Or try one of our popular tools:"
+  },
   "aiBackgroundPage": {
     "badge": "Powered by Bria AI",
     "title": "AI Product Background Generator",

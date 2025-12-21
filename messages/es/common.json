@@ -3812,6 +3812,13 @@
     "persistentIssue": "Si este problema persiste,",
     "contactSupport": "contacta con nuestro soporte"
   },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "goHome": "Ir a la página principal",
+    "browseTools": "Explorar herramientas",
+    "popularTools": "O prueba una de nuestras herramientas populares:"
+  },
   "aiBackgroundPage": {
     "badge": "Desarrollado por Bria AI",
     "title": "Generador de Fondos AI para Productos",

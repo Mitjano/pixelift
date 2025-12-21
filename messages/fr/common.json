@@ -4203,6 +4203,13 @@
     "persistentIssue": "Si ce problème persiste,",
     "contactSupport": "contactez notre support"
   },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "goHome": "Aller à l'accueil",
+    "browseTools": "Parcourir les outils",
+    "popularTools": "Ou essayez l'un de nos outils populaires :"
+  },
   "aiBackgroundPage": {
     "badge": "Propulsé par Bria AI",
     "title": "Générateur de Fonds AI pour Produits",

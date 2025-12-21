@@ -3854,6 +3854,13 @@
     "persistentIssue": "Jeśli problem się powtarza,",
     "contactSupport": "skontaktuj się z naszym wsparciem"
   },
+  "notFound": {
+    "title": "Strona nie znaleziona",
+    "description": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
+    "goHome": "Przejdź do strony głównej",
+    "browseTools": "Przeglądaj narzędzia",
+    "popularTools": "Lub wypróbuj jedno z naszych popularnych narzędzi:"
+  },
   "aiBackgroundPage": {
     "badge": "Napędzane przez Bria AI",
     "title": "Generator Tła AI dla Produktów",

@@ -6,6 +6,13 @@ import BlogViewTracker from "@/components/BlogViewTracker";
 import SafeHTML from "@/components/SafeHTML";
 import { getTranslations } from 'next-intl/server';
 
+// Calculate read time based on word count
+function calculateReadTime(content: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+}
+
 // ISR - revalidate every 60 seconds for fresh content
 export const revalidate = 60;
 
@@ -82,8 +89,79 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const readTime = calculateReadTime(post.content);
+  const publishedDate = post.publishedAt ? new Date(post.publishedAt).toISOString() : new Date().toISOString();
+  const modifiedDate = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedDate;
+
+  // BlogPosting structured data
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt || "",
+    "image": post.featuredImage || `https://pixelift.pl/api/og?title=${encodeURIComponent(post.title)}`,
+    "author": {
+      "@type": "Person",
+      "name": post.author.name,
+      "email": post.author.email
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pixelift",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pixelift.pl/logo.png"
+      }
+    },
+    "datePublished": publishedDate,
+    "dateModified": modifiedDate,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://pixelift.pl/${locale}/blog/${slug}`
+    },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.categories[0] || "Blog",
+    "wordCount": post.content.replace(/<[^>]*>/g, '').split(/\s+/).length,
+    "timeRequired": `PT${readTime}M`
+  };
+
+  // BreadcrumbList structured data
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `https://pixelift.pl/${locale}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": `https://pixelift.pl/${locale}/blog`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://pixelift.pl/${locale}/blog/${slug}`
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:via-black dark:to-gray-900 text-gray-900 dark:text-white">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <BlogViewTracker slug={post.slug} />
       {/* Hero Section */}
       <div className="border-b border-gray-200 dark:border-gray-800">
@@ -114,10 +192,26 @@ export default async function BlogPostPage({ params }: PageProps) {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">{post.title}</h1>
 
           {/* Meta */}
-          <div className="flex items-center gap-6 text-gray-600 dark:text-gray-400 text-sm">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-600 dark:text-gray-400 text-sm">
             <div className="flex items-center gap-2">
               <span className="text-green-600 dark:text-green-400">👤</span>
               <span>{post.author.name}</span>
+            </div>
+            {post.publishedAt && (
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 dark:text-green-400">📅</span>
+                <time dateTime={new Date(post.publishedAt).toISOString()}>
+                  {new Date(post.publishedAt).toLocaleDateString(locale, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+              </div>
+            )}
+            <div className="flex items-center gap-2">
+              <span className="text-green-600 dark:text-green-400">⏱️</span>
+              <span>{readTime} min read</span>
             </div>
           </div>
         </div>
