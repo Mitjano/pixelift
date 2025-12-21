@@ -5100,40 +5100,40 @@
     "stats": {
       "cost": "GRATUIT",
       "costLabel": "Sans Crédits",
-      "filters": "15+",
-      "filtersLabel": "Options de Filtres",
-      "processing": "Local",
-      "processingLabel": "Dans Votre Navigateur"
+      "presets": "6+",
+      "presetsLabel": "Préréglages de Filtres",
+      "sliders": "5",
+      "slidersLabel": "Ajustements"
     },
-    "termsNotice": "Les images sont traitées localement dans votre navigateur et ne sont jamais téléchargées.",
+    "termsNotice": "Les images sont traitées localement dans votre navigateur.",
     "options": {
-      "title": "Effets de Filtre Populaires",
-      "brightness": {
-        "name": "Luminosité et Contraste",
-        "description": "Ajustez l'exposition et le contraste pour corriger les photos mal éclairées ou ajouter des effets dramatiques."
+      "title": "Préréglages de Filtres Populaires",
+      "vintage": {
+        "name": "Vintage",
+        "description": "Tons chauds et nostalgiques avec des noirs délavés. Parfait pour l'esthétique rétro."
       },
-      "saturation": {
-        "name": "Saturation des Couleurs",
-        "description": "Améliorez ou réduisez la vivacité des couleurs. Créez des looks vibrants ou des effets monochromes élégants."
+      "dramatic": {
+        "name": "Dramatique",
+        "description": "Fort contraste avec des ombres profondes. Crée des looks audacieux et cinématographiques."
       },
-      "effects": {
-        "name": "Effets Créatifs",
-        "description": "Appliquez des effets de flou, netteté, sépia, niveaux de gris et vignette pour des finitions uniques."
+      "cool": {
+        "name": "Tons Froids",
+        "description": "Couleurs aux tons bleus pour un effet frais et moderne."
       }
     },
     "features": {
-      "title": "Fonctionnalités des Filtres d'Image",
+      "title": "Fonctionnalités des Filtres Photo",
+      "presets": {
+        "title": "Préréglages en Un Clic",
+        "description": "Appliquez instantanément des filtres professionnels : Niveaux de gris, Sépia, Vintage, Froid, Chaud et Dramatique."
+      },
       "adjustments": {
-        "title": "Ajustements Complets",
-        "description": "Contrôle précis sur la luminosité, le contraste, la saturation, la teinte, l'opacité et plus. Chaque curseur offre une édition de qualité professionnelle."
+        "title": "Contrôles de Réglage Fin",
+        "description": "Curseurs précis pour la luminosité, le contraste, la saturation, le flou et la netteté."
       },
-      "effects": {
-        "title": "Effets Créatifs",
-        "description": "Flou et netteté pour la profondeur, sépia et niveaux de gris pour des looks classiques, vignette pour la mise au point, et inversion pour des effets artistiques."
-      },
-      "privacy": {
-        "title": "Confidentialité Totale",
-        "description": "Tout le traitement se fait dans votre navigateur. Vos photos ne quittent jamais votre appareil - pas de téléchargement, pas de stockage serveur."
+      "preview": {
+        "title": "Aperçu en Temps Réel",
+        "description": "Voyez les changements instantanément pendant que vous ajustez. Pas d'attente, pas de délais."
       }
     },
     "howItWorks": {
@@ -5157,26 +5157,26 @@
       }
     },
     "useCases": {
-      "title": "Parfait Pour l'Édition Photo",
+      "title": "Parfait Pour Améliorer les Photos",
       "social": {
         "icon": "📱",
-        "title": "Publications Réseaux Sociaux",
-        "description": "Améliorez rapidement les photos pour Instagram, Facebook et Twitter avec des filtres de niveau professionnel."
+        "title": "Posts Réseaux Sociaux",
+        "description": "Créez des feeds cohérents et professionnels avec des styles de filtres consistants."
       },
       "photography": {
-        "icon": "📷",
-        "title": "Correction Photo",
-        "description": "Corrigez l'exposition, la couleur et le contraste des photos mal éclairées ou décolorées."
+        "icon": "📸",
+        "title": "Photographie",
+        "description": "Édition par lots rapide et application de styles pour collections de photos."
       },
-      "creative": {
-        "icon": "🎨",
-        "title": "Projets Créatifs",
-        "description": "Créez des looks uniques pour portfolios, blogs et projets de design avec des effets créatifs."
+      "products": {
+        "icon": "🛍️",
+        "title": "Photos de Produits",
+        "description": "Améliorez les images de produits avec des ajustements de luminosité et contraste."
       },
-      "quick": {
-        "icon": "⚡",
-        "title": "Éditions Rapides",
-        "description": "Faites des ajustements rapides sans installer de logiciel lourd ni créer de comptes."
+      "personal": {
+        "icon": "🎞️",
+        "title": "Photos Personnelles",
+        "description": "Améliorez les vieilles photos ou mal éclairées avec des ajustements rapides."
       }
     },
     "technology": {
@@ -5703,33 +5703,33 @@
     },
     "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
     "options": {
-      "title": "Options de Transformation",
-      "style": {
-        "name": "Transformation de Style",
-        "description": "Transformez les images en différents styles artistiques comme peinture à l'huile, aquarelle, art numérique et plus."
+      "title": "Styles de Transformation",
+      "artistic": {
+        "name": "Artistique",
+        "description": "Transformez les photos en peintures, aquarelles, huiles et autres styles artistiques."
       },
-      "variation": {
-        "name": "Génération de Variations",
-        "description": "Créez des variations uniques tout en gardant le concept central et la composition de votre image."
+      "illustration": {
+        "name": "Illustration",
+        "description": "Convertissez les images en illustrations numériques, art vectoriel ou style bande dessinée."
       },
-      "creative": {
-        "name": "Réinterprétation Créative",
-        "description": "Laissez l'IA réimaginer votre image avec une liberté créative pour des résultats surprenants."
+      "fantasy": {
+        "name": "Fantaisie",
+        "description": "Réimaginez les scènes avec des éléments magiques, sci-fi ou surnaturels."
       }
     },
     "features": {
-      "title": "Fonctionnalités de Réimagination IA",
-      "aiPowered": {
-        "title": "Modèle Flux AI Avancé",
-        "description": "Propulsé par le modèle Flux Schnell de pointe qui comprend le contexte, la composition et le style pour des transformations intelligentes."
+      "title": "Pourquoi Choisir Reimagine",
+      "structurePreserving": {
+        "title": "Préservation de la Structure",
+        "description": "Maintient la composition et la mise en page de votre image originale tout en appliquant des transformations créatives."
       },
-      "preservation": {
-        "title": "Préservation de l'Essence",
-        "description": "Maintient les éléments centraux et le sens de votre image originale tout en appliquant des transformations créatives."
+      "styleVariety": {
+        "title": "Styles Infinis",
+        "description": "Du photoréaliste à l'abstrait, du cartoon au cinématographique - choisissez parmi des dizaines de styles."
       },
       "customPrompts": {
         "title": "Prompts Personnalisés",
-        "description": "Guidez la transformation avec des instructions textuelles décrivant le résultat désiré, le style et l'atmosphère."
+        "description": "Décrivez exactement comment vous voulez transformer votre image pour un contrôle créatif précis."
       }
     },
     "howItWorks": {
@@ -5753,26 +5753,26 @@
       }
     },
     "useCases": {
-      "title": "Parfait Pour la Transformation Créative",
+      "title": "Possibilités Créatives",
       "artists": {
         "icon": "🎨",
-        "title": "Artistes et Designers",
-        "description": "Explorez les variations de votre travail, trouvez de nouvelles inspirations et créez rapidement des références de concept."
+        "title": "Artistes Numériques",
+        "description": "Transformez les photos en références artistiques ou créez des œuvres d'art uniques."
       },
-      "marketing": {
-        "icon": "📣",
-        "title": "Marketing Créatif",
-        "description": "Générez des variations créatives de photos de produits pour les campagnes et réseaux sociaux."
+      "content": {
+        "icon": "📱",
+        "title": "Créateurs de Contenu",
+        "description": "Créez des visuels accrocheurs et uniques pour les réseaux sociaux et le marketing."
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Développement de Jeux",
+        "description": "Transformez de vraies photos en assets de jeux et concept art."
       },
       "personal": {
-        "icon": "📸",
-        "title": "Photos Personnelles",
-        "description": "Transformez vos photos en art unique, portraits avec différents styles ou variations créatives."
-      },
-      "concepts": {
-        "icon": "💡",
-        "title": "Développement de Concepts",
-        "description": "Itérez rapidement sur les idées visuelles pour les présentations, pitch decks et brainstorming créatif."
+        "icon": "🖼️",
+        "title": "Projets Personnels",
+        "description": "Transformez les photos de famille en œuvres d'art, illustrations ou scènes fantastiques."
       }
     },
     "technology": {
@@ -6290,12 +6290,12 @@
     "titleHighlight": "Portraits avec l'IA",
     "subtitle": "Transformez l'éclairage de vos photos portrait avec le rééclairage alimenté par IA. Appliquez un éclairage de studio professionnel, des effets d'heure dorée, un éclairage dramatique et plus encore. Corrigez les photos mal éclairées ou créez des looks cinématographiques uniques.",
     "stats": {
-      "credits": "2",
+      "credits": "3",
       "creditsLabel": "Crédits/Image",
-      "presets": "6",
+      "presets": "12+",
       "presetsLabel": "Préréglages d'Éclairage",
-      "aiModel": "ICLight V2",
-      "aiModelLabel": "Moteur de Rééclairage"
+      "quality": "HD",
+      "qualityLabel": "Qualité de Sortie"
     },
     "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité.",
     "options": {
@@ -6477,116 +6477,6 @@
     },
     "processing": "Rééclairage du portrait...",
     "success": "Portrait rééclairé avec succès!"
-  },
-  "portraitRelightPage": {
-    "badge": "Éclairage de Portrait par IA",
-    "title": "Rééclairage de Portrait IA",
-    "subtitle": "Transformez l'éclairage de vos portraits avec un rééclairage de qualité studio alimenté par l'IA.",
-    "termsNotice": "En utilisant cet outil, vous acceptez nos Conditions d'Utilisation.",
-    "stats": {
-      "presets": "6",
-      "presetsLabel": "Préréglages d'Éclairage",
-      "aiPowered": "ICLight V2",
-      "aiPoweredLabel": "Modèle IA",
-      "creditCost": "2 Crédits",
-      "creditCostLabel": "Par Image"
-    },
-    "howItWorks": {
-      "title": "Comment Ça Marche",
-      "step1": {
-        "title": "Télécharger Portrait",
-        "description": "Téléchargez n'importe quelle photo portrait"
-      },
-      "step2": {
-        "title": "Choisir l'Éclairage",
-        "description": "Sélectionnez un préréglage ou un style personnalisé"
-      },
-      "step3": {
-        "title": "Télécharger le Résultat",
-        "description": "Obtenez votre portrait rééclairé"
-      }
-    },
-    "lightingPresets": {
-      "title": "Préréglages d'Éclairage",
-      "studio": {
-        "title": "Studio",
-        "description": "Éclairage professionnel à trois points"
-      },
-      "golden": {
-        "title": "Heure Dorée",
-        "description": "Éclairage chaud de coucher de soleil"
-      },
-      "dramatic": {
-        "title": "Dramatique",
-        "description": "Ombres à haut contraste"
-      },
-      "neon": {
-        "title": "Néon",
-        "description": "Éclairage coloré cyberpunk"
-      },
-      "natural": {
-        "title": "Naturel",
-        "description": "Lumière douce de fenêtre"
-      },
-      "rembrandt": {
-        "title": "Rembrandt",
-        "description": "Éclairage classique en triangle"
-      }
-    },
-    "features": {
-      "aiPowered": {
-        "title": "Alimenté par IA",
-        "description": "ICLight V2 pour un rééclairage réaliste"
-      },
-      "customPrompts": {
-        "title": "Prompts Personnalisés",
-        "description": "Décrivez n'importe quel scénario d'éclairage"
-      },
-      "fastProcessing": {
-        "title": "Traitement Rapide",
-        "description": "Résultats en quelques secondes"
-      }
-    },
-    "useCases": {
-      "title": "Cas d'Utilisation",
-      "photographers": {
-        "title": "Photographes",
-        "description": "Corriger l'éclairage en post-production"
-      },
-      "contentCreators": {
-        "title": "Créateurs de Contenu",
-        "description": "Éclairage cohérent"
-      },
-      "ecommerce": {
-        "title": "E-commerce",
-        "description": "Portraits professionnels"
-      },
-      "socialMedia": {
-        "title": "Réseaux Sociaux",
-        "description": "Selfies améliorés"
-      }
-    },
-    "relatedTools": {
-      "title": "Outils Connexes",
-      "packshot": {
-        "title": "Générateur de Packshot",
-        "description": "Photographie de produits"
-      },
-      "removeBackground": {
-        "title": "Supprimer le Fond",
-        "description": "Fonds transparents"
-      },
-      "restore": {
-        "title": "Restaurer le Visage",
-        "description": "Améliorer les traits du visage"
-      }
-    },
-    "cta": {
-      "title": "Prêt à Transformer vos Portraits?",
-      "subtitle": "Commencez à rééclairer vos photos avec l'IA aujourd'hui",
-      "exploreTools": "Explorer Tous les Outils",
-      "viewPricing": "Voir les Prix"
-    }
   },
   "watermarkRemover": {
     "auth": {

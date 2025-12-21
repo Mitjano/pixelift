@@ -4510,19 +4510,36 @@
   },
   "portraitRelightPage": {
     "badge": "Oświetlenie portretów AI",
-    "title": "AI Portrait Relight",
-    "subtitle": "Zmień oświetlenie portretów dzięki zaawansowanemu AI.",
+    "title": "Portrait",
+    "titleHighlight": "Relight AI",
+    "subtitle": "Zmień oświetlenie portretów z AI. Studyjne światło, złota godzina, dramatyczny cień - przekształć zwykłe zdjęcie w profesjonalny portret.",
     "termsNotice": "Korzystając z tego narzędzia, akceptujesz Regulamin.",
     "stats": {
-      "presets": "6",
-      "presetsLabel": "Presetów oświetlenia",
-      "aiPowered": "ICLight V2",
-      "aiPoweredLabel": "Model AI",
-      "creditCost": "2 Kredyty",
-      "creditCostLabel": "Za zdjęcie"
+      "credits": "3",
+      "creditsLabel": "Kredyty/obraz",
+      "presets": "12+",
+      "presetsLabel": "Presetów światła",
+      "quality": "HD",
+      "qualityLabel": "Jakość wyjściowa"
+    },
+    "options": {
+      "title": "Presety oświetlenia",
+      "studio": {
+        "name": "Studio",
+        "description": "Profesjonalne oświetlenie trójpunktowe"
+      },
+      "golden": {
+        "name": "Złota godzina",
+        "description": "Ciepłe światło zachodu słońca"
+      },
+      "dramatic": {
+        "name": "Dramatyczne",
+        "description": "Wysoki kontrast z głębokimi cieniami"
+      }
     },
     "howItWorks": {
-      "title": "Jak to działa",
+      "title": "Jak to",
+      "titleHighlight": "działa",
       "step1": {
         "title": "Prześlij portret",
         "description": "Prześlij dowolne zdjęcie portretowe"
@@ -4532,8 +4549,12 @@
         "description": "Wybierz preset lub własny styl"
       },
       "step3": {
+        "title": "AI przekształca",
+        "description": "AI analizuje i zmienia oświetlenie"
+      },
+      "step4": {
         "title": "Pobierz wynik",
-        "description": "Pobierz prześwietlony portret"
+        "description": "Pobierz portret z nowym oświetleniem"
       }
     },
     "lightingPresets": {
@@ -4564,36 +4585,96 @@
       }
     },
     "features": {
+      "title": "Funkcje",
       "aiPowered": {
         "title": "Zasilane AI",
         "description": "ICLight V2 dla realistycznego efektu"
       },
       "customPrompts": {
         "title": "Własne prompty",
-        "description": "Opisz dowolny scenariusz"
+        "description": "Opisz dowolny scenariusz oświetlenia"
       },
       "fastProcessing": {
         "title": "Szybkie przetwarzanie",
-        "description": "Wyniki w sekundach"
+        "description": "Wyniki w kilka sekund"
       }
     },
     "useCases": {
       "title": "Zastosowania",
       "photographers": {
+        "icon": "📸",
         "title": "Fotografowie",
         "description": "Popraw oświetlenie w postprodukcji"
       },
       "contentCreators": {
+        "icon": "🎬",
         "title": "Twórcy treści",
-        "description": "Spójne oświetlenie"
+        "description": "Spójne oświetlenie dla wszystkich zdjęć"
       },
       "ecommerce": {
+        "icon": "💼",
         "title": "E-commerce",
         "description": "Profesjonalne headshoty"
       },
       "socialMedia": {
+        "icon": "📱",
         "title": "Social Media",
-        "description": "Ulepszone selfie"
+        "description": "Ulepszone selfie i portrety"
+      }
+    },
+    "technology": {
+      "title": "Technologia ICLight V2",
+      "description": "Portrait Relight wykorzystuje model ICLight V2 do realistycznej zmiany oświetlenia portretów przy zachowaniu naturalnego wyglądu skóry i detali.",
+      "feature1": "Zaawansowany model ICLight V2",
+      "feature2": "Realistyczne cienie i światła",
+      "feature3": "Zachowanie tekstury skóry",
+      "feature4": "Przetwarzanie na dedykowanych GPU"
+    },
+    "limitations": {
+      "title": "Co warto wiedzieć",
+      "worksWell": {
+        "title": "Działa najlepiej z",
+        "item1": "Portretami z wyraźną twarzą",
+        "item2": "Zdjęciami w dobrej jakości",
+        "item3": "Pojedynczymi osobami na zdjęciu"
+      },
+      "limitations": {
+        "title": "Ograniczenia",
+        "item1": "Zdjęcia grupowe mogą dawać nierówne wyniki",
+        "item2": "Bardzo ciemne zdjęcia wymagają więcej przetwarzania",
+        "item3": "Niektóre ekstremalne kąty mogą być problematyczne"
+      }
+    },
+    "tips": {
+      "title": "Wskazówki",
+      "tip1": "Używaj zdjęć wysokiej rozdzielczości",
+      "tip2": "Twarz powinna być dobrze widoczna",
+      "tip3": "Wypróbuj różne presety na tym samym zdjęciu",
+      "tip4": "Preset Studio idealny do zdjęć biznesowych",
+      "tip5": "Złota godzina dodaje ciepła portretom",
+      "tip6": "Dramatyczny świetny do artystycznych efektów"
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "q1": {
+        "question": "Czym jest Portrait Relight?",
+        "answer": "Narzędzie AI do zmiany oświetlenia na portretach. Możesz przekształcić zwykłe zdjęcie w profesjonalnie oświetlony portret."
+      },
+      "q2": {
+        "question": "Jakie presety są dostępne?",
+        "answer": "Studio, Złota godzina, Dramatyczne, Neon, Naturalne, Rembrandt i więcej. Możesz też opisać własne oświetlenie."
+      },
+      "q3": {
+        "question": "Czy zachowam jakość zdjęcia?",
+        "answer": "Tak, AI zachowuje szczegóły i teksturę skóry, zmieniając tylko oświetlenie i cienie."
+      },
+      "q4": {
+        "question": "Ile trwa przetwarzanie?",
+        "answer": "Zazwyczaj około 10-15 sekund na dedykowanych serwerach GPU."
+      },
+      "q5": {
+        "question": "Czy działa ze zdjęciami grupowymi?",
+        "answer": "Najlepiej działa z pojedynczymi portretami. Zdjęcia grupowe mogą dawać nierówne rezultaty."
       }
     },
     "relatedTools": {
@@ -4614,8 +4695,8 @@
     "cta": {
       "title": "Gotowy na transformację portretów?",
       "subtitle": "Zacznij zmieniać oświetlenie zdjęć z AI",
-      "exploreTools": "Przeglądaj narzędzia",
-      "viewPricing": "Zobacz ceny"
+      "getStarted": "Rozpocznij za darmo",
+      "startAction": "Zmień oświetlenie"
     }
   },
   "watermarkRemover": {
@@ -5403,47 +5484,47 @@
     }
   },
   "imageFiltersPage": {
-    "badge": "Filtry Obrazów AI",
-    "title": "Artystyczne",
-    "titleHighlight": "Filtry AI",
-    "subtitle": "Przekształć swoje zdjęcia w dzieła sztuki z profesjonalnymi filtrami AI. Od vintage po cyberpunk, od malarstwa olejnego po anime - stwórz unikalne wizualizacje w kilka sekund.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
+    "badge": "Darmowe Filtry Zdjęć",
+    "title": "Zastosuj Profesjonalne",
+    "titleHighlight": "Filtry Zdjęć",
+    "subtitle": "Ulepsz swoje zdjęcia profesjonalnymi filtrami i korektami. Stosuj presety w stylu Instagram lub dopasowuj jasność, kontrast, nasycenie i więcej. Przetwarzanie w przeglądarce - całkowicie za darmo.",
+    "termsNotice": "Obrazy są przetwarzane lokalnie w Twojej przeglądarce.",
     "stats": {
-      "credits": "2",
-      "creditsLabel": "Kredyty/obraz",
-      "filters": "25+",
-      "filtersLabel": "Filtrów",
-      "processing": "~15s",
-      "processingLabel": "Czas przetwarzania"
+      "cost": "DARMOWE",
+      "costLabel": "Bez kredytów",
+      "presets": "6+",
+      "presetsLabel": "Presetów filtrów",
+      "sliders": "5",
+      "slidersLabel": "Regulacji"
     },
     "options": {
-      "title": "Popularne filtry",
+      "title": "Popularne presety filtrów",
       "vintage": {
         "name": "Vintage",
-        "description": "Klasyczny retro look z ciepłymi tonami"
+        "description": "Ciepłe, nostalgiczne tony z wyblakłą czernią. Idealny do estetyki retro."
       },
-      "oil": {
-        "name": "Malarstwo olejne",
-        "description": "Realistyczny efekt malowania olejnego"
+      "dramatic": {
+        "name": "Dramatyczny",
+        "description": "Wysoki kontrast z głębokimi cieniami. Tworzy odważny, kinowy wygląd."
       },
-      "anime": {
-        "name": "Anime",
-        "description": "Stylizacja w stylu anime i manga"
+      "cool": {
+        "name": "Chłodne tony",
+        "description": "Kolory przesunięte w stronę błękitu dla świeżego, nowoczesnego efektu."
       }
     },
     "features": {
-      "title": "Funkcje",
-      "manyFilters": {
-        "title": "25+ filtrów",
-        "description": "Ogromny wybór stylów artystycznych do wyboru"
+      "title": "Funkcje filtrów zdjęć",
+      "presets": {
+        "title": "Presety jednym kliknięciem",
+        "description": "Natychmiastowe profesjonalne filtry: Szarość, Sepia, Vintage, Chłodny, Ciepły i Dramatyczny."
       },
-      "aiPowered": {
-        "title": "AI-powered",
-        "description": "Inteligentne algorytmy dla najlepszych wyników"
+      "adjustments": {
+        "title": "Precyzyjne kontrolki",
+        "description": "Dokładne suwaki do regulacji jasności, kontrastu, nasycenia, rozmycia i ostrości."
       },
-      "highQuality": {
-        "title": "Wysoka jakość",
-        "description": "Zachowanie detali przy transformacji"
+      "preview": {
+        "title": "Podgląd w czasie rzeczywistym",
+        "description": "Zobacz zmiany natychmiast podczas regulacji. Bez czekania, bez opóźnień."
       }
     },
     "howItWorks": {
@@ -5467,35 +5548,35 @@
       }
     },
     "useCases": {
-      "title": "Zastosowania",
+      "title": "Idealne do ulepszania zdjęć",
       "social": {
         "icon": "📱",
-        "title": "Media społecznościowe",
-        "description": "Wyróżnij posty unikalnymi stylami"
+        "title": "Posty w social media",
+        "description": "Twórz spójne, profesjonalne feedy z konsystentnym stylem filtrów."
       },
-      "art": {
-        "icon": "🎨",
-        "title": "Sztuka cyfrowa",
-        "description": "Twórz dzieła sztuki z fotek"
+      "photography": {
+        "icon": "📸",
+        "title": "Fotografia",
+        "description": "Szybka edycja wsadowa i stosowanie stylów do kolekcji zdjęć."
       },
-      "prints": {
-        "icon": "🖼️",
-        "title": "Druki artystyczne",
-        "description": "Zdjęcia jako obrazy do powieszenia"
+      "products": {
+        "icon": "🛍️",
+        "title": "Zdjęcia produktów",
+        "description": "Ulepsz zdjęcia produktów korektą jasności i kontrastu."
       },
-      "gifts": {
-        "icon": "🎁",
-        "title": "Personalizowane prezenty",
-        "description": "Unikalne prezenty ze zdjęć"
+      "personal": {
+        "icon": "🎞️",
+        "title": "Zdjęcia osobiste",
+        "description": "Popraw stare lub słabo oświetlone zdjęcia szybkimi korektami."
       }
     },
     "technology": {
-      "title": "Technologia",
-      "description": "Nasze filtry wykorzystują zaawansowane sieci neuronowe do analizy i transformacji obrazów z zachowaniem jakości.",
-      "feature1": "Sieci neuronowe do transferu stylu",
-      "feature2": "Zachowanie struktury obrazu",
-      "feature3": "Inteligentna korekta kolorów",
-      "feature4": "Optymalizacja dla różnych stylów"
+      "title": "🎨 Przetwarzanie w przeglądarce",
+      "description": "Nasze narzędzie filtrów używa Canvas API i filtrów CSS do przetwarzania obrazów całkowicie w przeglądarce. Oznacza to natychmiastowe wyniki, pełną prywatność i brak limitów - Twoje obrazy nigdy nie opuszczają urządzenia.",
+      "feature1": "Podgląd w czasie rzeczywistym bez przetwarzania na serwerze",
+      "feature2": "Pełna prywatność - obrazy pozostają na Twoim urządzeniu",
+      "feature3": "Brak limitów rozmiaru ani znaków wodnych",
+      "feature4": "Działa offline po załadowaniu strony"
     },
     "limitations": {
       "title": "Co warto wiedzieć",
@@ -6013,33 +6094,33 @@
       "qualityLabel": "Jakość wyjściowa"
     },
     "options": {
-      "title": "Tryby reimagine",
-      "creative": {
-        "name": "Kreatywny",
-        "description": "Maksymalna kreatywność, duże zmiany"
+      "title": "Style transformacji",
+      "artistic": {
+        "name": "Artystyczny",
+        "description": "Przekształć zdjęcia w obrazy, akwarele, malarstwo olejne i inne style artystyczne."
       },
-      "subtle": {
-        "name": "Subtelny",
-        "description": "Delikatne modyfikacje, zachowany styl"
+      "illustration": {
+        "name": "Ilustracja",
+        "description": "Konwertuj obrazy na ilustracje cyfrowe, grafikę wektorową lub styl komiksowy."
       },
-      "dramatic": {
-        "name": "Dramatyczny",
-        "description": "Znaczące zmiany atmosfery i nastroju"
+      "fantasy": {
+        "name": "Fantasy",
+        "description": "Reimagine sceny z magicznymi, sci-fi lub nadprzyrodzonymi elementami."
       }
     },
     "features": {
-      "title": "Funkcje",
-      "variations": {
-        "title": "Nieskończone wariacje",
-        "description": "Każde generowanie daje unikalne wyniki"
-      },
-      "preservation": {
+      "title": "Dlaczego Reimagine",
+      "structurePreserving": {
         "title": "Zachowanie struktury",
-        "description": "Kompozycja pozostaje, zmienia się styl"
+        "description": "Utrzymuje kompozycję i układ oryginalnego obrazu podczas stosowania kreatywnych transformacji."
       },
-      "customization": {
-        "title": "Kontrola siły",
-        "description": "Dostosuj jak bardzo zmienia się obraz"
+      "styleVariety": {
+        "title": "Nieskończone style",
+        "description": "Od fotorealistycznych po abstrakcyjne, kreskówkowe po kinowe - wybieraj spośród dziesiątek stylów."
+      },
+      "customPrompts": {
+        "title": "Własne prompty",
+        "description": "Opisz dokładnie jak chcesz przekształcić obraz dla precyzyjnej kontroli kreatywnej."
       }
     },
     "howItWorks": {
@@ -6063,26 +6144,26 @@
       }
     },
     "useCases": {
-      "title": "Zastosowania",
-      "creative": {
+      "title": "Kreatywne możliwości",
+      "artists": {
         "icon": "🎨",
-        "title": "Eksploracja kreatywna",
-        "description": "Odkryj nowe wersje swojego dzieła"
+        "title": "Artyści cyfrowi",
+        "description": "Przekształcaj zdjęcia w referencje artystyczne lub twórz unikalne dzieła sztuki."
       },
-      "marketing": {
-        "icon": "📊",
-        "title": "A/B Testing",
-        "description": "Testuj różne wersje grafik"
-      },
-      "social": {
+      "content": {
         "icon": "📱",
-        "title": "Social Media",
-        "description": "Wiele wersji jednego zdjęcia"
+        "title": "Twórcy treści",
+        "description": "Twórz przyciągające uwagę, unikalne wizualizacje dla mediów społecznościowych i marketingu."
       },
-      "design": {
-        "icon": "✏️",
-        "title": "Projektowanie",
-        "description": "Szybkie iteracje konceptów"
+      "gaming": {
+        "icon": "🎮",
+        "title": "Tworzenie gier",
+        "description": "Przekształcaj prawdziwe zdjęcia w assety gotowe do gier i concept art."
+      },
+      "personal": {
+        "icon": "🖼️",
+        "title": "Projekty osobiste",
+        "description": "Zamieniaj zdjęcia rodzinne w dzieła sztuki, ilustracje lub sceny fantasy."
       }
     },
     "technology": {
@@ -6443,155 +6524,6 @@
       "subtitle": "Twórz z precyzją zachowując kompozycję.",
       "getStarted": "Rozpocznij za darmo",
       "startAction": "Generuj z kontrolą"
-    }
-  },
-  "portraitRelightPage": {
-    "badge": "Portrait Relight AI",
-    "title": "Portrait",
-    "titleHighlight": "Relight AI",
-    "subtitle": "Zmień oświetlenie portretów z AI. Studjyne światło, złota godzina, dramatyczny cień - przekształć zwykłe zdjęcie w profesjonalny portret.",
-    "termsNotice": "Używając tego narzędzia, zgadzasz się z naszymi warunkami korzystania.",
-    "stats": {
-      "credits": "3",
-      "creditsLabel": "Kredyty/obraz",
-      "presets": "12+",
-      "presetsLabel": "Presetów światła",
-      "processing": "~25s",
-      "processingLabel": "Czas przetwarzania"
-    },
-    "options": {
-      "title": "Presety oświetlenia",
-      "studio": {
-        "name": "Studyjne",
-        "description": "Profesjonalne, równomierne oświetlenie"
-      },
-      "natural": {
-        "name": "Naturalne",
-        "description": "Miękkie światło dzienne przez okno"
-      },
-      "dramatic": {
-        "name": "Dramatyczne",
-        "description": "Kontrastowe, filmowe oświetlenie"
-      }
-    },
-    "features": {
-      "title": "Funkcje",
-      "lightingPresets": {
-        "title": "12+ presetów",
-        "description": "Gotowe schematy oświetlenia do wyboru"
-      },
-      "aiDetection": {
-        "title": "Detekcja twarzy",
-        "description": "AI automatycznie wykrywa i oświetla twarz"
-      },
-      "customPrompts": {
-        "title": "Własne ustawienia",
-        "description": "Opisz własne oświetlenie promptem"
-      }
-    },
-    "howItWorks": {
-      "title": "Jak to",
-      "titleHighlight": "działa",
-      "step1": {
-        "title": "Prześlij portret",
-        "description": "Zdjęcie z widoczną twarzą"
-      },
-      "step2": {
-        "title": "Wybierz oświetlenie",
-        "description": "Preset lub własny opis"
-      },
-      "step3": {
-        "title": "Przetwarzaj",
-        "description": "AI zmienia oświetlenie portretu"
-      },
-      "step4": {
-        "title": "Pobierz",
-        "description": "Zapisz prześwietlony portret"
-      }
-    },
-    "useCases": {
-      "title": "Zastosowania",
-      "photographers": {
-        "icon": "📷",
-        "title": "Fotografowie",
-        "description": "Popraw oświetlenie w post-produkcji"
-      },
-      "headshots": {
-        "icon": "💼",
-        "title": "Headshots",
-        "description": "Profesjonalne portrety biznesowe"
-      },
-      "social": {
-        "icon": "📱",
-        "title": "Social Media",
-        "description": "Lepiej oświetlone zdjęcia profilowe"
-      },
-      "ecommerce": {
-        "icon": "🛒",
-        "title": "E-commerce",
-        "description": "Profesjonalne zdjęcia produktów z modelem"
-      }
-    },
-    "technology": {
-      "title": "Technologia",
-      "description": "Nasz model IC-Light analizuje geometrię twarzy i realistycznie symuluje nowe źródła światła.",
-      "feature1": "Analiza geometrii 3D twarzy",
-      "feature2": "Symulacja fizyki światła",
-      "feature3": "Zachowanie tekstury skóry",
-      "feature4": "Naturalne cienie i refleksy"
-    },
-    "limitations": {
-      "title": "Co warto wiedzieć",
-      "worksWell": {
-        "title": "Działa dobrze z",
-        "item1": "Portretami z widoczną twarzą",
-        "item2": "Zdjęciami dobrej jakości",
-        "item3": "Portretami z neutralnym tłem"
-      },
-      "limitations": {
-        "title": "Ograniczenia",
-        "item1": "Profile i pół-profile są trudniejsze",
-        "item2": "Bardzo ciemne zdjęcia mogą tracić detale",
-        "item3": "Złożone tła mogą być zmienione"
-      }
-    },
-    "tips": {
-      "title": "Wskazówki",
-      "tip1": "Używaj zdjęć z widoczną całą twarzą",
-      "tip2": "Lepsze wyniki z neutralnym tłem",
-      "tip3": "Unikaj bardzo ciemnych zdjęć",
-      "tip4": "Testuj różne presety na tym samym zdjęciu",
-      "tip5": "Dla biznesowych headshots wybierz 'Studyjne'",
-      "tip6": "Dla artystycznych portretów wypróbuj 'Dramatyczne'"
-    },
-    "faq": {
-      "title": "Często zadawane pytania",
-      "q1": {
-        "question": "Czy zmieni to moją twarz?",
-        "answer": "Nie, Relight zmienia tylko oświetlenie. Twarz, cechy i wyraz pozostają bez zmian."
-      },
-      "q2": {
-        "question": "Jakie presety są dostępne?",
-        "answer": "Studyjne, naturalne, złota godzina, neon, dramatyczne, Rembrandt, split light i więcej."
-      },
-      "q3": {
-        "question": "Czy działa ze zdjęciami grupowymi?",
-        "answer": "Najlepiej działa z pojedynczymi portretami. Dla grup każda twarz może wymagać osobnej korekty."
-      },
-      "q4": {
-        "question": "Jak uzyskać najlepsze wyniki?",
-        "answer": "Używaj wyraźnych zdjęć z twarzą widoczną od przodu, dobrą jakością i neutralnym tłem."
-      },
-      "q5": {
-        "question": "Czy mogę opisać własne oświetlenie?",
-        "answer": "Tak, oprócz presetów możesz opisać pożądane oświetlenie w polu prompt."
-      }
-    },
-    "cta": {
-      "title": "Zmień oświetlenie portretu",
-      "subtitle": "Profesjonalne światło jednym kliknięciem.",
-      "getStarted": "Rozpocznij za darmo",
-      "startAction": "Oświetl portret"
     }
   }
 }

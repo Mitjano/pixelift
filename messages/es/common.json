@@ -5009,44 +5009,44 @@
     "badge": "Filtros de Fotos Gratuitos",
     "title": "Aplica Filtros",
     "titleHighlight": "Profesionales de Fotos",
-    "subtitle": "Transforma tus fotos con filtros de grado profesional directamente en tu navegador. Ajusta brillo, contraste, saturación y aplica efectos creativos. Herramienta de edición de fotos gratuita, sin subidas - todo el procesamiento ocurre localmente.",
+    "subtitle": "Mejora tus fotos con filtros y ajustes profesionales. Aplica presets estilo Instagram o ajusta brillo, contraste, saturación y más. Procesamiento en el navegador - completamente gratis.",
     "stats": {
       "cost": "GRATIS",
       "costLabel": "Sin Créditos",
-      "filters": "15+",
-      "filtersLabel": "Opciones de Filtros",
-      "processing": "Local",
-      "processingLabel": "En Tu Navegador"
+      "presets": "6+",
+      "presetsLabel": "Presets de Filtros",
+      "sliders": "5",
+      "slidersLabel": "Ajustes"
     },
-    "termsNotice": "Las imágenes se procesan localmente en tu navegador y nunca se suben.",
+    "termsNotice": "Las imágenes se procesan localmente en tu navegador.",
     "options": {
-      "title": "Efectos de Filtro Populares",
-      "brightness": {
-        "name": "Brillo y Contraste",
-        "description": "Ajusta la exposición y el contraste para corregir fotos mal iluminadas o añadir efectos dramáticos."
+      "title": "Presets de Filtros Populares",
+      "vintage": {
+        "name": "Vintage",
+        "description": "Tonos cálidos y nostálgicos con negros desvanecidos. Perfecto para estética retro."
       },
-      "saturation": {
-        "name": "Saturación de Color",
-        "description": "Mejora o reduce la vivacidad del color. Crea looks vibrantes o elegantes efectos monocromáticos."
+      "dramatic": {
+        "name": "Dramático",
+        "description": "Alto contraste con sombras profundas. Crea looks audaces y cinematográficos."
       },
-      "effects": {
-        "name": "Efectos Creativos",
-        "description": "Aplica efectos de desenfoque, nitidez, sepia, escala de grises y viñeta para acabados únicos."
+      "cool": {
+        "name": "Tonos Fríos",
+        "description": "Colores con tonos azules para un efecto fresco y moderno."
       }
     },
     "features": {
-      "title": "Características de Filtros de Imagen",
+      "title": "Características de Filtros de Fotos",
+      "presets": {
+        "title": "Presets de Un Clic",
+        "description": "Aplica filtros profesionales al instante: Escala de grises, Sepia, Vintage, Frío, Cálido y Dramático."
+      },
       "adjustments": {
-        "title": "Ajustes Completos",
-        "description": "Control preciso sobre brillo, contraste, saturación, tono, opacidad y más. Cada control deslizante proporciona edición de calidad profesional."
+        "title": "Controles de Ajuste Fino",
+        "description": "Controles deslizantes precisos para brillo, contraste, saturación, desenfoque y nitidez."
       },
-      "effects": {
-        "title": "Efectos Creativos",
-        "description": "Desenfoque y nitidez para profundidad, sepia y escala de grises para looks clásicos, viñeta para enfoque, e inversión para efectos artísticos."
-      },
-      "privacy": {
-        "title": "Privacidad Total",
-        "description": "Todo el procesamiento ocurre en tu navegador. Tus fotos nunca salen de tu dispositivo - sin subidas, sin almacenamiento en servidor."
+      "preview": {
+        "title": "Vista Previa en Tiempo Real",
+        "description": "Ve los cambios al instante mientras ajustas. Sin esperas, sin retrasos de procesamiento."
       }
     },
     "howItWorks": {
@@ -5070,26 +5070,26 @@
       }
     },
     "useCases": {
-      "title": "Perfecto Para Edición de Fotos",
+      "title": "Perfecto Para Mejorar Fotos",
       "social": {
         "icon": "📱",
-        "title": "Publicaciones en Redes Sociales",
-        "description": "Mejora rápidamente fotos para Instagram, Facebook y Twitter con filtros de nivel profesional."
+        "title": "Posts en Redes Sociales",
+        "description": "Crea feeds coherentes y profesionales con estilos de filtro consistentes."
       },
       "photography": {
-        "icon": "📷",
-        "title": "Corrección de Fotos",
-        "description": "Arregla exposición, color y contraste en fotos mal iluminadas o descoloridas."
+        "icon": "📸",
+        "title": "Fotografía",
+        "description": "Edición por lotes rápida y aplicación de estilos para colecciones de fotos."
       },
-      "creative": {
-        "icon": "🎨",
-        "title": "Proyectos Creativos",
-        "description": "Crea looks únicos para portfolios, blogs y proyectos de diseño con efectos creativos."
+      "products": {
+        "icon": "🛍️",
+        "title": "Fotos de Productos",
+        "description": "Mejora las imágenes de productos con ajustes de brillo y contraste."
       },
-      "quick": {
-        "icon": "⚡",
-        "title": "Ediciones Rápidas",
-        "description": "Haz ajustes rápidos sin instalar software pesado ni crear cuentas."
+      "personal": {
+        "icon": "🎞️",
+        "title": "Fotos Personales",
+        "description": "Mejora fotos antiguas o mal iluminadas con ajustes rápidos."
       }
     },
     "technology": {
@@ -5616,33 +5616,33 @@
     },
     "termsNotice": "Al usar esta herramienta aceptas nuestros Términos de Uso y Política de Privacidad.",
     "options": {
-      "title": "Opciones de Transformación",
-      "style": {
-        "name": "Transformación de Estilo",
-        "description": "Transforma imágenes en diferentes estilos artísticos como pintura al óleo, acuarela, arte digital y más."
+      "title": "Estilos de Transformación",
+      "artistic": {
+        "name": "Artístico",
+        "description": "Transforma fotos en pinturas, acuarelas, óleos y otros estilos artísticos."
       },
-      "variation": {
-        "name": "Generación de Variaciones",
-        "description": "Crea variaciones únicas manteniendo el concepto y composición central de tu imagen."
+      "illustration": {
+        "name": "Ilustración",
+        "description": "Convierte imágenes en ilustraciones digitales, arte vectorial o estilo cómic."
       },
-      "creative": {
-        "name": "Reinterpretación Creativa",
-        "description": "Deja que la IA reimagine tu imagen con libertad creativa para resultados sorprendentes."
+      "fantasy": {
+        "name": "Fantasía",
+        "description": "Reimagina escenas con elementos mágicos, sci-fi o sobrenaturales."
       }
     },
     "features": {
-      "title": "Características de Reimaginación con IA",
-      "aiPowered": {
-        "title": "Modelo Flux AI Avanzado",
-        "description": "Impulsado por el modelo Flux Schnell de última generación que entiende contexto, composición y estilo para transformaciones inteligentes."
+      "title": "Por qué elegir Reimagine",
+      "structurePreserving": {
+        "title": "Preservación de Estructura",
+        "description": "Mantiene la composición y el diseño de tu imagen original mientras aplica transformaciones creativas."
       },
-      "preservation": {
-        "title": "Preservación de Esencia",
-        "description": "Mantiene los elementos centrales y el significado de tu imagen original mientras aplica transformaciones creativas."
+      "styleVariety": {
+        "title": "Estilos Infinitos",
+        "description": "Desde fotorrealista hasta abstracto, de dibujos animados a cinematográfico - elige entre docenas de estilos."
       },
       "customPrompts": {
         "title": "Prompts Personalizados",
-        "description": "Guía la transformación con instrucciones de texto describiendo el resultado deseado, estilo y atmósfera."
+        "description": "Describe exactamente cómo quieres transformar tu imagen para un control creativo preciso."
       }
     },
     "howItWorks": {
@@ -5669,23 +5669,23 @@
       "title": "Perfecto Para Transformación Creativa",
       "artists": {
         "icon": "🎨",
-        "title": "Artistas y Diseñadores",
-        "description": "Explora variaciones de tu trabajo, encuentra nueva inspiración y crea referencias de concepto rápidamente."
+        "title": "Artistas Digitales",
+        "description": "Transforma fotos en referencias artísticas o crea piezas de arte únicas."
       },
-      "marketing": {
-        "icon": "📣",
-        "title": "Marketing Creativo",
-        "description": "Genera variaciones creativas de fotos de productos para campañas y redes sociales."
+      "content": {
+        "icon": "📱",
+        "title": "Creadores de Contenido",
+        "description": "Crea visuales únicos y llamativos para redes sociales y marketing."
+      },
+      "gaming": {
+        "icon": "🎮",
+        "title": "Desarrollo de Juegos",
+        "description": "Transforma fotos reales en assets para juegos y concept art."
       },
       "personal": {
-        "icon": "📸",
-        "title": "Fotos Personales",
-        "description": "Transforma tus fotos en arte único, retratos con diferentes estilos o variaciones creativas."
-      },
-      "concepts": {
-        "icon": "💡",
-        "title": "Desarrollo de Conceptos",
-        "description": "Itera rápidamente en ideas visuales para presentaciones, pitch decks y brainstorming creativo."
+        "icon": "🖼️",
+        "title": "Proyectos Personales",
+        "description": "Convierte fotos familiares en obras de arte, ilustraciones o escenas de fantasía."
       }
     },
     "technology": {
@@ -6203,12 +6203,12 @@
     "titleHighlight": "Retratos con IA",
     "subtitle": "Transforma la iluminación de tus fotos de retrato con reiluminación impulsada por IA. Aplica iluminación de estudio profesional, efectos de hora dorada, iluminación dramática y más. Arregla fotos mal iluminadas o crea looks cinematográficos únicos.",
     "stats": {
-      "credits": "2",
+      "credits": "3",
       "creditsLabel": "Créditos/Imagen",
-      "presets": "6",
+      "presets": "12+",
       "presetsLabel": "Presets de Iluminación",
-      "aiModel": "ICLight V2",
-      "aiModelLabel": "Motor de Reiluminación"
+      "quality": "HD",
+      "qualityLabel": "Calidad de Salida"
     },
     "termsNotice": "Al usar esta herramienta aceptas nuestros Términos de Uso y Política de Privacidad.",
     "options": {
@@ -6390,116 +6390,6 @@
     },
     "processing": "Reiluminando retrato...",
     "success": "¡Retrato reiluminado exitosamente!"
-  },
-  "portraitRelightPage": {
-    "badge": "Iluminación de Retratos con IA",
-    "title": "Reiluminación de Retratos con IA",
-    "subtitle": "Transforma la iluminación de tus retratos con reiluminación de calidad de estudio impulsada por IA.",
-    "termsNotice": "Al usar esta herramienta, aceptas nuestros Términos de Servicio.",
-    "stats": {
-      "presets": "6",
-      "presetsLabel": "Presets de Iluminación",
-      "aiPowered": "ICLight V2",
-      "aiPoweredLabel": "Modelo IA",
-      "creditCost": "2 Créditos",
-      "creditCostLabel": "Por Imagen"
-    },
-    "howItWorks": {
-      "title": "Cómo Funciona",
-      "step1": {
-        "title": "Subir Retrato",
-        "description": "Sube cualquier foto de retrato"
-      },
-      "step2": {
-        "title": "Elegir Iluminación",
-        "description": "Selecciona un preset o estilo personalizado"
-      },
-      "step3": {
-        "title": "Descargar Resultado",
-        "description": "Obtén tu retrato reiluminado"
-      }
-    },
-    "lightingPresets": {
-      "title": "Presets de Iluminación",
-      "studio": {
-        "title": "Estudio",
-        "description": "Iluminación profesional de tres puntos"
-      },
-      "golden": {
-        "title": "Hora Dorada",
-        "description": "Iluminación cálida de atardecer"
-      },
-      "dramatic": {
-        "title": "Dramático",
-        "description": "Sombras de alto contraste"
-      },
-      "neon": {
-        "title": "Neón",
-        "description": "Iluminación de colores cyberpunk"
-      },
-      "natural": {
-        "title": "Natural",
-        "description": "Luz suave de ventana"
-      },
-      "rembrandt": {
-        "title": "Rembrandt",
-        "description": "Iluminación clásica de triángulo"
-      }
-    },
-    "features": {
-      "aiPowered": {
-        "title": "Potenciado por IA",
-        "description": "ICLight V2 para reiluminación realista"
-      },
-      "customPrompts": {
-        "title": "Prompts Personalizados",
-        "description": "Describe cualquier escenario de iluminación"
-      },
-      "fastProcessing": {
-        "title": "Procesamiento Rápido",
-        "description": "Resultados en segundos"
-      }
-    },
-    "useCases": {
-      "title": "Casos de Uso",
-      "photographers": {
-        "title": "Fotógrafos",
-        "description": "Corrige la iluminación en postproducción"
-      },
-      "contentCreators": {
-        "title": "Creadores de Contenido",
-        "description": "Iluminación consistente"
-      },
-      "ecommerce": {
-        "title": "E-commerce",
-        "description": "Retratos profesionales"
-      },
-      "socialMedia": {
-        "title": "Redes Sociales",
-        "description": "Selfies mejorados"
-      }
-    },
-    "relatedTools": {
-      "title": "Herramientas Relacionadas",
-      "packshot": {
-        "title": "Generador de Packshot",
-        "description": "Fotografía de productos"
-      },
-      "removeBackground": {
-        "title": "Eliminar Fondo",
-        "description": "Fondos transparentes"
-      },
-      "restore": {
-        "title": "Restaurar Rostro",
-        "description": "Mejorar rasgos faciales"
-      }
-    },
-    "cta": {
-      "title": "¿Listo para Transformar tus Retratos?",
-      "subtitle": "Comienza a reiluminar tus fotos con IA hoy",
-      "exploreTools": "Explorar Todas las Herramientas",
-      "viewPricing": "Ver Precios"
-    }
   },
   "watermarkRemover": {
     "auth": {
