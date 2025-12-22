@@ -251,13 +251,18 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Get seed from first successful result (all in batch typically use same seed)
+    const resultSeed = successfulResults[0]?.seed;
+
     return NextResponse.json({
       success: true,
       images: savedImages.map(img => ({
         id: img.id,
         url: img.outputUrl,
         thumbnailUrl: img.thumbnailUrl,
+        seed: img.seed,
       })),
+      seed: resultSeed,
       creditsUsed: actualCreditsUsed,
       creditsRemaining: user.credits - actualCreditsUsed,
       ...(failedCount > 0 && { failedCount }),

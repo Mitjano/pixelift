@@ -1,0 +1,174 @@
+{
+  "mode": {
+    "textToImage": "Tekst na obraz",
+    "imageToImage": "Obraz na obraz"
+  },
+  "prompt": {
+    "label": "Prompt",
+    "placeholderText": "Majestatyczny lew na złotej sawannie, zachód słońca, fotografia 8k...",
+    "placeholderImage": "Przekształć ten obraz w akwarelę..."
+  },
+  "sourceImage": {
+    "label": "Obraz źródłowy",
+    "upload": "Kliknij, aby przesłać"
+  },
+  "enhance": {
+    "button": "Ulepsz",
+    "enhancing": "Ulepszam...",
+    "enhanced": "Ulepszone",
+    "use": "Użyj tego",
+    "cancel": "Anuluj",
+    "applied": "Zastosowano ulepszony prompt!"
+  },
+  "examples": {
+    "button": "Przykłady",
+    "title": "Przykłady promptów",
+    "characters": "znaków",
+    "clickToUse": "Kliknij, aby użyć",
+    "hint": "Kliknij na dowolny przykład, aby go użyć jako prompt. Możesz go dowolnie modyfikować!"
+  },
+  "advanced": {
+    "title": "Opcje zaawansowane",
+    "negativePrompt": "Negatywny prompt"
+  },
+  "visibility": {
+    "public": "Publiczny",
+    "private": "Prywatny"
+  },
+  "generate": {
+    "button": "Generuj",
+    "generating": "Generuję...",
+    "signIn": "Zaloguj się, aby generować",
+    "credits": "kredytów"
+  },
+  "success": {
+    "generated": "Wygenerowano",
+    "images": "obraz(y)",
+    "used": "Użyto",
+    "credits": "kredytów"
+  },
+  "errors": {
+    "invalidImage": "Proszę przesłać plik obrazu",
+    "imageTooLarge": "Obraz musi być mniejszy niż 10MB",
+    "signInRequired": "Proszę się zalogować",
+    "promptTooShort": "Wpisz co najmniej 3 znaki do ulepszenia",
+    "promptRequired": "Proszę wpisać prompt",
+    "sourceImageRequired": "Proszę przesłać obraz źródłowy",
+    "insufficientCredits": "Niewystarczające kredyty",
+    "need": "Potrzebujesz",
+    "have": "masz",
+    "generationFailed": "Nie udało się wygenerować obrazu"
+  },
+  "empty": {
+    "title": "Gotowy do tworzenia",
+    "description": "Wpisz prompt i kliknij Generuj, aby stworzyć obraz AI"
+  },
+  "preview": {
+    "viewFull": "Zobacz pełny"
+  },
+  "history": {
+    "title": "Ostatnie generacje",
+    "viewAll": "Zobacz wszystkie",
+    "empty": "Tutaj pojawią się Twoje ostatnie generacje"
+  },
+  "actions": {
+    "download": "Pobierz",
+    "downloading": "...",
+    "downloaded": "Obraz pobrany!",
+    "downloadError": "Nie udało się pobrać",
+    "copyLink": "Kopiuj link",
+    "linkCopied": "Link skopiowany!",
+    "share": "Udostępnij",
+    "remix": "Remix",
+    "remixApplied": "Ustawienia zastosowane do remixu!",
+    "upscale": "Powiększ 4x",
+    "viewDetails": "Zobacz",
+    "copySeed": "Kopiuj seed",
+    "seedCopied": "Seed skopiowany!"
+  },
+  "info": {
+    "model": "Model",
+    "style": "Styl",
+    "seed": "Seed",
+    "size": "Rozmiar"
+  },
+  "share": {
+    "title": "Udostępnij obraz",
+    "shareLink": "Link do udostępnienia",
+    "shareOn": "Udostępnij w social media",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano",
+    "linkCopied": "Link skopiowany!"
+  },
+  "modal": {
+    "prompt": "Prompt",
+    "copy": "Kopiuj",
+    "promptCopied": "Prompt skopiowany!",
+    "linkCopied": "Link skopiowany!",
+    "seedCopied": "Seed skopiowany!",
+    "showLess": "Pokaż mniej",
+    "readMore": "Czytaj więcej",
+    "settings": "Ustawienia",
+    "model": "Model",
+    "aspectRatio": "Proporcje",
+    "resolution": "Rozdzielczość",
+    "seed": "Seed",
+    "duration": "Czas trwania",
+    "likes": "polubień",
+    "views": "wyświetleń",
+    "download": "Pobierz",
+    "downloaded": "Pobrano!",
+    "downloadFailed": "Nie udało się pobrać",
+    "copyLink": "Kopiuj link",
+    "copied": "Skopiowano!",
+    "share": "Udostępnij",
+    "like": "Polub",
+    "liked": "Polubione",
+    "unliked": "Odpolubione",
+    "signInToLike": "Zaloguj się, aby polubić",
+    "viewFullPage": "Zobacz pełną stronę",
+    "makePrivate": "Ustaw jako prywatne",
+    "publishToGallery": "Opublikuj w galerii",
+    "delete": "Usuń",
+    "deleting": "Usuwam...",
+    "deleted": "Obraz usunięty",
+    "deleteConfirm": "Czy na pewno chcesz usunąć ten obraz? Tej operacji nie można cofnąć."
+  },
+  "detail": {
+    "backToAiImage": "Wróć do AI Image",
+    "notFound": "Nie znaleziono obrazu",
+    "download": "Pobierz",
+    "downloaded": "Obraz pobrany!",
+    "downloadFailed": "Nie udało się pobrać",
+    "copyLink": "Kopiuj link",
+    "copied": "Skopiowano!",
+    "linkCopied": "Link skopiowany!",
+    "share": "Udostępnij",
+    "remix": "Remix",
+    "likes": "polubień",
+    "views": "wyświetleń",
+    "prompt": "Prompt",
+    "copy": "Kopiuj",
+    "promptCopied": "Prompt skopiowany!",
+    "seedCopied": "Seed skopiowany!",
+    "settings": "Ustawienia",
+    "model": "Model",
+    "mode": "Tryb",
+    "style": "Styl",
+    "aspectRatio": "Proporcje",
+    "resolution": "Rozdzielczość",
+    "seed": "Seed",
+    "visibility": "Widoczność",
+    "like": "Polub",
+    "liked": "Polubione",
+    "unliked": "Odpolubione",
+    "signInToLike": "Zaloguj się, aby polubić",
+    "upscale": "Powiększ 4x",
+    "makePrivate": "Ustaw jako prywatne",
+    "publishToGallery": "Opublikuj w galerii",
+    "delete": "Usuń",
+    "deleting": "Usuwam...",
+    "deleted": "Obraz usunięty",
+    "deleteConfirm": "Czy na pewno chcesz usunąć ten obraz?"
+  }
+}

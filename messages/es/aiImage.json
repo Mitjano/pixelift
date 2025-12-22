@@ -1,0 +1,174 @@
+{
+  "mode": {
+    "textToImage": "Texto a imagen",
+    "imageToImage": "Imagen a imagen"
+  },
+  "prompt": {
+    "label": "Prompt",
+    "placeholderText": "Un majestuoso león en la sabana dorada, luz del atardecer, fotografía 8k...",
+    "placeholderImage": "Transforma esta imagen en una pintura de acuarela..."
+  },
+  "sourceImage": {
+    "label": "Imagen de origen",
+    "upload": "Haz clic para subir"
+  },
+  "enhance": {
+    "button": "Mejorar",
+    "enhancing": "Mejorando...",
+    "enhanced": "Mejorado",
+    "use": "Usar esto",
+    "cancel": "Cancelar",
+    "applied": "¡Prompt mejorado aplicado!"
+  },
+  "examples": {
+    "button": "Ejemplos",
+    "title": "Ejemplos de prompts",
+    "characters": "caracteres",
+    "clickToUse": "Haz clic para usar",
+    "hint": "¡Haz clic en cualquier ejemplo para usarlo como tu prompt. Siéntete libre de modificarlo!"
+  },
+  "advanced": {
+    "title": "Opciones avanzadas",
+    "negativePrompt": "Prompt negativo"
+  },
+  "visibility": {
+    "public": "Público",
+    "private": "Privado"
+  },
+  "generate": {
+    "button": "Generar",
+    "generating": "Generando...",
+    "signIn": "Inicia sesión para generar",
+    "credits": "créditos"
+  },
+  "success": {
+    "generated": "Generado",
+    "images": "imagen(es)",
+    "used": "Usado",
+    "credits": "créditos"
+  },
+  "errors": {
+    "invalidImage": "Por favor sube un archivo de imagen",
+    "imageTooLarge": "La imagen debe ser menor de 10MB",
+    "signInRequired": "Por favor inicia sesión",
+    "promptTooShort": "Ingresa al menos 3 caracteres para mejorar",
+    "promptRequired": "Por favor ingresa un prompt",
+    "sourceImageRequired": "Por favor sube una imagen de origen",
+    "insufficientCredits": "Créditos insuficientes",
+    "need": "Necesitas",
+    "have": "tienes",
+    "generationFailed": "Error al generar imagen"
+  },
+  "empty": {
+    "title": "Listo para crear",
+    "description": "Ingresa un prompt y haz clic en Generar para crear tu imagen AI"
+  },
+  "preview": {
+    "viewFull": "Ver completo"
+  },
+  "history": {
+    "title": "Generaciones recientes",
+    "viewAll": "Ver todo",
+    "empty": "Tus generaciones recientes aparecerán aquí"
+  },
+  "actions": {
+    "download": "Descargar",
+    "downloading": "...",
+    "downloaded": "¡Imagen descargada!",
+    "downloadError": "Error al descargar",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "¡Enlace copiado!",
+    "share": "Compartir",
+    "remix": "Remix",
+    "remixApplied": "¡Configuración aplicada para remix!",
+    "upscale": "Escalar 4x",
+    "viewDetails": "Ver",
+    "copySeed": "Copiar seed",
+    "seedCopied": "¡Seed copiado!"
+  },
+  "info": {
+    "model": "Modelo",
+    "style": "Estilo",
+    "seed": "Seed",
+    "size": "Tamaño"
+  },
+  "share": {
+    "title": "Compartir imagen",
+    "shareLink": "Enlace para compartir",
+    "shareOn": "Compartir en redes sociales",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "linkCopied": "¡Enlace copiado!"
+  },
+  "modal": {
+    "prompt": "Prompt",
+    "copy": "Copiar",
+    "promptCopied": "¡Prompt copiado!",
+    "linkCopied": "¡Enlace copiado!",
+    "seedCopied": "¡Seed copiado!",
+    "showLess": "Mostrar menos",
+    "readMore": "Leer más",
+    "settings": "Configuración",
+    "model": "Modelo",
+    "aspectRatio": "Relación de aspecto",
+    "resolution": "Resolución",
+    "seed": "Seed",
+    "duration": "Duración",
+    "likes": "me gusta",
+    "views": "vistas",
+    "download": "Descargar",
+    "downloaded": "¡Descargado!",
+    "downloadFailed": "Error al descargar",
+    "copyLink": "Copiar enlace",
+    "copied": "¡Copiado!",
+    "share": "Compartir",
+    "like": "Me gusta",
+    "liked": "Me gusta",
+    "unliked": "Ya no me gusta",
+    "signInToLike": "Inicia sesión para dar me gusta",
+    "viewFullPage": "Ver página completa",
+    "makePrivate": "Hacer privado",
+    "publishToGallery": "Publicar en galería",
+    "delete": "Eliminar",
+    "deleting": "Eliminando...",
+    "deleted": "Imagen eliminada",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar esta imagen? Esta acción no se puede deshacer."
+  },
+  "detail": {
+    "backToAiImage": "Volver a AI Image",
+    "notFound": "Imagen no encontrada",
+    "download": "Descargar",
+    "downloaded": "¡Imagen descargada!",
+    "downloadFailed": "Error al descargar",
+    "copyLink": "Copiar enlace",
+    "copied": "¡Copiado!",
+    "linkCopied": "¡Enlace copiado!",
+    "share": "Compartir",
+    "remix": "Remix",
+    "likes": "me gusta",
+    "views": "vistas",
+    "prompt": "Prompt",
+    "copy": "Copiar",
+    "promptCopied": "¡Prompt copiado!",
+    "seedCopied": "¡Seed copiado!",
+    "settings": "Configuración",
+    "model": "Modelo",
+    "mode": "Modo",
+    "style": "Estilo",
+    "aspectRatio": "Relación de aspecto",
+    "resolution": "Resolución",
+    "seed": "Seed",
+    "visibility": "Visibilidad",
+    "like": "Me gusta",
+    "liked": "Me gusta",
+    "unliked": "Ya no me gusta",
+    "signInToLike": "Inicia sesión para dar me gusta",
+    "upscale": "Escalar 4x",
+    "makePrivate": "Hacer privado",
+    "publishToGallery": "Publicar en galería",
+    "delete": "Eliminar",
+    "deleting": "Eliminando...",
+    "deleted": "Imagen eliminada",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar esta imagen?"
+  }
+}

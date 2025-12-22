@@ -1,0 +1,174 @@
+{
+  "mode": {
+    "textToImage": "Text to Image",
+    "imageToImage": "Image to Image"
+  },
+  "prompt": {
+    "label": "Prompt",
+    "placeholderText": "A majestic lion in golden savanna, sunset lighting, 8k photography...",
+    "placeholderImage": "Transform this image into a watercolor painting..."
+  },
+  "sourceImage": {
+    "label": "Source Image",
+    "upload": "Click to upload"
+  },
+  "enhance": {
+    "button": "Enhance",
+    "enhancing": "Enhancing...",
+    "enhanced": "Enhanced",
+    "use": "Use This",
+    "cancel": "Cancel",
+    "applied": "Enhanced prompt applied!"
+  },
+  "examples": {
+    "button": "Examples",
+    "title": "Prompt Examples",
+    "characters": "characters",
+    "clickToUse": "Click to use",
+    "hint": "Click on any example to use it as your prompt. Feel free to modify it!"
+  },
+  "advanced": {
+    "title": "Advanced Options",
+    "negativePrompt": "Negative Prompt"
+  },
+  "visibility": {
+    "public": "Public",
+    "private": "Private"
+  },
+  "generate": {
+    "button": "Generate",
+    "generating": "Generating...",
+    "signIn": "Sign in to Generate",
+    "credits": "credits"
+  },
+  "success": {
+    "generated": "Generated",
+    "images": "image(s)",
+    "used": "Used",
+    "credits": "credits"
+  },
+  "errors": {
+    "invalidImage": "Please upload an image file",
+    "imageTooLarge": "Image must be less than 10MB",
+    "signInRequired": "Please sign in",
+    "promptTooShort": "Enter at least 3 characters to enhance",
+    "promptRequired": "Please enter a prompt",
+    "sourceImageRequired": "Please upload a source image",
+    "insufficientCredits": "Insufficient credits",
+    "need": "Need",
+    "have": "have",
+    "generationFailed": "Failed to generate image"
+  },
+  "empty": {
+    "title": "Ready to Create",
+    "description": "Enter a prompt and click Generate to create your AI image"
+  },
+  "preview": {
+    "viewFull": "View Full"
+  },
+  "history": {
+    "title": "Recent Generations",
+    "viewAll": "View All",
+    "empty": "Your recent generations will appear here"
+  },
+  "actions": {
+    "download": "Download",
+    "downloading": "...",
+    "downloaded": "Image downloaded!",
+    "downloadError": "Failed to download",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link copied!",
+    "share": "Share",
+    "remix": "Remix",
+    "remixApplied": "Settings applied for remix!",
+    "upscale": "Upscale 4x",
+    "viewDetails": "View",
+    "copySeed": "Copy Seed",
+    "seedCopied": "Seed copied!"
+  },
+  "info": {
+    "model": "Model",
+    "style": "Style",
+    "seed": "Seed",
+    "size": "Size"
+  },
+  "share": {
+    "title": "Share Image",
+    "shareLink": "Share Link",
+    "shareOn": "Share on Social",
+    "copy": "Copy",
+    "copied": "Copied",
+    "linkCopied": "Link copied!"
+  },
+  "modal": {
+    "prompt": "Prompt",
+    "copy": "Copy",
+    "promptCopied": "Prompt copied to clipboard!",
+    "linkCopied": "Link copied!",
+    "seedCopied": "Seed copied!",
+    "showLess": "Show less",
+    "readMore": "Read more",
+    "settings": "Settings",
+    "model": "Model",
+    "aspectRatio": "Aspect Ratio",
+    "resolution": "Resolution",
+    "seed": "Seed",
+    "duration": "Duration",
+    "likes": "likes",
+    "views": "views",
+    "download": "Download",
+    "downloaded": "Downloaded!",
+    "downloadFailed": "Failed to download",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "share": "Share",
+    "like": "Like",
+    "liked": "Liked",
+    "unliked": "Unliked",
+    "signInToLike": "Sign in to like images",
+    "viewFullPage": "View Full Page",
+    "makePrivate": "Make Private",
+    "publishToGallery": "Publish to Gallery",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "deleted": "Image deleted",
+    "deleteConfirm": "Are you sure you want to delete this image? This cannot be undone."
+  },
+  "detail": {
+    "backToAiImage": "Back to AI Image",
+    "notFound": "Image not found",
+    "download": "Download",
+    "downloaded": "Image downloaded!",
+    "downloadFailed": "Failed to download",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "linkCopied": "Link copied!",
+    "share": "Share",
+    "remix": "Remix",
+    "likes": "likes",
+    "views": "views",
+    "prompt": "Prompt",
+    "copy": "Copy",
+    "promptCopied": "Prompt copied to clipboard!",
+    "seedCopied": "Seed copied!",
+    "settings": "Settings",
+    "model": "Model",
+    "mode": "Mode",
+    "style": "Style",
+    "aspectRatio": "Aspect Ratio",
+    "resolution": "Resolution",
+    "seed": "Seed",
+    "visibility": "Visibility",
+    "like": "Like",
+    "liked": "Liked",
+    "unliked": "Unliked",
+    "signInToLike": "Sign in to like images",
+    "upscale": "Upscale 4x",
+    "makePrivate": "Make Private",
+    "publishToGallery": "Publish to Gallery",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "deleted": "Image deleted",
+    "deleteConfirm": "Are you sure you want to delete this image?"
+  }
+}

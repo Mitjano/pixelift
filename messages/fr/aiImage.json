@@ -1,0 +1,174 @@
+{
+  "mode": {
+    "textToImage": "Texte vers image",
+    "imageToImage": "Image vers image"
+  },
+  "prompt": {
+    "label": "Prompt",
+    "placeholderText": "Un lion majestueux dans la savane dorée, lumière du coucher de soleil, photographie 8k...",
+    "placeholderImage": "Transformez cette image en peinture aquarelle..."
+  },
+  "sourceImage": {
+    "label": "Image source",
+    "upload": "Cliquez pour télécharger"
+  },
+  "enhance": {
+    "button": "Améliorer",
+    "enhancing": "Amélioration...",
+    "enhanced": "Amélioré",
+    "use": "Utiliser ceci",
+    "cancel": "Annuler",
+    "applied": "Prompt amélioré appliqué !"
+  },
+  "examples": {
+    "button": "Exemples",
+    "title": "Exemples de prompts",
+    "characters": "caractères",
+    "clickToUse": "Cliquez pour utiliser",
+    "hint": "Cliquez sur un exemple pour l'utiliser comme prompt. N'hésitez pas à le modifier !"
+  },
+  "advanced": {
+    "title": "Options avancées",
+    "negativePrompt": "Prompt négatif"
+  },
+  "visibility": {
+    "public": "Public",
+    "private": "Privé"
+  },
+  "generate": {
+    "button": "Générer",
+    "generating": "Génération...",
+    "signIn": "Connectez-vous pour générer",
+    "credits": "crédits"
+  },
+  "success": {
+    "generated": "Généré",
+    "images": "image(s)",
+    "used": "Utilisé",
+    "credits": "crédits"
+  },
+  "errors": {
+    "invalidImage": "Veuillez télécharger un fichier image",
+    "imageTooLarge": "L'image doit faire moins de 10 Mo",
+    "signInRequired": "Veuillez vous connecter",
+    "promptTooShort": "Entrez au moins 3 caractères pour améliorer",
+    "promptRequired": "Veuillez entrer un prompt",
+    "sourceImageRequired": "Veuillez télécharger une image source",
+    "insufficientCredits": "Crédits insuffisants",
+    "need": "Vous avez besoin de",
+    "have": "vous avez",
+    "generationFailed": "Échec de la génération d'image"
+  },
+  "empty": {
+    "title": "Prêt à créer",
+    "description": "Entrez un prompt et cliquez sur Générer pour créer votre image IA"
+  },
+  "preview": {
+    "viewFull": "Voir en entier"
+  },
+  "history": {
+    "title": "Générations récentes",
+    "viewAll": "Voir tout",
+    "empty": "Vos générations récentes apparaîtront ici"
+  },
+  "actions": {
+    "download": "Télécharger",
+    "downloading": "...",
+    "downloaded": "Image téléchargée !",
+    "downloadError": "Échec du téléchargement",
+    "copyLink": "Copier le lien",
+    "linkCopied": "Lien copié !",
+    "share": "Partager",
+    "remix": "Remixer",
+    "remixApplied": "Paramètres appliqués pour le remix !",
+    "upscale": "Agrandir 4x",
+    "viewDetails": "Voir",
+    "copySeed": "Copier le seed",
+    "seedCopied": "Seed copié !"
+  },
+  "info": {
+    "model": "Modèle",
+    "style": "Style",
+    "seed": "Seed",
+    "size": "Taille"
+  },
+  "share": {
+    "title": "Partager l'image",
+    "shareLink": "Lien de partage",
+    "shareOn": "Partager sur les réseaux sociaux",
+    "copy": "Copier",
+    "copied": "Copié",
+    "linkCopied": "Lien copié !"
+  },
+  "modal": {
+    "prompt": "Prompt",
+    "copy": "Copier",
+    "promptCopied": "Prompt copié !",
+    "linkCopied": "Lien copié !",
+    "seedCopied": "Seed copié !",
+    "showLess": "Voir moins",
+    "readMore": "Lire plus",
+    "settings": "Paramètres",
+    "model": "Modèle",
+    "aspectRatio": "Format d'image",
+    "resolution": "Résolution",
+    "seed": "Seed",
+    "duration": "Durée",
+    "likes": "j'aime",
+    "views": "vues",
+    "download": "Télécharger",
+    "downloaded": "Téléchargé !",
+    "downloadFailed": "Échec du téléchargement",
+    "copyLink": "Copier le lien",
+    "copied": "Copié !",
+    "share": "Partager",
+    "like": "J'aime",
+    "liked": "Aimé",
+    "unliked": "Plus aimé",
+    "signInToLike": "Connectez-vous pour aimer",
+    "viewFullPage": "Voir la page complète",
+    "makePrivate": "Rendre privé",
+    "publishToGallery": "Publier dans la galerie",
+    "delete": "Supprimer",
+    "deleting": "Suppression...",
+    "deleted": "Image supprimée",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible."
+  },
+  "detail": {
+    "backToAiImage": "Retour à AI Image",
+    "notFound": "Image non trouvée",
+    "download": "Télécharger",
+    "downloaded": "Image téléchargée !",
+    "downloadFailed": "Échec du téléchargement",
+    "copyLink": "Copier le lien",
+    "copied": "Copié !",
+    "linkCopied": "Lien copié !",
+    "share": "Partager",
+    "remix": "Remixer",
+    "likes": "j'aime",
+    "views": "vues",
+    "prompt": "Prompt",
+    "copy": "Copier",
+    "promptCopied": "Prompt copié !",
+    "seedCopied": "Seed copié !",
+    "settings": "Paramètres",
+    "model": "Modèle",
+    "mode": "Mode",
+    "style": "Style",
+    "aspectRatio": "Format d'image",
+    "resolution": "Résolution",
+    "seed": "Seed",
+    "visibility": "Visibilité",
+    "like": "J'aime",
+    "liked": "Aimé",
+    "unliked": "Plus aimé",
+    "signInToLike": "Connectez-vous pour aimer",
+    "upscale": "Agrandir 4x",
+    "makePrivate": "Rendre privé",
+    "publishToGallery": "Publier dans la galerie",
+    "delete": "Supprimer",
+    "deleting": "Suppression...",
+    "deleted": "Image supprimée",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette image ?"
+  }
+}
