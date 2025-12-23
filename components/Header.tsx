@@ -348,20 +348,20 @@ export default function Header() {
     <header className="border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50 transition-colors">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between" role="navigation" aria-label="Main navigation">
         {/* Logo - fixed width for balance with right side (only on desktop) */}
-        <Link href="/" className="flex items-center gap-2 md:w-[280px] shrink-0" aria-label="Pixelift home">
+        <Link href="/" className="flex items-center gap-2 xl:w-[200px] 2xl:w-[280px] shrink-0" aria-label="Pixelift home">
           <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg" aria-hidden="true"></div>
           <span className="text-xl font-bold text-gray-900 dark:text-white">Pixelift</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center justify-center flex-1 gap-6 text-gray-700 dark:text-white">
+        <div className="hidden xl:flex items-center justify-center flex-1 gap-3 2xl:gap-5 text-gray-700 dark:text-white">
           {/* Tools Dropdown */}
           <div className="relative" ref={toolsDropdownRef}>
             <button
               ref={toolsButtonRef}
               onClick={() => setToolsDropdownOpen((prev) => !prev)}
               onKeyDown={(e) => handleDropdownKeyDown(e, setToolsDropdownOpen, toolsDropdownOpen)}
-              className={`flex items-center gap-1 transition font-medium py-2 ${
+              className={`flex items-center gap-1 transition font-medium py-2 text-sm whitespace-nowrap ${
                 isToolsPage ? 'text-green-500 dark:text-green-400' : 'text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400'
               }`}
               aria-expanded={toolsDropdownOpen}
@@ -485,41 +485,41 @@ export default function Header() {
 
           <Link
             href="/ai-image"
-            className={`flex items-center gap-1 transition font-medium ${
+            className={`flex items-center gap-1 transition font-medium text-sm whitespace-nowrap ${
               pathname?.includes('/ai-image') ? 'text-purple-500 dark:text-purple-400' : 'text-gray-700 dark:text-white hover:text-purple-500 dark:hover:text-purple-400'
             }`}
           >
-            <span className="text-sm" aria-hidden="true">✨</span>
+            <span className="text-xs" aria-hidden="true">✨</span>
             {t('nav.aiImage')}
           </Link>
           <Link
             href="/ai-video"
-            className={`flex items-center gap-1 transition font-medium ${
+            className={`flex items-center gap-1 transition font-medium text-sm whitespace-nowrap ${
               pathname?.includes('/ai-video') ? 'text-cyan-500 dark:text-cyan-400' : 'text-gray-700 dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400'
             }`}
           >
-            <span className="text-sm" aria-hidden="true">🎬</span>
+            <span className="text-xs" aria-hidden="true">🎬</span>
             {t('nav.aiVideo')}
           </Link>
           <Link
             href="/ai-chat"
-            className={`flex items-center gap-1 transition font-medium ${
+            className={`flex items-center gap-1 transition font-medium text-sm whitespace-nowrap ${
               pathname?.includes('/ai-chat') ? 'text-green-500 dark:text-green-400' : 'text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400'
             }`}
           >
-            <span className="text-sm" aria-hidden="true">💬</span>
+            <span className="text-xs" aria-hidden="true">💬</span>
             {t('nav.aiChat')}
           </Link>
-          <Link href="/pricing" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
+          <Link href="/pricing" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition text-sm whitespace-nowrap">
             {t('nav.pricing')}
           </Link>
-          <Link href="/blog" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
+          <Link href="/blog" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition text-sm whitespace-nowrap">
             {t('nav.blog')}
           </Link>
         </div>
 
         {/* Auth Buttons & Language Switcher - fixed width matching logo for balance (only on desktop) */}
-        <div className="flex items-center justify-end gap-3 md:w-[280px] shrink-0">
+        <div className="flex items-center justify-end gap-2 xl:gap-3 xl:w-[200px] 2xl:w-[280px] shrink-0">
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
@@ -546,7 +546,7 @@ export default function Header() {
             <>
               <Link
                 href="/dashboard"
-                className="hidden md:block px-4 py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
+                className="hidden xl:block px-3 py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition text-sm"
               >
                 {t('nav.dashboard')}
               </Link>
@@ -624,13 +624,13 @@ export default function Header() {
             <>
               <Link
                 href="/auth/signin"
-                className="px-4 py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition whitespace-nowrap"
+                className="hidden xl:block px-3 py-2 text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition whitespace-nowrap text-sm"
               >
                 {t('nav.login')}
               </Link>
               <Link
                 href="/auth/signin"
-                className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition whitespace-nowrap"
+                className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition whitespace-nowrap text-sm"
               >
                 {t('nav.signUp')}
               </Link>
@@ -640,7 +640,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-gray-700 dark:text-white"
+            className="xl:hidden text-gray-700 dark:text-white"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -665,7 +665,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900" role="navigation" aria-label="Mobile navigation">
+        <div id="mobile-menu" className="xl:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-4 space-y-1">
             {/* Main Links - Most Important First */}
             <Link
