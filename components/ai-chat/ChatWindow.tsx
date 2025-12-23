@@ -62,10 +62,15 @@ export default function ChatWindow() {
     fetchConversations();
   }, []);
 
-  // Scroll to bottom on new messages
+  // Scroll to bottom on new messages - only when streaming or new message added
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (isStreaming || messages.length > 0) {
+      // Use setTimeout to ensure DOM is updated before scrolling
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [messages, isStreaming]);
 
   const fetchModels = async () => {
     try {
@@ -335,7 +340,7 @@ export default function ChatWindow() {
   const isModelFree = selectedModel?.tier === "free";
 
   return (
-    <div className="flex h-[calc(100vh-80px)] bg-white dark:bg-gray-900">
+    <div className="flex h-screen bg-white dark:bg-gray-900">
       {/* Sidebar */}
       <ChatSidebar
         conversations={conversations}

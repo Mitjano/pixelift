@@ -500,6 +500,15 @@ export default function Header() {
             <span className="text-sm" aria-hidden="true">🎬</span>
             {t('nav.aiVideo')}
           </Link>
+          <Link
+            href="/ai-chat"
+            className={`flex items-center gap-1 transition font-medium ${
+              pathname?.includes('/ai-chat') ? 'text-green-500 dark:text-green-400' : 'text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400'
+            }`}
+          >
+            <span className="text-sm" aria-hidden="true">💬</span>
+            {t('nav.aiChat')}
+          </Link>
           <Link href="/pricing" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition">
             {t('nav.pricing')}
           </Link>
@@ -685,6 +694,13 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span aria-hidden="true">🎬</span> {t('nav.aiVideo')}
+            </Link>
+            <Link
+              href="/ai-chat"
+              className="block py-2 text-green-500 dark:text-green-400 hover:text-green-400 dark:hover:text-green-300 transition font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span aria-hidden="true">💬</span> {t('nav.aiChat')}
             </Link>
             <Link
               href="/pricing"

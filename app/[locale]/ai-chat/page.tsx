@@ -251,9 +251,9 @@ export default function AIChatPage() {
     );
   }
 
-  // Authenticated - show chat interface
+  // Authenticated - show chat interface (fullscreen, no header/footer)
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen">
+    <div className="fixed inset-0 bg-white dark:bg-gray-900 z-40">
       <ChatWindow />
     </div>
   );

@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect, KeyboardEvent, ChangeEvent } from "react";
 import { useTranslations } from "next-intl";
-import { FaPaperPlane, FaImage, FaStop, FaTimes } from "react-icons/fa";
-import { HiSparkles } from "react-icons/hi2";
+import { FaArrowUp, FaImage, FaStop, FaTimes } from "react-icons/fa";
 
 interface ChatInputProps {
   onSend: (message: string, images?: { base64: string; mimeType: string }[]) => void;
@@ -42,7 +41,8 @@ export default function ChatInput({
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = "auto";
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
+      const newHeight = Math.min(textarea.scrollHeight, 200);
+      textarea.style.height = `${Math.max(52, newHeight)}px`;
     }
   }, [message]);
 
@@ -65,10 +65,8 @@ export default function ChatInput({
 
     setMessage("");
     setImages([]);
-
-    // Reset textarea height
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = "52px";
     }
   };
 
@@ -108,8 +106,6 @@ export default function ChatInput({
       };
       reader.readAsDataURL(file);
     }
-
-    // Reset input
     e.target.value = "";
   };
 
@@ -151,71 +147,74 @@ export default function ChatInput({
   const canSend = (message.trim().length > 0 || images.length > 0) && !isLoading && !disabled;
 
   return (
-    <div
-      className={`
-        relative border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900
-        ${isDragOver ? "ring-2 ring-purple-500 ring-inset" : ""}
-      `}
-      onDragOver={(e) => {
-        e.preventDefault();
-        if (supportsImages) setIsDragOver(true);
-      }}
-      onDragLeave={() => setIsDragOver(false)}
-      onDrop={handleDrop}
-    >
-      {/* Image previews */}
-      {images.length > 0 && (
-        <div className="flex gap-2 p-3 pb-0 overflow-x-auto">
-          {images.map((img) => (
-            <div key={img.id} className="relative flex-shrink-0 group">
-              <img
-                src={img.preview}
-                alt={img.name}
-                className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
-              />
-              <button
-                onClick={() => removeImage(img.id)}
-                className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                <FaTimes className="w-2.5 h-2.5" />
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Input area */}
-      <div className="flex items-end gap-2 p-3">
-        {/* Image upload button */}
-        {supportsImages && (
-          <>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleFileSelect}
-              className="hidden"
-            />
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              disabled={disabled || isLoading}
-              className={`
-                flex-shrink-0 p-2.5 rounded-lg transition-colors
-                ${disabled || isLoading
-                  ? "text-gray-300 dark:text-gray-600 cursor-not-allowed"
-                  : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                }
-              `}
-              title={t("attachImage")}
-            >
-              <FaImage className="w-5 h-5" />
-            </button>
-          </>
+    <div className="p-4">
+      <div
+        className={`
+          relative rounded-2xl border-2 transition-all duration-200
+          bg-gray-50 dark:bg-gray-800/50
+          ${isDragOver
+            ? "border-purple-500 bg-purple-50 dark:bg-purple-900/20"
+            : "border-gray-200 dark:border-gray-700 focus-within:border-gray-300 dark:focus-within:border-gray-600"}
+        `}
+        onDragOver={(e) => {
+          e.preventDefault();
+          if (supportsImages) setIsDragOver(true);
+        }}
+        onDragLeave={() => setIsDragOver(false)}
+        onDrop={handleDrop}
+      >
+        {/* Image previews - inside the box */}
+        {images.length > 0 && (
+          <div className="flex gap-2 p-3 pb-0 overflow-x-auto">
+            {images.map((img) => (
+              <div key={img.id} className="relative flex-shrink-0 group">
+                <img
+                  src={img.preview}
+                  alt={img.name}
+                  className="w-14 h-14 object-cover rounded-lg"
+                />
+                <button
+                  onClick={() => removeImage(img.id)}
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-gray-800 dark:bg-gray-600 text-white flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <FaTimes className="w-2.5 h-2.5" />
+                </button>
+              </div>
+            ))}
+          </div>
         )}
 
-        {/* Textarea */}
-        <div className="flex-1 relative">
+        {/* Main input area */}
+        <div className="flex items-end gap-2 p-2">
+          {/* Image upload button */}
+          {supportsImages && (
+            <>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                disabled={disabled || isLoading}
+                className={`
+                  flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors
+                  ${disabled || isLoading
+                    ? "text-gray-300 dark:text-gray-600 cursor-not-allowed"
+                    : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50"
+                  }
+                `}
+                title={t("attachImage")}
+              >
+                <FaImage className="w-4 h-4" />
+              </button>
+            </>
+          )}
+
+          {/* Textarea */}
           <textarea
             ref={textareaRef}
             value={message}
@@ -225,65 +224,57 @@ export default function ChatInput({
             disabled={disabled || isLoading}
             rows={1}
             className={`
-              w-full px-4 py-2.5 rounded-xl resize-none
-              border border-gray-200 dark:border-gray-700
-              bg-gray-50 dark:bg-gray-800
-              text-gray-900 dark:text-white
+              flex-1 px-3 py-3 resize-none bg-transparent
+              text-gray-900 dark:text-white text-[15px]
               placeholder-gray-400 dark:placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent
+              focus:outline-none
               disabled:opacity-50 disabled:cursor-not-allowed
-              transition-colors
             `}
-            style={{ minHeight: "44px", maxHeight: "200px" }}
+            style={{ minHeight: "52px", maxHeight: "200px" }}
           />
+
+          {/* Send/Stop button */}
+          {isLoading ? (
+            <button
+              onClick={onStop}
+              className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 flex items-center justify-center transition-all hover:scale-105"
+              title={t("stop")}
+            >
+              <FaStop className="w-3.5 h-3.5" />
+            </button>
+          ) : (
+            <button
+              onClick={handleSubmit}
+              disabled={!canSend}
+              className={`
+                flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all
+                ${canSend
+                  ? "bg-gray-800 dark:bg-white text-white dark:text-gray-800 hover:scale-105 shadow-lg"
+                  : "bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                }
+              `}
+              title={t("send")}
+            >
+              <FaArrowUp className="w-4 h-4" />
+            </button>
+          )}
         </div>
-
-        {/* Send/Stop button */}
-        {isLoading ? (
-          <button
-            onClick={onStop}
-            className="flex-shrink-0 p-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white transition-colors"
-            title={t("stop")}
-          >
-            <FaStop className="w-5 h-5" />
-          </button>
-        ) : (
-          <button
-            onClick={handleSubmit}
-            disabled={!canSend}
-            className={`
-              flex-shrink-0 p-2.5 rounded-xl transition-colors
-              ${canSend
-                ? "bg-purple-600 hover:bg-purple-700 text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
-              }
-            `}
-            title={t("send")}
-          >
-            <FaPaperPlane className="w-5 h-5" />
-          </button>
-        )}
       </div>
 
-      {/* Hints */}
-      <div className="px-3 pb-2 text-xs text-gray-400 dark:text-gray-500">
-        <span>Enter - wyślij</span>
-        <span className="mx-2">•</span>
-        <span>Shift+Enter - nowa linia</span>
-        {supportsImages && (
-          <>
-            <span className="mx-2">•</span>
-            <span>Przeciągnij obrazy</span>
-          </>
-        )}
-      </div>
+      {/* Subtle hint below */}
+      <p className="text-center text-xs text-gray-400 dark:text-gray-500 mt-2">
+        <kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[10px] font-medium">Enter</kbd>
+        <span className="mx-1">wyślij</span>
+        <span className="mx-2 text-gray-300 dark:text-gray-600">•</span>
+        <kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[10px] font-medium">Shift + Enter</kbd>
+        <span className="mx-1">nowa linia</span>
+      </p>
 
       {/* Drag overlay */}
       {isDragOver && (
-        <div className="absolute inset-0 bg-purple-500/10 flex items-center justify-center pointer-events-none">
-          <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-medium">
-            <HiSparkles className="w-5 h-5" />
-            <span>Upuść obrazy tutaj</span>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="text-purple-600 dark:text-purple-400 font-medium text-sm">
+            Upuść obrazy tutaj
           </div>
         </div>
       )}

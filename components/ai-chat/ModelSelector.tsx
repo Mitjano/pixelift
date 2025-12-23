@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { FaChevronDown, FaCheck, FaStar, FaRobot } from "react-icons/fa";
+import { FaChevronDown, FaCheck } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi2";
 import type { AIModel } from "@/lib/ai-chat/models";
 import type { AIChatTier } from "@/lib/credits-config";
@@ -14,20 +14,12 @@ interface ModelSelectorProps {
   disabled?: boolean;
 }
 
-const TIER_ICONS: Record<AIChatTier, React.ReactNode> = {
-  free: <span className="text-green-500">FREE</span>,
-  budget: <FaStar className="text-blue-500" />,
-  pro: <HiSparkles className="text-purple-500" />,
-  premium: <FaStar className="text-amber-500" />,
-  reasoning: <FaRobot className="text-cyan-500" />,
-};
-
-const TIER_LABELS: Record<AIChatTier, { pl: string; en: string }> = {
-  free: { pl: "Darmowe", en: "Free" },
-  budget: { pl: "Ekonomiczne", en: "Budget" },
-  pro: { pl: "Profesjonalne", en: "Pro" },
-  premium: { pl: "Premium", en: "Premium" },
-  reasoning: { pl: "Rozumowanie", en: "Reasoning" },
+const TIER_CONFIG: Record<AIChatTier, { label: string; color: string; bg: string }> = {
+  free: { label: "Darmowe", color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-500/10" },
+  budget: { label: "Ekonomiczne", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-500/10" },
+  pro: { label: "Pro", color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-500/10" },
+  premium: { label: "Premium", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-500/10" },
+  reasoning: { label: "Reasoning", color: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-500/10" },
 };
 
 export default function ModelSelector({
@@ -42,31 +34,26 @@ export default function ModelSelector({
 
   const selectedModel = models.find((m) => m.id === selectedModelId);
 
-  // Grupuj modele według tier
+  // Group models by tier
   const groupedModels = models.reduce(
     (acc, model) => {
-      if (!acc[model.tier]) {
-        acc[model.tier] = [];
-      }
+      if (!acc[model.tier]) acc[model.tier] = [];
       acc[model.tier].push(model);
       return acc;
     },
     {} as Record<AIChatTier, AIModel[]>
   );
 
-  // Zamknij dropdown po kliknięciu poza nim
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Zamknij po wyborze
   const handleSelect = (modelId: string) => {
     onSelectModel(modelId);
     setIsOpen(false);
@@ -76,96 +63,91 @@ export default function ModelSelector({
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Przycisk wyboru */}
+      {/* Compact trigger button */}
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={`
-          flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors
-          ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"}
-          ${isOpen ? "border-purple-500 ring-2 ring-purple-500/20" : "border-gray-300 dark:border-gray-600"}
-          bg-white dark:bg-gray-800
+          inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium
+          transition-all duration-200
+          ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:shadow-md"}
+          ${selectedModel?.tier === "free"
+            ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30"
+            : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700"}
+          ${isOpen ? "ring-2 ring-purple-500/50" : ""}
         `}
       >
-        <div className="flex items-center gap-2 min-w-0">
-          {selectedModel && TIER_ICONS[selectedModel.tier]}
-          <span className="font-medium truncate">
-            {selectedModel?.name || t("selectModel")}
-          </span>
-        </div>
+        {selectedModel?.tier === "free" && (
+          <HiSparkles className="w-3.5 h-3.5" />
+        )}
+        <span className="max-w-[140px] truncate">{selectedModel?.name || "Model"}</span>
         <FaChevronDown
-          className={`w-3 h-3 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`w-2.5 h-2.5 opacity-60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
-      {/* Dropdown menu */}
+      {/* Dropdown - compact and clean */}
       {isOpen && (
-        <div className="absolute z-50 mt-2 w-80 max-h-96 overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl">
-          {tierOrder.map((tier) => {
-            const tierModels = groupedModels[tier];
-            if (!tierModels || tierModels.length === 0) return null;
+        <div className="absolute z-50 mt-2 left-0 w-72 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-2xl overflow-hidden">
+          <div className="max-h-[400px] overflow-y-auto">
+            {tierOrder.map((tier) => {
+              const tierModels = groupedModels[tier];
+              if (!tierModels || tierModels.length === 0) return null;
+              const config = TIER_CONFIG[tier];
 
-            return (
-              <div key={tier}>
-                {/* Nagłówek tier */}
-                <div className="sticky top-0 px-3 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-gray-400">
-                    {TIER_ICONS[tier]}
-                    <span>{TIER_LABELS[tier].pl}</span>
-                    {tier === "free" && (
-                      <span className="ml-auto text-xs text-green-600 dark:text-green-400">
-                        0 kredytów
-                      </span>
-                    )}
+              return (
+                <div key={tier}>
+                  {/* Tier header */}
+                  <div className={`sticky top-0 px-3 py-2 ${config.bg} border-b border-gray-100 dark:border-gray-800`}>
+                    <div className={`text-xs font-semibold uppercase tracking-wide ${config.color}`}>
+                      {config.label}
+                      {tier === "free" && <span className="ml-2 opacity-75">• Bez limitu</span>}
+                    </div>
+                  </div>
+
+                  {/* Models */}
+                  <div className="py-1">
+                    {tierModels.map((model) => (
+                      <button
+                        key={model.id}
+                        type="button"
+                        onClick={() => handleSelect(model.id)}
+                        className={`
+                          w-full px-3 py-2 text-left transition-colors duration-150
+                          hover:bg-gray-50 dark:hover:bg-gray-800/50
+                          ${model.id === selectedModelId ? "bg-purple-50 dark:bg-purple-900/20" : ""}
+                        `}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-medium text-gray-900 dark:text-white text-sm">
+                                {model.name}
+                              </span>
+                              {model.id === selectedModelId && (
+                                <FaCheck className="w-3 h-3 text-purple-500 flex-shrink-0" />
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1.5 mt-0.5">
+                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                                {model.provider}
+                              </span>
+                              {model.supportsImages && (
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium">
+                                  +IMG
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
                   </div>
                 </div>
-
-                {/* Modele w tier */}
-                {tierModels.map((model) => (
-                  <button
-                    key={model.id}
-                    type="button"
-                    onClick={() => handleSelect(model.id)}
-                    className={`
-                      w-full px-3 py-2.5 text-left transition-colors
-                      hover:bg-gray-100 dark:hover:bg-gray-700
-                      ${model.id === selectedModelId ? "bg-purple-50 dark:bg-purple-900/20" : ""}
-                    `}
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium text-gray-900 dark:text-white">
-                            {model.name}
-                          </span>
-                          {model.id === selectedModelId && (
-                            <FaCheck className="w-3 h-3 text-purple-500" />
-                          )}
-                        </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                          {model.description}
-                        </p>
-                        <div className="flex items-center gap-2 mt-1 text-xs text-gray-400">
-                          <span>{model.provider}</span>
-                          {model.supportsImages && (
-                            <span className="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                              Obrazy
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      {tier !== "free" && (
-                        <div className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                          ~{(model.inputCostPer1M / 1000).toFixed(3)}/1K
-                        </div>
-                      )}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
