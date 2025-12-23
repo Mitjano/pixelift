@@ -52,7 +52,13 @@ export type ToolType =
   | 'video_veo_8s'
   | 'video_hailuo_6s'
   | 'video_hailuo_pro_6s'
-  | 'video_luma_ray2_5s';
+  | 'video_luma_ray2_5s'
+  // AI Chat
+  | 'ai_chat_free'
+  | 'ai_chat_budget'
+  | 'ai_chat_pro'
+  | 'ai_chat_premium'
+  | 'ai_chat_reasoning';
 
 export interface ToolCreditConfig {
   /** Bazowy koszt w kredytach */
@@ -322,6 +328,60 @@ export const CREDIT_COSTS: Record<ToolType, ToolCreditConfig> = {
     displayName: 'Luma Ray2 Flash (5s)',
     description: 'Szybkie wideo AI - 5 sekund',
   },
+  // AI Chat - koszty dynamiczne per 1000 tokenów
+  ai_chat_free: {
+    cost: 0,
+    displayName: 'AI Chat - Darmowy',
+    description: 'Darmowe modele AI: Gemini Flash-Lite, Llama 8B, Qwen, DeepSeek V3',
+  },
+  ai_chat_budget: {
+    cost: 0.05,
+    minCost: 0.01,
+    maxCost: 0.5,
+    isDynamic: true,
+    costDescription: {
+      en: '~0.05 credits per 1K tokens (GPT-4o Mini, Gemini Flash, Claude Haiku)',
+      pl: '~0.05 kredytów za 1K tokenów (GPT-4o Mini, Gemini Flash, Claude Haiku)',
+    },
+    displayName: 'AI Chat - Budget',
+    description: 'Ekonomiczne modele: GPT-4o Mini, Gemini Flash, Claude Haiku',
+  },
+  ai_chat_pro: {
+    cost: 0.15,
+    minCost: 0.05,
+    maxCost: 1.5,
+    isDynamic: true,
+    costDescription: {
+      en: '~0.15 credits per 1K tokens (GPT-4.1, Claude Sonnet, Gemini Pro)',
+      pl: '~0.15 kredytów za 1K tokenów (GPT-4.1, Claude Sonnet, Gemini Pro)',
+    },
+    displayName: 'AI Chat - Pro',
+    description: 'Profesjonalne modele: GPT-4.1, GPT-5.2, Claude Sonnet 4/4.5, Gemini Pro, Grok 3',
+  },
+  ai_chat_premium: {
+    cost: 0.5,
+    minCost: 0.2,
+    maxCost: 3.0,
+    isDynamic: true,
+    costDescription: {
+      en: '~0.5 credits per 1K tokens (GPT-4o, Claude Opus, Grok 4)',
+      pl: '~0.5 kredytów za 1K tokenów (GPT-4o, Claude Opus, Grok 4)',
+    },
+    displayName: 'AI Chat - Premium',
+    description: 'Najlepsze modele: GPT-4o, Claude Opus 4/4.5, Grok 4',
+  },
+  ai_chat_reasoning: {
+    cost: 0.1,
+    minCost: 0.05,
+    maxCost: 0.8,
+    isDynamic: true,
+    costDescription: {
+      en: '~0.1 credits per 1K tokens (DeepSeek R1 reasoning)',
+      pl: '~0.1 kredytów za 1K tokenów (DeepSeek R1 reasoning)',
+    },
+    displayName: 'AI Chat - Reasoning',
+    description: 'Model rozumowania: DeepSeek R1 z chain-of-thought',
+  },
 };
 
 /**
@@ -465,6 +525,17 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
   'video-hailuo-6s': 'video_hailuo_6s',
   'video-hailuo-pro-6s': 'video_hailuo_pro_6s',
   'video-luma-ray2-5s': 'video_luma_ray2_5s',
+  // AI Chat
+  'ai-chat-free': 'ai_chat_free',
+  'ai_chat_free': 'ai_chat_free',
+  'ai-chat-budget': 'ai_chat_budget',
+  'ai_chat_budget': 'ai_chat_budget',
+  'ai-chat-pro': 'ai_chat_pro',
+  'ai_chat_pro': 'ai_chat_pro',
+  'ai-chat-premium': 'ai_chat_premium',
+  'ai_chat_premium': 'ai_chat_premium',
+  'ai-chat-reasoning': 'ai_chat_reasoning',
+  'ai_chat_reasoning': 'ai_chat_reasoning',
 };
 
 /**
@@ -472,4 +543,62 @@ export const TOOL_API_KEYS: Record<string, ToolType> = {
  */
 export function getToolTypeFromApiKey(apiKey: string): ToolType | undefined {
   return TOOL_API_KEYS[apiKey];
+}
+
+/**
+ * Typy tierów AI Chat
+ */
+export type AIChatTier = 'free' | 'budget' | 'pro' | 'premium' | 'reasoning';
+
+/**
+ * Mapowanie tier AI Chat na ToolType
+ */
+export const AI_CHAT_TIER_TO_TOOL: Record<AIChatTier, ToolType> = {
+  free: 'ai_chat_free',
+  budget: 'ai_chat_budget',
+  pro: 'ai_chat_pro',
+  premium: 'ai_chat_premium',
+  reasoning: 'ai_chat_reasoning',
+};
+
+/**
+ * Koszty per 1000 tokenów dla każdego tieru AI Chat
+ * (input + output uśrednione, dostosowane do OpenRouter pricing)
+ */
+export const AI_CHAT_TOKEN_RATES: Record<AIChatTier, { input: number; output: number }> = {
+  free: { input: 0, output: 0 },
+  budget: { input: 0.02, output: 0.08 },      // ~0.05 średnio per 1K
+  pro: { input: 0.08, output: 0.25 },         // ~0.15 średnio per 1K
+  premium: { input: 0.25, output: 0.75 },     // ~0.50 średnio per 1K
+  reasoning: { input: 0.05, output: 0.15 },   // ~0.10 średnio per 1K
+};
+
+/**
+ * Oblicz koszt AI Chat na podstawie tokenów
+ * @param tier - tier modelu (free, budget, pro, premium, reasoning)
+ * @param inputTokens - liczba tokenów wejściowych
+ * @param outputTokens - liczba tokenów wyjściowych
+ * @returns koszt w kredytach (zaokrąglony do 2 miejsc po przecinku)
+ */
+export function calculateAIChatCost(
+  tier: AIChatTier,
+  inputTokens: number,
+  outputTokens: number
+): number {
+  if (tier === 'free') return 0;
+
+  const rates = AI_CHAT_TOKEN_RATES[tier];
+  const inputCost = (inputTokens / 1000) * rates.input;
+  const outputCost = (outputTokens / 1000) * rates.output;
+
+  // Zaokrąglij do 2 miejsc, minimum 0.01 dla płatnych tierów
+  const totalCost = Math.round((inputCost + outputCost) * 100) / 100;
+  return totalCost > 0 ? Math.max(totalCost, 0.01) : 0;
+}
+
+/**
+ * Pobierz ToolType dla danego tieru AI Chat
+ */
+export function getAIChatToolType(tier: AIChatTier): ToolType {
+  return AI_CHAT_TIER_TO_TOOL[tier];
 }

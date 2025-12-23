@@ -1,0 +1,230 @@
+{
+  "pageTitle": "Chat AI Gratuit - Parlez avec ChatGPT, Claude, Gemini",
+  "pageDescription": "Chatbot AI gratuit avec accès à plus de 20 modèles: GPT-5.2, Claude Opus 4.5, Gemini 2.5, DeepSeek R1. Sans abonnement, payez à l'usage. Assistant AI multilingue.",
+  "heading": "AI Chat",
+  "subheading": "Discutez avec les meilleurs modèles d'IA du monde",
+  "title": "Nouvelle conversation",
+  "placeholder": "Écrivez un message...",
+  "send": "Envoyer",
+  "sending": "Envoi...",
+  "thinking": "Réflexion...",
+  "generating": "Génération de la réponse...",
+  "stop": "Arrêter",
+  "regenerate": "Régénérer",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "edit": "Modifier",
+  "delete": "Supprimer",
+  "newChat": "Nouveau chat",
+  "history": "Historique",
+  "noHistory": "Aucun historique de conversation",
+  "startNewChat": "Démarrer une nouvelle conversation",
+  "deleteConversation": "Supprimer la conversation",
+  "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette conversation ?",
+  "renameConversation": "Renommer",
+  "pinConversation": "Épingler",
+  "unpinConversation": "Désépingler",
+  "archiveConversation": "Archiver",
+  "exportConversation": "Exporter",
+  "shareConversation": "Partager",
+  "selectModel": "Sélectionner le modèle",
+  "model": "Modèle",
+  "tokens": "Tokens",
+  "inputTokens": "Entrée",
+  "outputTokens": "Sortie",
+  "totalTokens": "Total",
+  "cost": "Coût",
+  "credits": "crédits",
+  "yourCredits": "Vos crédits",
+  "freeModel": "Gratuit",
+  "attachFile": "Joindre un fichier",
+  "attachImage": "Joindre une image",
+  "removeAttachment": "Supprimer la pièce jointe",
+  "uploadingFile": "Téléchargement du fichier...",
+  "maxFileSize": "Taille max: 10Mo",
+  "supportedFormats": "Formats supportés: JPG, PNG, GIF, PDF, TXT",
+  "temperature": "Température",
+  "temperatureHelp": "Plus élevé = plus créatif, Plus bas = plus précis",
+  "systemPrompt": "Prompt système",
+  "systemPromptPlaceholder": "Instructions optionnelles pour l'IA...",
+  "clearSystemPrompt": "Effacer",
+  "settings": "Paramètres",
+  "modelTiers": {
+    "free": {
+      "name": "Gratuit",
+      "description": "Sans frais, conversations illimitées"
+    },
+    "budget": {
+      "name": "Économique",
+      "description": "Excellent rapport qualité-prix"
+    },
+    "pro": {
+      "name": "Professionnel",
+      "description": "Capacités avancées"
+    },
+    "premium": {
+      "name": "Premium",
+      "description": "Les meilleurs modèles disponibles"
+    },
+    "reasoning": {
+      "name": "Raisonnement",
+      "description": "Modèles avec chaîne de pensée"
+    }
+  },
+  "models": {
+    "gemini-flash-lite": {
+      "name": "Gemini Flash-Lite",
+      "description": "Modèle rapide et gratuit de Google"
+    },
+    "llama-8b": {
+      "name": "Llama 3.3 8B",
+      "description": "Modèle compact de Meta"
+    },
+    "qwen-235b": {
+      "name": "Qwen 2.5 235B",
+      "description": "Puissant modèle chinois"
+    },
+    "deepseek-v3": {
+      "name": "DeepSeek V3",
+      "description": "Modèle efficace open-source"
+    },
+    "gpt-4o-mini": {
+      "name": "GPT-4o Mini",
+      "description": "Modèle économique d'OpenAI"
+    },
+    "gemini-flash": {
+      "name": "Gemini 2.0 Flash",
+      "description": "Modèle rapide de Google"
+    },
+    "gemini-25-flash": {
+      "name": "Gemini 2.5 Flash",
+      "description": "Dernier Flash de Google"
+    },
+    "claude-haiku": {
+      "name": "Claude 3.5 Haiku",
+      "description": "Modèle rapide d'Anthropic"
+    },
+    "gpt-41": {
+      "name": "GPT-4.1",
+      "description": "Dernière version de GPT-4"
+    },
+    "gpt-52": {
+      "name": "GPT-5.2",
+      "description": "Dernier modèle phare d'OpenAI"
+    },
+    "claude-sonnet-4": {
+      "name": "Claude Sonnet 4",
+      "description": "Modèle équilibré d'Anthropic"
+    },
+    "claude-sonnet-45": {
+      "name": "Claude Sonnet 4.5",
+      "description": "Sonnet amélioré avec meilleur code"
+    },
+    "mistral-large": {
+      "name": "Mistral Large",
+      "description": "Modèle phare de Mistral"
+    },
+    "gemini-pro": {
+      "name": "Gemini 2.5 Pro",
+      "description": "Modèle professionnel de Google"
+    },
+    "grok-3": {
+      "name": "Grok 3",
+      "description": "Modèle xAI avec accès à X"
+    },
+    "deepseek-r1": {
+      "name": "DeepSeek R1",
+      "description": "Modèle de raisonnement"
+    },
+    "gpt-4o": {
+      "name": "GPT-4o",
+      "description": "Phare multimodal d'OpenAI"
+    },
+    "grok-4": {
+      "name": "Grok 4",
+      "description": "Dernier modèle de xAI"
+    },
+    "claude-opus-4": {
+      "name": "Claude Opus 4",
+      "description": "Le Claude le plus puissant"
+    },
+    "claude-opus-45": {
+      "name": "Claude Opus 4.5",
+      "description": "Dernier phare de Claude"
+    }
+  },
+  "features": {
+    "free": {
+      "title": "Modèles AI Gratuits",
+      "description": "Discutez gratuitement avec Gemini Flash-Lite, Llama, Qwen et DeepSeek V3. Sans limite de messages."
+    },
+    "models": {
+      "title": "Plus de 20 Modèles AI",
+      "description": "Accès aux meilleurs modèles: GPT-5.2, Claude Opus 4.5, Gemini 2.5, Grok 4 et plus."
+    },
+    "payPerUse": {
+      "title": "Paiement à l'Usage",
+      "description": "Sans abonnement. Payez uniquement les tokens utilisés. Contrôle total des coûts."
+    },
+    "multimodal": {
+      "title": "Support d'Images",
+      "description": "Envoyez images et fichiers. L'IA analysera le contenu et répondra à vos questions."
+    },
+    "history": {
+      "title": "Historique des Conversations",
+      "description": "Vos conversations sont sauvegardées. Revenez-y à tout moment."
+    },
+    "export": {
+      "title": "Export et Partage",
+      "description": "Exportez les conversations en fichier ou partagez un lien avec vos amis."
+    }
+  },
+  "folders": {
+    "title": "Dossiers",
+    "create": "Nouveau dossier",
+    "rename": "Renommer",
+    "delete": "Supprimer le dossier",
+    "moveHere": "Déplacer ici",
+    "noFolder": "Sans dossier"
+  },
+  "search": {
+    "placeholder": "Rechercher dans les conversations...",
+    "noResults": "Aucun résultat",
+    "results": "Résultats de recherche"
+  },
+  "errors": {
+    "sendFailed": "Échec de l'envoi du message. Veuillez réessayer.",
+    "loadFailed": "Échec du chargement de la conversation.",
+    "insufficientCredits": "Crédits insuffisants. Rechargez votre compte.",
+    "modelUnavailable": "Le modèle est temporairement indisponible. Choisissez-en un autre.",
+    "fileTooLarge": "Le fichier est trop volumineux. Taille maximale 10Mo.",
+    "unsupportedFormat": "Format de fichier non supporté.",
+    "networkError": "Erreur de connexion. Vérifiez votre internet.",
+    "rateLimited": "Trop de requêtes. Veuillez patienter."
+  },
+  "empty": {
+    "title": "Démarrer une conversation",
+    "description": "Choisissez un modèle AI et posez une question. Vous pouvez aussi joindre une image ou un fichier.",
+    "suggestions": {
+      "title": "Questions exemples",
+      "items": [
+        "Expliquez la théorie de la relativité simplement",
+        "Écrivez du code Python pour trier une liste",
+        "Aidez-moi à planifier un voyage en Italie",
+        "Analysez cette image et décrivez ce que vous voyez"
+      ]
+    }
+  },
+  "shortcuts": {
+    "title": "Raccourcis clavier",
+    "send": "Envoyer le message",
+    "newLine": "Nouvelle ligne",
+    "newChat": "Nouvelle conversation",
+    "focusInput": "Aller au champ de message"
+  },
+  "seo": {
+    "title": "Chat AI Gratuit en Ligne - ChatGPT, Claude, Gemini au Même Endroit",
+    "description": "Discutez gratuitement avec l'IA! Accès à plus de 20 modèles: GPT-5.2, Claude Opus 4.5, Gemini 2.5 Pro. Sans inscription, sans abonnement. Chatbot IA.",
+    "keywords": "chat ia gratuit, chatbot ia, gpt gratuit, claude ia, gemini chat, assistant ia, parler avec ia, chatgpt gratuit"
+  }
+}

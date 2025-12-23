@@ -1,0 +1,230 @@
+{
+  "pageTitle": "Free AI Chat - Talk with ChatGPT, Claude, Gemini",
+  "pageDescription": "Free AI chatbot with access to 20+ models: GPT-5.2, Claude Opus 4.5, Gemini 2.5, DeepSeek R1. No subscription, pay per use. Multilingual AI assistant.",
+  "heading": "AI Chat",
+  "subheading": "Chat with the world's best AI models",
+  "title": "New conversation",
+  "placeholder": "Type a message...",
+  "send": "Send",
+  "sending": "Sending...",
+  "thinking": "Thinking...",
+  "generating": "Generating response...",
+  "stop": "Stop",
+  "regenerate": "Regenerate",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "edit": "Edit",
+  "delete": "Delete",
+  "newChat": "New chat",
+  "history": "History",
+  "noHistory": "No conversation history",
+  "startNewChat": "Start a new conversation",
+  "deleteConversation": "Delete conversation",
+  "confirmDelete": "Are you sure you want to delete this conversation?",
+  "renameConversation": "Rename",
+  "pinConversation": "Pin",
+  "unpinConversation": "Unpin",
+  "archiveConversation": "Archive",
+  "exportConversation": "Export",
+  "shareConversation": "Share",
+  "selectModel": "Select model",
+  "model": "Model",
+  "tokens": "Tokens",
+  "inputTokens": "Input",
+  "outputTokens": "Output",
+  "totalTokens": "Total",
+  "cost": "Cost",
+  "credits": "credits",
+  "yourCredits": "Your credits",
+  "freeModel": "Free",
+  "attachFile": "Attach file",
+  "attachImage": "Attach image",
+  "removeAttachment": "Remove attachment",
+  "uploadingFile": "Uploading file...",
+  "maxFileSize": "Max size: 10MB",
+  "supportedFormats": "Supported formats: JPG, PNG, GIF, PDF, TXT",
+  "temperature": "Temperature",
+  "temperatureHelp": "Higher = more creative, Lower = more precise",
+  "systemPrompt": "System prompt",
+  "systemPromptPlaceholder": "Optional instructions for AI...",
+  "clearSystemPrompt": "Clear",
+  "settings": "Settings",
+  "modelTiers": {
+    "free": {
+      "name": "Free",
+      "description": "No cost, unlimited conversations"
+    },
+    "budget": {
+      "name": "Budget",
+      "description": "Great value for money"
+    },
+    "pro": {
+      "name": "Professional",
+      "description": "Advanced capabilities"
+    },
+    "premium": {
+      "name": "Premium",
+      "description": "Best models available"
+    },
+    "reasoning": {
+      "name": "Reasoning",
+      "description": "Chain-of-thought models"
+    }
+  },
+  "models": {
+    "gemini-flash-lite": {
+      "name": "Gemini Flash-Lite",
+      "description": "Fast and free Google model"
+    },
+    "llama-8b": {
+      "name": "Llama 3.3 8B",
+      "description": "Compact Meta model"
+    },
+    "qwen-235b": {
+      "name": "Qwen 2.5 235B",
+      "description": "Powerful Chinese model"
+    },
+    "deepseek-v3": {
+      "name": "DeepSeek V3",
+      "description": "Efficient open-source model"
+    },
+    "gpt-4o-mini": {
+      "name": "GPT-4o Mini",
+      "description": "Cost-effective OpenAI model"
+    },
+    "gemini-flash": {
+      "name": "Gemini 2.0 Flash",
+      "description": "Fast Google model"
+    },
+    "gemini-25-flash": {
+      "name": "Gemini 2.5 Flash",
+      "description": "Latest Flash from Google"
+    },
+    "claude-haiku": {
+      "name": "Claude 3.5 Haiku",
+      "description": "Fast Anthropic model"
+    },
+    "gpt-41": {
+      "name": "GPT-4.1",
+      "description": "Latest GPT-4 version"
+    },
+    "gpt-52": {
+      "name": "GPT-5.2",
+      "description": "Latest OpenAI flagship model"
+    },
+    "claude-sonnet-4": {
+      "name": "Claude Sonnet 4",
+      "description": "Balanced Anthropic model"
+    },
+    "claude-sonnet-45": {
+      "name": "Claude Sonnet 4.5",
+      "description": "Enhanced Sonnet with better coding"
+    },
+    "mistral-large": {
+      "name": "Mistral Large",
+      "description": "Mistral flagship model"
+    },
+    "gemini-pro": {
+      "name": "Gemini 2.5 Pro",
+      "description": "Professional Google model"
+    },
+    "grok-3": {
+      "name": "Grok 3",
+      "description": "xAI model with X access"
+    },
+    "deepseek-r1": {
+      "name": "DeepSeek R1",
+      "description": "Reasoning model"
+    },
+    "gpt-4o": {
+      "name": "GPT-4o",
+      "description": "OpenAI multimodal flagship"
+    },
+    "grok-4": {
+      "name": "Grok 4",
+      "description": "Latest xAI model"
+    },
+    "claude-opus-4": {
+      "name": "Claude Opus 4",
+      "description": "Most powerful Claude"
+    },
+    "claude-opus-45": {
+      "name": "Claude Opus 4.5",
+      "description": "Latest Claude flagship"
+    }
+  },
+  "features": {
+    "free": {
+      "title": "Free AI Models",
+      "description": "Chat for free with Gemini Flash-Lite, Llama, Qwen, and DeepSeek V3. No message limits."
+    },
+    "models": {
+      "title": "20+ AI Models",
+      "description": "Access to the best models: GPT-5.2, Claude Opus 4.5, Gemini 2.5, Grok 4 and more."
+    },
+    "payPerUse": {
+      "title": "Pay Per Use",
+      "description": "No subscription. Pay only for tokens you use. Full cost control."
+    },
+    "multimodal": {
+      "title": "Image Support",
+      "description": "Send images and files. AI will analyze the content and answer your questions."
+    },
+    "history": {
+      "title": "Conversation History",
+      "description": "Your conversations are saved. Return to them at any time."
+    },
+    "export": {
+      "title": "Export & Share",
+      "description": "Export conversations to file or share a link with friends."
+    }
+  },
+  "folders": {
+    "title": "Folders",
+    "create": "New folder",
+    "rename": "Rename",
+    "delete": "Delete folder",
+    "moveHere": "Move here",
+    "noFolder": "No folder"
+  },
+  "search": {
+    "placeholder": "Search conversations...",
+    "noResults": "No results",
+    "results": "Search results"
+  },
+  "errors": {
+    "sendFailed": "Failed to send message. Please try again.",
+    "loadFailed": "Failed to load conversation.",
+    "insufficientCredits": "Insufficient credits. Top up your account.",
+    "modelUnavailable": "Model is temporarily unavailable. Choose another.",
+    "fileTooLarge": "File is too large. Maximum size is 10MB.",
+    "unsupportedFormat": "Unsupported file format.",
+    "networkError": "Connection error. Check your internet.",
+    "rateLimited": "Too many requests. Please wait a moment."
+  },
+  "empty": {
+    "title": "Start a conversation",
+    "description": "Choose an AI model and ask a question. You can also attach an image or file.",
+    "suggestions": {
+      "title": "Example questions",
+      "items": [
+        "Explain the theory of relativity in simple terms",
+        "Write Python code to sort a list",
+        "Help me plan a trip to Italy",
+        "Analyze this image and describe what you see"
+      ]
+    }
+  },
+  "shortcuts": {
+    "title": "Keyboard shortcuts",
+    "send": "Send message",
+    "newLine": "New line",
+    "newChat": "New conversation",
+    "focusInput": "Jump to message field"
+  },
+  "seo": {
+    "title": "Free AI Chat Online - ChatGPT, Claude, Gemini in One Place",
+    "description": "Chat with AI for free! Access to 20+ models: GPT-5.2, Claude Opus 4.5, Gemini 2.5 Pro. No registration, no subscription. AI chatbot.",
+    "keywords": "free ai chat, ai chatbot, gpt free, claude ai, gemini chat, ai assistant, talk to ai, free chatgpt"
+  }
+}
