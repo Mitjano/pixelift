@@ -140,7 +140,7 @@ export async function chatCompletion(
       model: options.model,
       messages,
       temperature: options.temperature ?? 0.7,
-      max_tokens: options.maxTokens ?? 4096,
+      max_tokens: options.maxTokens ?? 2048,
       stream: false,
     }),
   });
@@ -194,7 +194,7 @@ export async function chatCompletionStream(
       model: options.model,
       messages,
       temperature: options.temperature ?? 0.7,
-      max_tokens: options.maxTokens ?? 4096,
+      max_tokens: options.maxTokens ?? 2048,
       stream: true,
       stream_options: {
         include_usage: true,
