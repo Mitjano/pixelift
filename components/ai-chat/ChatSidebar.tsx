@@ -89,14 +89,32 @@ export default function ChatSidebar({
 
   if (isCollapsed) {
     return (
-      <div className="w-16 h-full bg-gray-100 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col items-center py-4">
+      <div className="w-16 h-full bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col items-center py-4 gap-3">
         <button
           onClick={onNewChat}
-          className="w-10 h-10 rounded-lg bg-purple-600 hover:bg-purple-700 text-white flex items-center justify-center transition-colors"
+          className="w-10 h-10 rounded-lg bg-purple-600 hover:bg-purple-700 text-white flex items-center justify-center transition-colors shadow-md"
           title={t("newChat")}
         >
           <FaPlus className="w-4 h-4" />
         </button>
+        <div className="w-8 h-px bg-gray-200 dark:bg-gray-700" />
+        <div className="flex-1 overflow-y-auto w-full px-2">
+          {conversations.slice(0, 8).map((conv) => (
+            <button
+              key={conv.id}
+              onClick={() => onSelectConversation(conv.id)}
+              className={`
+                w-full aspect-square rounded-lg mb-2 flex items-center justify-center text-xs font-medium transition-colors
+                ${conv.id === currentConversationId
+                  ? "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
+                  : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"}
+              `}
+              title={conv.title}
+            >
+              {conv.title.charAt(0).toUpperCase()}
+            </button>
+          ))}
+        </div>
       </div>
     );
   }
