@@ -253,16 +253,20 @@ const ChatMessage = memo(function ChatMessage({
             </div>
 
             {/* Token info */}
-            {(inputTokens || outputTokens || creditsUsed) && (
-              <div className="text-xs text-gray-400 dark:text-gray-500">
-                {inputTokens && outputTokens && (
-                  <span>
-                    {inputTokens + outputTokens} tokenów
+            {(inputTokens || outputTokens) && (
+              <div className="flex items-center gap-3 text-xs">
+                <span className="text-gray-400 dark:text-gray-500">
+                  {inputTokens && outputTokens
+                    ? `${inputTokens.toLocaleString()} → ${outputTokens.toLocaleString()} tokenów`
+                    : `${(inputTokens || 0) + (outputTokens || 0)} tokenów`}
+                </span>
+                {creditsUsed !== undefined && creditsUsed > 0 ? (
+                  <span className="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                    -{creditsUsed.toFixed(3)} kr
                   </span>
-                )}
-                {creditsUsed !== undefined && creditsUsed > 0 && (
-                  <span className="ml-2">
-                    {creditsUsed.toFixed(2)} kredytów
+                ) : (
+                  <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                    Darmowe
                   </span>
                 )}
               </div>

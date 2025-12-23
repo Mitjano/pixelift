@@ -63,27 +63,36 @@ export default function ModelSelector({
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Compact trigger button */}
+      {/* Model selector trigger button - more prominent */}
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={`
-          inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium
-          transition-all duration-200
+          inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+          transition-all duration-200 min-w-[180px]
           ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:shadow-md"}
           ${selectedModel?.tier === "free"
-            ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30"
-            : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700"}
+            ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-2 border-emerald-500/40"
+            : selectedModel?.tier === "premium"
+            ? "bg-amber-500/15 text-amber-700 dark:text-amber-300 border-2 border-amber-500/40"
+            : "bg-purple-500/10 text-purple-700 dark:text-purple-300 border-2 border-purple-500/30"}
           ${isOpen ? "ring-2 ring-purple-500/50" : ""}
         `}
       >
-        {selectedModel?.tier === "free" && (
-          <HiSparkles className="w-3.5 h-3.5" />
-        )}
-        <span className="max-w-[140px] truncate">{selectedModel?.name || "Model"}</span>
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          {selectedModel?.tier === "free" && (
+            <HiSparkles className="w-4 h-4 flex-shrink-0" />
+          )}
+          <div className="flex flex-col items-start min-w-0">
+            <span className="font-semibold truncate max-w-[120px]">{selectedModel?.name || "Model"}</span>
+            <span className="text-[10px] opacity-70">
+              {selectedModel?.tier === "free" ? "Darmowy" : selectedModel?.provider}
+            </span>
+          </div>
+        </div>
         <FaChevronDown
-          className={`w-2.5 h-2.5 opacity-60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 opacity-60 transition-transform duration-200 flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -136,6 +145,11 @@ export default function ModelSelector({
                               {model.supportsImages && (
                                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium">
                                   +IMG
+                                </span>
+                              )}
+                              {tier !== "free" && (
+                                <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                                  ~{(model.inputCostPer1M / 1000).toFixed(2)}kr/1K
                                 </span>
                               )}
                             </div>
