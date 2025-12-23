@@ -11,6 +11,8 @@ interface ChatInputProps {
   disabled?: boolean;
   supportsImages?: boolean;
   placeholder?: string;
+  initialValue?: string;
+  onInitialValueUsed?: () => void;
 }
 
 interface ImageAttachment {
@@ -28,6 +30,8 @@ export default function ChatInput({
   disabled = false,
   supportsImages = true,
   placeholder,
+  initialValue,
+  onInitialValueUsed,
 }: ChatInputProps) {
   const t = useTranslations("chat");
   const [message, setMessage] = useState("");
@@ -50,6 +54,22 @@ export default function ChatInput({
   useEffect(() => {
     textareaRef.current?.focus();
   }, []);
+
+  // Handle initial value from suggestion click
+  useEffect(() => {
+    if (initialValue && initialValue !== message) {
+      setMessage(initialValue);
+      onInitialValueUsed?.();
+      // Focus and move cursor to end
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          textareaRef.current.selectionStart = textareaRef.current.value.length;
+          textareaRef.current.selectionEnd = textareaRef.current.value.length;
+        }
+      }, 0);
+    }
+  }, [initialValue, onInitialValueUsed]);
 
   const handleSubmit = () => {
     const trimmedMessage = message.trim();

@@ -51,6 +51,7 @@ export default function ChatWindow() {
   const [showSettings, setShowSettings] = useState(false);
   const [temperature, setTemperature] = useState(0.7);
   const [systemPrompt, setSystemPrompt] = useState("");
+  const [suggestedInput, setSuggestedInput] = useState("");
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -78,9 +79,10 @@ export default function ChatWindow() {
       if (response.ok) {
         const data = await response.json();
         setModels(data.models || []);
-        // Set default model
+        // Set default model - prefer free tier
         if (data.models?.length > 0 && !selectedModelId) {
-          setSelectedModelId(data.models[0].id);
+          const freeModel = data.models.find((m: AIModel) => m.tier === "free");
+          setSelectedModelId(freeModel?.id || data.models[0].id);
         }
       }
     } catch (err) {
@@ -354,7 +356,6 @@ export default function ChatWindow() {
         fixed lg:relative inset-y-0 left-0 z-50
         transform transition-transform duration-300 ease-in-out
         ${sidebarCollapsed ? '-translate-x-full lg:translate-x-0' : 'translate-x-0'}
-        ${sidebarCollapsed ? 'lg:w-16' : ''}
       `}>
         <ChatSidebar
           conversations={conversations}
@@ -365,7 +366,7 @@ export default function ChatWindow() {
           onRenameConversation={handleRenameConversation}
           onPinConversation={handlePinConversation}
           onArchiveConversation={handleArchiveConversation}
-          isCollapsed={false}
+          isCollapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         />
       </div>
@@ -377,31 +378,36 @@ export default function ChatWindow() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              title={sidebarCollapsed ? t("showSidebar") : t("hideSidebar")}
             >
               <FaBars className="w-4 h-4" />
             </button>
 
-            <ModelSelector
-              models={models}
-              selectedModelId={selectedModelId}
-              onSelectModel={setSelectedModelId}
-              disabled={isLoading}
-            />
-
-            {selectedModel && (
-              <span
-                className={`
-                  text-xs px-2 py-1 rounded-full
-                  ${isModelFree
-                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                    : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
-                  }
-                `}
-              >
-                {isModelFree ? t("freeModel") : `~${(selectedModel.inputCostPer1M / 1000).toFixed(3)}/1K`}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">
+                {t("model")}:
               </span>
-            )}
+              <ModelSelector
+                models={models}
+                selectedModelId={selectedModelId}
+                onSelectModel={setSelectedModelId}
+                disabled={isLoading}
+              />
+              {selectedModel && (
+                <span
+                  className={`
+                    text-xs px-2 py-1 rounded-full hidden sm:inline
+                    ${isModelFree
+                      ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                      : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                    }
+                  `}
+                >
+                  {isModelFree ? t("freeModel") : `~${(selectedModel.inputCostPer1M / 1000).toFixed(3)}/1K`}
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
@@ -461,7 +467,7 @@ export default function ChatWindow() {
         {/* Messages area */}
         <div className="flex-1 overflow-y-auto">
           {messages.length === 0 ? (
-            <EmptyState t={t} onSuggestionClick={(text) => handleSendMessage(text)} />
+            <EmptyState t={t} onSuggestionClick={(text) => setSuggestedInput(text)} />
           ) : (
             <div className="max-w-3xl mx-auto">
               {messages.map((msg, idx) => (
@@ -491,6 +497,8 @@ export default function ChatWindow() {
             onStop={handleStopGeneration}
             isLoading={isLoading}
             supportsImages={selectedModel?.supportsImages ?? false}
+            initialValue={suggestedInput}
+            onInitialValueUsed={() => setSuggestedInput("")}
           />
         </div>
       </div>

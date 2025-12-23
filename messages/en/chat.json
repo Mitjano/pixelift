@@ -16,6 +16,8 @@
   "edit": "Edit",
   "delete": "Delete",
   "newChat": "New chat",
+  "showSidebar": "Show panel",
+  "hideSidebar": "Hide panel",
   "history": "History",
   "noHistory": "No conversation history",
   "startNewChat": "Start a new conversation",
