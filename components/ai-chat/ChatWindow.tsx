@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { FaCoins, FaCog, FaBars } from "react-icons/fa";
+import Link from "next/link";
+import { FaCoins, FaCog, FaBars, FaHome, FaTools } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi2";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
@@ -426,7 +427,27 @@ export default function ChatWindow() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Navigation links */}
+            <div className="flex items-center gap-1">
+              <Link
+                href="/"
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors"
+                title={t("backToHome")}
+              >
+                <FaHome className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/#tools"
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors"
+                title={t("tools")}
+              >
+                <FaTools className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 hidden sm:block" />
+
             <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400">
               <FaCoins className="w-4 h-4 text-yellow-500" />
               <span>{credits.toFixed(2)}</span>
