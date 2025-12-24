@@ -6432,5 +6432,53 @@
     },
     "processing": "Eliminando marca de agua...",
     "success": "¡Marca de agua eliminada exitosamente!"
+  },
+  "aiProducts": {
+    "badge": "Productos IA",
+    "title": "Herramientas de IA Potentes",
+    "titleHighlight": "para Todos",
+    "subtitle": "Accede a los mejores modelos de IA para chat, creación de imágenes y generación de video. Sin suscripciones, paga solo por lo que uses.",
+    "learnMore": "Más información",
+    "products": {
+      "ai-chat": {
+        "name": "AI Chat",
+        "description": "Chatea con más de 20 modelos de IA incluyendo GPT-5.2, Claude Opus 4.5, Gemini 2.5 Pro y DeepSeek R1. Modelos gratuitos disponibles.",
+        "cta": "Comenzar a Chatear",
+        "features": {
+          "gpt52": "GPT-5.2",
+          "claudeOpus": "Claude Opus 4.5",
+          "gemini": "Gemini 2.5",
+          "deepseek": "DeepSeek R1"
+        }
+      },
+      "ai-image": {
+        "name": "AI Image",
+        "description": "Genera imágenes impresionantes con FLUX Pro, Stable Diffusion 3.5, DALL-E 3 y modelos de calidad Midjourney.",
+        "cta": "Crear Imágenes",
+        "features": {
+          "flux": "FLUX Pro",
+          "sd35": "SD 3.5",
+          "dalle": "DALL-E 3",
+          "ideogram": "Ideogram"
+        }
+      },
+      "ai-video": {
+        "name": "AI Video",
+        "description": "Crea videos profesionales con Kling, Runway Gen-3, Luma Dream Machine y modelos Minimax AI.",
+        "cta": "Generar Videos",
+        "features": {
+          "kling": "Kling AI",
+          "runway": "Runway",
+          "luma": "Luma",
+          "minimax": "Minimax"
+        }
+      }
+    },
+    "stats": {
+      "models": "20+ Modelos de Chat",
+      "imageModels": "10+ Modelos de Imagen",
+      "videoModels": "5+ Modelos de Video",
+      "perToken": "Pago por Token"
+    }
   }
 }

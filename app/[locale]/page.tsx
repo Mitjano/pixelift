@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 // Above-the-fold components - load immediately
 import TrustBadges from "@/components/TrustBadges";
 import ToolsShowcase from "@/components/ToolsShowcase";
+import AIProductsShowcase from "@/components/AIProductsShowcase";
 
 // Below-the-fold components - lazy load for better initial page load
 const UseCases = dynamic(() => import("@/components/UseCases"), {
@@ -172,6 +173,9 @@ export default function Home() {
 
       {/* Trust Badges Section */}
       <TrustBadges />
+
+      {/* AI Products Showcase Section */}
+      <AIProductsShowcase />
 
       {/* Tools Showcase Section */}
       <ToolsShowcase />

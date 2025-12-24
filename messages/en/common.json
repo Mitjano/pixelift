@@ -6601,5 +6601,53 @@
       "getStarted": "Get Started Free",
       "startAction": "Relight Portrait Now"
     }
+  },
+  "aiProducts": {
+    "badge": "AI Products",
+    "title": "Powerful AI Tools",
+    "titleHighlight": "for Everyone",
+    "subtitle": "Access the world's best AI models for chat, image creation, and video generation. No subscriptions, pay only for what you use.",
+    "learnMore": "Learn More",
+    "products": {
+      "ai-chat": {
+        "name": "AI Chat",
+        "description": "Chat with 20+ AI models including GPT-5.2, Claude Opus 4.5, Gemini 2.5 Pro, and DeepSeek R1. Free models available.",
+        "cta": "Start Chatting",
+        "features": {
+          "gpt52": "GPT-5.2",
+          "claudeOpus": "Claude Opus 4.5",
+          "gemini": "Gemini 2.5",
+          "deepseek": "DeepSeek R1"
+        }
+      },
+      "ai-image": {
+        "name": "AI Image",
+        "description": "Generate stunning images with FLUX Pro, Stable Diffusion 3.5, DALL-E 3, and Midjourney-quality models.",
+        "cta": "Create Images",
+        "features": {
+          "flux": "FLUX Pro",
+          "sd35": "SD 3.5",
+          "dalle": "DALL-E 3",
+          "ideogram": "Ideogram"
+        }
+      },
+      "ai-video": {
+        "name": "AI Video",
+        "description": "Create professional videos with Kling, Runway Gen-3, Luma Dream Machine, and Minimax AI models.",
+        "cta": "Generate Videos",
+        "features": {
+          "kling": "Kling AI",
+          "runway": "Runway",
+          "luma": "Luma",
+          "minimax": "Minimax"
+        }
+      }
+    },
+    "stats": {
+      "models": "20+ Chat Models",
+      "imageModels": "10+ Image Models",
+      "videoModels": "5+ Video Models",
+      "perToken": "Pay Per Token"
+    }
   }
 }
