@@ -115,8 +115,20 @@ const ECOMMERCE_PRESETS: Record<string, { prompt: string; category: string }> = 
   }
 }
 
-// Placement options
-type PlacementType = 'original' | 'automatic' | 'bottom_center' | 'center' | 'left_center' | 'right_center'
+// Placement options - mapped to Bria API values
+type PlacementType = 'original' | 'automatic' | 'bottom_center' | 'center_vertical' | 'left_center' | 'right_center' | 'upper_center'
+
+// Map frontend placement values to API values
+const PLACEMENT_MAP: Record<string, string> = {
+  'original': 'original',
+  'automatic': 'automatic',
+  'bottom_center': 'bottom_center',
+  'center': 'center_vertical',
+  'center_vertical': 'center_vertical',
+  'left_center': 'left_center',
+  'right_center': 'right_center',
+  'upper_center': 'upper_center',
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -212,7 +224,8 @@ export async function POST(request: NextRequest) {
     console.log('[Product Shot] Generating with Bria Product Shot...', {
       prompt: sceneDescription.substring(0, 50) + '...',
       numResults: clampedResults,
-      placement
+      placement,
+      shotSize: [shotWidth, shotHeight]
     })
 
     // 7. CALL BRIA PRODUCT SHOT API
@@ -220,13 +233,16 @@ export async function POST(request: NextRequest) {
     let placementType: string = 'automatic'
     let manualPlacement: string | undefined
 
-    if (placement === 'original') {
+    // Map frontend placement to API value
+    const mappedPlacement = PLACEMENT_MAP[placement] || placement
+
+    if (mappedPlacement === 'original') {
       placementType = 'original'
-    } else if (placement === 'automatic') {
+    } else if (mappedPlacement === 'automatic') {
       placementType = 'automatic'
     } else {
       placementType = 'manual_placement'
-      manualPlacement = placement
+      manualPlacement = mappedPlacement
     }
 
     const apiInput: Record<string, unknown> = {
@@ -248,6 +264,8 @@ export async function POST(request: NextRequest) {
     if (referenceImageUrl) {
       apiInput.ref_image_url = referenceImageUrl
     }
+
+    console.log('[Product Shot] API Input:', JSON.stringify(apiInput, null, 2))
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await fal.subscribe('fal-ai/bria/product-shot', {
@@ -324,9 +342,18 @@ export async function POST(request: NextRequest) {
     })
   } catch (error: unknown) {
     console.error('[Product Shot] Error:', error)
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    // Extract more details from Fal.ai validation errors
+    let errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    let errorDetails = ''
+    if (error && typeof error === 'object' && 'body' in error) {
+      const body = (error as { body: unknown }).body
+      console.error('[Product Shot] Error body:', JSON.stringify(body, null, 2))
+      if (body && typeof body === 'object' && 'detail' in body) {
+        errorDetails = JSON.stringify((body as { detail: unknown }).detail)
+      }
+    }
     return NextResponse.json(
-      { error: 'Failed to generate product shot', details: errorMessage },
+      { error: 'Failed to generate product shot', details: errorMessage, validation: errorDetails },
       { status: 500 }
     )
   }
