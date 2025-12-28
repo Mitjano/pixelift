@@ -52,6 +52,11 @@ const toolIcons = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
     </svg>
   ),
+  productShot: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+    </svg>
+  ),
   expand: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
@@ -193,8 +198,7 @@ const toolCategories = [
       </svg>
     ),
     tools: [
-      { key: 'backgroundGenerator', href: '/tools/background-generator', color: 'from-pink-500 to-rose-600' },
-      { key: 'packshot', href: '/tools/ai-background-generator', color: 'from-amber-500 to-orange-600' },
+      { key: 'productShot', href: '/tools/ai-background-generator', color: 'from-amber-500 to-orange-600' },
       { key: 'expand', href: '/tools/image-expand', color: 'from-indigo-500 to-indigo-600' },
       { key: 'inpainting', href: '/tools/inpainting', color: 'from-emerald-500 to-teal-600' },
       { key: 'logoMaker', href: '/tools/logo-maker', color: 'from-violet-500 to-purple-600' },

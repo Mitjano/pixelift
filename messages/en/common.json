@@ -141,6 +141,11 @@
       "name": "Packshot Generator",
       "description": "Professional product photos"
     },
+    "productShot": {
+      "name": "AI Product Shot",
+      "description": "E-commerce backgrounds & lighting",
+      "badge": "PRO"
+    },
     "expand": {
       "name": "Image Expand",
       "description": "Extend images with AI"

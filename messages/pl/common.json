@@ -141,6 +141,11 @@
       "name": "Generator Packshot",
       "description": "Profesjonalne zdjęcia produktów"
     },
+    "productShot": {
+      "name": "AI Product Shot",
+      "description": "Tła i oświetlenie e-commerce",
+      "badge": "PRO"
+    },
     "expand": {
       "name": "Rozszerzanie Obrazu",
       "description": "Rozszerz obrazy za pomocą AI"
