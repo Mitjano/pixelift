@@ -153,8 +153,12 @@ export default function UsersClient({ users: initialUsers, stats }: UsersClientP
                 </tr>
               ) : (
                 filteredUsers.map((user) => (
-                  <tr key={user.id} className="border-b border-gray-800 hover:bg-gray-700/30 cursor-pointer transition">
-                    <td className="py-4 px-6" onClick={() => navigateToUser(user.id)}>
+                  <tr
+                    key={user.id}
+                    className="border-b border-gray-800 hover:bg-gray-700/30 cursor-pointer transition"
+                    onClick={() => navigateToUser(user.id)}
+                  >
+                    <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
                         {user.image ? (
                           <img src={user.image} alt={user.name || user.email || 'User avatar'} className="w-10 h-10 rounded-full" />
@@ -169,7 +173,7 @@ export default function UsersClient({ users: initialUsers, stats }: UsersClientP
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-6">
+                    <td className="py-4 px-6" onClick={(e) => e.stopPropagation()}>
                       <select
                         value={user.role}
                         onChange={(e) => handleUpdateUser(user.id, { role: e.target.value as any })}
@@ -186,7 +190,7 @@ export default function UsersClient({ users: initialUsers, stats }: UsersClientP
                         <option value="admin">Admin</option>
                       </select>
                     </td>
-                    <td className="py-4 px-6">
+                    <td className="py-4 px-6" onClick={(e) => e.stopPropagation()}>
                       <select
                         value={user.status}
                         onChange={(e) => handleUpdateUser(user.id, { status: e.target.value as any })}
@@ -203,7 +207,7 @@ export default function UsersClient({ users: initialUsers, stats }: UsersClientP
                         <option value="banned">Banned</option>
                       </select>
                     </td>
-                    <td className="py-4 px-6 text-right">
+                    <td className="py-4 px-6 text-right" onClick={(e) => e.stopPropagation()}>
                       <input
                         type="number"
                         value={editingCredits[user.id] ?? user.credits}
@@ -232,7 +236,7 @@ export default function UsersClient({ users: initialUsers, stats }: UsersClientP
                         </div>
                       )}
                     </td>
-                    <td className="py-4 px-6 text-right">
+                    <td className="py-4 px-6 text-right" onClick={(e) => e.stopPropagation()}>
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => navigateToUser(user.id)}
@@ -241,10 +245,7 @@ export default function UsersClient({ users: initialUsers, stats }: UsersClientP
                           View
                         </button>
                         <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleUpdateUser(user.id, { credits: user.credits + 10 });
-                          }}
+                          onClick={() => handleUpdateUser(user.id, { credits: user.credits + 10 })}
                           className="px-3 py-1 bg-green-500/20 hover:bg-green-500/30 text-green-400 rounded-lg text-sm font-medium transition"
                         >
                           +10 Credits
