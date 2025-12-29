@@ -4,6 +4,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { getUserByEmail } from "@/lib/db";
+import { headers } from "next/headers";
 
 // Admin emails from environment variable (comma-separated)
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim()).filter(Boolean);
@@ -103,34 +104,44 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async signIn({ user, account, profile }) {
       // This callback runs AFTER OAuth/Credentials but BEFORE creating session
-      // For OAuth providers (Google, Facebook), we register/update user in database
-      // For credentials provider, user is already registered
-      if (user.email && account?.provider !== 'credentials') {
+      // For OAuth providers: register/update user in database with geo tracking
+      // For credentials provider: update login tracking (geo, device info)
+      if (user.email) {
         try {
-          // Call internal registration endpoint for OAuth providers
+          // Get original request headers for IP tracking
+          const headersList = await headers();
+          const clientIp = headersList.get('cf-connecting-ip') ||
+                          headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                          headersList.get('x-real-ip') ||
+                          'unknown';
+          const userAgent = headersList.get('user-agent') || '';
+          const acceptLanguage = headersList.get('accept-language') || '';
+
           const baseUrl = process.env.AUTH_URL || process.env.NEXTAUTH_URL || 'http://localhost:3000';
           const response = await fetch(`${baseUrl}/api/auth/register-user-internal`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'X-Internal-Auth': process.env.NEXTAUTH_SECRET || '',
+              // Forward client headers for geo tracking
+              'X-Client-IP': clientIp,
+              'X-Client-User-Agent': userAgent,
+              'X-Client-Accept-Language': acceptLanguage,
             },
             body: JSON.stringify({
               email: user.email,
               name: user.name,
               image: user.image,
-              authProvider: account?.provider,
+              authProvider: account?.provider || 'credentials',
             }),
           });
 
           if (!response.ok) {
-            console.error('[auth] Failed to register user:', await response.text());
+            console.error('[auth] Failed to register/update user:', await response.text());
             // Don't block login if registration fails
-          } else {
-            const data = await response.json();
           }
         } catch (error) {
-          console.error('[auth] Error during user registration:', error);
+          console.error('[auth] Error during user registration/update:', error);
           // Don't block login if registration fails
         }
       }

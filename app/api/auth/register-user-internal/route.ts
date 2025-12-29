@@ -87,14 +87,17 @@ export async function POST(request: NextRequest) {
     }
 
     // Extract tracking data from headers
-    // Check Cloudflare header first, then standard proxy headers
-    const ipAddress = request.headers.get('cf-connecting-ip') ||
+    // First check forwarded client headers (from signIn callback), then fall back to direct headers
+    const ipAddress = request.headers.get('x-client-ip') ||
+                      request.headers.get('cf-connecting-ip') ||
                       request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
                       request.headers.get('x-real-ip') ||
                       'unknown';
-    const userAgent = request.headers.get('user-agent') || '';
+    const userAgent = request.headers.get('x-client-user-agent') ||
+                      request.headers.get('user-agent') || '';
     const { deviceType, browser, browserVersion, os, osVersion } = parseUserAgent(userAgent);
-    const language = request.headers.get('accept-language')?.split(',')[0] || undefined;
+    const language = request.headers.get('x-client-accept-language')?.split(',')[0] ||
+                     request.headers.get('accept-language')?.split(',')[0] || undefined;
 
     // Get geolocation from IP (async, won't block on failure)
     let geoData: Awaited<ReturnType<typeof getGeoFromIP>> = null;
