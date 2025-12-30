@@ -225,7 +225,7 @@ export default function ChatWindow() {
               }
 
               if (data.type === "done") {
-                // Update with final data
+                // Update with final data from OpenRouter
                 setMessages((prev) =>
                   prev.map((msg) =>
                     msg.id === assistantMessageId
@@ -234,6 +234,22 @@ export default function ChatWindow() {
                           content: data.content || fullContent,
                           inputTokens: data.usage?.prompt_tokens,
                           outputTokens: data.usage?.completion_tokens,
+                        }
+                      : msg
+                  )
+                );
+              }
+
+              if (data.type === "final") {
+                // Update with credits info from our backend
+                setMessages((prev) =>
+                  prev.map((msg) =>
+                    msg.id === assistantMessageId
+                      ? {
+                          ...msg,
+                          creditsUsed: data.creditsUsed,
+                          inputTokens: data.inputTokens || msg.inputTokens,
+                          outputTokens: data.outputTokens || msg.outputTokens,
                         }
                       : msg
                   )

@@ -306,6 +306,15 @@ export async function POST(request: NextRequest) {
           });
         }
 
+        // Wyślij finalną informację o kosztach do klienta
+        const finalData = {
+          type: 'final',
+          creditsUsed: credits,
+          inputTokens,
+          outputTokens,
+        };
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(finalData)}\n\n`));
+
         controller.close();
       },
     });
