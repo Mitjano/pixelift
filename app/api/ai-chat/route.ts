@@ -224,6 +224,7 @@ export async function POST(request: NextRequest) {
       async start(controller) {
         const reader = transformedStream.getReader();
         const decoder = new TextDecoder();
+        const encoder = new TextEncoder();
 
         try {
           while (true) {
