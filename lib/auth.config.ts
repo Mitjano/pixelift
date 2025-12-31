@@ -7,8 +7,10 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-// Admin emails from environment variable (comma-separated)
-const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim()).filter(Boolean);
+// Helper function to get admin emails at runtime (for Edge compatibility)
+const getAdminEmails = () => {
+  return (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim()).filter(Boolean);
+};
 
 export const authConfig: NextAuthConfig = {
   providers: [
@@ -67,14 +69,15 @@ export const authConfig: NextAuthConfig = {
       return session;
     },
     async jwt({ token, user }) {
+      const adminEmails = getAdminEmails();
       if (user) {
         token.sub = user.id;
         // Add isAdmin to token
-        token.isAdmin = ADMIN_EMAILS.includes(user.email || "");
+        token.isAdmin = adminEmails.includes(user.email || "");
       }
       // Always ensure isAdmin is set based on email
       if (token.email) {
-        token.isAdmin = ADMIN_EMAILS.includes(token.email);
+        token.isAdmin = adminEmails.includes(token.email);
       }
       return token;
     },
