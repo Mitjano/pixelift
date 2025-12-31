@@ -44,10 +44,8 @@ export default function ChatInput({
     }
   }, [value]);
 
-  // Focus on mount
-  useEffect(() => {
-    textareaRef.current?.focus();
-  }, []);
+  // Don't auto-focus on mount - it causes page to scroll down
+  // Focus will be triggered when user interacts with chat instead
 
   // Cleanup previews on unmount
   useEffect(() => {
