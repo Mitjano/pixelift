@@ -26,10 +26,10 @@ import {
 import {
   getToolDefinitions,
   getToolDefinitionsFor,
-  executeTool,
   type ToolExecutionResult,
   type ToolExecutionContext,
 } from './tools';
+import { executeToolWithRealHandler } from './tools/server-handlers';
 
 // ============================================================================
 // TYPES
@@ -222,16 +222,38 @@ export class Orchestrator {
 
   /**
    * Wykonaj zapytanie agenta ze streamingiem zdarzeń
+   * @param userMessage - treść wiadomości użytkownika
+   * @param imageDataUrls - opcjonalna tablica base64 data URLs obrazów
    */
-  async *runStream(userMessage: string): AsyncGenerator<AgentEvent> {
+  async *runStream(userMessage: string, imageDataUrls?: string[]): AsyncGenerator<AgentEvent> {
     this.abortController = new AbortController();
     this.executionContext.abortSignal = this.abortController.signal;
 
-    // Dodaj wiadomość użytkownika
-    this.session.messages.push({
-      role: 'user',
-      content: userMessage,
-    });
+    // Store uploaded images in context for tool handlers to use
+    if (imageDataUrls && imageDataUrls.length > 0) {
+      this.executionContext.uploadedImages = imageDataUrls;
+    }
+
+    // Dodaj wiadomość użytkownika (z obrazami jeśli są)
+    if (imageDataUrls && imageDataUrls.length > 0) {
+      // Utwórz wiadomość z obrazami w formacie MessageContent[]
+      const content: Array<{ type: 'text' | 'image_url'; text?: string; image_url?: { url: string } }> = [
+        { type: 'text', text: userMessage || 'Please analyze this image.' },
+        ...imageDataUrls.map(url => ({
+          type: 'image_url' as const,
+          image_url: { url },
+        })),
+      ];
+      this.session.messages.push({
+        role: 'user',
+        content,
+      });
+    } else {
+      this.session.messages.push({
+        role: 'user',
+        content: userMessage,
+      });
+    }
 
     let stepNumber = 0;
     let finalMessage = '';
@@ -486,7 +508,7 @@ export class Orchestrator {
     const startedAt = new Date();
     const parsed = parseToolCalls([toolCall])[0];
 
-    const result = await executeTool(
+    const result = await executeToolWithRealHandler(
       parsed.name,
       parsed.arguments,
       this.executionContext

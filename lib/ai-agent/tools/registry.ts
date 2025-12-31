@@ -3,6 +3,9 @@
  *
  * Centralny rejestr 28 narzędzi dostępnych dla AI Agenta
  * Każde narzędzie ma definicję OpenRouter-compatible oraz handler
+ *
+ * UWAGA: Ten plik jest używany zarówno po stronie klienta jak i serwera.
+ * Prawdziwe handlery są ładowane dynamicznie tylko na serwerze w executeTool.
  */
 
 import type { Tool } from '@/lib/ai-chat/openrouter';
@@ -72,6 +75,8 @@ export function getToolDefinitionsFor(names: string[]): Tool[] {
 
 /**
  * Wykonaj narzędzie
+ * UWAGA: Ta funkcja jest wywoływana tylko z orchestratora (server-side)
+ * Dla narzędzi z prawdziwą implementacją, użyj executeToolWithRealHandler z server-handlers.ts
  */
 export async function executeTool(
   name: string,
@@ -156,7 +161,7 @@ function createPlaceholderHandler(toolName: string) {
 registerTool(
   createRegisteredTool({
     name: 'remove_background',
-    description: 'Remove background from image, making it transparent. Best for product photos, portraits, and objects.',
+    description: 'Remove background from image, making it transparent. Best for product photos, portraits, and objects. Use image_url: "UPLOADED_IMAGE" to process the uploaded image.',
     category: 'image_editing',
     creditsRequired: 1,
     estimatedTimeSeconds: 5,
@@ -167,7 +172,7 @@ registerTool(
       properties: {
         image_url: {
           type: 'string',
-          description: 'URL or base64 of the input image',
+          description: 'Use "UPLOADED_IMAGE" to process the uploaded image, or provide a URL/base64',
         },
         refine_edges: {
           type: 'boolean',
@@ -176,7 +181,7 @@ registerTool(
       },
       required: ['image_url'],
     },
-    handler: createPlaceholderHandler('remove_background'),
+    handler: createPlaceholderHandler('remove_background'), // Real handler loaded dynamically in executeTool
   })
 );
 
@@ -184,7 +189,7 @@ registerTool(
 registerTool(
   createRegisteredTool({
     name: 'upscale_image',
-    description: 'Upscale image to higher resolution using AI. Supports 2x and 4x scaling.',
+    description: 'Upscale image to higher resolution using AI. Supports 2x and 4x scaling. Use image_url: "UPLOADED_IMAGE" to process the uploaded image.',
     category: 'image_editing',
     creditsRequired: 2,
     estimatedTimeSeconds: 15,
@@ -195,7 +200,7 @@ registerTool(
       properties: {
         image_url: {
           type: 'string',
-          description: 'URL or base64 of the input image',
+          description: 'Use "UPLOADED_IMAGE" to process the uploaded image, or provide a URL/base64',
         },
         scale: {
           type: 'string',
@@ -205,7 +210,7 @@ registerTool(
       },
       required: ['image_url'],
     },
-    handler: createPlaceholderHandler('upscale_image'),
+    handler: createPlaceholderHandler('upscale_image'), // Real handler loaded dynamically in executeTool
   })
 );
 
@@ -213,7 +218,7 @@ registerTool(
 registerTool(
   createRegisteredTool({
     name: 'compress_image',
-    description: 'Compress image to reduce file size while maintaining quality. Good for web optimization.',
+    description: 'Compress image to reduce file size while maintaining quality. Good for web optimization. Use image_url: "UPLOADED_IMAGE" to process the uploaded image.',
     category: 'image_editing',
     creditsRequired: 0,
     estimatedTimeSeconds: 3,
@@ -224,7 +229,7 @@ registerTool(
       properties: {
         image_url: {
           type: 'string',
-          description: 'URL or base64 of the input image',
+          description: 'Use "UPLOADED_IMAGE" to process the uploaded image, or provide a URL/base64',
         },
         quality: {
           type: 'number',
@@ -249,7 +254,7 @@ registerTool(
 registerTool(
   createRegisteredTool({
     name: 'convert_format',
-    description: 'Convert image to different format (PNG, JPG, WebP, AVIF).',
+    description: 'Convert image to different format (PNG, JPG, WebP, AVIF). Use image_url: "UPLOADED_IMAGE" to process the uploaded image.',
     category: 'image_editing',
     creditsRequired: 0,
     estimatedTimeSeconds: 2,
@@ -260,7 +265,7 @@ registerTool(
       properties: {
         image_url: {
           type: 'string',
-          description: 'URL or base64 of the input image',
+          description: 'Use "UPLOADED_IMAGE" to process the uploaded image, or provide a URL/base64',
         },
         format: {
           type: 'string',
@@ -282,7 +287,7 @@ registerTool(
 registerTool(
   createRegisteredTool({
     name: 'resize_image',
-    description: 'Resize image to specific dimensions or percentage. Supports aspect ratio preservation.',
+    description: 'Resize image to specific dimensions or percentage. Supports aspect ratio preservation. Use image_url: "UPLOADED_IMAGE" to process the uploaded image.',
     category: 'image_editing',
     creditsRequired: 0,
     estimatedTimeSeconds: 2,
@@ -293,7 +298,7 @@ registerTool(
       properties: {
         image_url: {
           type: 'string',
-          description: 'URL or base64 of the input image',
+          description: 'Use "UPLOADED_IMAGE" to process the uploaded image, or provide a URL/base64',
         },
         width: {
           type: 'number',
@@ -716,10 +721,10 @@ registerTool(
 registerTool(
   createRegisteredTool({
     name: 'analyze_image',
-    description: 'Analyze image content, detect objects, read text (OCR), extract colors.',
+    description: 'Analyze image content, detect objects, read text (OCR), extract colors. Use image_url: "UPLOADED_IMAGE" to analyze the uploaded image.',
     category: 'image_analysis',
-    creditsRequired: 1,
-    estimatedTimeSeconds: 5,
+    creditsRequired: 0,
+    estimatedTimeSeconds: 1,
     requiresImage: true,
     producesImage: false,
     parameters: {
@@ -727,7 +732,7 @@ registerTool(
       properties: {
         image_url: {
           type: 'string',
-          description: 'URL or base64 of the input image',
+          description: 'Use "UPLOADED_IMAGE" to analyze the uploaded image',
         },
         analysis_type: {
           type: 'string',

@@ -45,6 +45,8 @@ export interface ToolExecutionContext {
   availableCredits: number;
   previousResults: Map<string, ToolExecutionResult>;
   abortSignal?: AbortSignal;
+  /** Base64 data URLs of images uploaded in the current message */
+  uploadedImages?: string[];
 }
 
 /**

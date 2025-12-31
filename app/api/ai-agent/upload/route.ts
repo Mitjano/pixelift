@@ -49,12 +49,17 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(bytes);
     await writeFile(filepath, buffer);
 
-    // Return public URL
+    // Convert to base64 for AI model
+    const base64 = buffer.toString('base64');
+    const dataUrl = `data:${file.type};base64,${base64}`;
+
+    // Return public URL and base64 for AI
     const url = `/uploads/ai-agent/${filename}`;
 
     return NextResponse.json({
       success: true,
       url,
+      dataUrl, // base64 data URL for AI model
       filename: file.name,
       size: file.size,
       type: file.type,

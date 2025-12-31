@@ -47,11 +47,13 @@ export default function AgentChat() {
 
   const abortControllerRef = useRef<AbortController | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom on new messages (only when there are messages)
+  // Scroll to bottom on new messages (only within chat container, not the page)
   useEffect(() => {
-    if (messages.length > 0) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messages.length > 0 && messagesContainerRef.current) {
+      // Scroll only the messages container, not the whole page
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [messages, currentToolExecutions]);
 
@@ -69,7 +71,7 @@ export default function AgentChat() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'anthropic/claude-3.5-sonnet',
+          model: 'anthropic/claude-sonnet-4',
         }),
       });
 
@@ -89,10 +91,14 @@ export default function AgentChat() {
   const handleSend = useCallback(async (uploadedImages?: UploadedImage[]) => {
     if ((!input.trim() && !uploadedImages?.length) || isLoading || !sessionId) return;
 
-    // Get image URLs from uploaded images
+    // Get image URLs for display and dataUrls for AI model
     const imageUrls = uploadedImages
       ?.filter(img => img.url)
       .map(img => img.url!) || [];
+
+    const imageDataUrls = uploadedImages
+      ?.filter(img => img.dataUrl)
+      .map(img => img.dataUrl!) || [];
 
     const userMessage: ChatMessage = {
       id: `msg-${Date.now()}`,
@@ -130,7 +136,7 @@ export default function AgentChat() {
         body: JSON.stringify({
           sessionId,
           message: userMessage.content,
-          images: imageUrls.length > 0 ? imageUrls : undefined,
+          images: imageDataUrls.length > 0 ? imageDataUrls : undefined, // Send dataUrls for AI
         }),
         signal: abortControllerRef.current.signal,
       });

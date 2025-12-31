@@ -68,36 +68,19 @@ export async function POST(request: NextRequest) {
       availableCredits
     );
 
-    // Build user message with images if provided
-    let userMessage = message || '';
-    if (images && images.length > 0) {
-      // Add image references to message
-      userMessage += images.length === 1
-        ? '\n\n[User uploaded 1 image]'
-        : `\n\n[User uploaded ${images.length} images]`;
+    // Build user message
+    const userMessage = message || '';
 
-      // Store images in session
-      for (const img of images) {
-        stateManager.addImage(sessionId, {
-          id: img.id || `img_${Date.now()}`,
-          url: img.url,
-          format: img.format || 'unknown',
-          width: img.width || 0,
-          height: img.height || 0,
-          size: img.size || 0,
-          createdAt: new Date(),
-          source: 'upload',
-        });
-      }
-    }
+    // Images are now passed as base64 data URLs directly
+    const imageDataUrls: string[] = images || [];
 
     // Create SSE stream
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       async start(controller) {
         try {
-          // Run agent with streaming
-          const eventGenerator = orchestrator.runStream(userMessage);
+          // Run agent with streaming (pass images as base64)
+          const eventGenerator = orchestrator.runStream(userMessage, imageDataUrls.length > 0 ? imageDataUrls : undefined);
 
           for await (const event of eventGenerator) {
             const sseData = formatSSEEvent(event);

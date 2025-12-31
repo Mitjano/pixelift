@@ -9,6 +9,7 @@ export interface UploadedImage {
   preview: string;
   uploading: boolean;
   url?: string;
+  dataUrl?: string; // base64 data URL for AI model
   error?: string;
 }
 
@@ -121,7 +122,7 @@ export default function ChatInput({
             setImages(prev =>
               prev.map(i =>
                 i.id === img.id
-                  ? { ...i, uploading: false, url: data.url }
+                  ? { ...i, uploading: false, url: data.url, dataUrl: data.dataUrl }
                   : i
               )
             );
