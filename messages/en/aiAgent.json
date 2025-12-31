@@ -1,0 +1,311 @@
+{
+  "aiAgentMeta": {
+    "title": "AI Agent PRO - Intelligent Creative Assistant",
+    "description": "Chat naturally with our AI agent to edit images, generate content, and automate creative workflows. Remove backgrounds, upscale images, generate AI art, and more - all through simple conversation."
+  },
+  "aiAgentPage": {
+    "badge": "AI Agent PRO - Intelligent Assistant",
+    "hero": {
+      "title1": "Your ",
+      "titleHighlight": "AI Creative ",
+      "title2": "Assistant",
+      "subtitle": "Chat naturally with our AI to edit images, generate content, and automate creative workflows. No technical skills required."
+    },
+    "stats": {
+      "tools": "AI Tools",
+      "categories": "Categories",
+      "operations": "Operations"
+    },
+    "chat": {
+      "placeholder": "Describe what you want to create or edit...",
+      "send": "Send",
+      "stop": "Stop",
+      "thinking": "Thinking...",
+      "executing": "Executing tool...",
+      "newSession": "New Session",
+      "clearHistory": "Clear History",
+      "welcome": "Welcome to AI Agent",
+      "welcomeSubtitle": "I can help you with image editing, generation, and creative tasks. Just describe what you need!",
+      "suggestions": {
+        "title": "Try asking me to:",
+        "items": [
+          "Remove the background from my photo",
+          "Generate a logo for my business",
+          "Upscale this image to 4K quality",
+          "Create social media versions of this image",
+          "Add a watermark to my images"
+        ]
+      },
+      "suggestionCategories": {
+        "popular": {
+          "title": "Most Popular",
+          "icon": "⭐",
+          "items": [
+            "Remove the background from my image",
+            "Upscale my photo to 4K resolution",
+            "Generate a professional logo for my brand",
+            "Compress this image for web without losing quality",
+            "Create Instagram and Facebook versions of this photo"
+          ]
+        },
+        "ecommerce": {
+          "title": "E-commerce & Products",
+          "icon": "🛍️",
+          "items": [
+            "Remove background and add a white backdrop for my product photo",
+            "Create product images for Amazon, eBay, and my website",
+            "Make this product photo look more professional",
+            "Generate lifestyle images showing my product in use",
+            "Batch process all my product photos with consistent styling"
+          ]
+        },
+        "social": {
+          "title": "Social Media",
+          "icon": "📱",
+          "items": [
+            "Create a complete social media pack from this image",
+            "Resize my photo for Instagram story, post, and reel",
+            "Generate captions and hashtags for this image",
+            "Make this photo more eye-catching for social media",
+            "Create a carousel of variations from this image"
+          ]
+        },
+        "creative": {
+          "title": "Creative & Art",
+          "icon": "🎨",
+          "items": [
+            "Generate an artistic version of my photo in oil painting style",
+            "Create a unique illustration based on my description",
+            "Transform this photo into anime/cartoon style",
+            "Extend this image to make it wider for a banner",
+            "Generate variations of my logo in different styles"
+          ]
+        },
+        "professional": {
+          "title": "Professional & Business",
+          "icon": "💼",
+          "items": [
+            "Create a professional headshot from my casual photo",
+            "Design a business card mockup with my logo",
+            "Extract text from this document image",
+            "Translate the text in this image to English",
+            "Generate a QR code that links to my website"
+          ]
+        },
+        "photo": {
+          "title": "Photo Enhancement",
+          "icon": "📷",
+          "items": [
+            "Enhance the quality of this old photo",
+            "Fix the lighting and colors in my photo",
+            "Remove unwanted objects from my image",
+            "Restore this damaged old photograph",
+            "Make this blurry photo sharper and clearer"
+          ]
+        }
+      }
+    },
+    "tools": {
+      "title": "Powerful ",
+      "titleHighlight": "AI Tools",
+      "subtitle": "Our agent has access to a comprehensive suite of image editing and generation tools",
+      "categories": {
+        "image_editing": "Image Editing",
+        "image_generation": "Image Generation",
+        "image_analysis": "Image Analysis",
+        "text_processing": "Text Processing",
+        "file_management": "File Management",
+        "social_media": "Social Media",
+        "translation": "Translation",
+        "utility": "Utility"
+      }
+    },
+    "features": {
+      "title": "Why Choose AI Agent?",
+      "subtitle": "Experience the next generation of creative AI assistance",
+      "natural": {
+        "title": "Natural Conversation",
+        "description": "Just describe what you want in plain English. No complex interfaces or technical knowledge required."
+      },
+      "multiTool": {
+        "title": "Multi-Tool Workflows",
+        "description": "Chain multiple operations together. Remove background, upscale, and add watermark - all in one conversation."
+      },
+      "context": {
+        "title": "Context Aware",
+        "description": "The agent remembers your conversation and can reference previous images and operations."
+      },
+      "realtime": {
+        "title": "Real-time Streaming",
+        "description": "See the agent's thinking process and tool executions in real-time as it works on your request."
+      },
+      "credits": {
+        "title": "Credit Efficient",
+        "description": "Only pay for the tools you use. The agent optimizes workflows to minimize credit usage."
+      },
+      "history": {
+        "title": "Session History",
+        "description": "Access your previous sessions and continue where you left off. All your work is saved."
+      }
+    },
+    "capabilities": {
+      "title": "What Can I Do?",
+      "items": [
+        {
+          "title": "Image Editing",
+          "description": "Remove backgrounds, upscale images, compress files, crop, rotate, add watermarks, and more."
+        },
+        {
+          "title": "Image Generation",
+          "description": "Create images from text descriptions, edit existing images with AI, extend images beyond their borders."
+        },
+        {
+          "title": "Image Analysis",
+          "description": "Extract text (OCR), detect faces, analyze content, get image metadata and quality assessment."
+        },
+        {
+          "title": "Social Media",
+          "description": "Resize images for different platforms, create social media packs with optimized dimensions."
+        },
+        {
+          "title": "Batch Processing",
+          "description": "Process multiple images at once with consistent settings. Perfect for bulk operations."
+        },
+        {
+          "title": "Smart Workflows",
+          "description": "Combine multiple tools into intelligent workflows. The agent figures out the best approach."
+        }
+      ]
+    },
+    "workflows": {
+      "title": "Smart Workflow Examples",
+      "subtitle": "See how AI Agent can chain multiple tools together to accomplish complex tasks",
+      "tryButton": "Try This Workflow",
+      "items": [
+        {
+          "title": "Product Photo Pipeline",
+          "description": "Complete e-commerce image workflow",
+          "prompt": "Take my product photo, remove the background, add a clean white backdrop, upscale to high resolution, and create versions for Amazon, eBay, and my Shopify store",
+          "steps": ["Remove background", "Add white backdrop", "Upscale 4x", "Resize for platforms", "Compress for web"],
+          "credits": "~8 credits"
+        },
+        {
+          "title": "Social Media Content Pack",
+          "description": "One image, all platforms covered",
+          "prompt": "Create a complete social media pack from this image: Instagram post and story, Facebook cover and post, Twitter header, LinkedIn banner, and generate captions with hashtags for each",
+          "steps": ["Analyze image", "Smart crop for each platform", "Resize to dimensions", "Generate captions", "Add hashtags"],
+          "credits": "~5 credits"
+        },
+        {
+          "title": "Old Photo Restoration",
+          "description": "Bring vintage photos back to life",
+          "prompt": "Restore this old damaged photo: fix the scratches and tears, enhance the quality, colorize it naturally, and upscale it for printing",
+          "steps": ["Remove damage", "Denoise", "AI colorize", "Enhance details", "Upscale 4x"],
+          "credits": "~10 credits"
+        },
+        {
+          "title": "Brand Asset Generator",
+          "description": "From concept to complete brand kit",
+          "prompt": "Generate a modern minimalist logo for my coffee shop called 'Morning Brew', then create variations for dark and light backgrounds, social media profile pictures, and a favicon",
+          "steps": ["Generate logo", "Create variations", "Resize for social", "Create favicon", "Package assets"],
+          "credits": "~6 credits"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Who Uses AI Agent?",
+      "subtitle": "Discover how different professionals leverage AI Agent in their daily work",
+      "items": [
+        {
+          "icon": "🛒",
+          "title": "E-commerce Sellers",
+          "description": "Process product photos in bulk, create consistent listings, and automate image preparation for multiple marketplaces.",
+          "example": "\"Process my 50 product photos: remove backgrounds, add shadows, resize for Amazon and eBay\""
+        },
+        {
+          "icon": "📸",
+          "title": "Photographers",
+          "description": "Batch edit photos, restore old images, create social media versions, and generate client-ready files quickly.",
+          "example": "\"Enhance these wedding photos, create Instagram versions, and add my watermark to all\""
+        },
+        {
+          "icon": "🎨",
+          "title": "Designers",
+          "description": "Generate design assets, create variations, prepare files for different platforms, and automate repetitive tasks.",
+          "example": "\"Generate 5 logo variations in different color schemes and export for print and web\""
+        },
+        {
+          "icon": "📱",
+          "title": "Social Media Managers",
+          "description": "Create platform-optimized content, generate captions, resize for all channels, and maintain visual consistency.",
+          "example": "\"Create this week's content pack: resize for all platforms, add our branding, generate captions\""
+        },
+        {
+          "icon": "🏪",
+          "title": "Small Business Owners",
+          "description": "Create professional marketing materials without design skills - logos, social posts, product images, and more.",
+          "example": "\"I need a professional logo, business card design, and social media profile images for my bakery\""
+        },
+        {
+          "icon": "✍️",
+          "title": "Content Creators",
+          "description": "Generate thumbnails, create eye-catching graphics, edit images for blogs, and maintain consistent visual branding.",
+          "example": "\"Create a YouTube thumbnail that's attention-grabbing with bold text overlay\""
+        }
+      ]
+    },
+    "tips": {
+      "title": "Pro Tips for Better Results",
+      "subtitle": "Get the most out of AI Agent with these expert tips",
+      "items": [
+        {
+          "icon": "💡",
+          "title": "Be Specific",
+          "description": "Instead of 'make it better', try 'increase brightness by 20%, add warmth, and sharpen the details'"
+        },
+        {
+          "icon": "🔗",
+          "title": "Chain Commands",
+          "description": "Combine multiple tasks in one request: 'Remove background, upscale 4x, and save as PNG and WebP'"
+        },
+        {
+          "icon": "📋",
+          "title": "Use References",
+          "description": "Describe styles you want: 'Make it look like a professional magazine cover' or 'Apple product photo style'"
+        },
+        {
+          "icon": "🎯",
+          "title": "Specify Dimensions",
+          "description": "Tell the agent exact sizes: 'Resize to 1920x1080 for my YouTube thumbnail'"
+        },
+        {
+          "icon": "🔄",
+          "title": "Iterate",
+          "description": "Not perfect? Say 'make it brighter' or 'try a different style' - the agent remembers context"
+        },
+        {
+          "icon": "📦",
+          "title": "Batch Wisely",
+          "description": "For multiple images, describe the consistent style once: 'Apply these settings to all my images'"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Simple Credit-Based Pricing",
+      "subtitle": "Use credits to access AI tools. Different operations have different credit costs based on complexity.",
+      "startFree": "Start Free",
+      "viewPricing": "View Pricing"
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Start chatting with our AI agent and transform your creative workflow.",
+      "button": "Start Creating"
+    },
+    "errors": {
+      "sessionFailed": "Failed to create session",
+      "messageFailed": "Failed to send message",
+      "connectionLost": "Connection lost. Please try again.",
+      "noCredits": "Insufficient credits. Please top up your balance."
+    }
+  }
+}

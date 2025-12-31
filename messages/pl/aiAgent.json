@@ -1,0 +1,311 @@
+{
+  "aiAgentMeta": {
+    "title": "AI Agent PRO - Inteligentny Asystent Kreatywny",
+    "description": "Rozmawiaj naturalnie z naszym agentem AI, aby edytować obrazy, generować treści i automatyzować kreatywne przepływy pracy. Usuwanie tła, powiększanie obrazów, generowanie grafik AI i więcej - wszystko przez prostą rozmowę."
+  },
+  "aiAgentPage": {
+    "badge": "AI Agent PRO - Inteligentny Asystent",
+    "hero": {
+      "title1": "Twój ",
+      "titleHighlight": "Kreatywny AI ",
+      "title2": "Asystent",
+      "subtitle": "Rozmawiaj naturalnie z naszym AI, aby edytować obrazy, generować treści i automatyzować kreatywne procesy. Nie wymagana wiedza techniczna."
+    },
+    "stats": {
+      "tools": "Narzędzi AI",
+      "categories": "Kategorii",
+      "operations": "Operacji"
+    },
+    "chat": {
+      "placeholder": "Opisz co chcesz stworzyć lub edytować...",
+      "send": "Wyślij",
+      "stop": "Stop",
+      "thinking": "Myślę...",
+      "executing": "Wykonuję narzędzie...",
+      "newSession": "Nowa Sesja",
+      "clearHistory": "Wyczyść Historię",
+      "welcome": "Witaj w AI Agent",
+      "welcomeSubtitle": "Mogę pomóc Ci z edycją obrazów, generowaniem i kreatywnymi zadaniami. Po prostu opisz czego potrzebujesz!",
+      "suggestions": {
+        "title": "Spróbuj poprosić mnie o:",
+        "items": [
+          "Usuń tło z mojego zdjęcia",
+          "Wygeneruj logo dla mojej firmy",
+          "Powiększ ten obraz do jakości 4K",
+          "Stwórz wersje na media społecznościowe",
+          "Dodaj znak wodny do moich obrazów"
+        ]
+      },
+      "suggestionCategories": {
+        "popular": {
+          "title": "Najpopularniejsze",
+          "icon": "⭐",
+          "items": [
+            "Usuń tło z mojego obrazu",
+            "Powiększ moje zdjęcie do rozdzielczości 4K",
+            "Wygeneruj profesjonalne logo dla mojej marki",
+            "Skompresuj ten obraz do sieci bez utraty jakości",
+            "Stwórz wersje na Instagram i Facebook z tego zdjęcia"
+          ]
+        },
+        "ecommerce": {
+          "title": "E-commerce i Produkty",
+          "icon": "🛍️",
+          "items": [
+            "Usuń tło i dodaj białe tło do zdjęcia produktu",
+            "Stwórz zdjęcia produktów dla Allegro, OLX i mojego sklepu",
+            "Zrób to zdjęcie produktu bardziej profesjonalnym",
+            "Wygeneruj zdjęcia lifestylowe pokazujące mój produkt w użyciu",
+            "Przetwórz wszystkie moje zdjęcia produktów z jednolitym stylem"
+          ]
+        },
+        "social": {
+          "title": "Media Społecznościowe",
+          "icon": "📱",
+          "items": [
+            "Stwórz kompletny pakiet social media z tego obrazu",
+            "Zmień rozmiar zdjęcia na Instagram story, post i reels",
+            "Wygeneruj opisy i hashtagi do tego obrazu",
+            "Zrób to zdjęcie bardziej przyciągającym wzrok",
+            "Stwórz karuzelę wariantów z tego obrazu"
+          ]
+        },
+        "creative": {
+          "title": "Kreatywność i Sztuka",
+          "icon": "🎨",
+          "items": [
+            "Wygeneruj artystyczną wersję mojego zdjęcia w stylu malarstwa olejnego",
+            "Stwórz unikalną ilustrację na podstawie mojego opisu",
+            "Przekształć to zdjęcie w styl anime/kreskówkowy",
+            "Rozszerz ten obraz, aby był szerszy na baner",
+            "Wygeneruj warianty mojego logo w różnych stylach"
+          ]
+        },
+        "professional": {
+          "title": "Profesjonalne i Biznesowe",
+          "icon": "💼",
+          "items": [
+            "Stwórz profesjonalne zdjęcie portretowe z mojego zwykłego zdjęcia",
+            "Zaprojektuj mockup wizytówki z moim logo",
+            "Wyodrębnij tekst z tego dokumentu",
+            "Przetłumacz tekst na tym obrazie na polski",
+            "Wygeneruj kod QR prowadzący do mojej strony"
+          ]
+        },
+        "photo": {
+          "title": "Ulepszanie Zdjęć",
+          "icon": "📷",
+          "items": [
+            "Ulepsz jakość tego starego zdjęcia",
+            "Popraw oświetlenie i kolory na moim zdjęciu",
+            "Usuń niechciane obiekty z mojego obrazu",
+            "Odrestauruj to zniszczone stare zdjęcie",
+            "Wyostrz to rozmazane zdjęcie"
+          ]
+        }
+      }
+    },
+    "tools": {
+      "title": "Potężne ",
+      "titleHighlight": "Narzędzia AI",
+      "subtitle": "Nasz agent ma dostęp do kompleksowego zestawu narzędzi do edycji i generowania obrazów",
+      "categories": {
+        "image_editing": "Edycja Obrazów",
+        "image_generation": "Generowanie Obrazów",
+        "image_analysis": "Analiza Obrazów",
+        "text_processing": "Przetwarzanie Tekstu",
+        "file_management": "Zarządzanie Plikami",
+        "social_media": "Media Społecznościowe",
+        "translation": "Tłumaczenie",
+        "utility": "Narzędzia"
+      }
+    },
+    "features": {
+      "title": "Dlaczego AI Agent?",
+      "subtitle": "Doświadcz nowej generacji kreatywnej asystencji AI",
+      "natural": {
+        "title": "Naturalna Rozmowa",
+        "description": "Po prostu opisz czego chcesz. Bez skomplikowanych interfejsów czy wymaganej wiedzy technicznej."
+      },
+      "multiTool": {
+        "title": "Wielonarzędziowe Przepływy",
+        "description": "Łącz wiele operacji razem. Usuń tło, powiększ i dodaj znak wodny - wszystko w jednej rozmowie."
+      },
+      "context": {
+        "title": "Świadomość Kontekstu",
+        "description": "Agent pamięta Twoją rozmowę i może odwoływać się do poprzednich obrazów i operacji."
+      },
+      "realtime": {
+        "title": "Streaming w Czasie Rzeczywistym",
+        "description": "Zobacz proces myślenia agenta i wykonywanie narzędzi na żywo podczas pracy nad Twoim zapytaniem."
+      },
+      "credits": {
+        "title": "Efektywność Kredytów",
+        "description": "Płacisz tylko za używane narzędzia. Agent optymalizuje przepływy, aby zminimalizować zużycie kredytów."
+      },
+      "history": {
+        "title": "Historia Sesji",
+        "description": "Dostęp do poprzednich sesji i kontynuowanie od miejsca, w którym skończyłeś. Cała praca jest zapisywana."
+      }
+    },
+    "capabilities": {
+      "title": "Co Mogę Zrobić?",
+      "items": [
+        {
+          "title": "Edycja Obrazów",
+          "description": "Usuwanie tła, powiększanie obrazów, kompresja plików, przycinanie, obracanie, znaki wodne i więcej."
+        },
+        {
+          "title": "Generowanie Obrazów",
+          "description": "Tworzenie obrazów z opisów tekstowych, edycja istniejących obrazów z AI, rozszerzanie obrazów poza ich granice."
+        },
+        {
+          "title": "Analiza Obrazów",
+          "description": "Ekstrakcja tekstu (OCR), wykrywanie twarzy, analiza zawartości, metadane i ocena jakości."
+        },
+        {
+          "title": "Media Społecznościowe",
+          "description": "Zmiana rozmiaru obrazów dla różnych platform, tworzenie pakietów z optymalnymi wymiarami."
+        },
+        {
+          "title": "Przetwarzanie Wsadowe",
+          "description": "Przetwarzanie wielu obrazów naraz z jednolitymi ustawieniami. Idealne do operacji masowych."
+        },
+        {
+          "title": "Inteligentne Przepływy",
+          "description": "Łączenie wielu narzędzi w inteligentne przepływy. Agent sam określa najlepsze podejście."
+        }
+      ]
+    },
+    "workflows": {
+      "title": "Przykłady Inteligentnych Przepływów",
+      "subtitle": "Zobacz jak AI Agent łączy wiele narzędzi razem, aby wykonać złożone zadania",
+      "tryButton": "Wypróbuj Ten Przepływ",
+      "items": [
+        {
+          "title": "Pipeline Zdjęć Produktowych",
+          "description": "Kompletny przepływ pracy dla e-commerce",
+          "prompt": "Weź moje zdjęcie produktu, usuń tło, dodaj czyste białe tło, powiększ do wysokiej rozdzielczości i stwórz wersje dla Allegro, OLX i mojego sklepu Shopify",
+          "steps": ["Usuń tło", "Dodaj białe tło", "Powiększ 4x", "Zmień rozmiar", "Skompresuj"],
+          "credits": "~8 kredytów"
+        },
+        {
+          "title": "Pakiet Social Media",
+          "description": "Jeden obraz, wszystkie platformy obsłużone",
+          "prompt": "Stwórz kompletny pakiet social media z tego obrazu: post i story na Instagram, okładkę i post na Facebook, nagłówek Twitter, baner LinkedIn, i wygeneruj opisy z hashtagami dla każdego",
+          "steps": ["Analiza obrazu", "Inteligentne kadrowanie", "Zmiana rozmiaru", "Generowanie opisów", "Dodanie hashtagów"],
+          "credits": "~5 kredytów"
+        },
+        {
+          "title": "Restauracja Starego Zdjęcia",
+          "description": "Przywróć życie vintage fotografiom",
+          "prompt": "Odrestauruj to stare zniszczone zdjęcie: napraw rysy i rozdarcia, ulepsz jakość, naturalnie pokoloruj i powiększ do druku",
+          "steps": ["Usuń uszkodzenia", "Odszum", "Koloryzacja AI", "Ulepszenie detali", "Powiększenie 4x"],
+          "credits": "~10 kredytów"
+        },
+        {
+          "title": "Generator Zasobów Marki",
+          "description": "Od koncepcji do kompletnego zestawu brandingowego",
+          "prompt": "Wygeneruj nowoczesne minimalistyczne logo dla mojej kawiarni 'Morning Brew', następnie stwórz warianty dla jasnego i ciemnego tła, zdjęcia profilowe na social media i favicon",
+          "steps": ["Generowanie logo", "Tworzenie wariantów", "Zmiana rozmiaru", "Tworzenie favicon", "Pakowanie zasobów"],
+          "credits": "~6 kredytów"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Kto Używa AI Agent?",
+      "subtitle": "Odkryj jak różni profesjonaliści wykorzystują AI Agent w codziennej pracy",
+      "items": [
+        {
+          "icon": "🛒",
+          "title": "Sprzedawcy E-commerce",
+          "description": "Przetwarzaj zdjęcia produktów masowo, twórz spójne oferty i automatyzuj przygotowanie obrazów dla wielu platform.",
+          "example": "\"Przetwórz moje 50 zdjęć produktów: usuń tła, dodaj cienie, zmień rozmiar dla Allegro i OLX\""
+        },
+        {
+          "icon": "📸",
+          "title": "Fotografowie",
+          "description": "Edytuj zdjęcia wsadowo, restauruj stare obrazy, twórz wersje na social media i szybko generuj pliki gotowe dla klientów.",
+          "example": "\"Ulepsz te zdjęcia ślubne, stwórz wersje na Instagram i dodaj mój znak wodny do wszystkich\""
+        },
+        {
+          "icon": "🎨",
+          "title": "Projektanci",
+          "description": "Generuj zasoby projektowe, twórz warianty, przygotowuj pliki dla różnych platform i automatyzuj powtarzalne zadania.",
+          "example": "\"Wygeneruj 5 wariantów logo w różnych schematach kolorów i eksportuj do druku i sieci\""
+        },
+        {
+          "icon": "📱",
+          "title": "Menedżerowie Social Media",
+          "description": "Twórz treści zoptymalizowane pod platformy, generuj opisy, zmieniaj rozmiary dla wszystkich kanałów i utrzymuj spójność wizualną.",
+          "example": "\"Stwórz pakiet treści na ten tydzień: zmień rozmiar dla wszystkich platform, dodaj nasz branding, wygeneruj opisy\""
+        },
+        {
+          "icon": "🏪",
+          "title": "Właściciele Małych Firm",
+          "description": "Twórz profesjonalne materiały marketingowe bez umiejętności projektowych - loga, posty, zdjęcia produktów i więcej.",
+          "example": "\"Potrzebuję profesjonalnego logo, projektu wizytówki i zdjęć profilowych na social media dla mojej piekarni\""
+        },
+        {
+          "icon": "✍️",
+          "title": "Twórcy Treści",
+          "description": "Generuj miniatury, twórz przyciągające grafiki, edytuj obrazy na blogi i utrzymuj spójny branding wizualny.",
+          "example": "\"Stwórz miniaturę YouTube, która przyciąga uwagę z pogrubionym tekstem\""
+        }
+      ]
+    },
+    "tips": {
+      "title": "Pro Wskazówki dla Lepszych Rezultatów",
+      "subtitle": "Wykorzystaj AI Agent maksymalnie dzięki tym eksperckim wskazówkom",
+      "items": [
+        {
+          "icon": "💡",
+          "title": "Bądź Konkretny",
+          "description": "Zamiast 'zrób lepiej', napisz 'zwiększ jasność o 20%, dodaj ciepło i wyostrz detale'"
+        },
+        {
+          "icon": "🔗",
+          "title": "Łącz Polecenia",
+          "description": "Kombinuj wiele zadań w jednym zapytaniu: 'Usuń tło, powiększ 4x i zapisz jako PNG i WebP'"
+        },
+        {
+          "icon": "📋",
+          "title": "Używaj Odniesień",
+          "description": "Opisuj style jakie chcesz: 'Zrób to jak profesjonalną okładkę magazynu' lub 'styl zdjęć produktów Apple'"
+        },
+        {
+          "icon": "🎯",
+          "title": "Określaj Wymiary",
+          "description": "Powiedz agentowi dokładne rozmiary: 'Zmień rozmiar na 1920x1080 dla mojej miniatury YouTube'"
+        },
+        {
+          "icon": "🔄",
+          "title": "Iteruj",
+          "description": "Nie idealne? Powiedz 'zrób jaśniej' lub 'spróbuj innego stylu' - agent pamięta kontekst"
+        },
+        {
+          "icon": "📦",
+          "title": "Przetwarzaj Mądrze",
+          "description": "Dla wielu obrazów, opisz spójny styl raz: 'Zastosuj te ustawienia do wszystkich moich obrazów'"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Prosta Wycena Kredytowa",
+      "subtitle": "Używaj kredytów, aby uzyskać dostęp do narzędzi AI. Różne operacje mają różne koszty kredytowe w zależności od złożoności.",
+      "startFree": "Zacznij Za Darmo",
+      "viewPricing": "Zobacz Cennik"
+    },
+    "cta": {
+      "title": "Gotowy Na Start?",
+      "subtitle": "Zacznij rozmawiać z naszym agentem AI i przekształć swój kreatywny przepływ pracy.",
+      "button": "Zacznij Tworzyć"
+    },
+    "errors": {
+      "sessionFailed": "Nie udało się utworzyć sesji",
+      "messageFailed": "Nie udało się wysłać wiadomości",
+      "connectionLost": "Połączenie utracone. Spróbuj ponownie.",
+      "noCredits": "Niewystarczające kredyty. Doładuj swoje saldo."
+    }
+  }
+}

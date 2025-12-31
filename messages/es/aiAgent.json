@@ -1,0 +1,311 @@
+{
+  "aiAgentMeta": {
+    "title": "AI Agent PRO - Asistente Creativo Inteligente",
+    "description": "Chatea naturalmente con nuestro agente AI para editar imágenes, generar contenido y automatizar flujos creativos. Eliminar fondos, aumentar imágenes, generar arte AI y más - todo a través de una simple conversación."
+  },
+  "aiAgentPage": {
+    "badge": "AI Agent PRO - Asistente Inteligente",
+    "hero": {
+      "title1": "Tu ",
+      "titleHighlight": "Asistente AI ",
+      "title2": "Creativo",
+      "subtitle": "Chatea naturalmente con nuestra IA para editar imagenes, generar contenido y automatizar flujos creativos. No se requieren habilidades tecnicas."
+    },
+    "stats": {
+      "tools": "Herramientas AI",
+      "categories": "Categorias",
+      "operations": "Operaciones"
+    },
+    "chat": {
+      "placeholder": "Describe lo que quieres crear o editar...",
+      "send": "Enviar",
+      "stop": "Detener",
+      "thinking": "Pensando...",
+      "executing": "Ejecutando herramienta...",
+      "newSession": "Nueva Sesion",
+      "clearHistory": "Limpiar Historial",
+      "welcome": "Bienvenido a AI Agent",
+      "welcomeSubtitle": "Puedo ayudarte con edicion de imagenes, generacion y tareas creativas. Solo describe lo que necesitas!",
+      "suggestions": {
+        "title": "Intenta pedirme:",
+        "items": [
+          "Elimina el fondo de mi foto",
+          "Genera un logo para mi negocio",
+          "Aumenta esta imagen a calidad 4K",
+          "Crea versiones para redes sociales",
+          "Agrega una marca de agua a mis imagenes"
+        ]
+      },
+      "suggestionCategories": {
+        "popular": {
+          "title": "Mas Populares",
+          "icon": "⭐",
+          "items": [
+            "Elimina el fondo de mi imagen",
+            "Aumenta mi foto a resolucion 4K",
+            "Genera un logo profesional para mi marca",
+            "Comprime esta imagen para web sin perder calidad",
+            "Crea versiones para Instagram y Facebook de esta foto"
+          ]
+        },
+        "ecommerce": {
+          "title": "E-commerce y Productos",
+          "icon": "🛍️",
+          "items": [
+            "Elimina el fondo y agrega un fondo blanco a mi foto de producto",
+            "Crea imagenes de producto para Amazon, eBay y mi tienda",
+            "Haz que esta foto de producto luzca mas profesional",
+            "Genera imagenes lifestyle mostrando mi producto en uso",
+            "Procesa todas mis fotos de producto con estilo consistente"
+          ]
+        },
+        "social": {
+          "title": "Redes Sociales",
+          "icon": "📱",
+          "items": [
+            "Crea un paquete completo de redes sociales de esta imagen",
+            "Redimensiona mi foto para historia, post y reel de Instagram",
+            "Genera descripciones y hashtags para esta imagen",
+            "Haz que esta foto sea mas llamativa para redes sociales",
+            "Crea un carrusel de variaciones de esta imagen"
+          ]
+        },
+        "creative": {
+          "title": "Creatividad y Arte",
+          "icon": "🎨",
+          "items": [
+            "Genera una version artistica de mi foto en estilo pintura al oleo",
+            "Crea una ilustracion unica basada en mi descripcion",
+            "Transforma esta foto a estilo anime/caricatura",
+            "Extiende esta imagen para hacerla mas ancha para un banner",
+            "Genera variaciones de mi logo en diferentes estilos"
+          ]
+        },
+        "professional": {
+          "title": "Profesional y Negocios",
+          "icon": "💼",
+          "items": [
+            "Crea una foto profesional de mi foto casual",
+            "Diseña un mockup de tarjeta de presentacion con mi logo",
+            "Extrae el texto de esta imagen de documento",
+            "Traduce el texto de esta imagen al español",
+            "Genera un codigo QR que enlace a mi sitio web"
+          ]
+        },
+        "photo": {
+          "title": "Mejora de Fotos",
+          "icon": "📷",
+          "items": [
+            "Mejora la calidad de esta foto antigua",
+            "Corrige la iluminacion y colores de mi foto",
+            "Elimina objetos no deseados de mi imagen",
+            "Restaura esta fotografia antigua dañada",
+            "Haz que esta foto borrosa sea mas nitida"
+          ]
+        }
+      }
+    },
+    "tools": {
+      "title": "Poderosas ",
+      "titleHighlight": "Herramientas AI",
+      "subtitle": "Nuestro agente tiene acceso a un conjunto completo de herramientas de edicion y generacion de imagenes",
+      "categories": {
+        "image_editing": "Edicion de Imagenes",
+        "image_generation": "Generacion de Imagenes",
+        "image_analysis": "Analisis de Imagenes",
+        "text_processing": "Procesamiento de Texto",
+        "file_management": "Gestion de Archivos",
+        "social_media": "Redes Sociales",
+        "translation": "Traduccion",
+        "utility": "Utilidades"
+      }
+    },
+    "features": {
+      "title": "Por que AI Agent?",
+      "subtitle": "Experimenta la proxima generacion de asistencia creativa con IA",
+      "natural": {
+        "title": "Conversacion Natural",
+        "description": "Solo describe lo que quieres. Sin interfaces complicadas ni conocimientos tecnicos requeridos."
+      },
+      "multiTool": {
+        "title": "Flujos Multi-Herramienta",
+        "description": "Encadena multiples operaciones. Elimina fondo, aumenta y agrega marca de agua - todo en una conversacion."
+      },
+      "context": {
+        "title": "Consciente del Contexto",
+        "description": "El agente recuerda tu conversacion y puede referenciar imagenes y operaciones anteriores."
+      },
+      "realtime": {
+        "title": "Streaming en Tiempo Real",
+        "description": "Ve el proceso de pensamiento del agente y ejecuciones de herramientas en vivo mientras trabaja en tu solicitud."
+      },
+      "credits": {
+        "title": "Eficiencia de Creditos",
+        "description": "Solo paga por las herramientas que usas. El agente optimiza flujos para minimizar el uso de creditos."
+      },
+      "history": {
+        "title": "Historial de Sesiones",
+        "description": "Accede a tus sesiones anteriores y continua donde lo dejaste. Todo tu trabajo se guarda."
+      }
+    },
+    "capabilities": {
+      "title": "Que Puedo Hacer?",
+      "items": [
+        {
+          "title": "Edicion de Imagenes",
+          "description": "Eliminar fondos, aumentar imagenes, comprimir archivos, recortar, rotar, marcas de agua y mas."
+        },
+        {
+          "title": "Generacion de Imagenes",
+          "description": "Crear imagenes desde descripciones de texto, editar imagenes existentes con IA, extender imagenes mas alla de sus bordes."
+        },
+        {
+          "title": "Analisis de Imagenes",
+          "description": "Extraer texto (OCR), detectar rostros, analizar contenido, obtener metadatos y evaluacion de calidad."
+        },
+        {
+          "title": "Redes Sociales",
+          "description": "Redimensionar imagenes para diferentes plataformas, crear paquetes con dimensiones optimizadas."
+        },
+        {
+          "title": "Procesamiento por Lotes",
+          "description": "Procesar multiples imagenes a la vez con configuraciones consistentes. Perfecto para operaciones masivas."
+        },
+        {
+          "title": "Flujos Inteligentes",
+          "description": "Combinar multiples herramientas en flujos inteligentes. El agente determina el mejor enfoque."
+        }
+      ]
+    },
+    "workflows": {
+      "title": "Ejemplos de Flujos Inteligentes",
+      "subtitle": "Mira como AI Agent encadena multiples herramientas para completar tareas complejas",
+      "tryButton": "Probar Este Flujo",
+      "items": [
+        {
+          "title": "Pipeline de Fotos de Producto",
+          "description": "Flujo completo para e-commerce",
+          "prompt": "Toma mi foto de producto, elimina el fondo, agrega un fondo blanco limpio, aumenta a alta resolucion y crea versiones para Amazon, eBay y mi tienda Shopify",
+          "steps": ["Eliminar fondo", "Agregar fondo blanco", "Aumentar 4x", "Redimensionar", "Comprimir"],
+          "credits": "~8 creditos"
+        },
+        {
+          "title": "Paquete de Redes Sociales",
+          "description": "Una imagen, todas las plataformas cubiertas",
+          "prompt": "Crea un paquete completo de redes sociales de esta imagen: post y historia de Instagram, portada y post de Facebook, encabezado de Twitter, banner de LinkedIn, y genera descripciones con hashtags",
+          "steps": ["Analizar imagen", "Recorte inteligente", "Redimensionar", "Generar descripciones", "Agregar hashtags"],
+          "credits": "~5 creditos"
+        },
+        {
+          "title": "Restauracion de Foto Antigua",
+          "description": "Da vida a fotos vintage",
+          "prompt": "Restaura esta foto antigua dañada: repara los rasguños y rasgaduras, mejora la calidad, coloriza naturalmente y aumenta para impresion",
+          "steps": ["Eliminar daños", "Reducir ruido", "Colorizar IA", "Mejorar detalles", "Aumentar 4x"],
+          "credits": "~10 creditos"
+        },
+        {
+          "title": "Generador de Activos de Marca",
+          "description": "De concepto a kit de marca completo",
+          "prompt": "Genera un logo minimalista moderno para mi cafeteria llamada 'Morning Brew', luego crea variaciones para fondos claros y oscuros, fotos de perfil para redes sociales y un favicon",
+          "steps": ["Generar logo", "Crear variaciones", "Redimensionar para redes", "Crear favicon", "Empaquetar activos"],
+          "credits": "~6 creditos"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Quien Usa AI Agent?",
+      "subtitle": "Descubre como diferentes profesionales aprovechan AI Agent en su trabajo diario",
+      "items": [
+        {
+          "icon": "🛒",
+          "title": "Vendedores E-commerce",
+          "description": "Procesa fotos de productos en lote, crea listados consistentes y automatiza la preparacion de imagenes para multiples plataformas.",
+          "example": "\"Procesa mis 50 fotos de producto: elimina fondos, agrega sombras, redimensiona para Amazon y eBay\""
+        },
+        {
+          "icon": "📸",
+          "title": "Fotografos",
+          "description": "Edita fotos en lote, restaura imagenes antiguas, crea versiones para redes sociales y genera archivos listos para clientes rapidamente.",
+          "example": "\"Mejora estas fotos de boda, crea versiones para Instagram y agrega mi marca de agua a todas\""
+        },
+        {
+          "icon": "🎨",
+          "title": "Diseñadores",
+          "description": "Genera activos de diseño, crea variaciones, prepara archivos para diferentes plataformas y automatiza tareas repetitivas.",
+          "example": "\"Genera 5 variaciones de logo en diferentes esquemas de colores y exporta para impresion y web\""
+        },
+        {
+          "icon": "📱",
+          "title": "Community Managers",
+          "description": "Crea contenido optimizado para plataformas, genera descripciones, redimensiona para todos los canales y mantiene consistencia visual.",
+          "example": "\"Crea el paquete de contenido de esta semana: redimensiona para todas las plataformas, agrega nuestro branding, genera descripciones\""
+        },
+        {
+          "icon": "🏪",
+          "title": "Pequeños Empresarios",
+          "description": "Crea materiales de marketing profesionales sin habilidades de diseño - logos, posts, imagenes de productos y mas.",
+          "example": "\"Necesito un logo profesional, diseño de tarjeta de presentacion e imagenes de perfil para redes sociales para mi panaderia\""
+        },
+        {
+          "icon": "✍️",
+          "title": "Creadores de Contenido",
+          "description": "Genera miniaturas, crea graficos llamativos, edita imagenes para blogs y mantiene un branding visual consistente.",
+          "example": "\"Crea una miniatura de YouTube que llame la atencion con texto en negrita\""
+        }
+      ]
+    },
+    "tips": {
+      "title": "Consejos Pro para Mejores Resultados",
+      "subtitle": "Aprovecha al maximo AI Agent con estos consejos de expertos",
+      "items": [
+        {
+          "icon": "💡",
+          "title": "Se Especifico",
+          "description": "En lugar de 'mejoralo', intenta 'aumenta el brillo 20%, agrega calidez y afina los detalles'"
+        },
+        {
+          "icon": "🔗",
+          "title": "Encadena Comandos",
+          "description": "Combina multiples tareas en una solicitud: 'Elimina fondo, aumenta 4x y guarda como PNG y WebP'"
+        },
+        {
+          "icon": "📋",
+          "title": "Usa Referencias",
+          "description": "Describe los estilos que quieres: 'Hazlo lucir como una portada de revista profesional' o 'estilo foto de producto Apple'"
+        },
+        {
+          "icon": "🎯",
+          "title": "Especifica Dimensiones",
+          "description": "Dile al agente tamaños exactos: 'Redimensiona a 1920x1080 para mi miniatura de YouTube'"
+        },
+        {
+          "icon": "🔄",
+          "title": "Itera",
+          "description": "No es perfecto? Di 'hazlo mas brillante' o 'prueba un estilo diferente' - el agente recuerda el contexto"
+        },
+        {
+          "icon": "📦",
+          "title": "Procesa Inteligentemente",
+          "description": "Para multiples imagenes, describe el estilo consistente una vez: 'Aplica estas configuraciones a todas mis imagenes'"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Precios Simples Basados en Creditos",
+      "subtitle": "Usa creditos para acceder a herramientas AI. Diferentes operaciones tienen diferentes costos de creditos segun la complejidad.",
+      "startFree": "Comienza Gratis",
+      "viewPricing": "Ver Precios"
+    },
+    "cta": {
+      "title": "Listo Para Comenzar?",
+      "subtitle": "Comienza a chatear con nuestro agente AI y transforma tu flujo de trabajo creativo.",
+      "button": "Comenzar a Crear"
+    },
+    "errors": {
+      "sessionFailed": "Error al crear sesion",
+      "messageFailed": "Error al enviar mensaje",
+      "connectionLost": "Conexion perdida. Intenta de nuevo.",
+      "noCredits": "Creditos insuficientes. Recarga tu saldo."
+    }
+  }
+}

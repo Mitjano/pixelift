@@ -2491,3 +2491,118 @@ model ChatFolder {
   @@unique([userId, name])
   @@index([userId, order])
 }
+
+// ===================
+// AI Agent System
+// ===================
+
+enum AgentSessionStatus {
+  idle
+  thinking
+  executing_tools
+  streaming
+  completed
+  error
+  cancelled
+}
+
+model AgentSession {
+  id              String             @id @default(cuid())
+  userId          String
+
+  // Configuration
+  model           String             // AI model used
+  systemPrompt    String?            @db.Text
+  temperature     Float              @default(0.7)
+  maxTokens       Int                @default(4096)
+  maxSteps        Int                @default(10)
+
+  // Status
+  status          AgentSessionStatus @default(idle)
+
+  // Progress tracking
+  currentStep     Int                @default(0)
+  totalSteps      Int                @default(0)
+
+  // Usage tracking
+  totalCreditsUsed Float             @default(0)
+  totalTokensUsed  Int               @default(0)
+  totalToolCalls   Int               @default(0)
+
+  // Final output
+  finalMessage    String?            @db.Text
+
+  // Error handling
+  errorMessage    String?
+  errorCode       String?
+
+  // Timestamps
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  completedAt     DateTime?
+
+  // Relations
+  steps           AgentStep[]
+  images          AgentImage[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([userId, status])
+  @@index([userId, createdAt])
+}
+
+model AgentStep {
+  id              String   @id @default(cuid())
+  sessionId       String
+
+  // Step info
+  stepNumber      Int
+  userMessage     String?  @db.Text
+  assistantMessage String? @db.Text
+
+  // Tool calls (stored as JSON)
+  toolCalls       Json?    // Array of ToolCall objects
+  toolExecutions  Json?    // Array of ToolExecution results
+
+  // Token usage
+  promptTokens    Int      @default(0)
+  completionTokens Int     @default(0)
+
+  // Timing
+  startedAt       DateTime @default(now())
+  completedAt     DateTime?
+
+  // Relations
+  session         AgentSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([sessionId, stepNumber])
+}
+
+model AgentImage {
+  id              String   @id @default(cuid())
+  sessionId       String
+
+  // Image info
+  url             String
+  originalUrl     String?
+  format          String   // png, jpg, webp, etc.
+  width           Int
+  height          Int
+  size            Int      // bytes
+
+  // Metadata
+  source          String   // upload, generated, processed
+  toolCallId      String?  // Associated tool call
+  metadata        Json?    // Additional metadata
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  // Relations
+  session         AgentSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([sessionId, createdAt])
+}

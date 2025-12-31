@@ -31,6 +31,44 @@ export interface ChatMessage {
   content: string | MessageContent[];
 }
 
+/**
+ * Tool/Function Calling types
+ */
+export interface ToolFunction {
+  name: string;
+  description: string;
+  parameters: {
+    type: 'object';
+    properties: Record<string, {
+      type: string;
+      description?: string;
+      enum?: string[];
+      items?: { type: string };
+    }>;
+    required?: string[];
+  };
+}
+
+export interface Tool {
+  type: 'function';
+  function: ToolFunction;
+}
+
+export interface ToolCall {
+  id: string;
+  type: 'function';
+  function: {
+    name: string;
+    arguments: string; // JSON string
+  };
+}
+
+export type ToolChoice =
+  | 'auto'
+  | 'none'
+  | 'required'
+  | { type: 'function'; function: { name: string } };
+
 export interface ChatCompletionOptions {
   model: string;
   messages: ChatMessage[];
@@ -38,6 +76,10 @@ export interface ChatCompletionOptions {
   maxTokens?: number;
   stream?: boolean;
   systemPrompt?: string;
+  // Tool calling options
+  tools?: Tool[];
+  tool_choice?: ToolChoice;
+  parallel_tool_calls?: boolean;
 }
 
 export interface ChatCompletionResponse {
@@ -46,14 +88,28 @@ export interface ChatCompletionResponse {
   choices: {
     message: {
       role: 'assistant';
-      content: string;
+      content: string | null;
+      tool_calls?: ToolCall[];
     };
-    finish_reason: string;
+    finish_reason: 'stop' | 'tool_calls' | 'length' | 'content_filter' | string;
   }[];
   usage: {
     prompt_tokens: number;
     completion_tokens: number;
     total_tokens: number;
+  };
+}
+
+/**
+ * Tool call delta dla streaming
+ */
+export interface ToolCallDelta {
+  index: number;
+  id?: string;
+  type?: 'function';
+  function?: {
+    name?: string;
+    arguments?: string;
   };
 }
 
@@ -64,8 +120,9 @@ export interface StreamChunk {
     delta: {
       content?: string;
       role?: string;
+      tool_calls?: ToolCallDelta[];
     };
-    finish_reason: string | null;
+    finish_reason: 'stop' | 'tool_calls' | 'length' | 'content_filter' | null;
   }[];
   usage?: {
     prompt_tokens: number;
@@ -128,6 +185,26 @@ export async function chatCompletion(
 
   const messages = prepareMessages(options.messages, options.systemPrompt);
 
+  // Przygotuj body requestu
+  const requestBody: Record<string, unknown> = {
+    model: options.model,
+    messages,
+    temperature: options.temperature ?? 0.7,
+    max_tokens: options.maxTokens ?? 2048,
+    stream: false,
+  };
+
+  // Dodaj tools jeśli przekazane
+  if (options.tools && options.tools.length > 0) {
+    requestBody.tools = options.tools;
+    if (options.tool_choice) {
+      requestBody.tool_choice = options.tool_choice;
+    }
+    if (options.parallel_tool_calls !== undefined) {
+      requestBody.parallel_tool_calls = options.parallel_tool_calls;
+    }
+  }
+
   const response = await fetch(OPENROUTER_API_URL, {
     method: 'POST',
     headers: {
@@ -136,13 +213,7 @@ export async function chatCompletion(
       'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://pixelift.pl',
       'X-Title': 'PixeLift AI Chat',
     },
-    body: JSON.stringify({
-      model: options.model,
-      messages,
-      temperature: options.temperature ?? 0.7,
-      max_tokens: options.maxTokens ?? 2048,
-      stream: false,
-    }),
+    body: JSON.stringify(requestBody),
   });
 
   if (!response.ok) {
@@ -182,6 +253,29 @@ export async function chatCompletionStream(
 
   const messages = prepareMessages(options.messages, options.systemPrompt);
 
+  // Przygotuj body requestu
+  const requestBody: Record<string, unknown> = {
+    model: options.model,
+    messages,
+    temperature: options.temperature ?? 0.7,
+    max_tokens: options.maxTokens ?? 2048,
+    stream: true,
+    stream_options: {
+      include_usage: true,
+    },
+  };
+
+  // Dodaj tools jeśli przekazane
+  if (options.tools && options.tools.length > 0) {
+    requestBody.tools = options.tools;
+    if (options.tool_choice) {
+      requestBody.tool_choice = options.tool_choice;
+    }
+    if (options.parallel_tool_calls !== undefined) {
+      requestBody.parallel_tool_calls = options.parallel_tool_calls;
+    }
+  }
+
   const response = await fetch(OPENROUTER_API_URL, {
     method: 'POST',
     headers: {
@@ -190,16 +284,7 @@ export async function chatCompletionStream(
       'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://pixelift.pl',
       'X-Title': 'PixeLift AI Chat',
     },
-    body: JSON.stringify({
-      model: options.model,
-      messages,
-      temperature: options.temperature ?? 0.7,
-      max_tokens: options.maxTokens ?? 2048,
-      stream: true,
-      stream_options: {
-        include_usage: true,
-      },
-    }),
+    body: JSON.stringify(requestBody),
   });
 
   if (!response.ok) {
@@ -399,4 +484,242 @@ export async function checkAPIStatus(): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/**
+ * Tool Result Message - wiadomość z wynikiem wykonania tool
+ */
+export interface ToolResultMessage {
+  role: 'tool';
+  tool_call_id: string;
+  content: string;
+}
+
+/**
+ * Assistant message with tool calls - wiadomość assistanta z tool calls
+ */
+export interface AssistantToolCallMessage {
+  role: 'assistant';
+  content: string | null;
+  tool_calls: ToolCall[];
+}
+
+/**
+ * Rozszerzony typ wiadomości uwzględniający tool results
+ */
+export type ExtendedChatMessage = ChatMessage | ToolResultMessage | AssistantToolCallMessage;
+
+/**
+ * Parsed tool call z argumentami jako obiekt
+ */
+export interface ParsedToolCall {
+  id: string;
+  name: string;
+  arguments: Record<string, unknown>;
+}
+
+/**
+ * Parsuj tool calls z odpowiedzi - konwertuje JSON string arguments na obiekt
+ */
+export function parseToolCalls(toolCalls: ToolCall[]): ParsedToolCall[] {
+  return toolCalls.map((tc) => {
+    let args: Record<string, unknown> = {};
+    try {
+      args = JSON.parse(tc.function.arguments);
+    } catch {
+      console.error(`[OpenRouter] Failed to parse tool call arguments for ${tc.function.name}`);
+    }
+    return {
+      id: tc.id,
+      name: tc.function.name,
+      arguments: args,
+    };
+  });
+}
+
+/**
+ * Utwórz tool result message
+ */
+export function createToolResultMessage(
+  toolCallId: string,
+  result: unknown
+): ToolResultMessage {
+  return {
+    role: 'tool',
+    tool_call_id: toolCallId,
+    content: typeof result === 'string' ? result : JSON.stringify(result),
+  };
+}
+
+/**
+ * Transformuj stream OpenRouter do formatu SSE dla klienta z obsługą tool calls
+ */
+export function createSSETransformerWithTools() {
+  const decoder = new TextDecoder();
+  const encoder = new TextEncoder();
+  let buffer = '';
+  let totalContent = '';
+  let usage: { prompt_tokens: number; completion_tokens: number; total_tokens: number } | null = null;
+
+  // Tool calls accumulator - zbieramy fragmenty tool calls podczas streamingu
+  const toolCallsMap: Map<number, { id: string; name: string; arguments: string }> = new Map();
+
+  return new TransformStream<Uint8Array, Uint8Array>({
+    transform(chunk, controller) {
+      buffer += decoder.decode(chunk, { stream: true });
+
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6).trim();
+
+          if (data === '[DONE]') {
+            // Finalizuj - sprawdź czy mamy tool calls
+            const toolCalls = Array.from(toolCallsMap.values()).map((tc) => ({
+              id: tc.id,
+              type: 'function' as const,
+              function: {
+                name: tc.name,
+                arguments: tc.arguments,
+              },
+            }));
+
+            const finalData = JSON.stringify({
+              type: 'done',
+              content: totalContent || null,
+              tool_calls: toolCalls.length > 0 ? toolCalls : undefined,
+              usage,
+            });
+            controller.enqueue(encoder.encode(`data: ${finalData}\n\n`));
+            return;
+          }
+
+          try {
+            const parsed: StreamChunk = JSON.parse(data);
+
+            // Zapisz usage jeśli dostępne
+            if (parsed.usage) {
+              usage = parsed.usage;
+            }
+
+            // Pobierz treść
+            const content = parsed.choices?.[0]?.delta?.content;
+            if (content) {
+              totalContent += content;
+
+              // Wyślij chunk do klienta
+              const clientData = JSON.stringify({
+                type: 'chunk',
+                content,
+              });
+              controller.enqueue(encoder.encode(`data: ${clientData}\n\n`));
+            }
+
+            // Obsłuż tool calls delta
+            const toolCallDeltas = parsed.choices?.[0]?.delta?.tool_calls;
+            if (toolCallDeltas) {
+              for (const delta of toolCallDeltas) {
+                const existing = toolCallsMap.get(delta.index);
+
+                if (!existing) {
+                  // Nowy tool call
+                  toolCallsMap.set(delta.index, {
+                    id: delta.id || '',
+                    name: delta.function?.name || '',
+                    arguments: delta.function?.arguments || '',
+                  });
+
+                  // Wyślij info o rozpoczęciu tool call
+                  const toolStartData = JSON.stringify({
+                    type: 'tool_call_start',
+                    index: delta.index,
+                    id: delta.id,
+                    name: delta.function?.name,
+                  });
+                  controller.enqueue(encoder.encode(`data: ${toolStartData}\n\n`));
+                } else {
+                  // Aktualizuj istniejący tool call
+                  if (delta.id) existing.id = delta.id;
+                  if (delta.function?.name) existing.name = delta.function.name;
+                  if (delta.function?.arguments) {
+                    existing.arguments += delta.function.arguments;
+
+                    // Wyślij delta argumentów
+                    const toolDeltaData = JSON.stringify({
+                      type: 'tool_call_delta',
+                      index: delta.index,
+                      arguments_delta: delta.function.arguments,
+                    });
+                    controller.enqueue(encoder.encode(`data: ${toolDeltaData}\n\n`));
+                  }
+                }
+              }
+            }
+
+            // Sprawdź finish_reason
+            const finishReason = parsed.choices?.[0]?.finish_reason;
+            if (finishReason) {
+              const toolCalls = Array.from(toolCallsMap.values()).map((tc) => ({
+                id: tc.id,
+                type: 'function' as const,
+                function: {
+                  name: tc.name,
+                  arguments: tc.arguments,
+                },
+              }));
+
+              const finalData = JSON.stringify({
+                type: 'done',
+                content: totalContent || null,
+                tool_calls: toolCalls.length > 0 ? toolCalls : undefined,
+                usage,
+                finishReason,
+              });
+              controller.enqueue(encoder.encode(`data: ${finalData}\n\n`));
+            }
+          } catch {
+            // Ignoruj błędy parsowania
+          }
+        }
+      }
+    },
+    flush(controller) {
+      // Przetwórz pozostały bufor
+      if (buffer.startsWith('data: ')) {
+        const data = buffer.slice(6).trim();
+        if (data && data !== '[DONE]') {
+          try {
+            const parsed: StreamChunk = JSON.parse(data);
+            if (parsed.usage) {
+              usage = parsed.usage;
+            }
+          } catch {
+            // Ignoruj
+          }
+        }
+      }
+
+      // Wyślij finalne dane jeśli jeszcze nie wysłane
+      const toolCalls = Array.from(toolCallsMap.values());
+      if ((totalContent || toolCalls.length > 0) && !usage) {
+        const finalToolCalls = toolCalls.map((tc) => ({
+          id: tc.id,
+          type: 'function' as const,
+          function: {
+            name: tc.name,
+            arguments: tc.arguments,
+          },
+        }));
+
+        const finalData = JSON.stringify({
+          type: 'done',
+          content: totalContent || null,
+          tool_calls: finalToolCalls.length > 0 ? finalToolCalls : undefined,
+        });
+        controller.enqueue(encoder.encode(`data: ${finalData}\n\n`));
+      }
+    },
+  });
 }

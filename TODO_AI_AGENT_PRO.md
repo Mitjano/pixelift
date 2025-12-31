@@ -1,9 +1,37 @@
 # AI Agent PRO - Lista Zadań do Implementacji
 
-> **Status:** W trakcie planowania
+> **Status:** W trakcie implementacji
 > **Priorytet:** Wysoki - Flagowa funkcja PixeLift
-> **Szacowany czas:** 3-4 tygodnie
+> **Szacowany czas:** 5-6 tygodni
 > **Ocena kompatybilności:** 6.5/10
+
+---
+
+## 🏗️ Architektura Systemu
+
+```
+AI Agent PRO
+│
+├── 🔧 Core Engine (Fazy 1-4)
+│   ├── OpenRouter + Tool Calling
+│   ├── Tools Registry (28 narzędzi)
+│   ├── Orchestrator + Plan Executor
+│   ├── State Manager
+│   └── Frontend UI
+│
+└── 📦 Moduły Rozszerzeń (Faza 5)
+    ├── 🌍 Image Text Translator
+    │   └── OCR → Translate → Inpaint
+    │
+    ├── 📱 Social Media Generator
+    │   └── Smart Resize + Captions + Hashtags
+    │
+    ├── 📄 Document Analyzer (opcjonalnie)
+    │   └── OCR → Data Extraction → Summary
+    │
+    └── 🔍 Web Research (opcjonalnie)
+        └── Search → Similar Images → Trends
+```
 
 ---
 
@@ -373,27 +401,219 @@
 
 ---
 
-## 🔵 FAZA 5: Polish & Testing (Opcjonalnie)
+## 🟣 FAZA 5: Dodatkowe Moduły (Tydzień 5+)
 
-### 5.1 Testy
+### 5.1 Image Text Translator 🌍
+**Katalog:** `lib/ai-agent/modules/image-translator/`
+
+**Opis:** Wykrywa tekst na obrazie, tłumaczy go i zastępuje przetłumaczonym tekstem zachowując styl.
+
+**Use cases:**
+- Menu restauracji w obcym języku
+- Plakaty i ulotki
+- Instrukcje obsługi
+- Memy i obrazki z tekstem
+- Screenshots aplikacji
+
+**Komponenty:**
+- [ ] `ocr.ts` - OCR z wykrywaniem pozycji tekstu
+  - [ ] Integracja z Mistral OCR API
+  - [ ] Fallback: Google Cloud Vision
+  - [ ] Wykrywanie bounding boxes dla każdego bloku tekstu
+  - [ ] Rozpoznawanie fontu/stylu (opcjonalnie)
+
+- [ ] `translator.ts` - Tłumaczenie tekstu
+  - [ ] Integracja z DeepL API (najlepsza jakość)
+  - [ ] Fallback: Google Translate API
+  - [ ] Obsługa 100+ języków
+  - [ ] Auto-detekcja języka źródłowego
+
+- [ ] `text-inpainter.ts` - Zamiana tekstu na obrazie
+  - [ ] Usunięcie oryginalnego tekstu (inpainting)
+  - [ ] Wstawienie przetłumaczonego tekstu
+  - [ ] Dopasowanie koloru/stylu do tła
+
+**API Routes:**
+- [ ] `POST /api/ai-agent/translate-image` - Główny endpoint
+  ```typescript
+  interface TranslateImageRequest {
+    imageUrl: string;
+    targetLanguage: string;
+    sourceLanguage?: string; // auto-detect if not provided
+    preserveStyle?: boolean;
+  }
+
+  interface TranslateImageResponse {
+    originalText: TextBlock[];
+    translatedText: TextBlock[];
+    resultImageUrl: string;
+    creditsUsed: number;
+  }
+  ```
+
+**Kredyty:** 2-4 kredyty (zależnie od ilości tekstu)
+
+**UI Components:**
+- [ ] `ImageTranslator.tsx` - Główny komponent
+- [ ] `LanguageSelector.tsx` - Wybór języków
+- [ ] `TextPreview.tsx` - Podgląd przed/po tłumaczeniu
+
+---
+
+### 5.2 Social Media Generator 📱
+**Katalog:** `lib/ai-agent/modules/social-media/`
+
+**Opis:** Automatycznie przygotowuje obraz pod różne platformy social media z odpowiednimi rozmiarami i tekstami.
+
+**Use cases:**
+- Przygotowanie posta na Instagram, Facebook, Twitter, LinkedIn
+- Generowanie wariantów dla różnych platform jednocześnie
+- Automatyczne captions i hashtagi
+
+**Formaty platform:**
+```typescript
+const SOCIAL_FORMATS = {
+  instagram: {
+    post: { width: 1080, height: 1080, ratio: '1:1' },
+    story: { width: 1080, height: 1920, ratio: '9:16' },
+    reel: { width: 1080, height: 1920, ratio: '9:16' },
+  },
+  facebook: {
+    post: { width: 1200, height: 630, ratio: '1.91:1' },
+    story: { width: 1080, height: 1920, ratio: '9:16' },
+    cover: { width: 820, height: 312, ratio: '2.63:1' },
+  },
+  twitter: {
+    post: { width: 1200, height: 675, ratio: '16:9' },
+    header: { width: 1500, height: 500, ratio: '3:1' },
+  },
+  linkedin: {
+    post: { width: 1200, height: 627, ratio: '1.91:1' },
+    cover: { width: 1584, height: 396, ratio: '4:1' },
+  },
+  pinterest: {
+    pin: { width: 1000, height: 1500, ratio: '2:3' },
+  },
+  tiktok: {
+    video: { width: 1080, height: 1920, ratio: '9:16' },
+  },
+  youtube: {
+    thumbnail: { width: 1280, height: 720, ratio: '16:9' },
+  },
+};
+```
+
+**Komponenty:**
+- [ ] `resizer.ts` - Inteligentne przycinanie/rozszerzanie
+  - [ ] Smart crop (wykrywanie ważnych elementów)
+  - [ ] Outpainting dla rozszerzenia
+  - [ ] Zachowanie proporcji
+
+- [ ] `caption-generator.ts` - Generowanie tekstów
+  - [ ] AI-generated captions
+  - [ ] Hashtag suggestions
+  - [ ] Emoji suggestions
+  - [ ] Dostosowanie do platformy (długość, styl)
+
+- [ ] `batch-processor.ts` - Przetwarzanie wielu formatów
+  - [ ] Jednoczesne generowanie dla wszystkich wybranych platform
+  - [ ] ZIP download wszystkich wariantów
+
+**API Routes:**
+- [ ] `POST /api/ai-agent/social-media/generate`
+  ```typescript
+  interface SocialMediaRequest {
+    imageUrl: string;
+    platforms: ('instagram' | 'facebook' | 'twitter' | 'linkedin')[];
+    formats: ('post' | 'story' | 'cover')[];
+    generateCaptions?: boolean;
+    language?: string;
+    tone?: 'professional' | 'casual' | 'fun' | 'promotional';
+  }
+
+  interface SocialMediaResponse {
+    variants: {
+      platform: string;
+      format: string;
+      imageUrl: string;
+      caption?: string;
+      hashtags?: string[];
+    }[];
+    zipUrl?: string;
+    creditsUsed: number;
+  }
+  ```
+
+**Kredyty:** 0-1 kredyt (resize jest darmowy, captions 1 kredyt)
+
+**UI Components:**
+- [ ] `SocialMediaGenerator.tsx` - Główny komponent
+- [ ] `PlatformSelector.tsx` - Multi-select platform
+- [ ] `FormatPreview.tsx` - Podgląd wszystkich wariantów
+- [ ] `CaptionEditor.tsx` - Edycja wygenerowanych tekstów
+
+---
+
+### 5.3 Document Analyzer 📄 (Opcjonalnie)
+**Katalog:** `lib/ai-agent/modules/document-analyzer/`
+
+**Opis:** Analizuje dokumenty, screenshots, faktury - wyciąga strukturyzowane dane.
+
+**Use cases:**
+- Ekstrakcja danych z faktur
+- Analiza screenshots
+- OCR z zachowaniem struktury
+- Summarization dokumentów
+
+**Komponenty:**
+- [ ] `document-ocr.ts` - OCR z rozpoznawaniem struktury
+- [ ] `data-extractor.ts` - Wyciąganie strukturyzowanych danych
+- [ ] `summarizer.ts` - Podsumowania dokumentów
+
+**Kredyty:** 1-3 kredyty
+
+---
+
+### 5.4 Web Research Assistant 🔍 (Opcjonalnie)
+**Katalog:** `lib/ai-agent/modules/web-research/`
+
+**Opis:** Przeszukuje internet w poszukiwaniu inspiracji, referencji, podobnych obrazów.
+
+**Use cases:**
+- "Znajdź podobne zdjęcia produktowe"
+- "Wyszukaj trendy w designie 2025"
+- "Znajdź referencje do tego stylu"
+
+**Komponenty:**
+- [ ] `web-search.ts` - Integracja z Perplexity/Tavily API
+- [ ] `image-search.ts` - Wyszukiwanie podobnych obrazów
+- [ ] `trend-analyzer.ts` - Analiza trendów
+
+**Kredyty:** 1 kredyt per wyszukiwanie
+
+---
+
+## 🔵 FAZA 6: Polish & Testing
+
+### 6.1 Testy
 - [ ] Unit testy dla orchestratora
 - [ ] Unit testy dla plan executora
 - [ ] Integration testy API
 - [ ] E2E testy UI
 
-### 5.2 Optymalizacje
+### 6.2 Optymalizacje
 - [ ] Caching planów
 - [ ] Parallel tool execution gdzie możliwe
 - [ ] Lazy loading komponentów
 - [ ] Image optimization
 
-### 5.3 Analytics
+### 6.3 Analytics
 - [ ] Tracking użycia narzędzi
 - [ ] Tracking kosztów per użytkownik
 - [ ] Tracking błędów
 - [ ] Dashboard w admin panel
 
-### 5.4 Dokumentacja
+### 6.4 Dokumentacja
 - [ ] README dla AI Agent
 - [ ] API documentation
 - [ ] User guide
@@ -439,5 +659,5 @@ Rekomendowane modele do testowania:
 
 ---
 
-*Ostatnia aktualizacja: 2024-12-30*
+*Ostatnia aktualizacja: 2025-12-30*
 *Autor: Claude Code*

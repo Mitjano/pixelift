@@ -1,0 +1,311 @@
+{
+  "aiAgentMeta": {
+    "title": "AI Agent PRO - Assistant Créatif Intelligent",
+    "description": "Discutez naturellement avec notre agent AI pour éditer des images, générer du contenu et automatiser les flux créatifs. Suppression d'arrière-plan, agrandissement d'images, génération d'art AI et plus - le tout par une simple conversation."
+  },
+  "aiAgentPage": {
+    "badge": "AI Agent PRO - Assistant Intelligent",
+    "hero": {
+      "title1": "Votre ",
+      "titleHighlight": "Assistant AI ",
+      "title2": "Creatif",
+      "subtitle": "Discutez naturellement avec notre IA pour editer des images, generer du contenu et automatiser les flux creatifs. Aucune competence technique requise."
+    },
+    "stats": {
+      "tools": "Outils AI",
+      "categories": "Categories",
+      "operations": "Operations"
+    },
+    "chat": {
+      "placeholder": "Decrivez ce que vous voulez creer ou editer...",
+      "send": "Envoyer",
+      "stop": "Arreter",
+      "thinking": "Reflexion...",
+      "executing": "Execution de l'outil...",
+      "newSession": "Nouvelle Session",
+      "clearHistory": "Effacer l'Historique",
+      "welcome": "Bienvenue sur AI Agent",
+      "welcomeSubtitle": "Je peux vous aider avec l'edition d'images, la generation et les taches creatives. Decrivez simplement ce dont vous avez besoin!",
+      "suggestions": {
+        "title": "Essayez de me demander:",
+        "items": [
+          "Supprime l'arriere-plan de ma photo",
+          "Genere un logo pour mon entreprise",
+          "Augmente cette image en qualite 4K",
+          "Cree des versions pour les reseaux sociaux",
+          "Ajoute un filigrane a mes images"
+        ]
+      },
+      "suggestionCategories": {
+        "popular": {
+          "title": "Les Plus Populaires",
+          "icon": "⭐",
+          "items": [
+            "Supprime l'arriere-plan de mon image",
+            "Agrandis ma photo en resolution 4K",
+            "Genere un logo professionnel pour ma marque",
+            "Compresse cette image pour le web sans perte de qualite",
+            "Cree des versions Instagram et Facebook de cette photo"
+          ]
+        },
+        "ecommerce": {
+          "title": "E-commerce et Produits",
+          "icon": "🛍️",
+          "items": [
+            "Supprime l'arriere-plan et ajoute un fond blanc a ma photo de produit",
+            "Cree des images de produit pour Amazon, eBay et ma boutique",
+            "Rends cette photo de produit plus professionnelle",
+            "Genere des images lifestyle montrant mon produit en utilisation",
+            "Traite toutes mes photos de produit avec un style coherent"
+          ]
+        },
+        "social": {
+          "title": "Reseaux Sociaux",
+          "icon": "📱",
+          "items": [
+            "Cree un pack complet de reseaux sociaux a partir de cette image",
+            "Redimensionne ma photo pour story, post et reel Instagram",
+            "Genere des legendes et hashtags pour cette image",
+            "Rends cette photo plus accrocheuse pour les reseaux sociaux",
+            "Cree un carrousel de variations de cette image"
+          ]
+        },
+        "creative": {
+          "title": "Creativite et Art",
+          "icon": "🎨",
+          "items": [
+            "Genere une version artistique de ma photo en style peinture a l'huile",
+            "Cree une illustration unique basee sur ma description",
+            "Transforme cette photo en style anime/dessin anime",
+            "Etends cette image pour la rendre plus large pour une banniere",
+            "Genere des variations de mon logo dans differents styles"
+          ]
+        },
+        "professional": {
+          "title": "Professionnel et Affaires",
+          "icon": "💼",
+          "items": [
+            "Cree une photo professionnelle a partir de ma photo decontractee",
+            "Conçois une maquette de carte de visite avec mon logo",
+            "Extrais le texte de cette image de document",
+            "Traduis le texte de cette image en français",
+            "Genere un code QR qui renvoie a mon site web"
+          ]
+        },
+        "photo": {
+          "title": "Amelioration de Photos",
+          "icon": "📷",
+          "items": [
+            "Ameliore la qualite de cette vieille photo",
+            "Corrige l'eclairage et les couleurs de ma photo",
+            "Supprime les objets indesirables de mon image",
+            "Restaure cette vieille photographie endommagee",
+            "Rends cette photo floue plus nette et claire"
+          ]
+        }
+      }
+    },
+    "tools": {
+      "title": "Puissants ",
+      "titleHighlight": "Outils AI",
+      "subtitle": "Notre agent a acces a une suite complete d'outils d'edition et de generation d'images",
+      "categories": {
+        "image_editing": "Edition d'Images",
+        "image_generation": "Generation d'Images",
+        "image_analysis": "Analyse d'Images",
+        "text_processing": "Traitement de Texte",
+        "file_management": "Gestion de Fichiers",
+        "social_media": "Reseaux Sociaux",
+        "translation": "Traduction",
+        "utility": "Utilitaires"
+      }
+    },
+    "features": {
+      "title": "Pourquoi AI Agent?",
+      "subtitle": "Decouvrez la prochaine generation d'assistance creative IA",
+      "natural": {
+        "title": "Conversation Naturelle",
+        "description": "Decrivez simplement ce que vous voulez. Pas d'interfaces complexes ni de connaissances techniques requises."
+      },
+      "multiTool": {
+        "title": "Flux Multi-Outils",
+        "description": "Enchainez plusieurs operations. Supprimez l'arriere-plan, agrandissez et ajoutez un filigrane - tout dans une conversation."
+      },
+      "context": {
+        "title": "Conscient du Contexte",
+        "description": "L'agent se souvient de votre conversation et peut referencer les images et operations precedentes."
+      },
+      "realtime": {
+        "title": "Streaming en Temps Reel",
+        "description": "Voyez le processus de reflexion de l'agent et les executions d'outils en direct pendant qu'il travaille sur votre demande."
+      },
+      "credits": {
+        "title": "Efficacite des Credits",
+        "description": "Ne payez que pour les outils que vous utilisez. L'agent optimise les flux pour minimiser l'utilisation des credits."
+      },
+      "history": {
+        "title": "Historique des Sessions",
+        "description": "Accedez a vos sessions precedentes et continuez la ou vous vous etiez arrete. Tout votre travail est sauvegarde."
+      }
+    },
+    "capabilities": {
+      "title": "Que Puis-Je Faire?",
+      "items": [
+        {
+          "title": "Edition d'Images",
+          "description": "Supprimer les arriere-plans, agrandir les images, compresser les fichiers, recadrer, faire pivoter, ajouter des filigranes et plus."
+        },
+        {
+          "title": "Generation d'Images",
+          "description": "Creer des images a partir de descriptions textuelles, editer des images existantes avec l'IA, etendre les images au-dela de leurs bordures."
+        },
+        {
+          "title": "Analyse d'Images",
+          "description": "Extraire du texte (OCR), detecter les visages, analyser le contenu, obtenir les metadonnees et l'evaluation de la qualite."
+        },
+        {
+          "title": "Reseaux Sociaux",
+          "description": "Redimensionner les images pour differentes plateformes, creer des packs avec des dimensions optimisees."
+        },
+        {
+          "title": "Traitement par Lots",
+          "description": "Traiter plusieurs images a la fois avec des parametres coherents. Parfait pour les operations en masse."
+        },
+        {
+          "title": "Flux Intelligents",
+          "description": "Combiner plusieurs outils en flux intelligents. L'agent determine la meilleure approche."
+        }
+      ]
+    },
+    "workflows": {
+      "title": "Exemples de Flux Intelligents",
+      "subtitle": "Decouvrez comment AI Agent enchaine plusieurs outils pour accomplir des taches complexes",
+      "tryButton": "Essayer Ce Flux",
+      "items": [
+        {
+          "title": "Pipeline de Photos de Produit",
+          "description": "Flux complet pour l'e-commerce",
+          "prompt": "Prends ma photo de produit, supprime l'arriere-plan, ajoute un fond blanc propre, agrandis en haute resolution et cree des versions pour Amazon, eBay et ma boutique Shopify",
+          "steps": ["Supprimer l'arriere-plan", "Ajouter fond blanc", "Agrandir 4x", "Redimensionner", "Compresser"],
+          "credits": "~8 credits"
+        },
+        {
+          "title": "Pack Reseaux Sociaux",
+          "description": "Une image, toutes les plateformes couvertes",
+          "prompt": "Cree un pack complet de reseaux sociaux a partir de cette image: post et story Instagram, couverture et post Facebook, en-tete Twitter, banniere LinkedIn, et genere des legendes avec hashtags",
+          "steps": ["Analyser l'image", "Recadrage intelligent", "Redimensionner", "Generer legendes", "Ajouter hashtags"],
+          "credits": "~5 credits"
+        },
+        {
+          "title": "Restauration de Photo Ancienne",
+          "description": "Redonnez vie aux photos vintage",
+          "prompt": "Restaure cette vieille photo endommagee: repare les rayures et dechirures, ameliore la qualite, colorise naturellement et agrandis pour l'impression",
+          "steps": ["Supprimer dommages", "Debruiter", "Coloriser IA", "Ameliorer details", "Agrandir 4x"],
+          "credits": "~10 credits"
+        },
+        {
+          "title": "Generateur d'Actifs de Marque",
+          "description": "Du concept au kit de marque complet",
+          "prompt": "Genere un logo minimaliste moderne pour mon cafe appele 'Morning Brew', puis cree des variations pour fonds clairs et sombres, photos de profil pour reseaux sociaux et un favicon",
+          "steps": ["Generer logo", "Creer variations", "Redimensionner", "Creer favicon", "Empaqueter actifs"],
+          "credits": "~6 credits"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Qui Utilise AI Agent?",
+      "subtitle": "Decouvrez comment differents professionnels exploitent AI Agent dans leur travail quotidien",
+      "items": [
+        {
+          "icon": "🛒",
+          "title": "Vendeurs E-commerce",
+          "description": "Traitez les photos de produits en lot, creez des annonces coherentes et automatisez la preparation d'images pour plusieurs plateformes.",
+          "example": "\"Traite mes 50 photos de produit: supprime les fonds, ajoute des ombres, redimensionne pour Amazon et eBay\""
+        },
+        {
+          "icon": "📸",
+          "title": "Photographes",
+          "description": "Editez des photos en lot, restaurez des images anciennes, creez des versions pour reseaux sociaux et generez rapidement des fichiers prets pour les clients.",
+          "example": "\"Ameliore ces photos de mariage, cree des versions Instagram et ajoute mon filigrane a toutes\""
+        },
+        {
+          "icon": "🎨",
+          "title": "Designers",
+          "description": "Generez des actifs de design, creez des variations, preparez des fichiers pour differentes plateformes et automatisez les taches repetitives.",
+          "example": "\"Genere 5 variations de logo dans differents schemas de couleurs et exporte pour l'impression et le web\""
+        },
+        {
+          "icon": "📱",
+          "title": "Community Managers",
+          "description": "Creez du contenu optimise pour les plateformes, generez des legendes, redimensionnez pour tous les canaux et maintenez la coherence visuelle.",
+          "example": "\"Cree le pack de contenu de cette semaine: redimensionne pour toutes les plateformes, ajoute notre branding, genere des legendes\""
+        },
+        {
+          "icon": "🏪",
+          "title": "Petits Entrepreneurs",
+          "description": "Creez des materiaux marketing professionnels sans competences en design - logos, posts, images de produits et plus.",
+          "example": "\"J'ai besoin d'un logo professionnel, d'un design de carte de visite et d'images de profil pour reseaux sociaux pour ma boulangerie\""
+        },
+        {
+          "icon": "✍️",
+          "title": "Createurs de Contenu",
+          "description": "Generez des miniatures, creez des graphiques accrocheurs, editez des images pour blogs et maintenez un branding visuel coherent.",
+          "example": "\"Cree une miniature YouTube accrocheuse avec du texte en gras\""
+        }
+      ]
+    },
+    "tips": {
+      "title": "Conseils Pro pour de Meilleurs Resultats",
+      "subtitle": "Tirez le meilleur parti d'AI Agent avec ces conseils d'experts",
+      "items": [
+        {
+          "icon": "💡",
+          "title": "Soyez Specifique",
+          "description": "Au lieu de 'ameliore-le', essayez 'augmente la luminosite de 20%, ajoute de la chaleur et affine les details'"
+        },
+        {
+          "icon": "🔗",
+          "title": "Enchainez les Commandes",
+          "description": "Combinez plusieurs taches en une demande: 'Supprime l'arriere-plan, agrandis 4x et sauvegarde en PNG et WebP'"
+        },
+        {
+          "icon": "📋",
+          "title": "Utilisez des References",
+          "description": "Decrivez les styles que vous voulez: 'Fais-le ressembler a une couverture de magazine professionnelle' ou 'style photo produit Apple'"
+        },
+        {
+          "icon": "🎯",
+          "title": "Specifiez les Dimensions",
+          "description": "Indiquez a l'agent les tailles exactes: 'Redimensionne a 1920x1080 pour ma miniature YouTube'"
+        },
+        {
+          "icon": "🔄",
+          "title": "Iterez",
+          "description": "Pas parfait? Dites 'rends-le plus lumineux' ou 'essaie un style different' - l'agent se souvient du contexte"
+        },
+        {
+          "icon": "📦",
+          "title": "Traitez Intelligemment",
+          "description": "Pour plusieurs images, decrivez le style coherent une fois: 'Applique ces parametres a toutes mes images'"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Tarification Simple Basee sur les Credits",
+      "subtitle": "Utilisez des credits pour acceder aux outils AI. Differentes operations ont differents couts de credits selon la complexite.",
+      "startFree": "Commencer Gratuitement",
+      "viewPricing": "Voir les Tarifs"
+    },
+    "cta": {
+      "title": "Pret a Commencer?",
+      "subtitle": "Commencez a discuter avec notre agent AI et transformez votre flux de travail creatif.",
+      "button": "Commencer a Creer"
+    },
+    "errors": {
+      "sessionFailed": "Echec de la creation de session",
+      "messageFailed": "Echec de l'envoi du message",
+      "connectionLost": "Connexion perdue. Veuillez reessayer.",
+      "noCredits": "Credits insuffisants. Veuillez recharger votre solde."
+    }
+  }
+}

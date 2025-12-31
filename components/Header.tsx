@@ -514,6 +514,16 @@ export default function Header() {
             <span className="text-xs" aria-hidden="true">💬</span>
             {t('nav.aiChat')}
           </Link>
+          <Link
+            href="/ai-agent"
+            className={`flex items-center gap-1 transition font-medium text-sm whitespace-nowrap ${
+              pathname?.includes('/ai-agent') ? 'text-cyan-500 dark:text-cyan-400' : 'text-gray-700 dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400'
+            }`}
+          >
+            <span className="text-xs" aria-hidden="true">🤖</span>
+            {t('nav.aiAgent')}
+            <span className="px-1.5 py-0.5 text-[9px] bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded font-semibold">PRO</span>
+          </Link>
           <Link href="/pricing" className="text-gray-700 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition text-sm whitespace-nowrap">
             {t('nav.pricing')}
           </Link>
@@ -703,6 +713,20 @@ export default function Header() {
               <div>
                 <div className="font-medium text-green-600 dark:text-green-400">{t('nav.aiChat')}</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">Rozmawiaj z AI</div>
+              </div>
+            </Link>
+            <Link
+              href="/ai-agent"
+              className="flex items-center gap-3 py-3 px-3 rounded-lg text-gray-700 dark:text-white hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="text-xl" aria-hidden="true">🤖</span>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-cyan-600 dark:text-cyan-400">{t('nav.aiAgent')}</span>
+                  <span className="px-1.5 py-0.5 text-[9px] bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded font-semibold">PRO</span>
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Inteligentny asystent</div>
               </div>
             </Link>
 

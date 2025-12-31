@@ -137,6 +137,11 @@ function getPriorityConfig(pagePath: string): { priority: number; changeFrequenc
     return { priority: 0.9, changeFrequency: 'daily' };
   }
 
+  // AI Agent PRO
+  if (pagePath === '/ai-agent') {
+    return { priority: 0.9, changeFrequency: 'daily' };
+  }
+
   // Pricing
   if (pagePath === '/pricing') {
     return { priority: 0.9, changeFrequency: 'weekly' };
