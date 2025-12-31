@@ -4,7 +4,6 @@ import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { getUserByEmail } from "@/lib/db";
-import { headers } from "next/headers";
 
 // Admin emails from environment variable (comma-separated)
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim()).filter(Boolean);
@@ -102,31 +101,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: "/auth/error",
   },
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account }) {
       // This callback runs AFTER OAuth/Credentials but BEFORE creating session
       // For OAuth providers: register/update user in database with geo tracking
       // For credentials provider: update login tracking (geo, device info)
+      // Note: Headers are not available in this callback context in NextAuth v5
+      // Geo tracking is handled separately in the register-user-internal endpoint
       if (user.email) {
         try {
-          // Get original request headers for IP tracking
-          const headersList = await headers();
-          const clientIp = headersList.get('cf-connecting-ip') ||
-                          headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-                          headersList.get('x-real-ip') ||
-                          'unknown';
-          const userAgent = headersList.get('user-agent') || '';
-          const acceptLanguage = headersList.get('accept-language') || '';
-
           const baseUrl = process.env.AUTH_URL || process.env.NEXTAUTH_URL || 'http://localhost:3000';
           const response = await fetch(`${baseUrl}/api/auth/register-user-internal`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'X-Internal-Auth': process.env.NEXTAUTH_SECRET || '',
-              // Forward client headers for geo tracking
-              'X-Client-IP': clientIp,
-              'X-Client-User-Agent': userAgent,
-              'X-Client-Accept-Language': acceptLanguage,
             },
             body: JSON.stringify({
               email: user.email,
