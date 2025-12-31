@@ -535,6 +535,8 @@ export class Orchestrator {
 
   /**
    * Zbuduj opcje dla chatCompletion
+   * IMPORTANT: Images are only sent in the FIRST step to avoid massive token usage.
+   * In subsequent steps, we replace image_url content with a text reference.
    */
   private buildCompletionOptions(): ChatCompletionOptions {
     // Pobierz definicje narzędzi
@@ -542,8 +544,12 @@ export class Orchestrator {
       ? getToolDefinitionsFor(this.session.config.availableTools)
       : getToolDefinitions();
 
+    // Track if we've already sent images (to avoid resending in multi-turn)
+    const isFirstStep = this.session.steps.length === 0;
+
     // Konwertuj wiadomości do formatu ChatMessage
-    const messages: ChatMessage[] = this.session.messages.map((msg) => {
+    // CRITICAL: Strip base64 images from subsequent steps to save tokens
+    const messages: ChatMessage[] = this.session.messages.map((msg, index) => {
       if (msg.role === 'tool') {
         // Tool result messages - konwertuj na user message z kontekstem
         return {
@@ -551,6 +557,31 @@ export class Orchestrator {
           content: `[Tool Result for ${(msg as ToolResultMessage).tool_call_id}]: ${msg.content}`,
         };
       }
+
+      // For user messages with images - only include images on first step
+      if (msg.role === 'user' && Array.isArray(msg.content)) {
+        // Check if this message has image_url content
+        const hasImages = msg.content.some(
+          (c: { type: string }) => c.type === 'image_url'
+        );
+
+        if (hasImages && !isFirstStep) {
+          // After first step, replace images with text reference to save tokens
+          const textContent = msg.content
+            .filter((c: { type: string }) => c.type === 'text')
+            .map((c: { text?: string }) => c.text || '')
+            .join(' ');
+          const imageCount = msg.content.filter(
+            (c: { type: string }) => c.type === 'image_url'
+          ).length;
+
+          return {
+            role: 'user' as const,
+            content: `${textContent} [${imageCount} image(s) were uploaded and analyzed in previous step - use UPLOADED_IMAGE to reference them in tools]`,
+          };
+        }
+      }
+
       return msg as ChatMessage;
     });
 
