@@ -76,7 +76,8 @@ export default function AgentChat() {
       }
 
       const data = await response.json();
-      setSessionId(data.sessionId);
+      // API returns { session: { id: "agent_xxx" } }
+      setSessionId(data.session?.id || data.sessionId);
     } catch (err) {
       console.error('Failed to create session:', err);
       setError(t('errors.sessionFailed'));
@@ -309,7 +310,7 @@ export default function AgentChat() {
   }
 
   return (
-    <div className="bg-gray-800/50 border border-gray-700 rounded-2xl overflow-hidden flex flex-col min-h-[600px]" style={{ height: 'min(calc(100vh - 250px), 900px)' }}>
+    <div className="bg-gray-800/50 border border-gray-700 rounded-2xl overflow-hidden flex flex-col h-full">
       {/* Header */}
       <div className="flex-shrink-0 flex items-center justify-between px-4 md:px-6 py-3 md:py-4 border-b border-gray-700 bg-gray-800/50">
         <div className="flex items-center gap-3">

@@ -61,8 +61,8 @@ export const authConfig: NextAuthConfig = {
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub;
-        // Add isAdmin property to session
-        session.user.isAdmin = ADMIN_EMAILS.includes(session.user.email || "");
+        // Add isAdmin property to session from token
+        session.user.isAdmin = token.isAdmin === true;
       }
       return session;
     },
@@ -71,6 +71,10 @@ export const authConfig: NextAuthConfig = {
         token.sub = user.id;
         // Add isAdmin to token
         token.isAdmin = ADMIN_EMAILS.includes(user.email || "");
+      }
+      // Always ensure isAdmin is set based on email
+      if (token.email) {
+        token.isAdmin = ADMIN_EMAILS.includes(token.email);
       }
       return token;
     },
