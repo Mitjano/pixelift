@@ -75,7 +75,7 @@ export default auth((req) => {
   }
 
   // Protect admin routes (including localized versions)
-  const adminPattern = /^(\/(pl|es|fr))?\/admin/;
+  const adminPattern = /^(\/(en|pl|es|fr))?\/admin/;
   if (adminPattern.test(pathname)) {
     // Check if user is authenticated
     if (!req.auth?.user) {
@@ -84,6 +84,13 @@ export default auth((req) => {
       signInUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(signInUrl);
     }
+
+    // Debug: log auth info for admin routes
+    console.log('[Admin Auth]', {
+      email: req.auth?.user?.email,
+      isAdmin: req.auth?.user?.isAdmin,
+      pathname
+    });
 
     // Check if user is admin (from JWT token)
     const isAdmin = req.auth?.user?.isAdmin === true;
