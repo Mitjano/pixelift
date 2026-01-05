@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
 
     // Use Bria Eraser model for clean inpainting (same as object-removal)
     const output = await replicate.run(
-      "bria/eraser",
+      "bria/eraser:893e924eecc119a0c5fbfa5d98401118dcbf0662574eb8d2c01be5749756cbd4",
       {
         input: {
           image: resizedImageDataUrl,

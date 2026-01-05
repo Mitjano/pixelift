@@ -323,7 +323,7 @@ async function generateWithRecraftV3(
   const startTime = Date.now();
 
   try {
-    const output = await replicate.run('recraft-ai/recraft-v3', {
+    const output = await replicate.run('recraft-ai/recraft-v3:9507e61ddace8b3a238371b17a61be203747c5081ea6070fecd3c40d27318922', {
       input: {
         prompt,
         size: `${aspectRatio.width}x${aspectRatio.height}`,
@@ -360,7 +360,7 @@ async function generateWithRecraftV3SVG(
   const startTime = Date.now();
 
   try {
-    const output = await replicate.run('recraft-ai/recraft-v3-svg', {
+    const output = await replicate.run('recraft-ai/recraft-v3-svg:df041379628fa1d16bd406409930775b0904dc2bc0f3e3f38ecd2a4389e9329d', {
       input: {
         prompt,
         size: `${aspectRatio.width}x${aspectRatio.height}`,
