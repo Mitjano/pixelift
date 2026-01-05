@@ -135,7 +135,7 @@ export class ImageProcessor {
   private static async removeBackgroundViaReplicate(dataUrl: string): Promise<string> {
     try {
       const output = await this.replicate.run(
-        "bria/remove-background",
+        "bria/remove-background:4ed060b3587b7c3912353dd7d59000c883a6e1c5c9181ed7415c2624c2e8e392",
         {
           input: {
             image: dataUrl
@@ -375,7 +375,7 @@ export class ImageProcessor {
     const resizedDataUrl = await this.resizeForUpscale(dataUrl, 4000000) // 4MP limit for Clarity
 
     const output = await this.replicate.run(
-      "philz1337x/clarity-upscaler",
+      "philz1337x/clarity-upscaler:dfad41707589d68ecdccd1dfa600d55a208f9310748e44bfe35b4a6291453d5e",
       {
         input: {
           image: resizedDataUrl,
@@ -405,7 +405,7 @@ export class ImageProcessor {
     const resizedDataUrl = await this.resizeForUpscale(dataUrl, 4000000)
 
     const output = await this.replicate.run(
-      "recraft-ai/recraft-crisp-upscale",
+      "recraft-ai/recraft-crisp-upscale:31c70d9026bbd25ee2b751825e19101e0321b8814c33863c88fe5d0d63c00c82",
       {
         input: {
           image: resizedDataUrl,
@@ -569,7 +569,7 @@ export class ImageProcessor {
     const resizedDataUrl = await this.resizeForUpscale(dataUrl)
 
     const output = await this.replicate.run(
-      "flux-kontext-apps/restore-image",
+      "flux-kontext-apps/restore-image:da7613a13aac59a1a3231023f0f30cf27991695ee0fe7ef52959ec1e02311c25",
       {
         input: {
           image: resizedDataUrl,
